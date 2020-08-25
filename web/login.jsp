@@ -19,6 +19,9 @@
                 min-height:100vh;
                 padding:10% 0px;
             }
+            .header{
+            background-color:gray;
+            }
         </style>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
