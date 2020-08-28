@@ -1,4 +1,6 @@
 <%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" errorPage="views/common/error.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,6 +22,10 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
+    <div style="position:fixed;z-index:5;">
+    <br><br><br>
+    <button onclick="javascript:location.href='/hwabo/main/index.html'">클릭</button>
+    </div>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container">
@@ -193,7 +199,7 @@
         </section>
         <!-- Footer-->
         <footer class="bg-light py-5">
-            <div class="container"><div class="small text-center text-muted">Copyright � 2020 - Start Bootstrap</div></div>
+            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
