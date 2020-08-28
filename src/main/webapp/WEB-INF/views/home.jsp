@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Creative - Start Bootstrap Theme</title>
+        <title>in web-inf</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="/hwabo/assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -24,7 +24,7 @@
     <body id="page-top">
     <div style="position:fixed;z-index:5;">
     <br><br><br>
-    <button onclick="javascript:location.href='/hwabo/main/index.html'">클릭</button>
+    <button onclick="javascript:location.href='main/index.html'">클릭</button>
     </div>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
