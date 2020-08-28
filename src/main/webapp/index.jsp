@@ -1,6 +1,7 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" errorPage="views/common/error.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,7 +25,20 @@
     <body id="page-top">
     <div style="position:fixed;z-index:5;">
     <br><br><br>
-    <button onclick="javascript:location.href='main/index.jsp'">클릭</button>
+    <button onclick="javascript:location.href='main/index.jsp'">index</button>
+    <button onclick="javascript:location.href='main/404.jsp'">404</button>
+    <button onclick="javascript:location.href='main/blank.jsp'">blank</button>
+    <button onclick="javascript:location.href='main/buttons.jsp'">buttons</button>
+    <button onclick="javascript:location.href='main/cards.jsp'">cards</button>
+    <button onclick="javascript:location.href='main/charts.jsp'">charts</button>
+    <button onclick="javascript:location.href='main/forgot-password.jsp'">forgot-password</button>
+    <button onclick="javascript:location.href='main/login.jsp'">login</button>
+    <button onclick="javascript:location.href='main/register.jsp'">register</button>
+    <button onclick="javascript:location.href='main/tables.jsp'">tables</button>
+    <button onclick="javascript:location.href='main/utilities-animation.jsp'">utilities-animation</button>
+    <button onclick="javascript:location.href='main/utilities-border.jsp'">utilities-border</button>
+    <button onclick="javascript:location.href='main/utilities-color.jsp'">utilities-color</button>
+    <button onclick="javascript:location.href='main/utilities-other.jsp'">utilities-other</button>
     </div>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">

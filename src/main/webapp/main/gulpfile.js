@@ -53,7 +53,7 @@ function modules() {
   var bootstrapJS = gulp.src('./node_modules/bootstrap/dist/js/*')
     .pipe(gulp.dest('./vendor/bootstrap/js'));
   // Bootstrap SCSS
-  var bootstrapSCSS = gulp.src('./node_modules/bootstrap/hwabo/scss/**/*')
+  var bootstrapSCSS = gulp.src('./node_modules/bootstrap/scss/**/*')
     .pipe(gulp.dest('./vendor/bootstrap/scss'));
   // ChartJS
   var chartJS = gulp.src('./node_modules/chart.js/dist/*.js')
@@ -83,7 +83,7 @@ function modules() {
 // CSS task
 function css() {
   return gulp
-    .src("./hwabo/scss/**/*.scss")
+    .src("./scss/**/*.scss")
     .pipe(plumber())
     .pipe(sass({
       outputStyle: "expanded",
@@ -125,9 +125,9 @@ function js() {
 
 // Watch files
 function watchFiles() {
-  gulp.watch("./hwabo/scss/**/*", css);
+  gulp.watch("./scss/**/*", css);
   gulp.watch(["./js/**/*", "!./js/**/*.min.js"], js);
-  gulp.watch("./**/*.html", browserSyncReload);
+  gulp.watch("./**/*.jsp", browserSyncReload);
 }
 
 // Define complex tasks

@@ -1,3 +1,7 @@
+<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,19 +13,35 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Other Utilities</title>
+  <title>SB Admin 2 - Animation Utilities</title>
 
   <!-- Custom fonts for this template-->
-  <link href="/hwabo/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="hwabo/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
+<div style="position:relative;z-index:5;">
 
+    <button onclick="javascript:location.href='index.jsp'">index</button>
+    <button onclick="javascript:location.href='404.jsp'">404</button>
+    <button onclick="javascript:location.href='blank.jsp'">blank</button>
+    <button onclick="javascript:location.href='buttons.jsp'">buttons</button>
+    <button onclick="javascript:location.href='cards.jsp'">cards</button>
+    <button onclick="javascript:location.href='charts.jsp'">charts</button>
+    <button onclick="javascript:location.href='forgot-password.jsp'">forgot-password</button>
+    <button onclick="javascript:location.href='login.jsp'">login</button>
+    <button onclick="javascript:location.href='register.jsp'">register</button>
+    <button onclick="javascript:location.href='tables.jsp'">tables</button>
+    <button onclick="javascript:location.href='utilities-animation.jsp'">utilities-animation</button>
+    <button onclick="javascript:location.href='utilities-border.jsp'">utilities-border</button>
+    <button onclick="javascript:location.href='utilities-color.jsp'">utilities-color</button>
+    <button onclick="javascript:location.href='utilities-other.jsp'">utilities-other</button>
+    </div>
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -29,7 +49,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -41,7 +61,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.jsp">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -63,8 +83,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
+            <a class="collapse-item" href="buttons.jsp">Buttons</a>
+            <a class="collapse-item" href="cards.jsp">Cards</a>
           </div>
         </div>
       </li>
@@ -78,10 +98,10 @@
         <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item active" href="utilities-other.html">Other</a>
+            <a class="collapse-item" href="utilities-color.jsp">Colors</a>
+            <a class="collapse-item" href="utilities-border.jsp">Borders</a>
+            <a class="collapse-item active" href="utilities-animation.jsp">Animations</a>
+            <a class="collapse-item" href="utilities-other.jsp">Other</a>
           </div>
         </div>
       </li>
@@ -103,27 +123,27 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+            <a class="collapse-item" href="login.jsp">Login</a>
+            <a class="collapse-item" href="register.jsp">Register</a>
+            <a class="collapse-item" href="forgot-password.jsp">Forgot Password</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
+            <a class="collapse-item" href="404.jsp">404 Page</a>
+            <a class="collapse-item" href="blank.jsp">Blank Page</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="charts.jsp">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="tables.jsp">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
       </li>
@@ -256,7 +276,7 @@
                   </div>
                   <div class="font-weight-bold">
                     <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
+                    <div class="small text-gray-500">Emily Fowler Â· 58m</div>
                   </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -266,7 +286,7 @@
                   </div>
                   <div>
                     <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
+                    <div class="small text-gray-500">Jae Chun Â· 1d</div>
                   </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -276,7 +296,7 @@
                   </div>
                   <div>
                     <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                    <div class="small text-gray-500">Morgan Alvarez Â· 2d</div>
                   </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -286,7 +306,7 @@
                   </div>
                   <div>
                     <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                    <div class="small text-gray-500">Chicken the Dog Â· 2w</div>
                   </div>
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
@@ -332,75 +352,86 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-1 text-gray-800">Other Utilities</h1>
+          <h1 class="h3 mb-1 text-gray-800">Animation Utilities</h1>
           <p class="mb-4">Bootstrap's default utility classes can be found on the official <a href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities below were created to extend this theme past the default utility classes built into Bootstrap's framework.</p>
 
           <!-- Content Row -->
           <div class="row">
 
+            <!-- Grow In Utility -->
             <div class="col-lg-6">
 
-              <!-- Overflow Hidden -->
-              <div class="card mb-4">
+              <div class="card position-relative">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Overflow Hidden Utilty</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Grow In Animation Utilty</h6>
                 </div>
                 <div class="card-body">
-                  Use <code>.o-hidden</code> to set the overflow property of any element to hidden.
-                </div>
-              </div>
-
-              <!-- Progress Small -->
-              <div class="card mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Progress Small Utility</h6>
-                </div>
-                <div class="card-body">
-                  <div class="mb-1 small">Normal Progress Bar</div>
-                  <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="mb-3">
+                    <code>.animated--grow-in</code>
                   </div>
-                  <div class="mb-1 small">Small Progress Bar</div>
-                  <div class="progress progress-sm mb-2">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  Use the <code>.progress-sm</code> class along with <code>.progress</code>
-                </div>
-              </div>
-
-              <!-- Dropdown No Arrow -->
-              <div class="card mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Dropdown - No Arrow</h6>
-                </div>
-                <div class="card-body">
-                  <div class="dropdown no-arrow mb-4">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown (no arrow)
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                  Add the <code>.no-arrow</code> class alongside the <code>.dropdown</code>
+                  <div class="small mb-1">Navbar Dropdown Example:</div>
+                  <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Dropdown
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </nav>
+                  <p class="mb-0 small">Note: This utility animates the CSS transform property, meaning it will override any existing transforms on an element being animated! In this theme, the grow in animation is only being used on dropdowns within the navbar.</p>
                 </div>
               </div>
 
             </div>
 
+            <!-- Fade In Utility -->
             <div class="col-lg-6">
 
-              <!-- Roitation Utilities -->
-              <div class="card">
+              <div class="card position-relative">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Rotation Utilities</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Fade In Animation Utilty</h6>
                 </div>
-                <div class="card-body text-center">
-                  <div class="bg-primary text-white p-3 rotate-15 d-inline-block my-4">.rotate-15</div>
-                  <hr>
-                  <div class="bg-primary text-white p-3 rotate-n-15 d-inline-block my-4">.rotate-n-15</div>
+                <div class="card-body">
+                  <div class="mb-3">
+                    <code>.animated--fade-in</code>
+                  </div>
+                  <div class="small mb-1">Navbar Dropdown Example:</div>
+                  <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Dropdown
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right animated--fade-in" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </nav>
+                  <div class="small mb-1">Dropdown Button Example:</div>
+                  <div class="dropdown mb-4">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Dropdown
+                    </button>
+                    <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                  <p class="mb-0 small">Note: This utility animates the CSS opacity property, meaning it will override any existing opacity on an element being animated!</p>
                 </div>
               </div>
 
@@ -442,27 +473,27 @@
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+            <span aria-hidden="true">Ã</span>
           </button>
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="login.jsp">Logout</a>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="/hwabo/vendor/jquery/jquery.min.js"></script>
-  <script src="/hwabo/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="/hwabo/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="hwabo/js/sb-admin-2.min.js"></script>
+  <script src="js/sb-admin-2.min.js"></script>
 
 </body>
 
