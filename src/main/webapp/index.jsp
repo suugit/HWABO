@@ -187,7 +187,7 @@
         <section class="page-section bg-dark text-white">
             <div class="container text-center">
                 <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-                <a class="btn btn-light btn-xl" href="https://startbootstrap.com/themes/creative/">Download Now!</a>
+                <a class="btn btn-light btn-xl" href="main/index.jsp">Download Now!</a>
             </div>
         </section>
         <!-- Contact-->
@@ -208,7 +208,7 @@
                     <div class="col-lg-4 mr-auto text-center">
                         <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
                         <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
-                        <a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
+                        <a class="d-block" href="resources/assets/img/portfolio/fullsize/b.jsp">hwabo@google.com</a>
                     </div>
                 </div>
             </div>
