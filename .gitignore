@@ -11,7 +11,7 @@
 .mtj.tmp/
 */target/*
 # Package Files #
-
+/target/
 *.war
 *.nar
 *.ear
