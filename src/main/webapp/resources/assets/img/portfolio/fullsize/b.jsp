@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/x-icon" href="b.jpg" />
 <meta charset="UTF-8">
 <title>까꿍</title>
 </head>
