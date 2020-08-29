@@ -36,4 +36,25 @@ public class HomeController {
 		return "index";
 	}
 	
+	 @RequestMapping("/test.do")
+	    public String test() {
+	        return "test";
+	    }    
+	    
+	    
+	     //tiles 테스트 (레이아웃 포함)
+	             
+	    @RequestMapping("/testpage.do")
+	    public String testpage() {
+	        return "test.page";
+	    }
+	    
+	    //tiles 테스트 (레이아웃 없음)     
+	    @RequestMapping("/testpart.do")
+	    public String testpart() {
+	        return "test.part";
+	    }    
+	    
+	    
+	 
 }
