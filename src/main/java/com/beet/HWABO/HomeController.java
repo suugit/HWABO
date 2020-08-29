@@ -41,19 +41,17 @@ public class HomeController {
 	        return "test";
 	    }    
 	    
-	    /**
-	     * Tiles를 사용(header, left, footer 포함)
-	     */        
-	    @RequestMapping("/testPage.do")
-	    public String testPage() {
+	    
+	     //tiles 테스트 (레이아웃 포함)
+	             
+	    @RequestMapping("/testpage.do")
+	    public String testpage() {
 	        return "test.page";
 	    }
 	    
-	    /**
-	     * Tiles를 사용(header, left, footer 제외)
-	     */    
-	    @RequestMapping("/testPart.do")
-	    public String testPart() {
+	    //tiles 테스트 (레이아웃 없음)     
+	    @RequestMapping("/testpart.do")
+	    public String testpart() {
 	        return "test.part";
 	    }    
 	    
