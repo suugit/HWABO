@@ -24,52 +24,23 @@
 </title>
 
   <!-- Custom fonts for this template-->
-  <link href="/hawbo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="/hawbo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
 
 <script type="text/javascript">
 	var CONTEXT_PATH = "${CONTEXT_PATH}";
 	var RESOURCES_PATH = "${RESOURCES_PATH}";
 </script>
-<style>
-html, body {
-	height: auto;
-}
- .sidewidth {
- 	background-color: #BBDEFB;
- 	z-index: 1;
- 	float: left;
-
-
- }
-	#content {
- 	z-index: 2;
- 	background-color : #555;
-	position:relative ; right:0;
-
-	
- }
-
-#wrapper {
- height: auto;
-
-}
-
-
-</style>
 </head>
 
-<body >
+<body id="page-top" class="vsc-initialized">
 	<div class='wrapper'>
-			
-			<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sidewidth" id="accordionSidebar">
+			<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 				<tiles:insertAttribute name="sidebar" />
 			</ul>
-
-		
 		<div id="content-wrapper" class="d-flex flex-column">
 			<div id="content">
 				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -85,7 +56,6 @@ html, body {
 				<tiles:insertAttribute name="footer" />
 			</footer>
 		</div>
-		
 	</div>
 	
 	 <!-- Scroll to Top Button-->

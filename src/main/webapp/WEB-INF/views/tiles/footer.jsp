@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="footer">
-<h1>footer</h1>
-</div>
+         <div class="copyright text-center my-auto">
+            <span>Copyright © Your Website 2020</span>
+          </div>
+
 </body>
 </html>
