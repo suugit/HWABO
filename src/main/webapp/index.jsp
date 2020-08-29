@@ -11,7 +11,7 @@
         <meta name="author" content="" />
         <title>in web-inf</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="/hwabo/assets/img/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="resources/assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -20,7 +20,7 @@
         <!-- Third party plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="resources/css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
     <div style="position:fixed;z-index:5;">
@@ -222,6 +222,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="resources/js/scripts.js"></script>
     </body>
 </html>
