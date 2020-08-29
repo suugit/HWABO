@@ -29,7 +29,17 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-		
+	
+	<servlet>
+		<servlet-name>tileServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.TilesServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/tiles.xml</param-value>
+		</init-param>
+		<load-on-startip>1</load-on-startip>
+	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>

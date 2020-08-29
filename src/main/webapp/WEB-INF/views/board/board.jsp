@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>테스트</h1>
+<h1>board</h1>
+보드를 여기에 쓸거야 여기가 body 내용이다
 </body>
 </html>
