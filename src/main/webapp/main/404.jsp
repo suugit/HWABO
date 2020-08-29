@@ -25,7 +25,9 @@
 </head>
 
 <body id="page-top">
-<div style="position:relative;z-index:5;">
+<!-- 테스트버튼 시작 -->
+<div style="position:fixed;z-index:5;"><br>
+	원하는 페이지로 :
     <button onclick="javascript:location.href='index.jsp'">index</button>
     <button onclick="javascript:location.href='404.jsp'">404</button>
     <button onclick="javascript:location.href='blank.jsp'">blank</button>
@@ -41,6 +43,8 @@
     <button onclick="javascript:location.href='utilities-color.jsp'">utilities-color</button>
     <button onclick="javascript:location.href='utilities-other.jsp'">utilities-other</button>
     </div>
+<div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
+<!-- 테스트버튼 끝 -->
   <!-- Page Wrapper -->
   <div id="wrapper">
 

@@ -23,10 +23,11 @@
         <link href="resources/css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
+<!-- 테스트페이지 시작-->
     <div style="position:fixed;z-index:5;">
     <br><br><br>
-    <button onclick="javascript:location.href='main/index.jsp'">index</button>
-    <button onclick="javascript:location.href='main/404.jsp'">404</button>
+    <button onclick="javascript:location.href='main/index.jsp'" style="width:120px;height:60px;background-color:#2E2E2E;color:white;">메인페이지로</button>
+    <!-- <button onclick="javascript:location.href='main/404.jsp'">404</button>
     <button onclick="javascript:location.href='main/blank.jsp'">blank</button>
     <button onclick="javascript:location.href='main/buttons.jsp'">buttons</button>
     <button onclick="javascript:location.href='main/cards.jsp'">cards</button>
@@ -38,8 +39,9 @@
     <button onclick="javascript:location.href='main/utilities-animation.jsp'">utilities-animation</button>
     <button onclick="javascript:location.href='main/utilities-border.jsp'">utilities-border</button>
     <button onclick="javascript:location.href='main/utilities-color.jsp'">utilities-color</button>
-    <button onclick="javascript:location.href='main/utilities-other.jsp'">utilities-other</button>
+    <button onclick="javascript:location.href='main/utilities-other.jsp'">utilities-other</button> -->
     </div>
+<!-- 테스트페이지 끝 -->
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container">
