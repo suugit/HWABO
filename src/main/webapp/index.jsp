@@ -27,6 +27,9 @@
     <div style="position:fixed;z-index:5;">
     <br><br><br>
     <button onclick="javascript:location.href='main/index.jsp'" style="width:120px;height:60px;background-color:#2E2E2E;color:white;">메인페이지로</button>
+    <button onclick="javascript:location.href='daun/index.jsp'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">다운다운 페이지로</button>
+    <button onclick="javascript:location.href='suugit.do'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">suugit의 페이지로</button>
+    <button onclick="javascript:location.href='red/index.jsp'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">RED의 페이지로</button>
     <!-- <button onclick="javascript:location.href='main/404.jsp'">404</button>
     <button onclick="javascript:location.href='main/blank.jsp'">blank</button>
     <button onclick="javascript:location.href='main/buttons.jsp'">buttons</button>
