@@ -15,13 +15,13 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 @RequestMapping("/loginpart.do")
 public String loginMethod(){
 
-return "member/login.part";
+return "WEB-INF/views/member/login";
 }
 
 @RequestMapping("/loginpage.do")
 public String loginPage(){
 
-return "member/login.page";
+return "WEB-INF/views/member/login";
 }
 
 
