@@ -55,6 +55,19 @@ public class HomeController {
 	        return "test.part";
 	    }    
 	    
-	    
+	    //웰컴페이지 
+	    @RequestMapping("/welcomepage.do")
+	    public String welcomePage(){
+
+	    return "welcome.page";
+	    }
+
+	    @RequestMapping("/welcomepart.do")
+	    public String welcomePart(){
+
+	    return "welcome.part";
+	    }
+
+    
 	 
 }

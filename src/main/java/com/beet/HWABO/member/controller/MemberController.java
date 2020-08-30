@@ -24,4 +24,5 @@ public String loginPage(){
 return "member/login.page";
 }
 
+
 }

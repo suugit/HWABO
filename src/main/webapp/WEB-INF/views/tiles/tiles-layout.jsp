@@ -49,15 +49,10 @@ html, body {
  	z-index: 2;
  	background-color : #555;
 	position:relative ; right:0;
-
+	flex: 1 0 auto;
+	
 	
  }
-
-#wrapper {
- height: auto;
-
-}
-
 
 </style>
 </head>
