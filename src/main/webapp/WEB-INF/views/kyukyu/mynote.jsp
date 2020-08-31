@@ -351,17 +351,36 @@
         </nav>
         <!-- End of Topbar -->
 
+
+
+
+
+
+
+
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+          <h1 class="h3 mb-4 text-gray-800">my note</h1>
 
         </div>
         <!-- /.container-fluid -->
 
       </div>
       <!-- End of Main Content -->
+
+
+
+
+
+
+
+
+
+
+
+
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
@@ -385,7 +404,7 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -400,9 +419,9 @@
           <a class="btn btn-primary" href="login.jsp">Logout</a>
         </div>
       </div>
-    </div>
+    </div> 
   </div>
-
+ -->
   <!-- Bootstrap core JavaScript-->
   <script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
   <script src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
