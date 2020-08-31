@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <link rel="icon" type="image/x-icon" href="../resources/assets/img/favicon.png" />
+  <link rel="icon" type="image/x-icon" href="/hwabo/resources/assets/img/favicon.png" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,11 +16,11 @@
   <title>HWABO</title>
 
   <!-- Custom fonts for this template-->
-  <link href="../resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/hwabo/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="../resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -28,20 +28,20 @@
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
 	원하는 페이지로 :
-    <button onclick="javascript:location.href='index.jsp'">index</button>
-    <button onclick="javascript:location.href='404.jsp'">404</button>
-    <button onclick="javascript:location.href='blank.jsp'">blank</button>
-    <button onclick="javascript:location.href='buttons.jsp'">buttons</button>
-    <button onclick="javascript:location.href='cards.jsp'">cards</button>
-    <button onclick="javascript:location.href='charts.jsp'">charts</button>
-    <button onclick="javascript:location.href='forgot-password.jsp'">forgot-password</button>
-    <button onclick="javascript:location.href='login.jsp'">login</button>
-    <button onclick="javascript:location.href='register.jsp'">register</button>
-    <button onclick="javascript:location.href='tables.jsp'">tables</button>
-    <button onclick="javascript:location.href='utilities-animation.jsp'">utilities-animation</button>
-    <button onclick="javascript:location.href='utilities-border.jsp'">utilities-border</button>
-    <button onclick="javascript:location.href='utilities-color.jsp'">utilities-color</button>
-    <button onclick="javascript:location.href='utilities-other.jsp'">utilities-other</button>
+    <button onclick="javascript:location.href='red.do'">index</button>
+    <button onclick="javascript:location.href='404.do'">404</button>
+    <button onclick="javascript:location.href='blank.do'">blank</button>
+    <button onclick="javascript:location.href='buttons.do'">buttons</button>
+    <button onclick="javascript:location.href='cards.do'">cards</button>
+    <button onclick="javascript:location.href='charts.do'">charts</button>
+    <button onclick="javascript:location.href='fpassword.do'">forgot-password</button>
+    <button onclick="javascript:location.href='flogin.do'">login</button>
+    <button onclick="javascript:location.href='fregister.do'">register</button>
+    <button onclick="javascript:location.href='ftables.do'">tables</button>
+    <button onclick="javascript:location.href='fanimation.do'">utilities-animation</button>
+    <button onclick="javascript:location.href='fborder.do'">utilities-border</button>
+    <button onclick="javascript:location.href='fcolor.do'">utilities-color</button>
+    <button onclick="javascript:location.href='fother.do'">utilities-other</button>
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->
@@ -488,14 +488,14 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="../resources/maincss/vendor/jquery/jquery.min.js"></script>
-  <script src="../resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
+  <script src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="../resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="../resources/maincss/js/sb-admin-2.min.js"></script>
+  <script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
 
 </body>
 
