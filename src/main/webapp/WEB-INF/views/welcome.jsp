@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <c:set var="CONTEXT_PATH" value="${pageContext.request.contextPath}"
+	scope="application" />
+<c:set var="RESOURCES_PATH" value="${CONTEXT_PATH}/resources"
+	scope="application" />
 <!DOCTYPE html>
 <html lang="kr">
     <head>
+    
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -93,15 +98,17 @@
                         <div id="content1"> 
                             <div id="tab1">
                                 <h2>Lorem ipsum sit amet</h2>
-                                <img width="900px" height=auto src="assets/img/portfolio/index_img2.png"></img>
+                                <img width="60%" height=auto src="/hwabo/resources/maincss/img/welcome/web_development__flatline.svg"></img>
                                 <p>Praesent risus nisi, iaculis nec condimentum vel, rhoncus vel dolor. Aenean nisi lectus, varius nec tempus id, dapibus non quam.</p>
                             </div>
                             <div id="tab2">
                                 <h2>Vivamus fringilla suscipit justo</h2>
+                                 <img width="60%" height=auto src="/hwabo/resources/maincss/img/welcome/scrum_board_flatline.svg"></img>
                                 <p>Aenean dui nulla, egestas sit amet auctor vitae, facilisis id odio. Donec dictum gravida feugiat.</p>   
                             </div>
                             <div id="tab3">
                                 <h2>Phasellus non nibh</h2>
+                                 <img width="60%" height=auto src="/hwabo/resources/maincss/img/welcome/data_organization_flatline.svg"></img>
                                 <p>Non erat laoreet ullamcorper. Pellentesque magna metus, feugiat eu elementum sit amet, cursus sed diam. Curabitur posuere porttitor lorem, eu malesuada tortor faucibus sed.</p>
                             </div>
                             <div id="tab4">
@@ -218,7 +225,7 @@
         <section class="page-section text-white mymy">
             <div class="container text-center ">
                 <h2 class="mb-4 font-weight-bold">뭐라고 써야할지 모르겠다 <br> HWABO</h2>
-                <a class="btn btn-light btn-xl" href="https://startbootstrap.com/themes/creative/">시작하기</a>
+                <a class="btn btn-light btn-xl" href="${CONTEXT_PATH}/loginpart.do">시작하기</a>
             </div>
         </section>
      <!--    Contact

@@ -24,5 +24,10 @@ public String loginPage(){
 return "member/login.page";
 }
 
+@RequestMapping("/regipart.do")
+public String regiPage(){
+
+return "member/regi.part";
+}
 
 }
