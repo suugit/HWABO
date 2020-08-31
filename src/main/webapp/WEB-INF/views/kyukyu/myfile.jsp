@@ -23,7 +23,22 @@
   <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
+<style type="text/css">
+.parent{
+    width: 100%;
+    margin: 10px auto;
+    display: flex;
+}
 
+.first {
+ width:200px; height:100px; border:1px solid; float:left; margin-right:20px;
+}
+
+.second{
+  width:200px; height:100px; border:1px solid; float:left;
+}
+
+</style>
 <body id="page-top">
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
