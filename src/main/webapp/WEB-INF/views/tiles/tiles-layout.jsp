@@ -61,23 +61,23 @@ html, body {
 	<div class='wrapper'>
 			
 			<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sidewidth" id="accordionSidebar">
-				<tiles:insertAttribute name="sidebar" />
+				<tiles:insertAttribute name="sidebar" ignore="true" />
 			</ul>
 
 		
 		<div id="content-wrapper" class="d-flex flex-column">
 			<div id="content">
 				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-					<tiles:insertAttribute name="header" />
+					<tiles:insertAttribute name="header" ignore="true"  />
 				</nav>
 				<!-- Main Content -->
 				<div class="container-fluid">
-					<tiles:insertAttribute name="body" />
+					<tiles:insertAttribute name="body" ignore="true" />
 				</div>
 			</div>
 			
 			<footer class="sticky-footer bg-white">
-				<tiles:insertAttribute name="footer" />
+				<tiles:insertAttribute name="footer" ignore="true" />
 			</footer>
 		</div>
 		
