@@ -1,4 +1,4 @@
-package com.beet.HWABO.member.controller;
+package com.beet.HWABO.suugit.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,26 +8,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class MemberController {
+public class MemberControllersuugit {
 	
-private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+private static final Logger logger = LoggerFactory.getLogger(MemberControllersuugit.class);
 	
 @RequestMapping("/loginpart.do")
 public String loginMethod(){
 
-return "member/login.part";
+return "suugit/login.part";
 }
 
 @RequestMapping("/loginpage.do")
 public String loginPage(){
 
-return "member/login.page";
+return "suugit/login.page";
 }
 
 @RequestMapping("/regipart.do")
 public String regiPage(){
 
-return "member/regi.part";
+return "suugit/regi.part";
 }
 
 }
