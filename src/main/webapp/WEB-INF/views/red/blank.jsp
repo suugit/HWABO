@@ -1,12 +1,12 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <link rel="icon" type="image/x-icon" href="../resources/assets/img/favicon.png" />
+  <link rel="icon" type="image/x-icon" href="/hwabo/resources/assets/img/favicon.png" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,11 +16,11 @@
   <title>HWABO</title>
 
   <!-- Custom fonts for this template-->
-  <link href="../resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="../resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -28,20 +28,20 @@
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
 	원하는 페이지로 :
-    <button onclick="javascript:location.href='index.jsp'">index</button>
-    <button onclick="javascript:location.href='404.jsp'">404</button>
-    <button onclick="javascript:location.href='blank.jsp'">blank</button>
-    <button onclick="javascript:location.href='buttons.jsp'">buttons</button>
-    <button onclick="javascript:location.href='cards.jsp'">cards</button>
-    <button onclick="javascript:location.href='charts.jsp'">charts</button>
-    <button onclick="javascript:location.href='forgot-password.jsp'">forgot-password</button>
-    <button onclick="javascript:location.href='login.jsp'">login</button>
-    <button onclick="javascript:location.href='register.jsp'">register</button>
-    <button onclick="javascript:location.href='tables.jsp'">tables</button>
-    <button onclick="javascript:location.href='utilities-animation.jsp'">utilities-animation</button>
-    <button onclick="javascript:location.href='utilities-border.jsp'">utilities-border</button>
-    <button onclick="javascript:location.href='utilities-color.jsp'">utilities-color</button>
-    <button onclick="javascript:location.href='utilities-other.jsp'">utilities-other</button>
+    <button onclick="javascript:location.href='red.do'">index</button>
+    <button onclick="javascript:location.href='404.do'">404</button>
+    <button onclick="javascript:location.href='blank.do'">blank</button>
+    <button onclick="javascript:location.href='buttons.do'">buttons</button>
+    <button onclick="javascript:location.href='cards.do'">cards</button>
+    <button onclick="javascript:location.href='charts.do'">charts</button>
+    <button onclick="javascript:location.href='fpassword.do'">forgot-password</button>
+    <button onclick="javascript:location.href='flogin.do'">login</button>
+    <button onclick="javascript:location.href='fregister.do'">register</button>
+    <button onclick="javascript:location.href='ftables.do'">tables</button>
+    <button onclick="javascript:location.href='fanimation.do'">utilities-animation</button>
+    <button onclick="javascript:location.href='fborder.do'">utilities-border</button>
+    <button onclick="javascript:location.href='fcolor.do'">utilities-color</button>
+    <button onclick="javascript:location.href='fother.do'">utilities-other</button>
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->
@@ -93,16 +93,16 @@
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Utilities</span>
         </a>
-        <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
             <a class="collapse-item" href="utilities-color.jsp">Colors</a>
-            <a class="collapse-item active" href="utilities-border.jsp">Borders</a>
+            <a class="collapse-item" href="utilities-border.jsp">Borders</a>
             <a class="collapse-item" href="utilities-animation.jsp">Animations</a>
             <a class="collapse-item" href="utilities-other.jsp">Other</a>
           </div>
@@ -118,12 +118,12 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+      <li class="nav-item active">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
             <a class="collapse-item" href="login.jsp">Login</a>
@@ -132,7 +132,7 @@
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="404.jsp">404 Page</a>
-            <a class="collapse-item" href="blank.jsp">Blank Page</a>
+            <a class="collapse-item active" href="blank.jsp">Blank Page</a>
           </div>
         </div>
       </li>
@@ -355,107 +355,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-1 text-gray-800">Border Utilities</h1>
-          <p class="mb-4">Bootstrap's default utility classes can be found on the official <a href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities below were created to extend this theme past the default utility classes built into Bootstrap's framework.</p>
-
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Border Left Utilities -->
-            <div class="col-lg-6">
-
-              <div class="card mb-4 py-3 border-left-primary">
-                <div class="card-body">
-                  .border-left-primary
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-left-secondary">
-                <div class="card-body">
-                  .border-left-secondary
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-left-success">
-                <div class="card-body">
-                  .border-left-success
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-left-info">
-                <div class="card-body">
-                  .border-left-info
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-left-warning">
-                <div class="card-body">
-                  .border-left-warning
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-left-danger">
-                <div class="card-body">
-                  .border-left-danger
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-left-dark">
-                <div class="card-body">
-                  .border-left-dark
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Border Bottom Utilities -->
-            <div class="col-lg-6">
-
-              <div class="card mb-4 py-3 border-bottom-primary">
-                <div class="card-body">
-                  .border-bottom-primary
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-bottom-secondary">
-                <div class="card-body">
-                  .border-bottom-secondary
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-bottom-success">
-                <div class="card-body">
-                  .border-bottom-success
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-bottom-info">
-                <div class="card-body">
-                  .border-bottom-info
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-bottom-warning">
-                <div class="card-body">
-                  .border-bottom-warning
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-bottom-danger">
-                <div class="card-body">
-                  .border-bottom-danger
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-bottom-dark">
-                <div class="card-body">
-                  .border-bottom-dark
-                </div>
-              </div>
-
-            </div>
-
-          </div>
+          <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
 
         </div>
         <!-- /.container-fluid -->
@@ -504,14 +404,14 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="../resources/maincss/vendor/jquery/jquery.min.js"></script>
-  <script src="../resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
+  <script src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="../resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="../resources/maincss/js/sb-admin-2.min.js"></script>
+  <script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
 
 </body>
 
