@@ -1,4 +1,4 @@
-package com.beet.HWABO.member.controller;
+package com.beet.HWABO.suugit.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,19 +15,19 @@ private static final Logger logger = LoggerFactory.getLogger(MemberControllersuu
 @RequestMapping("/loginpart.do")
 public String loginMethod(){
 
-return "member/login.part";
+return "suugit/login.part";
 }
 
 @RequestMapping("/loginpage.do")
 public String loginPage(){
 
-return "member/login.page";
+return "suugit/login.page";
 }
 
 @RequestMapping("/regipart.do")
 public String regiPage(){
 
-return "member/regi.part";
+return "suugit/regi.part";
 }
 
 }

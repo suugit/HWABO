@@ -39,7 +39,7 @@
             <!-- Nested Row within Card Body -->
             <div class="row">
               <div class="col-lg-6 d-none d-lg-block" style="padding-top:10%;">
-                <img src="/hwabo/resources/maincss/img/member/problem_solving_flatline.svg"></img>
+                <img src="/hwabo/resources/maincss/img/suugit/problem_solving_flatline.svg"></img>
               </div>
               <div class="col-lg-6">
                 <div class="p-5">
