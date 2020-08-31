@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class MemberController {
+public class MemberControllersuugit {
 	
-private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+private static final Logger logger = LoggerFactory.getLogger(MemberControllersuugit.class);
 	
 @RequestMapping("/loginpart.do")
 public String loginMethod(){
