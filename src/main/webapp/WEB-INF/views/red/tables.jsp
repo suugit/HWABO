@@ -383,7 +383,7 @@
             </div>
             <div class="card-body">
               <!-- 게시글안쪽 -->
-                            <h1 class="m-0 font-weight-bold text-primary">전체 진행률</h1>
+                            <h1 class="m-0 text-primary">전체 진행률</h1>
                             <hr>
 
 <div id="myProgress">
