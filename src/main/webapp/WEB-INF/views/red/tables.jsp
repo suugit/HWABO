@@ -27,6 +27,25 @@
 
 </head>
 
+<!-- 진행률시작 -->
+<style>
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 0%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+</style>
+
+<!-- 진행률끝 -->
+
 <body id="page-top">
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
@@ -358,7 +377,46 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+<!-- 진행률시작 -->
+<h1>전체 진행률</h1>
 
+<div id="myProgress">
+  <div id="myBar">0%</div>
+</div>
+
+<br>
+<button onclick="move()">Click Me</button> 
+
+<script>
+var i = 0;
+let c = 3;//목표 갯수 현재 3개
+var devide = 0;
+function move() {
+	devide += 100 / c;
+    if(devide > 100){
+    	devide = 100;
+    }
+  if (i == 0) {
+
+    var elem = document.getElementById("myBar");
+    var width = 10;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= devide) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+        elem.innerHTML = width  + "%";
+      }
+    }
+  }
+}
+</script>
+
+
+<!-- 진행률 끝 -->
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800"></h1>
           <p class="mb-4"></p>
