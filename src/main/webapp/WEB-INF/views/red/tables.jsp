@@ -399,7 +399,7 @@
 </tr></table>
 <script>
 var i = 0;
-let c = 3;//목표 갯수 현재 3개
+let c = 5;//목표 갯수 현재 5개
 var devide = 0;
 function move() {
 	devide += 100 / c;
@@ -409,7 +409,7 @@ function move() {
   if (i == 0) {
 
     var elem = document.getElementById("myBar");
-    var width = 10;
+    var width = 0;
     var id = setInterval(frame, 10);
     function frame() {
       if (width >= devide) {
@@ -487,6 +487,111 @@ function move() {
               </form>
             </div>
           </div>
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가
+나다
+라마바
+사아자차
+            </div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가
+나다
+라마바
+사아자차
+            </div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가
+나다
+라마바
+사아자차
+            </div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가
+나다
+라마바
+사아자차
+            </div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가
+나다
+라마바
+사아자차
+            </div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가
+나다
+라마바
+사아자차
+            </div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가
+나다
+라마바
+사아자차
+            </div>
+          </div>
+<!-- 게시글끝 -->
 
         </div>
         <!-- /.container-fluid -->
