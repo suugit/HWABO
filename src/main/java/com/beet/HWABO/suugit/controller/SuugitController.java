@@ -11,43 +11,60 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class SuugitController {
 	
 private static final Logger logger = LoggerFactory.getLogger(SuugitController.class);
-	
-@RequestMapping("/loginpart.do")
+
+//회원가입
+@RequestMapping("/sign.do")
+public String regiPage(){
+
+return "suugit/sign.part";
+}
+
+@RequestMapping("/sign_team.do")
+public String signTeam(){
+
+return "suugit/sign_team.part";
+}
+
+
+//로그인관련 
+@RequestMapping("/login.do")
 public String loginMethod(){
 
 return "suugit/login.part";
 }
 
-@RequestMapping("/loginpage.do")
-public String loginPage(){
+@RequestMapping("/forgotpwd.do")
+public String forgotPwdPage(){
 
-return "suugit/login.page";
-}
-
-@RequestMapping("/regipart.do")
-public String regiPage(){
-
-return "suugit/regi.part";
+return "suugit/forgotpwd.part";
 }
 
 
-@RequestMapping("/myinfopage.do")
+//내 정보
+@RequestMapping("/myinfo.do")
 public String myinfoPage(){
 
 return "suugit/myinfo.page";
 }
 
-@RequestMapping("/signpart.do")
-public String signPart(){
+//게시글
+@RequestMapping("/gnwrite.do")
+public String gnrlBoardWriteFormPage(){
 
-return "suugit/sign.part";
+return "suugit/gnrlBoardWriteForm.page";
 }
 
-@RequestMapping("/sign_teampart.do")
-public String signTeamPart(){
+@RequestMapping("/gnview.do")
+public String gnrlBoardViewPage(){
 
-return "suugit/sign_team.part";
+return "suugit/gnrlBoardView.page";
 }
 
+//모달
+@RequestMapping("/modal.do")
+public String ModalPage(){
+
+return "suugit/modal.page";
+}
 
 }

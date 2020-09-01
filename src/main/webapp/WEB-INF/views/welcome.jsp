@@ -35,8 +35,8 @@
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">회원가입</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='login.do';">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='sign.do'">회원가입</a></li>
                     </ul>
                 </div>
             </div>
@@ -224,7 +224,7 @@
         <!-- Call to action-->
         <section class="page-section text-white mymy">
             <div class="container text-center ">
-                <h2 class="mb-4 font-weight-bold">뭐라고 써야할지 모르겠다 <br> HWABO</h2>
+                <h2 class="mb-4 font-weight-bold">협업툴 지금 바로 시작하세요!<br> HWABO</h2>
                 <a class="btn btn-light btn-xl" href="${CONTEXT_PATH}/loginpart.do">시작하기</a>
             </div>
         </section>

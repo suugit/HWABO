@@ -1,10 +1,9 @@
-<%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="CONTEXT_PATH" value="${pageContext.request.contextPath}" scope="application"/>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 
 <head>
 
@@ -25,67 +24,60 @@
 
 </head>
 
-<body class="bg-gradient-primary"  >
+<body class="bg-gradient-primary">
 
-  <div class="container">
+  <div class="container col-md-6">
 
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
-
-      <div class="col-xl-10 col-lg-12 col-md-9">
-
-        <div class="card o-hidden border-0 shadow-lg my-5"  style="background-color:rgba(248, 249, 252);">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-              <div class="col-lg-6 d-none d-lg-block" style="padding-top:10%;">
-                <img src="/hwabo/resources/maincss/img/suugit/problem_solving_flatline.svg"></img>
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-md-5" style="padding-top:10%;">
+            <img width=100% src="/hwabo/resources/maincss/img/suugit/easter_bunny_flatline.svg" ></img>
+          </div>
+          <div class="col-md-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-800 mb-4">회원가입</h1>
               </div>
-              <div class="col-lg-6">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">화보로고</h1>
+              <form class="user ">
+                <div class=" form-group row ">
+                  <div class="mb-3 mb-sm-0 font-weight-bold">
+                   <ul style="list-style:none;" >
+                   <li style="margin-top:13px;margin-bottom:26px">이메일 주소</li>
+                   <li style="margin-bottom:26px"> 사용자 이름</li>
+                   <li style="margin-bottom:26px"> 비밀번호 </li>
+                   <li style="margin-bottom:26px">비밀번호 확인</li>
+                  </ul>  
                   </div>
-                  <form class="user">
-                    <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="email" aria-describedby="emailHelp" placeholder="이메일 주소">
-                      <input type="text" class="form-control form-control-user" id="username" placeholder="이름">
-                      <input type="password" class="form-control form-control-user" id="pwd" placeholder="비밀번호">
-                      <input type="password" class="form-control form-control-user" id="pwdcheck" placeholder="비밀번호 확인">
-                    </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">이용약관 동의하기</label>
-                      </div>
-                    </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
-                     로그인
-                    </a>
-                    <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Google로 로그인
-                    </a>
-                    <a href="index.html" class="btn btn-naver btn-user btn-block">
-                      <span class="font-weight-bolder" style="font-weight-bolder;font-size:1em">N&nbsp;</span>Naver로 로그인
-                    </a>
-                  </form>
-                  <hr>
-                  <div class="text-center">
-                    <a class="small" href="forgot-password.html">비밀번호가 생각나지 않으신가요?</a>
-                  </div>
-                  <div class="text-center">
-                    화보가 처음이신가요?
-                    <a class="small" href="register.html">가입하기</a>
+                  <div class="col-sm-8 mb-3 mb-sm-0 ">
+                    <form>
+                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="이메일 주소">
+                  <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="사용자 이름">
+                  <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호">
+                  <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="비밀번호 확인">
                   </div>
                 </div>
+                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                  가입하기
+                </a>
+              </form>
+                <hr>
+                <a href="index.html" class="btn btn-google btn-user btn-block">
+                  <i class="fab fa-google fa-fw"></i> Google로 회원가입하기
+                </a>
+                 <a href="index.html" class="btn btn-naver btn-user btn-block">
+                      <span class="font-weight-bolder" style="font-weight-bolder;font-size:1em">N&nbsp;</span>Naver로 회원가입하기
+                    </a>
+              </form>
+              <hr>
+              <div class="text-center">
+                <a class="small" href="javascript:location.href='login.do';">이미 회원이신가요? 로그인하기</a>
               </div>
             </div>
           </div>
         </div>
-
       </div>
-
     </div>
 
   </div>
@@ -99,12 +91,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-	<script>
-	function nwindow(){
-		var url=""
-	}
-	</script>
+
 </body>
 
 </html>
-
