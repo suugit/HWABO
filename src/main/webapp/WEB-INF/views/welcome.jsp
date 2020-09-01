@@ -57,7 +57,7 @@
                         <h1 class="text-uppercase text-white font-weight-bold" style="font-size:2.5em">쉽고 편리한 협업툴 <br>최고의 협업툴<br> HWABO</h1>
                         <p class=" font-weight-light mb-4 text-white-75">쉽고 편리한 온택트 협업툴 HWABO에서는 다양한 기능을 지원하고 있습니다  지금 시작해보세요!
                         </p>
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" style=" font-size:1em" href="#about">지금 시작하기</a>
+                        <a class="btn btn-primary btn-xl js-scroll-trigger" style=" font-size:1em" href="javascript:location.href='login.do';">지금 시작하기</a>
 
                         <hr class="divider my-4" />
                     </div>
@@ -225,7 +225,7 @@
         <section class="page-section text-white mymy">
             <div class="container text-center ">
                 <h2 class="mb-4 font-weight-bold">협업툴 지금 바로 시작하세요!<br> HWABO</h2>
-                <a class="btn btn-light btn-xl" href="${CONTEXT_PATH}/loginpart.do">시작하기</a>
+                <a class="btn btn-light btn-xl" href="javascript:location.href='sign.do'">시작하기</a>
             </div>
         </section>
      <!--    Contact
