@@ -29,7 +29,6 @@
 
 <body id="page-top">
 <!-- 테스트버튼 시작 -->
-
 <div style="position:absolute;z-index:5;"><br>&nbsp;
 	원하는 페이지로 :
     <button onclick="javascript:location.href='red.do'">index</button>

@@ -10827,14 +10827,14 @@ form.user .custom-checkbox.small label {
 /*폼컨트롤 크기 사이즈 */
 form.user .form-control-user {
   font-size: 1rem;
-  border-radius: 10rem;
-  padding: 1.5rem 1rem;
+  border-radius: 0.5rem;
+  padding: 1.2rem 1rem;
 }
 
 form.user .btn-user {
   font-size: 1rem;
-  border-radius: 10rem;
-  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
 }
 
 .btn-google {
