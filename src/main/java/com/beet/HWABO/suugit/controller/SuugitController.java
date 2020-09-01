@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class MemberControllersuugit {
+public class SuugitController {
 	
-private static final Logger logger = LoggerFactory.getLogger(MemberControllersuugit.class);
+private static final Logger logger = LoggerFactory.getLogger(SuugitController.class);
 	
 @RequestMapping("/loginpart.do")
 public String loginMethod(){
@@ -28,6 +28,13 @@ return "suugit/login.page";
 public String regiPage(){
 
 return "suugit/regi.part";
+}
+
+
+@RequestMapping("/myinfopage.do")
+public String myinfoPage(){
+
+return "suugit/myinfo.page";
 }
 
 }
