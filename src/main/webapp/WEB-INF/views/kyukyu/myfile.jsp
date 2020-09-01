@@ -15,30 +15,18 @@
 
   <title>HWABO</title>
 
-  <!-- Custom fonts for this template-->
+  <!-- Custom fonts for this template -->
   <link href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template-->
+  <!-- Custom styles for this template -->
   <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
 
+  <!-- Custom styles for this page -->
+  <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
-<style type="text/css">
-.parent{
-    width: 100%;
-    margin: 10px auto;
-    display: flex;
-}
 
-.first {
- width:200px; height:100px; border:1px solid; float:left; margin-right:20px;
-}
-
-.second{
-  width:200px; height:100px; border:1px solid; float:left;
-}
-
-</style>
 <body id="page-top">
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
@@ -108,18 +96,18 @@
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Utilities</span>
         </a>
-        <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
             <a class="collapse-item" href="utilities-color.jsp">Colors</a>
             <a class="collapse-item" href="utilities-border.jsp">Borders</a>
             <a class="collapse-item" href="utilities-animation.jsp">Animations</a>
-            <a class="collapse-item active" href="utilities-other.jsp">Other</a>
+            <a class="collapse-item" href="utilities-other.jsp">Other</a>
           </div>
         </div>
       </li>
@@ -160,7 +148,7 @@
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="tables.jsp">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
@@ -187,9 +175,11 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
+          <form class="form-inline">
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+              <i class="fa fa-bars"></i>
+            </button>
+          </form>
 
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -366,137 +356,65 @@
         </nav>
         <!-- End of Topbar -->
 
-         <!-- Begin Page Content -->
+
+ 		<!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-1 text-gray-800">파일함</h1>
-          <p class="mb-4"><a href="https://getbootstrap.com/docs"></a></p>
-          <br>
+		 <h1 class="h3 mb-4 text-gray-800">내 파일함</h1><br><br>
+
+          <div class="col-lg-12">
           
-          <img src="..." alt="photo" class="img-rounded">
-		  <img src="..." alt="photo" class="img-circle">
-		  <img src="..." alt="photo" class="img-thumbnail">
-
-
-          <!-- Content Row -->
-         <div class="row"> 
-
-            <!-- First Column -->
-            <div class="col-lg-4">
-
-              <!-- Custom Text Color Utilities -->
-              
-              <div class="card shadow mb-4">
-                
-                 <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                  <h6 class="m-0 font-weight-bold text-primary">이미지</h6>
-               	</a>
-              
-                 <div class="collapse show" id="collapseCardExample">
-                <div class="card-body">
-                      <div class="parent">
-                     <div class="first">photo</div>
-                 <div class="second">photo</div>
-                 </div>
-                 
-                   <div class="parent">
-                     <div class="first">photo</div>
-                 <div class="second">photo</div>
-                 </div>
-                 
-                   <div class="parent">
-                     <div class="first">photo</div>
-                 <div class="second">photo</div>
-                 </div>
-                </div>
-                </div>
-                 
-              </div>
-              
-
-              <!-- Custom Font Size Utilities -->
-              <div class="card shadow mb-4">
-               <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                  <h6 class="m-0 font-weight-bold text-primary">동영상</h6>
-               	</a>
-               <div class="collapse show" id="collapseCardExample">
-                <div class="card-body">
-                 
-                  <p class="text-gray-500 p-3 m-0">.text-gray-500</p>
-                  <p class="text-gray-600 p-3 m-0">.text-gray-600</p>
-                  <p class="text-gray-700 p-3 m-0">.text-gray-700</p>
-                  <p class="text-gray-800 p-3 m-0">.text-gray-800</p>
-                  <p class="text-gray-900 p-3 m-0">.text-gray-900</p>
-                </div>
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Second Column -->
-            <div class="col-lg-4">
-
-              <!-- Background Gradient Utilities -->
-              <div class="card shadow mb-4">
-                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">문서</h6>
-                </div>
-              
-                <div class="card-body">
+          <div class="container">
+         
+          <ui class="nav nav-tabs nav-justified" >
+          <li class="nav-item">
+             <a class="nav-link active" href="#">이미지
    
-                  <div class="px-3 py-5 bg-gradient-warning text-white">.bg-gradient-warning</div>
-                  <div class="px-3 py-5 bg-gradient-danger text-white">.bg-gradient-danger</div>
-                  <div class="px-3 py-5 bg-gradient-light text-white">.bg-gradient-light</div>
-                  <div class="px-3 py-5 bg-gradient-dark text-white">.bg-gradient-dark</div>
-                </div>
-              </div>
+             </a>
+          
+             </li>
+          <li class="nav-item">
+             <a class="nav-link" href="#">동영상</a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link" href="#">문서</a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link" href="#">압축파일</a>
+          </li> 
+          <li class="nav-item">
+             <a class="nav-link" href="#">기타</a>
+          </li> 
+         </ul>
+          
+      </div>         
+   
+		
 
-            </div>
-
-            <!-- Third Column -->
-            <div class="col-lg-4">
-
-              <!-- Grayscale Utilities -->
-              <div class="card shadow mb-4">
-                   <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                  <h6 class="m-0 font-weight-bold text-primary">압축파일</h6>
-               	</a>
-               	 <div class="collapse show" id="collapseCardExample">
-               	
-                  <div class="card-body">
-                 
-                  <p class="text-gray-500 p-3 m-0">.text-gray-500</p>
-                  <p class="text-gray-600 p-3 m-0">.text-gray-600</p>
-                  <p class="text-gray-700 p-3 m-0">.text-gray-700</p>
-                  <p class="text-gray-800 p-3 m-0">.text-gray-800</p>
-                  <p class="text-gray-900 p-3 m-0">.text-gray-900</p>
-                </div></div>
-              </div>
-              
-               <div class="card shadow mb-4">
-               <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                  <h6 class="m-0 font-weight-bold text-primary">기타</h6>
-               	</a>
-               <div class="collapse show" id="collapseCardExample">
-                 <div class="card-body">
-                 
-                  <p class="text-gray-500 p-3 m-0">.text-gray-500</p>
-                  <p class="text-gray-600 p-3 m-0">.text-gray-600</p>
-                  <p class="text-gray-700 p-3 m-0">.text-gray-700</p>
-                  <p class="text-gray-800 p-3 m-0">.text-gray-800</p>
-                  <p class="text-gray-900 p-3 m-0">.text-gray-900</p>
-                </div>
-                </div>
-              </div>
-              
-            </div>
-           
+       
+          <!-- Page Heading -->
         
-
-          </div>
-
-        </div> 
+          <!-- DataTales Example -->
+         
+           
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="1080px" hight="700px" >
+                  <thead>
+                    <tr>
+                      <th>차순</th>
+                     
+                      
+                    </tr>
+                  </thead>
+                
+                
+                </table>
+              </div>
+            </div>
+          
+		</div>
+        </div>
         <!-- /.container-fluid -->
 
       </div>
@@ -551,6 +469,13 @@
 
   <!-- Custom scripts for all pages-->
   <script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
 
 </body>
 

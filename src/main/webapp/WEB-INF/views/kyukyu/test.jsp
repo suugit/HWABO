@@ -1,7 +1,7 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +23,22 @@
   <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
+<style type="text/css">
+.parent{
+    width: 100%;
+    margin: 10px auto;
+    display: flex;
+}
 
+.first {
+ width:200px; height:100px; border:1px solid; float:left; margin-right:20px;
+}
+
+.second{
+  width:200px; height:100px; border:1px solid; float:left;
+}
+
+</style>
 <body id="page-top">
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
@@ -93,18 +108,18 @@
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+      <li class="nav-item active">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Utilities</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
             <a class="collapse-item" href="utilities-color.jsp">Colors</a>
             <a class="collapse-item" href="utilities-border.jsp">Borders</a>
             <a class="collapse-item" href="utilities-animation.jsp">Animations</a>
-            <a class="collapse-item" href="utilities-other.jsp">Other</a>
+            <a class="collapse-item active" href="utilities-other.jsp">Other</a>
           </div>
         </div>
       </li>
@@ -118,12 +133,12 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
         </a>
-        <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
             <a class="collapse-item" href="login.jsp">Login</a>
@@ -132,7 +147,7 @@
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="404.jsp">404 Page</a>
-            <a class="collapse-item active" href="blank.jsp">Blank Page</a>
+            <a class="collapse-item" href="blank.jsp">Blank Page</a>
           </div>
         </div>
       </li>
@@ -351,44 +366,137 @@
         </nav>
         <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
+         <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">파일함</h1>
-
-          <div class="col-lg-12">
+          <h1 class="h3 mb-1 text-gray-800">파일함</h1>
+          <p class="mb-4"><a href="https://getbootstrap.com/docs"></a></p>
+          <br>
           
-          <div class="container">
-         
-          <ui class="nav nav-tabs nav-justified">
-          <li class="nav-item">
-             <a class="nav-link active" href="#">이미지</a>
-          
-             </li>
-          <li class="nav-item">
-             <a class="nav-link" href="#">동영상</a>
-          </li>
-          <li class="nav-item">
-             <a class="nav-link" href="#">문서</a>
-          </li>
-          <li class="nav-item">
-             <a class="nav-link" href="#">압축파일</a>
-          </li> 
-          <li class="nav-item">
-             <a class="nav-link" href="#">기타</a>
-          </li> 
-         </ul>
-          
-      </div>         
-   </div>
+          <img src="..." alt="photo" class="img-rounded">
+		  <img src="..." alt="photo" class="img-circle">
+		  <img src="..." alt="photo" class="img-thumbnail">
 
 
+          <!-- Content Row -->
+         <div class="row"> 
 
+            <!-- First Column -->
+            <div class="col-lg-4">
 
+              <!-- Custom Text Color Utilities -->
+              
+              <div class="card shadow mb-4">
+                
+                 <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <h6 class="m-0 font-weight-bold text-primary">이미지</h6>
+               	</a>
+              
+                 <div class="collapse show" id="collapseCardExample">
+                <div class="card-body">
+                      <div class="parent">
+                     <div class="first">photo</div>
+                 <div class="second">photo</div>
+                 </div>
+                 
+                   <div class="parent">
+                     <div class="first">photo</div>
+                 <div class="second">photo</div>
+                 </div>
+                 
+                   <div class="parent">
+                     <div class="first">photo</div>
+                 <div class="second">photo</div>
+                 </div>
+                </div>
+                </div>
+                 
+              </div>
+              
 
+              <!-- Custom Font Size Utilities -->
+              <div class="card shadow mb-4">
+               <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <h6 class="m-0 font-weight-bold text-primary">동영상</h6>
+               	</a>
+               <div class="collapse show" id="collapseCardExample">
+                <div class="card-body">
+                 
+                  <p class="text-gray-500 p-3 m-0">.text-gray-500</p>
+                  <p class="text-gray-600 p-3 m-0">.text-gray-600</p>
+                  <p class="text-gray-700 p-3 m-0">.text-gray-700</p>
+                  <p class="text-gray-800 p-3 m-0">.text-gray-800</p>
+                  <p class="text-gray-900 p-3 m-0">.text-gray-900</p>
+                </div>
+                </div>
+              </div>
 
-        </div>
+            </div>
+
+            <!-- Second Column -->
+            <div class="col-lg-4">
+
+              <!-- Background Gradient Utilities -->
+              <div class="card shadow mb-4">
+                 <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">문서</h6>
+                </div>
+              
+                <div class="card-body">
+   
+                  <div class="px-3 py-5 bg-gradient-warning text-white">.bg-gradient-warning</div>
+                  <div class="px-3 py-5 bg-gradient-danger text-white">.bg-gradient-danger</div>
+                  <div class="px-3 py-5 bg-gradient-light text-white">.bg-gradient-light</div>
+                  <div class="px-3 py-5 bg-gradient-dark text-white">.bg-gradient-dark</div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Third Column -->
+            <div class="col-lg-4">
+
+              <!-- Grayscale Utilities -->
+              <div class="card shadow mb-4">
+                   <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <h6 class="m-0 font-weight-bold text-primary">압축파일</h6>
+               	</a>
+               	 <div class="collapse show" id="collapseCardExample">
+               	
+                  <div class="card-body">
+                 
+                  <p class="text-gray-500 p-3 m-0">.text-gray-500</p>
+                  <p class="text-gray-600 p-3 m-0">.text-gray-600</p>
+                  <p class="text-gray-700 p-3 m-0">.text-gray-700</p>
+                  <p class="text-gray-800 p-3 m-0">.text-gray-800</p>
+                  <p class="text-gray-900 p-3 m-0">.text-gray-900</p>
+                </div></div>
+              </div>
+              
+               <div class="card shadow mb-4">
+               <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <h6 class="m-0 font-weight-bold text-primary">기타</h6>
+               	</a>
+               <div class="collapse show" id="collapseCardExample">
+                 <div class="card-body">
+                 
+                  <p class="text-gray-500 p-3 m-0">.text-gray-500</p>
+                  <p class="text-gray-600 p-3 m-0">.text-gray-600</p>
+                  <p class="text-gray-700 p-3 m-0">.text-gray-700</p>
+                  <p class="text-gray-800 p-3 m-0">.text-gray-800</p>
+                  <p class="text-gray-900 p-3 m-0">.text-gray-900</p>
+                </div>
+                </div>
+              </div>
+              
+            </div>
+           
+        
+
+          </div>
+
+        </div> 
         <!-- /.container-fluid -->
 
       </div>
