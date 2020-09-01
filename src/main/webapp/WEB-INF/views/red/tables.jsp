@@ -460,7 +460,7 @@ function move() {
               <tr><td colspan="2">
               <input type="date" class="form-control">
               </td><td>
-              <img src="/hwabo/resources/maincss/img/tilde.png" style="width:100px;height:65px;">
+              <img src="/hwabo/resources/maincss/img/tilde.png" style="width:100px;height:35px;">
               </td><td colspan="2">
               <input type="date" class="form-control">
               </td></tr>
