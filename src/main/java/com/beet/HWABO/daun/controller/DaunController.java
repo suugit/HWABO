@@ -40,4 +40,5 @@ public class DaunController {
 		
 		return "daun/tablesred";
 	}
+	
 }
