@@ -37,4 +37,17 @@ public String myinfoPage(){
 return "suugit/myinfo.page";
 }
 
+@RequestMapping("/signpart.do")
+public String signPart(){
+
+return "suugit/sign.part";
+}
+
+@RequestMapping("/sign_teampart.do")
+public String signTeamPart(){
+
+return "suugit/sign_team.part";
+}
+
+
 }
