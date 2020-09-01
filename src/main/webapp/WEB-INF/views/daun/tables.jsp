@@ -51,7 +51,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
- <!-- Sidebar -->
+    <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
@@ -59,7 +59,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">HWABO(프로젝트선택페이지로?)</div>
+        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
       </a>
 
       <!-- Divider -->
@@ -68,93 +68,90 @@
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
         <a class="nav-link" href="index.jsp">
-          <i></i>
-          <span>프로젝트메인페이지로?</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-table"></i>
-          <span>볼 업무 선택</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">HWABO</h6>
-            <a class="collapse-item" href="#"><span ><label><input type="radio">나의 업무(에이작스처리)</label></span></a>
-            <a class="collapse-item" href="#"><span><label><input type="radio">요청 온 업무</label></span></a>
-            <a class="collapse-item" href="#"><span><label><input type="radio">전체 업무</label></span></a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-table"></i>
-          <span>보기 정렬</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">HWABO</h6>
-            <a class="collapse-item" href="#"><span><label><input type="checkbox" checked="checked" >상 태</label></span></a>
-            <a class="collapse-item" href="#"> <span><label><input type="checkbox" checked="checked" >제 목</label></span></a>
-            <a class="collapse-item" href="#"><span><label><input type="checkbox" checked="checked" >진척도</label></span></a>
-            <a class="collapse-item" href="#"><span><label><input type="checkbox" checked="checked" >시작일</label></span></a>
-            <a class="collapse-item" href="#"><span><label><input type="checkbox" checked="checked" >마감일</label></span></a>
-            <a class="collapse-item" href="#"><span><label><input type="checkbox" checked="checked" >수정일</label></span></a>
-            <a class="collapse-item" href="#"><span><label><input type="checkbox" checked="checked" >등록일</label></span></a>
-          </div>
-        </div>
-      </li>
-      
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#"  data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>보관함</span>
-        </a>
-        <a class="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>파일함</span>
-        </a>
-      </li>
-      
-      <!-- Divider -->
-      <hr class="sidebar-divider">      
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>다이렉트 메세지</span>
+          <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Interface
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Components</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">HWABO</h6>
-            <a class="collapse-item" href="#"><span><label>사람이름1</label></span></a>
-            <a class="collapse-item" href="#"><span><label>사람이름2</label></span></a>
-            <a class="collapse-item" href="#"><span><label>사람이름3</label></span></a>
-            <a class="collapse-item" href="#"><span><label>사람이름4</label></span></a>
-            <a class="collapse-item" href="#"><span><label>사람이름5</label></span></a>
-            <a class="collapse-item" href="#"><span><label>사람이름6</label></span></a>
-            <a class="collapse-item" href="#"><span><label>사람이름7</label></span></a>
-            <a class="collapse-item" href="#"><span><label>사람이름8</label></span></a>
-            <a class="collapse-item" href="#"><span><label>사람이름9</label></span></a>
-            <a class="collapse-item" href="#"><span><label>사람이름10</label></span></a>
-			<a class="collapse-item" href="#"><span><label>사람이름11</label></span></a>
+            <h6 class="collapse-header">Custom Components:</h6>
+            <a class="collapse-item" href="buttons.jsp">Buttons</a>
+            <a class="collapse-item" href="cards.jsp">Cards</a>
           </div>
         </div>
+      </li>
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Utilities</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Utilities:</h6>
+            <a class="collapse-item" href="utilities-color.jsp">Colors</a>
+            <a class="collapse-item" href="utilities-border.jsp">Borders</a>
+            <a class="collapse-item" href="utilities-animation.jsp">Animations</a>
+            <a class="collapse-item" href="utilities-other.jsp">Other</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Addons
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Pages</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Login Screens:</h6>
+            <a class="collapse-item" href="login.jsp">Login</a>
+            <a class="collapse-item" href="register.jsp">Register</a>
+            <a class="collapse-item" href="forgot-password.jsp">Forgot Password</a>
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">Other Pages:</h6>
+            <a class="collapse-item" href="404.jsp">404 Page</a>
+            <a class="collapse-item" href="blank.jsp">Blank Page</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="charts.jsp">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Charts</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item active">
+        <a class="nav-link" href="tables.jsp">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Tables</span></a>
       </li>
 
       <!-- Divider -->
@@ -167,7 +164,6 @@
 
     </ul>
     <!-- End of Sidebar -->
-
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
