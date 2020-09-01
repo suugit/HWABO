@@ -16,4 +16,23 @@ public class DaunController {
 		
 		return "daun/tablesTEST";
 	}
+	
+	@RequestMapping("myhwabo.do")
+	public String myHWABO() {
+		
+		return "daun/myhwabo";
+	}
+	
+	@RequestMapping("yourhwabo.do")
+	public String yourHWABO() {
+		
+		return "daun/yourhwabo";
+	}
+	
+	@RequestMapping("myhwabotest.do")
+	public String myHWABOtest() {
+		
+		return "daun/myhwabotest";
+	}
+	
 }
