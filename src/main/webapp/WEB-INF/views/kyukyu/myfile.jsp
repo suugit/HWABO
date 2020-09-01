@@ -399,7 +399,7 @@
            
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="1080px" hight="700px" >
+                <table class="table table-bordered" id="dataTable" width="1080px" hight="700px" cellspacing="0">
                   <thead>
                     <tr>
                       <th>차순</th>
