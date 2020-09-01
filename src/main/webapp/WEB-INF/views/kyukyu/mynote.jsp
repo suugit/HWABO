@@ -363,8 +363,68 @@
 
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">my note</h1>
+          
+        <div class="row">  
+		<div class="col-lg-9">
+			<div class="card mb-4 py-3 border-bottom-secondary">
+            	<div class="card-body">
+                  	임시 게시글 상자
+            	</div>
+		
+			</div>
+			<div class="card mb-4 py-3 border-bottom-secondary">
+            	<div class="card-body">
+                  	임시 게시글 상자
+            	</div>
+		
+			</div>
+		<div class="card mb-4 py-3 border-bottom-secondary">
+            	<div class="card-body">
+                  	임시 게시글 상자
+            	</div>
+		
+			</div>
+		 
+	
+		
+			
+			<textarea class="form-control" rows="5"></textarea>
+			
+	
+		</div>
+		
+			 <div class="col-lg-3">
+			
+                <div class="card-body">
+                  <div class="px-3 py-5 bg-gradient-warning text-white">1</div>
+                  <div class="px-3 py-5 bg-gradient-danger text-white">2</div>
+                  <div class="px-3 py-5 bg-gradient-light text-white">3</div>
+                  <div class="px-3 py-5 bg-gradient-dark text-white">4</div>
+                </div>
+           
+			</div>
+		
+		<!--    <div class="col-lg-3">
 
-        </div>
+              Background Gradient Utilities
+              <div class="card shadow mb-4">
+               <div class="card mb-4 py-3 border-bottom-secondary">
+                </div>
+                <div class="card-body">
+   
+                  <div class="px-3 py-5 bg-gradient-warning text-white">.bg-gradient-warning</div>
+                  <div class="px-3 py-5 bg-gradient-danger text-white">.bg-gradient-danger</div>
+                  <div class="px-3 py-5 bg-gradient-light text-white">.bg-gradient-light</div>
+                  <div class="px-3 py-5 bg-gradient-dark text-white">.bg-gradient-dark</div>
+                </div>
+              </div>
+
+            </div> -->
+		
+	</div>
+	
+		
+       
         <!-- /.container-fluid -->
 
       </div>
@@ -404,7 +464,7 @@
   </a>
 
   <!-- Logout Modal-->
-  <!-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -421,7 +481,7 @@
       </div>
     </div> 
   </div>
- -->
+ 
   <!-- Bootstrap core JavaScript-->
   <script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
   <script src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

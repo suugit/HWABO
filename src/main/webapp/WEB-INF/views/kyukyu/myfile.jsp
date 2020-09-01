@@ -386,10 +386,14 @@
             <div class="col-lg-4">
 
               <!-- Custom Text Color Utilities -->
+              
               <div class="card shadow mb-4">
-                <div class="card-header py-3">
+                
+                 <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                   <h6 class="m-0 font-weight-bold text-primary">이미지</h6>
-                </div>
+               	</a>
+              
+                 <div class="collapse show" id="collapseCardExample">
                 <div class="card-body">
                       <div class="parent">
                      <div class="first">photo</div>
@@ -406,13 +410,17 @@
                  <div class="second">photo</div>
                  </div>
                 </div>
+                </div>
+                 
               </div>
+              
 
               <!-- Custom Font Size Utilities -->
               <div class="card shadow mb-4">
-                <div class="card-header py-3">
+               <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                   <h6 class="m-0 font-weight-bold text-primary">동영상</h6>
-                </div>
+               	</a>
+               <div class="collapse show" id="collapseCardExample">
                 <div class="card-body">
                  
                   <p class="text-gray-500 p-3 m-0">.text-gray-500</p>
@@ -420,6 +428,7 @@
                   <p class="text-gray-700 p-3 m-0">.text-gray-700</p>
                   <p class="text-gray-800 p-3 m-0">.text-gray-800</p>
                   <p class="text-gray-900 p-3 m-0">.text-gray-900</p>
+                </div>
                 </div>
               </div>
 
@@ -430,9 +439,10 @@
 
               <!-- Background Gradient Utilities -->
               <div class="card shadow mb-4">
-                <div class="card-header py-3">
+                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">문서</h6>
                 </div>
+              
                 <div class="card-body">
    
                   <div class="px-3 py-5 bg-gradient-warning text-white">.bg-gradient-warning</div>
@@ -449,30 +459,34 @@
 
               <!-- Grayscale Utilities -->
               <div class="card shadow mb-4">
-                <div class="card-header py-3">
+                   <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                   <h6 class="m-0 font-weight-bold text-primary">압축파일</h6>
-                </div>
-                <div class="card-body">
-        
-                  <div class="p-3 bg-gray-500 text-white">.bg-gray-500</div>
-                  <div class="p-3 bg-gray-600 text-white">.bg-gray-600</div>
-                  <div class="p-3 bg-gray-700 text-white">.bg-gray-700</div>
-                  <div class="p-3 bg-gray-800 text-white">.bg-gray-800</div>
-                  <div class="p-3 bg-gray-900 text-white">.bg-gray-900</div>
-                </div>
+               	</a>
+               	 <div class="collapse show" id="collapseCardExample">
+               	
+                  <div class="card-body">
+                 
+                  <p class="text-gray-500 p-3 m-0">.text-gray-500</p>
+                  <p class="text-gray-600 p-3 m-0">.text-gray-600</p>
+                  <p class="text-gray-700 p-3 m-0">.text-gray-700</p>
+                  <p class="text-gray-800 p-3 m-0">.text-gray-800</p>
+                  <p class="text-gray-900 p-3 m-0">.text-gray-900</p>
+                </div></div>
               </div>
               
                <div class="card shadow mb-4">
-                <div class="card-header py-3">
+               <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                   <h6 class="m-0 font-weight-bold text-primary">기타</h6>
+               	</a>
+               <div class="collapse show" id="collapseCardExample">
+                 <div class="card-body">
+                 
+                  <p class="text-gray-500 p-3 m-0">.text-gray-500</p>
+                  <p class="text-gray-600 p-3 m-0">.text-gray-600</p>
+                  <p class="text-gray-700 p-3 m-0">.text-gray-700</p>
+                  <p class="text-gray-800 p-3 m-0">.text-gray-800</p>
+                  <p class="text-gray-900 p-3 m-0">.text-gray-900</p>
                 </div>
-                <div class="card-body">
-      
-                  <div class="p-3 bg-gray-500 text-white">.bg-gray-500</div>
-                  <div class="p-3 bg-gray-600 text-white">.bg-gray-600</div>
-                  <div class="p-3 bg-gray-700 text-white">.bg-gray-700</div>
-                  <div class="p-3 bg-gray-800 text-white">.bg-gray-800</div>
-                  <div class="p-3 bg-gray-900 text-white">.bg-gray-900</div>
                 </div>
               </div>
               
