@@ -401,7 +401,7 @@
 						<div class="col-md-4">
 							<div class="card mb-4 py-3 border-left-info">
 								<div style="margin-top: 0px;">
-									<h1>&nbsp;&nbsp;내&nbsp; 정 보</h1>
+									<h1>&nbsp;&nbsp;OOO 님의&nbsp; 정 보</h1>
 									<hr>
 								</div>
 								<div class="card-body" style="height: 400px;">
