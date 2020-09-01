@@ -456,19 +456,23 @@ function move() {
               <tr><td colspan="5">
               <input type="text" class="form-control" placeholder="일정 제목을 입력하세요">
               </td></tr>
+              <tr><td colspan="5">&nbsp;</td></tr>
               <tr><td colspan="2">
-              <input type="date" class="form-control" placeholder="일정 제목을 입력하세요">
+              <input type="date" class="form-control">
               </td><td>
-               ~
+              <img src="/hwabo/resources/maincss/img/tilde.png" style="width:100px;height:65px;">
               </td><td colspan="2">
-              <input type="date" class="form-control" placeholder="일정 제목을 입력하세요">
+              <input type="date" class="form-control">
               </td></tr>
+              <tr><td colspan="5">&nbsp;</td></tr>
               <tr><td colspan="5">
               <input type="text" class="form-control" placeholder="장소를 입력하세요">
               </td></tr>
+              <tr><td colspan="5">&nbsp;</td></tr>
               <tr><td colspan="5">
               <input type="text" class="form-control" placeholder="일정 제목을 입력하세요">
               </td></tr>
+              <tr><td colspan="5">&nbsp;</td></tr>
               <tr><td colspan="5">
               <input type="text" class="form-control" placeholder="메모를 입력하세요">
               </td></tr>
