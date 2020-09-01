@@ -495,11 +495,30 @@ function move() {
               <!-- 게시글안쪽 -->
 <h1>게시글 제목</h1>
 <hr>
-가
-나다
-라마바
-사아자차
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
             </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
           </div>
 <!-- 게시글끝 -->
 <!-- 게시글시작 -->
@@ -510,11 +529,30 @@ function move() {
               <!-- 게시글안쪽 -->
 <h1>게시글 제목</h1>
 <hr>
-가
-나다
-라마바
-사아자차
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
             </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
           </div>
 <!-- 게시글끝 -->
 <!-- 게시글시작 -->
@@ -525,11 +563,30 @@ function move() {
               <!-- 게시글안쪽 -->
 <h1>게시글 제목</h1>
 <hr>
-가
-나다
-라마바
-사아자차
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
             </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
           </div>
 <!-- 게시글끝 -->
 <!-- 게시글시작 -->
@@ -540,11 +597,30 @@ function move() {
               <!-- 게시글안쪽 -->
 <h1>게시글 제목</h1>
 <hr>
-가
-나다
-라마바
-사아자차
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
             </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
           </div>
 <!-- 게시글끝 -->
 <!-- 게시글시작 -->
@@ -555,11 +631,30 @@ function move() {
               <!-- 게시글안쪽 -->
 <h1>게시글 제목</h1>
 <hr>
-가
-나다
-라마바
-사아자차
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
             </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
           </div>
 <!-- 게시글끝 -->
 <!-- 게시글시작 -->
@@ -570,11 +665,30 @@ function move() {
               <!-- 게시글안쪽 -->
 <h1>게시글 제목</h1>
 <hr>
-가
-나다
-라마바
-사아자차
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
             </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
           </div>
 <!-- 게시글끝 -->
 <!-- 게시글시작 -->
@@ -585,13 +699,33 @@ function move() {
               <!-- 게시글안쪽 -->
 <h1>게시글 제목</h1>
 <hr>
-가
-나다
-라마바
-사아자차
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
             </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
           </div>
 <!-- 게시글끝 -->
+
 
         </div>
         <!-- /.container-fluid -->
