@@ -472,6 +472,7 @@ function move() {
               <tr><td colspan="5">
               <input type="text" class="form-control" placeholder="메모를 입력하세요">
               </td></tr>
+              <tr><td colspan="5">&nbsp;</td></tr>
               <tr><td colspan="3"></td>
               <td>
               <a class="btn btn-success btn-icon-split" href="javascript:mainInsert.submit();" style="width:90%;" >
