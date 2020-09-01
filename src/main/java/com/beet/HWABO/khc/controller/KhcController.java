@@ -23,13 +23,30 @@ public class KhcController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "mytodo.do", method = RequestMethod.GET)
-	public String suugitIndex(Model model) {
+	public String khcIndex(Model model) {
 		return "khc/mytodo";
 }
 	
-	@RequestMapping(value = "mytodo.do", method = RequestMethod.GET)
-	public String home(Model model) {
-		return "khc/mytodo";
+	@RequestMapping(value = "participateproject.do", method = RequestMethod.GET)
+	public String participateproject(Model model) {
+		return "khc/participateproject";
+		
+	}
 	
-
+	@RequestMapping(value = "searchmember.do", method = RequestMethod.GET)
+	public String searchmember(Model model) {
+		return "khc/searchmember";
+	}
+	
+	@RequestMapping(value = "authorityadmin.do", method = RequestMethod.GET)
+	public String authorityadmin(Model model) {
+		return "khc/authorityadmin";
+	}
+	
+	@RequestMapping(value = "projectmanagement.do", method = RequestMethod.GET)
+	public String projectmanagement(Model model) {
+		return "khc/projectmanagement";
+	}
+	
+	
 }
