@@ -377,16 +377,26 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-<!-- 진행률시작 -->
-<h1>전체 진행률</h1>
+<!-- 진행률 시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+                            <h1 class="m-0 font-weight-bold text-primary">전체 진행률</h1>
+                            <hr>
 
 <div id="myProgress">
   <div id="myBar">0%</div>
 </div>
-
 <br>
-<button onclick="move()">Click Me</button> 
-
+<table style="text-align:center;width:100%;color:white;"><tr><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;"></td><td style="width:20%;">
+<a class="btn btn-success btn-icon-split" style="width:90%;" onclick="move()">
+<span class="text">진행률바 테스트</span>
+</a>
+</td>
+</tr></table>
 <script>
 var i = 0;
 let c = 3;//목표 갯수 현재 3개
@@ -414,9 +424,9 @@ function move() {
   }
 }
 </script>
-
-
-<!-- 진행률 끝 -->
+            </div>
+          </div>
+<!-- 진행률끝 -->
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800"></h1>
           <p class="mb-4"></p>
