@@ -30,4 +30,10 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		
 		return "kyukyu/mynote";
 	}
+	
+	@RequestMapping(value = "test.do", method = RequestMethod.GET)
+	public String test(Model model) {
+		
+		return "kyukyu/test";
+	}
 }
