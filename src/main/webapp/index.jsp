@@ -29,7 +29,7 @@
     <button onclick="javascript:location.href='sample.do'" style="width:120px;height:60px;background-color:#2E2E2E;color:white;">샘플페이지로</button>
     <button onclick="javascript:location.href='daundaun.do'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">다운다운 페이지로</button>
     <button onclick="javascript:location.href='suugit.do'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">suugit의 페이지로</button>
-    <button onclick="javascript:location.href='red.do'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">RED의 페이지로</button>
+    <button onclick="javascript:location.href='ftables.do'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">RED의 페이지로</button>
     <button onclick="javascript:location.href='khc.do'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">KHC 페이지로</button>
     <button onclick="javascript:location.href='plz.do'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">plzCarryMe</button>
     <button onclick="javascript:location.href='kyukyu.do'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">KyuKyu 페이지로</button>

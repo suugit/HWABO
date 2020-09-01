@@ -1,10 +1,10 @@
-<%@ page session="false" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="CONTEXT_PATH" value="${pageContext.request.contextPath}" scope="application"/>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 
 <head>
 
@@ -72,11 +72,11 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">비밀번호가 생각나지 않으신가요?</a>
+                    <a class="small" href="javascript:location.href='forgotpwd.do';">비밀번호가 생각나지 않으신가요?</a>
                   </div>
                   <div class="text-center">
                     화보가 처음이신가요?
-                    <a class="small" href="register.html">가입하기</a>
+                    <a class="small" href="javascript:location.href='sign.do';">가입하기</a>
                   </div>
                 </div>
               </div>

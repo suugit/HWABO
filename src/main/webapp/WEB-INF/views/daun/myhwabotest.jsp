@@ -1,7 +1,7 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,36 +15,16 @@
 
   <title>HWABO</title>
 
-  <!-- Custom fonts for this template -->
+  <!-- Custom fonts for this template-->
   <link href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
+  <!-- Custom styles for this template-->
   <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this page -->
-  <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
-<!-- 진행률시작 -->
-<style>
-#myProgress {
-  width: 100%;
-  background-color: #ddd;
-}
-
-#myBar {
-  width: 0%;
-  height: 30px;
-  background-color: #4CAF50;
-  text-align: center;
-  line-height: 30px;
-  color: white;
-}
-</style>
-
-<!-- 진행률끝 -->
+<!--  #42BBBA -->
 
 <body id="page-top">
 <!-- 테스트버튼 시작 -->
@@ -140,12 +120,12 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+      <li class="nav-item active">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
             <a class="collapse-item" href="login.jsp">Login</a>
@@ -154,7 +134,7 @@
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="404.jsp">404 Page</a>
-            <a class="collapse-item" href="blank.jsp">Blank Page</a>
+            <a class="collapse-item active" href="blank.jsp">Blank Page</a>
           </div>
         </div>
       </li>
@@ -167,7 +147,7 @@
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="tables.jsp">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
@@ -194,11 +174,9 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
-          <form class="form-inline">
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-              <i class="fa fa-bars"></i>
-            </button>
-          </form>
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
 
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -377,362 +355,139 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-<!-- 진행률 시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-                            <h1 class="m-0 text-primary">전체 진행률</h1>
-                            <hr>
 
-<div id="myProgress">
-  <div id="myBar">0%</div>
-</div>
-<br>
-<table style="text-align:center;width:100%;color:white;"><tr><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;"></td><td style="width:20%;">
-<a class="btn btn-success btn-icon-split" style="width:90%;" onclick="move()">
-<span class="text">진행률바 테스트</span>
-</a>
-</td>
-</tr></table>
-<script>
-var i = 0;
-let c = 5;//목표 갯수 현재 5개
-var devide = 0;
-function move() {
-	devide += 100 / c;
-    if(devide > 100){
-    	devide = 100;
-    }
-  if (i == 0) {
-
-    var elem = document.getElementById("myBar");
-    var width = 0;
-    var id = setInterval(frame, 10);
-    function frame() {
-      if (width >= devide) {
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        elem.style.width = width + "%";
-        elem.innerHTML = width  + "%";
-      }
-    }
-  }
-}
-</script>
-            </div>
-          </div>
-<!-- 진행률끝 -->
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800"></h1>
-          <p class="mb-4"></p>
+          <h1 class="h3 mb-4 text-gray-800">my hwabo test Page</h1>
+ 		<!-- /.container-fluid -->
+		</div>
+	
+		<div style="float: left;  width: 25%; height: 20%; padding: 10px; margin: 30px; ">
+			<h2> 나의 정보</h2>
+			<table  style="width: 100%; height: 80%;">
+				<tr><td>이름</td><td>OOO</td></tr>
+				<tr><td>이메일</td><td>OOO@naver.com</td></tr>
+				<tr><td>휴대폰</td><td>010-0000-0000</td></tr>
+				<tr><td>부서</td><td>마케팅부</td></tr>
+			</table>
+		</div>
+		
+		<div style="float: left;  width: 62.5%; height:20%; padding: 10px; margin: 30px; overflow: auto;" >
+			<h2>보관해둔 글</h2>
+			<table style="width: 100%; height: 80%; " >
+				<tr><th>유형</th><th>제목</th><th>내용</th><th>수정일</th><th>등록일</th></tr>
+				<tr><td>글</td><td>제목</td><td>내용</td><td>수정일</td><td>등록일</td></tr>
+				<tr><td>업무</td><td>제목</td><td>내용</td><td>수정일</td><td>등록일</td></tr>
+				<tr><td>일정</td><td>제목</td><td>내용</td><td>수정일</td><td>등록일</td></tr>
+				<tr><td>할일</td><td>제목</td><td>내용</td><td>수정일</td><td>등록일</td></tr>
+				<tr><td>일정</td><td>제목</td><td>내용</td><td>수정일</td><td>등록일</td></tr>
+				<tr><td>일정</td><td>제목</td><td>내용</td><td>수정일</td><td>등록일</td></tr>
+				<tr><td>일정</td><td>제목</td><td>내용</td><td>수정일</td><td>등록일</td></tr>
+				<tr><td>일정</td><td>제목</td><td>내용</td><td>수정일</td><td>등록일</td></tr>
+				<tr><td>일정</td><td>제목</td><td>내용</td><td>수정일</td><td>등록일</td></tr>
+				<tr><td>일정</td><td>제목</td><td>내용</td><td>수정일</td><td>등록일</td></tr>
+				<tr><td>일정</td><td>제목</td><td>내용</td><td>수정일</td><td>등록일</td></tr>
+				<tr><td>일정</td><td>제목</td><td>내용</td><td>수정일</td><td>등록일</td></tr>
+				
+			</table>
+		</div>
 
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-              <form action="blank.do" id="mainInsert">
-              <table style="text-align:center;width:100%;">
-              <tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
-              <span>글작성</span>
-              </td><td style="width:20%;">
-              <span>업무</span>
-              </td><td style="width:20%;">
-              <span>일정</span>
-              </td><td style="width:20%;">
-              <span>할일</span>
-              </td><td style="width:20%;">
-              <span>투표</span>
-              </td></tr>
-              <tr><td colspan="5">
-              <hr>
-              </td></tr>
-              <tr><td colspan="5">
-              <input type="text" class="form-control" placeholder="일정 제목을 입력하세요">
-              </td></tr>
-              <tr><td colspan="5">&nbsp;</td></tr>
-              <tr><td colspan="2">
-              <input type="date" class="form-control">
-              </td><td>
-              <img src="/hwabo/resources/maincss/img/tilde.png" style="width:100px;height:35px;">
-              </td><td colspan="2">
-              <input type="date" class="form-control">
-              </td></tr>
-              <tr><td colspan="5">&nbsp;</td></tr>
-              <tr><td colspan="5">
-              <input type="text" class="form-control" placeholder="장소를 입력하세요">
-              </td></tr>
-              <tr><td colspan="5">&nbsp;</td></tr>
-              <tr><td colspan="5">
-              <input type="text" class="form-control" placeholder="일정 제목을 입력하세요">
-              </td></tr>
-              <tr><td colspan="5">&nbsp;</td></tr>
-              <tr><td colspan="5">
-              <input type="text" class="form-control" placeholder="메모를 입력하세요">
-              </td></tr>
-              <tr><td colspan="5">&nbsp;</td></tr>
-              <tr><td colspan="3"></td>
-              <td>
-              <a class="btn btn-success btn-icon-split" href="javascript:mainInsert.submit();" style="width:90%;" >
-                    <span class="text">등록</span>
-                  </a>
-              </td><td>
-              <a href="javascript:mainInsert.reset();" class="btn btn-danger btn-icon-split" style="width:90%;">
-                    <span class="text">취소</span>
-              </a>
-              </td></tr>
-              </table>
-              </form>
-            </div>
-          </div>
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
+		<h2 style="clear: both;margin-left: 30px; padding-top: 30px; margin-bottom: 0px;" >게시글</h2>
+		<div style="clear: both;  width: 90%; height:55%; align-self: center; overflow:auto; padding: 10px; margin:30px;" >
+			<fieldset style="border-color: red; border: ">
+			<legend>글</legend>
+			<table  style="width: 100%; height: 10%;">
+				<tr><th>제목</th><th>제목</th><th>제목</th><th>제목</th><th>제목</th><th>제목</th></tr>
+				<tr><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td></tr>
+			</table>
+			</fieldset>
+			<br>
+			<fieldset>
+			<legend>업무</legend>
+			<table  style="width: 100%; height: 10%;">
+				<tr><th>상태</th><th>제목</th><th>진척도</th><th>내용</th><th>시작일</th><th>마감일</th><th>수정일</th><th>등록일</th></tr>
+				<tr><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td></tr>
+			</table>
+			</fieldset>
+			<br>
+			<fieldset>
+			<legend>일정</legend>
+			<table  style="width: 100%; height: 10%;">
+				<tr><th>제목</th><th>시작날짜</th><th>마감날짜</th><th>장소</th><th>알람</th><th>메모</th><th>수정일</th><th>등록일</th></tr>
+				<tr><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td></tr>
+			</table>
+			</fieldset>
+			<br>
+			<fieldset>
+			<legend>할일</legend>
+			<table  style="width: 100%; height: 10%;">
+				<tr><th>제목</th><th>제목</th><th>제목</th><th>제목</th><th>제목</th><th>제목</th></tr>
+				<tr><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td></tr>
+			</table>
+			</fieldset>
+			<br>
+			<fieldset>
+			<legend>투표</legend>
+			<table  style="width: 100%; height: 10%;">
+				<tr><th>제목</th><th>제목</th><th>제목</th><th>제목</th><th>제목</th><th>제목</th></tr>
+				<tr><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td></tr>
+			</table>
+			</fieldset>
+						<br>
+			<fieldset>
+			<legend>일정</legend>
+			<table  style="width: 100%; height: 10%;">
+				<tr><th>제목</th><th>시작날짜</th><th>마감날짜</th><th>장소</th><th>알람</th><th>메모</th><th>수정일</th><th>등록일</th></tr>
+				<tr><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td></tr>
+			</table>
+			</fieldset>
+						<br>
+			<fieldset>
+			<legend>일정</legend>
+			<table  style="width: 100%; height: 10%;">
+				<tr><th>제목</th><th>시작날짜</th><th>마감날짜</th><th>장소</th><th>알람</th><th>메모</th><th>수정일</th><th>등록일</th></tr>
+				<tr><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td></tr>
+			</table>
+			</fieldset>
+						<br>
+			<fieldset>
+			<legend>일정</legend>
+			<table  style="width: 100%; height: 10%;">
+				<tr><th>제목</th><th>시작날짜</th><th>마감날짜</th><th>장소</th><th>알람</th><th>메모</th><th>수정일</th><th>등록일</th></tr>
+				<tr><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td></tr>
+			</table>
+			</fieldset>
+						<br>
+			<fieldset>
+			<legend>일정</legend>
+			<table  style="width: 100%; height: 10%;">
+				<tr><th>제목</th><th>시작날짜</th><th>마감날짜</th><th>장소</th><th>알람</th><th>메모</th><th>수정일</th><th>등록일</th></tr>
+				<tr><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td><td>내용</td></tr>
+			</table>
+			</fieldset>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
-
-        </div>
-        <!-- /.container-fluid -->
+       
 
       </div>
       <!-- End of Main Content -->
@@ -786,13 +541,6 @@ function move() {
 
   <!-- Custom scripts for all pages-->
   <script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
 
 </body>
 

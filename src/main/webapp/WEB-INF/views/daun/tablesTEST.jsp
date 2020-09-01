@@ -24,12 +24,91 @@
 
   <!-- Custom styles for this page -->
   <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
+<script type="text/javascript">
+$(function () {
 
+    $(".tab_content").hide();
+    $(".tab_content:first").show();
+
+    $("ul.tabs li").click(function () {
+        $("ul.tabs li").removeClass("active").css("color", "#eee");
+        //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+        $(this).addClass("active").css("color", "blue");
+        $(".tab_content").hide()
+        var activeTab = $(this).attr("rel");
+        $("#" + activeTab).fadeIn()
+    });
+});
+</script>
+<style type="text/css">
+ul.tabs {
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+    height: 32px;
+    border-bottom: 1px solid #eee;
+    border-left: 1px solid #eee;
+    width: 100%;
+    font-family:"dotum";
+    font-size:12px;
+}
+ul.tabs li {
+    float: left;
+    text-align:center;
+    cursor: pointer;
+    width:82px;
+    height: 31px;
+    line-height: 31px;
+    border: 1px solid #eee;
+    border-left: none;
+    font-weight: bold;
+    background: #fafafa;
+    overflow: hidden;
+    position: relative;
+}
+ul.tabs li.active {
+    background: #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+}
+.tab_container {
+    border: 1px solid #eee;
+    border-top: none;
+    clear: both;
+    float: left;
+    width: 30%;
+    height: 20%;
+    background: #FFFFFF;
+}
+.tab_content {
+    padding: 5px;
+    font-size: 12px;
+    display: none;
+
+}
+.tab_container .tab_content ul {
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+.tab_container .tab_content ul li {
+    padding:5px;
+    list-style:none
+}
+;
+ #container {
+    width: 33%;
+    height: 22%;
+    margin: 0 auto;
+}
+
+</style>
 </head>
 
 <body id="page-top">
 <!-- 테스트버튼 시작 -->
-
 <div style="position:absolute;z-index:5;"><br>&nbsp;
 	원하는 페이지로 :
     <button onclick="javascript:location.href='red.do'">index</button>
@@ -60,7 +139,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">HAWBO(프로젝트선택페이지로?)</div>
       </a>
 
       <!-- Divider -->
@@ -69,46 +148,25 @@
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
         <a class="nav-link" href="index.jsp">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <i></i>
+          <span>프로젝트메인페이지로?</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
+          <i class="fas fa-fw fa-table"></i>
+          <span>볼 업무 선택</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.jsp">Buttons</a>
-            <a class="collapse-item" href="cards.jsp">Cards</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.jsp">Colors</a>
-            <a class="collapse-item" href="utilities-border.jsp">Borders</a>
-            <a class="collapse-item" href="utilities-animation.jsp">Animations</a>
-            <a class="collapse-item" href="utilities-other.jsp">Other</a>
+            <h6 class="collapse-header">HAWBO</h6>
+            <a class="collapse-item" href="#"><span ><label><input type="radio">나의 업무(에이작스처리)</label></span></a>
+            <a class="collapse-item" href="#"><span><label><input type="radio">요청 온 업무</label></span></a>
+            <a class="collapse-item" href="#"><span><label><input type="radio">전체 업무</label></span></a>
           </div>
         </div>
       </li>
@@ -116,43 +174,67 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-table"></i>
+          <span>보기 정렬</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.jsp">Login</a>
-            <a class="collapse-item" href="register.jsp">Register</a>
-            <a class="collapse-item" href="forgot-password.jsp">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.jsp">404 Page</a>
-            <a class="collapse-item" href="blank.jsp">Blank Page</a>
+            <h6 class="collapse-header">HAWBO</h6>
+            <a class="collapse-item" href="#"><span><label><input type="checkbox" checked="checked" >상 태</label></span></a>
+            <a class="collapse-item" href="#"> <span><label><input type="checkbox" checked="checked" >제 목</label></span></a>
+            <a class="collapse-item" href="#"><span><label><input type="checkbox" checked="checked" >진척도</label></span></a>
+            <a class="collapse-item" href="#"><span><label><input type="checkbox" checked="checked" >시작일</label></span></a>
+            <a class="collapse-item" href="#"><span><label><input type="checkbox" checked="checked" >마감일</label></span></a>
+            <a class="collapse-item" href="#"><span><label><input type="checkbox" checked="checked" >수정일</label></span></a>
+            <a class="collapse-item" href="#"><span><label><input type="checkbox" checked="checked" >등록일</label></span></a>
           </div>
         </div>
       </li>
+      
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
-      <!-- Nav Item - Charts -->
+
+      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.jsp">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+        <a class="nav-link collapsed" href="#"  data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>보관함</span>
+        </a>
+        <a class="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>파일함</span>
+        </a>
       </li>
+      
+      <!-- Divider -->
+      <hr class="sidebar-divider">      
 
-      <!-- Nav Item - Tables -->
-      <li class="nav-item active">
-        <a class="nav-link" href="tables.jsp">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>다이렉트 메세지</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">HAWBO</h6>
+            <a class="collapse-item" href="#"><span><label>사람이름1</label></span></a>
+            <a class="collapse-item" href="#"><span><label>사람이름2</label></span></a>
+            <a class="collapse-item" href="#"><span><label>사람이름3</label></span></a>
+            <a class="collapse-item" href="#"><span><label>사람이름4</label></span></a>
+            <a class="collapse-item" href="#"><span><label>사람이름5</label></span></a>
+            <a class="collapse-item" href="#"><span><label>사람이름6</label></span></a>
+            <a class="collapse-item" href="#"><span><label>사람이름7</label></span></a>
+            <a class="collapse-item" href="#"><span><label>사람이름8</label></span></a>
+            <a class="collapse-item" href="#"><span><label>사람이름9</label></span></a>
+            <a class="collapse-item" href="#"><span><label>사람이름10</label></span></a>
+			<a class="collapse-item" href="#"><span><label>사람이름11</label></span></a>
+          </div>
+        </div>
       </li>
 
       <!-- Divider -->
@@ -361,8 +443,48 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+          <h1 class="h3 mb-2 text-gray-800" >My WhiteBoard</h1>
+          <p class="mb-4">OOO님 화보에 오신 것을 환영합니다<a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+
+<div id="container">
+    <ul class="tabs">
+        <li class="active" rel="tab1">글 작성</li>
+        <li rel="tab2">업 &nbsp;무</li>
+        <li rel="tab3">일 &nbsp;정</li>
+        <li rel="tab4">할 &nbsp;일</li>
+        <li rel="tab5">투 &nbsp;표</li>
+    </ul>
+    <div class="tab_container">
+    <!-- #tab1 -->
+        <div id="tab1" class="tab_content">
+			글작성 탭내용
+        </div>
+        
+     <!-- #tab2 --> 
+        <div id="tab2" class="tab_content">
+        	업무 탭
+        </div>
+        
+     <!-- #tab3 -->   
+        <div id="tab3" class="tab_content">
+        	일정 탭
+        </div>
+        
+     <!-- #tab4 -->   
+        <div id="tab4" class="tab_content">
+        	할일 탭
+        </div>
+
+     <!-- #tab5 -->   
+        <div id="tab5" class="tab_content">
+        	투표 탭
+        </div>        
+    </div>
+    <!-- .tab_container -->
+</div>
+<!-- #container -->
+<br><br><br>
+
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
