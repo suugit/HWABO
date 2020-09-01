@@ -527,9 +527,7 @@
 
       <!--   <div class="message-wrap col-lg-8"> -->
       
-      <div class="container" style="width:100%;">
-   		 <div class="row">
-             <div class="col-lg-10">
+      <div class="col-lg-10" style="width:100%;">
             <div class="msg-wrap" style="width:100%;">
 
 
@@ -599,9 +597,6 @@
                 <a href="" class=" col-lg-4 text-right btn   send-message-btn pull-right" role="button"><i class="fa fa-minus"></i> 비우기</a>
             </div>
         </div>
-    </div>
-</div>
-
 
 
 
