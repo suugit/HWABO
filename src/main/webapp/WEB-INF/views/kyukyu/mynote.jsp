@@ -596,7 +596,16 @@
             <div class="send-wrap ">
 
                 <textarea class="form-control send-message" rows="3" placeholder="Write a reply..."></textarea>
-
+        		<!-- textarea id="boardtext" rows="6" class="w-100 form-control "></textarea> -->
+					 <div class="form-inline m-2 border-primary">
+					 <i class="fa fa-link mr-2"><a href="#"></a></i>
+				     <i class="fa fa-calendar-alt mr-2"></i>
+	   	             <i class="fa fa-map-marker-alt mr-2"></i>
+					 <i class="fa fa-code mr-5"></i>
+					 <i class="fa fa-hashtag mr-2"></i>
+					 <i class="fa fa-at mr-2" ></i>
+				 <button class="ml-auto mr-2 btn btn-sm btn-success" style="padding:4px 30px;" onclick="javascript:mainInsert.submit();">등록</button>
+				 <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
 
             </div>
             <div class="btn-panel">
