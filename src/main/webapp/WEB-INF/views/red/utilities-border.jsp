@@ -370,14 +370,12 @@
         <div class="container-fluid">
 
 <!-- 진행률시작 -->
-<div class="card mb-4">
-                <div class="card-body">
+<div class="card-body">
                   <div class="mb-1 small">프로젝트 진행률 75%</div>
                   <div class="progress progress-sm mb-2">
                     <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
-              </div>
 <!-- 진행률끝 -->
          <!-- 달력시작  -->
          

@@ -27,25 +27,6 @@
 
 </head>
 
-<!-- 진행률시작 -->
-<style>
-#myProgress {
-  width: 100%;
-  background-color: #ddd;
-}
-
-#myBar {
-  width: 0%;
-  height: 30px;
-  background-color: #4CAF50;
-  text-align: center;
-  line-height: 30px;
-  color: white;
-}
-</style>
-
-<!-- 진행률끝 -->
-
 <body id="page-top">
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
@@ -388,54 +369,14 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 <!-- 진행률 시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-                            <h1 class="m-0 text-primary">전체 진행률</h1>
-                            <hr>
-
-<div id="myProgress">
-  <div id="myBar">0%</div>
-</div>
-<br>
-<table style="text-align:center;width:100%;color:white;"><tr><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;"></td><td style="width:20%;">
-<a class="btn btn-success btn-icon-split" style="width:90%;" onclick="move()">
-<span class="text">진행률바 테스트</span>
-</a>
-</td>
-</tr></table>
-<script>
-var i = 0;
-let c = 5;//목표 갯수 현재 5개
-var devide = 0;
-function move() {
-	devide += 100 / c;
-    if(devide > 100){
-    	devide = 100;
-    }
-  if (i == 0) {
-
-    var elem = document.getElementById("myBar");
-    var width = 0;
-    var id = setInterval(frame, 10);
-    function frame() {
-      if (width >= devide) {
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        elem.style.width = width + "%";
-        elem.innerHTML = width  + "%";
-      }
-    }
-  }
-}
-</script>
-            </div>
-          </div>
+<div class="card mb-4">
+                <div class="card-body">
+                  <div class="mb-1 small">프로젝트 진행률 75%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
 <!-- 진행률끝 -->
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800"></h1>
@@ -501,6 +442,7 @@ function move() {
               </form>
             </div>
           </div>
+<% for(int i = 0; i < 7; i++){ %>
 <!-- 게시글시작 -->
 <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -535,210 +477,7 @@ function move() {
 </div>
           </div>
 <!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
+<% } %>
 
 
         </div>

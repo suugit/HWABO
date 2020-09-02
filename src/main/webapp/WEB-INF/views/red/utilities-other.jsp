@@ -26,6 +26,7 @@
 #myProgress {
   width: 100%;
   background-color: #ddd;
+  border-radius:8px;
 }
 
 #myBar {
@@ -35,6 +36,8 @@
   text-align: center;
   line-height: 30px;
   color: white;
+  border-radius:8px;
+  
 }
 </style>
 
@@ -383,11 +386,10 @@
 <!-- 진행률 시작 -->
 <div class="card shadow mb-4">
             <div class="card-header py-3">
+           	프로젝트 진행률
             </div>
             <div class="card-body">
               <!-- 게시글안쪽 -->
-                            <h1 class="m-0 text-primary">전체 진행률</h1>
-                            <hr>
 
 <div id="myProgress">
   <div id="myBar">0%</div>
@@ -395,7 +397,7 @@
 <br>
 <table style="text-align:center;width:100%;color:white;"><tr><td style="width:20%;"></td><td style="width:20%;"></td>
 <td style="width:20%;"></td><td style="width:20%;"></td><td style="width:20%;">
-<a class="btn btn-success btn-icon-split" style="width:90%;" onclick="move()">
+<a class="btn btn-light btn-icon-split" style="width:90%;" onclick="move()">
 <span class="text">진행률바 테스트</span>
 </a>
 </td>
