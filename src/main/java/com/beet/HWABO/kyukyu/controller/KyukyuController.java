@@ -36,4 +36,12 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		
 		return "kyukyu/test";
 	}
+	
+	@RequestMapping(value = "mymeno2.do", method = RequestMethod.GET)
+	public String testmemo(Model model) {
+		
+		return "kyukyu/mymeno2";
+	}
+	
+
 }

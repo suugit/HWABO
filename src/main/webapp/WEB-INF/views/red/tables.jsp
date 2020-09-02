@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 
 <head>
   <link rel="icon" type="image/x-icon" href="/hwabo/resources/assets/img/favicon.png" />
@@ -67,6 +67,14 @@
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->
+<!-- 테스트버튼2 시작 -->
+<div style="position:absolute;z-index:5;"><br>&nbsp;
+	원하는 페이지로 :
+    <button onclick="javascript:location.href='cards.do'">프로젝트 시작페이지</button>
+    <button onclick="javascript:location.href='ftables.do'">메인(sns형)</button>
+    </div>
+<div style="background-color:skyblue;border:1px solid black;"><br><br><br></div>
+<!-- 테스트버튼2 끝 -->
   <!-- Page Wrapper -->
   <div id="wrapper">
 
