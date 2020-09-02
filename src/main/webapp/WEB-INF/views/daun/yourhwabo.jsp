@@ -35,31 +35,19 @@
 	href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
 
+<script type="text/javascript" src="resources/js/scripts.js"></script>
+<script type="text/javascript">
+$("div").on('click', function(e){
+
+	return false;
+
+	});
+</script>
+
 </head>
 
 <body id="page-top">
-	<!-- 테스트버튼 시작 -->
-	<div style="position: absolute; z-index: 5;">
-		<br>&nbsp; 원하는 페이지로 :
-		<button onclick="javascript:location.href='red.do'">index</button>
-		<button onclick="javascript:location.href='404.do'">404</button>
-		<button onclick="javascript:location.href='blank.do'">blank</button>
-		<button onclick="javascript:location.href='buttons.do'">buttons</button>
-		<button onclick="javascript:location.href='cards.do'">cards</button>
-		<button onclick="javascript:location.href='charts.do'">charts</button>
-		<button onclick="javascript:location.href='fpassword.do'">forgot-password</button>
-		<button onclick="javascript:location.href='flogin.do'">login</button>
-		<button onclick="javascript:location.href='fregister.do'">register</button>
-		<button onclick="javascript:location.href='ftables.do'">tables</button>
-		<button onclick="javascript:location.href='fanimation.do'">utilities-animation</button>
-		<button onclick="javascript:location.href='fborder.do'">utilities-border</button>
-		<button onclick="javascript:location.href='fcolor.do'">utilities-color</button>
-		<button onclick="javascript:location.href='fother.do'">utilities-other</button>
-	</div>
-	<div style="background-color: #F8E0E6; border: 2px solid black;">
-		<br> <br> <br>
-	</div>
-	<!-- 테스트버튼 끝 -->
+
 	<table style="margin: 0px; padding: 0px; width: 100%">
 	<tr>
 		<td width="20%"></td>
@@ -96,8 +84,8 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-table"></i> <span>볼 업무 선택</span>
+				aria-expanded="true" aria-controls="collapseTwo" onclick="javascript: return false;">
+				 <i class="far fa-check-circle"></i> <span>볼 업무 선택</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
@@ -109,18 +97,19 @@
 									온 업무</label></span></a> <a class="collapse-item" href="#"><span><label><input
 									type="radio" name="selectshow">전체 업무</label></span></a>
 					</div>
-				</div></li>
+				</div>
+				</li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-table"></i> <span>보기 정렬</span>
+				data-toggle="collapse" data-target="#collapseThree"
+				aria-expanded="true" aria-controls="collapseThree" onclick="javascript: return false;">
+				 <i class="fas fa-filter"></i> <span>보기 정렬</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">HWABO</h6>
@@ -148,11 +137,11 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapsePages" aria-expanded="true"
-				aria-controls="collapsePages"> <i class="fas fa-fw fa-folder"></i>
+				aria-controls="collapsePages" onclick="javascript: return false;"><i class="fas fa-archive"></i>
 					<span>보관함</span>
 			</a> <a class="nav-link collapsed" href="#" data-target="#collapsePages"
-				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>파일함</span>
+				aria-expanded="true" aria-controls="collapsePages" onclick="javascript: return false;"> 
+				<i class="far fa-folder-open"></i><span>파일함</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -160,11 +149,11 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-tachometer-alt"></i> <span>다이렉트 메세지</span>
+				data-toggle="collapse" data-target="#collapseOne"
+				aria-expanded="true" aria-controls="collapseOne" onclick="javascript: return false;"> 
+				<i class="fas fa-chalkboard"></i> <span>팀원들의 화보</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">HWABO</h6>
@@ -703,7 +692,7 @@
 					<!-- 게시글끝 -->
 
 
-			</td>
+			
 
 
 				</div>
@@ -718,8 +707,8 @@
 
 		</div>
 		<!-- End of Page Wrapper -->
-
-	</div>
+			
+	</div></td>
 			<td></td>
 	</tr>
 	</table>

@@ -90,11 +90,11 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-table"></i> <span>볼 업무 선택</span>
+				data-toggle="collapse" data-target="#collapseThree"
+				aria-expanded="true" aria-controls="collapseThree">
+				<i class="far fa-check-circle"></i><span>볼 업무 선택</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">HWABO</h6>
@@ -112,8 +112,8 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-table"></i> <span>보기 정렬</span>
+				aria-expanded="true" aria-controls="collapseTwo">
+				 <i class="fas fa-filter"></i> <span>보기 정렬</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
@@ -143,11 +143,11 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapsePages" aria-expanded="true"
-				aria-controls="collapsePages"> <i class="fas fa-fw fa-folder"></i>
+				aria-controls="collapsePages"> <i class="fas fa-archive"></i>
 					<span>보관함</span>
 			</a> <a class="nav-link collapsed" href="#" data-target="#collapsePages"
-				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>파일함</span>
+				aria-expanded="true" aria-controls="collapsePages"> 
+				<i class="far fa-folder-open"></i> <span>파일함</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -155,11 +155,11 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-tachometer-alt"></i> <span>다이렉트 메세지</span>
+				data-toggle="collapse" data-target="#collapseOne"
+				aria-expanded="true" aria-controls="collapseOne">
+				<i class="fas fa-chalkboard"></i><span>팀원들의 화보</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">HWABO</h6>
