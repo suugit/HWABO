@@ -361,7 +361,19 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+<!-- 프로젝트생성시작 -->
+<div class="card shadow mb-4">
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+                            <h1 class="m-0 text-primary" style="text-align:center">
+                <img src="/hwabo/resources/maincss/img/plus2.png" style="width:45px;height:45px;">            
+                            새 프로젝트 생성
+                            </h1>
 
+
+            </div>
+          </div>
+          <!-- 프로젝트생성끝 -->
          <div class="row">
 <div class="col-xl-4 col-lg-5">
               <div class="card shadow mb-4">
