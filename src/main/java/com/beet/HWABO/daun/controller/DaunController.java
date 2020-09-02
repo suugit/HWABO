@@ -35,10 +35,10 @@ public class DaunController {
 		return "daun/myhwabotest";
 	}
 	
-	@RequestMapping("tablesred.do")
+	@RequestMapping("scheduelboard.do")
 	public String redtest() {
 		
-		return "daun/tablesred";
+		return "daun/scheduelboard";
 	}
 	
 }
