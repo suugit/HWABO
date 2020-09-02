@@ -486,11 +486,10 @@
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
-										<td width="25%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span><input type="date" class="form-control"></td>
-										<td width="10%"><span style="float: left;">시 간</span><input type="time" class="form-control"></td>
-										<td width="5%" style="padding-top: 25px;"><span style="float: left;">&nbsp;</span><img src="/hwabo/resources/maincss/img/tilde.png" style="width: 50px; height: 20px;"></td>
-										<td width="25%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span><input type="date" class="form-control"></td>
-										<td width="10%"><span style="float: left;">시 간</span><input type="time" class="form-control"></td>
+										<td width="20%" ><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span><input type="datetime-local" class="form-control"></td>
+
+										<td width="20%" ><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span><input type="datetime-local" class="form-control"></td>
+									
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
@@ -503,8 +502,19 @@
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
-										<td colspan="1"><span style="float: left;"><i class="far fa-bell"></i>&nbsp;알 람</span><input type="time" class="form-control"
-											></td>
+										<td colspan="1" style="width: 20%;"><span style="float: left;"><i class="far fa-bell"></i>&nbsp;알 림</span>
+										
+										<select name="alarm"  class="form-control">
+											<option>--- 알림 없음 ---</option>
+											<option>10분 전 알림</option>
+											<option>30분 전 알림</option>
+											<option>1시간 전 알림</option>
+											<option>2시간 전 알림</option>
+											<option>3시간 전 알림</option>
+											<option>1일 전 알림</option>
+											<option>2일 전 알림</option>
+											<option>7일 전 알림</option>
+										</select></td>
 										<td colspan="4">&nbsp;</td>
 									</tr>
 									<tr>
