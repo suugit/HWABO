@@ -19,8 +19,6 @@
   <link href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template-->
-  <link href="/hwabo/resources/maincss/css/progressbar.css" rel="stylesheet">
 <!-- 진행률시작 -->
 <style>
 #myProgress {
@@ -45,36 +43,6 @@
 </head>
 
 <body id="page-top">
-<!-- 테스트버튼 시작 -->
-<div style="position:absolute;z-index:5;"><br>&nbsp;
-	원하는 페이지로 :
-    <button onclick="javascript:location.href='red.do'">index</button>
-    <button onclick="javascript:location.href='404.do'">404</button>
-    <button onclick="javascript:location.href='blank.do'">blank</button>
-    <button onclick="javascript:location.href='buttons.do'">buttons</button>
-    <button onclick="javascript:location.href='cards.do'">cards</button>
-    <button onclick="javascript:location.href='charts.do'">charts</button>
-    <button onclick="javascript:location.href='fpassword.do'">forgot-password</button>
-    <button onclick="javascript:location.href='flogin.do'">login</button>
-    <button onclick="javascript:location.href='fregister.do'">register</button>
-    <button onclick="javascript:location.href='ftables.do'">tables</button>
-    <button onclick="javascript:location.href='fanimation.do'">utilities-animation</button>
-    <button onclick="javascript:location.href='fborder.do'">utilities-border</button>
-    <button onclick="javascript:location.href='fcolor.do'">utilities-color</button>
-    <button onclick="javascript:location.href='fother.do'">utilities-other</button>
-    </div>
-<div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
-<!-- 테스트버튼 끝 -->
-<!-- 테스트버튼2 시작 -->
-<div style="position:absolute;z-index:5;"><br>&nbsp;
-	원하는 페이지로 :
-    <button onclick="javascript:location.href='cards.do'">프로젝트 시작페이지</button>
-    <button onclick="javascript:location.href='ftables.do'">메인(sns형)</button>
-    <button onclick="javascript:location.href='fborder.do'">메인(캘린더형)</button>
-    <button onclick="javascript:location.href='fother.do'">진행률 상세보기</button>
-    </div>
-<div style="background-color:skyblue;border:1px solid black;"><br><br><br></div>
-<!-- 테스트버튼2 끝 -->
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -288,7 +256,7 @@
 <table style="text-align:center;width:100%;color:white;"><tr><td style="width:20%;"></td><td style="width:20%;"></td>
 <td style="width:20%;"></td><td style="width:20%;"></td><td style="width:20%;">
 <a class="btn btn-light btn-icon-split" style="width:90%;" onclick="move()">
-<span class="text">진행률바 테스트</span>
+<span class="text" style="color:gray;">진행률바 테스트</span>
 </a>
 </td>
 </tr></table>
@@ -331,7 +299,7 @@ function move() {
                 <div class="card-body">
                   <div class="mb-1 small">개인 전체 진행률 80%</div>
                   <div class="progress mb-4">
-                    <div class="progress-bar progress-bar1" role="progressbar" style="width: 80%;backgound-color:#F8E0E0;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar1 progress-bar" role="progressbar" style="width: 80%;backgound-color:#F8E0E0;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <div class="mb-1 small">목표1 진행률 75%</div>
                   <div class="progress progress-sm mb-2">
