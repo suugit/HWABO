@@ -51,13 +51,13 @@ return "suugit/myinfo.page";
 @RequestMapping("/gnwrite.do")
 public String gnrlBoardWriteFormPage(){
 
-return "suugit/gnrlBoardWriteForm.page";
+return "suugit/gnrlBoardWriteForm.part";
 }
 
 @RequestMapping("/gnview.do")
 public String gnrlBoardViewPage(){
 
-return "suugit/gnrlBoardView.page";
+return "suugit/gnrlBoardView";
 }
 
 //모달
@@ -65,6 +65,14 @@ return "suugit/gnrlBoardView.page";
 public String ModalPage(){
 
 return "suugit/modal.page";
+}
+
+//비번찾기
+//모달
+@RequestMapping("/chnpwd.do")
+public String ChnpwdPage(){
+
+return "suugit/chnpwd.part";
 }
 
 }

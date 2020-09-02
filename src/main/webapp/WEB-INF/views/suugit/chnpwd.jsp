@@ -39,28 +39,20 @@
 					<center><h2 class="m-4">비밀번호 재발급</h2></center>
 					<ul class="list-unstyled text-center">
 						<small>
-							<li>회원가입시 사용한 사용자의 이메일을 입력해주세요.</li>
-							<li>이메일로 발송된 임시코드를 통해 새 비밀번호로 변경합니다.</li>
+							<li>이메일로 발송된 임시코드와 변경할 새 비밀번호를 입력해주세요</li>
 						</small>
 					</ul>
 					<form>
 						<div class="justify-content-center">
 							<div class="form-group mx-5">
-								<input type="email" class="form-control mb-2" id="email"
-									placeholder="이메일 입력"> <a href="index.html"
-									class="btn btn-primary btn-user btn-block">이메일로 임시코드 받기</a>
+								<input type="password" class="form-control mb-2" id="newpwd" placeholder="새 비밀번호">
+								<input type="password" class="form-control mb-2" id="newpwdchk" placeholder="새 비밀번호 확인"> 
+								<a href="index.html" class="btn btn-primary btn-user btn-block">비밀번호 변경하기 </a>
 							</div>
 						</div>
 					</form>
-					<hr>
-					<div class="text-center">
-						<a class="small" href="javascript:location.href='login.do';">로그인으로 돌아가기</a>
-						<a class="small" href="javascript:location.href='chnpwd.do';">비밀번호 변경페이지(임시)</a>
-					</div>
-
 				</div>
 			</div>
-
 		</div>
 	</div>
 

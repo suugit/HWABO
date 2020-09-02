@@ -1,97 +1,127 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="CONTEXT_PATH" value="${pageContext.request.contextPath}" scope="application"/>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="CONTEXT_PATH" value="${pageContext.request.contextPath}"
+	scope="application" />
 <!DOCTYPE html>
 <html lang="kr">
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-  <title>HWABO</title>
+<title>HWABO</title>
 
-  <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<!-- Custom fonts for this template-->
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
 
-  <!-- Custom styles for this template-->
-  <link href="/hwabo/resources/maincss/css/styles_suugit.css" rel="stylesheet">
+<!-- Custom styles for this template-->
+<link href="/hwabo/resources/maincss/css/styles_suugit.css"
+	rel="stylesheet">
 
 </head>
 
 <body class="bg-gradient-primary">
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+				<div class="card o-hidden border-0 shadow-lg col-md-10">
+					<div class="row card-body">
+						<div class="col-md-5 align-items-center" style="margin-top:100px">
+							<img
+								src="/hwabo/resources/maincss/img/suugit/easter_bunny_flatline.svg"></img>
+						</div>
+						<div class="col-md-7">
+							<center>
+								<h1 class="m-4">회원가입</h1>
+							</center>
+							<form>
+								<div class="form-group row">
+									<label for="email" class="col-sm-3 col-form-label ">이메일 주소</label>
+									<div class="col-sm-9">
+										<input type="email" class="form-control" id="email" placeholder="Email">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="email" class="col-sm-3 col-form-label ">이름</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="email" placeholder="Name">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="email" class="col-sm-3 col-form-label ">비밀번호 </label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="pwd" placeholder="Password">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="email" class="col-sm-3 col-form-label ">비밀번호 확인</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="pwdchk" placeholder="Password">
+									</div>
+								</div>
 
-  <div class="container col-md-6">
 
-    <div class="card o-hidden border-0 shadow-lg my-5">
-      <div class="card-body p-0">
-        <!-- Nested Row within Card Body -->
-        <div class="row">
-          <div class="col-md-5" style="padding-top:10%;">
-            <img width=100% src="/hwabo/resources/maincss/img/suugit/easter_bunny_flatline.svg" ></img>
-          </div>
-          <div class="col-md-7">
-            <div class="p-5">
-              <div class="text-center">
-                <h1 class="h4 text-gray-800 mb-4">회원가입</h1>
-              </div>
-              <form class="user ">
-                <div class=" form-group row ">
-                  <div class="mb-3 mb-sm-0 font-weight-bold">
-                   <ul style="list-style:none;" >
-                   <li style="margin-top:13px;margin-bottom:26px">이메일 주소</li>
-                   <li style="margin-bottom:26px"> 사용자 이름</li>
-                   <li style="margin-bottom:26px"> 비밀번호 </li>
-                   <li style="margin-bottom:26px">비밀번호 확인</li>
-                  </ul>  
-                  </div>
-                  <div class="col-sm-8 mb-3 mb-sm-0 ">
-                    <form>
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="이메일 주소">
-                  <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="사용자 이름">
-                  <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호">
-                  <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="비밀번호 확인">
-                  </div>
-                </div>
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                  가입하기
-                </a>
-              </form>
-                <hr>
-                <a href="index.html" class="btn btn-google btn-user btn-block">
-                  <i class="fab fa-google fa-fw"></i> Google로 회원가입하기
-                </a>
-                 <a href="index.html" class="btn btn-naver btn-user btn-block">
-                      <span class="font-weight-bolder" style="font-weight-bolder;font-size:1em">N&nbsp;</span>Naver로 회원가입하기
-                    </a>
-              </form>
-              <hr>
-              <div class="text-center">
-                <a class="small" href="javascript:location.href='login.do';">이미 회원이신가요? 로그인하기</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+								<div class="form-check mb-4 text-center">
+									<input class="form-check-input" type="checkbox" value="" id="toschk"> 
+									<label class="form-check-label text-sm" for="toschk">
+										<small>위의 <a href="#">이용약관 및 개인정보 수집및 이용</a>에 대한 안내에 동의합니다.</small>
+									</label>
+								</div>
 
-  </div>
+								<div class="col-md-9 m-auto">
+									<a href="index.html" class="btn btn-primary btn-user btn-block">로그인 </a>
+								</div>
+							</form>
+							<hr>
+							<div class="col-md-9 mt-1 mb-4 mx-auto">
+								<a href="index.html" class="btn btn-google btn-user btn-block">
+									<i class="fab fa-google fa-fw"></i> Google로 로그인
+								</a> 
+								
+								<a href="index.html" class="btn btn-naver btn-user btn-block">
+									<span class="font-weight-bolder" style="font-size: 1em">N&nbsp;</span>Naver로 로그인
+								</a>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+								<hr>
+								<div class="text-center">
+									<a class="small"
+										href="javascript:location.href='forgotpwd.do';">비밀번호가 생각나지
+										않으신가요?</a>
+								</div>
+								<div class="text-center">
+									화보가 처음이신가요? <a class="small"
+										href="javascript:location.href='sign.do';">가입하기</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+	
+		</div>
+	</div>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin-2.min.js"></script>
 
 </body>
 
 </html>
+

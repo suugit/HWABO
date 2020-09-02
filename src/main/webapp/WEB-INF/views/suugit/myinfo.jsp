@@ -54,7 +54,8 @@
               
           <!-- Page Heading -->
           <br>
-          <h1 class="h3 font-weight-bold mb-3 text-gray-800">계정정보</h1>
+
+          <h3 class="font-weight-bold mb-3 text-gray-800" style="display:inline-block">계정정보</h3>
           <div class="row">
             <div class="col-sm-8 col-md-4">
               <img width=100% src="/hwabo/resources/maincss/img/suugit/face.jpg" style="max-width:200px"></img>
@@ -97,8 +98,9 @@
               </div>
               <br>
                 <div class="col-md-12 text-center">                
-                  <input type="submit" value="저장하기" class="btn btn-info col-sm-4 btn-sm"> 
-                  <input type="button" value="취소" class="btn btn-info col-sm-4 btn-sm"> 
+                  <input type="submit" value="저장하기" class="btn btn-primary col-sm-4 btn-sm"> 
+                  <input type="button" value="취소" class="btn btn-secondary col-sm-2 btn-sm"> 
+                  <input id="btn_signout" type="button" value="회원탈퇴" class="btn btn-default col-sm-3 btn-sm text-right"> 
                 </div>
               </div>
               
@@ -160,7 +162,17 @@
               $('pwdUpdateModal').modal('show');
               e.stopPropagation();
             })
+			
+            document.getElementById('btn_signout').addEventListener('click',function(){
+            	var result = confirm('회원 탈퇴 시 어떠한 경우에도 계정을 복구할 수 없습니다. 계속하시겠습니까?'); 
+            	if(result) { 
+            		//yes location.replace('index.php'); 
+            		} else { //no 
+            			
+            			}
 
+            		
+            })
           </script>
         <!-- /.container-fluid -->
 
