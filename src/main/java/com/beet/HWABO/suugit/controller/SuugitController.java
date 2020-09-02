@@ -57,7 +57,7 @@ return "suugit/gnrlBoardWriteForm.part";
 @RequestMapping("/gnview.do")
 public String gnrlBoardViewPage(){
 
-return "suugit/gnrlBoardView";
+return "suugit/gnrlBoardView.part";
 }
 
 //모달
