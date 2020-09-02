@@ -378,9 +378,9 @@
 					            <a class="nav-link  href="#gnrlwrite" role="tab2" aria-controls="gnrlwrite" aria-selected="false">글 작성</a>
 					            </li>
 					            <li class="nav-item">
-					              <a class="nav-link active""  href="#tap2" role="tab" aria-controls="tap" aria-selected="ture">업무</a>
+					              <a class="nav-link active""  href="#tap2" role="tab" aria-controls="tap2" aria-selected="ture">업무</a>
 					            </li>
-					            <li class="nav-item">
+					          <!--   <li class="nav-item">
 					              <a class="nav-link" href="#tap3" role="tab" aria-controls="tap3" aria-selected="false">일정</a>
 					            </li>
 					            <li class="nav-item">
@@ -388,7 +388,7 @@
 					            </li>
 					            <li class="nav-item">
 					              <a class="nav-link" href="#tap5" role="tab" aria-controls="tap5" aria-selected="false">투표</a>
-					            </li>
+					            </li> -->
 					          </ul>
 					        </div>
 					        <form action="blank.do" id="mainInsert" > 
