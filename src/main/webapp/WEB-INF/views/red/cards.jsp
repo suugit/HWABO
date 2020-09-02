@@ -143,6 +143,8 @@ font-size: 28px;
 	원하는 페이지로 :
     <button onclick="javascript:location.href='cards.do'">프로젝트 시작페이지</button>
     <button onclick="javascript:location.href='ftables.do'">메인(sns형)</button>
+    <button onclick="javascript:location.href='fborder.do'">메인(캘린더형)</button>
+    <button onclick="javascript:location.href='fother.do'">진행률 상세보기</button>
     </div>
 <div style="background-color:skyblue;border:1px solid black;"><br><br><br></div>
 <!-- 테스트버튼2 끝 -->
