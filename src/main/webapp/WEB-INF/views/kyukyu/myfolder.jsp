@@ -396,10 +396,10 @@
 					        <div class="card-header">
 					          <ul class="nav nav-tabs card-header-tabs" id="writeForm" role="tablist">
 					            <li class="nav-item">
-					            <a class="nav-link active" href="#gnrlwrite" role="tab" aria-controls="gnrlwrite" aria-selected="true">글 작성</a>
+					            <a class="nav-link  href="#gnrlwrite" role="tab2" aria-controls="gnrlwrite" aria-selected="false">글 작성</a>
 					            </li>
 					            <li class="nav-item">
-					              <a class="nav-link"  href="#tap2" role="tab" aria-controls="tap2" aria-selected="false">업무</a>
+					              <a class="nav-link active""  href="#tap2" role="tab" aria-controls="tap" aria-selected="ture">업무</a>
 					            </li>
 					            <li class="nav-item">
 					              <a class="nav-link" href="#tap3" role="tab" aria-controls="tap3" aria-selected="false">일정</a>
@@ -418,7 +418,7 @@
 					          
 					           <div class="tab-content mt-3">
 					           <!-- 글 작성  -->
-					            <div class="tab-pane active" id="gnrlwrite" role="tabpanel">
+					            <div class="tab-pane " id="gnrlwrite" role="tabpanel">
 					            <input type="text" class="form-control mb-1" placeholder="제목(선택값)">
 					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
 						            <div class="form-inline m-2 border-primary">
@@ -435,7 +435,7 @@
 					            
 					            
 					            <!-- 업무 -->
-					            <div class="tab-pane" id="tap2" role="tabpanel">
+					            <div class="tab-pane active"" id="tap2" role="tabpanel">
 					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
 					              <!-- Standard button -->
 								
@@ -469,7 +469,12 @@
 								      </ul>
 								     
 								      </div>
-								 
+								     <div class="row mt-2">
+					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              <label class="form-control-label h3">~</label>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              </div>
 									
 					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
 						            <div class="form-inline m-2 border-primary">
@@ -542,6 +547,16 @@
 					      </div>		     
            				   </form>
 
+
+					<div class="checks" align="left" style="margin-left: 1%; font-size: 23px; " >
+						<form action="#">
+							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;글 &nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;업 무 &nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;일 정&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;할 일&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;투 표&nbsp;&nbsp;&nbsp;&nbsp;</label></span>
+						</form>
+					</div>
 <!-- 게시글시작 -->
 <div class="card shadow mb-4">
             <div class="card-header py-3">

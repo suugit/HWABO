@@ -461,6 +461,17 @@
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript">
+	 $('#contentText').keyup(function (e){
+	      var content = $(this).val();       
+	      $('#counter').val(100-content.length);
+
+	          if(content.length > 100) {
+	            $(this).val($(this).val().substring(0, 100));
+	          }
+	      });
+	</script>		
 
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
@@ -486,11 +497,10 @@
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
-										<td width="25%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span><input type="date" class="form-control"></td>
-										<td width="10%"><span style="float: left;">시 간</span><input type="time" class="form-control"></td>
-										<td width="5%" style="padding-top: 25px;"><span style="float: left;">&nbsp;</span><img src="/hwabo/resources/maincss/img/tilde.png" style="width: 50px; height: 20px;"></td>
-										<td width="25%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span><input type="date" class="form-control"></td>
-										<td width="10%"><span style="float: left;">시 간</span><input type="time" class="form-control"></td>
+										<td width="20%" ><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span><input type="datetime-local" class="form-control"></td>
+
+										<td width="20%" ><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span><input type="datetime-local" class="form-control"></td>
+									
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
@@ -503,16 +513,41 @@
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
-										<td colspan="1"><span style="float: left;"><i class="far fa-bell"></i>&nbsp;알 람</span><input type="time" class="form-control"
-											></td>
+										<td colspan="1" style="width: 20%;"><span style="float: left;"><i class="far fa-bell"></i>&nbsp;알 림</span>
+										
+										<select name="alarm"  class="form-control">
+											<option>--- 알림 없음 ---</option>
+											<option>10분 전 알림</option>
+											<option>30분 전 알림</option>
+											<option>1시간 전 알림</option>
+											<option>2시간 전 알림</option>
+											<option>3시간 전 알림</option>
+											<option>1일 전 알림</option>
+											<option>2일 전 알림</option>
+											<option>7일 전 알림</option>
+										</select></td>
 										<td colspan="4">&nbsp;</td>
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
-										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;메 모</span><input type="text" class="form-control"
-											placeholder="메모를 입력하세요"></td>
+									
+
+									
+									
+										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;메 모</span>
+																			<textarea name="contentText" id="contentText" cols="30" rows="10" ></textarea>
+      <span class="txsub">남은글자수 : <input type="text" readonly  value="100" name="counter" id="counter"></span> 
+										
+										<textarea name="contentText" id="contentText1" cols="30" rows="10"  class="form-control" placeholder="메모를 입력하세요"  
+											style="width:100%; height:200px; overflow: auto; resize:none;">
+										</textarea>
+      <span class="txsub1">남은글자수 : <input type="text" readonly  value="100" name="counter" id="counter" style="border: none;"></span> 
+	
+							
+
+											</td>
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>

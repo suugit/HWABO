@@ -38,28 +38,7 @@
 </head>
 
 <body id="page-top">
-	<!-- 테스트버튼 시작 -->
-	<div style="position: absolute; z-index: 5;">
-		<br>&nbsp; 원하는 페이지로 :
-		<button onclick="javascript:location.href='red.do'">index</button>
-		<button onclick="javascript:location.href='404.do'">404</button>
-		<button onclick="javascript:location.href='blank.do'">blank</button>
-		<button onclick="javascript:location.href='buttons.do'">buttons</button>
-		<button onclick="javascript:location.href='cards.do'">cards</button>
-		<button onclick="javascript:location.href='charts.do'">charts</button>
-		<button onclick="javascript:location.href='fpassword.do'">forgot-password</button>
-		<button onclick="javascript:location.href='flogin.do'">login</button>
-		<button onclick="javascript:location.href='fregister.do'">register</button>
-		<button onclick="javascript:location.href='ftables.do'">tables</button>
-		<button onclick="javascript:location.href='fanimation.do'">utilities-animation</button>
-		<button onclick="javascript:location.href='fborder.do'">utilities-border</button>
-		<button onclick="javascript:location.href='fcolor.do'">utilities-color</button>
-		<button onclick="javascript:location.href='fother.do'">utilities-other</button>
-	</div>
-	<div style="background-color: #F8E0E6; border: 2px solid black;">
-		<br> <br> <br>
-	</div>
-	<!-- 테스트버튼 끝 -->
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -72,29 +51,23 @@
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.jsp">
-				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-laugh-wink"></i>
+				<br>
+				<div style="margin-top: 60px;">
+					<!-- <i class="far fa-kiss-wink-heart"></i> -->
+					<img src="resources/maincss/img/logo.png" style="width: 100%; max-width: 760px; vertical-align: middle">
 				</div>
-				<div class="sidebar-brand-text mx-3">HWABO(프로젝트선택페이지로?)</div>
+
 			</a>
+<br><br><br>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
-
-			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="index.jsp"> <i></i>
-					<span>프로젝트메인페이지로?</span></a></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-table"></i> <span>볼 업무 선택</span>
+				data-toggle="collapse" data-target="#collapseThree"
+				aria-expanded="true" aria-controls="collapseThree">
+				<i class="far fa-check-circle"></i><span>볼 업무 선택</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">HWABO</h6>
@@ -112,8 +85,8 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-table"></i> <span>보기 정렬</span>
+				aria-expanded="true" aria-controls="collapseTwo">
+				 <i class="fas fa-filter"></i> <span>보기 정렬</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
@@ -143,11 +116,11 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapsePages" aria-expanded="true"
-				aria-controls="collapsePages"> <i class="fas fa-fw fa-folder"></i>
+				aria-controls="collapsePages"> <i class="fas fa-box-open"></i>
 					<span>보관함</span>
 			</a> <a class="nav-link collapsed" href="#" data-target="#collapsePages"
-				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>파일함</span>
+				aria-expanded="true" aria-controls="collapsePages"> 
+				<i class="far fa-folder-open"></i> <span>파일함</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -155,11 +128,11 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-tachometer-alt"></i> <span>다이렉트 메세지</span>
+				data-toggle="collapse" data-target="#collapseOne"
+				aria-expanded="true" aria-controls="collapseOne">
+				<i class="fas fa-chalkboard"></i><span>팀원들의 화보</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">HWABO</h6>
