@@ -167,7 +167,7 @@ font-size: 28px;
                         <label class="custom-control-label" for="customCheck">가입시 관리자 승인후 가능</label>
                       </div>
                     </div>
-                    <a href="index.jsp" class="btn btn-primary btn-user btn-block">
+                    <a href="cards.do" class="btn btn-primary btn-user btn-block">
                       	새 프로젝트 생성
                     </a>
                     <hr>
