@@ -378,9 +378,9 @@
 					            <a class="nav-link  href="#gnrlwrite" role="tab2" aria-controls="gnrlwrite" aria-selected="false">글 작성</a>
 					            </li>
 					            <li class="nav-item">
-					              <a class="nav-link active""  href="#tap2" role="tab" aria-controls="tap" aria-selected="ture">업무</a>
+					              <a class="nav-link active""  href="#tap2" role="tab" aria-controls="tap2" aria-selected="ture">업무</a>
 					            </li>
-					            <li class="nav-item">
+					          <!--   <li class="nav-item">
 					              <a class="nav-link" href="#tap3" role="tab" aria-controls="tap3" aria-selected="false">일정</a>
 					            </li>
 					            <li class="nav-item">
@@ -388,7 +388,7 @@
 					            </li>
 					            <li class="nav-item">
 					              <a class="nav-link" href="#tap5" role="tab" aria-controls="tap5" aria-selected="false">투표</a>
-					            </li>
+					            </li> -->
 					          </ul>
 					        </div>
 					        <form action="blank.do" id="mainInsert" > 
@@ -469,16 +469,9 @@
 					            <div class="tab-pane" id="tap3" role="tabpanel">
 					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
 					                 <table class="table table-bordered" id="dataTable" width="1080px" hight="700px" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>차순</th>
-                     
-                      
-                    </tr>
-                  </thead>
-               	 </table>
+             
 					              
-					       <!--        <div class="row mt-2">
+					         <div class="row mt-2">
 					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
 					              <div class="col-5"><input type="date" class="form-control"></div>
 					              <label class="form-control-label h3">~</label>
@@ -490,12 +483,12 @@
 						            <i class="fa fa-at mr-2" ></i>
 						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
 						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div> -->
+					            	</div> 
 					            </div>
 					            
 					          	
 					            <!-- 할일 -->
-					         <div class="tab-pane" id="tap3" role="tabpanel">
+					         <div class="tab-pane" id="tap4" role="tabpanel">
 					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
 					              <div class="row mt-2">
 					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
@@ -513,7 +506,7 @@
 					            </div>
 					            
 					              <!--투표 -->
-					            <div class="tab-pane" id="tap3" role="tabpanel">
+					            <div class="tab-pane" id="tap5" role="tabpanel">
 					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
 					              <div class="row mt-2">
 					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
