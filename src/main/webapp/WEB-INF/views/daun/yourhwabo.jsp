@@ -66,9 +66,9 @@ $("div").on('click', function(e){
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.jsp">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-laugh-wink"></i>
+					<i class="far fa-kiss-wink-heart"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">HWABO(프로젝트선택페이지로?)</div>
+				<div class="sidebar-brand-text mx-3">HWABO</div>
 			</a>
 
 			<!-- Divider -->
@@ -137,7 +137,7 @@ $("div").on('click', function(e){
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapsePages" aria-expanded="true"
-				aria-controls="collapsePages" onclick="javascript: return false;"><i class="fas fa-archive"></i>
+				aria-controls="collapsePages" onclick="javascript: return false;"><i class="fas fa-box-open"></i>
 					<span>보관함</span>
 			</a> <a class="nav-link collapsed" href="#" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages" onclick="javascript: return false;"> 
