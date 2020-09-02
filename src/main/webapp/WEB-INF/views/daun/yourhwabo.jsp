@@ -60,6 +60,14 @@
 		<br> <br> <br>
 	</div>
 	<!-- 테스트버튼 끝 -->
+	
+	
+	<div class="container" style="display: flex; flex-direction: row; justify-content: center;">
+
+
+
+	
+	
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -400,8 +408,8 @@
 						<!-- 내정보 시작 -->
 						<div class="col-md-4">
 							<div class="card mb-4 py-3 border-left-info">
-								<div style="margin-top: 0px;">
-									<h1>&nbsp;&nbsp;OOO 님의&nbsp; 정 보</h1>
+								<div style="margin-top: 0px; height: 50px; overflow: hidden;">
+									<h3>&nbsp;&nbsp;OOO 님의&nbsp; 정 보</h3>
 									<hr>
 								</div>
 								<div class="card-body" style="height: 400px;">
@@ -434,8 +442,8 @@
 						<!-- 즐겨찾기 시작 -->
 						<div class="col-md-8">
 							<div class="card mb-4 py-3 border-left-info">
-								<div style="margin-top: 0px;">
-									<h1>&nbsp;&nbsp;즐 겨 찾 기</h1>
+								<div style="margin-top: 0px;  height: 50px;">
+									<h3>&nbsp;&nbsp;즐 겨 찾 기</h3>
 									<hr>
 								</div>
 								<!-- 게시글안쪽 -->
@@ -722,6 +730,11 @@
 
 		</div>
 		<!-- End of Page Wrapper -->
+
+
+	</div>
+
+
 
 		<!-- Scroll to Top Button-->
 		<a class="scroll-to-top rounded" href="#page-top"> <i
