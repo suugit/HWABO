@@ -30,7 +30,7 @@
 }
 
 #myBar {
-  width: 0%;
+  width: 75%;
   height: 30px;
   background-color: #4e73df;
   text-align: center;
@@ -392,7 +392,7 @@
               <!-- 게시글안쪽 -->
 
 <div id="myProgress">
-  <div id="myBar">0%</div>
+  <div id="myBar">75%</div>
 </div>
 <br>
 <table style="text-align:center;width:100%;color:white;"><tr><td style="width:20%;"></td><td style="width:20%;"></td>
