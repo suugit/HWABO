@@ -24,245 +24,7 @@
   <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
 <!-- 달력css시작 -->
 
-<meta charset="UTF-8">
-<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
-<meta name="apple-mobile-web-app-title" content="CodePen">
-<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
-<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quasar@1.5.7/dist/quasar.min.css">
-<style>
-/** TEXT */
-/** TEXT */
-.calendar-event-sub {
-  width: 1.2em;
-  height: 1.2em;
-  line-height: 1.2em;
-  font-size: 1.2em;
-  min-width: 0;
-  border-radius: 50%;
-  border: 1px solid #fff;
-  display: inline-block;
-  margin-right: 4px;
-  text-align: center;
-  font-weight: bold;
-  color: #fff;
-}
-.calendar-event-sub .q-icon {
-  font-size: inherit;
-  line-height: inherit;
-}
-.q-calendar .calendar-day,
-.q-calendar .calendar-week-item {
-  width: 14.285%;
-}
-.q-calendar .calendar-event {
-  width: 14.285%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 1px 1px rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
-  font-size: 0.8em;
-  cursor: pointer;
-  margin: 2px 0;
-  padding: 4px 6px;
-  color: #fff;
-  background-color: #4c7aae;
-  position: relative;
-}
-.q-calendar .calendar-event.calendar-event-void {
-  color: transparent;
-  background-color: transparent;
-  box-shadow: none;
-  cursor: auto;
-}
-.q-calendar .calendar-event.calendar-event-first {
-  border-top-left-radius: 1em;
-  border-bottom-left-radius: 1em;
-}
-.q-calendar .calendar-event.calendar-event-last {
-  border-top-right-radius: 1em;
-  border-bottom-right-radius: 1em;
-}
-.q-calendar .calendar-event-size-1 {
-  width: 14.28%;
-}
-.q-calendar .calendar-event-size-2 {
-  width: 28.57%;
-}
-.q-calendar .calendar-event-size-3 {
-  width: 42.85%;
-}
-.q-calendar .calendar-event-size-4 {
-  width: 57.14%;
-}
-.q-calendar .calendar-event-size-5 {
-  width: 71.42%;
-}
-.q-calendar .calendar-event-size-6 {
-  width: 85.71%;
-}
-.q-calendar .calendar-event-size-7 {
-  width: 100%;
-}
-.q-calendar .calendar-header .calendar-header-title {
-  text-align: center;
-  font-weight: 600;
-}
-.q-calendar .calendar-header {
-  padding: 2px;
-}
-.q-calendar .calendar-body {
-  padding: 0;
-}
-.q-calendar .calendar-body .calendar-week {
-  border-top: 1px solid #bdbdbd;
-  border-bottom: 1px solid #bdbdbd;
-  color: #757575;
-}
-.q-calendar .calendar-body .calendar-week .calendar-week-item {
-  font-size: 1em;
-  text-align: center;
-  border-right: 1px solid #bdbdbd;
-  padding: 2px;
-}
-.q-calendar .calendar-body .calendar-week .calendar-week-item:last-child {
-  border-right: none;
-}
-.q-calendar .calendar-body .calendar-content .calendar-week-row {
-  border-bottom: 1px solid #bdbdbd;
-  min-height: 6em;
-  position: relative;
-}
-.q-calendar .calendar-body .calendar-content .calendar-week-row:last-child {
-  border-bottom: none;
-}
-.q-calendar .calendar-body .calendar-content .calendar-week-row .calendar-week-days {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-.q-calendar .calendar-body .calendar-content .calendar-week-row .calendar-week-events {
-  padding-top: 2em;
-}
-.q-calendar .calendar-body .calendar-content .calendar-day {
-  border-right: 1px solid #bdbdbd;
-  position: relative;
-}
-.q-calendar .calendar-body .calendar-content .calendar-day:last-child {
-  border-right: none;
-}
-.q-calendar .calendar-body .calendar-content .calendar-day .calendar-day-number {
-  font-size: 0.9em;
-  height: 2em;
-  width: 2em;
-  text-align: center;
-  line-height: 2em;
-}
-.q-calendar .calendar-body .calendar-content .calendar-day.calendar-day-current .calendar-day-number {
-  border-radius: 50%;
-  color: #fff;
-  background-color: #4c7aae !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 1px 1px rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
-}
-.q-calendar .calendar-body .calendar-content .calendar-day.calendar-day-other .calendar-day-number {
-  opacity: 0.6;
-}
-.q-calendar .calendar-body .calendar-content .calendar-day.calendar-day-holiday {
-  color: #f00;
-}
-.q-calendar.mobile .calendar-body {
-  padding: 0;
-}
-.q-calendar.mobile .calendar-body .calendar-week {
-  padding: 0;
-  border: none;
-}
-.q-calendar.mobile .calendar-body .calendar-week-item {
-  text-align: center;
-  padding-left: 1em;
-  display: block;
-  visibility: hidden;
-  border: none;
-}
-.q-calendar.mobile .calendar-body .calendar-week-item:first-letter {
-  visibility: visible;
-}
-.q-calendar.mobile .calendar-body .calendar-content .calendar-week-row {
-  min-height: 3em;
-  border: none;
-}
-.q-calendar.mobile .calendar-body .calendar-content .calendar-week-row .calendar-day-number {
-  width: 3em;
-  height: 3em;
-  margin: 0 auto;
-  line-height: 3em;
-  border-radius: 50%;
-  cursor: pointer;
-}
-.q-calendar.mobile .calendar-body .calendar-content .calendar-week-row .calendar-day-number:hover,
-.q-calendar.mobile .calendar-body .calendar-content .calendar-week-row .calendar-day-number:focus {
-  background-color: rgba(0,0,0,0.1);
-}
-.q-calendar.mobile .calendar-body .calendar-content .calendar-day {
-  border: none;
-}
-.q-calendar.mobile .calendar-body .calendar-content .calendar-day.calendar-day-event:after {
-  content: '';
-  position: absolute;
-  background-color: #4c7aae;
-  width: 0.6em;
-  height: 0.4em;
-  border-radius: 50%;
-  bottom: 0.4em;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 1px 1px rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
-}
-.q-calendar.mobile .calendar-body .calendar-content .calendar-day.calendar-day-event.calendar-day-current:after {
-  background-color: #fff;
-}
-.q-modal-month .q-list {
-  padding: 0;
-  border: 0;
-}
-.q-modal-month .calendar-month-detail.q-item {
-  border-width: 1px 0 0 0.3rem;
-  border-style: solid;
-  margin: 2px 0 0 0;
-  border-top: none;
-  border-bottom: 1px solid #e0e0e0;
-  background-color: #fff;
-}
-.q-modal-month .q-card {
-  background-color: #eee;
-}
-.q-modal-month .calendar-chip {
-  background-color: #562598;
-  color: #fff;
-  border-radius: 8px;
-  width: 30px;
-  height: 16px;
-  text-align: center;
-  line-height: 16px;
-}
-.q-modal-month .calendar-event-sub {
-  margin-right: 0;
-  width: auto;
-  height: auto;
-  color: #000;
-  display: flex;
-}
-</style>
-<script>
-  window.console = window.console || function(t) {};
-</script>
-<script>
-  if (document.location.search.match(/type=embed/gi)) {
-    window.parent.postMessage("resize", "*");
-  }
-</script>
+
 
 <!-- 달력css끝 -->
 </head>
@@ -619,25 +381,25 @@
 <!-- 진행률끝 -->
          <!-- 달력시작  -->
          
-<html lang="en"><head>
+<html lang="kr" id="hl">
+<head>
 <meta charset="UTF-8">
 <link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
 <meta name="apple-mobile-web-app-title" content="CodePen">
 <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
 <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
-<title>CodePen - CSS grid calendar</title>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <style>
-html,
-body {
+#hl,
+#bd {
   width: 100%;
   height: 100%;
 }
 
-body {
+#bd {
   background: #f5f7fa;
-  padding: 40px 0;
+  padding: 0px 0;
   box-sizing: border-box;
   font-family: Montserrat, "sans-serif";
   color: #51565d;
@@ -854,7 +616,7 @@ body {
   }
 </script>
 </head>
-<body translate="no">
+<body translate="no" id="bd">
 <div class="calendar-header">
 <h1>
 November
