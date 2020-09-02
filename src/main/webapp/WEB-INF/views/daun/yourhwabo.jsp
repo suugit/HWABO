@@ -48,10 +48,6 @@ $("div").on('click', function(e){
 
 <body id="page-top">
 
-	<table style="margin: 0px; padding: 0px; width: 100%">
-	<tr>
-		<td width="20%"></td>
-		<td width="60%">
 
 	
 	<div id="wrapper" >
@@ -65,21 +61,14 @@ $("div").on('click', function(e){
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.jsp">
-				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="far fa-kiss-wink-heart"></i>
+				<br>
+				<div style="margin-top: 60px;">
+					<!-- <i class="far fa-kiss-wink-heart"></i> -->
+					<img src="resources/maincss/img/logo.png" style="width: 100%; max-width: 760px; vertical-align: middle">
 				</div>
-				<div class="sidebar-brand-text mx-3">HWABO</div>
+
 			</a>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
-
-			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="index.jsp"> <i></i>
-					<span>프로젝트메인페이지로?</span></a></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
+<br><br><br>
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -692,7 +681,6 @@ $("div").on('click', function(e){
 					<!-- 게시글끝 -->
 
 
-			
 
 
 				</div>
@@ -700,19 +688,7 @@ $("div").on('click', function(e){
 
 				<!-- End of Main Content -->
 
-
-
-			</div>
-			<!-- End of Content Wrapper -->
-
-		</div>
-		<!-- End of Page Wrapper -->
-			
-	</div></td>
-			<td></td>
-	</tr>
-	</table>
-					<!-- Footer -->
+								<!-- Footer -->
 				<footer class="sticky-footer bg-white">
 					<div class="container my-auto">
 						<div class="copyright text-center my-auto">
@@ -721,6 +697,16 @@ $("div").on('click', function(e){
 					</div>
 				</footer>
 				<!-- End of Footer -->
+
+
+			</div>
+			<!-- End of Content Wrapper -->
+
+		</div>
+		<!-- End of Page Wrapper -->
+			
+	</div>
+
 		<!-- Bootstrap core JavaScript-->
 		<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
 		<script

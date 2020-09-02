@@ -51,21 +51,15 @@
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.jsp">
-				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="far fa-kiss-wink-heart"></i>
+				<br>
+				<div style="margin-top: 60px;">
+					<!-- <i class="far fa-kiss-wink-heart"></i> -->
+					<img src="resources/maincss/img/logo.png" style="width: 100%; max-width: 760px; vertical-align: middle">
 				</div>
-				<div class="sidebar-brand-text mx-3">HWABO</div>
+
 			</a>
+<br><br><br>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
-
-			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="index.jsp"> <i></i>
-					<span>프로젝트메인페이지로?</span></a></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"

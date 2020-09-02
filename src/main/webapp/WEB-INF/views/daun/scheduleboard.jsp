@@ -521,8 +521,8 @@
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
-										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;메 모</span><input type="text" class="form-control"
-											placeholder="메모를 입력하세요"></td>
+										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;메 모</span><textarea class="form-control" placeholder="메모를 입력하세요"></textarea>
+											</td>
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
