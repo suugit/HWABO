@@ -68,7 +68,7 @@
             <form class="col-md-8" >
 
               <div class="form-group row" >
-                <label class="control-label mypage text-center">이메일</label> 
+                <label class="control-label mypage text-center form-control-static">이메일</label> 
                   <input class="form-control col-md-8" type="email" name="email">
               </div>
               <div class="form-group row" >

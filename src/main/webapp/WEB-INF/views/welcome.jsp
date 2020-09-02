@@ -38,6 +38,7 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='login.do';">로그인</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='sign.do'">회원가입</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='gnview.do'">임시테이블연결용</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='modal.do'">모달테스트</a></li>
                     </ul>
                 </div>
             </div>

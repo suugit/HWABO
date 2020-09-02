@@ -79,29 +79,18 @@
 								</div>
 
 								<div class="col-md-9 m-auto">
-									<a href="index.html" class="btn btn-primary btn-user btn-block">로그인 </a>
+									<a href="index.html" class="btn btn-primary btn-user btn-block">가입하기</a>
 								</div>
 							</form>
 							<hr>
 							<div class="col-md-9 mt-1 mb-4 mx-auto">
 								<a href="index.html" class="btn btn-google btn-user btn-block">
-									<i class="fab fa-google fa-fw"></i> Google로 로그인
+									<i class="fab fa-google fa-fw"></i> Google로 가입하기
 								</a> 
 								
 								<a href="index.html" class="btn btn-naver btn-user btn-block">
-									<span class="font-weight-bolder" style="font-size: 1em">N&nbsp;</span>Naver로 로그인
+									<span class="font-weight-bolder" style="font-size: 1em">N&nbsp;</span>Naver로 가입하기
 								</a>
-
-								<hr>
-								<div class="text-center">
-									<a class="small"
-										href="javascript:location.href='forgotpwd.do';">비밀번호가 생각나지
-										않으신가요?</a>
-								</div>
-								<div class="text-center">
-									화보가 처음이신가요? <a class="small"
-										href="javascript:location.href='sign.do';">가입하기</a>
-								</div>
 							</div>
 						</div>
 					</div>

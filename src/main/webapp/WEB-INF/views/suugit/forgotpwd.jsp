@@ -53,6 +53,12 @@
 						</div>
 					</form>
 					<hr>
+					<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">파일업로드</button>
+					<button class="btn btn-primary" data-toggle="modal" data-target="#Modal2">파일업로드</button>
+					<button class="btn btn-primary" data-toggle="modal" data-target="#Modal3">파일업로드</button>
+					<button class="btn btn-primary" data-toggle="modal" data-target="#Modal4">파일업로드</button>
+					<button class="btn btn-primary" data-toggle="modal" data-target="#Modal5">파일업로드</button>
+					
 					<div class="text-center">
 						<a class="small" href="javascript:location.href='login.do';">로그인으로 돌아가기</a>
 						<a class="small" href="javascript:location.href='chnpwd.do';">비밀번호 변경페이지(임시)</a>
