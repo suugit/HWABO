@@ -241,10 +241,10 @@
 <body translate="no" id="bd">
 <div class="calendar-header">
 <h1>
-November
+September
 <button>▾</button>
 </h1>
-<p>2018</p>
+<p>2020</p>
 </div>
 <div class="calendar"><span class="day-name">Mon</span><span class="day-name">Tue</span><span class="day-name">Wed</span><span class="day-name">Thu</span><span class="day-name">Fri</span><span class="day-name">Sat</span><span class="day-name">Sun</span>
 <div class="day day--disabled">30</div>
