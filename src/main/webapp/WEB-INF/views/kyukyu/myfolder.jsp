@@ -15,25 +15,55 @@
 
   <title>HWABO</title>
 
-  <!-- Custom fonts for this template-->
+  <!-- Custom fonts for this template -->
   <link href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template-->
+  <!-- Custom styles for this template -->
   <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
 
+  <!-- Custom styles for this page -->
+  <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
+
+<!-- 진행률시작 -->
+<style>
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 0%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+</style>
+
+<!-- 진행률끝 -->
 
 <body id="page-top">
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
 	원하는 페이지로 :
-  <button onclick="javascript:location.href='myfile.do'">파일함</button>
-    <button onclick="javascript:location.href='myfolder.do'">보관함</button>
-    <button onclick="javascript:location.href='mynote.do'">메모장</button>
-    <button onclick="javascript:location.href='test.do'">파일함2</button>
-    <button onclick="javascript:location.href='mymeno2.do'">메모2</button>
     <button onclick="javascript:location.href='red.do'">index</button>
+    <button onclick="javascript:location.href='404.do'">404</button>
+    <button onclick="javascript:location.href='blank.do'">blank</button>
+    <button onclick="javascript:location.href='buttons.do'">buttons</button>
+    <button onclick="javascript:location.href='cards.do'">cards</button>
+    <button onclick="javascript:location.href='charts.do'">charts</button>
+    <button onclick="javascript:location.href='fpassword.do'">forgot-password</button>
+    <button onclick="javascript:location.href='flogin.do'">login</button>
+    <button onclick="javascript:location.href='fregister.do'">register</button>
+    <button onclick="javascript:location.href='ftables.do'">tables</button>
+    <button onclick="javascript:location.href='fanimation.do'">utilities-animation</button>
+    <button onclick="javascript:location.href='fborder.do'">utilities-border</button>
+    <button onclick="javascript:location.href='fcolor.do'">utilities-color</button>
+    <button onclick="javascript:location.href='fother.do'">utilities-other</button>
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->
@@ -85,18 +115,18 @@
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Utilities</span>
         </a>
-        <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
             <a class="collapse-item" href="utilities-color.jsp">Colors</a>
             <a class="collapse-item" href="utilities-border.jsp">Borders</a>
             <a class="collapse-item" href="utilities-animation.jsp">Animations</a>
-            <a class="collapse-item active" href="utilities-other.jsp">Other</a>
+            <a class="collapse-item" href="utilities-other.jsp">Other</a>
           </div>
         </div>
       </li>
@@ -137,7 +167,7 @@
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="tables.jsp">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
@@ -164,9 +194,11 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
+          <form class="form-inline">
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+              <i class="fa fa-bars"></i>
+            </button>
+          </form>
 
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -344,135 +376,418 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
+        
         <div class="container-fluid">
-        
-        
 
+  	  <div class="row d-inline-flex w-50" style="max-width:1000px">
+
+      <div class="col">
+   
           <!-- Page Heading -->
-          <h1 class="h3 mb-1 text-gray-800">Other Utilities</h1>
-          <p class="mb-4">Bootstrap's default utility classes can be found on the official <a href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities below were created to extend this theme past the default utility classes built into Bootstrap's framework.</p>
+          <h1 class="h3 mb-2 text-gray-800"></h1>
+           
+          <p class="mb-8"></p>
 
-			
-	
-          <!-- Content Row -->
-          <div class="row">
+          <!-- DataTales Example -->
 
-            <div class="col-lg-6">
+              <!-- 게시글안쪽 -->
 
-              <!-- Overflow Hidden -->
-              <div class="card mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Overflow Hidden Utilty</h6>
-                </div>
-                <div class="card-body">
-                  Use <code>.o-hidden</code> to set the overflow property of any element to hidden.
-                </div>
-              </div>
+			 <div class="card mb-4">
+					        <div class="card-header">
+					          <ul class="nav nav-tabs card-header-tabs" id="writeForm" role="tablist">
+					            <li class="nav-item">
+					            <a class="nav-link active" href="#gnrlwrite" role="tab" aria-controls="gnrlwrite" aria-selected="true">글 작성</a>
+					            </li>
+					            <li class="nav-item">
+					              <a class="nav-link"  href="#tap2" role="tab" aria-controls="tap2" aria-selected="false">업무</a>
+					            </li>
+					            <li class="nav-item">
+					              <a class="nav-link" href="#tap3" role="tab" aria-controls="tap3" aria-selected="false">일정</a>
+					            </li>
+					            <li class="nav-item">
+					              <a class="nav-link" href="#tap4" role="tab" aria-controls="tap4" aria-selected="false">할일</a>
+					            </li>
+					            <li class="nav-item">
+					              <a class="nav-link" href="#tap5" role="tab" aria-controls="tap5" aria-selected="false">투표</a>
+					            </li>
+					          </ul>
+					        </div>
+					        <form action="blank.do" id="mainInsert" > 
+					        <div class="card-body ">
+					         <!--  <h4 class="card-title">글 작성</h4> -->
+					          
+					           <div class="tab-content mt-3">
+					           <!-- 글 작성  -->
+					            <div class="tab-pane active" id="gnrlwrite" role="tabpanel">
+					            <input type="text" class="form-control mb-1" placeholder="제목(선택값)">
+					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+						            <div class="form-inline m-2 border-primary">
+						            <i class="fa fa-link mr-2"><a href="#"></a></i>
+						            <i class="fa fa-calendar-alt mr-2"></i>
+						            <i class="fa fa-map-marker-alt mr-2"></i>
+						            <i class="fa fa-code mr-5"></i>
+						            <i class="fa fa-hashtag mr-2"></i>
+						            <i class="fa fa-at mr-2" ></i>
+						            <button class="ml-auto mr-2 btn btn-sm btn-success" style="padding:4px 30px;" onclick="javascript:mainInsert.submit();">등록</button>
+						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
+					            	</div>
+					            </div>
+					            
+					            
+					            <!-- 업무 -->
+					            <div class="tab-pane" id="tap2" role="tabpanel">
+					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
+					              <!-- Standard button -->
+								
+									<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+									 <div class="form-inline m-2 border-primary">
+									&nbsp&nbsp
+									<button type="button" class="btn btn-primary btn-sm">요청</button>&nbsp&nbsp
+									<button type="button" class="btn btn-success btn-sm">진행</button>&nbsp&nbsp
+									<button type="button" class="btn btn-info btn-sm">피드백</button>&nbsp&nbsp
+									<button type="button" class="btn btn-warning btn-sm">완료</button>&nbsp&nbsp					
+									<button type="button" class="btn btn-default btn-sm">보류</button>&nbsp&nbsp	
+									
+									<ul class="nav navbar-nav navbar-right">
+        
+								        <li class="dropdown">
+								          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">담당자 추가 <span class="caret"></span></a>
+								           <input type="text" class="form-control" aria-label="...">
+								          <ul class="dropdown-menu" role="menu">
+								            <li><a href="#">백규림</a></li>
+								            <li><a href="#">박수현</a></li>
+								            <li><a href="#">김희철</a></li>
+								            <li><a href="#">정재구</a></li>
+								            <li><a href="#">구영민</a></li>
+								            <li><a href="#">정다운</a></li>
+								            <li class="divider"></li>
+								            <li><a href="#">Separated link</a></li>
+								          </ul>
+								          
+								        </li>
+								          
+								      </ul>
+								     
+								      </div>
+								 
+									
+					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+						            <div class="form-inline m-2 border-primary">
+						            
+						            <i class="fa fa-hashtag mr-2"></i>
+						            <i class="fa fa-at mr-2" ></i>
+						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
+						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
+					            	</div>
+					            </div>
+					            
+					            <!-- 일정 -->
+					            <div class="tab-pane" id="tap3" role="tabpanel">
+					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
+					              <div class="row mt-2">
+					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              <label class="form-control-label h3">~</label>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              </div>
+					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+						            <div class="form-inline m-2 border-primary">
+						            <i class="fa fa-hashtag mr-2"></i>
+						            <i class="fa fa-at mr-2" ></i>
+						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
+						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
+					            	</div>
+					            </div>
+					            
+					          	
+					            <!-- 할일 -->
+					         <div class="tab-pane" id="tap3" role="tabpanel">
+					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
+					              <div class="row mt-2">
+					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              <label class="form-control-label h3">~</label>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              </div>
+					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+						            <div class="form-inline m-2 border-primary">
+						            <i class="fa fa-hashtag mr-2"></i>
+						            <i class="fa fa-at mr-2" ></i>
+						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
+						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
+					            	</div>
+					            </div>
+					            
+					              <!--투표 -->
+					            <div class="tab-pane" id="tap3" role="tabpanel">
+					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
+					              <div class="row mt-2">
+					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              <label class="form-control-label h3">~</label>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              </div>
+					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+						            <div class="form-inline m-2 border-primary">
+						            <i class="fa fa-hashtag mr-2"></i>
+						            <i class="fa fa-at mr-2" ></i>
+						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
+						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
+					            	</div>
+					            </div>
+					             
+					            
+					          </div>
+					        </div>
+					      </div>		     
+           				   </form>
 
-				<div class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
-        </div>
-        <div class="modal-body">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-4">.col-md-4</div>
-              <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
             </div>
-            <div class="row">
-              <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
-              <div class="col-md-2 col-md-offset-4">.col-md-2 .col-md-offset-4</div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
             </div>
-            <div class="row">
-              <div class="col-md-6 col-md-offset-3">.col-md-6 .col-md-offset-3</div>
-            </div>
-            <div class="row">
-              <div class="col-sm-9">
-                Level 1: .col-sm-9
-                <div class="row">
-                  <div class="col-xs-8 col-sm-6">
-                    Level 2: .col-xs-8 .col-sm-6
-                  </div>
-                  <div class="col-xs-4 col-sm-6">
-                    Level 2: .col-xs-4 .col-sm-6
-                  </div>
-                </div>
-              </div>
-            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
-              <!-- Progress Small -->
-              <div class="card mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Progress Small Utility</h6>
-                </div>
-                <div class="card-body">
-                  <div class="mb-1 small">Normal Progress Bar</div>
-                  <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="mb-1 small">Small Progress Bar</div>
-                  <div class="progress progress-sm mb-2">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  Use the <code>.progress-sm</code> class along with <code>.progress</code>
-                </div>
-              </div>
-
-              <!-- Dropdown No Arrow -->
-              <div class="card mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Dropdown - No Arrow</h6>
-                </div>
-                <div class="card-body">
-                  <div class="dropdown no-arrow mb-4">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown (no arrow)
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                  Add the <code>.no-arrow</code> class alongside the <code>.dropdown</code>
-                </div>
-              </div>
-
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
             </div>
-
-            <div class="col-lg-6">
-
-              <!-- Roitation Utilities -->
-              <div class="card">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Rotation Utilities</h6>
-                </div>
-                <div class="card-body text-center">
-                  <div class="bg-primary text-white p-3 rotate-15 d-inline-block my-4">.rotate-15</div>
-                  <hr>
-                  <div class="bg-primary text-white p-3 rotate-n-15 d-inline-block my-4">.rotate-n-15</div>
-                </div>
-              </div>
-
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
             </div>
-
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
           </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
 
-        </div>
+
+      
+        
         <!-- /.container-fluid -->
-
+        </div>
+        </div>
+  		
       </div>
       <!-- End of Main Content -->
 
@@ -526,6 +841,18 @@
   <!-- Custom scripts for all pages-->
   <script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
 
+  <!-- Page level plugins -->
+  <script src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
+<script>
+$('#writeForm a').on('click', function (e) {
+	  e.preventDefault();
+	  $(this).tab('show');
+	})
+</script>
 </body>
 
 </html>
