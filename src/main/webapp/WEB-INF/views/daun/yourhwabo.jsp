@@ -60,9 +60,13 @@
 		<br> <br> <br>
 	</div>
 	<!-- 테스트버튼 끝 -->
+	<table style="margin: 0px; padding: 0px; width: 100%">
+	<tr>
+		<td width="20%"></td>
+		<td width="60%">
+
 	
-	
-	<div id="wrapper" style="width:100%;">
+	<div id="wrapper" >
 
 		<!-- Sidebar -->
 		<ul
@@ -699,16 +703,27 @@
 					<!-- 게시글끝 -->
 
 
+			</td>
 
 
 				</div>
 				<!-- /.container-fluid -->
 
-				<!-- Begin Page Content -->
-				<div class="container-fluid"></div>
 				<!-- End of Main Content -->
 
-				<!-- Footer -->
+
+
+			</div>
+			<!-- End of Content Wrapper -->
+
+		</div>
+		<!-- End of Page Wrapper -->
+
+	</div>
+			<td></td>
+	</tr>
+	</table>
+					<!-- Footer -->
 				<footer class="sticky-footer bg-white">
 					<div class="container my-auto">
 						<div class="copyright text-center my-auto">
@@ -717,16 +732,6 @@
 					</div>
 				</footer>
 				<!-- End of Footer -->
-
-			</div>
-			<!-- End of Content Wrapper -->
-
-		</div>
-		<!-- End of Page Wrapper -->
-
-
-	</div>
-
 		<!-- Bootstrap core JavaScript-->
 		<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
 		<script
