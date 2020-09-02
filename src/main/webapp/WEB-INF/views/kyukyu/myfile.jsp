@@ -52,60 +52,24 @@
 
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseThree"
-				aria-expanded="true" aria-controls="collapseThree">
-				<i class="far fa-check-circle"></i><span>볼 업무 선택</span>
-			</a>
-				<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">HWABO</h6>
-						<a class="collapse-item" href="#"><span><label><input
-									type="radio" name="selectshow">나의 업무(에이작스처리)</label></span></a> <a class="collapse-item"
-							href="#"><span><label><input type="radio" name="selectshow">요청
-									온 업무</label></span></a> <a class="collapse-item" href="#"><span><label><input
-									type="radio" name="selectshow">전체 업무</label></span></a>
-					</div>
-				</div></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
+		
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo">
-				 <i class="fas fa-filter"></i> <span>보기 정렬</span>
-			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">HWABO</h6>
-						<a class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">상 태</label></span></a> <a
-							class="collapse-item" href="#"> <span><label><input
-									type="checkbox" checked="checked">제 목</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">진척도</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">시작일</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">마감일</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">수정일</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">등록일</label></span></a>
-					</div>
-				</div></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
+	
+			
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			
 			<li class="nav-item">
+			
+				
+				<a class="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true"
+					aria-controls="collapsePages"> 
+					<i class="far fa-address-card"></i>
+					<span>나의 화보</span>
+				</a> 
+				<!-- Divider -->
+				<hr class="sidebar-divider">
+				
 				<a class="nav-link collapsed" href="mynote.do" data-target="#collapsePages" aria-expanded="true"
 					aria-controls="collapsePages"> 
 					<i class="fas fa-book-reader"></i>
