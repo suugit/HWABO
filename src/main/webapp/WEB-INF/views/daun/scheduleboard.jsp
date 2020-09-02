@@ -461,6 +461,17 @@
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript">
+	 $('#contentText').keyup(function (e){
+	      var content = $(this).val();       
+	      $('#counter').val(100-content.length);
+
+	          if(content.length > 100) {
+	            $(this).val($(this).val().substring(0, 100));
+	          }
+	      });
+	</script>		
 
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
@@ -521,7 +532,21 @@
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
-										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;메 모</span><textarea class="form-control" placeholder="메모를 입력하세요"></textarea>
+									
+
+									
+									
+										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;메 모</span>
+																			<textarea name="contentText" id="contentText" cols="30" rows="10" ></textarea>
+      <span class="txsub">남은글자수 : <input type="text" readonly  value="100" name="counter" id="counter"></span> 
+										
+										<textarea name="contentText" id="contentText1" cols="30" rows="10"  class="form-control" placeholder="메모를 입력하세요"  
+											style="width:100%; height:200px; overflow: auto; resize:none;">
+										</textarea>
+      <span class="txsub1">남은글자수 : <input type="text" readonly  value="100" name="counter" id="counter" style="border: none;"></span> 
+	
+							
+
 											</td>
 									</tr>
 									<tr>
