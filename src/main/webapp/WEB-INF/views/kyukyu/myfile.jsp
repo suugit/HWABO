@@ -392,6 +392,7 @@
               
               
                 <table class="table table-bordered" id="dataTable" width="1080px" hight="700px" cellspacing="0">
+                  
                   <thead>
                     <tr>
                       <th>미리보기</th>
@@ -401,66 +402,94 @@
                       <th>업로드 날짜</th>
                     </tr>
                   </thead>
+                  
                    <tbody>
                     
                		 <tr>
-                    	<th><img src="../plus.jpg" ></th>
+                    	<th>
+                    	 <input type="checkbox" id="inlineCheckbox1" value="option1">
+                    	<img src="../plus.jpg" >
+                    	</th>
                     	<th>plus.jpg</th>
                     	<th>37.56KB</th>
                     	<th>백규림</th>
                     	<th>2020-08-33</th>
                     </tr>
                       <tr>
-                    	<th><img src="../plus.jpg" width=30 hight=30></th>
+                    	<th>
+                    	 <input type="checkbox" id="inlineCheckbox2" value="option2">
+                    	<img src="../plus.jpg" >
+                    	</th>
                     	<th>plus.jpg</th>
                     	<th>37.56KB</th>
                     	<th>백규림</th>
                     	<th>2020-08-33</th>
                     </tr>
                      <tr>
-                    	<th><img src="../plus.jpg" width=30 hight=30></th>
+                    	<th>
+                    	 <input type="checkbox" id="inlineCheckbox3" value="option3">
+                    	<img src="../plus.jpg" >
+                    	</th>
                     	<th>plus.jpg</th>
                     	<th>37.56KB</th>
                     	<th>백규림</th>
                     	<th>2020-08-33</th>
                     </tr>
                       <tr>
-                    	<th><img src="../plus.jsp" ></th>
+                    	<th>
+                    	 <input type="checkbox" id="inlineCheckbox2" value="option2">
+                    	<img src="../plus.jpg" >
+                    	</th>
                     	<th>plus.jpg</th>
                     	<th>37.56KB</th>
                     	<th>백규림</th>
                     	<th>2020-08-33</th>
                     </tr>
                      <tr>
-                    	<th><img src="../plus.jsp" ></th>
+                    	<th>
+                    	 <input type="checkbox" id="inlineCheckbox2" value="option2">
+                    	<img src="../plus.jpg" >
+                    	</th>
                     	<th>plus.jpg</th>
                     	<th>37.56KB</th>
                     	<th>백규림</th>
                     	<th>2020-08-33</th>
                     </tr>
                       <tr>
-                    	<th><img src="../plus.jsp" ></th>
+                    	<th>
+                    	 <input type="checkbox" id="inlineCheckbox2" value="option2">
+                    	<img src="../plus.jpg" >
+                    	</th>
                     	<th>plus.jpg</th>
                     	<th>37.56KB</th>
                     	<th>백규림</th>
                     	<th>2020-08-33</th>
                     </tr>
                       <tr>
-                    	<th><img src="../plus.jsp" ></th>
+                    	<th>
+                    	 <input type="checkbox" id="inlineCheckbox2" value="option2">
+                    	<img src="../plus.jpg" >
+                    	</th>
                     	<th>plus.jpg</th>
                     	<th>37.56KB</th>
                     	<th>백규림</th>
                     	<th>2020-08-33</th>
                     </tr>
                       <tr>
-                    	<th><img src="../plus.jsp" ></th>
+                    	<th>
+                    	 <input type="checkbox" id="inlineCheckbox2" value="option2">
+                    	<img src="../plus.jpg" >
+                    	</th>
                     	<th>plus.jpg</th>
                     	<th>37.56KB</th>
                     	<th>백규림</th>
                     	<th>2020-08-33</th>
                     </tr>
+                    
                     </tbody>
+                    <input type="button" value="저장" >
        </table>
+   
        </div>
        </div>
        </div>
