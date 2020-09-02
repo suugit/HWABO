@@ -146,6 +146,39 @@ font-size: 28px;
     </div>
 <div style="background-color:skyblue;border:1px solid black;"><br><br><br></div>
 <!-- 테스트버튼2 끝 -->
+<!-- 팝업시작 -->
+<table style="position:absolute;z-index:8; width:100%;height:600px;">
+<tr><td>&nbsp;</td><td style="height:20%;">&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td style="width:30%;"></td><td style="width:40%;height:45%;background-color:white;border:1px solid skyblue;">
+<div class="p-5" style="width:100%;">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">프로젝트를 생성해주세요</h1>
+                  </div>
+                  <form class="user">
+                    <div class="form-group">
+                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">가입시 관리자 승인후 가능</label>
+                      </div>
+                    </div>
+                    <a href="cards.do" class="btn btn-primary btn-user btn-block">
+                      	새 프로젝트 생성
+                    </a>
+                    <hr>
+                    
+                  </form>
+                  
+                </div>
+</td><td style="width:30%;"></td></tr>
+<tr><td>&nbsp;</td><td style="height:35%;">&nbsp;</td><td>&nbsp;</td></tr>      
+</table>
+<!-- 팝업끝 -->
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -458,7 +491,7 @@ font-size: 28px;
 <div class="card shadow mb-4">
             <div class="card-body">
               <!-- 게시글안쪽 -->
-                            <h1 class="m-0 text-primary" style="text-align:center" onclick="javascript:location.href='createP.do'">
+                            <h1 class="m-0 text-primary" style="text-align:center">
                 <img src="/hwabo/resources/maincss/img/plus2.png" style="width:45px;height:45px;">            
                             새 프로젝트 생성
                             </h1>

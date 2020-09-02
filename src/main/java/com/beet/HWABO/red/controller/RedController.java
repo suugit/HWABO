@@ -115,4 +115,9 @@ public class RedController {
 		
 		return "red/utilities-other";
 	}
+	@RequestMapping(value = "createP.do", method = RequestMethod.GET)
+	public String creatP(Model model) {
+		
+		return "red/create";
+	}
 }
