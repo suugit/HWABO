@@ -20,8 +20,28 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/hwabo/resources/maincss/css/progressbar.css" rel="stylesheet">
+<!-- 진행률시작 -->
+<style>
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+  border-radius:8px;
+}
 
+#myBar {
+  width: 75%;
+  height: 30px;
+  background-color: #4e73df;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+  border-radius:8px;
+  
+}
+</style>
+
+<!-- 진행률끝 -->
 </head>
 
 <body id="page-top">
@@ -363,84 +383,90 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <h1 class="h3 mb-1 text-gray-800">Other Utilities</h1>
-          <p class="mb-4">Bootstrap's default utility classes can be found on the official <a href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities below were created to extend this theme past the default utility classes built into Bootstrap's framework.</p>
-
-          <!-- Content Row -->
-          <div class="row">
-
-            <div class="col-lg-6">
-
-              <!-- Overflow Hidden -->
-              <div class="card mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Overflow Hidden Utilty</h6>
-                </div>
-                <div class="card-body">
-                  Use <code>.o-hidden</code> to set the overflow property of any element to hidden.
-                </div>
-              </div>
-
-              <!-- Progress Small -->
-              <div class="card mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Progress Small Utility</h6>
-                </div>
-                <div class="card-body">
-                  <div class="mb-1 small">Normal Progress Bar</div>
-                  <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="mb-1 small">Small Progress Bar</div>
-                  <div class="progress progress-sm mb-2">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  Use the <code>.progress-sm</code> class along with <code>.progress</code>
-                </div>
-              </div>
-
-              <!-- Dropdown No Arrow -->
-              <div class="card mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Dropdown - No Arrow</h6>
-                </div>
-                <div class="card-body">
-                  <div class="dropdown no-arrow mb-4">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown (no arrow)
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                  Add the <code>.no-arrow</code> class alongside the <code>.dropdown</code>
-                </div>
-              </div>
-
+<!-- 진행률 시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+           	프로젝트 진행률
             </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
 
-            <div class="col-lg-6">
+<div id="myProgress">
+  <div id="myBar">75%</div>
+</div>
+<br>
+<table style="text-align:center;width:100%;color:white;"><tr><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;"></td><td style="width:20%;">
+<a class="btn btn-light btn-icon-split" style="width:90%;" onclick="move()">
+<span class="text">진행률바 테스트</span>
+</a>
+</td>
+</tr></table>
+<script>
+var i = 0;
+let c = 5;//목표 갯수 현재 5개
+var devide = 0;
+function move() {
+	devide += 100 / c;
+    if(devide > 100){
+    	devide = 100;
+    }
+  if (i == 0) {
 
-              <!-- Roitation Utilities -->
-              <div class="card">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Rotation Utilities</h6>
-                </div>
-                <div class="card-body text-center">
-                  <div class="bg-primary text-white p-3 rotate-15 d-inline-block my-4">.rotate-15</div>
-                  <hr>
-                  <div class="bg-primary text-white p-3 rotate-n-15 d-inline-block my-4">.rotate-n-15</div>
-                </div>
-              </div>
-
+    var elem = document.getElementById("myBar");
+    var width = 0;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= devide) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+        elem.innerHTML = width  + "%";
+      }
+    }
+  }
+}
+</script>
             </div>
-
           </div>
-
+<!-- 진행률끝 -->
+<% for(int i = 0; i < 7; i++){ %>
+<!-- 개인진행률시작 -->
+          <div class="card mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">사용자 이름</h6>
+                </div>
+                <div class="card-body">
+                  <div class="mb-1 small">개인 전체 진행률 80%</div>
+                  <div class="progress mb-4">
+                    <div class="progress-bar progress-bar1" role="progressbar" style="width: 80%;backgound-color:#F8E0E0;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="mb-1 small">목표1 진행률 75%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar progress-bar2" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="mb-1 small">목표2 진행률 45%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar progress-bar3" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="mb-1 small">목표3 진행률 65%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar progress-bar4" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="mb-1 small">목표4 진행률 100%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar progress-bar5" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="mb-1 small">목표5 진행률 50%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar progress-bar6" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+<!-- 개인진행률끝 -->
+<% } %>
         </div>
         <!-- /.container-fluid -->
 
