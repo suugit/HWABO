@@ -31,27 +31,12 @@
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
 	원하는 페이지로 :
-
-  
-    <button onclick="javascript:location.href='myfile.do'">파일함</button>
+      <button onclick="javascript:location.href='myfile.do'">파일함</button>
     <button onclick="javascript:location.href='myfolder.do'">보관함</button>
     <button onclick="javascript:location.href='mynote.do'">메모장</button>
     <button onclick="javascript:location.href='test.do'">파일함2</button>
     <button onclick="javascript:location.href='mymeno2.do'">메모2</button>
-    <button onclick="javascript:location.href='index.do'">index</button>
-   <!--  <button onclick="javascript:location.href='404.do'">404</button>
-    <button onclick="javascript:location.href='blank.do'">blank</button>
-    <button onclick="javascript:location.href='buttons.do'">buttons</button>
-    <button onclick="javascript:location.href='cards.do'">cards</button>
-    <button onclick="javascript:location.href='charts.do'">charts</button>
-    <button onclick="javascript:location.href='fpassword.do'">forgot-password</button>
-    <button onclick="javascript:location.href='flogin.do'">login</button>
-    <button onclick="javascript:location.href='fregister.do'">register</button>
-    <button onclick="javascript:location.href='ftables.do'">tables</button>
-    <button onclick="javascript:location.href='fanimation.do'">utilities-animation</button>
-    <button onclick="javascript:location.href='fborder.do'">utilities-border</button>
-    <button onclick="javascript:location.href='fcolor.do'">utilities-color</button>
-    <button onclick="javascript:location.href='fother.do'">utilities-other</button> -->
+    <button onclick="javascript:location.href='red.do'">index</button>
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->
@@ -111,9 +96,9 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="myfile.do">파일함</a>
-            <a class="collapse-item" href="myfolder.do">보관함</a>
-            <a class="collapse-item" href="mynote.do">메모장</a>
+            <a class="collapse-item" href="utilities-color.jsp">Colors</a>
+            <a class="collapse-item" href="utilities-border.jsp">Borders</a>
+            <a class="collapse-item" href="utilities-animation.jsp">Animations</a>
             <a class="collapse-item" href="utilities-other.jsp">Other</a>
           </div>
         </div>
@@ -367,7 +352,7 @@
  		<!-- Begin Page Content -->
         <div class="container-fluid">
 
-		 <h1 class="h3 mb-4 text-gray-800">파일함</h1><br><br>
+		 <h1 class="h3 mb-4 text-gray-800">내 파일함</h1><br><br>
 
           <div class="col-lg-12">
           
@@ -375,22 +360,21 @@
          
           <ui class="nav nav-tabs nav-justified" >
           <li class="nav-item">
-             <a class="nav-link active" href="#">이미지</a>
-          
-             </li>
+             <a class="nav-link active" href="#img" role="tab" aria-controls="img" aria-selected="ture">이미지</a></li>
           <li class="nav-item">
-             <a class="nav-link" href="#">동영상</a>
+             <a class="nav-link" href="#vid" role="tab" aria-controls="vid" aria-selected="false">동영상</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="#">문서</a>
+             <a class="nav-link" href="#pnd" role="tab" aria-controls="pnd" aria-selected="false">문서</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="#">압축파일</a>
+             <a class="nav-link" href="#zip" role="tab" aria-controls="zip" aria-selected="false">압축파일</a>
           </li> 
           <li class="nav-item">
-             <a class="nav-link" href="#">기타</a>
+             <a class="nav-link" href="#etc" role="tab" aria-controls="etc" aria-selected="false">기타</a>
           </li> 
          </ul>
+  
           
       </div>         
    
@@ -401,25 +385,88 @@
         
           <!-- DataTales Example -->
          
-           
+             <div class="tab-pane active" id="img" role="tabpanel">
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" >
+              
+              
+              
+                <table class="table table-bordered" id="dataTable" width="1080px" hight="700px" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>차순</th>
-                     
-                      
+                      <th>미리보기</th>
+                      <th>파일명</th>
+                      <th>크기</th>
+                      <th>등록자</th>
+                      <th>업로드 날짜</th>
                     </tr>
                   </thead>
-                
-                
-                </table>
-              </div>
-            </div>
-          
-		</div>
-        </div>
+                   <tbody>
+                    
+               		 <tr>
+                    	<th><img src="../plus.jpg" ></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                      <tr>
+                    	<th><img src="../plus.jpg" width=30 hight=30></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                     <tr>
+                    	<th><img src="../plus.jpg" width=30 hight=30></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                      <tr>
+                    	<th><img src="../plus.jsp" ></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                     <tr>
+                    	<th><img src="../plus.jsp" ></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                      <tr>
+                    	<th><img src="../plus.jsp" ></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                      <tr>
+                    	<th><img src="../plus.jsp" ></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                      <tr>
+                    	<th><img src="../plus.jsp" ></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                    </tbody>
+       </table>
+       </div>
+       </div>
+       </div>
+       </div>
+       </div>
+       
         <!-- /.container-fluid -->
 
       </div>

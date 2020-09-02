@@ -50,20 +50,11 @@
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
 	원하는 페이지로 :
-    <button onclick="javascript:location.href='red.do'">index</button>
-    <button onclick="javascript:location.href='404.do'">404</button>
-    <button onclick="javascript:location.href='blank.do'">blank</button>
-    <button onclick="javascript:location.href='buttons.do'">buttons</button>
-    <button onclick="javascript:location.href='cards.do'">cards</button>
-    <button onclick="javascript:location.href='charts.do'">charts</button>
-    <button onclick="javascript:location.href='fpassword.do'">forgot-password</button>
-    <button onclick="javascript:location.href='flogin.do'">login</button>
-    <button onclick="javascript:location.href='fregister.do'">register</button>
-    <button onclick="javascript:location.href='ftables.do'">tables</button>
-    <button onclick="javascript:location.href='fanimation.do'">utilities-animation</button>
-    <button onclick="javascript:location.href='fborder.do'">utilities-border</button>
-    <button onclick="javascript:location.href='fcolor.do'">utilities-color</button>
-    <button onclick="javascript:location.href='fother.do'">utilities-other</button>
+     <button onclick="javascript:location.href='myfile.do'">파일함</button>
+    <button onclick="javascript:location.href='myfolder.do'">보관함</button>
+    <button onclick="javascript:location.href='mynote.do'">메모장</button>
+    <button onclick="javascript:location.href='test.do'">파일함2</button>
+    <button onclick="javascript:location.href='mymeno2.do'">메모2</button>
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->
@@ -489,7 +480,17 @@
 					            <!-- 일정 -->
 					            <div class="tab-pane" id="tap3" role="tabpanel">
 					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <div class="row mt-2">
+					                 <table class="table table-bordered" id="dataTable" width="1080px" hight="700px" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>차순</th>
+                     
+                      
+                    </tr>
+                  </thead>
+               	 </table>
+					              
+					       <!--        <div class="row mt-2">
 					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
 					              <div class="col-5"><input type="date" class="form-control"></div>
 					              <label class="form-control-label h3">~</label>
@@ -501,7 +502,7 @@
 						            <i class="fa fa-at mr-2" ></i>
 						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
 						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
+					            	</div> -->
 					            </div>
 					            
 					          	

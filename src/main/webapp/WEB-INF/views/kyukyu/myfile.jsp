@@ -360,24 +360,21 @@
          
           <ui class="nav nav-tabs nav-justified" >
           <li class="nav-item">
-             <a class="nav-link active" href="#">이미지
-   
-             </a>
-          
-             </li>
+             <a class="nav-link active" href="#img" role="tab" aria-controls="img" aria-selected="ture">이미지</a></li>
           <li class="nav-item">
-             <a class="nav-link" href="#">동영상</a>
+             <a class="nav-link" href="#vid" role="tab" aria-controls="vid" aria-selected="false">동영상</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="#">문서</a>
+             <a class="nav-link" href="#pnd" role="tab" aria-controls="pnd" aria-selected="false">문서</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="#">압축파일</a>
+             <a class="nav-link" href="#zip" role="tab" aria-controls="zip" aria-selected="false">압축파일</a>
           </li> 
           <li class="nav-item">
-             <a class="nav-link" href="#">기타</a>
+             <a class="nav-link" href="#etc" role="tab" aria-controls="etc" aria-selected="false">기타</a>
           </li> 
          </ul>
+  
           
       </div>         
    
@@ -388,25 +385,88 @@
         
           <!-- DataTales Example -->
          
-           
+             <div class="tab-pane active" id="img" role="tabpanel">
             <div class="card-body">
               <div class="table-responsive">
+              
+              
+              
                 <table class="table table-bordered" id="dataTable" width="1080px" hight="700px" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>차순</th>
-                     
-                      
+                      <th>미리보기</th>
+                      <th>파일명</th>
+                      <th>크기</th>
+                      <th>등록자</th>
+                      <th>업로드 날짜</th>
                     </tr>
                   </thead>
-                
-                
-                </table>
-              </div>
-            </div>
-          
-		</div>
-        </div>
+                   <tbody>
+                    
+               		 <tr>
+                    	<th><img src="../plus.jpg" ></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                      <tr>
+                    	<th><img src="../plus.jpg" width=30 hight=30></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                     <tr>
+                    	<th><img src="../plus.jpg" width=30 hight=30></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                      <tr>
+                    	<th><img src="../plus.jsp" ></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                     <tr>
+                    	<th><img src="../plus.jsp" ></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                      <tr>
+                    	<th><img src="../plus.jsp" ></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                      <tr>
+                    	<th><img src="../plus.jsp" ></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                      <tr>
+                    	<th><img src="../plus.jsp" ></th>
+                    	<th>plus.jpg</th>
+                    	<th>37.56KB</th>
+                    	<th>백규림</th>
+                    	<th>2020-08-33</th>
+                    </tr>
+                    </tbody>
+       </table>
+       </div>
+       </div>
+       </div>
+       </div>
+       </div>
+       
         <!-- /.container-fluid -->
 
       </div>
