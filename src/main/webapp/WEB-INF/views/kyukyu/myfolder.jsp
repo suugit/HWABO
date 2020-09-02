@@ -78,12 +78,7 @@
 									type="radio" name="selectshow">전체 업무</label></span></a>
 					</div>
 				</div></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+		<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
 				aria-expanded="true" aria-controls="collapseTwo">
 				 <i class="fas fa-filter"></i> <span>보기 정렬</span>
@@ -108,14 +103,26 @@
 									type="checkbox" checked="checked">등록일</label></span></a>
 					</div>
 				</div></li>
-
 			<!-- Divider -->
 			<hr class="sidebar-divider">
-
+			
+			<!-- Nav Item - Pages Collapse Menu -->
+		
+				
+			
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			
 			<li class="nav-item">
+			
+				<a class="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true"
+					aria-controls="collapsePages"> 
+					<i class="far fa-address-card"></i>
+					<span>나의 화보</span>
+				</a> 
+				<!-- Divider -->
+				<hr class="sidebar-divider">
+			
 				<a class="nav-link collapsed" href="mynote.do" data-target="#collapsePages" aria-expanded="true"
 					aria-controls="collapsePages"> 
 					<i class="fas fa-book-reader"></i>
