@@ -21,7 +21,100 @@
 
   <!-- Custom styles for this template-->
   <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
+<!-- 차트기능시작 -->
+<style>
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;  
+}
 
+.donut-chart {
+  position: relative;
+	width: 200px;
+  height: 200px;
+	margin: 0 auto 2rem;
+	border-radius: 100%
+ }
+p.center {
+  background: white;
+  position: absolute;
+  text-align: center;
+font-size: 28px;
+  top:0;left:0;bottom:0;right:0;
+  width: 170px;
+  height: 170px;
+  margin: auto;
+  border-radius: 50%;
+  line-height: 35px;
+  padding: 15% 0 0;
+}
+	
+	
+.portion-block {
+    border-radius: 50%;
+    clip: rect(0px, 200px, 200px, 100px);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+.circle {
+    border-radius: 50%;
+    clip: rect(0px, 100px, 200px, 0px);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    font-family: monospace;
+    font-size: 1.5rem;
+  }
+	
+	
+#part1 {
+    transform: rotate(0deg);
+  }
+
+	#part1 .circle {
+		background-color: #E64C65;
+		/*transform: rotate(76deg);*/
+		animation: first 1s 1 forwards;
+	  }
+	
+	
+#part2 {
+    transform: rotate(100deg);
+  }
+#part2 .circle {
+    background-color: #11A8AB;
+    animation: second 1s 1 forwards 1s;
+  }
+#part3 {
+    transform: rotate(250deg);
+}
+	#part3 .circle {
+		background-color: #4FC4F6;
+		animation: third 0.5s 1 forwards 2s;
+	}
+	
+	
+/* Animation */
+@keyframes first {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(100deg);}
+}
+	
+@keyframes second {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(150deg);}
+}
+	
+@keyframes third {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(111deg);}
+}
+
+</style>
+
+<!-- 차트기능끝 -->
 </head>
 
 <body id="page-top">
@@ -395,9 +488,18 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                    <canvas id="myPieChart" width="515" height="269" class="chartjs-render-monitor" style="display: block; height: 245px; width: 469px;"></canvas>
-                  </div>
+                  <!-- 그래프시작 -->
+                  <div class="container">
+  <div class="donut-chart-block block"> 
+		<div class="donut-chart">
+			<div id="part1" class="portion-block"><div class="circle"></div></div>
+			<div id="part2" class="portion-block"><div class="circle"></div></div>
+			<div id="part3" class="portion-block"><div class="circle"></div></div>
+			<p class="center"></p>        
+		</div>
+   </div>
+</div>
+<!-- 그래프끝 -->
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 구름과자 30%
@@ -432,9 +534,18 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                    <canvas id="myPieChart" width="515" height="269" class="chartjs-render-monitor" style="display: block; height: 245px; width: 469px;"></canvas>
-                  </div>
+                <!-- 그래프시작 -->
+                  <div class="container">
+  <div class="donut-chart-block block"> 
+		<div class="donut-chart">
+			<div id="part1" class="portion-block"><div class="circle"></div></div>
+			<div id="part2" class="portion-block"><div class="circle"></div></div>
+			<div id="part3" class="portion-block"><div class="circle"></div></div>
+			<p class="center"></p>        
+		</div>
+   </div>
+</div>
+<!-- 그래프끝 -->
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 감전직전 40%
@@ -471,9 +582,18 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                    <canvas id="myPieChart" width="515" height="269" class="chartjs-render-monitor" style="display: block; height: 245px; width: 469px;"></canvas>
-                  </div>
+                  <!-- 그래프시작 -->
+                  <div class="container">
+  <div class="donut-chart-block block"> 
+		<div class="donut-chart">
+			<div id="part1" class="portion-block"><div class="circle"></div></div>
+			<div id="part2" class="portion-block"><div class="circle"></div></div>
+			<div id="part3" class="portion-block"><div class="circle"></div></div>
+			<p class="center"></p>        
+		</div>
+   </div>
+</div>
+<!-- 그래프끝 -->
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 마차 0%
@@ -510,9 +630,18 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                    <canvas id="myPieChart" width="515" height="269" class="chartjs-render-monitor" style="display: block; height: 245px; width: 469px;"></canvas>
-                  </div>
+                  <!-- 그래프시작 -->
+                  <div class="container">
+  <div class="donut-chart-block block"> 
+		<div class="donut-chart">
+			<div id="part1" class="portion-block"><div class="circle"></div></div>
+			<div id="part2" class="portion-block"><div class="circle"></div></div>
+			<div id="part3" class="portion-block"><div class="circle"></div></div>
+			<p class="center"></p>        
+		</div>
+   </div>
+</div>
+<!-- 그래프끝 -->
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 도도로 25%
@@ -547,9 +676,18 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                    <canvas id="myPieChart" width="515" height="269" class="chartjs-render-monitor" style="display: block; height: 245px; width: 469px;"></canvas>
-                  </div>
+                  <!-- 그래프시작 -->
+                  <div class="container">
+  <div class="donut-chart-block block"> 
+		<div class="donut-chart">
+			<div id="part1" class="portion-block"><div class="circle"></div></div>
+			<div id="part2" class="portion-block"><div class="circle"></div></div>
+			<div id="part3" class="portion-block"><div class="circle"></div></div>
+			<p class="center"></p>        
+		</div>
+   </div>
+</div>
+<!-- 그래프끝 -->
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 뚜기 50%
@@ -586,9 +724,18 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                    <canvas id="myPieChart" width="515" height="269" class="chartjs-render-monitor" style="display: block; height: 245px; width: 469px;"></canvas>
-                  </div>
+                  <!-- 그래프시작 -->
+                  <div class="container">
+  <div class="donut-chart-block block"> 
+		<div class="donut-chart">
+			<div id="part1" class="portion-block"><div class="circle"></div></div>
+			<div id="part2" class="portion-block"><div class="circle"></div></div>
+			<div id="part3" class="portion-block"><div class="circle"></div></div>
+			<p class="center"></p>        
+		</div>
+   </div>
+</div>
+<!-- 그래프끝 -->
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> Daun 34%
@@ -667,7 +814,10 @@
   <!-- Page level custom scripts -->
   <script src="/hwabo/resources/maincss/js/demo/chart-area-demo.js"></script>
   <script src="/hwabo/resources/maincss/js/demo/chart-pie-demo.js"></script>
-
+<!-- 차트기능불러오기 시작 -->
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<!-- 차트기능불러오기 끝 -->
 </body>
 
 </html>
