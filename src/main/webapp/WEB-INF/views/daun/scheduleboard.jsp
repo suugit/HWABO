@@ -461,7 +461,7 @@
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
-						<div class="card-header py-3"></div>
+
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
 							<form action="blank.do" id="mainInsert">
