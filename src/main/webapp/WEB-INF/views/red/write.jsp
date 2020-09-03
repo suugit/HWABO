@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
+<link rel="icon" type="image/x-icon" href="/hwabo/resources/assets/img/favicon.png" />
   <title>HWABO</title>
 </head>
 <body id="page-top">
