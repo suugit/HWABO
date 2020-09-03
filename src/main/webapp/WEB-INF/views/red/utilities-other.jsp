@@ -19,147 +19,35 @@
   <link href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template-->
-  <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
+<!-- 진행률시작 -->
+<style>
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+  border-radius:8px;
+}
 
+#myBar {
+  width: 75%;
+  height: 30px;
+  background-color: #4e73df;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+  border-radius:8px;
+  
+}
+</style>
+
+<!-- 진행률끝 -->
 </head>
 
 <body id="page-top">
-<!-- 테스트버튼 시작 -->
-<div style="position:absolute;z-index:5;"><br>&nbsp;
-	원하는 페이지로 :
-    <button onclick="javascript:location.href='red.do'">index</button>
-    <button onclick="javascript:location.href='404.do'">404</button>
-    <button onclick="javascript:location.href='blank.do'">blank</button>
-    <button onclick="javascript:location.href='buttons.do'">buttons</button>
-    <button onclick="javascript:location.href='cards.do'">cards</button>
-    <button onclick="javascript:location.href='charts.do'">charts</button>
-    <button onclick="javascript:location.href='fpassword.do'">forgot-password</button>
-    <button onclick="javascript:location.href='flogin.do'">login</button>
-    <button onclick="javascript:location.href='fregister.do'">register</button>
-    <button onclick="javascript:location.href='ftables.do'">tables</button>
-    <button onclick="javascript:location.href='fanimation.do'">utilities-animation</button>
-    <button onclick="javascript:location.href='fborder.do'">utilities-border</button>
-    <button onclick="javascript:location.href='fcolor.do'">utilities-color</button>
-    <button onclick="javascript:location.href='fother.do'">utilities-other</button>
-    </div>
-<div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
-<!-- 테스트버튼 끝 -->
   <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="index.jsp">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.jsp">Buttons</a>
-            <a class="collapse-item" href="cards.jsp">Cards</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.jsp">Colors</a>
-            <a class="collapse-item" href="utilities-border.jsp">Borders</a>
-            <a class="collapse-item" href="utilities-animation.jsp">Animations</a>
-            <a class="collapse-item active" href="utilities-other.jsp">Other</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.jsp">Login</a>
-            <a class="collapse-item" href="register.jsp">Register</a>
-            <a class="collapse-item" href="forgot-password.jsp">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.jsp">404 Page</a>
-            <a class="collapse-item" href="blank.jsp">Blank Page</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.jsp">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.jsp">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-    </ul>
+    <c:import url="/WEB-INF/views/red/side.jsp"></c:import>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -353,84 +241,90 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <h1 class="h3 mb-1 text-gray-800">Other Utilities</h1>
-          <p class="mb-4">Bootstrap's default utility classes can be found on the official <a href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities below were created to extend this theme past the default utility classes built into Bootstrap's framework.</p>
-
-          <!-- Content Row -->
-          <div class="row">
-
-            <div class="col-lg-6">
-
-              <!-- Overflow Hidden -->
-              <div class="card mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Overflow Hidden Utilty</h6>
-                </div>
-                <div class="card-body">
-                  Use <code>.o-hidden</code> to set the overflow property of any element to hidden.
-                </div>
-              </div>
-
-              <!-- Progress Small -->
-              <div class="card mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Progress Small Utility</h6>
-                </div>
-                <div class="card-body">
-                  <div class="mb-1 small">Normal Progress Bar</div>
-                  <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="mb-1 small">Small Progress Bar</div>
-                  <div class="progress progress-sm mb-2">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  Use the <code>.progress-sm</code> class along with <code>.progress</code>
-                </div>
-              </div>
-
-              <!-- Dropdown No Arrow -->
-              <div class="card mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Dropdown - No Arrow</h6>
-                </div>
-                <div class="card-body">
-                  <div class="dropdown no-arrow mb-4">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown (no arrow)
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                  Add the <code>.no-arrow</code> class alongside the <code>.dropdown</code>
-                </div>
-              </div>
-
+<!-- 진행률 시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+           	프로젝트 진행률
             </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
 
-            <div class="col-lg-6">
+<div id="myProgress">
+  <div id="myBar">75%</div>
+</div>
+<br>
+<table style="text-align:center;width:100%;color:white;"><tr><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;"></td><td style="width:20%;">
+<a class="btn btn-light btn-icon-split" style="width:90%;" onclick="move()">
+<span class="text" style="color:gray;">진행률바 테스트</span>
+</a>
+</td>
+</tr></table>
+<script>
+var i = 0;
+let c = 5;//목표 갯수 현재 5개
+var devide = 0;
+function move() {
+	devide += 100 / c;
+    if(devide > 100){
+    	devide = 100;
+    }
+  if (i == 0) {
 
-              <!-- Roitation Utilities -->
-              <div class="card">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Rotation Utilities</h6>
-                </div>
-                <div class="card-body text-center">
-                  <div class="bg-primary text-white p-3 rotate-15 d-inline-block my-4">.rotate-15</div>
-                  <hr>
-                  <div class="bg-primary text-white p-3 rotate-n-15 d-inline-block my-4">.rotate-n-15</div>
-                </div>
-              </div>
-
+    var elem = document.getElementById("myBar");
+    var width = 0;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= devide) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+        elem.innerHTML = width  + "%";
+      }
+    }
+  }
+}
+</script>
             </div>
-
           </div>
-
+<!-- 진행률끝 -->
+<% for(int i = 0; i < 7; i++){ %>
+<!-- 개인진행률시작 -->
+          <div class="card mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">사용자 이름</h6>
+                </div>
+                <div class="card-body">
+                  <div class="mb-1 small">개인 전체 진행률 80%</div>
+                  <div class="progress mb-4">
+                    <div class="progress-bar1 progress-bar" role="progressbar" style="width: 80%;backgound-color:#F8E0E0;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="mb-1 small">목표1 진행률 75%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar progress-bar2" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="mb-1 small">목표2 진행률 45%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar progress-bar3" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="mb-1 small">목표3 진행률 65%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar progress-bar4" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="mb-1 small">목표4 진행률 100%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar progress-bar5" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="mb-1 small">목표5 진행률 50%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar progress-bar6" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+<!-- 개인진행률끝 -->
+<% } %>
         </div>
         <!-- /.container-fluid -->
 

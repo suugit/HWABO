@@ -16,150 +16,25 @@
   <title>HWABO</title>
 
   <!-- Custom fonts for this template-->
+  <link href="/hwabo/resources/css/calendar.css" rel="stylesheet" type="text/css">
   <link href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
+<!-- 달력css시작 -->
 
+
+
+<!-- 달력css끝 -->
 </head>
 
 <body id="page-top">
-<!-- 테스트버튼 시작 -->
-<div style="position:absolute;z-index:5;"><br>&nbsp;
-	원하는 페이지로 :
-    <button onclick="javascript:location.href='red.do'">index</button>
-    <button onclick="javascript:location.href='404.do'">404</button>
-    <button onclick="javascript:location.href='blank.do'">blank</button>
-    <button onclick="javascript:location.href='buttons.do'">buttons</button>
-    <button onclick="javascript:location.href='cards.do'">cards</button>
-    <button onclick="javascript:location.href='charts.do'">charts</button>
-    <button onclick="javascript:location.href='fpassword.do'">forgot-password</button>
-    <button onclick="javascript:location.href='flogin.do'">login</button>
-    <button onclick="javascript:location.href='fregister.do'">register</button>
-    <button onclick="javascript:location.href='ftables.do'">tables</button>
-    <button onclick="javascript:location.href='fanimation.do'">utilities-animation</button>
-    <button onclick="javascript:location.href='fborder.do'">utilities-border</button>
-    <button onclick="javascript:location.href='fcolor.do'">utilities-color</button>
-    <button onclick="javascript:location.href='fother.do'">utilities-other</button>
-    </div>
-<div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
-<!-- 테스트버튼 끝 -->
   <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="index.jsp">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.jsp">Buttons</a>
-            <a class="collapse-item" href="cards.jsp">Cards</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.jsp">Colors</a>
-            <a class="collapse-item active" href="utilities-border.jsp">Borders</a>
-            <a class="collapse-item" href="utilities-animation.jsp">Animations</a>
-            <a class="collapse-item" href="utilities-other.jsp">Other</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.jsp">Login</a>
-            <a class="collapse-item" href="register.jsp">Register</a>
-            <a class="collapse-item" href="forgot-password.jsp">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.jsp">404 Page</a>
-            <a class="collapse-item" href="blank.jsp">Blank Page</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.jsp">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.jsp">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-    </ul>
+     <c:import url="/WEB-INF/views/red/side.jsp"></c:import>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -354,108 +229,19 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-1 text-gray-800">Border Utilities</h1>
-          <p class="mb-4">Bootstrap's default utility classes can be found on the official <a href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities below were created to extend this theme past the default utility classes built into Bootstrap's framework.</p>
-
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Border Left Utilities -->
-            <div class="col-lg-6">
-
-              <div class="card mb-4 py-3 border-left-primary">
-                <div class="card-body">
-                  .border-left-primary
+<!-- 진행률시작 -->
+<div class="card-body">
+                  <div class="mb-1 small">프로젝트 진행률 75%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
                 </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-left-secondary">
-                <div class="card-body">
-                  .border-left-secondary
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-left-success">
-                <div class="card-body">
-                  .border-left-success
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-left-info">
-                <div class="card-body">
-                  .border-left-info
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-left-warning">
-                <div class="card-body">
-                  .border-left-warning
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-left-danger">
-                <div class="card-body">
-                  .border-left-danger
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-left-dark">
-                <div class="card-body">
-                  .border-left-dark
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Border Bottom Utilities -->
-            <div class="col-lg-6">
-
-              <div class="card mb-4 py-3 border-bottom-primary">
-                <div class="card-body">
-                  .border-bottom-primary
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-bottom-secondary">
-                <div class="card-body">
-                  .border-bottom-secondary
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-bottom-success">
-                <div class="card-body">
-                  .border-bottom-success
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-bottom-info">
-                <div class="card-body">
-                  .border-bottom-info
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-bottom-warning">
-                <div class="card-body">
-                  .border-bottom-warning
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-bottom-danger">
-                <div class="card-body">
-                  .border-bottom-danger
-                </div>
-              </div>
-
-              <div class="card mb-4 py-3 border-bottom-dark">
-                <div class="card-body">
-                  .border-bottom-dark
-                </div>
-              </div>
-
-            </div>
-
-          </div>
+<!-- 진행률끝 -->
+         <!-- 달력시작  -->
+         
+<c:import url="/WEB-INF/views/red/calendar.jsp"></c:import>
+       
+         <!-- 달력끝 -->
 
         </div>
         <!-- /.container-fluid -->
@@ -512,7 +298,10 @@
 
   <!-- Custom scripts for all pages-->
   <script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
-
+  
+  <!-- calendar.js -->
+  <script src="/hwabo/resources/js/calendar.js"></script>
+	
 </body>
 
 </html>
