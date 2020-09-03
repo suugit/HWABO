@@ -242,12 +242,12 @@
           <h1 class="h3 mb-2 text-gray-800"></h1>
           <p class="mb-4"></p>
 
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
+          <!-- 게시글 작성 시작 -->
+         <!--  <div class="card shadow mb-4">
             <div class="card-header py-3">
             </div>
             <div class="card-body">
-              <!-- 게시글안쪽 -->
+              게시글안쪽
               <form action="blank.do" id="mainInsert">
               <table style="text-align:center;width:100%;">
               <tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
@@ -301,7 +301,27 @@
               </table>
               </form>
             </div>
+          </div> -->
+          <!-- 게시글작성끝 -->
+          <!-- 새 글작성 시작 -->
+          <!-- 프로젝트생성시작 -->
+<div class="card shadow mb-4">
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+                            <h1 class="m-0 text-primary" style="text-align:center" onclick="javascript:location.href='writeB.do'">
+                <img src="/hwabo/resources/maincss/img/plus2.png" style="width:45px;height:45px;">            
+                            새 글쓰기
+                            </h1>
+
+
+            </div>
           </div>
+          <!-- 프로젝트생성끝 -->
+          
+          
+          <!-- 새 글작성끝 -->
+          
+          
 <% for(int i = 0; i < 7; i++){ %>
 <!-- 게시글시작 -->
 <div class="card shadow mb-4">

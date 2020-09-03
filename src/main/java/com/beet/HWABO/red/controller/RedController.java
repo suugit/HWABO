@@ -120,4 +120,9 @@ public class RedController {
 		
 		return "red/create";
 	}
+	@RequestMapping(value = "writeB.do", method = RequestMethod.GET)
+	public String writeB(Model model) {
+		
+		return "red/write";
+	}
 }
