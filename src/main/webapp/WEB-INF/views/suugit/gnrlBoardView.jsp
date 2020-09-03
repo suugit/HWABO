@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 
 <head>
   <link rel="icon" type="image/x-icon" href="/hwabo/resources/assets/img/favicon.png" />
@@ -67,6 +67,14 @@
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->
+<!-- 테스트버튼2 시작 -->
+<div style="position:absolute;z-index:5;"><br>&nbsp;
+	원하는 페이지로 :
+    <button onclick="javascript:location.href='cards.do'">프로젝트 시작페이지</button>
+    <button onclick="javascript:location.href='ftables.do'">메인(sns형)</button>
+    </div>
+<div style="background-color:skyblue;border:1px solid black;"><br><br><br></div>
+<!-- 테스트버튼2 끝 -->
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -376,15 +384,9 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        
         <div class="container-fluid">
-
-  	  <div class="row d-inline-flex w-50" style="max-width:700px">
-
-      <div class="col">
-      
 <!-- 진행률 시작 -->
-<div class="card shadow mb-4 ">
+<div class="card shadow mb-4">
             <div class="card-header py-3">
             </div>
             <div class="card-body">
@@ -429,8 +431,6 @@ function move() {
     }
   }
 }
-
-
 </script>
             </div>
           </div>
@@ -440,370 +440,318 @@ function move() {
           <p class="mb-4"></p>
 
           <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+              <form action="blank.do" id="mainInsert">
+              <table style="text-align:center;width:100%;">
+              <tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
+              <span>글작성</span>
+              </td><td style="width:20%;">
+              <span>업무</span>
+              </td><td style="width:20%;">
+              <span>일정</span>
+              </td><td style="width:20%;">
+              <span>할일</span>
+              </td><td style="width:20%;">
+              <span>투표</span>
+              </td></tr>
+              <!-- 구분선 -->
+              <tr><td colspan="5">
+              <hr>
+              </td></tr>
+              <!-- 글작성 본문 -->
+              <tr>
+	              <td colspan="5">
+	               <input type="text" class="form-control mb-1" placeholder="제목(선택값)">
+	              </td>
+              </tr>
+              <tr>
+              	<td colspan="5">
+              	<textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+              	</td>
+              </tr>
+               <tr><td colspan="5">
+              <hr>
+              </td></tr>
 
-              <!-- 게시글안쪽 -->
-
-			 <div class="card mb-4">
-					        <div class="card-header">
-					          <ul class="nav nav-tabs card-header-tabs" id="writeForm" role="tablist">
-					            <li class="nav-item">
-					            <a class="nav-link active" href="#gnrlwrite" role="tab" aria-controls="gnrlwrite" aria-selected="true">글 작성</a>
-					            </li>
-					            <li class="nav-item">
-					              <a class="nav-link"  href="#tap2" role="tab" aria-controls="tap2" aria-selected="false">업무</a>
-					            </li>
-					            <li class="nav-item">
-					              <a class="nav-link" href="#tap3" role="tab" aria-controls="tap3" aria-selected="false">일정</a>
-					            </li>
-					            <li class="nav-item">
-					              <a class="nav-link" href="#tap4" role="tab" aria-controls="tap4" aria-selected="false">할일</a>
-					            </li>
-					            <li class="nav-item">
-					              <a class="nav-link" href="#tap5" role="tab" aria-controls="tap5" aria-selected="false">투표</a>
-					            </li>
-					          </ul>
-					        </div>
-					        <form action="blank.do" id="mainInsert" > 
-					        <div class="card-body ">
-					         <!--  <h4 class="card-title">글 작성</h4> -->
-					          
-					           <div class="tab-content mt-3">
-					           <!-- 글 작성  -->
-					            <div class="tab-pane active" id="gnrlwrite" role="tabpanel">
-					            <input type="text" class="form-control mb-1" placeholder="제목(선택값)">
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-link mr-2"><a href="#"></a></i>
-						            <i class="fa fa-calendar-alt mr-2"></i>
-						            <i class="fa fa-map-marker-alt mr-2"></i>
-						            <i class="fa fa-code mr-5"></i>
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success" style="padding:4px 30px;" onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					            
-					            
-					            <!-- 업무 -->
-					            <div class="tab-pane" id="tap2" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					            
-					            <!-- 일정 -->
-					            <div class="tab-pane" id="tap3" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              </div>
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					            
-					          	
-					            <!-- 할일 -->
-					         <div class="tab-pane" id="tap3" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              </div>
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					            
-					              <!--투표 -->
-					            <div class="tab-pane" id="tap3" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              </div>
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					             
-					            
-					          </div>
-					        </div>
-					      </div>		     
-           				   </form>
-
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-
-
-      
+              <tr>
+              <!-- 옵션메뉴 -->
+              	<div class="clearfix d-flex ">
+              	<td colspan="3" class="flex-grow-5">
+	              <a href="#"><i class="fa fa-link m-2"><span class="d-none d-md-inline-block ml-1">첨부</span></i></a>
+	              <a href="#"><i class="fa fa-calendar-alt mr-2"><span class="d-none d-md-inline-block  ml-1">일정</span></i></a>
+	              <a href="#"><i class="fa fa-map-marker-alt mr-2"><span class="d-none d-md-inline-block  ml-1">코드</span></i></a>
+	              <a href="#"><i class="fa fa-code mr-2"><span class="d-none d-md-inline-block  ml-1">지도</span></i></a>
+	              <a href="#"><i class="fa fa-hashtag mr-4 ml-auto"></i></a>
+	              <a href="#"><i class="fa fa-at mr-4" ></i></a>
+					
+					
+              	</td>
+				
+              	 <!-- 버튼 -->
+              	 <td> 
+             	 	<a class="btn btn-success btn-icon-split" href="javascript:mainInsert.submit();" style="width:90%;" >
+                    <span class="text">등록</span>
+                 	</a>
+             	 </td>
+             	 <td>
+             		<a href="javascript:mainInsert.reset();" class="btn btn-danger btn-icon-split" style="width:90%;">
+                    <span class="text">취소</span>
+             		</a>
+              	</td>
+              </tr>
+             </div>
         
-        <!-- /.container-fluid -->
+              </table>
+              </form>
+            </div>
+          </div>
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+
+
         </div>
-  		</div>
+        <!-- /.container-fluid -->
+
       </div>
       <!-- End of Main Content -->
 
@@ -863,12 +811,7 @@ function move() {
 
   <!-- Page level custom scripts -->
   <script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
-<script>
-$('#writeForm a').on('click', function (e) {
-	  e.preventDefault();
-	  $(this).tab('show');
-	})
-</script>
+
 </body>
 
 </html>
