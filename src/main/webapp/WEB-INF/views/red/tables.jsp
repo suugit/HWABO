@@ -305,10 +305,10 @@
           <!-- 게시글작성끝 -->
           <!-- 새 글작성 시작 -->
           <!-- 프로젝트생성시작 -->
-<div class="card shadow mb-4">
+<div class="card shadow mb-4" onclick="javascript:location.href='writeB.do'">
             <div class="card-body">
               <!-- 게시글안쪽 -->
-                            <h1 class="m-0 text-primary" style="text-align:center" onclick="javascript:location.href='writeB.do'">
+                            <h1 class="m-0 text-primary" style="text-align:center">
                 <img src="/hwabo/resources/maincss/img/plus2.png" style="width:45px;height:45px;">            
                             새 글쓰기
                             </h1>
