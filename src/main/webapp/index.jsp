@@ -33,6 +33,7 @@
     <button onclick="javascript:location.href='khc.do'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">KHC 페이지로</button>
     <button onclick="javascript:location.href='plz.do'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">plzCarryMe</button>
     <button onclick="javascript:location.href='kyukyu.do'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">KyuKyu 페이지로</button>
+    <button onclick="javascript:location.href='moveCrypto.do'" style="width:150px;height:60px;background-color:#2E2E2E;color:white;">test로그인 페이지로</button>
     <!-- <button onclick="javascript:location.href='main/404.jsp'">404</button>
     <button onclick="javascript:location.href='main/blank.jsp'">blank</button>
     <button onclick="javascript:location.href='main/buttons.jsp'">buttons</button>
