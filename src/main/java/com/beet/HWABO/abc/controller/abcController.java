@@ -1,4 +1,4 @@
-package com.beet.HWABO.daun.controller;
+package com.beet.HWABO.abc.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,38 +7,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-public class DaunController {
+public class abcController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(DaunController.class);
+	private static final Logger logger = LoggerFactory.getLogger(abcController.class);
 	
 	@RequestMapping("tablesTEST.do")
 	public String TESTtables() {
 		
-		return "daun/tablesTEST";
+		return "abc/tablesTEST";
 	}
 	
 	@RequestMapping("myhwabo.do")
 	public String myHWABO() {
 		
-		return "daun/myhwabo";
+		return "abc/myhwabo";
 	}
 	
 	@RequestMapping("yourhwabo.do")
 	public String yourHWABO() {
 		
-		return "daun/yourhwabo";
+		return "abc/yourhwabo";
 	}
 	
 	@RequestMapping("myhwabotest.do")
 	public String myHWABOtest() {
 		
-		return "daun/myhwabotest";
+		return "abc/myhwabotest";
 	}
 	
 	@RequestMapping("scheduleboard.do")
 	public String redtest() {
 		
-		return "daun/scheduleboard";
+		return "abc/scheduleboard";
 	}
 	
 }

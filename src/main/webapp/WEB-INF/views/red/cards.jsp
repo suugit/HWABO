@@ -609,7 +609,7 @@ font-size: 28px;
 <!-- 그래프끝 -->
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Daun 34%
+                      <i class="fas fa-circle text-primary"></i> abc 34%
                     </span>
                     <span class="mr-2">
                       <i class="fas fa-circle text-success"></i> kyukyu 33%
