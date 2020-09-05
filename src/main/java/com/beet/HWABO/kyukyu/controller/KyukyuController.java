@@ -26,7 +26,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		return "kyukyu/myfolder";
 	}
 	@RequestMapping(value = "mynote.do", method = RequestMethod.GET)
-	public String daundaunIndex(Model model) {
+	public String abcabcIndex(Model model) {
 		
 		return "kyukyu/mynote";
 	}

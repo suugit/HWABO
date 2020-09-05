@@ -25,10 +25,10 @@ public class RedController {
 		
 		return "red/index";
 	}
-	@RequestMapping(value = "daundaun.do", method = RequestMethod.GET)
-	public String daundaunIndex(Model model) {
+	@RequestMapping(value = "abc.do", method = RequestMethod.GET)
+	public String abcabcIndex(Model model) {
 		
-		return "daun/index";
+		return "abc/index";
 	}
 	@RequestMapping(value = "kyukyu.do", method = RequestMethod.GET)
 	public String kyukyuIndex(Model model) {
