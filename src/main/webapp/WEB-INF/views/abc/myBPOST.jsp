@@ -441,7 +441,7 @@
 
 											</thead>
 											<tbody>
-											<c:forEach var="pp"  begin="1" end="20" step="1"> 
+											<c:forEach var="pp"  begin="1" end="5" step="1"> 
 												<tr>
 													<td>${ pp }</td>
 													<td>요청</td>
@@ -450,6 +450,42 @@
 													<td>2020-08-20</td>
 													<td>2020-09-01</td>
 													<td>홍길동</td>
+													<td>2020-08-${pp + 1}</td>
+												</tr>
+												</c:forEach>
+												<c:forEach var="pp"  begin="6" end="10" step="1"> 
+												<tr>
+													<td>${ pp }</td>
+													<td>진행</td>
+													<td>제목입니다</td>
+													<td>나나나, 가가가, 신사임당</td>
+													<td>2020-08-27</td>
+													<td>2020-09-31</td>
+													<td>홍길동</td>
+													<td>2020-08-${pp + 1}</td>
+												</tr>
+												</c:forEach>
+												<c:forEach var="pp"  begin="11" end="13" step="1"> 
+												<tr>
+													<td>${ pp }</td>
+													<td>완료</td>
+													<td>제목입니다</td>
+													<td>랄랄랄, 가가가</td>
+													<td>2020-09-27</td>
+													<td>2020-10-21</td>
+													<td>홍길동</td>
+													<td>2020-08-${pp + 1}</td>
+												</tr>
+												</c:forEach>
+												<c:forEach var="pp"  begin="14" end="17" step="1"> 
+												<tr>
+													<td>${ pp }</td>
+													<td>피드백</td>
+													<td>피드백의 title</td>
+													<td>랄랄랄, 가가가</td>
+													<td>2020-09-02</td>
+													<td>2020-09-21</td>
+													<td>김철수</td>
 													<td>2020-08-${pp + 1}</td>
 												</tr>
 												</c:forEach>
