@@ -63,15 +63,89 @@
 			<br>
 
 
+			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapsePages" aria-expanded="true"
-				aria-controls="collapsePages"> <i class="fas fa-tasks"></i> <span>업무 모아보기</span>
-			</a> </li>
-
+				data-toggle="collapse" data-target="#collapseThree"
+				aria-expanded="true" aria-controls="collapseThree"> <i
+					class="far fa-check-circle"></i><span>볼 업무 선택</span>
+			</a>
+				<div id="collapseThree" class="collapse"
+					aria-labelledby="headingThree" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">HWABO</h6>
+						<a class="collapse-item" href="#"><span><label><input
+									type="radio" name="selectshow">프로젝트 업무</label></span></a> <a
+							class="collapse-item" href="#"><span><label><input
+									type="radio" name="selectshow"> 나의 업무</label></span></a> <a
+							class="collapse-item" href="#"><span><label><input
+									type="radio" name="selectshow"> 요청 온 업무 </label></span></a>
+					</div>
+				</div></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseTwo"
+				aria-expanded="true" aria-controls="collapseTwo"> <i
+					class="fas fa-filter"></i> <span>진행상황</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">HWABO</h6>
+						<a class="collapse-item" href="#"><span><label><input
+									type="checkbox" checked="checked">요 청</label></span></a> <a
+							class="collapse-item" href="#"> <span><label><input
+									type="checkbox" checked="checked">진 행</label></span></a>  <a
+							class="collapse-item" href="#"><span><label><input
+									type="checkbox" checked="checked">완 료</label></span></a> <a
+							class="collapse-item" href="#"><span><label><input
+									type="checkbox" checked="checked">보 류</label></span></a> <a
+							class="collapse-item" href="#"><span><label><input
+									type="checkbox" checked="checked">피드백</label></span></a>
+					</div>
+				</div></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+			
+			
+						<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapsefour"
+				aria-expanded="true" aria-controls="collapsefour"> <i
+					class="fas fa-filter"></i> <span></span>
+			</a>
+				<div id="collapsefour" class="collapse" aria-labelledby="headingfour"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">정 렬</h6>
+						<a class="collapse-item" href="#"><span><label><input
+									type="checkbox" checked="checked">진행상황</label></span></a> <a
+							class="collapse-item" href="#"> <span><label><input
+									type="checkbox" checked="checked">제 목</label></span></a>  <a
+							class="collapse-item" href="#"><span><label><input
+									type="checkbox" checked="checked">시작일</label></span></a> <a
+							class="collapse-item" href="#"><span><label><input
+									type="checkbox" checked="checked">마감일</label></span></a> <a
+							class="collapse-item" href="#"><span><label><input
+									type="checkbox" checked="checked">등록일</label></span></a>
+					</div>
+				</div></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapsePages" aria-expanded="true"
+				aria-controls="collapsePages"> <i class="fas fa-chalkboard"></i>
+					<span>나의 화보</span>
+			</a></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -88,8 +162,7 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseOne"
-				aria-expanded="true" aria-controls="collapseOne"> 
-				<i class="fas fa-chalkboard-teacher"></i> <span>팀원들의 화보</span>
+				aria-expanded="true" aria-controls="collapseOne"> <i class="fas fa-chalkboard-teacher"></i><span>팀원들의 화보</span>
 			</a>
 				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
 					data-parent="#accordionSidebar">
@@ -329,45 +402,11 @@
 				<div class="container-fluid">
 
 					<div class="row">
-						<!-- 내정보 시작 -->
-						<div class="col-md-4">
+						<!-- 업무 모아보기 시작 -->
+						<div class="col-md-9">
 							<div class="card mb-4 py-3 border-left-info">
 								<div style="margin-top: 0px;">
-									<h1>&nbsp;&nbsp;내&nbsp; 정 보</h1>
-									<hr>
-								</div>
-								<div class="card-body" style="height: 400px;">
-									<!-- 게시글안쪽 -->
-									<table style="width: 100%; height: 90%; overflow: auto;">
-										<tr>
-											<th style="text-align: center;" rowspan="4" width="25%;">사진</th>
-											<th style="text-align: center;" width="25%;">이 &nbsp;름</th>
-											<td width="50%;">OOO</td>
-										</tr>
-										<tr>
-											<th style="text-align: center;" width="25%;">이메일</th>
-											<td width="55%;">OOO@naver.com</td>
-										</tr>
-										<tr>
-											<th style="text-align: center;" width="25%;">휴대폰</th>
-											<td width="55%;">010-0000-0000</td>
-										</tr>
-										<tr>
-											<th style="text-align: center;" width="25%;">부 &nbsp;서</th>
-											<td width="55%;">마케팅부</td>
-										</tr>
-									</table>
-
-								</div>
-							</div>
-						</div>
-						<!-- 내정보 끝 -->
-
-						<!-- 즐겨찾기 시작 -->
-						<div class="col-md-8">
-							<div class="card mb-4 py-3 border-left-info">
-								<div style="margin-top: 0px;">
-									<h1>&nbsp;&nbsp;즐 겨 찾 기</h1>
+																	<h1>&nbsp;&nbsp;제 목(프로젝트전체업무 등등)</h1>
 									<hr>
 								</div>
 								<!-- 게시글안쪽 -->
@@ -378,11 +417,15 @@
 											style="width: 90%; cellspacing: 0;">
 											<thead>
 												<tr>
-													<th>유형</th>
+													<th>번호</th>
+													<th>진행상황</th>
 													<th>제목</th>
-													<th>내용</th>
-													<th>수정일</th>
+													<th>시작일</th>
+													<th>마감일</th>
+													<th>담당자</th>
 													<th>등록일</th>
+													<th>작성자</th>
+													
 												</tr>
 
 											</thead>
@@ -444,12 +487,47 @@
 													<td>등록일</td>
 												</tr>
 											</tbody>
-										</table>
+										</table>				
+								</div>
+							</div>
+						</div>
+						<!-- 업무 모아보기 끝 -->
+
+						<!-- 접속중인 팀원 시작 -->
+						<div class="col-md-2">
+							<div class="card mb-4 py-3 border-left-info">
+								<div style="margin-top: 0px;">
+									<h1>&nbsp;&nbsp;접속 중인 팀원</h1>
+									<hr>
+								</div>
+								<div class="card-body" style="height: 400px;">
+									<!-- 게시글안쪽 -->
+									<table style="width: 100%; height: 90%; overflow: auto;">
+										<tr>
+											<th style="text-align: center;" rowspan="4" width="25%;">사진</th>
+											<th style="text-align: center;" width="25%;">이 &nbsp;름</th>
+											<td width="50%;">OOO</td>
+										</tr>
+										<tr>
+											<th style="text-align: center;" width="25%;">이메일</th>
+											<td width="55%;">OOO@naver.com</td>
+										</tr>
+										<tr>
+											<th style="text-align: center;" width="25%;">휴대폰</th>
+											<td width="55%;">010-0000-0000</td>
+										</tr>
+										<tr>
+											<th style="text-align: center;" width="25%;">부 &nbsp;서</th>
+											<td width="55%;">마케팅부</td>
+										</tr>
+									</table>
+
+
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- 즐겨찾기 끝 -->
+						<!-- 접속 중인 팀원 끝 -->
 					</div>
 
 					<br>

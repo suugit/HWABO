@@ -70,54 +70,11 @@ $("div").on('click', function(e){
 			</a>
 <br><br><br>
 
-			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo" onclick="javascript: return false;">
-				 <i class="far fa-check-circle"></i> <span>볼 업무 선택</span>
-			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">HWABO</h6>
-						<a class="collapse-item" href="#"><span><label><input
-									type="radio" name="selectshow">나의 업무(에이작스처리)</label></span></a> <a class="collapse-item"
-							href="#"><span><label><input type="radio" name="selectshow">요청
-									온 업무</label></span></a> <a class="collapse-item" href="#"><span><label><input
-									type="radio" name="selectshow">전체 업무</label></span></a>
-					</div>
-				</div>
-				</li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseThree"
-				aria-expanded="true" aria-controls="collapseThree" onclick="javascript: return false;">
-				 <i class="fas fa-filter"></i> <span>보기 정렬</span>
-			</a>
-				<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">HWABO</h6>
-						<a class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">상 태</label></span></a> <a
-							class="collapse-item" href="#"> <span><label><input
-									type="checkbox" checked="checked">제 목</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">진척도</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">시작일</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">마감일</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">수정일</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">등록일</label></span></a>
-					</div>
-				</div></li>
+				data-target="#collapsePages" aria-expanded="true"
+				aria-controls="collapsePages"> <i class="fas fa-chalkboard"></i>
+					<span>나의 화보</span>
+			</a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -127,10 +84,10 @@ $("div").on('click', function(e){
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapsePages" aria-expanded="true"
 				aria-controls="collapsePages" onclick="javascript: return false;"><i class="fas fa-box-open"></i>
-					<span>보관함</span>
+					<span>팀원의 보관함</span>
 			</a> <a class="nav-link collapsed" href="#" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages" onclick="javascript: return false;"> 
-				<i class="far fa-folder-open"></i><span>파일함</span>
+				<i class="far fa-folder-open"></i><span>팀원의 파일함</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -140,7 +97,7 @@ $("div").on('click', function(e){
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseOne"
 				aria-expanded="true" aria-controls="collapseOne" onclick="javascript: return false;"> 
-				<i class="fas fa-chalkboard"></i> <span>팀원들의 화보</span>
+				<i class="fas fa-chalkboard-teacher"></i> <span>팀원들의 화보</span>
 			</a>
 				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
 					data-parent="#accordionSidebar">

@@ -11,10 +11,10 @@ public class abcController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(abcController.class);
 	
-	@RequestMapping("tablesTEST.do")
+	@RequestMapping("mybpost.do")
 	public String TESTtables() {
 		
-		return "abc/tablesTEST";
+		return "abc/myBPOST";
 	}
 	
 	@RequestMapping("myhwabo.do")
