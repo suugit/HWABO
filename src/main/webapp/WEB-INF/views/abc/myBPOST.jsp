@@ -34,6 +34,18 @@
 <link
 	href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
+	
+<style type="text/css">
+
+.online:link { text-decoration:none; color: black;}
+
+.online:visited { text-decoration:none;color: black;}
+
+.online:active {text-decoration:none; color: black; }
+
+.online:hover { text-decoration:none; color:#708090;}
+
+</style>
 
 </head>
 
@@ -403,89 +415,45 @@
 
 					<div class="row">
 						<!-- 업무 모아보기 시작 -->
-						<div class="col-md-9">
+						<div class="col-md-10">
 							<div class="card mb-4 py-3 border-left-info">
 								<div style="margin-top: 0px;">
-																	<h1>&nbsp;&nbsp;제 목(프로젝트전체업무 등등)</h1>
+																	<h3>&nbsp;&nbsp;제 목(프로젝트전체업무 등등)</h3>
 									<hr>
 								</div>
 								<!-- 게시글안쪽 -->
 
-								<div class="card-body" style="height: 400px; overflow: auto;">
+								<div class="card-body" style="height: 680px; overflow: auto;">
 									<div class="table-responsive">
 										<table class="table table-bordered" id="dataTable"
-											style="width: 90%; cellspacing: 0;">
+											style="width: 95%; cellspacing: 0;">
 											<thead>
 												<tr>
 													<th>번호</th>
 													<th>진행상황</th>
 													<th>제목</th>
+													<th>담당자</th>
 													<th>시작일</th>
 													<th>마감일</th>
-													<th>담당자</th>
-													<th>등록일</th>
 													<th>작성자</th>
-													
+													<th>등록일</th>
 												</tr>
 
 											</thead>
 											<tbody>
+											<c:forEach var="pp"  begin="1" end="20" step="1"> 
 												<tr>
-													<td>글</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
+													<td>${ pp }</td>
+													<td>요청</td>
+													<td>제목입니다</td>
+													<td>이순신, 신사임당</td>
+													<td>2020-08-20</td>
+													<td>2020-09-01</td>
+													<td>홍길동</td>
+													<td>2020-08-${pp + 1}</td>
 												</tr>
-												<tr>
-													<td>업무</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>일정</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
+												</c:forEach>
+											
 											</tbody>
 										</table>				
 								</div>
@@ -497,29 +465,24 @@
 						<div class="col-md-2">
 							<div class="card mb-4 py-3 border-left-info">
 								<div style="margin-top: 0px;">
-									<h1>&nbsp;&nbsp;접속 중인 팀원</h1>
+									<h3>&nbsp;&nbsp;접속 중인 팀원</h3>
 									<hr>
 								</div>
-								<div class="card-body" style="height: 400px;">
+								<div class="card-body" >
 									<!-- 게시글안쪽 -->
 									<table style="width: 100%; height: 90%; overflow: auto;">
-										<tr>
-											<th style="text-align: center;" rowspan="4" width="25%;">사진</th>
-											<th style="text-align: center;" width="25%;">이 &nbsp;름</th>
-											<td width="50%;">OOO</td>
-										</tr>
-										<tr>
-											<th style="text-align: center;" width="25%;">이메일</th>
-											<td width="55%;">OOO@naver.com</td>
-										</tr>
-										<tr>
-											<th style="text-align: center;" width="25%;">휴대폰</th>
-											<td width="55%;">010-0000-0000</td>
-										</tr>
-										<tr>
-											<th style="text-align: center;" width="25%;">부 &nbsp;서</th>
-											<td width="55%;">마케팅부</td>
-										</tr>
+									<tr>
+									<td><span style="color: 	#0000CD"><i class="fas fa-circle"></i></span></td>
+									<td><span><a class="online" href="#">접속중인 사용자의 이름</a></span></td>
+									</tr>
+									
+									<tr>
+									
+									<td><span style="color: #C0C0C0"><i class="fas fa-circle"></i></span></td>
+									<td><span style="color: #C0C0C0">비접속상태의 사용자이름</span></td>
+									</tr>
+
+
 									</table>
 
 
@@ -531,160 +494,12 @@
 					</div>
 
 					<br>
-					<div class="checks" align="left"
-						style="margin-left: 1%; font-size: 23px;">
-						<form action="#">
-							<span style="color: #42BBBA;"><label><input
-									name="type" type="radio">&nbsp;글
-									&nbsp;&nbsp;&nbsp;&nbsp; </label></span> <span style="color: #42BBBA;"><label><input
-									name="type" type="radio">&nbsp;업 무
-									&nbsp;&nbsp;&nbsp;&nbsp; </label></span> <span style="color: #42BBBA;"><label><input
-									name="type" type="radio">&nbsp;일
-									정&nbsp;&nbsp;&nbsp;&nbsp; </label></span> <span style="color: #42BBBA;"><label><input
-									name="type" type="radio">&nbsp;할
-									일&nbsp;&nbsp;&nbsp;&nbsp; </label></span> <span style="color: #42BBBA;"><label><input
-									name="type" type="radio">&nbsp;투
-									표&nbsp;&nbsp;&nbsp;&nbsp;</label></span>
-						</form>
-					</div>
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
 
 
 					<!-- 게시글시작 -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
+							<h3>게시글 제목</h3>
 						</div>
 						<div class="card-body">
 							<!-- 게시글안쪽 -->

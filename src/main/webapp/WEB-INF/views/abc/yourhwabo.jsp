@@ -70,7 +70,15 @@ $("div").on('click', function(e){
 			</a>
 <br><br><br>
 
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+			<li class="nav-item"><a class="nav-link collapsed" href="mybpost.do"
+				data-target="#collapsePages" aria-expanded="true"
+				aria-controls="collapsePages"> <i class="fas fa-tasks"></i> <span>업무 모아보기</span>
+			</a> </li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+			
+			<li class="nav-item"><a class="nav-link collapsed" href="myhwabo.do"
 				data-target="#collapsePages" aria-expanded="true"
 				aria-controls="collapsePages"> <i class="fas fa-chalkboard"></i>
 					<span>나의 화보</span>
@@ -84,10 +92,10 @@ $("div").on('click', function(e){
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapsePages" aria-expanded="true"
 				aria-controls="collapsePages" onclick="javascript: return false;"><i class="fas fa-box-open"></i>
-					<span>팀원의 보관함</span>
+					<span>보관함</span>
 			</a> <a class="nav-link collapsed" href="#" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages" onclick="javascript: return false;"> 
-				<i class="far fa-folder-open"></i><span>팀원의 파일함</span>
+				<i class="far fa-folder-open"></i><span>파일함</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -103,7 +111,7 @@ $("div").on('click', function(e){
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">HWABO</h6>
-						<a class="collapse-item" href="#"><span><label>사람이름1</label></span></a>
+						<a class="collapse-item" href="yourhawbo.do"><span><label>테스트페이지</label></span></a>
 						<a class="collapse-item" href="#"><span><label>사람이름2</label></span></a>
 						<a class="collapse-item" href="#"><span><label>사람이름3</label></span></a>
 						<a class="collapse-item" href="#"><span><label>사람이름4</label></span></a>
@@ -365,7 +373,21 @@ $("div").on('click', function(e){
 											<td width="55%;">마케팅부</td>
 										</tr>
 									</table>
-
+									<!-- 버튼 2개 -->
+									<div align="right">
+									                  <a href="#" class="btn btn-info btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-box-open"></i>
+                    </span>
+                    <span class="text">보관함</span>                   
+                  </a>
+                                    <a href="#" class="btn btn-info btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="far fa-folder-open"></i>
+                    </span>
+                    <span class="text">파일함</span>
+                  </a>
+                  </div>
 								</div>
 							</div>
 						</div>
