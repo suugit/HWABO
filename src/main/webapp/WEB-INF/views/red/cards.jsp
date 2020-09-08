@@ -31,8 +31,8 @@
 
 .donut-chart {
   position: relative;
-	width: 200px;
-  height: 200px;
+	width: 100px;
+  height: 100px;
 	margin: 0 auto 2rem;
 	border-radius: 100%
  }
@@ -42,8 +42,8 @@ p.center {
   text-align: center;
 font-size: 28px;
   top:0;left:0;bottom:0;right:0;
-  width: 170px;
-  height: 170px;
+  width: 90px;
+  height: 90px;
   margin: auto;
   border-radius: 50%;
   line-height: 35px;
@@ -53,14 +53,14 @@ font-size: 28px;
 	
 .portion-block {
     border-radius: 50%;
-    clip: rect(0px, 200px, 200px, 100px);
+    clip: rect(0px, 100px, 100px, 50px);
     height: 100%;
     position: absolute;
     width: 100%;
   }
 .circle {
     border-radius: 50%;
-    clip: rect(0px, 100px, 200px, 0px);
+    clip: rect(0px, 50px, 100px, 0px);
     height: 100%;
     position: absolute;
     width: 100%;
@@ -133,20 +133,23 @@ font-size: 28px;
 
 <div style="width:100%;display:flex;justify-content:center;align-item:center;">
 
-<!-- Sidebar2 -->
+<!-- Sidebar2right -->
      <c:import url="/WEB-INF/views/red/entersideFixed.jsp"></c:import>
-<!-- End of Sidebar -->
+<!-- End of Sidebar2right -->
+<!-- SidebarChat -->
+   <%--  <c:import url="/WEB-INF/views/red/entersideChat.jsp"></c:import> --%>
+<!-- End of SidebarChat -->
 
   <!-- Page Wrapper -->
   <div id="wrapper"  style="width:1300px;">
 
     <!-- Sidebar1 -->
-    <span style="width:270px"></span>
+    <div style="width:17%"></div>
     <%--  <c:import url="/WEB-INF/views/red/enterside.jsp"></c:import> --%>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" class="d-flex flex-column"  style="width:62%;">
 
       <!-- Main Content -->
       <div id="content">
@@ -178,7 +181,7 @@ font-size: 28px;
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">관공서 UI 12월16일 마감</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">관공서 UI 12월16일</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -209,12 +212,6 @@ font-size: 28px;
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 구름과자 30%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> 소나기 50%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> 호로록 20%
                     </span>
                   </div>
                 </div>
@@ -258,12 +255,6 @@ font-size: 28px;
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 감전직전 40%
                     </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> 팟수 50%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> 줄넘기자빠짐 10%
-                    </span>
                   </div>
                 </div>
               </div>
@@ -306,12 +297,6 @@ font-size: 28px;
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 마차 0%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> 어제먹은밥 80%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> 펭귀뒤통수 20%
                     </span>
                   </div>
                 </div>
@@ -358,12 +343,6 @@ font-size: 28px;
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 도도로 25%
                     </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> 재로 15%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> 병목아야 60%
-                    </span>
                   </div>
                 </div>
               </div>
@@ -405,12 +384,6 @@ font-size: 28px;
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 뚜기 50%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> 보자기 10%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> 오호선 40%
                     </span>
                   </div>
                 </div>
@@ -455,12 +428,6 @@ font-size: 28px;
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> abc 34%
                     </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> kyukyu 33%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> suggit 33%
-                    </span>
                   </div>
                 </div>
               </div>
@@ -485,6 +452,7 @@ font-size: 28px;
       <!-- End of Footer -->
 
     </div>
+    <div style="width:25%"></div>
     <!-- End of Content Wrapper -->
 
 </div>
