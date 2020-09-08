@@ -9,11 +9,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div style="position:fixed;z-index:98">
-<span>
+<div style="position:fixed;">
+
+<table style="width:1300px">
+<tr>
+<td>
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
 <br><br><br><br>
-     
       <!-- Sidebar - Brand -->
       <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='/hwabo/'">
 
@@ -36,9 +40,15 @@
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
 
-    </ul>
-    </span>
-    <span style="width:100%;height:100%;background-color:black;" ></span>
+</ul>
+    
+</td>
+<td style="width:1000px;">
+
+</td>
+</tr>    
+</table>
+    
     </div>
 </body>
 </html>

@@ -123,21 +123,26 @@ font-size: 28px;
         <c:import url="/WEB-INF/views/red/topbar.jsp"></c:import>
 <!-- End of Topbar -->
 
-<table style="width:100%;">
+<!-- <table style="width:100%;">
 <tr>
 <td style="width:20%;"></td>
 
-<td style="width:60%;">
+<td style="width:60%;"> -->
+
+
+
+<div style="width:100%;display:flex;justify-content:center;align-item:center;">
 
 <!-- Sidebar2 -->
      <c:import url="/WEB-INF/views/red/entersideFixed.jsp"></c:import>
 <!-- End of Sidebar -->
 
   <!-- Page Wrapper -->
-  <div id="wrapper">
+  <div id="wrapper"  style="width:1300px;">
 
     <!-- Sidebar1 -->
-     <c:import url="/WEB-INF/views/red/enterside.jsp"></c:import>
+    <span style="width:270px"></span>
+    <%--  <c:import url="/WEB-INF/views/red/enterside.jsp"></c:import> --%>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -483,9 +488,12 @@ font-size: 28px;
     <!-- End of Content Wrapper -->
 
 </div>
-</td><td style="width:20%;"></td>
+
+
+</div><!-- flex -->
+<!-- </td><td style="width:20%;"></td>
 </tr>
-</table>
+</table> -->
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
