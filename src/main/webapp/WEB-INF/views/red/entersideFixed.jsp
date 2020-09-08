@@ -13,7 +13,7 @@
 
 <table style="width:1300px">
 <tr>
-<td>
+<td style="width:1%;">
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -43,7 +43,7 @@
 </ul>
     
 </td>
-<td style="width:1000px;">
+<td style="width:99%;">
 
 </td>
 </tr>    
