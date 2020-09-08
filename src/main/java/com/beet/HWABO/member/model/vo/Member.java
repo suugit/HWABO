@@ -13,16 +13,19 @@ public class Member implements java.io.Serializable{
 	private String project_num;
 	private String ugroup;
 	private String urole;
-	private String authst;
+	private String ust;
+	private String ucert;
 	private java.sql.Date udate;
 	private String signtype;
 	private String accesstoken;
 	private String uimg;
+	private String uactive;
 	
 	public Member(){}
 
 	public Member(String ucode, String uemail, String upwd, String uname, int uphone, String project_num, String ugroup,
-			String urole, String authst, Date udate, String signtype, String accesstoken, String uimg) {
+			String urole, String ust, String ucert, Date udate, String signtype, String accesstoken, String uimg,
+			String uactive) {
 		super();
 		this.ucode = ucode;
 		this.uemail = uemail;
@@ -32,11 +35,13 @@ public class Member implements java.io.Serializable{
 		this.project_num = project_num;
 		this.ugroup = ugroup;
 		this.urole = urole;
-		this.authst = authst;
+		this.ust = ust;
+		this.ucert = ucert;
 		this.udate = udate;
 		this.signtype = signtype;
 		this.accesstoken = accesstoken;
 		this.uimg = uimg;
+		this.uactive = uactive;
 	}
 
 	public String getUcode() {
@@ -103,12 +108,20 @@ public class Member implements java.io.Serializable{
 		this.urole = urole;
 	}
 
-	public String getAuthst() {
-		return authst;
+	public String getUst() {
+		return ust;
 	}
 
-	public void setAuthst(String authst) {
-		this.authst = authst;
+	public void setUst(String ust) {
+		this.ust = ust;
+	}
+
+	public String getUcert() {
+		return ucert;
+	}
+
+	public void setUcert(String ucert) {
+		this.ucert = ucert;
 	}
 
 	public java.sql.Date getUdate() {
@@ -143,13 +156,23 @@ public class Member implements java.io.Serializable{
 		this.uimg = uimg;
 	}
 
+	public String getUactive() {
+		return uactive;
+	}
+
+	public void setUactive(String uactive) {
+		this.uactive = uactive;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [ucode=" + ucode + ", uemail=" + uemail + ", upwd=" + upwd + ", uname=" + uname + ", uphone="
-				+ uphone + ", project_num=" + project_num + ", ugroup=" + ugroup + ", urole=" + urole + ", authst="
-				+ authst + ", udate=" + udate + ", signtype=" + signtype + ", accesstoken=" + accesstoken + ", uimg="
-				+ uimg + "]";
+				+ uphone + ", project_num=" + project_num + ", ugroup=" + ugroup + ", urole=" + urole + ", ust=" + ust
+				+ ", ucert=" + ucert + ", udate=" + udate + ", signtype=" + signtype + ", accesstoken=" + accesstoken
+				+ ", uimg=" + uimg + ", uactive=" + uactive + "]";
 	}
+
+	
 
 	
 	
