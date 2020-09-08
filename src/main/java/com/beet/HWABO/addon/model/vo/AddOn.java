@@ -1,4 +1,4 @@
-package com.beet.HWABO.suugit.addon.model.vo;
+package com.beet.HWABO.addon.model.vo;
 
 public class AddOn implements java.io.Serializable{
 	private static final long serialVersionUId = 1111L;

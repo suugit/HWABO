@@ -1,4 +1,4 @@
-package com.beet.HWABO.suugit.invite.model.vo;
+package com.beet.HWABO.invite.model.vo;
 
 import java.sql.Date;
 

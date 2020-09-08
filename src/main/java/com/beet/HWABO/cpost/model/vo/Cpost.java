@@ -1,4 +1,4 @@
-package com.beet.HWABO.suugit.cpost.model.vo;
+package com.beet.HWABO.cpost.model.vo;
 
 import java.sql.Date;
 

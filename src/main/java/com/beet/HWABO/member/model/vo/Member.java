@@ -1,4 +1,4 @@
-package com.beet.HWABO.suugit.member.model.vo;
+package com.beet.HWABO.member.model.vo;
 
 import java.sql.Date;
 
@@ -10,7 +10,7 @@ public class Member implements java.io.Serializable{
 	private String upwd;
 	private String uname;
 	private int uphone;
-	private String num;
+	private String project_num;
 	private String ugroup;
 	private String urole;
 	private String authst;
@@ -21,7 +21,7 @@ public class Member implements java.io.Serializable{
 	
 	public Member(){}
 
-	public Member(String ucode, String uemail, String upwd, String uname, int uphone, String num, String ugroup,
+	public Member(String ucode, String uemail, String upwd, String uname, int uphone, String project_num, String ugroup,
 			String urole, String authst, Date udate, String signtype, String accesstoken, String uimg) {
 		super();
 		this.ucode = ucode;
@@ -29,7 +29,7 @@ public class Member implements java.io.Serializable{
 		this.upwd = upwd;
 		this.uname = uname;
 		this.uphone = uphone;
-		this.num = num;
+		this.project_num = project_num;
 		this.ugroup = ugroup;
 		this.urole = urole;
 		this.authst = authst;
@@ -79,12 +79,12 @@ public class Member implements java.io.Serializable{
 		this.uphone = uphone;
 	}
 
-	public String getNum() {
-		return num;
+	public String getProject_num() {
+		return project_num;
 	}
 
-	public void setNum(String num) {
-		this.num = num;
+	public void setProject_num(String project_num) {
+		this.project_num = project_num;
 	}
 
 	public String getUgroup() {
@@ -146,10 +146,12 @@ public class Member implements java.io.Serializable{
 	@Override
 	public String toString() {
 		return "Member [ucode=" + ucode + ", uemail=" + uemail + ", upwd=" + upwd + ", uname=" + uname + ", uphone="
-				+ uphone + ", num=" + num + ", ugroup=" + ugroup + ", urole=" + urole + ", authst=" + authst
-				+ ", udate=" + udate + ", signtype=" + signtype + ", accesstoken=" + accesstoken + ", uimg=" + uimg
-				+ "]";
+				+ uphone + ", project_num=" + project_num + ", ugroup=" + ugroup + ", urole=" + urole + ", authst="
+				+ authst + ", udate=" + udate + ", signtype=" + signtype + ", accesstoken=" + accesstoken + ", uimg="
+				+ uimg + "]";
 	}
+
+	
 	
 	
 

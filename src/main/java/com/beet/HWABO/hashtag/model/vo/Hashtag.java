@@ -1,4 +1,4 @@
-package com.beet.HWABO.suugit.hashtag.model.vo;
+package com.beet.HWABO.hashtag.model.vo;
 
 public class Hashtag implements java.io.Serializable{
 	private static final long serialVersionUId = 1144L;

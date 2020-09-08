@@ -5,9 +5,11 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.beet.HWABO.test.model.vo.CryptoUser" alias="CryptoUser" />
+		<typeAlias type="com.beet.HWABO.member.model.vo.Member" alias="Member" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mappers/test-mapper.xml" />
+		<mapper resource="mappers/member-mapper.xml" />
 	</mappers>
 </configuration>

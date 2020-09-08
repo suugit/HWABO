@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+
+	<insert id="insertUser" parameterType="Member">
+		insert into member (ucode, uemail, upwd, uname, signtype)
+		values ('h' || member_seq.nextval, #{uemail}, #{upwd}, #{uname}, 'h')
+	</insert>
+	
+	<select id="selectLogin" parameterType="Member" resultType="Member">
+		select * from member
+		where uemail =  #{uemail} and signtype= 'h'
+	</select>
+</mapper>

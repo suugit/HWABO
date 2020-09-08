@@ -44,29 +44,29 @@
 							<center>
 								<h1 class="m-4">회원가입</h1>
 							</center>
-							<form>
+							<form action="sign.do" method="post">
 								<div class="form-group row">
 									<label for="email" class="col-sm-3 col-form-label ">이메일 주소</label>
 									<div class="col-sm-9">
-										<input type="email" class="form-control" id="email" placeholder="Email">
+										<input type="email" class="form-control" name="uemail" placeholder="Email">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="email" class="col-sm-3 col-form-label ">이름</label>
 									<div class="col-sm-9">
-										<input type="text" class="form-control" id="email" placeholder="Name">
+										<input type="text" class="form-control" name="uname" placeholder="Name">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="email" class="col-sm-3 col-form-label ">비밀번호 </label>
 									<div class="col-sm-9">
-										<input type="password" class="form-control" id="pwd" placeholder="Password">
+										<input type="password" class="form-control" name="upwd" placeholder="Password">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="email" class="col-sm-3 col-form-label ">비밀번호 확인</label>
 									<div class="col-sm-9">
-										<input type="password" class="form-control" id="pwdchk" placeholder="Password">
+										<input type="password" class="form-control" name="pwdchk" placeholder="Password">
 									</div>
 								</div>
 
@@ -79,7 +79,7 @@
 								</div>
 
 								<div class="col-md-9 m-auto">
-									<a href="index.html" class="btn btn-primary btn-user btn-block">가입하기</a>
+									<input type="submit" class="btn btn-primary btn-user btn-block" value="가입하기">
 								</div>
 							</form>
 							<hr>

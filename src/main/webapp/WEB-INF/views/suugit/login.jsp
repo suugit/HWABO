@@ -46,12 +46,12 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">화보로고</h1>
                   </div>
-                  <form class="user">
+                  <form action="login.do" method="post" class="user">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="이메일 주소">
+                      <input type="email" class="form-control form-control-user" name="uemail" aria-describedby="emailHelp" placeholder="이메일 주소">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호">
+                      <input type="password" class="form-control form-control-user" name="upwd" placeholder="비밀번호">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -59,9 +59,7 @@
                         <label class="custom-control-label" for="customCheck">이메일 기억하기</label>
                       </div>
                     </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
-                     로그인
-                    </a>
+                    <input type="submit" class="btn btn-primary btn-user btn-block" value="로그인">
                     <hr>
                     <a href="index.html" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Google로 로그인
