@@ -143,6 +143,18 @@
 
 		</ul>
 		<!-- End of Sidebar -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
@@ -354,9 +366,169 @@
 
 
 
+
+
+
+
+
+
+
+ <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+             
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">업무 게시글</h1>
+          <p class="mb-4"></p>
+
+
+ <!-- Content Row -->
+          <div class="row">
+
+            <!-- 게시글 크기 넓이 지정부분!!! -->
+            <div class="col-lg-8">
+
+
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+            
+              
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+              <form action="blank.do" id="mainInsert">
+              <table style="text-align:center;width:100%;">
+              <tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
+              <span>글작성</span>
+              </td><td style="width:20%;"> 
+              <span>업무</span>
+              </td><td style="width:20%;">
+              <span>일정</span>
+              </td><td style="width:20%;">
+              <span>할일</span>
+              </td><td style="width:20%;">
+              <span>투표</span> 
+              </td></tr>
+              <!-- 구분선 -->
+            </table>
+              <hr>
+        
+              <!-- 글작성 본문 -->
+              
+              
+    
+	               <input type="text" class="form-control mb-1" placeholder="제목(선택값)">
+	               
+	     
+	            
+                  <div class="my-2"></div>
+                  <a href="#" class="btn btn-success btn-icon-split">
+                   
+                    <span class="text">요청</span>
+                  </a>
+                  
+                    <a href="#" class="btn btn-light btn-icon-split">
+                    <span class="text">승인</span>
+                  </a>
+                 
+                    <a href="#" class="btn btn-light btn-icon-split">
+                    <span class="text">피드백</span>
+                  </a>
+                  <a href="#" class="btn btn-light btn-icon-split">
+                    <span class="text">완료</span>
+                  </a>
+	               
+	                 <a href="#" class="btn btn-light btn-icon-split">
+                    <span class="text">보류</span>
+                  </a>
+	               
+
+	        
+
+             <!--  	&nbsp&nbsp
+				<button type="button" class="btn btn-primary btn-sm">요청</button>&nbsp&nbsp
+				<button type="button" class="btn btn-success btn-sm">진행</button>&nbsp&nbsp
+				<button type="button" class="btn btn-info btn-sm">피드백</button>&nbsp&nbsp
+				<button type="button" class="btn btn-warning btn-sm">완료</button>&nbsp&nbsp					
+				<button type="button" class="btn btn-default btn-sm">보류</button>&nbsp&nbsp	
+									
+					 -->				
+			<div>	
+			<nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                    
+                        <br><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          	담당자
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-left animated--grow-in" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">백규림</a>
+                          <a class="dropdown-item" href="#">백규리</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">더보기</a>
+                        </div>
+                        
+                        <a class="navbar-brand" href="#"></a>
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item dropdown">
+                      </li>
+                    </ul>
+                  </nav>
+                  </div>
+               <div class="row mt-2">
+					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              <label class="form-control-label h3">~</label>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              </div>
+			
+              	<textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+             
+              <hr>
+         
+              <!-- 옵션메뉴 -->
+              	<div class="clearfix d-flex ">
+              	<td colspan="3" class="flex-grow-5">
+	              <a href="#"><i class="fa fa-link m-2"><span class="d-none d-md-inline-block ml-1">첨부</span></i></a>
+	            <br>
+					
+              	
+				
+              	 <!-- 버튼 -->
+              
+             	 	<a class="btn btn-success btn-icon-split" href="javascript:mainInsert.submit();" style="width:10%;" >
+                    <span class="text">등록</span>
+                 	</a>
+             
+             		<a href="javascript:mainInsert.reset();" class="btn btn-danger btn-icon-split" style="width:10%;">
+                    <span class="text">취소</span>
+             		</a>
+             
+             </div>
+        
+           
+              </form>
+            </div>
+          </div>
+          </div>
+          </div>
+          
+
+</div>
+
+
+
+
+
+
+
+
+
         <!-- Begin Page Content -->
         
         <div class="container-fluid">
+        <div class="col-lg-8">
 
   	  <div class="row d-inline-flex w-50" style="max-width:1000px">
 
@@ -380,7 +552,7 @@
 					            <li class="nav-item">
 					              <a class="nav-link active""  href="#tap2" role="tab" aria-controls="tap2" aria-selected="ture">업무</a>
 					            </li>
-					          <!--   <li class="nav-item">
+					           <li class="nav-item">
 					              <a class="nav-link" href="#tap3" role="tab" aria-controls="tap3" aria-selected="false">일정</a>
 					            </li>
 					            <li class="nav-item">
@@ -388,7 +560,7 @@
 					            </li>
 					            <li class="nav-item">
 					              <a class="nav-link" href="#tap5" role="tab" aria-controls="tap5" aria-selected="false">투표</a>
-					            </li> -->
+					            </li> 
 					          </ul>
 					        </div>
 					        <form action="blank.do" id="mainInsert" > 
@@ -464,69 +636,7 @@
 						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
 					            	</div>
 					            </div>
-					            
-					            <!-- 일정 -->
-					            <div class="tab-pane" id="tap3" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					                 <table class="table table-bordered" id="dataTable" width="1080px" hight="700px" cellspacing="0">
-             
-					              
-					         <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              </div>
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div> 
-					            </div>
-					            
-					          	
-					            <!-- 할일 -->
-					         <div class="tab-pane" id="tap4" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              </div>
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					            
-					              <!--투표 -->
-					            <div class="tab-pane" id="tap5" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              </div>
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					             
-					            
-					          </div>
-					        </div>
-					      </div>		     
+					     	     
            				   </form>
 
 
@@ -579,6 +689,15 @@
       </div>
     </div>
   </div>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+부가적인 테마
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+합쳐지고 최소화된 최신 자바스크립트
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+ -->
 
   <!-- Bootstrap core JavaScript-->
   <script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
