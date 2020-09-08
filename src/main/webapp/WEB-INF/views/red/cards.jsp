@@ -135,10 +135,10 @@ font-size: 28px;
 
 <!-- Sidebar2right -->
      <c:import url="/WEB-INF/views/red/entersideFixed.jsp"></c:import>
-<!-- End of Sidebar -->
+<!-- End of Sidebar2right -->
 <!-- SidebarChat -->
-     <c:import url="/WEB-INF/views/red/entersideChat.jsp"></c:import>
-<!-- End of Sidebar -->
+   <%--  <c:import url="/WEB-INF/views/red/entersideChat.jsp"></c:import> --%>
+<!-- End of SidebarChat -->
 
   <!-- Page Wrapper -->
   <div id="wrapper"  style="width:1300px;">
