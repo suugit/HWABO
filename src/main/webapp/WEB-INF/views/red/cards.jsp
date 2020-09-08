@@ -31,8 +31,8 @@
 
 .donut-chart {
   position: relative;
-	width: 200px;
-  height: 200px;
+	width: 100px;
+  height: 100px;
 	margin: 0 auto 2rem;
 	border-radius: 100%
  }
@@ -42,8 +42,8 @@ p.center {
   text-align: center;
 font-size: 28px;
   top:0;left:0;bottom:0;right:0;
-  width: 170px;
-  height: 170px;
+  width: 90px;
+  height: 90px;
   margin: auto;
   border-radius: 50%;
   line-height: 35px;
@@ -53,14 +53,14 @@ font-size: 28px;
 	
 .portion-block {
     border-radius: 50%;
-    clip: rect(0px, 200px, 200px, 100px);
+    clip: rect(0px, 100px, 100px, 50px);
     height: 100%;
     position: absolute;
     width: 100%;
   }
 .circle {
     border-radius: 50%;
-    clip: rect(0px, 100px, 200px, 0px);
+    clip: rect(0px, 50px, 100px, 0px);
     height: 100%;
     position: absolute;
     width: 100%;
@@ -118,200 +118,46 @@ font-size: 28px;
 </head>
 
 <body id="page-top">
-  <!-- Page Wrapper -->
-  <div id="wrapper">
 
-    <!-- Sidebar -->
-     <c:import url="/WEB-INF/views/red/enterside.jsp"></c:import>
+<!-- Topbar2 -->
+        <c:import url="/WEB-INF/views/red/topbar.jsp"></c:import>
+<!-- End of Topbar -->
+
+<!-- <table style="width:100%;">
+<tr>
+<td style="width:20%;"></td>
+
+<td style="width:60%;"> -->
+
+
+
+<div style="width:100%;display:flex;justify-content:center;align-item:center;">
+
+<!-- Sidebar2right -->
+     <c:import url="/WEB-INF/views/red/entersideFixed.jsp"></c:import>
+<!-- End of Sidebar2right -->
+<!-- SidebarChat -->
+   <%--  <c:import url="/WEB-INF/views/red/entersideChat.jsp"></c:import> --%>
+<!-- End of SidebarChat -->
+
+  <!-- Page Wrapper -->
+  <div id="wrapper"  style="width:1300px;">
+
+    <!-- Sidebar1 -->
+    <div style="width:17%"></div>
+    <%--  <c:import url="/WEB-INF/views/red/enterside.jsp"></c:import> --%>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" class="d-flex flex-column"  style="width:62%;">
 
       <!-- Main Content -->
       <div id="content">
 
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
-
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Message Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler Â· 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun Â· 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez Â· 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog Â· 2w</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-              </div>
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
-
-          </ul>
-
-        </nav>
+        <!-- Topbar1 -->
+       
+       <br><br><br><br>
+       
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -335,7 +181,7 @@ font-size: 28px;
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">관공서 UI 12월16일 마감</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">관공서 UI 12월16일</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -366,12 +212,6 @@ font-size: 28px;
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 구름과자 30%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> 소나기 50%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> 호로록 20%
                     </span>
                   </div>
                 </div>
@@ -414,12 +254,6 @@ font-size: 28px;
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 감전직전 40%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> 팟수 50%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> 줄넘기자빠짐 10%
                     </span>
                   </div>
                 </div>
@@ -464,18 +298,13 @@ font-size: 28px;
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 마차 0%
                     </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> 어제먹은밥 80%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> 펭귀뒤통수 20%
-                    </span>
                   </div>
                 </div>
               </div>
             </div>
             <!-- 프로젝트끝 -->
           </div>
+          <% for(int i = 0; i < 10; i++){ %>
           <div class="row">
           <!-- 프로젝트시작 -->
 <div class="col-xl-4 col-lg-5">
@@ -513,12 +342,6 @@ font-size: 28px;
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 도도로 25%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> 재로 15%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> 병목아야 60%
                     </span>
                   </div>
                 </div>
@@ -561,12 +384,6 @@ font-size: 28px;
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> 뚜기 50%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> 보자기 10%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> 오호선 40%
                     </span>
                   </div>
                 </div>
@@ -611,19 +428,13 @@ font-size: 28px;
                     <span class="mr-2">
                       <i class="fas fa-circle text-primary"></i> abc 34%
                     </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> kyukyu 33%
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> suggit 33%
-                    </span>
                   </div>
                 </div>
               </div>
             </div>
             <!-- 프로젝트끝 -->
           </div>
-
+<% } %>
         </div>
         <!-- /.container-fluid -->
 
@@ -641,9 +452,16 @@ font-size: 28px;
       <!-- End of Footer -->
 
     </div>
+    <div style="width:25%"></div>
     <!-- End of Content Wrapper -->
 
-  </div>
+</div>
+
+
+</div><!-- flex -->
+<!-- </td><td style="width:20%;"></td>
+</tr>
+</table> -->
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
