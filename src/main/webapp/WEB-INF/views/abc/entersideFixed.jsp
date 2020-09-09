@@ -21,24 +21,63 @@
       <!-- Sidebar - Brand -->
       <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='/hwabo/'">
 
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
 
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="/hwabo/">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>이전 페이지로</span></a>
-      </li>
+<br>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+			<li class="nav-item"><a class="nav-link collapsed" href="mybpost.do"
+				data-target="#collapsePages" aria-expanded="true"
+				aria-controls="collapsePages"> <i class="fas fa-tasks"></i> <span>업무 모아보기</span>
+			</a> </li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
 
 
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapsePages" aria-expanded="true"
+				aria-controls="collapsePages" onclick="javascript: return false;"><i class="fas fa-box-open"></i>
+					<span>보관함</span>
+			</a> <a class="nav-link collapsed" href="#" data-target="#collapsePages"
+				aria-expanded="true" aria-controls="collapsePages" onclick="javascript: return false;"> 
+				<i class="far fa-folder-open"></i><span>파일함</span>
+			</a></li>
+			
+						<!-- Divider -->
+			<hr class="sidebar-divider">
+			
+			<li class="nav-item"><a class="nav-link collapsed" href="myhwabo.do"
+				data-target="#collapsePages" aria-expanded="true"
+				aria-controls="collapsePages"> <i class="fas fa-chalkboard"></i>
+					<span>나의 화보</span>
+			</a></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseOne"
+				aria-expanded="true" aria-controls="collapseOne" onclick="javascript: return false;"> 
+				<i class="fas fa-chalkboard-teacher"></i> <span>팀원들의 화보</span>
+			</a>
+				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">HWABO</h6>
+						<a class="collapse-item" href="yourhawbo.do"><span><label>테스트페이지</label></span></a>
+						<a class="collapse-item" href="#"><span><label>사람이름2</label></span></a>
+						<a class="collapse-item" href="#"><span><label>사람이름3</label></span></a>
+						<a class="collapse-item" href="#"><span><label>사람이름4</label></span></a>
+						<a class="collapse-item" href="#"><span><label>사람이름5</label></span></a>
+						<a class="collapse-item" href="#"><span><label>사람이름6</label></span></a>
+						<a class="collapse-item" href="#"><span><label>사람이름7</label></span></a>
+						<a class="collapse-item" href="#"><span><label>사람이름8</label></span></a>
+						<a class="collapse-item" href="#"><span><label>사람이름9</label></span></a>
+						<a class="collapse-item" href="#"><span><label>사람이름10</label></span></a>
+						<a class="collapse-item" href="#"><span><label>사람이름11</label></span></a>
+					</div>
+				</div></li>
 
 </ul>
     
