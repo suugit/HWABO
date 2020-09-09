@@ -25,8 +25,13 @@
 
 <insert id="insertBpost" parameterType="Bpost" >
 	insert into bpost
-	values
+	values ((select max(bno)+1 from bpost), #{btitle}, #{bwriter}, #{bstartday},
+	#{bendday}, #{bkind}, #{bcharge}, #{bcontent}, sysdate, 'y', default, 
+	#{brwriter}, #{brcontent}, #{brenamefile}, #{boriginfile})
+		
 
+		
+		
 </insert>
 
 

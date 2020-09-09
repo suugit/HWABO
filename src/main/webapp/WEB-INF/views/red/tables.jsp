@@ -28,202 +28,32 @@
 </head>
 
 <body id="page-top">
+
+<!-- 11111111111111111 -->
+  <c:import url="/WEB-INF/views/red/topbar.jsp"></c:import>
+ 
+ <div style="width:100%;display:flex;justify-content:center;align-item:center;">
+<!-- Sidebar2right -->
+     <c:import url="/WEB-INF/views/red/sideFixed.jsp"></c:import>
+<!-- End of Sidebar2right -->
+<!-- 111111111111111111 -->
+ 
+ 
   <!-- Page Wrapper -->
-  <div id="wrapper">
+  <div id="wrapper" style="width:1300px;">
 
     <!-- Sidebar -->
-    <c:import url="/WEB-INF/views/red/side.jsp"></c:import>
+    <div style="width:17%"></div>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" class="d-flex flex-column bg-white" style="width:62%;">
 
       <!-- Main Content -->
-      <div id="content">
+     <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <form class="form-inline">
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-              <i class="fa fa-bars"></i>
-            </button>
-          </form>
-
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
-
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Message Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler Â· 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun Â· 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez Â· 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog Â· 2w</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-              </div>
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
-
-          </ul>
-
-        </nav>
+        <br><br><br><br>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -304,19 +134,66 @@
           </div> -->
           <!-- 게시글작성끝 -->
           <!-- 새 글작성 시작 -->
-          <!-- 프로젝트생성시작 -->
-<div class="card shadow mb-4" onclick="javascript:location.href='writeB.do'">
+        
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
             <div class="card-body">
               <!-- 게시글안쪽 -->
-                            <h1 class="m-0 text-primary" style="text-align:center">
-                <img src="/hwabo/resources/maincss/img/plus2.png" style="width:45px;height:45px;">            
-                            새 글쓰기
-                            </h1>
-
-
+              <form action="ftables.do" id="mainInsert">
+              <table style="text-align:center;width:100%;">
+              <tbody><tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
+              <span>글작성</span>
+              </td><td style="width:20%;">
+              <span>업무</span>
+              </td><td style="width:20%;">
+              <span>일정</span>
+              </td><td style="width:20%;">
+              <span>할일</span>
+              </td><td style="width:20%;">
+              <span>투표</span>
+              </td></tr>
+              <tr><td colspan="5">
+              <hr>
+              </td></tr>
+              <tr><td colspan="5">
+              <input type="text" class="form-control" placeholder="일정 제목을 입력하세요">
+              </td></tr>
+              <tr><td colspan="5">&nbsp;</td></tr>
+              <tr><td colspan="2">
+              <input type="date" class="form-control">
+              </td><td>
+              <img src="/hwabo/resources/maincss/img/tilde.png" style="width:100px;height:35px;">
+              </td><td colspan="2">
+              <input type="date" class="form-control">
+              </td></tr>
+              <tr><td colspan="5">&nbsp;</td></tr>
+              <tr><td colspan="5">
+              <input type="text" class="form-control" placeholder="장소를 입력하세요">
+              </td></tr>
+              <tr><td colspan="5">&nbsp;</td></tr>
+              <tr><td colspan="5">
+              <input type="text" class="form-control" placeholder="일정 제목을 입력하세요">
+              </td></tr>
+              <tr><td colspan="5">&nbsp;</td></tr>
+              <tr><td colspan="5">
+              <input type="text" class="form-control" placeholder="메모를 입력하세요">
+              </td></tr>
+              <tr><td colspan="5">&nbsp;</td></tr>
+              <tr><td colspan="3"></td>
+              <td>
+              <a class="btn btn-success btn-icon-split" href="javascript:mainInsert.submit();" style="width:90%;">
+                    <span class="text">등록</span>
+                  </a>
+              </td><td>
+              <a href="ftables.do" class="btn btn-danger btn-icon-split" style="width:90%;">
+                    <span class="text">취소</span>
+              </a>
+              </td></tr>
+              </tbody></table>
+              </form>
             </div>
           </div>
-          <!-- 프로젝트생성끝 -->
           
           
           <!-- 새 글작성끝 -->
@@ -363,7 +240,7 @@
         </div>
         <!-- /.container-fluid -->
 
-      </div>
+     </div>
       <!-- End of Main Content -->
 
       <!-- Footer -->
@@ -378,10 +255,10 @@
 
     </div>
     <!-- End of Content Wrapper -->
-
+<div style="width:25%"></div>
   </div>
   <!-- End of Page Wrapper -->
-
+</div><!-- div flex -->
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>

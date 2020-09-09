@@ -387,8 +387,7 @@
 
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
-							<form action="sinsert.do" id="spostInsert" method="post">
-							
+							<form action="insertvp.do" id="vpost">
 								<table style="text-align: center; width: 100%;">
 									<tr class="m-0 font-weight-bold text-primary">
 										<td style="width: 20%;"><span>글작성</span></td>
@@ -405,90 +404,40 @@
 									<tr>
 										<td colspan="5"><span style="float: left;"><i
 												class="fa fa-pen"></i>&nbsp;제 목</span><input type="text"
-											class="form-control" placeholder="일정 제목을 입력하세요"></td>
+											class="form-control" placeholder="투표 제목을 입력하세요"></td>
 									</tr>
 									<tr>
-										<td colspan="5">&nbsp;</td>
+										<td><br><br><br></td>
 									</tr>
-									<tr>
-										<td width="20%"><span style="float: left;"><i
-												class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span><input
-											type="datetime-local" class="form-control"></td>
-
-										<td width="20%"><span style="float: left;"><i
-												class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span><input
-											type="datetime-local" class="form-control"></td>
-
-									</tr>
-									<tr>
-										<td colspan="5">&nbsp;</td>
-									</tr>
-									<tr>
-										<td colspan="5"><span style="float: left;"><i
-												class="fas fa-map-marker-alt"></i>&nbsp;장 소</span><input
-											type="text" class="form-control" placeholder="장소를 입력하세요"></td>
-									</tr>
-									<tr>
-										<td colspan="5">&nbsp;</td>
-									</tr>
-									<tr>
-										<td colspan="1" style="width: 20%;"><span
-											style="float: left;"><i class="far fa-bell"></i>&nbsp;알
-												림</span> <select name="salarm" class="form-control">
-												<option value="no">--- 알림 없음 ---</option>
-												<option value="10mm">10분 전 알림</option>
-												<option value="30mm">30분 전 알림</option>
-												<option value="1HH">1시간 전 알림</option>
-												<option value="2HH">2시간 전 알림</option>
-												<option value="3HH">3시간 전 알림</option>
-												<option value="1day">1일 전 알림</option>
-												<option value="2day">2일 전 알림</option>
-												<option value="7day">7일 전 알림</option>
-										</select></td>
-										<td colspan="4">&nbsp;</td>
-									</tr>
-									<tr>
-										<td colspan="5">&nbsp;</td>
-									</tr>
+									
 									<tr>
 
 
 
 
-										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;메 모</span>
+										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;내 용</span>
 										 <textarea
-												name="contentText" id="contentText" cols="30" rows="10"
-												class="form-control"
-												style="width: 100%; height: 200px; overflow: auto; resize: none;">
-										</textarea> <span class="txsub form-control">남은글자수 : <input type="text"
-												readonly value="100" name="counter" id="counter"
-												style="border: none;"></span></td>
+												 cols="30" rows="10"
+												class="form-control" placeholder="투표 내용을 입력하세요"
+												style="width: 100%; height: 200px; overflow: auto; resize: none;" >
+										</textarea> 
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
-										<td colspan="2"></td>
-										<!--  #f8f9fc   -->
-										<td>
-										<select>
-											<option value="y">전체공개</option>
-											<option value="n">나만보기</option>
-										</select>
-										</td>
-										
+										<td colspan="3"></td>
 										<td><a class="btn btn-success btn-icon-split"
-											href="javascript:spostInsert.submit();" style="width: 90%;">
+											href="javascript:mainInsert.submit();" style="width: 90%;">
 												<span class="text">등록</span>
 										</a></td>
-										<td><a href="javascript:spostInsert.reset();"
+										<td><a href="javascript:mainInsert.reset();"
 											class="btn btn-danger btn-icon-split" style="width: 90%;">
 												<span class="text">취소</span>
 										</a></td>
 									</tr>
 								</table>
 							</form>
-							
 						</div>
 					</div>
 
