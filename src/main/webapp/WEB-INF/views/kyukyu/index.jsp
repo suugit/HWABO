@@ -83,26 +83,7 @@
 
 <script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script>
-$("input[name='profile_img']").change(function(e){
-    e.preventDefault();
- 
-    var file = this.files[0];
-        reader = new FileReader();
-   
-    reader.onload = function (event) {
-        var img = new Image();
-        img.src = event.target.result;
-        if (img.width > 700 || img.height > 500) { // holder width
-          img.width = 700;
-          img.height = 500;
-        }
-        $('#holder').empty();
-        $('#holder').append(img);
-    };
-    reader.readAsDataURL(file);
-   
-    return false;
-});
+
 
 
 var names = "";
@@ -114,14 +95,64 @@ function addbcharge(){
 	 //$('#bform').val(name); 
 	 
 	 $('#bform').val(names);
-	 alert($("#bform").val());
+	 alert($("#bform").val()); 
+	
 }
 
 function unSelected(){
+	/* var name = $(event.target).parent().text();
+	var s = $('#bform').val();
+	var index = s.indexOf(name);
+	 
+	renames = s.replace(name, ",");
+	
+	alert(name);
+	 */
+	var or = "";
+	var re = "";
+	var orz = $('#bform').val();
+	var rez = $(event.target).parent().text();
+	or += orz;
+	re += rez;
+	
+
+	var na = or.replace(re, '귤');
+	
+
+	alert(re);
+	
+	
+	/* var sOriginText = " 동해바다 서해바다 남해바다 ";
+
+	var sTargetText = "바다";
+
+	var sConvertedText = sOriginText.replace(sTargetText, '산');
+
+	alert(sConvertedText);
+
+
+	
+
+	/*  $('#bform').val(rename);
+	
+	 var rename = s.slice(index, index + 2);
+	var rename = s.slice(index, index + 2);
+		
+	
+	var str = "Hello World";
+	str = str.replace('H', 'k'); */
+	 
+
+	
 	$(event.target).parent().remove();
-	
-	
+	/* alert(names); */
+
+	/* var renames = s.substring(index, index + 2); */
+
+	/*  alert($("#bform").val());  */
+ 
 }
+
 
 
 </script>
@@ -177,7 +208,7 @@ function unSelected(){
               <!-- 글작성 본문 -->
               
               
-    		<input type="hidden" name="bwriter" value="백규림">
+    		<input type="hidden" name="bwriter" value="백규류">
     		
 	        <input type="text" class="form-control mb-1" name="btitle" placeholder="제목(선택값)">
 	               

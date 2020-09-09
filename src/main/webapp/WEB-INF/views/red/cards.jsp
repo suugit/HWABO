@@ -185,7 +185,7 @@ font-size: 28px;
                   </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body" onclick="javascript:location.href='fborder.do'">
+                <div class="card-body" onclick="javascript:location.href='ftables.do'">
                   <!-- 그래프시작 -->
                   <div class="container">
   <div class="donut-chart-block block"> 
@@ -227,7 +227,7 @@ font-size: 28px;
                   </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body" onclick="javascript:location.href='fborder.do'">
+                <div class="card-body" onclick="javascript:location.href='ftables.do'">
                 <!-- 그래프시작 -->
                   <div class="container">
   <div class="donut-chart-block block"> 
@@ -270,7 +270,7 @@ font-size: 28px;
                   </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body" onclick="javascript:location.href='fborder.do'">
+                <div class="card-body" onclick="javascript:location.href='ftables.do'">
                   <!-- 그래프시작 -->
                   <div class="container">
   <div class="donut-chart-block block"> 
@@ -315,7 +315,7 @@ font-size: 28px;
                   </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body" onclick="javascript:location.href='fborder.do'">
+                <div class="card-body" onclick="javascript:location.href='ftables.do'">
                   <!-- 그래프시작 -->
                   <div class="container">
   <div class="donut-chart-block block"> 
@@ -357,7 +357,7 @@ font-size: 28px;
                   </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body" onclick="javascript:location.href='fborder.do'">
+                <div class="card-body" onclick="javascript:location.href='ftables.do'">
                   <!-- 그래프시작 -->
                   <div class="container">
   <div class="donut-chart-block block"> 
@@ -400,7 +400,7 @@ font-size: 28px;
                   </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body" onclick="javascript:location.href='fborder.do'">
+                <div class="card-body" onclick="javascript:location.href='ftables.do'">
                   <!-- 그래프시작 -->
                   <div class="container">
   <div class="donut-chart-block block"> 

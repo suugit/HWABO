@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.member.model.service.MailSendService;
@@ -97,8 +99,19 @@ public String moveLogin(){
 return "suugit/login.part";
 }
 
+	
+	/*
+	 * @RequestMapping(value="/idchk.do", method=RequestMethod.POST)
+	 * 
+	 * @RequestBody public String selectEmailCheck(@RequestParam("uemail") String
+	 * uemail) { int result = mservice.selectEmailCheck(uemail);
+	 * 
+	 * if(result > 0) { return } }
+	 */
+ 
+
 @RequestMapping(value="/login.do", method=RequestMethod.POST)
-public String selectLogin(Member member, Model model, HttpServletRequest request){
+public String selectLogin(Member member, Model model, HttpServletRequest request, SessionStatus status){
 	logger.info("로그인");
 	
 	Member loginUser = mservice.selectLogin(member);
@@ -110,9 +123,13 @@ public String selectLogin(Member member, Model model, HttpServletRequest request
 			logger.info("로그인한 회원의 코드 : " + loginUser.getUcode());
 			
 			HttpSession session=request.getSession();
-			session.setAttribute("ucode", loginUser.getUcode());
-			session.setAttribute("uname", loginUser.getUname());
-			request.setAttribute("uname", loginUser.getUname());
+				/*
+				 * session.setAttribute("ucode", loginUser.getUcode());
+				 * session.setAttribute("uname", loginUser.getUname());
+				 * request.setAttribute("uname", loginUser.getUname());
+				 */
+			session.setAttribute("loginUser", loginUser);
+			status.setComplete(); // 요청성공, 200 전송
 			returnPage = "red/cards";
 		}else {
 			model.addAttribute("message", "암호가 일치하지 않습니다.");
@@ -136,7 +153,7 @@ public String logout(HttpServletRequest request, Model model) {
 		session.invalidate();
 		return "welcome";
 	}else {
-		model.addAttribute("message", "로그인 세션이 존재하지 않습니다");
+		model.addAttribute("message", "로그인 정보가 존재하지 않습니다!");
 		return "common/error";
 	}
 }
