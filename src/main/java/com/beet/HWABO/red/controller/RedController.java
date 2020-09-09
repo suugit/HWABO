@@ -23,7 +23,7 @@ public class RedController {
 	@RequestMapping(value = "red.do", method = RequestMethod.GET)
 	public String redIndex(Model model) {
 		
-		return "red/index";
+		return "sample/index";
 	}
 	@RequestMapping(value = "abc.do", method = RequestMethod.GET)
 	public String abcabcIndex(Model model) {
@@ -53,67 +53,87 @@ public class RedController {
 	@RequestMapping(value = "404.do", method = RequestMethod.GET)
 	public String go404(Model model) {
 		
-		return "red/error404";
+		return "sample/error404";
 	}
 	@RequestMapping(value = "blank.do", method = RequestMethod.GET)
 	public String blank(Model model) {
 		
-		return "red/blank";
+		return "sample/blank";
 	}
 	@RequestMapping(value = "buttons.do", method = RequestMethod.GET)
 	public String buttons(Model model) {
 		
-		return "red/buttons";
+		return "sample/buttons";
 	}
 	@RequestMapping(value = "cards.do", method = RequestMethod.GET)
 	public String cards(Model model) {
 		
 		return "red/cards";
 	}
+	@RequestMapping(value = "scards.do", method = RequestMethod.GET)
+	public String scards(Model model) {
+		
+		return "sample/cards";
+	}
 	@RequestMapping(value = "charts.do", method = RequestMethod.GET)
 	public String charts(Model model) {
 		
-		return "red/charts";
+		return "sample/charts";
 	}
 	@RequestMapping(value = "fpassword.do", method = RequestMethod.GET)
 	public String fpassword(Model model) {
 		
-		return "red/forgot-password";
+		return "sample/forgot-password";
 	}
 	@RequestMapping(value = "flogin.do", method = RequestMethod.GET)
 	public String login(Model model) {
 		
-		return "red/login";
+		return "sample/login";
 	}
 	@RequestMapping(value = "fregister.do", method = RequestMethod.GET)
 	public String register(Model model) {
 		
-		return "red/register";
+		return "sample/register";
 	}
 	@RequestMapping(value = "ftables.do", method = RequestMethod.GET)
 	public String table(Model model) {
 		
 		return "red/tables";
 	}
+	@RequestMapping(value = "sftables.do", method = RequestMethod.GET)
+	public String stable(Model model) {
+		
+		return "sample/tables";
+	}
 	@RequestMapping(value = "fanimation.do", method = RequestMethod.GET)
 	public String animation(Model model) {
 		
-		return "red/utilities-animation";
+		return "sample/utilities-animation";
 	}
 	@RequestMapping(value = "fborder.do", method = RequestMethod.GET)
 	public String border(Model model) {
 		
 		return "red/utilities-border";
 	}
+	@RequestMapping(value = "sfborder.do", method = RequestMethod.GET)
+	public String sborder(Model model) {
+		
+		return "sample/utilities-border";
+	}
 	@RequestMapping(value = "fcolor.do", method = RequestMethod.GET)
 	public String color(Model model) {
 		
-		return "red/utilities-color";
+		return "sample/utilities-color";
 	}
 	@RequestMapping(value = "fother.do", method = RequestMethod.GET)
 	public String other(Model model) {
 		
 		return "red/utilities-other";
+	}
+	@RequestMapping(value = "sfother.do", method = RequestMethod.GET)
+	public String sother(Model model) {
+		
+		return "sample/utilities-other";
 	}
 	@RequestMapping(value = "createP.do", method = RequestMethod.GET)
 	public String creatP(Model model) {
