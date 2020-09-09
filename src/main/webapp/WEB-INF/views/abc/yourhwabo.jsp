@@ -64,7 +64,7 @@ $("div").on('click', function(e){
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column"  style="width:62%;">
+		<div id="content-wrapper" class="d-flex flex-column bg-white"  style="width:62%;">
 
 			<!-- Main Content -->
 			<div id="content" style="width:100%;">

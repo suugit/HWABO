@@ -57,7 +57,7 @@
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column"  style="width:62%;">
+		<div id="content-wrapper" class="d-flex flex-column bg-white"  style="width:62%;">
 
 			<!-- Main Content -->
 			<div id="content">
@@ -387,6 +387,7 @@
 				</div>
 				<!-- End of Main Content -->
 
+
 				<!-- Footer -->
 				<footer class="sticky-footer bg-white">
 					<div class="container my-auto">
@@ -396,9 +397,9 @@
 					</div>
 				</footer>
 				<!-- End of Footer -->
-
 			</div>
 			<!-- End of Content Wrapper -->
+			
 <div style="width:25%"></div>
 		</div>
 		<!-- End of Page Wrapper -->

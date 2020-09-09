@@ -213,6 +213,11 @@
 				<div class="container-fluid"></div>
 				<!-- End of Main Content -->
 
+
+
+</div>
+			</div>
+			<!-- End of Content Wrapper -->
 				<!-- Footer -->
 				<footer class="sticky-footer bg-white">
 					<div class="container my-auto">
@@ -222,14 +227,10 @@
 					</div>
 				</footer>
 				<!-- End of Footer -->
-
-</div>
-			</div>
-			<!-- End of Content Wrapper -->
-
 		</div>
 		<!-- End of Page Wrapper -->
 <div style="width:25%"></div>
+
 </div>
 		<!-- Scroll to Top Button-->
 		<a class="scroll-to-top rounded" href="#page-top"> <i
