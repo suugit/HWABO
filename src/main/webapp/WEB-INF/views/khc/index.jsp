@@ -29,7 +29,7 @@
 <div style="position:absolute;z-index:5;"><br>&nbsp;
 	원하는 페이지로 :
 	<button onclick="javascript:location.href='projectmanagement.do'">프로젝트관리</button>
-    <button onclick="javascript:location.href='mytodo.do.do'">할일</button>
+    <button onclick="javascript:location.href='mytodo.do'">할일</button>
     <button onclick="javascript:location.href='participateproject.do'">프로젝트참가자</button>
     <button onclick="javascript:location.href='authorityadmin.do'">관리자권한</button>
     </div>

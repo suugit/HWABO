@@ -19,6 +19,8 @@
     <span class="input-group-text" id="addon-wrapping"></span>
   </div>
   <input type="text" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
+  <br><br>
+  <button type="button" class="btn btn-secondary">수정</button>
 </div>
 
 <hr>
