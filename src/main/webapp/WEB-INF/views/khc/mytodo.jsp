@@ -385,7 +385,7 @@
 
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
-							<form action="mytodo.do" id="spostInsert" method="post">
+							<form action="mytodo.do" id="dopostInsert" method="post">
 							
 								<table style="text-align: center; width: 100%;">
 									<tr class="m-0 font-weight-bold text-primary">
