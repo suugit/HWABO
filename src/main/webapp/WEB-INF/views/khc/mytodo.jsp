@@ -403,49 +403,25 @@
 									</tr>
 									<tr>
 										<td colspan="5"><span style="float: left;"><i
-												class="fa fa-pen"></i>&nbsp;제 목</span><input type="text"
-											class="form-control" placeholder="일정 제목을 입력하세요"></td>
+												class="fa fa-pen"></i>&nbsp;할일제목</span><input type="text"
+											class="form-control" placeholder="할일제목을 입력하세요"></td>
 									</tr>
-									<tr>
-										<td colspan="5">&nbsp;</td>
-									</tr>
+									
+								
 									<tr>
 										<td width="20%"><span style="float: left;"><i
-												class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span><input
-											type="datetime-local" class="form-control"></td>
-
-										<td width="20%"><span style="float: left;"><i
-												class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span><input
+												class="far fa-calendar-alt"></i>&nbsp;할일의 날짜</span><input
 											type="datetime-local" class="form-control"></td>
 
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
-									<tr>
-										<td colspan="5"><span style="float: left;"><i
-												class="fas fa-map-marker-alt"></i>&nbsp;장 소</span><input
-											type="text" class="form-control" placeholder="장소를 입력하세요"></td>
-									</tr>
+								
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
-									<tr>
-										<td colspan="1" style="width: 20%;"><span
-											style="float: left;"><i class="far fa-bell"></i>&nbsp;알
-												림</span> <select name="alarm" class="form-control">
-												<option value="no">--- 알림 없음 ---</option>
-												<option value="10mm">10분 전 알림</option>
-												<option value="30mm">30분 전 알림</option>
-												<option value="1HH">1시간 전 알림</option>
-												<option value="2HH">2시간 전 알림</option>
-												<option value="3HH">3시간 전 알림</option>
-												<option value="1day">1일 전 알림</option>
-												<option value="2day">2일 전 알림</option>
-												<option value="7day">7일 전 알림</option>
-										</select></td>
-										<td colspan="4">&nbsp;</td>
-									</tr>
+									
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>

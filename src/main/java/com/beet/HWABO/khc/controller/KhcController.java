@@ -27,11 +27,12 @@ public class KhcController {
 		return "khc/mytodo";
 }
 	
-	
-	@RequestMapping(value = "searchmember.do", method = RequestMethod.GET)
-	public String searchmember(Model model) {
-		return "khc/searchmember";
+	@RequestMapping(value = "participateproject.do", method = RequestMethod.GET)
+	public String participateproject(Model model) {
+		return "khc/participateproject";
+		
 	}
+	
 	
 	@RequestMapping(value = "authorityadmin.do", method = RequestMethod.GET)
 	public String authorityadmin(Model model) {
