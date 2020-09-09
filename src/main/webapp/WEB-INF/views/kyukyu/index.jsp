@@ -365,7 +365,70 @@
 
 
 
+<script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
+<script>
+$("input[name='profile_img']").change(function(e){
+    e.preventDefault();
+ 
+    var file = this.files[0];
+        reader = new FileReader();
+   
+    reader.onload = function (event) {
+        var img = new Image();
+        img.src = event.target.result;
+        if (img.width > 700 || img.height > 500) { // holder width
+          img.width = 700;
+          img.height = 500;
+        }
+        $('#holder').empty();
+        $('#holder').append(img);
+    };
+    reader.readAsDataURL(file);
+   
+    return false;
+});
+</script>
+ 
+<!-- 2. DY가 짠 첨부파일 미리보기 소스-->
 
+
+<script>
+
+
+
+
+	function bkindcheck(){
+		var kind = $(.bkind).val()
+		var result = "";
+	
+		
+		switch(kind){
+		case "요청":
+			$(document).ready(function() {
+			 $('#test').val("요청");
+			 });
+			break;
+		case "승인":
+			$(document).ready(function() {
+			$('#test').val("승인");
+			 });
+			break;
+		case "피드백":
+			$(document).ready(function() {
+			$('#test').val("피드백");
+			 });
+			break;
+		case "보류":
+			$(document).ready(function() {
+			$('#test').val("보류");
+			 });
+		
+		}
+		
+	
+	}
+	
+</script>
 
 
 
@@ -399,7 +462,7 @@
             </div>
             <div class="card-body">
               <!-- 게시글안쪽 -->
-              <form action="blank.do" id="mainInsert">
+              <form action="insertbpost.do" method="post" id="bInsert">
               <table style="text-align:center;width:100%;">
               <tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
               <span>글작성</span>
@@ -419,43 +482,35 @@
               <!-- 글작성 본문 -->
               
               
-    
-	               <input type="text" class="form-control mb-1" placeholder="제목(선택값)">
+    	
+	               <input type="text" class="form-control mb-1" name="btitle" placeholder="제목(선택값)">
 	               
-	     
-	            
-                  <div class="my-2"></div>
-                  <a href="#" class="btn btn-success btn-icon-split">
-                   
-                    <span class="text">요청</span>
-                  </a>
-                  
-                    <a href="#" class="btn btn-light btn-icon-split">
-                    <span class="text">승인</span>
-                  </a>
-                 
-                    <a href="#" class="btn btn-light btn-icon-split">
-                    <span class="text">피드백</span>
-                  </a>
-                  <a href="#" class="btn btn-light btn-icon-split">
-                    <span class="text">완료</span>
-                  </a>
-	               
-	                 <a href="#" class="btn btn-light btn-icon-split">
-                    <span class="text">보류</span>
-                  </a>
-	               
-
-	        
-
-             <!--  	&nbsp&nbsp
-				<button type="button" class="btn btn-primary btn-sm">요청</button>&nbsp&nbsp
-				<button type="button" class="btn btn-success btn-sm">진행</button>&nbsp&nbsp
-				<button type="button" class="btn btn-info btn-sm">피드백</button>&nbsp&nbsp
-				<button type="button" class="btn btn-warning btn-sm">완료</button>&nbsp&nbsp					
-				<button type="button" class="btn btn-default btn-sm">보류</button>&nbsp&nbsp	
-									
-					 -->				
+	     	
+	            <!-- <input class="btn btn-outline-primary" class="bkind" type="button" name="bkind1" onclick="return bkind();" value="요청">&nbsp&nbs
+	            <input class="btn btn-outline-info" class="bkind" type="button" name="bkin1d" onclick="return bkindcheckd();" value="승인">&nbsp&nbsp
+	            <input class="btn btn-outline-warning" class="bkind" type="button" name="bki1nd" onclick="return bkindcheck();" value="피드백">&nbsp&nbsp
+	            <input class="btn btn-outline-success" class="bkind" type="button" name="bki1nd" onclick="return bkindcheck();" value="완료">&nbsp&nbsp
+	            <input class="btn btn-outline-secondary" class="bkind" type="button" name="bki1nd" onclick="return bkindcheck();" value="보류"><br>
+	             -->
+         
+					<div class="btn-group btn-group-toggle" data-toggle="buttons">
+			  <label class="btn btn-secondary active">
+			    <input type="radio" name="bkind" id="option1" value="요청" checked>요청
+			  </label>
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="bkind" id="option2" value="승인">승인
+			  </label>
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="bkind" id="option3" value="피드백" >피드백
+			  </label>
+			   <label class="btn btn-secondary">
+			    <input type="radio" name="bkind" id="option3" value="완료">완료
+			  </label>
+			   <label class="btn btn-secondary">
+			    <input type="radio" name="bkind" id="option3" value="보류">보류
+			  </label>
+			</div>
+	      			
 			<div>	
 			<nav class="navbar navbar-expand navbar-light bg-light mb-4">
                     
@@ -478,26 +533,37 @@
                   </div>
                <div class="row mt-2">
 					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
+					              <div class="col-5"><input type="date" class="form-control" name="bstartday" value=""></div>
 					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
+					              <div class="col-5"><input type="date" class="form-control" name="bendday" value=""></div>
 					              </div>
+					              
+					              
+					              
 			
-              	<textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+              	<textarea cols="50" rows="6" class="w-100 form-control " name="bcontent"></textarea>
              
               <hr>
          
               <!-- 옵션메뉴 -->
-              	<div class="clearfix d-flex ">
-              	<td colspan="3" class="flex-grow-5">
-	              <a href="#"><i class="fa fa-link m-2"><span class="d-none d-md-inline-block ml-1">첨부</span></i></a>
-	            <br>
-					
               	
-				
-              	 <!-- 버튼 -->
+              	
+              <!-- 	<td colspan="3" class="flex-grow-5"> -->
               
-             	 	<a class="btn btn-success btn-icon-split" href="javascript:mainInsert.submit();" style="width:10%;" >
+              
+              	
+              	
+	            <label><input type="file" name="ofile" style="visibility: hidden;"><span class="fa fa-link m-2" >첨부파일</span></label>
+	           
+				
+        	<!-- <label><input type="file" class="fa fa-link m-2" name="ofile" style="visibility: hidden;"/><span class="d-none d-md-inline-block ml-1">파일</span></label>
+				<br>  -->
+              	 <!-- 버튼 -->
+              <input class="btn btn-primary" type="submit" value="등록">
+			  <input class="btn btn-primary" type="reset" value="취소">
+			  </form>
+			 </div>
+          <!--    	 	<a class="btn btn-success btn-icon-split" href="javascript:mainInsert.submit();" style="width:10%;" >
                     <span class="text">등록</span>
                  	</a>
              
@@ -506,9 +572,9 @@
              		</a>
              
              </div>
-        
+         -->
            
-              </form>
+              
             </div>
           </div>
           </div>

@@ -6,7 +6,8 @@
 
 	<insert id="insertSpost" parameterType="Spost" >
 		insert into spost
-		values
+		values ( #{sno}, #{stitle}, #{swriter}, #{sstartday}, #{sendday}, #{splace}, 
+				  #{salarm}, #{scontent}, #{senrolldate}, #{sopen}, #{slove}, #{srwriter}, #{srcontent} )
 	</insert>
 
 
