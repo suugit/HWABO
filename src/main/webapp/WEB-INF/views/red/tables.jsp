@@ -28,13 +28,15 @@
 </head>
 
 <body id="page-top">
+
+<!-- 11111111111111111 -->
   <c:import url="/WEB-INF/views/red/topbar.jsp"></c:import>
  
-<div style="width:100%;display:flex;justify-content:center;align-item:center;">
+ <div style="width:100%;display:flex;justify-content:center;align-item:center;">
 <!-- Sidebar2right -->
      <c:import url="/WEB-INF/views/red/entersideFixed.jsp"></c:import>
 <!-- End of Sidebar2right -->
- 
+<!-- 111111111111111111 -->
  
  
   <!-- Page Wrapper -->

@@ -118,17 +118,11 @@ font-size: 28px;
 </head>
 
 <body id="page-top">
+
 <!-- 1.topbar추가 -->
 <!-- Topbar2 -->
         <c:import url="/WEB-INF/views/red/topbar.jsp"></c:import>
 <!-- End of Topbar -->
-
-<!-- <table style="width:100%;">
-<tr>
-<td style="width:20%;"></td>
-
-<td style="width:60%;"> -->
-
 
 <!-- 2.바로아래div추가 및 임포트 추가  -->
 <div style="width:100%;display:flex;justify-content:center;align-item:center;">
@@ -145,9 +139,15 @@ font-size: 28px;
     <div style="width:17%"></div>
     <!-- End of Sidebar -->
 
+ <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column bg-white" style="width:62%;">
 
+ <!-- Main Content -->
+     <div id="content">
 
-
+        <!-- Topbar -->
+        <br><br><br><br>
+        <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -441,16 +441,15 @@ font-size: 28px;
       <!-- End of Footer -->
 
     </div>
- 
-
+ 	 <!-- End of Content Wrapper -->
+<div style="width:25%"></div>
 
 </div>
 
 </div><!-- flex -->
-<!-- </td><td style="width:20%;"></td>
-</tr>
-</table> -->
   <!-- End of Page Wrapper -->
+
+
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
