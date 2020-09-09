@@ -14,33 +14,27 @@ public class DopostDao {
 
 	public DopostDao() {
 		super();
-		
+
 	}
-	
+
 	public int insertOrigindopost(Dopost dopost) {
 		return session.insert("dopostMapper.insertOrigindopost", dopost);
 	}
-	
+
 	public int deletedopost(Dopost dopost) {
 		return session.delete("dopostMapper.deletedopost", dopost);
 	}
-	
+
 	public int updateOrigindopost(Dopost dopost) {
 		return session.update("dopostMapper.updateOrigindopost", dopost);
 	}
-	
+
 	public int updateAddReadCountdopost(int dno) {
 		return session.update("dopostMapper.updateAddReadCountdopost", dno);
 	}
-	
+
 	public Dopost selectdopost(int dno) {
-		return session.insert("dopostMapper.selectdopost");
+		return session.selectOne("dopostMapper.selectdopost");
 	}
-	
-	
-	
-	
 
-	
 }
-
