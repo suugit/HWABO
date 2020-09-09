@@ -1,50 +1,41 @@
-<%@ page session="false" %>
+<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <link rel="icon" type="image/x-icon" href="/hwabo/resources/assets/img/favicon.png" />
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<link rel="icon" type="image/x-icon"
+	href="/hwabo/resources/assets/img/favicon.png" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-  <title>HWABO</title>
+<title>HWABO</title>
 
-  <!-- Custom fonts for this template -->
-  <link href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<!-- Custom fonts for this template -->
+<link
+	href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="/hwabo/resources/maincss/css/sb-admin-2.min.css"
+	rel="stylesheet">
 
-  <!-- Custom styles for this page -->
-  <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<!-- Custom styles for this page -->
+<link
+	href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet">
 
 </head>
 
-<!-- 진행률시작 -->
-<style>
-#myProgress {
-  width: 100%;
-  background-color: #ddd;
-}
-
-#myBar {
-  width: 0%;
-  height: 30px;
-  background-color: #4CAF50;
-  text-align: center;
-  line-height: 30px;
-  color: white;
-}
-</style>
-
-<!-- 진행률끝 -->
 
 <body id="page-top">
 
@@ -60,78 +51,95 @@
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.jsp">
-				<br>
-				<div style="margin-top: 60px;">
-					<!-- <i class="far fa-kiss-wink-heart"></i> -->
-					<img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle">
+				<div class="sidebar-brand-icon rotate-n-15">
+					<i class="fas fa-laugh-wink"></i>
 				</div>
-
+				<div class="sidebar-brand-text mx-3">
+					SB Admin <sup>2</sup>
+				</div>
 			</a>
-<br><br><br>
 
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			
-			
-	
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			
-			<li class="nav-item">
-			
-			<a class="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true"
-					aria-controls="collapsePages"> 
-					<i class="far fa-address-card"></i>
-					<span>나의 화보</span>
-				</a> 
 			<!-- Divider -->
-			<hr class="sidebar-divider">
-			
-			
-				<a class="nav-link collapsed" href="mynote.do" data-target="#collapsePages" aria-expanded="true"
-					aria-controls="collapsePages"> 
-					<i class="fas fa-book-reader"></i>
-					<span>노트</span>
-				</a> 
-				<a class="nav-link collapsed" href="myfolder.do" data-target="#collapsePages" aria-expanded="true"
-					aria-controls="collapsePages"> 
-					<i class="fas fa-box-open"></i> 
-					
-					<span>보관함</span>
-				</a> 
-				<a class="nav-link collapsed" href="myfile.do" data-target="#collapsePages"
-					aria-expanded="true" aria-controls="collapsePages"> 
-					<i class="far fa-folder-open"></i>
-				 <span>파일함</span>
-				</a>
-			</li>
+			<hr class="sidebar-divider my-0">
+
+			<!-- Nav Item - Dashboard -->
+			<li class="nav-item"><a class="nav-link" href="index.jsp"> <i
+					class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
+
+			<!-- Heading -->
+			<div class="sidebar-heading">Interface</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseOne"
-				aria-expanded="true" aria-controls="collapseOne">
-				<i class="fas fa-chalkboard"></i><span>팀원들의 화보</span>
+				data-toggle="collapse" data-target="#collapseTwo"
+				aria-expanded="true" aria-controls="collapseTwo"> <i
+					class="fas fa-fw fa-cog"></i> <span>Components</span>
 			</a>
-				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">HWABO</h6>
-						<a class="collapse-item" href="#"><span><label>사람이름1</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름2</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름3</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름4</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름5</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름6</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름7</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름8</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름9</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름10</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름11</label></span></a>
+						<h6 class="collapse-header">Custom Components:</h6>
+						<a class="collapse-item" href="buttons.jsp">Buttons</a> <a
+							class="collapse-item" href="cards.jsp">Cards</a>
 					</div>
 				</div></li>
+
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseUtilities"
+				aria-expanded="true" aria-controls="collapseUtilities"> <i
+					class="fas fa-fw fa-wrench"></i> <span>Utilities</span>
+			</a>
+				<div id="collapseUtilities" class="collapse"
+					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">Custom Utilities:</h6>
+						<a class="collapse-item" href="utilities-color.jsp">Colors</a> <a
+							class="collapse-item" href="utilities-border.jsp">Borders</a> <a
+							class="collapse-item" href="utilities-animation.jsp">Animations</a>
+						<a class="collapse-item" href="utilities-other.jsp">Other</a>
+					</div>
+				</div></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+
+			<!-- Heading -->
+			<div class="sidebar-heading">Addons</div>
+
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapsePages"
+				aria-expanded="true" aria-controls="collapsePages"> <i
+					class="fas fa-fw fa-folder"></i> <span>Pages</span>
+			</a>
+				<div id="collapsePages" class="collapse"
+					aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">Login Screens:</h6>
+						<a class="collapse-item" href="login.jsp">Login</a> <a
+							class="collapse-item" href="register.jsp">Register</a> <a
+							class="collapse-item" href="forgot-password.jsp">Forgot
+							Password</a>
+						<div class="collapse-divider"></div>
+						<h6 class="collapse-header">Other Pages:</h6>
+						<a class="collapse-item" href="404.jsp">404 Page</a> <a
+							class="collapse-item" href="blank.jsp">Blank Page</a>
+					</div>
+				</div></li>
+
+			<!-- Nav Item - Charts -->
+			<li class="nav-item"><a class="nav-link" href="charts.jsp">
+					<i class="fas fa-fw fa-chart-area"></i> <span>Charts</span>
+			</a></li>
+
+			<!-- Nav Item - Tables -->
+			<li class="nav-item active"><a class="nav-link"
+				href="tables.jsp"> <i class="fas fa-fw fa-table"></i> <span>Tables</span></a>
+			</li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
@@ -349,259 +357,173 @@
 				</nav>
 				<!-- End of Topbar -->
 
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+					<!-- Page Heading -->
+					<h1 class="h3 mb-2 text-gray-800"></h1>
+					<p class="mb-4"></p>
 
+					<!-- DataTales Example -->
+					<div class="card shadow mb-4">
+						<script type="text/javascript"
+							src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+						<script type="text/javascript">
+							$(function() {
+								$('#contentText').keyup(
+										function(e) {
+											var content = $(this).val();
+											$('#counter').val(
+													200 - content.length);
 
+											if (content.length > 200) {
+												$(this).val(
+														$(this).val()
+																.substring(0,
+																		200));
+											}
+										});
+							});
+						</script>
 
-
-
-        <!-- Begin Page Content -->
-        
-        <div class="container-fluid">
-
-  	  <div class="row d-inline-flex w-50" style="max-width:1000px">
-
-      <div class="col">
-   
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800"></h1>
-           
-          <p class="mb-8"></p>
-
-          <!-- DataTales Example -->
-
-              <!-- 게시글안쪽 -->
-
-			 <div class="card mb-4">
-					        <div class="card-header">
-					          <ul class="nav nav-tabs card-header-tabs" id="writeForm" role="tablist">
-					            <li class="nav-item">
-					            <a class="nav-link  href="#gnrlwrite" role="tab2" aria-controls="gnrlwrite" aria-selected="false">글 작성</a>
-					            </li>
-					            <li class="nav-item">
-					              <a class="nav-link active""  href="#tap2" role="tab" aria-controls="tap2" aria-selected="ture">업무</a>
-					            </li>
-					          <!--   <li class="nav-item">
-					              <a class="nav-link" href="#tap3" role="tab" aria-controls="tap3" aria-selected="false">일정</a>
-					            </li>
-					            <li class="nav-item">
-					              <a class="nav-link" href="#tap4" role="tab" aria-controls="tap4" aria-selected="false">할일</a>
-					            </li>
-					            <li class="nav-item">
-					              <a class="nav-link" href="#tap5" role="tab" aria-controls="tap5" aria-selected="false">투표</a>
-					            </li> -->
-					          </ul>
-					        </div>
-					        <form action="blank.do" id="mainInsert" > 
-					        <div class="card-body ">
-					         <!--  <h4 class="card-title">글 작성</h4> -->
-					          
-					           <div class="tab-content mt-3">
-					           <!-- 글 작성  -->
-					            <div class="tab-pane " id="gnrlwrite" role="tabpanel">
-					            <input type="text" class="form-control mb-1" placeholder="제목(선택값)">
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-link mr-2"><a href="#"></a></i>
-						            <i class="fa fa-calendar-alt mr-2"></i>
-						            <i class="fa fa-map-marker-alt mr-2"></i>
-						            <i class="fa fa-code mr-5"></i>
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success" style="padding:4px 30px;" onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					            
-					            
-					            <!-- 업무 -->
-					            <div class="tab-pane active"" id="tap2" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <!-- Standard button -->
+						<div class="card-body">
+							<!-- 게시글안쪽 -->
+							<form action="blank.do" id="mainInsert">
+								<table style="text-align: center; width: 100%;">
+									<tr class="m-0 font-weight-bold text-primary">
+										<td style="width: 20%;"><span>글작성</span></td>
+										<td style="width: 20%;"><span>업무</span></td>
+										<td style="width: 20%;"><span>일정</span></td>
+										<td style="width: 20%;"><span>할일</span></td>
+										<td style="width: 20%;"><span>투표</span></td>
+									</tr>
+									<tr>
+										<td colspan="5">
+											<hr>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="5"><span style="float: left;"><i
+												class="fa fa-pen"></i>&nbsp;할일제목</span><input type="text"
+											class="form-control" placeholder="할일제목을 입력하세요"></td>
+									</tr>
+									
 								
-									<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-									 <div class="form-inline m-2 border-primary">
-									&nbsp&nbsp
-									<button type="button" class="btn btn-primary btn-sm">요청</button>&nbsp&nbsp
-									<button type="button" class="btn btn-success btn-sm">진행</button>&nbsp&nbsp
-									<button type="button" class="btn btn-info btn-sm">피드백</button>&nbsp&nbsp
-									<button type="button" class="btn btn-warning btn-sm">완료</button>&nbsp&nbsp					
-									<button type="button" class="btn btn-default btn-sm">보류</button>&nbsp&nbsp	
+									<tr>
+										<td width="20%"><span style="float: left;"><i
+												class="far fa-calendar-alt"></i>&nbsp;할일의 날짜</span><input
+											type="datetime-local" class="form-control"></td>
+
+									</tr>
 									
-									<ul class="nav navbar-nav navbar-right">
-        
-								        <li class="dropdown">
-								          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">담당자 추가 <span class="caret"></span></a>
-								           <input type="text" class="form-control" aria-label="...">
-								          <ul class="dropdown-menu" role="menu">
-								            <li><a href="#">백규림</a></li>
-								            <li><a href="#">박수현</a></li>
-								            <li><a href="#">김희철</a></li>
-								            <li><a href="#">정재구</a></li>
-								            <li><a href="#">구영민</a></li>
-								            <li><a href="#">정다운</a></li>
-								            <li class="divider"></li>
-								            <li><a href="#">Separated link</a></li>
-								          </ul>
-								          
-								        </li>
-								          
-								      </ul>
-								     
-								      </div>
-								     <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              </div>
-									
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					            
-					            <!-- 일정 -->
-					            <div class="tab-pane" id="tap3" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					                 <table class="table table-bordered" id="dataTable" width="1080px" hight="700px" cellspacing="0">
-             
-					              
-					         <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              </div>
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div> 
-					            </div>
-					            
-					          	
-					            <!-- 할일 -->
-					         <div class="tab-pane" id="tap4" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              </div>
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					            
-					              <!--투표 -->
-					            <div class="tab-pane" id="tap5" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              </div>
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					             
-					            
-					          </div>
-					        </div>
-					      </div>		     
-           				   </form>
 
 
-		
-      
-        
-        <!-- /.container-fluid -->
-        </div>
-        </div>
-  		
-      </div>
-      <!-- End of Main Content -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
 
-    </div>
-    <!-- End of Content Wrapper -->
+										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;메 모</span>
+										 <textarea
+												name="contentText" id="contentText" cols="30" rows="10"
+												class="form-control"
+												style="width: 100%; height: 200px; overflow: auto; resize: none;">
+										</textarea> <span class="txsub form-control">남은글자수 : <input type="text"
+												readonly value="100" name="counter" id="counter"
+												style="border: none;"></span></td>
+									</tr>
+									<tr>
+										<td colspan="5">&nbsp;</td>
+									</tr>
+									<tr>
+										<td colspan="3"></td>
+										<td><a class="btn btn-success btn-icon-split"
+											href="javascript:mainInsert.submit();" style="width: 90%;">
+												<span class="text">등록</span>
+										</a></td>
+										<td><a href="javascript:mainInsert.reset();"
+											class="btn btn-danger btn-icon-split" style="width: 90%;">
+												<span class="text">취소</span>
+										</a></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+					</div>
 
-  </div>
-  <!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">Ã</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.jsp">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
-  <script src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+				</div>
+				<!-- /.container-fluid -->
 
-  <!-- Page level custom scripts -->
-  <script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
-<script>
-$('#writeForm a').on('click', function (e) {
-	  e.preventDefault();
-	  $(this).tab('show');
-	})
-</script>
+			</div>
+			<!-- End of Main Content -->
+
+			<!-- Footer -->
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright &copy; Your Website 2020</span>
+					</div>
+				</div>
+			</footer>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">Ã</span>
+					</button>
+				</div>
+				<div class="modal-body">Select "Logout" below if you are ready
+					to end your current session.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					<a class="btn btn-primary" href="login.jsp">Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script
+		src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
+
+	<!-- Page level plugins -->
+	<script
+		src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+	<!-- Page level custom scripts -->
+	<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
+
 </body>
 
 </html>

@@ -12,48 +12,49 @@
 </head>
 <body>
 <div class="container">
-  <h2>Contextual Classes</h2>
-  <p>Contextual classes can be used to color table rows or table cells. The classes that can be used are: .active, .success, .info, .warning, and .danger.</p>
+  <h2>프로젝트참여자</h2>
+  
   <table class="table">
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
+        <th>이름</th>
         <th>Email</th>
+        <th>관리자여부</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Default</td>
-        <td>Defaultson</td>
+        <td>홍길동</td>
         <td>def@somemail.com</td>
+        <td>y</td>
       </tr>      
       <tr class="success">
-        <td>Success</td>
-        <td>Doe</td>
+        <td>둘리</td>
         <td>john@example.com</td>
+         <td>n</td>
       </tr>
       <tr class="danger">
-        <td>Danger</td>
-        <td>Moe</td>
+        <td>도우너</td>
         <td>mary@example.com</td>
+         <td>n</td>
       </tr>
       <tr class="info">
-        <td>Info</td>
-        <td>Dooley</td>
+        <td>또치</td>
         <td>july@example.com</td>
+         <td>n</td>
       </tr>
       <tr class="warning">
-        <td>Warning</td>
-        <td>Refs</td>
+        <td>가나다</td>
         <td>bo@example.com</td>
+         <td>n</td>
       </tr>
       <tr class="active">
-        <td>Active</td>
-        <td>Activeson</td>
+        <td>철수</td>
         <td>act@example.com</td>
+         <td>n</td>
       </tr>
     </tbody>
+    
   </table>
 </div>
 </body>

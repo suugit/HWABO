@@ -118,7 +118,7 @@ font-size: 28px;
 </head>
 
 <body id="page-top">
-
+<!-- 1.topbar추가 -->
 <!-- Topbar2 -->
         <c:import url="/WEB-INF/views/red/topbar.jsp"></c:import>
 <!-- End of Topbar -->
@@ -130,34 +130,32 @@ font-size: 28px;
 <td style="width:60%;"> -->
 
 
-
+<!-- 2.바로아래div추가 및 임포트 추가  -->
 <div style="width:100%;display:flex;justify-content:center;align-item:center;">
-
 <!-- Sidebar2right -->
      <c:import url="/WEB-INF/views/red/entersideFixed.jsp"></c:import>
 <!-- End of Sidebar2right -->
-<!-- SidebarChat -->
-   <%--  <c:import url="/WEB-INF/views/red/entersideChat.jsp"></c:import> --%>
-<!-- End of SidebarChat -->
 
+<!-- 3. id="wrapper" 스타일 1300px설정 -->
   <!-- Page Wrapper -->
   <div id="wrapper"  style="width:1300px;">
 
-    <!-- Sidebar1 -->
+<!-- 4. Sidebar 사이드바 영역 width:17%추가 -->
+    <!-- Sidebar -->
     <div style="width:17%"></div>
-    <%--  <c:import url="/WEB-INF/views/red/enterside.jsp"></c:import> --%>
     <!-- End of Sidebar -->
 
+<!-- 5. Content Wrapper 몸통 영역 width:62%추가 -->
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column"  style="width:62%;">
 
       <!-- Main Content -->
       <div id="content">
 
-        <!-- Topbar1 -->
-       
+
+<!-- 6. 원래 topbar있던자리 공백 채우기 <br>4번 -->
+        <!-- Topbar -->
        <br><br><br><br>
-       
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -452,11 +450,12 @@ font-size: 28px;
       <!-- End of Footer -->
 
     </div>
+ 
+<!-- 7. 채팅넣을 공간 div새로만들어서 style="width:25%" 옵션 주기  -->
     <div style="width:25%"></div>
     <!-- End of Content Wrapper -->
 
 </div>
-
 
 </div><!-- flex -->
 <!-- </td><td style="width:20%;"></td>

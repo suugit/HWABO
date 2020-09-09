@@ -34,19 +34,18 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      
       </div>
 
 </ul>
     
 </td>
-<td style="width:60%;">
+<td style="width:57%;">
 
 </td>
-<td style="width:23%;">
+<td style="width:23.5%;">
 
 
 
@@ -57,45 +56,8 @@
 <!-- 채팅위치조정테이블하단 시작 -->
 
 <!-- 채팅 폼 시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
 
-<i class="fas fa-circle text-success"></i>
-suggit
-<hr>
-<i class="fas fa-circle text-success"></i>
-red
-<hr>
-<i class="fas fa-circle text-dark"></i>
-kyukyu
-<hr>
-<i class="fas fa-circle text-success"></i>
-khc
-<hr>
-<i class="fas fa-circle text-dark"></i>
-daun
-<hr>
-<br>
-<br>
-<br>
-<!-- <table style="width:100%;">
-<tbody><tr><td style="width:20%;"> -->
-<a href="#" class="btn btn-primary btn-icon-split btn-sm" style="width:100%;">
-                    <span class="text">프로젝트 채팅</span>
-                  </a>
-<!-- </td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</tbody></table> -->
-            </div>
-<!-- <div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div> -->
-</div>
+<c:import url="/WEB-INF/views/red/sideRight.jsp"></c:import>
 
 <!-- 채팅 폼 끝 -->
 

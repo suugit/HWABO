@@ -33,10 +33,6 @@ public class KhcController {
 		
 	}
 	
-	@RequestMapping(value = "searchmember.do", method = RequestMethod.GET)
-	public String searchmember(Model model) {
-		return "khc/searchmember";
-	}
 	
 	@RequestMapping(value = "authorityadmin.do", method = RequestMethod.GET)
 	public String authorityadmin(Model model) {

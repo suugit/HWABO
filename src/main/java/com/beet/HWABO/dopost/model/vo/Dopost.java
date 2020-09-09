@@ -5,73 +5,81 @@ import java.sql.Date;
 public class Dopost implements java.io.Serializable{
 	private static final long serialVersionUID = 4444234L;
 	
-	private String no;
-	private String title;
-	private String writer;
-	private String lcontent;
-	private java.sql.Date date;
-	private String lpublic;
+	private String dno;
+	private String dtitle;
+	private String dwriter;
+	private String dcontent;
+	private java.sql.Date denrolldate;
+	private String dopen;
 	
 	public Dopost() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Dopost(String no, String title, String writer, String lcontent, Date date, String lpublic) {
+
+	public Dopost(String dno, String dtitle, String dwriter, String dcontent, Date denrolldate, String dopen) {
 		super();
-		this.no = no;
-		this.title = title;
-		this.writer = writer;
-		this.lcontent = lcontent;
-		this.date = date;
-		this.lpublic = lpublic;
+		this.dno = dno;
+		this.dtitle = dtitle;
+		this.dwriter = dwriter;
+		this.dcontent = dcontent;
+		this.denrolldate = denrolldate;
+		this.dopen = dopen;
 	}
-	public String getNo() {
-		return no;
+
+	public String getDno() {
+		return dno;
 	}
-	public void setNo(String no) {
-		this.no = no;
+
+	public void setDno(String dno) {
+		this.dno = dno;
 	}
-	public String getTitle() {
-		return title;
+
+	public String getDtitle() {
+		return dtitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+
+	public void setDtitle(String dtitle) {
+		this.dtitle = dtitle;
 	}
-	public String getWriter() {
-		return writer;
+
+	public String getDwriter() {
+		return dwriter;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+
+	public void setDwriter(String dwriter) {
+		this.dwriter = dwriter;
 	}
-	public String getLcontent() {
-		return lcontent;
+
+	public String getDcontent() {
+		return dcontent;
 	}
-	public void setLcontent(String lcontent) {
-		this.lcontent = lcontent;
+
+	public void setDcontent(String dcontent) {
+		this.dcontent = dcontent;
 	}
-	public java.sql.Date getDate() {
-		return date;
+
+	public java.sql.Date getDenrolldate() {
+		return denrolldate;
 	}
-	public void setDate(java.sql.Date date) {
-		this.date = date;
+
+	public void setDenrolldate(java.sql.Date denrolldate) {
+		this.denrolldate = denrolldate;
 	}
-	public String getLpublic() {
-		return lpublic;
+
+	public String getDopen() {
+		return dopen;
 	}
-	public void setLpublic(String lpublic) {
-		this.lpublic = lpublic;
+
+	public void setDopen(String dopen) {
+		this.dopen = dopen;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+
 	@Override
 	public String toString() {
-		return "Dopost [no=" + no + ", title=" + title + ", writer=" + writer + ", lcontent=" + lcontent + ", date="
-				+ date + ", lpublic=" + lpublic + "]";
+		return "Dopost [dno=" + dno + ", dtitle=" + dtitle + ", dwriter=" + dwriter + ", dcontent=" + dcontent
+				+ ", denrolldate=" + denrolldate + ", dopen=" + dopen + "]";
 	}
 	
-	
-	
-	
+
 }
