@@ -39,9 +39,9 @@
     <button onclick="javascript:location.href='fregister.do'">register</button>
     <button onclick="javascript:location.href='ftables.do'">tables</button>
     <button onclick="javascript:location.href='fanimation.do'">utilities-animation</button>
-    <button onclick="javascript:location.href='fborder.do'">utilities-border</button>
-    <button onclick="javascript:location.href='fcolor.do'">utilities-color</button>
-    <button onclick="javascript:location.href='fother.do'">utilities-other</button>
+    <button onclick="javascript:location.href='insertvp.do'">투표페이지로</button>
+    <button onclick="javascript:location.href='fcolor.do'">채팅페이지로</button>
+    <button onclick="javascript:location.href='fother.do'">알림페이지로</button>
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->
