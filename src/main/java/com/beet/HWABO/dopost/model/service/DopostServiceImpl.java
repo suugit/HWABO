@@ -3,6 +3,7 @@ package com.beet.HWABO.dopost.model.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.beet.HWABO.dopost.model.dao.DopostDao;
 import com.beet.HWABO.dopost.model.vo.Dopost;
 
 @Service("dopostService")
@@ -13,12 +14,14 @@ public class DopostServiceImpl implements DopostService {
 
 	@Override
 	public int insertOrigindopost(Dopost dopost) {
-		return dopostDao.insertOrigindopost(dopost);
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
 	public int deletedopost(Dopost dopost) {
-		return dopostDao.deletedopost(dopost);
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
@@ -28,16 +31,18 @@ public class DopostServiceImpl implements DopostService {
 	}
 
 	@Override
-	public int updateAddReadCountdopost(int dopost_num) {
+	public int updateAddReadCountdopost(int dno) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public Dopost selectdopost(int dopost_num) {
-		// TODO Auto-generated method stub
-		return null;
+	public Dopost selectdopost(int dno) {
+		return dopostDao.selectdopost(dno);
 	}
+
+	
+
 
 	
 
