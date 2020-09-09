@@ -3,7 +3,8 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dopostMapper">
-	<resultMap type="Dopost" id="resultDopost" />
+	
+	<resultMap type="Dopost" id="resultDopost" >
 	<id column="dno" property="dno" />
 	<result column="dtitle" property="dtitle"/>
 	<result column="dwriter" property="dwriter"/>
@@ -13,10 +14,9 @@
 	</resultMap>
 	
 	<insert id="insertOrigindopost" parameterType="Dopost">
-	
-	INSERT INTO DOPOST  (DNO, DTITLE, DWRITER, DCONTENT, DENROLLDATE, DOPEN)
-	VALUES (#{dno},#{dtitle},#{DWRITER},#{},#{} ,#{});
-
+	insert into dopost 
+	values(dno, dtitle, dwriter, dcontent, denrolldate, dopen)
+	(#{dno}, #{dtitle}, #{dwriter}, #{dcontent}, #{denrolldate}, #{dopen})
 	
 	</insert>
 
