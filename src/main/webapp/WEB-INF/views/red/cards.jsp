@@ -139,12 +139,14 @@ font-size: 28px;
     <div style="width:17%"></div>
     <!-- End of Sidebar -->
 
+<!-- 5. class="d-flex flex-column bg-white" 그리고 style="width:62%;" -->
  <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column bg-white" style="width:62%;">
 
  <!-- Main Content -->
      <div id="content">
 
+<!-- 6. 탑바<br>4개  -->
         <!-- Topbar -->
         <br><br><br><br>
         <!-- End of Topbar -->
@@ -159,8 +161,6 @@ font-size: 28px;
                 <img src="/hwabo/resources/maincss/img/plus2.png" style="width:45px;height:45px;">            
                             새 프로젝트 생성
                             </h1>
-
-
             </div>
           </div>
           <!-- 프로젝트생성끝 -->
@@ -448,8 +448,6 @@ font-size: 28px;
 
 </div><!-- flex -->
   <!-- End of Page Wrapper -->
-
-
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">

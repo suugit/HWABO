@@ -34,7 +34,7 @@
  
  <div style="width:100%;display:flex;justify-content:center;align-item:center;">
 <!-- Sidebar2right -->
-     <c:import url="/WEB-INF/views/red/entersideFixed.jsp"></c:import>
+     <c:import url="/WEB-INF/views/red/sideFixed.jsp"></c:import>
 <!-- End of Sidebar2right -->
 <!-- 111111111111111111 -->
  
