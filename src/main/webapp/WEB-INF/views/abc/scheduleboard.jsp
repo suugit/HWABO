@@ -175,8 +175,7 @@
 							src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 						<script type="text/javascript">
 							$(function() {
-								$('#contentText').keyup(
-										function(e) {
+								$('#contentText').on("propertychange change keyup paste input", function() {
 											var content = $(this).val();
 											$('#counter').val(200 - content.length);
 
@@ -193,11 +192,7 @@
 									}
 								});
  								
- 								$("#spostInsert").on("submit", function(){
- 									var start = $("#beforesstartday").val().toISOString().replace('Z', '').replace('T', '');
- 									
- 									
- 								});
+
  								
  								
  								
@@ -332,8 +327,9 @@
 										<span style="float: left;">&nbsp;&nbsp;&nbsp;( 남은글자수 : <input size="2px;"  type="text"
 												readonly value="200" name="counter" id="counter"
 												style="border: none;">)</span>
-<textarea name="scontent" id="contentText" cols="30" rows="10"	class="form-control"	style="width: 100%; height: 200px; overflow: auto; resize: none;"></textarea> </td>
+<textarea name="scontent" id="contentText" cols="30" rows="10"	class="form-control"	onkeypress="onTestChange();" style="width: 100%; height: 200px; overflow: auto; resize: none;"></textarea> </td>
 									</tr>
+									
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
@@ -341,8 +337,8 @@
 										<td colspan="2"></td>
 										<!--  #f8f9fc   -->
 										<td>
-										<select>
-											<option value="y">전체공개</option>
+										<select name="sopen" class="form-control">
+											<option value="y" selected>전체공개</option>
 											<option value="n">나만보기</option>
 										</select>
 										</td>
@@ -358,6 +354,11 @@
 									</tr>
 								</table>
 							</form>
+
+<script>
+  document.getElementById('beforestart').value= new Date().toISOString().slice(0, 16);
+  document.getElementById('beforeend').value= new Date().toISOString().slice(0, 16);
+</script>
 							
 						</div>
 					</div>
