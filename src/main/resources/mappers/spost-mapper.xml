@@ -5,9 +5,9 @@
 <mapper namespace="spostMapper">
 
 	<insert id="insertSpost" parameterType="Spost" >
-		insert into spost
-		values ( #{sno}, #{stitle}, #{swriter}, #{sstartday}, #{sendday}, #{splace}, 
-				  #{salarm}, #{scontent}, #{senrolldate}, #{sopen}, #{slove}, #{srwriter}, #{srcontent} )
+		insert into spost(sno, stitle, swriter, sstartday, sendday, splace, salarm, scontent, senrolldate, sopen, slove)
+		values ( (select concat('s', (select nvl(max(substr(sno,2)),0)+1 from spost))from dual)  , #{stitle}, #{swriter}, #{sstartday}, #{sendday}, #{splace}, 
+				  #{salarm}, #{scontent}, sysdate, #{sopen}, default )
 	</insert>
 
 

@@ -18,17 +18,11 @@ public class SpostServiceImpl implements SpostService{
 	
 	public SpostServiceImpl() {}
 
-	@Override
-	public ArrayList<Post> selectMyPost() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 //-------- Spost -------------------------------------------------------------------------------------------------
 	@Override
 	public int insertSpost(Spost spost) {
-		// TODO Auto-generated method stub
-		return 0;
+		return spostDao.insertSpost(spost);
 	}
 
 	@Override
@@ -63,6 +57,13 @@ public class SpostServiceImpl implements SpostService{
 
 	
 //-------- Post -------------------------------------------------------------------------------------------------	
+	
+	@Override
+	public ArrayList<Post> selectMyPost() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public ArrayList<Post> selectPost(String postno) {
 		// TODO Auto-generated method stub

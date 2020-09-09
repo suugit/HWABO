@@ -1,10 +1,15 @@
 package com.beet.HWABO.abc.controller;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.spost.model.service.SpostService;
@@ -54,13 +59,35 @@ public class abcController {
 	
 	//일정 등록
 	@RequestMapping("sinsert.do")
-	public ModelAndView insertSpost(Spost spost, ModelAndView mav) {
+	public ModelAndView insertSpost(Spost spost, ModelAndView mav, @RequestParam("beforesstartday") Date start,@RequestParam("beforesendday") Date end ) {
+		logger.info(start.toString());
+		logger.info(end.toString());
 		
+		String Sstart = start.toString().replace("T", " ");
+		String Send = end.toString().replace("T", " ");
 		
+		logger.info(Sstart);
+		logger.info(Send);
+		
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		try {
+			java.util.Date startdate = transFormat.parse(Sstart);
+			java.util.Date enddate = transFormat.parse(Send);
+			
+			spost.setSstartday(startdate);
+			spost.setSendday(enddate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+
 		if(spostService.insertSpost(spost) > 0) {
-			
+			mav.addObject("spost", spost);
+			mav.setViewName("abc/insertTest.jsp");
 		}else {
-			
+			mav.addObject("spost", spost);
+			mav.setViewName("abc/insertTest.jsp");
 		}
 		return mav;
 	}
