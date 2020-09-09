@@ -387,7 +387,8 @@
 
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
-							<form action="blank.do" id="mainInsert">
+							<form action="sinsert.do" id="spostInsert" method="post">
+							
 								<table style="text-align: center; width: 100%;">
 									<tr class="m-0 font-weight-bold text-primary">
 										<td style="width: 20%;"><span>글작성</span></td>
@@ -467,18 +468,27 @@
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
-										<td colspan="3"></td>
+										<td colspan="2"></td>
+										<!--  #f8f9fc   -->
+										<td>
+										<select>
+											<option value="y">전체공개</option>
+											<option value="n">나만보기</option>
+										</select>
+										</td>
+										
 										<td><a class="btn btn-success btn-icon-split"
-											href="javascript:mainInsert.submit();" style="width: 90%;">
+											href="javascript:spostInsert.submit();" style="width: 90%;">
 												<span class="text">등록</span>
 										</a></td>
-										<td><a href="javascript:mainInsert.reset();"
+										<td><a href="javascript:spostInsert.reset();"
 											class="btn btn-danger btn-icon-split" style="width: 90%;">
 												<span class="text">취소</span>
 										</a></td>
 									</tr>
 								</table>
 							</form>
+							
 						</div>
 					</div>
 
