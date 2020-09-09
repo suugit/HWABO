@@ -103,13 +103,29 @@ $("input[name='profile_img']").change(function(e){
    
     return false;
 });
+
+
+var names = "";
+function addbcharge(){
+	var name = $(event.target).text();
+	names += name + ",";
+	
+	 $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>');
+	 //$('#bform').val(name); 
+	 
+	 $('#bform').val(names);
+	 alert($("#bform").val());
+}
+
+function unSelected(){
+	$(event.target).parent().remove();
+	
+	
+}
+
+
 </script>
  
-
-
-
-
-
 
 
 
@@ -139,7 +155,9 @@ $("input[name='profile_img']").change(function(e){
             </div>
             <div class="card-body">
               <!-- 게시글안쪽 -->
-              <form action="insertbpost.do" method="post" id="bInsert" enctype="multipart/form-data">
+              
+              
+              <form action="insertbpost.do" name="b" method="post" id="bInsert" enctype="multipart/form-data">
               <table style="text-align:center;width:100%;">
               <tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
               <span>글작성</span>
@@ -159,8 +177,9 @@ $("input[name='profile_img']").change(function(e){
               <!-- 글작성 본문 -->
               
               
-    	<input type="hidden" name="bwriter" value="백규림">
-	               <input type="text" class="form-control mb-1" name="btitle" placeholder="제목(선택값)">
+    		<input type="hidden" name="bwriter" value="백규림">
+    		
+	        <input type="text" class="form-control mb-1" name="btitle" placeholder="제목(선택값)">
 	               
 	     	
 	            <!-- <input class="btn btn-outline-primary" class="bkind" type="button" name="bkind1" onclick="return bkind();" value="요청">&nbsp&nbs
@@ -188,15 +207,34 @@ $("input[name='profile_img']").change(function(e){
 			  </label>
 			</div>
 	      			
+	      			
+	     
+	      			
+	      			
+	      			
+	      			
 			<div>	
 			<nav class="navbar navbar-expand navbar-light bg-light mb-4">
                     
                         <br><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           	담당자
                         </a>
+                    <!-- 담당자 이름 -->
+           				<div id="selected"></div>
+           				
+           				
+           				<input type="hidden" id="bform" name="bcharge">
+           				
+           			
+           			<!doctype html>
+
+           			
+           			
                         <div class="dropdown-menu dropdown-menu-left animated--grow-in" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">백규림</a>
-                          <a class="dropdown-item" href="#">백규리</a>
+                          <a class="dropdown-item" onclick="addbcharge()">백규림</a>
+                          <a class="dropdown-item" onclick="addbcharge()">박수현</a>
+                          <a class="dropdown-item" onclick="addbcharge()">정다운</a>
+                          <a class="dropdown-item" onclick="addbcharge()">백신후</a>
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="#">더보기</a>
                         </div>
@@ -231,7 +269,10 @@ $("input[name='profile_img']").change(function(e){
               	
               	
 	            <label><input type="file" name="ofile" style="visibility: hidden;"><span class="fa fa-link m-2" >첨부파일</span></label>
-	           
+	           <select>
+						<option name="bopen" value="y">전체공개</option>
+						<option name="bopen" value="n">나만보기</option>
+				</select>
 				
         	<!-- <label><input type="file" class="fa fa-link m-2" name="ofile" style="visibility: hidden;"/><span class="d-none d-md-inline-block ml-1">파일</span></label>
 				<br>  -->

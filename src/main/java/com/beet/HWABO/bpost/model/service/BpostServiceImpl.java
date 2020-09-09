@@ -1,5 +1,7 @@
 package com.beet.HWABO.bpost.model.service;
 
+
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.beet.HWABO.bpost.model.dao.BpostDao;
