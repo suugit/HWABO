@@ -21,5 +21,8 @@
 		where uemail =  #{uemail} and accesstoken = #{accesstoken}
 	</update>
 	
+	<select id="chk_id" parameterType="string" resultType="_int">
+		select count(*) from member where uemail =  #{uemail} and signtype= 'h'
+	</select>
 	
 </mapper>

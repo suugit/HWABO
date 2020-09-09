@@ -30,6 +30,12 @@ public class MemberServiceImpl implements MemberService{
 	public int updateUst(Member member) {
 		return memberDao.updateUst(member);
 	}
+
+	@Override
+	public int selectEmailCheck(String uemail) {
+		return memberDao.selectEmailCheck(uemail);
+	}
+	
 	
 
 	

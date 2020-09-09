@@ -32,4 +32,7 @@ public class MemberDao {
 	}
 
 
+	public int selectEmailCheck(String uemail) {
+		return session.selectOne("memberMapper.selectEmailCheck", uemail);
+	}
 }
