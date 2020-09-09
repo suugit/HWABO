@@ -434,7 +434,7 @@
 									<tr>
 										<td colspan="1" style="width: 20%;"><span
 											style="float: left;"><i class="far fa-bell"></i>&nbsp;알
-												림</span> <select name="alarm" class="form-control">
+												림</span> <select name="salarm" class="form-control">
 												<option value="no">--- 알림 없음 ---</option>
 												<option value="10mm">10분 전 알림</option>
 												<option value="30mm">30분 전 알림</option>
