@@ -45,8 +45,8 @@
 							<center>
 								<h1 class="m-4">회원가입</h1>
 							</center>
-							<div><span id="testchk"></span></div>
-							<form  action="sign.do" method="post" id="signForm">
+							<div><span id="chkmsg"></span></div>
+							<form  action="sign.do" method="post" id="signForm" onsubmit="return validate();">
 								<div class="form-group row">
 									<label for="email" class="col-sm-3 col-form-label ">이메일 주소</label>
 									<div class="col-sm-9">
@@ -74,18 +74,17 @@
 									</div>
 								</div>
 
-
 								<div class="form-check mb-4 text-center">
 									<input class="form-check-input" type="checkbox" value="" id="toschk"> 
 									<label class="form-check-label text-sm" for="toschk">
 										<small>위의 <a href="#">이용약관 및 개인정보 수집및 이용</a>에 대한 안내에 동의합니다.</small>
 									</label>
 								</div>
-
+								</form>
 								<div class="col-md-9 m-auto">
-									<input type="submit" class="btn btn-primary btn-user btn-block" value="가입하기">
+									<button id="btn-save" class="btn btn-primary btn-user btn-block">가입하기</button>
 								</div>
-							</form>
+							
 							<hr>
 							<div class="col-md-9 mt-1 mb-4 mx-auto">
 								<a href="index.html" class="btn btn-google btn-user btn-block">
@@ -106,6 +105,7 @@
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>
+
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
@@ -116,31 +116,9 @@
 	
 	<!-- google -->
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<script type="text/javascript">
-	window.onload = function(){
-		var form = document.getElementById('#signForm');
-		var msg = document.getElementById('chkmsg');
-		form.onsubmit =function(){
-			var uname = document.getElementById('uname');
-			var upwd = document.getElementById('upwd');
-			var upwdchk = document.getElementById('upwdchk');
-			var toschk = document.getElementById('toschk');
-			
-			
-			if(uname.value.lenghth > 0 ){
-				if(pwd.value.length==0 && upwdchk.value.length == 0){ //비번입력 ㄴㄴ
-					 testchk.innerHTML ="비밀번호를 입력해주세요"
-					 return false;
-				}
-			}
-		}
-	}
 	
-/* 	
-	var message = '${message}'; 
-	alert(message);  
-	location.href = "loginPage.do";
-	 */
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="/hwabo/resources/js/user.js">
 	
 	</script>
 </body>
