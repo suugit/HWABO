@@ -21,4 +21,15 @@ public class MemberDao {
 	public Member selectLogin(Member member) {
 		return session.selectOne("memberMapper.selectLogin", member);
 	}
+
+
+	public int updateAuth(Member member) {
+		return session.update("memberMapper.updateAuth", member);
+	}
+
+	public int updateUst(Member member) {
+		return session.update("memberMapper.updateUst", member);
+	}
+
+
 }

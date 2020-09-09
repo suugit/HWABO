@@ -15,16 +15,42 @@
 
   <title>HWABO</title>
 
-  <!-- Custom fonts for this template-->
+  <!-- Custom fonts for this template -->
   <link href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template-->
+  <!-- Custom styles for this template -->
   <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
+<!-- 진행률시작 -->
+<style>
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 0%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+</style>
+
+<!-- 진행률끝 -->
+
 <body id="page-top">
+<!-- Topbar2 -->
+        <c:import url="/WEB-INF/views/suugit/topbar.jsp"></c:import>
+<!-- End of Topbar -->
+
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
 	원하는 페이지로 :
@@ -39,12 +65,20 @@
     <button onclick="javascript:location.href='fregister.do'">register</button>
     <button onclick="javascript:location.href='ftables.do'">tables</button>
     <button onclick="javascript:location.href='fanimation.do'">utilities-animation</button>
-    <button onclick="javascript:location.href='insertvp.do'">투표페이지로</button>
-    <button onclick="javascript:location.href='fcolor.do'">채팅페이지로</button>
-    <button onclick="javascript:location.href='fother.do'">알림페이지로</button>
+    <button onclick="javascript:location.href='fborder.do'">utilities-border</button>
+    <button onclick="javascript:location.href='fcolor.do'">utilities-color</button>
+    <button onclick="javascript:location.href='fother.do'">utilities-other</button>
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->
+<!-- 테스트버튼2 시작 -->
+<div style="position:absolute;z-index:5;"><br>&nbsp;
+	원하는 페이지로 :
+    <button onclick="javascript:location.href='cards.do'">프로젝트 시작페이지</button>
+    <button onclick="javascript:location.href='ftables.do'">메인(sns형)</button>
+    </div>
+<div style="background-color:skyblue;border:1px solid black;"><br><br><br></div>
+<!-- 테스트버튼2 끝 -->
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -63,7 +97,7 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="index.jsp">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
@@ -145,7 +179,7 @@
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="tables.jsp">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
@@ -172,9 +206,11 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
+          <form class="form-inline">
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+              <i class="fa fa-bars"></i>
+            </button>
+          </form>
 
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -353,300 +389,369 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+<!-- 진행률 시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+                            <h1 class="m-0 text-primary">전체 진행률</h1>
+                            <hr>
 
+<div id="myProgress">
+  <div id="myBar">0%</div>
+</div>
+<br>
+<table style="text-align:center;width:100%;color:white;"><tr><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;"></td><td style="width:20%;">
+<a class="btn btn-success btn-icon-split" style="width:90%;" onclick="move()">
+<span class="text">진행률바 테스트</span>
+</a>
+</td>
+</tr></table>
+<script>
+var i = 0;
+let c = 5;//목표 갯수 현재 5개
+var devide = 0;
+function move() {
+	devide += 100 / c;
+    if(devide > 100){
+    	devide = 100;
+    }
+  if (i == 0) {
+
+    var elem = document.getElementById("myBar");
+    var width = 0;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= devide) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+        elem.innerHTML = width  + "%";
+      }
+    }
+  }
+}
+</script>
+            </div>
+          </div>
+<!-- 진행률끝 -->
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-          </div>
+          <h1 class="h3 mb-2 text-gray-800"></h1>
+          <p class="mb-4"></p>
 
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
             </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+              <form action="blank.do" id="mainInsert">
+              <table style="text-align:center;width:100%;">
+              <tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
+              <span>글작성</span>
+              </td><td style="width:20%;">
+              <span>업무</span>
+              </td><td style="width:20%;">
+              <span>일정</span>
+              </td><td style="width:20%;">
+              <span>할일</span>
+              </td><td style="width:20%;">
+              <span>투표</span>
+              </td></tr>
+              <!-- 구분선 -->
+              <tr><td colspan="5">
+              <hr>
+              </td></tr>
+              <!-- 글작성 본문 -->
+              <tr>
+	              <td colspan="5">
+	               <input type="text" class="form-control mb-1" placeholder="제목(선택값)">
+	              </td>
+              </tr>
+              <tr>
+              	<td colspan="5">
+              	<textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+              	</td>
+              </tr>
+               <tr><td colspan="5">
+              <hr>
+              </td></tr>
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <tr>
+              <!-- 옵션메뉴 -->
+              	<div class="clearfix d-flex ">
+              	<td colspan="3" class="flex-grow-5">
+	              <a href="#"><i class="fa fa-link m-2"><span class="d-none d-md-inline-block ml-1">첨부</span></i></a>
+	              <a href="#"><i class="fa fa-calendar-alt mr-2"><span class="d-none d-md-inline-block  ml-1">일정</span></i></a>
+	              <a href="#"><i class="fa fa-map-marker-alt mr-2"><span class="d-none d-md-inline-block  ml-1">코드</span></i></a>
+	              <a href="#"><i class="fa fa-code mr-2"><span class="d-none d-md-inline-block  ml-1">지도</span></i></a>
+	              <a href="#"><i class="fa fa-hashtag mr-4 ml-auto"></i></a>
+	              <a href="#"><i class="fa fa-at mr-4" ></i></a>
+					
+					
+              	</td>
+				
+              	 <!-- 버튼 -->
+              	 <td> 
+             	 	<a class="btn btn-success btn-icon-split" href="javascript:mainInsert.submit();" style="width:90%;" >
+                    <span class="text">등록</span>
+                 	</a>
+             	 </td>
+             	 <td>
+             		<a href="javascript:mainInsert.reset();" class="btn btn-danger btn-icon-split" style="width:90%;">
+                    <span class="text">취소</span>
+             		</a>
+              	</td>
+              </tr>
+             </div>
+        
+              </table>
+              </form>
             </div>
           </div>
-
-          <!-- Content Row -->
-
-          <div class="row">
-
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                </div>
-              </div>
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
             </div>
-
-            <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Direct
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
                     </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Social
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Referral
-                    </span>
-                  </div>
-                </div>
-              </div>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
             </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
           </div>
-
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-
-              <!-- Project Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                </div>
-                <div class="card-body">
-                  <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
-                  <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Color System -->
-              <div class="row">
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-primary text-white shadow">
-                    <div class="card-body">
-                      Primary
-                      <div class="text-white-50 small">#4e73df</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-success text-white shadow">
-                    <div class="card-body">
-                      Success
-                      <div class="text-white-50 small">#1cc88a</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-info text-white shadow">
-                    <div class="card-body">
-                      Info
-                      <div class="text-white-50 small">#36b9cc</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-warning text-white shadow">
-                    <div class="card-body">
-                      Warning
-                      <div class="text-white-50 small">#f6c23e</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-danger text-white shadow">
-                    <div class="card-body">
-                      Danger
-                      <div class="text-white-50 small">#e74a3b</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-secondary text-white shadow">
-                    <div class="card-body">
-                      Secondary
-                      <div class="text-white-50 small">#858796</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-light text-black shadow">
-                    <div class="card-body">
-                      Light
-                      <div class="text-black-50 small">#f8f9fc</div>
-                    </div>
-                  </div>
-              </div>
-              <div class="col-lg-6 mb-4">
-                <div class="card bg-dark text-white shadow">
-                  <div class="card-body">
-                      Dark
-                      <div class="text-white-50 small">#5a5c69</div>
-                  </div>
-                </div>
-              </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
             </div>
-
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
             </div>
-
-            <div class="col-lg-6 mb-4">
-
-              <!-- Illustrations -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                </div>
-                <div class="card-body">
-                  <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
-                  </div>
-                  <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-                  <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
-                </div>
-              </div>
-
-              <!-- Approach -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                </div>
-                <div class="card-body">
-                  <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS bloat and poor page performance. Custom CSS classes are used to create custom components and custom utility classes.</p>
-                  <p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap framework, especially the utility classes.</p>
-                </div>
-              </div>
-
-            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
           </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+<!-- 게시글시작 -->
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+              <!-- 게시글안쪽 -->
+<h1>게시글 제목</h1>
+<hr>
+가<br>
+나다<br>
+라마바<br>
+사아자차<br>
+<br>
+<br>
+<hr>
+<table style="width:100%;">
+<tr><td style="width:20%;">
+<a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">좋아요 0</span>
+                  </a>
+</td><td style="width:20%;"></td><td style="width:20%;"></td>
+<td style="width:20%;"></td><td style="width:20%;float:right;">
+</td>
+</tr>
+</table>
+            </div>
+<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
+<input type="text" class="form-control" placeholder="답글을 입력하세요">
+</div>
+          </div>
+<!-- 게시글끝 -->
+
 
         </div>
         <!-- /.container-fluid -->
@@ -705,11 +810,11 @@
   <script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="/hwabo/resources/maincss/vendor/chart.js/Chart.min.js"></script>
+  <script src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="/hwabo/resources/maincss/js/demo/chart-area-demo.js"></script>
-  <script src="/hwabo/resources/maincss/js/demo/chart-pie-demo.js"></script>
+  <script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
 
 </body>
 

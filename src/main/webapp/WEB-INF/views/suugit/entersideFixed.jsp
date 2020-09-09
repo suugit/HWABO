@@ -18,15 +18,26 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="width:1300px;height:100%;">
 
 <br><br><br><br>
-
-      <!-- 화보 이미지 -->
+      <!-- Sidebar - Brand -->
       <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='/hwabo/'">
-	
-<!-- 왼쪽사이드바 시작 -->
+
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
-     
-<!-- 왼쪽사이드바 끝 -->
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="/hwabo/">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>이전 페이지로</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+      
+      </div>
 
 </ul>
     
@@ -35,6 +46,8 @@
 
 </td>
 <td style="width:23.5%;">
+
+
 
 <!-- 채팅위치조정테이블하단 시작 -->
 <table style="height:100%;width:100%;">

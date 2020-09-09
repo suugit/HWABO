@@ -39,7 +39,7 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='mvsign.do'">회원가입</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='gnview.do'">임시테이블연결용</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='modal.do'">모달테스트</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='logout.do'">${ sessionScope.uname}님 로그아웃</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='logout.do'">${sessionScope.uname}${sessionScope.ucode}님 로그아웃</a></li>
                         
                     </ul>
                 </div>

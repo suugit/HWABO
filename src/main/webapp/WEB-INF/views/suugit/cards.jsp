@@ -118,11 +118,17 @@ font-size: 28px;
 </head>
 
 <body id="page-top">
-
 <!-- 1.topbar추가 -->
 <!-- Topbar2 -->
         <c:import url="/WEB-INF/views/red/topbar.jsp"></c:import>
 <!-- End of Topbar -->
+
+<!-- <table style="width:100%;">
+<tr>
+<td style="width:20%;"></td>
+
+<td style="width:60%;"> -->
+
 
 <!-- 2.바로아래div추가 및 임포트 추가  -->
 <div style="width:100%;display:flex;justify-content:center;align-item:center;">
@@ -139,16 +145,17 @@ font-size: 28px;
     <div style="width:17%"></div>
     <!-- End of Sidebar -->
 
-<!-- 5. class="d-flex flex-column bg-white" 그리고 style="width:62%;" -->
- <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column bg-white" style="width:62%;">
+<!-- 5. Content Wrapper 몸통 영역 width:62%추가 -->
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column"  style="width:62%;">
 
- <!-- Main Content -->
-     <div id="content">
+      <!-- Main Content -->
+      <div id="content">
 
-<!-- 6. 탑바<br>4개  -->
+
+<!-- 6. 원래 topbar있던자리 공백 채우기 <br>4번 -->
         <!-- Topbar -->
-        <br><br><br><br>
+       <br><br><br><br>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -161,6 +168,8 @@ font-size: 28px;
                 <img src="/hwabo/resources/maincss/img/plus2.png" style="width:45px;height:45px;">            
                             새 프로젝트 생성
                             </h1>
+
+
             </div>
           </div>
           <!-- 프로젝트생성끝 -->
@@ -441,12 +450,17 @@ font-size: 28px;
       <!-- End of Footer -->
 
     </div>
- 	 <!-- End of Content Wrapper -->
-<div style="width:25%"></div>
+ 
+<!-- 7. 채팅넣을 공간 div새로만들어서 style="width:25%" 옵션 주기  -->
+    <div style="width:25%"></div>
+    <!-- End of Content Wrapper -->
 
 </div>
 
 </div><!-- flex -->
+<!-- </td><td style="width:20%;"></td>
+</tr>
+</table> -->
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->

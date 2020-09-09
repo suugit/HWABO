@@ -18,6 +18,8 @@
 <body>
 
       <!-- Sidebar - Brand -->
+     
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sidewidth" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
@@ -124,7 +126,7 @@
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
-
+</ul>
     
   <script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
   <script src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

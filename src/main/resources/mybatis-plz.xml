@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE configuration PUBLIC
+"-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.beet.HWABO.test.model.vo.CryptoUser" alias="CryptoUser" />
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="plzMappers/test-mapper.xml" />
+	</mappers>
+</configuration>

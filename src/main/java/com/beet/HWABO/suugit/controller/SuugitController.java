@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.beet.HWABO.member.model.service.MailSendService;
 import com.beet.HWABO.member.model.service.MemberService;
 import com.beet.HWABO.member.model.vo.Member;
 
@@ -22,6 +25,9 @@ public class SuugitController {
 	
 private static final Logger logger = LoggerFactory.getLogger(SuugitController.class);
 
+
+@Autowired
+private MailSendService msserivce;
 
 @Autowired
 private MemberService mservice;
@@ -38,21 +44,44 @@ return "suugit/sign";
 @RequestMapping(value="/sign.do", method=RequestMethod.POST)
 public String insertUser(Member member, Model model){
 	logger.info("sign.do 실행...");
-	
+
 	//패스워드 암호화 
+	member.getUemail();
 	member.setUpwd(bcryptPwdEncoder.encode(member.getUpwd()));
-	
+	logger.info("회원가입한 메일 주소 : " + member.getUemail()); 
+	member.setAccesstoken(msserivce.sendAuthMail(member.getUemail()));
+
 	int result = mservice.insertUser(member);
-	logger.info("회원가입" + member);
-	logger.info("ucode" + member.getUcode());
+	logger.info("member 는 " + member);
 	if(result > 0) {
-		return "suugit/login.part";
+		model.addAttribute("message", "인증 메일이 전송되었습니다!");
 	}else {
 		model.addAttribute("message", "암호화 회원가입 실패!");
-		return "suugit/sign.part";
 	}
+	return "suugit/sign.part";
 
 }
+
+
+@GetMapping("/signConfirm.do")
+public ModelAndView signUpConfirm(HttpServletRequest request, ModelAndView mv, Member member){
+   //email, authKey 가 일치할경우 authStatus 업데이트
+	member.setUemail(request.getParameter("uemail"));
+	member.setAccesstoken(request.getParameter("accesstoken"));
+	int result = mservice.updateUst(member);
+	
+	if(result > 0) {
+		mv.addObject("member", member);
+		mv.setViewName("suugit/cards");
+	}else {
+		mv.addObject("message", "메일인증이 유효하지 않습니다!");
+		mv.setViewName("common/error");
+	}
+	
+   return mv;
+}
+
+
 
 
 @RequestMapping("/sign_team.do")
@@ -83,7 +112,7 @@ public String selectLogin(Member member, Model model, HttpServletRequest request
 			HttpSession session=request.getSession();
 			session.setAttribute("ucode", loginUser.getUcode());
 			session.setAttribute("uname", loginUser.getUname());
-			
+			request.setAttribute("uname", loginUser.getUname());
 			returnPage = "red/cards";
 		}else {
 			model.addAttribute("message", "암호가 일치하지 않습니다.");
@@ -96,10 +125,12 @@ public String selectLogin(Member member, Model model, HttpServletRequest request
 	return returnPage; 
 
 }
+
+
 //로그아웃
 @RequestMapping("logout.do")
 public String logout(HttpServletRequest request, Model model) {
-	logger.info("로그아웃하는  회원 정보 : " + request.getAttribute("ucode"));
+	logger.info("로그아웃하는  회원 정보 : " + request.getAttribute("uname"));
 	HttpSession session = request.getSession(false);
 	if(session != null) {
 		session.invalidate();
@@ -111,6 +142,8 @@ public String logout(HttpServletRequest request, Model model) {
 }
 
 
+
+
 @RequestMapping("/forgotpwd.do")
 public String forgotPwdPage(){
 
@@ -119,10 +152,16 @@ return "suugit/forgotpwd.part";
 
 
 //내 정보
+@RequestMapping("/myinfo1.do")
+public String myinfoPag1e(){
+
+return "suugit/myinfo.page";
+}
+
 @RequestMapping("/myinfo.do")
 public String myinfoPage(){
 
-return "suugit/myinfo.page";
+return "suugit/myinfo";
 }
 
 //게시글
@@ -151,6 +190,16 @@ return "suugit/modal.page";
 public String ChnpwdPage(){
 
 return "suugit/chnpwd.part";
+}
+
+@RequestMapping("/topinfo.do")
+public String testpage() {
+	return "red/cards";
+}
+
+@RequestMapping("/top1.do")
+public String testpage2() {
+	return "suugit/topbar";
 }
 
 
