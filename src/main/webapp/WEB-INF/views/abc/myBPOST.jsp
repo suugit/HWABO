@@ -50,364 +50,32 @@
 </head>
 
 <body id="page-top">
+<!-- 1.탑바 임포트 -->
+	<c:import url="/WEB-INF/views/abc/topbar.jsp"></c:import>
+	
+<!-- 2.바로아래div추가 및 임포트 추가  -->
+	<div style="width:100%;display:flex;justify-content:center;align-item:center;">
+<!-- Sidebar2right -->
+     <c:import url="/WEB-INF/views/abc/entersideFixed.jsp"></c:import>
+<!-- End of Sidebar2right -->
+
 
 	<!-- Page Wrapper -->
-	<div id="wrapper">
+	<div id="wrapper" style="width:1300px;">
 
 		<!-- Sidebar -->
-		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
-
-			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.jsp"> <br>
-				<div style="margin-top: 60px;">
-					<!-- <i class="far fa-kiss-wink-heart"></i> -->
-					<img src="resources/maincss/img/logo.png"
-						style="width: 100%; max-width: 760px; vertical-align: middle">
-				</div>
-
-			</a>
-			<br>
-			<br>
-			<br>
-
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseThree"
-				aria-expanded="true" aria-controls="collapseThree"> <i
-					class="far fa-check-circle"></i><span>볼 업무 선택</span>
-			</a>
-				<div id="collapseThree" class="collapse"
-					aria-labelledby="headingThree" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">HWABO</h6>
-						<a class="collapse-item" href="#"><span><label><input
-									type="radio" name="selectshow">프로젝트 업무</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="radio" name="selectshow"> 나의 업무</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="radio" name="selectshow"> 요청 온 업무 </label></span></a>
-					</div>
-				</div></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-filter"></i> <span>진행상황</span>
-			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">HWABO</h6>
-						<a class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">요 청</label></span></a> <a
-							class="collapse-item" href="#"> <span><label><input
-									type="checkbox" checked="checked">진 행</label></span></a>  <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">완 료</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">보 류</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">피드백</label></span></a>
-					</div>
-				</div></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-			
-			
-						<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapsefour"
-				aria-expanded="true" aria-controls="collapsefour"> <i
-					class="fas fa-filter"></i> <span></span>
-			</a>
-				<div id="collapsefour" class="collapse" aria-labelledby="headingfour"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">정 렬</h6>
-						<a class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">진행상황</label></span></a> <a
-							class="collapse-item" href="#"> <span><label><input
-									type="checkbox" checked="checked">제 목</label></span></a>  <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">시작일</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">마감일</label></span></a> <a
-							class="collapse-item" href="#"><span><label><input
-									type="checkbox" checked="checked">등록일</label></span></a>
-					</div>
-				</div></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapsePages" aria-expanded="true"
-				aria-controls="collapsePages"> <i class="fas fa-chalkboard"></i>
-					<span>나의 화보</span>
-			</a></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapsePages" aria-expanded="true"
-				aria-controls="collapsePages"> <i class="fas fa-box-open"></i> <span>보관함</span>
-			</a> <a class="nav-link collapsed" href="#" data-target="#collapsePages"
-				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="far fa-folder-open"></i> <span>파일함</span>
-			</a></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseOne"
-				aria-expanded="true" aria-controls="collapseOne"> <i class="fas fa-chalkboard-teacher"></i><span>팀원들의 화보</span>
-			</a>
-				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">HWABO</h6>
-						<a class="collapse-item" href="#"><span><label>사람이름1</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름2</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름3</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름4</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름5</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름6</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름7</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름8</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름9</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름10</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름11</label></span></a>
-					</div>
-				</div></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider d-none d-md-block">
-
-			<!-- Sidebar Toggler (Sidebar) -->
-			<div class="text-center d-none d-md-inline">
-				<button class="rounded-circle border-0" id="sidebarToggle"></button>
-			</div>
-
-		</ul>
+<div style="width:17%"></div>
 		<!-- End of Sidebar -->
 
+
 		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
+		<div id="content-wrapper" class="d-flex flex-column"  style="width:62%;">
 
 			<!-- Main Content -->
 			<div id="content">
 
 				<!-- Topbar -->
-				<nav
-					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-					<!-- Sidebar Toggle (Topbar) -->
-					<form class="form-inline">
-						<button id="sidebarToggleTop"
-							class="btn btn-link d-md-none rounded-circle mr-3">
-							<i class="fa fa-bars"></i>
-						</button>
-					</form>
-
-					<!-- Topbar Search -->
-					<form
-						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-						<div class="input-group">
-							<input type="text" class="form-control bg-light border-0 small"
-								placeholder="Search for..." aria-label="Search"
-								aria-describedby="basic-addon2">
-							<div class="input-group-append">
-								<button class="btn btn-primary" type="button">
-									<i class="fas fa-search fa-sm"></i>
-								</button>
-							</div>
-						</div>
-					</form>
-
-					<!-- Topbar Navbar -->
-					<ul class="navbar-nav ml-auto">
-
-						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-						<li class="nav-item dropdown no-arrow d-sm-none"><a
-							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a> <!-- Dropdown - Messages -->
-							<div
-								class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-								aria-labelledby="searchDropdown">
-								<form class="form-inline mr-auto w-100 navbar-search">
-									<div class="input-group">
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="Search for..." aria-label="Search"
-											aria-describedby="basic-addon2">
-										<div class="input-group-append">
-											<button class="btn btn-primary" type="button">
-												<i class="fas fa-search fa-sm"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div></li>
-
-						<!-- Nav Item - Alerts -->
-						<li class="nav-item dropdown no-arrow mx-1"><a
-							class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-								<span class="badge badge-danger badge-counter">3+</span>
-						</a> <!-- Dropdown - Alerts -->
-							<div
-								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="alertsDropdown">
-								<h6 class="dropdown-header">Alerts Center</h6>
-								<a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="mr-3">
-										<div class="icon-circle bg-primary">
-											<i class="fas fa-file-alt text-white"></i>
-										</div>
-									</div>
-									<div>
-										<div class="small text-gray-500">December 12, 2019</div>
-										<span class="font-weight-bold">A new monthly report is
-											ready to download!</span>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="mr-3">
-										<div class="icon-circle bg-success">
-											<i class="fas fa-donate text-white"></i>
-										</div>
-									</div>
-									<div>
-										<div class="small text-gray-500">December 7, 2019</div>
-										$290.29 has been deposited into your account!
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="mr-3">
-										<div class="icon-circle bg-warning">
-											<i class="fas fa-exclamation-triangle text-white"></i>
-										</div>
-									</div>
-									<div>
-										<div class="small text-gray-500">December 2, 2019</div>
-										Spending Alert: We've noticed unusually high spending for your
-										account.
-									</div>
-								</a> <a class="dropdown-item text-center small text-gray-500"
-									href="#">Show All Alerts</a>
-							</div></li>
-
-						<!-- Nav Item - Messages -->
-						<li class="nav-item dropdown no-arrow mx-1"><a
-							class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i>
-								<!-- Counter - Messages --> <span
-								class="badge badge-danger badge-counter">7</span>
-						</a> <!-- Dropdown - Messages -->
-							<div
-								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="messagesDropdown">
-								<h6 class="dropdown-header">Message Center</h6>
-								<a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-										<div class="status-indicator bg-success"></div>
-									</div>
-									<div class="font-weight-bold">
-										<div class="text-truncate">Hi there! I am wondering if
-											you can help me with a problem I've been having.</div>
-										<div class="small text-gray-500">Emily Fowler Â· 58m</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-										<div class="status-indicator"></div>
-									</div>
-									<div>
-										<div class="text-truncate">I have the photos that you
-											ordered last month, how would you like them sent to you?</div>
-										<div class="small text-gray-500">Jae Chun Â· 1d</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-										<div class="status-indicator bg-warning"></div>
-									</div>
-									<div>
-										<div class="text-truncate">Last month's report looks
-											great, I am very happy with the progress so far, keep up the
-											good work!</div>
-										<div class="small text-gray-500">Morgan Alvarez Â· 2d</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-										<div class="status-indicator bg-success"></div>
-									</div>
-									<div>
-										<div class="text-truncate">Am I a good boy? The reason I
-											ask is because someone told me that people say this to all
-											dogs, even if they aren't good...</div>
-										<div class="small text-gray-500">Chicken the Dog Â· 2w</div>
-									</div>
-								</a> <a class="dropdown-item text-center small text-gray-500"
-									href="#">Read More Messages</a>
-							</div></li>
-
-						<div class="topbar-divider d-none d-sm-block"></div>
-
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie
-									Luna</span> <img class="img-profile rounded-circle"
-								src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-									Settings
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-									Activity Log
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									Logout
-								</a>
-							</div></li>
-
-					</ul>
-
-				</nav>
+<br><br><br><br>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -497,36 +165,6 @@
 						</div>
 						<!-- 업무 모아보기 끝 -->
 
-						<!-- 접속중인 팀원 시작 -->
-						<div class="col-md-2">
-							<div class="card mb-4 py-3 border-left-info">
-								<div style="margin-top: 0px;">
-									<h3>&nbsp;&nbsp;접속 중인 팀원</h3>
-									<hr>
-								</div>
-								<div class="card-body" >
-									<!-- 게시글안쪽 -->
-									<table style="width: 100%; height: 90%; overflow: auto;">
-									<tr>
-									<td><span style="color: 	#0000CD"><i class="fas fa-circle"></i></span></td>
-									<td><span><a class="online" href="#">접속중인 사용자의 이름</a></span></td>
-									</tr>
-									
-									<tr>
-									
-									<td><span style="color: #C0C0C0"><i class="fas fa-circle"></i></span></td>
-									<td><span style="color: #C0C0C0">비접속상태의 사용자이름</span></td>
-									</tr>
-
-
-									</table>
-
-
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 접속 중인 팀원 끝 -->
 					</div>
 
 					<br>
@@ -575,6 +213,11 @@
 				<div class="container-fluid"></div>
 				<!-- End of Main Content -->
 
+
+
+</div>
+			</div>
+			<!-- End of Content Wrapper -->
 				<!-- Footer -->
 				<footer class="sticky-footer bg-white">
 					<div class="container my-auto">
@@ -584,13 +227,11 @@
 					</div>
 				</footer>
 				<!-- End of Footer -->
-
-			</div>
-			<!-- End of Content Wrapper -->
-
 		</div>
 		<!-- End of Page Wrapper -->
+<div style="width:25%"></div>
 
+</div>
 		<!-- Scroll to Top Button-->
 		<a class="scroll-to-top rounded" href="#page-top"> <i
 			class="fas fa-angle-up"></i>

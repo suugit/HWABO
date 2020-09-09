@@ -145,18 +145,9 @@ font-size: 28px;
     <div style="width:17%"></div>
     <!-- End of Sidebar -->
 
-<!-- 5. Content Wrapper 몸통 영역 width:62%추가 -->
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column"  style="width:62%;">
-
-      <!-- Main Content -->
-      <div id="content">
 
 
-<!-- 6. 원래 topbar있던자리 공백 채우기 <br>4번 -->
-        <!-- Topbar -->
-       <br><br><br><br>
-        <!-- End of Topbar -->
+
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -451,9 +442,7 @@ font-size: 28px;
 
     </div>
  
-<!-- 7. 채팅넣을 공간 div새로만들어서 style="width:25%" 옵션 주기  -->
-    <div style="width:25%"></div>
-    <!-- End of Content Wrapper -->
+
 
 </div>
 
