@@ -43,10 +43,10 @@
 </ul>
     
 </td>
-<td style="width:60%;">
+<td style="width:57%;">
 
 </td>
-<td style="width:23%;">
+<td style="width:23.5%;">
 
 
 
