@@ -40,13 +40,14 @@
 		<constructor-arg index="0" ref="sqlSession"></constructor-arg>
 	</bean>
 	
+	
 	<!-- 트랜잭션 관리 설정 -->
 	<bean
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		id="transactionManager">
 		<property name="dataSource" ref="realDataSource"></property>
 	</bean>	
-	
+
 	<!-- service 에서 필요한 시점에 commit / rollback 이 구동되게 aop 설정 처리 -->
 	<tx:advice transaction-manager="transactionManager" id="txAdvice">
 		<tx:attributes>
@@ -66,12 +67,23 @@
 		<aop:advisor advice-ref="txAdvice" id="transactionAdvisor" pointcut-ref="serviceMethod" />
 	</aop:config>
 
-
-	
+		<!-- 이메일 인증 -->
+	    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="username" value="hwabo49@gmail.com"/>
+        <property name="password" value="beet1216" />
+        
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
 </beans>
-
-
-
 
 
 
