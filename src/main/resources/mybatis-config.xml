@@ -6,10 +6,14 @@
 	<typeAliases>
 		<typeAlias type="com.beet.HWABO.test.model.vo.CryptoUser" alias="CryptoUser" />
 		<typeAlias type="com.beet.HWABO.member.model.vo.Member" alias="Member" />
+		<typeAlias type="com.beet.HWABO.spost.model.vo.Spost" alias="Spost" />
+		<typeAlias type="com.beet.HWABO.spost.model.vo.Post" alias="Post" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mappers/test-mapper.xml" />
 		<mapper resource="mappers/member-mapper.xml" />
+		<mapper resource="mappers/spost-mapper.xml" />
+		<mapper resource="mappers/post-mapper.xml" />
 	</mappers>
 </configuration>
