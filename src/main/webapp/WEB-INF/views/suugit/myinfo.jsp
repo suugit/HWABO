@@ -45,8 +45,29 @@
   </style>
 </head>
 <body>
+<!-- Topbar2 -->
+        <c:import url="/WEB-INF/views/suugit/topbar.jsp"></c:import>
+<!-- End of Topbar -->
+
+<!-- 2.바로아래div추가 및 임포트 추가  -->
+<div style="width:100%;display:flex;justify-content:center;align-item:center;">
+<!-- Sidebar2right -->
+     <c:import url="/WEB-INF/views/red/entersideFixed.jsp"></c:import>
+<!-- End of Sidebar2right -->
+
+<!-- 3. id="wrapper" 스타일 1300px설정 -->
+  <!-- Page Wrapper -->
+  <div id="wrapper" style="width:1300px;">
+
+<!-- 4. Sidebar 사이드바 영역 width:17%추가 -->
+    <!-- Sidebar -->
+    <div style="width:17%"></div>
+    <!-- End of Sidebar -->
+    
 <!-- Begin Page Content -->
+<div id="content-wrapper" class="d-flex flex-column " style="width:62%">
   <div class="container">
+  	<br><br><br><br>
         <div class="container-fluid col-md-7 col-text-left float-left" style="min-width:fit-content">
           <div class="card shadow">
             <div class="card-header border-left-info">
@@ -109,7 +130,7 @@
             </div>
           </div>
         </div>
-
+</div>
         <!--사진변경모달창-->
         <div class="modal fade" id="imgUpdateModal" tabindex="-1" role="dialog" aria-labelledby="imgModalLabel">
           <div class="modal-dialog" role="document">
@@ -180,6 +201,28 @@
       </div>
       <!-- End of Main Content -->
       
+       <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+      
+    <!-- 7. 채팅넣을 공간 div새로만들어서 style="width:25%" 옵션 주기  -->
+    <div style="width:25%"></div>
+    <!-- End of Content Wrapper -->
+
+</div>  
+	<div>
+<!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+  </div>
+  
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -5,12 +5,21 @@
 <mapper namespace="memberMapper">
 
 	<insert id="insertUser" parameterType="Member">
-		insert into member (ucode, uemail, upwd, uname, signtype)
-		values ('h' || member_seq.nextval, #{uemail}, #{upwd}, #{uname}, 'h')
+		insert into member (ucode, uemail, upwd, uname, signtype, accesstoken)
+		values ('h' || member_seq.nextval, #{uemail}, #{upwd}, #{uname}, 'h', #{accesstoken})
 	</insert>
 	
 	<select id="selectLogin" parameterType="Member" resultType="Member">
 		select * from member
 		where uemail =  #{uemail} and signtype= 'h'
 	</select>
+	
+
+	<update id="updateUst" parameterType="Member">
+		update member
+		set ust='Y'
+		where uemail =  #{uemail} and accesstoken = #{accesstoken}
+	</update>
+	
+	
 </mapper>

@@ -1,7 +1,7 @@
 package com.beet.HWABO.spost.model.vo;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class Spost implements Serializable{
 	private static final long serialVersionUID = 2323L;
@@ -9,7 +9,7 @@ public class Spost implements Serializable{
 	private String sno;
 	private String stitle;
 	private String swriter;
-	private Date sstartdaty;
+	private Date sstartday;
 	private Date sendday;
 	private String splace;
 	private String salarm;
@@ -24,13 +24,13 @@ public class Spost implements Serializable{
 		super();
 	}
 
-	public Spost(String sno, String stitle, String swriter, Date sstartdaty, Date sendday, String splace, String salarm,
+	public Spost(String sno, String stitle, String swriter, Date sstartday, Date sendday, String splace, String salarm,
 			String scontent, Date senrolldate, String sopen, int slove, String srwriter, String srcontent) {
 		super();
 		this.sno = sno;
 		this.stitle = stitle;
 		this.swriter = swriter;
-		this.sstartdaty = sstartdaty;
+		this.sstartday = sstartday;
 		this.sendday = sendday;
 		this.splace = splace;
 		this.salarm = salarm;
@@ -66,12 +66,12 @@ public class Spost implements Serializable{
 		this.swriter = swriter;
 	}
 
-	public Date getSstartdaty() {
-		return sstartdaty;
+	public Date getSstartday() {
+		return sstartday;
 	}
 
-	public void setSstartdaty(Date sstartdaty) {
-		this.sstartdaty = sstartdaty;
+	public void setSstartday(Date sstartday) {
+		this.sstartday = sstartday;
 	}
 
 	public Date getSendday() {
@@ -148,7 +148,7 @@ public class Spost implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Spost [sno=" + sno + ", stitle=" + stitle + ", swriter=" + swriter + ", sstartdaty=" + sstartdaty
+		return "Spost [sno=" + sno + ", stitle=" + stitle + ", swriter=" + swriter + ", sstartday=" + sstartday
 				+ ", sendday=" + sendday + ", splace=" + splace + ", salarm=" + salarm + ", scontent=" + scontent
 				+ ", senrolldate=" + senrolldate + ", sopen=" + sopen + ", slove=" + slove + ", srwriter=" + srwriter
 				+ ", srcontent=" + srcontent + "]";

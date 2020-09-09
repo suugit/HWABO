@@ -14,7 +14,7 @@ public class BpostDao {
 	
 	public int insertBpost(Bpost bpost) {
 		
-		return session.insert("bpostMapper.insertbpost", bpost);
+		return session.insert("bpostMapper.insertBpost", bpost);
 	}
 
 }

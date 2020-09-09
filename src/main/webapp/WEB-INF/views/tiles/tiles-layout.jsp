@@ -35,14 +35,11 @@
 	var RESOURCES_PATH = "${RESOURCES_PATH}";
 </script>
 <style>
-html, body {
-	height: auto;
-}
+
  .sidewidth {
  	background-color: #BBDEFB;
  	z-index: 1;
  	float: left;
-
 
  }
 	#content {
@@ -59,15 +56,16 @@ html, body {
 
 <body >
 	<div class='wrapper'>
-			
+		<div class="row">
+			<div class="col-lg-2">
 			<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sidewidth" id="accordionSidebar">
 				<tiles:insertAttribute name="sidebar" ignore="true" />
 			</ul>
-
-		
+			</div>
+		<div class="col-lg-6">
 		<div id="content-wrapper" class="d-flex flex-column">
 			<div id="content">
-				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow navbar-fixed-top">
 					<tiles:insertAttribute name="header" ignore="true"  />
 				</nav>
 				<!-- Main Content -->
@@ -75,12 +73,12 @@ html, body {
 					<tiles:insertAttribute name="body" ignore="true" />
 				</div>
 			</div>
-			
+			</div>
 			<footer class="sticky-footer bg-white">
 				<tiles:insertAttribute name="footer" ignore="true" />
 			</footer>
 		</div>
-		
+		</div>
 	</div>
 	
 	 <!-- Scroll to Top Button-->

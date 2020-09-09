@@ -33,7 +33,12 @@
 <link
 	href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
-
+	
+	<style type="text/css">
+	#counter:focus {outline:none;}
+	
+	#counter{margin: 0;}
+	</style>
 </head>
 
 
@@ -158,205 +163,6 @@
 			<!-- Main Content -->
 			<div id="content">
 
-				<!-- Topbar -->
-				<nav
-					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-					<!-- Sidebar Toggle (Topbar) -->
-					<form class="form-inline">
-						<button id="sidebarToggleTop"
-							class="btn btn-link d-md-none rounded-circle mr-3">
-							<i class="fa fa-bars"></i>
-						</button>
-					</form>
-
-					<!-- Topbar Search -->
-					<form
-						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-						<div class="input-group">
-							<input type="text" class="form-control bg-light border-0 small"
-								placeholder="Search for..." aria-label="Search"
-								aria-describedby="basic-addon2">
-							<div class="input-group-append">
-								<button class="btn btn-primary" type="button">
-									<i class="fas fa-search fa-sm"></i>
-								</button>
-							</div>
-						</div>
-					</form>
-
-					<!-- Topbar Navbar -->
-					<ul class="navbar-nav ml-auto">
-
-						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-						<li class="nav-item dropdown no-arrow d-sm-none"><a
-							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a> <!-- Dropdown - Messages -->
-							<div
-								class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-								aria-labelledby="searchDropdown">
-								<form class="form-inline mr-auto w-100 navbar-search">
-									<div class="input-group">
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="Search for..." aria-label="Search"
-											aria-describedby="basic-addon2">
-										<div class="input-group-append">
-											<button class="btn btn-primary" type="button">
-												<i class="fas fa-search fa-sm"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div></li>
-
-						<!-- Nav Item - Alerts -->
-						<li class="nav-item dropdown no-arrow mx-1"><a
-							class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-								<span class="badge badge-danger badge-counter">3+</span>
-						</a> <!-- Dropdown - Alerts -->
-							<div
-								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="alertsDropdown">
-								<h6 class="dropdown-header">Alerts Center</h6>
-								<a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="mr-3">
-										<div class="icon-circle bg-primary">
-											<i class="fas fa-file-alt text-white"></i>
-										</div>
-									</div>
-									<div>
-										<div class="small text-gray-500">December 12, 2019</div>
-										<span class="font-weight-bold">A new monthly report is
-											ready to download!</span>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="mr-3">
-										<div class="icon-circle bg-success">
-											<i class="fas fa-donate text-white"></i>
-										</div>
-									</div>
-									<div>
-										<div class="small text-gray-500">December 7, 2019</div>
-										$290.29 has been deposited into your account!
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="mr-3">
-										<div class="icon-circle bg-warning">
-											<i class="fas fa-exclamation-triangle text-white"></i>
-										</div>
-									</div>
-									<div>
-										<div class="small text-gray-500">December 2, 2019</div>
-										Spending Alert: We've noticed unusually high spending for your
-										account.
-									</div>
-								</a> <a class="dropdown-item text-center small text-gray-500"
-									href="#">Show All Alerts</a>
-							</div></li>
-
-						<!-- Nav Item - Messages -->
-						<li class="nav-item dropdown no-arrow mx-1"><a
-							class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i>
-								<!-- Counter - Messages --> <span
-								class="badge badge-danger badge-counter">7</span>
-						</a> <!-- Dropdown - Messages -->
-							<div
-								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="messagesDropdown">
-								<h6 class="dropdown-header">Message Center</h6>
-								<a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-										<div class="status-indicator bg-success"></div>
-									</div>
-									<div class="font-weight-bold">
-										<div class="text-truncate">Hi there! I am wondering if
-											you can help me with a problem I've been having.</div>
-										<div class="small text-gray-500">Emily Fowler Â· 58m</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-										<div class="status-indicator"></div>
-									</div>
-									<div>
-										<div class="text-truncate">I have the photos that you
-											ordered last month, how would you like them sent to you?</div>
-										<div class="small text-gray-500">Jae Chun Â· 1d</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-										<div class="status-indicator bg-warning"></div>
-									</div>
-									<div>
-										<div class="text-truncate">Last month's report looks
-											great, I am very happy with the progress so far, keep up the
-											good work!</div>
-										<div class="small text-gray-500">Morgan Alvarez Â· 2d</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-										<div class="status-indicator bg-success"></div>
-									</div>
-									<div>
-										<div class="text-truncate">Am I a good boy? The reason I
-											ask is because someone told me that people say this to all
-											dogs, even if they aren't good...</div>
-										<div class="small text-gray-500">Chicken the Dog Â· 2w</div>
-									</div>
-								</a> <a class="dropdown-item text-center small text-gray-500"
-									href="#">Read More Messages</a>
-							</div></li>
-
-						<div class="topbar-divider d-none d-sm-block"></div>
-
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie
-									Luna</span> <img class="img-profile rounded-circle"
-								src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-									Settings
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-									Activity Log
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									Logout
-								</a>
-							</div></li>
-
-					</ul>
-
-				</nav>
-				<!-- End of Topbar -->
-
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!-- Page Heading -->
@@ -372,23 +178,36 @@
 								$('#contentText').keyup(
 										function(e) {
 											var content = $(this).val();
-											$('#counter').val(
-													200 - content.length);
+											$('#counter').val(200 - content.length);
 
 											if (content.length > 200) {
 												$(this).val(
 														$(this).val()
-																.substring(0,
-																		200));
+																.substring(0, 200));
 											}
 										});
-							});
+								
+ 								$("#sample5_address").on("click", function(){
+									if($(this).val().length == 0 ){
+										sample5_execDaumPostcode()
+									}
+								});
+ 								
+ 								$("#spostInsert").on("submit", function(){
+ 									var start = $("#beforesstartday").val().toISOString().replace('Z', '').replace('T', '');
+ 									
+ 									
+ 								});
+ 								
+ 								
+ 								
+							});//document.ready 끝
 						</script>
 
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
-							<form action="sinsert.do" id="spostInsert" method="post">
-							
+						<form action="sinsert.do" id="spostInsert" method="post">
+						<input type="hidden" name="swriter" value="정다운">
 								<table style="text-align: center; width: 100%;">
 									<tr class="m-0 font-weight-bold text-primary">
 										<td style="width: 20%;"><span>글작성</span></td>
@@ -403,9 +222,8 @@
 										</td>
 									</tr>
 									<tr>
-										<td colspan="5"><span style="float: left;"><i
-												class="fa fa-pen"></i>&nbsp;제 목</span><input type="text"
-											class="form-control" placeholder="일정 제목을 입력하세요"></td>
+										<td colspan="5"><span style="float: left;"><i class="fa fa-pen"></i>&nbsp;제 목</span>											
+												<input type="text" name="stitle" 	class="form-control" placeholder="일정 제목을 입력하세요" required="required"></td>
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
@@ -413,28 +231,87 @@
 									<tr>
 										<td width="20%"><span style="float: left;"><i
 												class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span><input
-											type="datetime-local" class="form-control"></td>
+											type="datetime-local" class="form-control" name="beforesstartday" id="beforestart" required="required"></td>
 
 										<td width="20%"><span style="float: left;"><i
 												class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span><input
-											type="datetime-local" class="form-control"></td>
-
+											type="datetime-local" class="form-control" name="beforesendday"  id="beforeend" required="required"></td>
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
-										<td colspan="5"><span style="float: left;"><i
-												class="fas fa-map-marker-alt"></i>&nbsp;장 소</span><input
-											type="text" class="form-control" placeholder="장소를 입력하세요"></td>
+										<td colspan="4"><span style="float: left;"><i
+												class="fas fa-map-marker-alt"></i>&nbsp;장 소</span>
+		<input type="text" id="sample5_address" placeholder="장소를 입력하세요" class="form-control" name="splace">
+<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"  class="form-control"><br>
+<div id="map" style="width:300px;height:150px;margin-top:10px;display:none"></div>
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+            draggable: false, //지도 이동 금지
+            level: 5 // 지도의 확대 레벨
+        };
+
+    //지도를 미리 생성
+    var map = new daum.maps.Map(mapContainer, mapOption);
+    //주소-좌표 변환 객체를 생성
+    var geocoder = new daum.maps.services.Geocoder();
+    //마커를 미리 생성
+    var marker = new daum.maps.Marker({
+        position: new daum.maps.LatLng(37.537187, 127.005476),
+        map: map
+    });
+
+
+    function sample5_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = data.address; // 최종 주소 변수
+
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("sample5_address").value = addr;
+                // 주소로 상세 정보를 검색
+                geocoder.addressSearch(data.address, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+
+                        var result = results[0]; //첫번째 결과의 값을 활용
+
+                        // 해당 주소에 대한 좌표를 받아서
+                        var coords = new daum.maps.LatLng(result.y, result.x);
+                        // 지도를 보여준다.
+                        mapContainer.style.display = "block";
+                        map.relayout();
+                        // 지도 중심을 변경한다.
+                        map.setCenter(coords);
+                        // 마커를 결과값으로 받은 위치로 옮긴다.
+                        marker.setPosition(coords)
+                    }
+                });
+            }
+        }).open();
+    }
+</script>
+
+											</td>
+											<td>
+
+										
+										</td>	
 									</tr>
+
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
 										<td colspan="1" style="width: 20%;"><span
 											style="float: left;"><i class="far fa-bell"></i>&nbsp;알
-												림</span> <select name="alarm" class="form-control">
+												림</span> <select name="salarm" class="form-control">
 												<option value="no">--- 알림 없음 ---</option>
 												<option value="10mm">10분 전 알림</option>
 												<option value="30mm">30분 전 알림</option>
@@ -451,18 +328,11 @@
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
-
-
-
-
 										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;메 모</span>
-										 <textarea
-												name="contentText" id="contentText" cols="30" rows="10"
-												class="form-control"
-												style="width: 100%; height: 200px; overflow: auto; resize: none;">
-										</textarea> <span class="txsub form-control">남은글자수 : <input type="text"
-												readonly value="100" name="counter" id="counter"
-												style="border: none;"></span></td>
+										<span style="float: left;">&nbsp;&nbsp;&nbsp;( 남은글자수 : <input size="2px;"  type="text"
+												readonly value="200" name="counter" id="counter"
+												style="border: none;">)</span>
+<textarea name="scontent" id="contentText" cols="30" rows="10"	class="form-control"	style="width: 100%; height: 200px; overflow: auto; resize: none;"></textarea> </td>
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
@@ -478,7 +348,7 @@
 										</td>
 										
 										<td><a class="btn btn-success btn-icon-split"
-											href="javascript:spostInsert.submit();" style="width: 90%;">
+											href="javascript: spostInsert.submit()" style="width: 90%;">
 												<span class="text">등록</span>
 										</a></td>
 										<td><a href="javascript:spostInsert.reset();"
@@ -491,10 +361,6 @@
 							
 						</div>
 					</div>
-
-
-
-
 
 
 
