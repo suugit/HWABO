@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dopostMapper">
+	
+	<resultMap type="Dopost" id="resultDopost" >
+	<id column="dno" property="dno" />
+	<result column="dtitle" property="dtitle"/>
+	<result column="dwriter" property="dwriter"/>
+	<result column="dcontent" property="dcontent"/>
+	<result column="denrolldate" property="denrolldate"/>
+	<result column="dopen" property="dopen"/>
+	</resultMap>
+	
+	<insert id="insertOrigindopost" parameterType="Dopost">
+	insert into dopost 
+	values(dno, dtitle, dwriter, dcontent, denrolldate, dopen)
+	(#{dno}, #{dtitle}, #{dwriter}, #{dcontent}, #{denrolldate}, #{dopen})
+	
+	</insert>
+
+</mapper>
