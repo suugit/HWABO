@@ -60,10 +60,11 @@ public class BpostController {
 		 
 		 if(bpostService.insertBpost(bpost) > 0) {
 			 logger.info("인서트 성공");
-			 return "common/main.do";
+			 logger.info("비포스트"+bpost);
+			 return "common/main";
 		 }else {
 			 logger.info("인서트 실패");
-			 return"common/error.dp";
+			 return"common/error";
 		 }
 		
 	}
