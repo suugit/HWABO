@@ -367,7 +367,7 @@
 <script>
 
 
-document.getElementById('beforestart').value = new Date().toISOString().slice(0, 16); 
+document.getElementById('beforestart').value = new Date().toISOString().slice(0, 16);
 document.getElementById('beforeend').value= new Date().toISOString().slice(0, 16);
 
 
