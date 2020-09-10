@@ -19,7 +19,7 @@ ${ spost.swriter } <br>
 <fmt:formatDate value="${spost.sstartday}" pattern="yyyy-MM-dd HH시 mm분 E"/><br>
 <fmt:formatDate value="${spost.sendday}" pattern="yyyy-MM-dd HH시 mm분 E"/><br>
 
-<div id="map" style="width:300px;height:150px;margin-top:10px"></div> <br>
+<div id="map" style="width:100%;height:50%;margin-top:10px"></div> <br>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
 <script>
@@ -27,7 +27,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
         draggable: false, //지도 이동 금지
-        level: 3 // 지도의 확대 레벨
+        level: 4 // 지도의 확대 레벨
     };  
 
 // 지도를 생성합니다    

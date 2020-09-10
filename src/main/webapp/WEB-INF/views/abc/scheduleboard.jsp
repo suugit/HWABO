@@ -245,7 +245,7 @@
 												class="fas fa-map-marker-alt"></i>&nbsp;장 소</span>
 		<input type="text" id="sample5_address" placeholder="장소를 입력하세요" class="form-control" name="splace">
 <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"  class="form-control"><br>
-<div id="map" style="width:300px;height:150px;margin-top:10px;display:none"></div>
+<div id="map" style="width:100%;height:150px;margin-top:10px;display:none"></div>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
@@ -254,7 +254,7 @@
         mapOption = {
             center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
             draggable: false, //지도 이동 금지
-            level: 5 // 지도의 확대 레벨
+            level: 4 // 지도의 확대 레벨
         };
 
     //지도를 미리 생성
