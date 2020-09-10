@@ -192,7 +192,7 @@
 									}
 								});
  								
- 								$("#spostInsert").on("submit", function)(){
+ 								$("#spostInsert").on("submit", function(){
  									
  									
  									
