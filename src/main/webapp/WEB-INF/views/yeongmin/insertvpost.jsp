@@ -387,7 +387,7 @@
 
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
-							<form action="vpostinsert.do" name="VPost" method="post">
+							<form action="vpostinsert.do" id="vpost" method="post">
 								<table style="text-align: center; width: 100%;">
 									<tr class="m-0 font-weight-bold text-primary">
 										<td style="width: 20%;"><span>글작성</span></td>
@@ -403,25 +403,29 @@
 									</tr>
 									<tr>
 										<td colspan="5"><span style="float: left;"><i
-												class="fa fa-pen"></i>&nbsp;제 목</span><input type="text" name="vwriter"
+												class="fa fa-pen"></i>&nbsp;제 목</span><input type="text"
 											class="form-control" placeholder="투표 제목을 입력하세요"></td>
 									</tr>
 									<tr>
 										<td><br><br><br></td>
 									</tr>
+									
 									<tr>
+
+
+
+
 										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;내 용</span>
 										 <textarea
 												 cols="30" rows="10"
-												class="form-control" placeholder="투표 내용을 입력하세요" name="vtitle"
+												class="form-control" placeholder="투표 내용을 입력하세요"
 												style="width: 100%; height: 200px; overflow: auto; resize: none;" >
 										</textarea> 
-										</td>
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
-									
+									<tr>
 										<!-- <td colspan="3"></td>
 										<td><a class="btn btn-success btn-icon-split"
 											href="javascript:vpostinsert.submit();" style="width: 90%;">
@@ -431,9 +435,9 @@
 											class="btn btn-danger btn-icon-split" style="width: 90%;">
 												<span class="text">취소</span>
 										</a></td> -->
-								
+										<th><input type="submit" value="등록하기"></th>
+									</tr>
 								</table>
-								<input type="submit" value="등록하기">
 							</form>
 						</div>
 					</div>

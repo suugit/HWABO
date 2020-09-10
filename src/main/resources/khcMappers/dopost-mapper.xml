@@ -15,11 +15,9 @@
 	
 	<insert id="insertOrigindopost" parameterType="Dopost">
 	insert into dopost 
-	values (#{dno}, #{dtitle}, #{dwriter}, #{dcontent}, #{denrolldate}, #{dopen})
+	values(dno, dtitle, dwriter, dcontent, denrolldate, dopen)
+	(#{dno}, #{dtitle}, #{dwriter}, #{dcontent}, #{denrolldate}, #{dopen})
 	
 	</insert>
-	
-	<delete id="delete"></delete>
-	
 
 </mapper>
