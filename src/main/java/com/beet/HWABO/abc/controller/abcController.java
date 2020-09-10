@@ -59,18 +59,17 @@ public class abcController {
 	
 	//일정 등록
 	@RequestMapping("sinsert.do")
-	public ModelAndView insertSpost(Spost spost, ModelAndView mav, @RequestParam("beforesstartday") String start,@RequestParam("beforesendday") String end ) {
+	public ModelAndView insertSpost(Spost spost, ModelAndView mav, @RequestParam("beforesstartday") Date start,@RequestParam("beforesendday") Date end ) {
 		logger.info(start.toString());
 		logger.info(end.toString());
 		
-		logger.info(spost.toString());
-		String Sstart = start.replace("T", " ");
-		String Send = end.replace("T", " ");
+		String Sstart = start.toString().replace("T", " ");
+		String Send = end.toString().replace("T", " ");
 		
 		logger.info(Sstart);
 		logger.info(Send);
 		
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		try {
 			java.util.Date startdate = transFormat.parse(Sstart);
@@ -82,13 +81,13 @@ public class abcController {
 			e.printStackTrace();
 		}
 		
-		logger.info(spost.toString());
+
 		if(spostService.insertSpost(spost) > 0) {
 			mav.addObject("spost", spost);
-			mav.setViewName("abc/insertTest");
+			mav.setViewName("abc/insertTest.jsp");
 		}else {
 			mav.addObject("spost", spost);
-			mav.setViewName("abc/insertTest");
+			mav.setViewName("abc/insertTest.jsp");
 		}
 		return mav;
 	}
