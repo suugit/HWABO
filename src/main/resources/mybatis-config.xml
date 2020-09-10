@@ -9,6 +9,7 @@
 		<typeAlias type="com.beet.HWABO.spost.model.vo.Spost" alias="Spost" />
 		<typeAlias type="com.beet.HWABO.spost.model.vo.Post" alias="Post" />
 		<typeAlias type="com.beet.HWABO.bpost.model.vo.Bpost" alias="Bpost"/>
+		<typeAlias type="com.beet.HWABO.vpost.model.vo.VPost" alias="VPost"/>
 	</typeAliases>
 
 	<mappers>
@@ -17,5 +18,6 @@
 		<mapper resource="mappers/spost-mapper.xml" />
 		<mapper resource="mappers/post-mapper.xml" />
 		<mapper resource="mappers/bpost-mapper.xml" />
+		<mapper resource="plzMappers/vpost-mapper.xml" />
 	</mappers>
 </configuration>
