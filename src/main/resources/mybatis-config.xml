@@ -8,6 +8,7 @@
 		<typeAlias type="com.beet.HWABO.member.model.vo.Member" alias="Member" />
 		<typeAlias type="com.beet.HWABO.spost.model.vo.Spost" alias="Spost" />
 		<typeAlias type="com.beet.HWABO.spost.model.vo.Post" alias="Post" />
+		<typeAlias type="com.beet.HWABO.spost.model.vo.Dopost" alias="Dopost"/>
 	</typeAliases>
 
 	<mappers>
@@ -15,5 +16,6 @@
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/spost-mapper.xml" />
 		<mapper resource="mappers/post-mapper.xml" />
+		<mapper resource="maapers/dopost-mapper.xml" />
 	</mappers>
 </configuration>
