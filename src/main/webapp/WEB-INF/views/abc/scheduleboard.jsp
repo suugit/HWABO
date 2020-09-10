@@ -175,8 +175,7 @@
 							src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 						<script type="text/javascript">
 							$(function() {
-								$('#contentText').keyup(
-										function(e) {
+								$('#contentText').on("propertychange change keyup paste input", function() {
 											var content = $(this).val();
 											$('#counter').val(200 - content.length);
 
@@ -194,10 +193,11 @@
 								});
  								
  								$("#spostInsert").on("submit", function(){
- 									var start = $("#beforesstartday").val().toISOString().replace('Z', '').replace('T', '');
+ 									
  									
  									
  								});
+
  								
  								
  								
@@ -245,7 +245,7 @@
 												class="fas fa-map-marker-alt"></i>&nbsp;장 소</span>
 		<input type="text" id="sample5_address" placeholder="장소를 입력하세요" class="form-control" name="splace">
 <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"  class="form-control"><br>
-<div id="map" style="width:300px;height:150px;margin-top:10px;display:none"></div>
+<div id="map" style="width:100%;height:150px;margin-top:10px;display:none"></div>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
@@ -254,7 +254,7 @@
         mapOption = {
             center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
             draggable: false, //지도 이동 금지
-            level: 5 // 지도의 확대 레벨
+            level: 4 // 지도의 확대 레벨
         };
 
     //지도를 미리 생성
@@ -332,8 +332,9 @@
 										<span style="float: left;">&nbsp;&nbsp;&nbsp;( 남은글자수 : <input size="2px;"  type="text"
 												readonly value="200" name="counter" id="counter"
 												style="border: none;">)</span>
-<textarea name="scontent" id="contentText" cols="30" rows="10"	class="form-control"	style="width: 100%; height: 200px; overflow: auto; resize: none;"></textarea> </td>
+<textarea name="scontent" id="contentText" cols="30" rows="10"	class="form-control"	onkeypress="onTestChange();" style="width: 100%; height: 200px; overflow: auto; resize: none;"></textarea> </td>
 									</tr>
+									
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
@@ -341,8 +342,8 @@
 										<td colspan="2"></td>
 										<!--  #f8f9fc   -->
 										<td>
-										<select>
-											<option value="y">전체공개</option>
+										<select name="sopen" class="form-control">
+											<option value="y" selected>전체공개</option>
 											<option value="n">나만보기</option>
 										</select>
 										</td>
@@ -358,6 +359,11 @@
 									</tr>
 								</table>
 							</form>
+
+<script>
+  document.getElementById('beforestart').value= new Date().toISOString().slice(0, 16);
+  document.getElementById('beforeend').value= new Date().toISOString().slice(0, 16);
+</script>
 							
 						</div>
 					</div>
