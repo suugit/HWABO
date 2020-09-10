@@ -18,7 +18,7 @@
 
 <insert id="insertvpost" parameterType="VPost" >
 	insert into vpost
-	values ((select concat('v', (select nvl(max(to_number(substr(vno,2))),0)+1 from vpost))from dual), #{vtitle}, #{vwriter}, sysdate,
+	values ((select max(vno)+1 from vpost), #{vtitle}, #{vwriter}, sysdate,
 	'y', 'y', 1 )
 	
 </insert>

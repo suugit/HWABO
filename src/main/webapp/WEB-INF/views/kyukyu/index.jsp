@@ -52,14 +52,14 @@
 
 <c:import url="/WEB-INF/views/kyukyu/topbar.jsp"></c:import>
 
-<div style="width:100%; display:flex; justify-content:center; align-item:center;">
+<div style="width:100%;display:flex;justify-content:center;align-item:center;">
 <!-- Sidebar2right -->
      <c:import url="/WEB-INF/views/kyukyu/entersideFixed.jsp"></c:import>
 <!-- End of Sidebar2right -->
 
 
 	<!-- Page Wrapper -->
-	<div id="wrapper" style="width:1300px;">
+	<div id="wrapper" style="width:1300px;"">
 
 		<!-- Sidebar -->
 	   <div style="width:17%"></div>
@@ -259,7 +259,7 @@ function unSelected(){
            				<input type="hidden" id="bform" name="bcharge">
            				
            			
-          
+           			<!doctype html>
 
            			
            			
@@ -330,10 +330,10 @@ function unSelected(){
             </div>
           </div>
           </div>
-          <!-- </div> -->
+          </div>
           
 
-<!-- </div> -->
+</div>
 
 
 
@@ -343,17 +343,129 @@ function unSelected(){
 
 
 
+        <!-- Begin Page Content -->
         
+        <div class="container-fluid">
+        <div class="col-lg-8">
+
+  	  <div class="row d-inline-flex w-50" style="max-width:1000px">
+
+      <div class="col">
+   
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800"></h1>
+           
+          <p class="mb-8"></p>
+
+          <!-- DataTales Example -->
+
+              <!-- 게시글안쪽 -->
+
+			 <div class="card mb-4">
+					        <div class="card-header">
+					          <ul class="nav nav-tabs card-header-tabs" id="writeForm" role="tablist">
+					            <li class="nav-item">
+					            <a class="nav-link  href="#gnrlwrite" role="tab2" aria-controls="gnrlwrite" aria-selected="false">글 작성</a>
+					            </li>
+					            <li class="nav-item">
+					              <a class="nav-link active""  href="#tap2" role="tab" aria-controls="tap2" aria-selected="ture">업무</a>
+					            </li>
+					           <li class="nav-item">
+					              <a class="nav-link" href="#tap3" role="tab" aria-controls="tap3" aria-selected="false">일정</a>
+					            </li>
+					            <li class="nav-item">
+					              <a class="nav-link" href="#tap4" role="tab" aria-controls="tap4" aria-selected="false">할일</a>
+					            </li>
+					            <li class="nav-item">
+					              <a class="nav-link" href="#tap5" role="tab" aria-controls="tap5" aria-selected="false">투표</a>
+					            </li> 
+					          </ul>
+					        </div>
+					        <form action="blank.do" id="mainInsert" > 
+					        <div class="card-body ">
+					         <!--  <h4 class="card-title">글 작성</h4> -->
+					          
+					           <div class="tab-content mt-3">
+					           <!-- 글 작성  -->
+					            <div class="tab-pane " id="gnrlwrite" role="tabpanel">
+					            <input type="text" class="form-control mb-1" placeholder="제목(선택값)">
+					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+						            <div class="form-inline m-2 border-primary">
+						            <i class="fa fa-link mr-2"><a href="#"></a></i>
+						            <i class="fa fa-calendar-alt mr-2"></i>
+						            <i class="fa fa-map-marker-alt mr-2"></i>
+						            <i class="fa fa-code mr-5"></i>
+						            <i class="fa fa-hashtag mr-2"></i>
+						            <i class="fa fa-at mr-2" ></i>
+						            <button class="ml-auto mr-2 btn btn-sm btn-success" style="padding:4px 30px;" onclick="javascript:mainInsert.submit();">등록</button>
+						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
+					            	</div>
+					            </div>
+					            
+					            
+					            <!-- 업무 -->
+					            <div class="tab-pane active"" id="tap2" role="tabpanel">
+					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
+					              <!-- Standard button -->
+								
+									<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+									 <div class="form-inline m-2 border-primary">
+									&nbsp&nbsp
+									<button type="button" class="btn btn-primary btn-sm">요청</button>&nbsp&nbsp
+									<button type="button" class="btn btn-success btn-sm">진행</button>&nbsp&nbsp
+									<button type="button" class="btn btn-info btn-sm">피드백</button>&nbsp&nbsp
+									<button type="button" class="btn btn-warning btn-sm">완료</button>&nbsp&nbsp					
+									<button type="button" class="btn btn-default btn-sm">보류</button>&nbsp&nbsp	
+									
+									<ul class="nav navbar-nav navbar-right">
+        
+								        <li class="dropdown">
+								          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">담당자 추가 <span class="caret"></span></a>
+								           <input type="text" class="form-control" aria-label="...">
+								          <ul class="dropdown-menu" role="menu">
+								            <li><a href="#">백규림</a></li>
+								            <li><a href="#">박수현</a></li>
+								            <li><a href="#">김희철</a></li>
+								            <li><a href="#">정재구</a></li>
+								            <li><a href="#">구영민</a></li>
+								            <li><a href="#">정다운</a></li>
+								            <li class="divider"></li>
+								            <li><a href="#">Separated link</a></li>
+								          </ul>
+								          
+								        </li>
+								          
+								      </ul>
+								     
+								      </div>
+								     <div class="row mt-2">
+					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              <label class="form-control-label h3">~</label>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              </div>
+									
+					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+						            <div class="form-inline m-2 border-primary">
+						            
+						            <i class="fa fa-hashtag mr-2"></i>
+						            <i class="fa fa-at mr-2" ></i>
+						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
+						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
+					            	</div>
+					            </div>
+					     	     
+           				   </form>
 
 
 		
       
-      </div>
+        
         <!-- /.container-fluid -->
-      <!--   </div> -->
-       
+        </div>
+        </div>
   		
-     </div>
+      </div>
       <!-- End of Main Content -->
 
       <!-- Footer -->
@@ -366,12 +478,12 @@ function unSelected(){
       </footer>
       <!-- End of Footer -->
 
-   </div>
+    </div>
     
     <div style="width:25%"></div>
     <!-- End of Content Wrapper -->
 
-   </div> 
+  </div>
   <!-- End of Page Wrapper -->
  </div> <!-- 꼭대기 디브 닫기  div flex-->
   <!-- Scroll to Top Button-->
