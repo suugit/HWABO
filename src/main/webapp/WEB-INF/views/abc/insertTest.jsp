@@ -19,7 +19,7 @@ ${ spost.swriter } <br>
 <fmt:formatDate value="${spost.sstartday}" pattern="yyyy-MM-dd HH시 mm분 E"/><br>
 <fmt:formatDate value="${spost.sendday}" pattern="yyyy-MM-dd HH시 mm분 E"/><br>
 
-<div id="map" style="width:100%;height:350px;"></div> <br>
+<div id="map" style="width:300px;height:150px;margin-top:10px"></div> <br>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
 <script>
