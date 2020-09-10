@@ -15,7 +15,7 @@
 	
 	<insert id="insertOrigindopost" parameterType="Dopost">
 	insert into dopost 
-	values (#{dno}, #{dtitle}, #{dwriter}, #{dcontent}, #{denrolldate}, #{dopen})
+	values (#{dno}, #{dtitle}, #{dwriter}, #{dcontent}, sysdate , #{dopen})
 	
 	</insert>
 	
