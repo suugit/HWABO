@@ -1,5 +1,6 @@
 package com.beet.HWABO.bpost.model.vo;
 
+
 import java.sql.Date;
 
 public class Bpost implements java.io.Serializable{
@@ -23,7 +24,10 @@ public class Bpost implements java.io.Serializable{
 	private String boriginfile;
 	
 	
-	public Bpost() {}
+	public Bpost() {
+		super();
+		
+	}
 
 
 	public Bpost(String bno, String btitle, String bwriter, Date bstartday, Date bendday, String bkind, String bcharge,

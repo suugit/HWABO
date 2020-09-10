@@ -89,7 +89,7 @@
 var names = "";
 function addbcharge(){
 	var name = $(event.target).text();
-	names += name + ",";
+	names += name + " ";
 	
 	 $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>');
 	 //$('#bform').val(name); 
@@ -100,6 +100,8 @@ function addbcharge(){
 }
 
 function unSelected(){
+	
+	$(event.target).parent().remove();
 	/* var name = $(event.target).parent().text();
 	var s = $('#bform').val();
 	var index = s.indexOf(name);
@@ -108,7 +110,7 @@ function unSelected(){
 	
 	alert(name);
 	 */
-	var or = "";
+	/* var or = "";
 	var re = "";
 	var orz = $('#bform').val();
 	var rez = $(event.target).parent().text();
@@ -119,7 +121,7 @@ function unSelected(){
 	var na = or.replace(re, '귤');
 	
 
-	alert(re);
+	alert(re); */
 	
 	
 	/* var sOriginText = " 동해바다 서해바다 남해바다 ";
@@ -144,7 +146,7 @@ function unSelected(){
 	 
 
 	
-	$(event.target).parent().remove();
+	
 	/* alert(names); */
 
 	/* var renames = s.substring(index, index + 2); */
@@ -299,11 +301,12 @@ function unSelected(){
               
               	
               	
-	            <label><input type="file" name="ofile" style="visibility: hidden;"><span class="fa fa-link m-2" >첨부파일</span></label>
-	           <select>
-						<option name="bopen" value="y">전체공개</option>
-						<option name="bopen" value="n">나만보기</option>
-				</select>
+	           <label><input type="file" name="ofile" style="visibility: hidden;"><span class="fa fa-link m-2" >첨부파일</span></label>
+	           <select name="bopen" class="form-control">
+					<option value="y" selected>전체공개</option>
+					<option value="n">나만 공개</option>
+			  </select>
+	        
 				
         	<!-- <label><input type="file" class="fa fa-link m-2" name="ofile" style="visibility: hidden;"/><span class="d-none d-md-inline-block ml-1">파일</span></label>
 				<br>  -->
