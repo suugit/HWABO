@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -191,12 +192,9 @@
 										sample5_execDaumPostcode()
 									}
 								});
+ 																
+ 									
  								
- 								$("#spostInsert").on("submit", function(){
- 									
- 									
- 									
- 								});
 
  								
  								
@@ -206,7 +204,7 @@
 
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
-						<form action="sinsert.do" id="spostInsert" method="post">
+						<form action="sinsert.do" id="spostInsert" method="post" onsubmit="return daycheck(); return false;">
 						<input type="hidden" name="swriter" value="정다운">
 								<table style="text-align: center; width: 100%;">
 									<tr class="m-0 font-weight-bold text-primary">
@@ -231,11 +229,14 @@
 									<tr>
 										<td width="20%"><span style="float: left;"><i
 												class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span><input
-											type="datetime-local" class="form-control" name="beforesstartday" id="beforestart" required="required"></td>
+											type="datetime-local" class="form-control" name="beforesstartday" id="beforestart" required="required"
+											></td>
 
 										<td width="20%"><span style="float: left;"><i
 												class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span><input
-											type="datetime-local" class="form-control" name="beforesendday"  id="beforeend" required="required"></td>
+											type="datetime-local" class="form-control" name="beforesendday"  id="beforeend" required="required"
+											></td>
+										<td><span id="placespan"></span></td>
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
@@ -339,30 +340,54 @@
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
-										<td colspan="2"></td>
+										<td></td>
 										<!--  #f8f9fc   -->
 										<td>
-										<select name="sopen" class="form-control">
+										<select name="sopen" class="form-control" >
 											<option value="y" selected>전체공개</option>
 											<option value="n">나만보기</option>
 										</select>
 										</td>
-										
-										<td><a class="btn btn-success btn-icon-split"
-											href="javascript: spostInsert.submit()" style="width: 90%;">
-												<span class="text">등록</span>
-										</a></td>
-										<td><a href="javascript:spostInsert.reset();"
-											class="btn btn-danger btn-icon-split" style="width: 90%;">
-												<span class="text">취소</span>
-										</a></td>
+										<td colspan="3">
+										<!-- <a class="btn btn-success btn-icon-split"	href="javascript: spostInsert.submit();"  style="width: 90%;">
+												<span class="text">등록</span> </a> -->
+												
+												<button type="submit" class="btn btn-sm btn-info" >&nbsp;등 &nbsp;록&nbsp;</button>
+									
+										<!-- <a href="javascript:spostInsert.reset();"	class="btn btn-danger btn-icon-split" style="width: 90%;">
+												<span class="text">취소</span> </a> -->
+												<button type="reset" class="btn btn-sm btn-danger" >&nbsp;취 &nbsp;소&nbsp;</button>
+										</td>
 									</tr>
 								</table>
 							</form>
 
+
+
 <script>
-  document.getElementById('beforestart').value= new Date().toISOString().slice(0, 16);
-  document.getElementById('beforeend').value= new Date().toISOString().slice(0, 16);
+
+
+document.getElementById('beforestart').value = new Date().toISOString().slice(0, 16); 
+document.getElementById('beforeend').value= new Date().toISOString().slice(0, 16);
+
+
+
+
+	function daycheck(){
+		
+		var start =  document.getElementById('beforestart').value = new Date().toLocaleString().slice(0, 16);
+		var end = document.getElementById('beforeend').value= new Date().toLocaleString().slice(0, 16);
+		alert(start+" : start, " +end +": end" );
+			if(start > end){
+				alert(start+" : start, " +end +": end" );
+				$("#placespan").html("끝 날짜가 시작날짜보다 이전일 수 없습니다<br>다시 선택해주세요");
+				return false;
+			}else{
+				return true;
+			}
+	}
+	
+	
 </script>
 							
 						</div>
