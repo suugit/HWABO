@@ -10,6 +10,7 @@
 		<typeAlias type="com.beet.HWABO.spost.model.vo.Post" alias="Post" />
 		<typeAlias type="com.beet.HWABO.dopost.model.vo.Dopost" alias="Dopost"/>
 		<typeAlias type="com.beet.HWABO.vpost.model.vo.VPost" alias="VPost" />
+		<typeAlias type="com.beet.HWABO.red.model.vo.Project" alias="Project" />
 	</typeAliases>
 
 	<mappers>
@@ -19,5 +20,6 @@
 		<mapper resource="mappers/post-mapper.xml" />
 		<mapper resource="khcMappers/dopost-mapper.xml" />
 		<mapper resource="plzMappers/vpost-mapper.xml" />
+		<mapper resource="redMappers/red-mapper.xml" />
 	</mappers>
 </configuration>
