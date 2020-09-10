@@ -23,10 +23,8 @@ public class Bpost implements java.io.Serializable{
 	private String brenamefile;
 	private String boriginfile;
 	
-	
 	public Bpost() {
 		super();
-		
 	}
 
 
