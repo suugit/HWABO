@@ -18,6 +18,6 @@
 		<mapper resource="mappers/spost-mapper.xml" />
 		<mapper resource="mappers/post-mapper.xml" />
 		<mapper resource="maapers/dopost-mapper.xml" />
-		<mapper resource="mappers/vpost-mapper.xml" />
+		<mapper resource="plzMappers/vpost-mapper.xml" />
 	</mappers>
 </configuration>
