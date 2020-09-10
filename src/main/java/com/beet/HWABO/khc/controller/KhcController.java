@@ -22,7 +22,7 @@ public class KhcController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "mytodo.do", method = RequestMethod.POST)
+	@RequestMapping(value = "mytodo.do", method = RequestMethod.GET)
 	public String mytodo(Model model) {
 		return "khc/mytodo";
 }
