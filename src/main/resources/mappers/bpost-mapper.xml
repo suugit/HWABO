@@ -4,7 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bpostMapper">
 
-	<resultMap type="Bpost" id="resultBpost">
+<!-- 	<resultMap type="Bpost" id="resultBpost">
 		<id column="bno" property="bno" />
 		<result column="btitle" property="btitle" />
 		<result column="bwriter" property="bwriter" />
@@ -21,14 +21,26 @@
 		<result column="brenamefile" property="brenamefile" />
 		<result column="boriginfile" property="boriginfile" />
 	
-	</resultMap>
+	</resultMap> -->
 
 <insert id="insertBpost" parameterType="Bpost" >
+
+	<!-- <if test="boriginfile != null"> --> 
 	insert into bpost
-	values ((select max(bno)+1 from bpost), #{btitle}, #{bwriter}, #{bstartday},
-	#{bendday}, #{bkind}, #{bcharge}, #{bcontent}, sysdate, 'y', default, 
-	#{brwriter}, #{brcontent}, #{brenamefile}, #{boriginfile})
+	(bno, btitle, bwriter, bstartday, bendday, bkind, bcharge, bcontent, benrolldate, bopen, blove, brenamefile, boriginfile)
+	values ((select concat('b', (select nvl(max(to_number(substr(bno, 2))),0)+1 from bpost))from dual), 
+	#{btitle}, #{bwriter}, #{bstartday}, #{bendday}, #{bkind}, #{bcharge}, #{bcontent}, sysdate, #{bopen}, default, #{brenamefile}, #{boriginfile})
 	
+	
+	
+	<!-- </if>
+	<if test="boriginfile == null">
+	insert into bpost
+	(bno, btitle, bwriter, bstartday, bendday, bkind, bcharge, bcontent, benrolldate, bopen, blove)
+	values ((select concat('b', (select nvl(max(to_number(substr(bno, 2))),0)+1 from bpost))from dual), 
+	 #{btitle}, #{bwriter}, #{bstartday}, #{bendday}, #{bkind}, #{bcharge}, #{bcontent}, sysdate, #{bopen}, default)
+
+	</if>  -->
 </insert>
 
 

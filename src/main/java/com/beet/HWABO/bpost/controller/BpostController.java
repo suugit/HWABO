@@ -47,9 +47,10 @@ public class BpostController {
 
 			bpost.setBoriginfile(fileName);
 			bpost.setBrenamefile(renameFileName);
-			
+			logger.info("renameFileName : " + renameFileName);
 			try {
 				file.transferTo(new File(savePath + "\\" + renameFileName));
+				logger.info("이클립스에 파일 들어감 : " + renameFileName);
 			}catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
