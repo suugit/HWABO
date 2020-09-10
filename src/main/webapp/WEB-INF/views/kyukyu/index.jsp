@@ -45,7 +45,15 @@
   color: white;
 }
 </style>
+<style type="text/css">
+#dis{ 
+/* display 안보이게 해라 */
+	display : none;
+	/* background : gray; */
+	
+}
 
+</style>
 <!-- 진행률끝 -->
 
 <body id="page-top">
@@ -155,8 +163,16 @@ function unSelected(){
  
 }
 
+/* function dis(){
+    if($('#dis').css('display') == 'none'){
+    $('#dis').show();
+    }
+} */
 
 
+function validate(){
+	return true;
+}
 </script>
  
 
@@ -190,7 +206,7 @@ function unSelected(){
               <!-- 게시글안쪽 -->
               
               
-              <form action="insertbpost.do" name="b" method="post" id="bInsert" enctype="multipart/form-data" >
+              <form action="insertbpost.do" name="b" method="post" id="bInsert" enctype="multipart/form-data" onsubmit="return validate();">
               <table style="text-align:center;width:100%;">
               <tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
               <span>글작성</span>
@@ -278,13 +294,17 @@ function unSelected(){
                       </li>
                     </ul>
                   </nav>
-                  </div>
+                </div>
+                
+                
+                
+              
                <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control" name="bstartday" value=""></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control" name="bendday" value=""></div>
-					              </div>
+					<p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
+					   <div class="col-5"><input type="date" class="form-control" name="bstartday" value=""></div>
+					      <label class="form-control-label h3">~</label>
+					   <div class="col-5"><input type="date" class="form-control" name="bendday" value=""></div>
+		     </div>
 					              
 					              
 					              

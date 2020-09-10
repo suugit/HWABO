@@ -1,6 +1,5 @@
 package com.beet.HWABO.bpost.model.vo;
 
-
 import java.sql.Date;
 
 public class Bpost implements java.io.Serializable{
@@ -10,12 +9,12 @@ public class Bpost implements java.io.Serializable{
 	private String bno;
 	private String btitle;
 	private String bwriter;
-	private java.sql.Date bstartday;
-	private java.sql.Date bendday;
+	private Date bstartday;
+	private Date bendday;
 	private String bkind;
 	private String bcharge;
 	private String bcontent;
-	private java.sql.Date benrolldate;
+	private Date benrolldate;
 	private String bopen;
 	private String blove;
 	private String brwriter;
@@ -80,22 +79,22 @@ public class Bpost implements java.io.Serializable{
 	}
 
 
-	public java.sql.Date getBstartday() {
+	public Date getBstartday() {
 		return bstartday;
 	}
 
 
-	public void setBstartday(java.sql.Date bstartday) {
+	public void setBstartday(Date bstartday) {
 		this.bstartday = bstartday;
 	}
 
 
-	public java.sql.Date getBendday() {
+	public Date getBendday() {
 		return bendday;
 	}
 
 
-	public void setBendday(java.sql.Date bendday) {
+	public void setBendday(Date bendday) {
 		this.bendday = bendday;
 	}
 
@@ -130,12 +129,12 @@ public class Bpost implements java.io.Serializable{
 	}
 
 
-	public java.sql.Date getBenrolldate() {
+	public Date getBenrolldate() {
 		return benrolldate;
 	}
 
 
-	public void setBenrolldate(java.sql.Date benrolldate) {
+	public void setBenrolldate(Date benrolldate) {
 		this.benrolldate = benrolldate;
 	}
 
