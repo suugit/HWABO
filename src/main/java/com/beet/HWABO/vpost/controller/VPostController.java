@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.beet.HWABO.spost.model.vo.Spost;
 import com.beet.HWABO.vpost.model.service.VPostService;
 import com.beet.HWABO.vpost.model.vo.VPost;
 
@@ -22,7 +20,7 @@ public class VPostController {
 	private VPostService vpostservice;
 	
 	@RequestMapping(value="vpostinsert.do", method=RequestMethod.POST)
-	public String memberInsert(VPost vpost, Model model){
+	public String vpostInsert(VPost vpost, Model model){
 		
 		
 		logger.info("vpostinsert ����");
@@ -31,6 +29,7 @@ public class VPostController {
 		int result = vpostservice.insertvpost(vpost);
 		
 		if(result > 0) {
+			model.addAttribute("vpost",vpost);
 			return "yeongmin/insertvposttest";
 		}else {
 			model.addAttribute("message", "��ǥ ��� ����  !");
@@ -38,7 +37,23 @@ public class VPostController {
 		}
 	}
 	
-	
-	
+	@RequestMapping(value="vpostupdate.do" , method=RequestMethod.POST)
+	public String vpostUpdate(VPost vpost , Model model) {
+		
+		logger.info("vpostupdate 입장  !");
+		logger.info("수정하기전 vpost "+ vpost);
+		
+		int result = vpostservice.updatevpost(vpost);
+		
+		if(result >0) {
+			return "yeongmin/index.jsp";
+			
+		}else {
+			model.addAttribute("message","회원 수정 실패");
+			return "common/error";
+		}
+		
+		
+	}
 	
 }

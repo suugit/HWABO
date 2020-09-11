@@ -19,4 +19,11 @@ public class VPostServiceImpl implements VPostService{
 	public int insertvpost(VPost vpost) {
 		return vpostdao.insertvpost(vpost);
 	}
+
+
+
+	@Override
+	public int updatevpost(VPost vpost) {
+		return vpostdao.updatevpost(vpost);
+	}
 }

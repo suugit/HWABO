@@ -8,6 +8,8 @@ public interface VPostService {
 
 	int insertvpost(VPost vpost);
 
+	int updatevpost(VPost vpost);
+	
 	
 
 }

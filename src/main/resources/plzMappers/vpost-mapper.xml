@@ -22,4 +22,9 @@
 	'y', 'y', 1 )
 	
 </insert>
+
+
+<update id="updatevpost" parameterType="VPost">
+	update vpost set vwriter = #{vwriter} , vtitle = #{vtitle}
+</update>
 </mapper>

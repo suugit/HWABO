@@ -23,6 +23,11 @@ public class VPostDao {
 		return session.insert("vpostMapper.insertvpost", vpost);
 	}
 
+
+	public int updatevpost(VPost vpost) {
+		return session.update("vpostMapper.updatevpost", vpost);
+	}
+
 	
 
 	
