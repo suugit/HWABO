@@ -385,7 +385,7 @@
 
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
-							<form action="mytodo.do" id="dopost" method="post">
+							<form action="mytodo.do" id="dopost"  method="post">
 							
 								<table style="text-align: center; width: 100%;">
 									<tr class="m-0 font-weight-bold text-primary">
@@ -400,6 +400,7 @@
 											<hr>
 										</td>
 									</tr>
+									<input type="text" name="dtitle" value="제목">
 									<tr>
 										<td colspan="5"><span style="float: left;"><i
 												class="fa fa-pen"></i>&nbsp;할 일 </span><input type="text" name="dopost"
@@ -420,11 +421,13 @@
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
-									<tr>
+									
+									<input type="text" name="dwriter" value="글쓴이"> 
+								
+										<input type="text" name="dcontent" value="할일쓰기">
 
-
-
-
+									
+						<tr>
 										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;할일쓰기</span>
 										 <textarea
 												name="dopostText" id="contentText" cols="30" rows="10"
@@ -442,23 +445,23 @@
 										<!--  #f8f9fc   -->
 										<td>
 										<select>
-											<option value="y" name="all">전체공개</option>
-											<option value="n" name="onlyme">나만보기</option>
+											<option value="y" name="dopen">전체공개</option>
+											<option value="n" name="dopen">나만보기</option>
 										</select>
 										</td>
 										
 										
 										
-										<!-- <td><a class="btn btn-success btn-icon-split"
+								 	<td><a class="btn btn-success btn-icon-split"
 											href="javascript:dopostInsert.submit();" style="width: 90%;">
 												<span class="text">등록</span>
 										</a></td>
 										<td><a href="javascript:dopostInsert.reset();"
 											class="btn btn-danger btn-icon-split" style="width: 90%;">
 												<span class="text">취소</span>
-										</a></td> -->
-										<input type="submit" value="등록">
-										<input type="reset" value="취소">
+										</a></td> 
+										<!-- <input type="submit" value="등록">
+										<input type="reset" value="취소"> -->
 									</tr>
 								</table>
 							</form>

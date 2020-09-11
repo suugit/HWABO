@@ -17,8 +17,8 @@ public class DopostDao {
 
 	}
 
-	public int insertOrigindopost(Dopost dopost) {
-		return session.insert("dopostMapper.insertOrigindopost", dopost);
+	public int insertdopost(Dopost dopost) {
+		return session.insert("dopostMapper.insertdopost", dopost);
 	}
 
 	public int deletedopost(Dopost dopost) {

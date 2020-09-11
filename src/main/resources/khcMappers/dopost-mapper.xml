@@ -13,10 +13,9 @@
 	<result column="dopen" property="dopen"/>
 	</resultMap>
 	
-	<insert id="insertOrigindopost" parameterType="Dopost">
+	<insert id="insertdopost" parameterType="Dopost">
 	insert into dopost 
-	values(dno, dtitle, dwriter, dcontent, denrolldate, dopen)
-	(#{dno}, #{dtitle}, #{dwriter}, #{dcontent}, #{denrolldate}, #{dopen})
+	values(#{dno}, #{dtitle}, #{dwriter}, #{dcontent}, sysdate, #{dopen})
 	
 	</insert>
 
