@@ -2,8 +2,50 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cpostMapper">
+	<resultMap type="Cpost" id="selectCpost">
+		<id column="cno" property="cno" />
+		<result column="ctitle" property="ctitle" />
+		<result column="cwriter" property="cwriter" />
+		<result column="ccontent" property="ccontent" />
+		<result column="cenrolldate" property="cenrolldate" />
+		<result column="copen" property="copen" />
+		<result column="clove" property="clove" />
+		<result column="hashtags" property="hashtags" />
+		<result column="mentions" property="mentions" />
+		<result column="crwriter" property="crwriter" />
+		<result column="crcontent" property="crcontent" />
+		<result column="addonuse" property="addonuse" />
+	</resultMap>
+
 	<insert id="insertCpost" parameterType="Cpost">
 	insert into cpost (cno, ctitle, cwriter, ccontent, cenrolldate, copen)
 		values ('c' || cpost_seq.nextval, #{ctitle}, #{cwriter}, #{ccontent}, sysdate, #{copen})
 	</insert>
+	
+	<select id="selectCno" resultType="string">
+	<![CDATA[
+	select cno from (select * from cpost order by cno desc) where rownum = 1 
+	]]>
+	</select>
+	
+	<update id="updateCfile" parameterType="AddOn">
+	merge into addon using dual on (cno = #{cno})  
+	when matched then
+	update set 
+	<if test="ofile1 != null"> ofile1 = #{ofile1}, rfile1 = #{rfile1} 
+	when not matched then 
+	insert (cno,  ofile1, rfile1) 
+	values (#{cno}, #{ofile1}, #{rfile1}) 
+	</if>
+	<if test="ofile2 != null">ofile1 = #{ofile1}, rfile1 = #{rfile1}, ofile2 = #{ofile2}, rfile2 = #{rfile2} 
+	when not matched then 
+	insert (cno,  ofile1, rfile1, ofile2, rfile2) 
+	values (#{cno}, #{ofile1}, #{rfile1}, #{ofile2}, #{rfile2}) 
+	</if>
+	<if test="ofile3 != null">ofile1 = #{ofile1}, rfile1 = #{rfile1}, ofile2 = #{ofile2}, rfile2 = #{rfile2}, ofile3 = #{ofile3}, rfile3 = #{rfile3}  
+	when not matched then 
+	insert (cno,  ofile1, rfile1, ofile2, rfile2, ofile3, rfile3) 
+	values (#{cno}, #{ofile1}, #{rfile1}, #{ofile2}, #{rfile2}, #{ofile3}, #{rfile3}) 
+	</if>
+	</update>
 </mapper>

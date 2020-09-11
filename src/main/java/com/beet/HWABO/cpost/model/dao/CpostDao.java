@@ -21,8 +21,12 @@ public class CpostDao {
 		return session.insert("cpostMapper.insertCpost", cpost);
 	}
 
-	public int insertAddon(AddOn addon) {
-		return session.insert("cpostMapper.insertAddon", addon);
+	public String selectCno() {
+		return session.selectOne("cpostMapper.selectCno");
+	}
+
+	public int updateCfile(AddOn addon) {
+		return session.insert("cpostMapper.updateCfile", addon);
 	}
 	
 

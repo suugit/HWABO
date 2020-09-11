@@ -6,5 +6,8 @@ import com.beet.HWABO.cpost.model.vo.Cpost;
 public interface CpostService {
 	int insertCpost(Cpost cpost);
 
-	int insertAddon(AddOn addon);
+
+	String selectCno();
+	
+	int updateCfile(AddOn addon);
 }

@@ -22,8 +22,16 @@ public class CpostServiceImpl implements CpostService{
 		return cpostDao.insertCpost(cpost);
 	}
 
+
 	@Override
-	public int insertAddon(AddOn addon) {
-		return cpostDao.insertAddon(addon);
+	public String selectCno() {
+		return cpostDao.selectCno();
 	}
+
+
+	@Override
+	public int updateCfile(AddOn addon) {
+		return cpostDao.updateCfile(addon);
+	}
+
 }

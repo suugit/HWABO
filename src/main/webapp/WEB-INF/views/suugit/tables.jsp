@@ -104,11 +104,11 @@
               <!-- 글작성 본문 -->
              <form action="incp.do" id="InsertCpost" method="post" enctype="multipart/form-data">
              
-              <tr><td colspan="5"> <input name="ctitle" type="text" class="form-control mb-1" placeholder="제목(선택값)"></td></tr>
+              <tr><td colspan="5"> <input name="ctitle" type="text" class="form-control mb-1" placeholder="제목"></td></tr>
               <tr><td colspan="5"><textarea id="ccontent" name="ccontent" rows="6" class="w-100 form-control "></textarea></td></tr>
               <tr id="preview"></tr>
               <tr id="file_list">
-       	
+       				<input type="hidden" name="cwriter" value="${sessionScope.uname }">
               	<td>
               		<img src="" />
               		<a class="del_img" style="position:relative;bottom:80%;left:20%"><i class="fa fa-times-circle"></i></a>
@@ -117,7 +117,6 @@
               	</td>
               	<td>
               		<div class="select_img rounded float-left">
-              		<img src="" />
               		<a class="del_img" style="position:relative;bottom:80%;left:20%"><i class="fa fa-times-circle"></i></a>
               		</div>
               	</td>
@@ -140,12 +139,11 @@
               	<td colspan="2" class="flex-grow-5 ">
               	
               		<label class="btn btn-light small" onclick="fileUpload" >
-              		
-              			<input type="file" name="ofile" style="display:none" id="atchm_file" multiple>
+              			 <input type="file" name="file" id="file" style="display:none" multiple>
               			<i class="fa fa-link ">&nbsp;파일</i>
               		</label>
               		 <label class="btn btn-light small">
-              			<input type="file" name="ofile" style="display:none" id="atchm_img" multiple>
+              			<input type="file" name="ofile" style="display:none" id="atchm_img" accept=".jpg,.png,.svg" multiple>
               			<i class="fa fa fa-image ">&nbsp;사진</i>
               		</label> 
               		<label class="btn btn-light small" >
@@ -163,7 +161,7 @@
   					<option value="Y" selected>전체공개</option>
   					<option value="N">비공개</option>
 				</select>
-				<input type="hidden" name="cwriter" value="${sessionScope.uname }">
+				
               	</td>
 				</form>
               	 <!-- 버튼 -->
@@ -174,14 +172,7 @@
              		</button>
               	</td>
               </tr>
-              <tr>
-              <td>
-              <form id="MultiUpload" action="upcpfile.do" method="post" enctype="multipart/form-data">
-              <input type="file" name="file" id="file" multiple>
-              <input type="submit" value="버튼한개전송">
-              </form>
-              </td>
-              </tr>
+
              </div>
               </table>
             </div>

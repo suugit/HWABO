@@ -1,8 +1,6 @@
 //$('#btn-save').click( function() {
 //		 alert('hi');
 //		} );
-
-
 	    $(document).ready(function(){
 	        $('.del_img').click(function(){
 	            $(this).parent().hide();
@@ -42,7 +40,8 @@ $(document).ready(function (e){
         
       //div에 이미지 추가
       var str = '<td>';
-      str += '<span>'+fileName+'</span><br>';
+      str += '<span class="text-nowrap" style="font-size:0.5em">'+fileName+'</span>';
+      str += '<i class="fa fa-times-circle mt-2" onclick="removetd()"></i><br>';
       
       if(f.type.match('image.*')){
         var reader = new FileReader(); 
@@ -54,62 +53,18 @@ $(document).ready(function (e){
         } 
         reader.readAsDataURL(f);
       }else{
-        str += '<img src="/resources/img/fileImg.png" title="'+f.name+'" width=100 height=100 />';
+        str += '<img src="resources/maincss/img/suugit/file_altimg.svg" title="'+f.name+'" width=100 height=100 />';
         $(str).appendTo('#preview');
       }
     }); 
   }
 });
 
+function removetd() {
+	$(event.target).value = "";
+	$(event.target).closest('td').remove();
 
-
-
-var filesUpload = document.getElementById("atchm_file");
-var  fileList = document.getElementById("file_list"); 
-var fileCount =0;
-
-function fn_FilesUpload(files){
-
-    var id = 0;
-    var div
-    var fileinfo;
-    var max = 3;
-    var files_length = files.length;
-    var tempCount = fileCount;
-    
-    tempCount += files_length;
-    if( max >= tempCount ) {
-       for (var i=0; i<files_length; i++) { 
-
-    	   filesUpload.name ='file_'+fileCount;
-    	   console.log(fileCount);
-    	   console.log(filesUpload);
-
-    
-           file =  files[i]; 
-           console.log(file);
-           fileInfo = "<td>"
-                        + file.name+"</td>"; 
-           fileInfo += "<td>"
-                         + file.size +" bytes </td>"; 
-           fileInfo += "<td>"
-                         + file.type+"</td>"; 
-           fileInfo += "<td><button>삭제</button></td>"; 
-     
-           li.innerHTML = fileInfo; 
-           fileList.appendto('#egovComFileList');
-           this.fileCount += 1;
-         }
-       }else {
-       alert("첨부 파일 갯수가 많습니다.  : "+fileCount);   
-       tempCount -= fileLength;
-       }; 
-   }
-   
-  filesUpload.onchange = function () { 
-     fn_FilesUpload(this.files); 
-  }; 
-
+}
 
 
 
