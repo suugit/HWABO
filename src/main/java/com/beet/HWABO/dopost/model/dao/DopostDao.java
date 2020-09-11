@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.beet.HWABO.dopost.model.vo.Dopost;
-import com.beet.HWABO.khc.controller.KhcController;
+
 
 @Repository("dopostDao")
 public class DopostDao {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.beet.HWABO.dopost.model.service.DopostService;
+import com.beet.HWABO.dopost.model.vo.Dopost;
 
 /**
  * Handles requests for the application home page.
@@ -24,9 +25,17 @@ public class KhcController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "mytodo.do", method = {RequestMethod.GET, RequestMethod.POST} )
-	public String mytodo(Model model) {
+	public String mytodo(Dopost dopost, Model model) {
 		logger.info("mytodo.run ........................");
-		return "khc/mytodo";
+		
+		int result = dopostService.insertdopost(dopost);
+		
+		if(result > 0) {
+			return "khc/insetdoposttest";
+		}else {
+			model.addAttribute("message", "등록성공");
+			return "common/error";
+		}
 }
 	
 	@RequestMapping(value = "participateproject.do", method = RequestMethod.POST)
