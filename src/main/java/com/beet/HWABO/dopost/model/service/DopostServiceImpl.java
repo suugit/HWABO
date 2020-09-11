@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.beet.HWABO.dopost.model.dao.DopostDao;
 import com.beet.HWABO.dopost.model.vo.Dopost;
-import com.beet.HWABO.khc.controller.KhcController;
+
 
 @Service("dopostService")
 public class DopostServiceImpl implements DopostService {

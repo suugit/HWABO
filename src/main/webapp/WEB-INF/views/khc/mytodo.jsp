@@ -453,14 +453,14 @@
 										
 										
 								 	<td><a class="btn btn-success btn-icon-split"
-											href="javascript:dopostInsert.submit();" style="width: 90%;">
+											href="javascript:dopost.submit();" style="width: 90%;">
 												<span class="text">등록</span>
 										</a></td>
-										<td><a href="javascript:dopostInsert.reset();"
+										<td><a href="javascript:dopost.reset();"
 											class="btn btn-danger btn-icon-split" style="width: 90%;">
 												<span class="text">취소</span>
 										</a></td> 
-										<!-- <input type="submit" value="등록">
+										<!--  <input type="submit" value="등록">
 										<input type="reset" value="취소"> -->
 									</tr>
 								</table>
