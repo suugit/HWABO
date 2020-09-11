@@ -1,4 +1,4 @@
-package com.beet.HWABO.addtag.model.vo;
+package com.beet.HWABO.cpost.model.vo;
 
 public class AddTag implements java.io.Serializable{
 	private static final long serialVersionUId = 1122L;

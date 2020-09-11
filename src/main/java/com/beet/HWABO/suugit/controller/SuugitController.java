@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -123,12 +122,12 @@ public String selectLogin(Member member, Model model, HttpServletRequest request
 			logger.info("로그인한 회원의 코드 : " + loginUser.getUcode());
 			
 			HttpSession session=request.getSession();
-				/*
-				 * session.setAttribute("ucode", loginUser.getUcode());
-				 * session.setAttribute("uname", loginUser.getUname());
-				 * request.setAttribute("uname", loginUser.getUname());
-				 */
-			session.setAttribute("loginUser", loginUser);
+				
+				  session.setAttribute("ucode", loginUser.getUcode());
+				  session.setAttribute("uname", loginUser.getUname());
+				  request.setAttribute("uname", loginUser.getUname());
+				 
+	
 			status.setComplete(); // 요청성공, 200 전송
 			returnPage = "red/cards";
 		}else {
@@ -140,8 +139,9 @@ public String selectLogin(Member member, Model model, HttpServletRequest request
 		returnPage = "common/error";
 	}
 	return returnPage; 
-
 }
+	
+//snsObject 
 
 
 //로그아웃
@@ -209,9 +209,9 @@ public String ChnpwdPage(){
 return "suugit/chnpwd.part";
 }
 
-@RequestMapping("/topinfo.do")
+@RequestMapping("/mvcpost.do")
 public String testpage() {
-	return "red/cards";
+	return "suugit/tables";
 }
 
 @RequestMapping("/top1.do")

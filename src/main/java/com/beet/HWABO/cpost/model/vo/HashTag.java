@@ -1,14 +1,14 @@
-package com.beet.HWABO.hashtag.model.vo;
+package com.beet.HWABO.cpost.model.vo;
 
-public class Hashtag implements java.io.Serializable{
+public class HashTag implements java.io.Serializable{
 	private static final long serialVersionUId = 1144L;
 	
 	private String tagid;
 	private String tagname;
 	
-	public Hashtag() {}
+	public HashTag() {}
 
-	public Hashtag(String tagid, String tagname) {
+	public HashTag(String tagid, String tagname) {
 		super();
 		this.tagid = tagid;
 		this.tagname = tagname;
