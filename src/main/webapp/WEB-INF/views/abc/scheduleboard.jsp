@@ -1,9 +1,10 @@
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%
 	long time = System.currentTimeMillis();
 	Date nowTime1 = new Date();
@@ -12,9 +13,6 @@
 	SimpleDateFormat sf2 = new SimpleDateFormat("kk:mm");
 	
 	String now = sf1.format(nowTime1).toString() + "T" +	sf2.format(nowTime2).toString();
-
-	SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
 %>
 
 
@@ -126,13 +124,6 @@
 						<form action="sinsert.do" id="spostInsert"  name="spostInsert" method="post" onsubmit="return daycheck();">
 						<input type="hidden" name="swriter" value="정다운">
 								<table style="text-align: center; width: 100%;">
-									<tr class="m-0 font-weight-bold text-primary">
-										<td style="width: 20%;"><span>글작성</span></td>
-										<td style="width: 20%;"><span>업무</span></td>
-										<td style="width: 20%;"><span>일정</span></td>
-										<td style="width: 20%;"><span>할일</span></td>
-										<td style="width: 20%;"><span>투표</span></td>
-									</tr>
 									<tr>
 										<td colspan="5">
 											<hr>
@@ -140,7 +131,7 @@
 									</tr>
 									<tr>
 										<td colspan="5"><span style="float: left;"><i class="fa fa-pen"></i>&nbsp;제 목</span>											
-												<input type="text" name="stitle" 	class="form-control" placeholder="일정 제목을 입력하세요" required="required"></td>
+										<input type="text" name="stitle" 	class="form-control" placeholder="일정 제목을 입력하세요" required="required"></td>
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
