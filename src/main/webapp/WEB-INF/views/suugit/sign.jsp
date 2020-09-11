@@ -82,7 +82,7 @@
 								</div>
 								</form>
 								<div class="col-md-9 m-auto">
-									<button id="btn-save" class="btn btn-primary btn-user btn-block">가입하기</button>
+									<button type="submit" form="signForm" class="btn btn-primary btn-user btn-block">가입하기</button>
 								</div>
 							
 							<hr>

@@ -133,9 +133,8 @@ public String selectLogin(Member member, Model model, HttpServletRequest request
 				  session.setAttribute("uname", loginUser.getUname());
 				  request.setAttribute("uname", loginUser.getUname());
 				 
-	
 			status.setComplete(); // 요청성공, 200 전송
-			returnPage = "suugit/tables";
+			returnPage = "red/cards";
 		}else {
 			model.addAttribute("message", "암호가 일치하지 않습니다.");
 			returnPage = "common/error";
