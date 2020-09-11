@@ -1,12 +1,16 @@
 package com.beet.HWABO.abc.controller;
 
 import java.util.Date;
+
+import javax.print.attribute.standard.DateTimeAtCompleted;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.google.api.calendar.Event.DateTimeTimezone;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -75,9 +79,7 @@ public class abcController {
 		try {
 			java.util.Date startdate = transFormat.parse(Sstart);
 			java.util.Date enddate = transFormat.parse(Send);
-			
-			startdate.setHours(startdate.getHours()+9);
-			enddate.setHours(enddate.getHours()+9);
+
 			spost.setSstartday(startdate);
 			spost.setSendday(enddate);
 		} catch (ParseException e) {
