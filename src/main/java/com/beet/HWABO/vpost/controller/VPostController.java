@@ -30,6 +30,7 @@ public class VPostController {
 		
 		if(result > 0) {
 			model.addAttribute("vpost",vpost);
+			
 			return "yeongmin/insertvposttest";
 		}else {
 			model.addAttribute("message", "��ǥ ��� ����  !");
