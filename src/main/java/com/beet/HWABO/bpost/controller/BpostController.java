@@ -34,16 +34,15 @@ public class BpostController {
 	
 	 @RequestMapping(value="insertbpost.do", method=RequestMethod.POST)
 	public String insertBpost(Bpost bpost, HttpServletRequest request,
-			@RequestParam(name = "ofile", required = false) MultipartFile file) {
-		
-		 logger.info("bpost : " + bpost);
-		 logger.info("file : " + file);
-		 
+			@RequestParam(value = "ofile", required = false) MultipartFile file) {		
+		  logger.info("bpost : " + bpost); 
+		  logger.info("file : " + file.getOriginalFilename().length());		 
+		  if(file != null && file.getOriginalFilename().length() > 0) {
 		 String fileName = file.getOriginalFilename();
 		 
 		 String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
 
-		 if(file != null) {
+		 
 			 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); // java.text.SimpleDateFormat
 			
 			 String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); // 여기까지 파일명
@@ -51,10 +50,10 @@ public class BpostController {
 
 			bpost.setBoriginfile(fileName);
 			bpost.setBrenamefile(renameFileName);
-			logger.info("renameFileName : " + renameFileName);
+			/* logger.info("renameFileName : " + renameFileName); */
 			try {
 				file.transferTo(new File(savePath + "\\" + renameFileName));
-				logger.info("이클립스에 파일 들어감 : " + renameFileName);
+				/* logger.info("이클립스에 파일 들어감 : " + renameFileName); */
 			}catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}

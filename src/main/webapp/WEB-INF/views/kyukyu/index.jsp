@@ -184,6 +184,7 @@ function unSelected(){
 
 
 function validate(){
+	//날짜에 빈 공백이 들어오니까 공백일때 널로 바꿔라 라는 내용을 추가한다
 	return true;
 }
 </script>
@@ -240,6 +241,8 @@ function validate(){
               
               
     		<input type="hidden" name="bwriter" value="${sessionScope.uname }">
+    		<input type="hidden" id="bform" name="bcharge">
+    		
     		
 	        <input type="text" class="form-control mb-1" name="btitle" placeholder="제목(선택값)">
 	               
@@ -285,7 +288,7 @@ function validate(){
            				<div id="selected"></div>
            				
            				
-           				<input type="hidden" id="bform" name="bcharge">
+           				
            				
            			
           
@@ -314,9 +317,9 @@ function validate(){
               
                <div class="row mt-2">
 					<p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					   <div class="col-5"><input type="date" class="form-control" name="bstartday" value=""></div>
+					   <div class="col-5"><input type="date" class="form-control" name="bstartday"></div>
 					      <label class="form-control-label h3">~</label>
-					   <div class="col-5"><input type="date" class="form-control" name="bendday" value=""></div>
+					   <div class="col-5"><input type="date" class="form-control" name="bendday"></div>
 		     </div>
 					              
 					              
@@ -334,7 +337,7 @@ function validate(){
               
               	
               	
-	           <label><input type="file" name="ofile" style="visibility: hidden;"><span class="fa fa-link m-2" >첨부파일</span></label>
+	           <input type="file" name="ofile" style="visibility: hidden;"><span class="fa fa-link m-2">첨부파일</span>
 	           <select name="bopen" class="form-control">
 					<option value="y" selected>전체공개</option>
 					<option value="n">나만 공개</option>
