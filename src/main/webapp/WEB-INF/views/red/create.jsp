@@ -17,22 +17,22 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">프로젝트를 생성해주세요</h1>
                   </div>
-                  <form class="user">
+                  <form action="createProject.do" method="post" id="projectInsert" class="user">
                     <div class="form-group">
-                      <input type="text" name="name" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="프로젝트 이름을 입력해주세요">
+                      <input type="text" name="name" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="프로젝트 이름을 입력해주세요" required>
                     </div>
                     <div class="form-group">
                       <input type="text" name="explain" class="form-control form-control-user" id="exampleInputPassword" placeholder="프로젝트 설명을 입력해주세요">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <input type="checkbox" name="right" value="1" class="custom-control-input" id="customCheck">
                         <label class="custom-control-label" for="customCheck">가입시 관리자 승인후 가능</label>
                       </div>
                     </div>
-                    <a href="cards.do" class="btn btn-primary btn-user btn-block">
+                    <button type="submit" class="btn btn-primary btn-user btn-block">
                       	새 프로젝트 생성
-                    </a>
+                    </button>
                     <hr>
                     <a href="cards.do" class="btn btn-google btn-user btn-block">
                       	 취소

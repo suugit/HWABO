@@ -17,7 +17,7 @@
 		<result property="right" column="right" />
 	</resultMap>
 	<resultMap id="resultProject" type="Project">
-		<result property="project_num" column="project_num" />
+		<id property="project_num" column="project_num" />
 		<result property="name" column="name" />
 		<result property="explain" column="explain" />
 		<result property="startday" column="startday" />
@@ -29,9 +29,12 @@
 		<result property="right" column="right" />
 	</resultMap>
 
-
-<select id="">
-	
+<select id="selectList" resultMap="resultList">
+		select * from project
 </select>
+
+<insert id="insertProject" parameterType="Project">
+		insert into project VALUES ((select max(TO_NUMBER(project_num))+1 from project),#{name},#{explain},null,null,SYSDATE,default,default,default,#{right})
+</insert>
 	
 </mapper>

@@ -2,18 +2,40 @@ package com.beet.HWABO.red.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.HomeController;
+import com.beet.HWABO.red.model.service.RedService;
+import com.beet.HWABO.red.model.vo.Project;
 
 @Controller
 public class RedController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	@Autowired
+	private RedService redService;
 	
+	@RequestMapping(value = "createProject.do", method = RequestMethod.POST)
+	public ModelAndView createPro(Project project, ModelAndView mv) {
+		logger.info("[RedController]createProject.do 실행됨....");
+		
+		if (redService.insertProject(project) > 0) {
+			mv.setViewName("redirect:/cards.do");
+			logger.info("[RedController] 프로젝트 생성 성공");
+		} else {
+			mv.setViewName("redirect:/red404.do");
+			logger.info("[RedController] 프로젝트 생성 실패");
+		}
+		return mv;
+	}
+
+////views start//////////////////////////////	
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)
 	public String suugitIndex(Model model) {
 		
@@ -54,6 +76,11 @@ public class RedController {
 	public String go404(Model model) {
 		
 		return "sample/error404";
+	}
+	@RequestMapping(value = "red404.do", method = RequestMethod.GET)
+	public String goRed404(Model model) {
+		
+		return "red/error404";
 	}
 	@RequestMapping(value = "blank.do", method = RequestMethod.GET)
 	public String blank(Model model) {
@@ -145,4 +172,6 @@ public class RedController {
 		
 		return "red/write";
 	}
+////views end//////////////////////////////
+	
 }
