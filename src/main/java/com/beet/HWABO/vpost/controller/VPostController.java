@@ -25,16 +25,20 @@ public class VPostController {
 	public String memberInsert(VPost vpost, Model model){
 		
 		
-		logger.info("vpostinsert ÁøÀÔ");
-		logger.info("°ª : " + vpost);
+		logger.info("vpostinsert ï¿½ï¿½ï¿½ï¿½");
+		logger.info("ï¿½ï¿½ : " + vpost);
 		
 		int result = vpostservice.insertvpost(vpost);
 		
 		if(result > 0) {
 			return "yeongmin/insertvposttest";
 		}else {
-			model.addAttribute("message", "ÅõÇ¥ µî·Ï ½ÇÆÐ  !");
+			model.addAttribute("message", "ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  !");
 			return "common/error";
 		}
 	}
+	
+	
+	
+	
 }
