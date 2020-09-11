@@ -76,8 +76,6 @@ public class abcController {
 			java.util.Date startdate = transFormat.parse(Sstart);
 			java.util.Date enddate = transFormat.parse(Send);
 			
-			startdate.setHours(startdate.getHours()+9);
-			enddate.setHours(enddate.getHours()+9);
 			spost.setSstartday(startdate);
 			spost.setSendday(enddate);
 		} catch (ParseException e) {

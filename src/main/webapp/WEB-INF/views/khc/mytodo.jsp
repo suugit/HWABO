@@ -385,7 +385,7 @@
 
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
-							<form action="mytodo.do" id="dopost" method="post">
+							<form action="mytodo.do" id="dopostInsert" method="post">
 							
 								<table style="text-align: center; width: 100%;">
 									<tr class="m-0 font-weight-bold text-primary">
@@ -402,13 +402,20 @@
 									</tr>
 									<tr>
 										<td colspan="5"><span style="float: left;"><i
-												class="fa fa-pen"></i>&nbsp;할 일 </span><input type="text" name="dopost"
+												class="fa fa-pen"></i>&nbsp;할 일 </span><input type="text"
 											class="form-control" placeholder="할일 제목을 입력하세요"></td>
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
-								
+									<tr>
+										<td width="20%"><span style="float: left;"><i
+												class="far fa-calendar-alt"></i>&nbsp;시작 날짜</span><input
+											type="datetime-local" class="form-control"></td>
+
+										
+
+									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
@@ -427,7 +434,7 @@
 
 										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;할일쓰기</span>
 										 <textarea
-												name="dopostText" id="contentText" cols="30" rows="10"
+												name="contentText" id="contentText" cols="30" rows="10"
 												class="form-control"
 												style="width: 100%; height: 200px; overflow: auto; resize: none;">
 										</textarea> <span class="txsub form-control">남은글자수 : <input type="text"
@@ -442,23 +449,19 @@
 										<!--  #f8f9fc   -->
 										<td>
 										<select>
-											<option value="y" name="all">전체공개</option>
-											<option value="n" name="onlyme">나만보기</option>
+											<option value="y">전체공개</option>
+											<option value="n">나만보기</option>
 										</select>
 										</td>
 										
-										
-										
-										<!-- <td><a class="btn btn-success btn-icon-split"
-											href="javascript:dopostInsert.submit();" style="width: 90%;">
+										<td><a class="btn btn-success btn-icon-split"
+											href="javascript:spostInsert.submit();" style="width: 90%;">
 												<span class="text">등록</span>
 										</a></td>
-										<td><a href="javascript:dopostInsert.reset();"
+										<td><a href="javascript:spostInsert.reset();"
 											class="btn btn-danger btn-icon-split" style="width: 90%;">
 												<span class="text">취소</span>
-										</a></td> -->
-										<input type="submit" value="등록">
-										<input type="reset" value="취소">
+										</a></td>
 									</tr>
 								</table>
 							</form>
