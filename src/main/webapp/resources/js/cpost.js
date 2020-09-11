@@ -19,7 +19,7 @@ $('#btn-save').click( function() {
 	        }
 	    }
 
-	    $("#atchm_img").change(function() {
+	  /*  $("#atchm_img").change(function() {
 	        readURL(this);
 	        $(this).parent().show();
 	    });
@@ -47,14 +47,9 @@ $('#btn-save').click( function() {
 	    var dropFile = function(event) {
 	    	   event.preventDefault();
 	    	}
-	    
+	    */
 	  
 	    	
-	    function addInvite(){
-		var name = $(event.target).parent().parent().children().eq(1).text();
-		$('#selected').append('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>')
-	}
-	
-	function unSelected(){
-		$(event.target).parent().remove();
-	}
+	   $(document).ready(function(){  123123
+		   $('#atchm_img').on("change",()=>)
+	   })
