@@ -10,6 +10,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
@@ -19,6 +21,8 @@ import org.springframework.web.servlet.view.AbstractView;
 @Component("filedown") //stereotype component
 public class FileDownloadView extends AbstractView{
 
+	
+	private static final Logger logger = LoggerFactory.getLogger(FileDownloadView.class);
 	//extends 쓰고 import , unimple~~ 클릭
 	
 	@Override
@@ -27,6 +31,8 @@ public class FileDownloadView extends AbstractView{
 		//컨트롤러에서 뷰 리졸버로 리턴한 model 정보가 이쪽으로 자동 전달됨 
 		File downFile = (File)model.get("downFile");
 		
+		
+		logger.info("다운파일"+downFile.getName());
 		//한글파일명인코딩처리 파일명만추출
 		String fileName = downFile.getName();
 		//plain해야파일다운

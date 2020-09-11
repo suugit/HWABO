@@ -1,4 +1,4 @@
-<%@ page session="false" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -85,8 +85,18 @@
 			<br><br><br><br>
 			<!-- End of Topbar -->
 
+<style type="text/css">
+
+div#showfile imag{
 
 
+	width : 10%;
+	height : 10%;
+	
+	}
+
+
+</style>
 
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -229,7 +239,7 @@ function validate(){
               <!-- 글작성 본문 -->
               
               
-    		<input type="hidden" name="bwriter" value="백규류">
+    		<input type="hidden" name="bwriter" value="${sessionScope.uname }">
     		
 	        <input type="text" class="form-control mb-1" name="btitle" placeholder="제목(선택값)">
 	               
@@ -386,13 +396,41 @@ function validate(){
 								<td> ${b.bcontent}</td>
 							</tr>
 						</table>
+							
+						<table>
+						<c:if test="${! empty b.boriginfile }">
+							<tr>
+							   <td>파일</td>
+							   <br>
+							   </tr>
+							   <tr>
+							   <th>
+							   
+							   	<div id="showfile" style="overflow:hidden;"> 
+							   	<img src="resources/bupfile/${b.brenamefile}" style="width : 60%;height : 60%;">
+								
+								 </div> 
+							   
+							  </th>
+						   <c:url var="ubf" value="bfdown.do">
+								<c:param name="ofile" value="${b.boriginfile}"/>
+								<c:param name="rfile" value="${b.brenamefile}"/>
+							</c:url> 
+								<td><a href="${ubf }"> ${b.boriginfile}</a></td>
+							</tr>
+							</c:if>
+							<c:if test="${empty b.boriginfile}">
+							&nbsp;
+							</c:if>
+						</table>
+						
 							<hr>
 							<table style="width: 100%;">
 								<tr>
 									<td style="width: 20%;"><a href="#"
 										class="btn btn-primary btn-icon-split btn-sm"> <span
 											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
+										</span> <span class="text">좋아요 ${b.blove }</span>
 									</a></td>
 									<td style="width: 20%;"></td>
 									<td style="width: 20%;"></td>
@@ -407,144 +445,7 @@ function validate(){
 						</div>
 					</div>
 				</c:forEach>
-					<!-- 게시글끝 -->
-
-					<!-- 게시글시작 -->
-					<!-- <div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							게시글안쪽
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					게시글끝
-
-
-					게시글시작
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							게시글안쪽
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					게시글끝
-
-					게시글시작
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							게시글안쪽
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					게시글끝
-
-					게시글시작
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							게시글안쪽
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div> -->
-					<!-- 게시글끝 -->
-
-
-           
-           
+				
            
            
            
