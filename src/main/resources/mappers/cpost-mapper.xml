@@ -2,4 +2,8 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cpostMapper">
+	<insert id="insertCpost" parameterType="Cpost">
+	insert into cpost (cno, ctitle, cwriter, ccontent, cenrolldate, copen)
+		values ('c' || cpost_seq.nextval, #{ctitle}, #{cwriter}, #{ccontent}, sysdate, #{copen})
+	</insert>
 </mapper>

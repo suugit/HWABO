@@ -12,9 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.beet.HWABO.cpost.model.service.CpostService;
+import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.member.model.service.MailSendService;
 import com.beet.HWABO.member.model.service.MemberService;
 import com.beet.HWABO.member.model.vo.Member;
@@ -26,6 +30,8 @@ public class SuugitController {
 	
 private static final Logger logger = LoggerFactory.getLogger(SuugitController.class);
 
+@Autowired
+private CpostService cserivce;
 
 @Autowired
 private MailSendService msserivce;
@@ -129,7 +135,7 @@ public String selectLogin(Member member, Model model, HttpServletRequest request
 				 
 	
 			status.setComplete(); // 요청성공, 200 전송
-			returnPage = "red/cards";
+			returnPage = "suugit/tables";
 		}else {
 			model.addAttribute("message", "암호가 일치하지 않습니다.");
 			returnPage = "common/error";
@@ -220,4 +226,26 @@ public String testpage2() {
 }
 
 
+//게시글 관련 
+@RequestMapping("/incp.do")
+public ModelAndView insertCpost(Cpost cpost, ModelAndView mv, HttpServletRequest request, @RequestParam(name="files[]", required=false) MultipartFile files) {
+	logger.info("incp.do run....");
+	logger.info(cpost.getCcontent());
+	logger.info(cpost.getCtitle());
+	logger.info(cpost.getCopen());
+	logger.info(cpost.getCwriter());
+	
+	String savePath = request.getSession().getServletContext().getRealPath("/resources/cupfiles");
+	
+	
+	int result = cserivce.insertCpost(cpost);
+	
+	if (result > 0) {
+		mv.setViewName("suugit/tables");
+	} else {
+		mv.addObject("message", "게시글등록실패");
+		mv.setViewName("common/error");
+	}
+	return mv;
+}
 }

@@ -85,7 +85,6 @@
             </div>
                <div class="card-body">
               <!-- 게시글안쪽 -->
-            
               <table style="text-align:center;width:100%;">
               <tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
               <span>글작성</span>
@@ -104,13 +103,16 @@
               </td></tr>
               <!-- 글작성 본문 -->
              <form action="incp.do" id="InsertCpost" method="post" enctype="multipart/form-data">
+             
               <tr><td colspan="5"> <input name="ctitle" type="text" class="form-control mb-1" placeholder="제목(선택값)"></td></tr>
               <tr><td colspan="5"><textarea id="ccontent" name="ccontent" rows="6" class="w-100 form-control "></textarea></td></tr>
-              <tr>
+              <tr id="preview"></tr>
+              <tr id="file_list">
+       	
               	<td>
-              		<div id="ofile1" class="select_img rounded float-left">
               		<img src="" />
               		<a class="del_img" style="position:relative;bottom:80%;left:20%"><i class="fa fa-times-circle"></i></a>
+              		</div>
               		</div>
               	</td>
               	<td>
@@ -124,22 +126,28 @@
               		<img src="" />
               		<a class="del_img" style="position:relative;bottom:80%;left:20%"><i class="fa fa-times-circle"></i></a>
               		</div>
+              	</td>
+              	<td>
+              	<div class="imgs_wrap">
+              		<img id="img" />
+               	</div>
               	</td>
               
               </tr>
               <tr>
               <!-- 옵션메뉴 --> 
               	<div class="clearfix d-flex ">
-              	<td colspan="2" class="flex-grow-5" width="40%">
+              	<td colspan="2" class="flex-grow-5 ">
               	
-              		<label class="btn btn-light small" >
-              			<input type="file" name="ofile" style="display:none" id="atchm_file">
+              		<label class="btn btn-light small" onclick="fileUpload" >
+              		
+              			<input type="file" name="ofile" style="display:none" id="atchm_file" multiple>
               			<i class="fa fa-link ">&nbsp;파일</i>
               		</label>
-              		<label class="btn btn-light small">
-              			<input type="file" name="ofile" style="display:none" id="atchm_img">
+              		 <label class="btn btn-light small">
+              			<input type="file" name="ofile" style="display:none" id="atchm_img" multiple>
               			<i class="fa fa fa-image ">&nbsp;사진</i>
-              		</label>
+              		</label> 
               		<label class="btn btn-light small" >
               			<input type="file" name="hashtag" style="display:none">
               			<i class="fa fa-hashtag ">&nbsp;</i>
@@ -149,21 +157,21 @@
               			<i class="fa fa-at">&nbsp;</i>
               		</label>
               	</td>
+              	<td></td>
               	<td>
               	<select name="copen" class="form-control form-control-small selectpicker">
   					<option value="Y" selected>전체공개</option>
   					<option value="N">비공개</option>
-  					
 				</select>
+				<input type="hidden" name="cwriter" value="${sessionScope.uname }">
               	</td>
 				</form>
               	 <!-- 버튼 -->
               	 <td colspan="2" style="width:5%"> 
-             	 	<a id="btn-save" class="btn btn-success p-1" href="javascript:cpostForm.submit();" style="width:40%;" >등록</a>
-             	 
-             		<a href="javascript:mainInsert.reset();" class="btn btn-danger" style="width:40%;float:right;">
+             	 	<button type="submit" id="btn-save" class="btn btn-success p-1" form="InsertCpost">등록</button>
+             		<button type="reset" class="btn btn-danger p-1" style="width:40%;float:right;">
                     <span class="text">취소</span>
-             		</a>
+             		</button>
               	</td>
               </tr>
              </div>
@@ -171,7 +179,7 @@
             </div>
           </div>
           
-          
+           
           <!-- 새 글작성끝 -->
           
           
