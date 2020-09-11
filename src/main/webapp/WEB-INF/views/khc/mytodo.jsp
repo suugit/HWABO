@@ -400,43 +400,33 @@
 											<hr>
 										</td>
 									</tr>
-									<input type="text" name="dtitle" value="제목">
+									
+									<input type="text" name="dno" value="글번호">
+									<tr>
+									<td>
+								
+									</td>
+									</tr>
 									<tr>
 										<td colspan="5"><span style="float: left;"><i
-												class="fa fa-pen"></i>&nbsp;할 일 </span><input type="text" name="dopost"
-											class="form-control" placeholder="할일 제목을 입력하세요"></td>
-									</tr>
-									<tr>
-										<td colspan="5">&nbsp;</td>
-									</tr>
-								
-									<tr>
-										<td colspan="5">&nbsp;</td>
+												class="fa fa-pen"></i>&nbsp;제목 </span><input type="text" name="dtitle"
+											class="form-control" placeholder="제목을입력하세요"></td>
 									</tr>
 									
-									<tr>
-										<td colspan="5">&nbsp;</td>
-									</tr>
-									
-									<tr>
-										<td colspan="5">&nbsp;</td>
-									</tr>
 									
 									<input type="text" name="dwriter" value="글쓴이"> 
-								
-										<input type="text" name="dcontent" value="할일쓰기">
-
 									
-						<tr>
-										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;할일쓰기</span>
+										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;할일</span>
 										 <textarea
-												name="dopostText" id="contentText" cols="30" rows="10"
+												name="dcontent" id="contentText" cols="30" rows="10"
 												class="form-control"
 												style="width: 100%; height: 200px; overflow: auto; resize: none;">
 										</textarea> <span class="txsub form-control">남은글자수 : <input type="text"
 												readonly value="100" name="counter" id="counter"
 												style="border: none;"></span></td>
-									</tr>
+										
+
+					
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
@@ -444,24 +434,24 @@
 										<td colspan="2"></td>
 										<!--  #f8f9fc   -->
 										<td>
-										<select>
-											<option value="y" name="dopen">전체공개</option>
-											<option value="n" name="dopen">나만보기</option>
+										<select name="dopen" class="form-control">
+											<option value="y" >전체공개</option>
+											<option value="n" >나만보기</option>
 										</select>
 										</td>
 										
 										
-										
+								<!-- 		
 								 	<td><a class="btn btn-success btn-icon-split"
-											href="javascript:dopost.submit();" style="width: 90%;">
+											href="javascript:mytodo.submit();" style="width: 90%;">
 												<span class="text">등록</span>
 										</a></td>
-										<td><a href="javascript:dopost.reset();"
+										<td><a href="javascript:mytodo.reset();"
 											class="btn btn-danger btn-icon-split" style="width: 90%;">
 												<span class="text">취소</span>
-										</a></td> 
-										<!--  <input type="submit" value="등록">
-										<input type="reset" value="취소"> -->
+										</a></td>  -->
+										<input type="submit" class="btn btn-sm btn-info" value=" 등  록 ">
+										<input type="reset" class="btn btn-sm btn-danger"  value=" 취  소 ">
 									</tr>
 								</table>
 							</form>
