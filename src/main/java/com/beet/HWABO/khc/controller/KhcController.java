@@ -22,24 +22,24 @@ public class KhcController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "mytodo.do", method = RequestMethod.GET)
+	@RequestMapping(value = "mytodo.do", method = RequestMethod.POST)
 	public String mytodo(Model model) {
 		return "khc/mytodo";
 }
 	
-	@RequestMapping(value = "participateproject.do", method = RequestMethod.GET)
+	@RequestMapping(value = "participateproject.do", method = RequestMethod.POST)
 	public String participateproject(Model model) {
 		return "khc/participateproject";
 		
 	}
 	
 	
-	@RequestMapping(value = "authorityadmin.do", method = RequestMethod.GET)
+	@RequestMapping(value = "authorityadmin.do", method = RequestMethod.POST)
 	public String authorityadmin(Model model) {
 		return "khc/authorityadmin";
 	}
 	
-	@RequestMapping(value = "projectmanagement.do", method = RequestMethod.GET)
+	@RequestMapping(value = "projectmanagement.do", method = RequestMethod.POST)
 	public String projectmanagement(Model model) {
 		return "khc/projectmanagement";
 	}
