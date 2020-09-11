@@ -1,5 +1,8 @@
 package com.beet.HWABO.bpost.model.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +24,11 @@ public class BpostDao {
 	public int insertBpost(Bpost bpost) {
 		logger.info("bpost dao : " + bpost);
 		return session.insert("bpostMapper.insertBpost", bpost);
+	}
+
+	public ArrayList<Bpost> selectList() {
+		List<Bpost> list = session.selectList("bpostMapper.selectList");
+		return (ArrayList<Bpost>)list;
 	}
 
 }

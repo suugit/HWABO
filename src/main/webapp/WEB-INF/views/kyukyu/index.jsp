@@ -92,7 +92,10 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 
+function bkindshow(){
+$("#'${b.bkind}'").button('toggle')
 
+}
 
 var names = "";
 function addbcharge(){
@@ -335,19 +338,219 @@ function validate(){
 			  <input class="btn btn-primary" type="reset" value="취소">
 			  </form>
 			 </div>
-          <!--    	 	<a class="btn btn-success btn-icon-split" href="javascript:mainInsert.submit();" style="width:10%;" >
-                    <span class="text">등록</span>
-                 	</a>
-             
-             		<a href="javascript:mainInsert.reset();" class="btn btn-danger btn-icon-split" style="width:10%;">
-                    <span class="text">취소</span>
-             		</a>
-             
-             </div>
-         -->
+         </div>
+           
+           <!--  리스트  -->
+           <c:forEach var="b" items="${requestScope.list }">
+           <div class="card shadow mb-4">
+				<div class="card-header py-3">
+				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				  <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+				  <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+				  <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+				</svg>
+					<a>${b.bwriter}</a><br>
+					<b> ${b.benrolldate }</b>
+					
+				</div>
+					<div class="card-body">
+							<!-- 게시글안쪽 -->
+						
+							
+							   <c>제목 : ${b.btitle}</c>
+							<hr>
+							
+							
+			<div class="btn-group btn-group-toggle" data-toggle="buttons">
+			  <label class="btn btn-secondary active">
+			    <input type="radio" name="요청" id="요청" value="요청" >요청
+			  </label>
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="진행" id="진행" value="진행">진행
+			  </label>
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="피드백" id="피드백" value="피드백" >피드백
+			  </label>
+			   <label class="btn btn-secondary">
+			    <input type="radio" name="완료" id="완료" value="완료">완료
+			  </label>
+			   <label class="btn btn-secondary">
+			    <input type="radio" name="보류" id="보류" value="보류">보류
+			  </label>
+			</div>
+							
+							
+						<table>
+							<tr>
+							   <td>내용</td>
+								<td> ${b.bcontent}</td>
+							</tr>
+						</table>
+							<hr>
+							<table style="width: 100%;">
+								<tr>
+									<td style="width: 20%;"><a href="#"
+										class="btn btn-primary btn-icon-split btn-sm"> <span
+											class="icon text-white-50"> <i class="far fa-heart"></i>
+										</span> <span class="text">좋아요 0</span>
+									</a></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%; float: right;"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="px-3 py-5 bg-gradient-light text-white"
+							style="height: 10px;">
+							<input type="text" class="form-control" placeholder="답글을 입력하세요">
+						</div>
+					</div>
+				</c:forEach>
+					<!-- 게시글끝 -->
+
+					<!-- 게시글시작 -->
+					<!-- <div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h1>게시글 제목</h1>
+						</div>
+						<div class="card-body">
+							게시글안쪽
+							테이블 넣을 공간
+							<table>
+
+							</table>
+							<hr>
+							<table style="width: 100%;">
+								<tr>
+									<td style="width: 20%;"><a href="#"
+										class="btn btn-primary btn-icon-split btn-sm"> <span
+											class="icon text-white-50"> <i class="far fa-heart"></i>
+										</span> <span class="text">좋아요 0</span>
+									</a></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%; float: right;"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="px-3 py-5 bg-gradient-light text-white"
+							style="height: 10px;">
+							<input type="text" class="form-control" placeholder="답글을 입력하세요">
+						</div>
+					</div>
+					게시글끝
+
+
+					게시글시작
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h1>게시글 제목</h1>
+						</div>
+						<div class="card-body">
+							게시글안쪽
+							테이블 넣을 공간
+							<table>
+
+							</table>
+							<hr>
+							<table style="width: 100%;">
+								<tr>
+									<td style="width: 20%;"><a href="#"
+										class="btn btn-primary btn-icon-split btn-sm"> <span
+											class="icon text-white-50"> <i class="far fa-heart"></i>
+										</span> <span class="text">좋아요 0</span>
+									</a></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%; float: right;"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="px-3 py-5 bg-gradient-light text-white"
+							style="height: 10px;">
+							<input type="text" class="form-control" placeholder="답글을 입력하세요">
+						</div>
+					</div>
+					게시글끝
+
+					게시글시작
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h1>게시글 제목</h1>
+						</div>
+						<div class="card-body">
+							게시글안쪽
+							테이블 넣을 공간
+							<table>
+
+							</table>
+							<hr>
+							<table style="width: 100%;">
+								<tr>
+									<td style="width: 20%;"><a href="#"
+										class="btn btn-primary btn-icon-split btn-sm"> <span
+											class="icon text-white-50"> <i class="far fa-heart"></i>
+										</span> <span class="text">좋아요 0</span>
+									</a></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%; float: right;"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="px-3 py-5 bg-gradient-light text-white"
+							style="height: 10px;">
+							<input type="text" class="form-control" placeholder="답글을 입력하세요">
+						</div>
+					</div>
+					게시글끝
+
+					게시글시작
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h1>게시글 제목</h1>
+						</div>
+						<div class="card-body">
+							게시글안쪽
+							테이블 넣을 공간
+							<table>
+
+							</table>
+							<hr>
+							<table style="width: 100%;">
+								<tr>
+									<td style="width: 20%;"><a href="#"
+										class="btn btn-primary btn-icon-split btn-sm"> <span
+											class="icon text-white-50"> <i class="far fa-heart"></i>
+										</span> <span class="text">좋아요 0</span>
+									</a></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%; float: right;"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="px-3 py-5 bg-gradient-light text-white"
+							style="height: 10px;">
+							<input type="text" class="form-control" placeholder="답글을 입력하세요">
+						</div>
+					</div> -->
+					<!-- 게시글끝 -->
+
+
+           
+           
+           
+           
+           
            
               
-            </div>
+            
           </div>
           </div>
           <!-- </div> -->

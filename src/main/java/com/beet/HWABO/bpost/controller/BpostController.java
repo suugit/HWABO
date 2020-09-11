@@ -3,6 +3,7 @@ package com.beet.HWABO.bpost.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -70,7 +71,23 @@ public class BpostController {
 	}
 	
 	 
-	 
+	 @RequestMapping("bpostlist.do")
+	 public String selectListBpost(Model model) {
+		 
+		 ArrayList<Bpost> list = bpostService.selectList();
+		 
+		 if(list != null) {
+			 logger.info("리스트 성공");
+			 logger.info("비포스트 list"+list);
+			 model.addAttribute("list", list);
+			 return "kyukyu/index";
+			 
+		 }else {
+			 model.addAttribute("message", "업무게시글 리스트 실패");
+			 return "comm/error";
+		 }
+		 
+	 }
 	 
 	 
 	 

@@ -1,6 +1,8 @@
 package com.beet.HWABO.bpost.model.service;
 
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,12 @@ public class BpostServiceImpl implements BpostService{
 		logger.info("service 옴 : " + bpost);
 		
 		return bpostDao.insertBpost(bpost);
+	}
+
+	@Override
+	public ArrayList<Bpost> selectList() {
+		
+		return bpostDao.selectList();
 	}
 
 }
