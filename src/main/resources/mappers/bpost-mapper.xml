@@ -25,7 +25,7 @@
 
 <insert id="insertBpost" parameterType="Bpost" >
 
-	<!-- <if test="boriginfile != null"> --> 
+	 <if test="boriginfile != null"> 
 	insert into bpost
 	(bno, btitle, bwriter, bstartday, bendday, bkind, bcharge, bcontent, benrolldate, bopen, blove, brenamefile, boriginfile)
 	values ((select concat('b', (select nvl(max(to_number(substr(bno, 2))),0)+1 from bpost))from dual), 
@@ -33,14 +33,14 @@
 	
 	
 	
-	<!-- </if>
+	</if>
 	<if test="boriginfile == null">
 	insert into bpost
 	(bno, btitle, bwriter, bstartday, bendday, bkind, bcharge, bcontent, benrolldate, bopen, blove)
 	values ((select concat('b', (select nvl(max(to_number(substr(bno, 2))),0)+1 from bpost))from dual), 
 	 #{btitle}, #{bwriter}, #{bstartday}, #{bendday}, #{bkind}, #{bcharge}, #{bcontent}, sysdate, #{bopen}, default)
 
-	</if>  -->
+	</if> 
 </insert>
 
 

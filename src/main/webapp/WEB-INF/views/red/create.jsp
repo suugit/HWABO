@@ -19,7 +19,7 @@
                   </div>
                   <form class="user">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="프로젝트 이름을 입력해주세요">
+                      <input type="text" name="" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="프로젝트 이름을 입력해주세요">
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" id="exampleInputPassword" placeholder="프로젝트 설명을 입력해주세요">

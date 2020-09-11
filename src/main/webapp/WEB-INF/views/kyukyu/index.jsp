@@ -81,8 +81,8 @@
 
 
 
-<script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
-<script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
 
 
 
@@ -190,7 +190,7 @@ function unSelected(){
               <!-- 게시글안쪽 -->
               
               
-              <form action="insertbpost.do" name="b" method="post" id="bInsert" enctype="multipart/form-data">
+              <form action="insertbpost.do" name="b" method="post" id="bInsert" enctype="multipart/form-data" >
               <table style="text-align:center;width:100%;">
               <tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
               <span>글작성</span>
@@ -227,7 +227,7 @@ function unSelected(){
 			    <input type="radio" name="bkind" id="option1" value="요청" checked>요청
 			  </label>
 			  <label class="btn btn-secondary">
-			    <input type="radio" name="bkind" id="option2" value="승인">승인
+			    <input type="radio" name="bkind" id="option2" value="진행">진행
 			  </label>
 			  <label class="btn btn-secondary">
 			    <input type="radio" name="bkind" id="option3" value="피드백" >피드백
