@@ -213,7 +213,7 @@ if((++w + 5) % 3 == 0){
                       <i class="fas fa-circle text-primary"></i> 진행률 <%= Pprogress %>%
                     </span>
                   </div>
-                </div><%= w %>
+                </div>
               </div>
 </div>
 <!-- 프로젝트 낱개 폼 끝 -->
