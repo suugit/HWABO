@@ -33,8 +33,28 @@
 		select * from project ORDER BY TO_NUMBER(project_num)
 </select>
 
+<select id="selectStar" parameterType="string" resultMap="resultList">
+		select * from star join project on (star.star = project.project_num) where ucode = #{ ucode }
+</select>
+
+<select id="selectCheckStar" parameterType="com.beet.HWABO.red.model.vo.Star" resultMap="resultList">
+		select * from star join project on (star.star = project.project_num) where ucode = #{ ucode } and star = #{ star }
+</select>
+
+<select id="selectProject" resultMap="resultProject">
+		select * from project where PROJECT_NUM = #{ projectNumber }
+</select>
+
 <insert id="insertProject" parameterType="Project">
 		insert into project VALUES ((select max(TO_NUMBER(project_num))+1 from project),#{name},#{explain},default,default,default,default,default,default,#{right})
 </insert>
+
+<insert id="insertProjectStar" parameterType="com.beet.HWABO.red.model.vo.Star">
+		insert into star values (#{ ucode },#{ star })
+</insert>
+
+<delete id="deleteProject" parameterType="string">
+		delete from project where PROJECT_NUM = #{ projectNumber }
+</delete>
 	
 </mapper>

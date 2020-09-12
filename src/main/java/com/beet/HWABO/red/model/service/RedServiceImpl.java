@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.beet.HWABO.red.model.dao.RedDao;
 import com.beet.HWABO.red.model.vo.Project;
+import com.beet.HWABO.red.model.vo.Star;
 
 
 @Service("redService")
@@ -37,6 +38,21 @@ public class RedServiceImpl implements RedService {
 	@Override
 	public Project selectProject(String project_num) {
 		return redDao.selectProject(project_num);
+	}
+
+	@Override
+	public int insertProjectStar(Star star) {
+		return redDao.insertProjectStar(star);
+	}
+
+	@Override
+	public ArrayList<Project> selectStar(String ucode) {
+		return redDao.selectStar(ucode);
+	}
+
+	@Override
+	public ArrayList<Project> selectCheckStar(Star star) {
+		return redDao.selectCheckStar(star);
 	}
 	
 	

@@ -1,5 +1,5 @@
 <%@page import="java.util.ArrayList, com.beet.HWABO.red.model.vo.Project"%>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -113,6 +113,7 @@ font-size: 28px;
 </style>
 
 <!-- 차트기능끝 -->
+
 </head>
 
 <body id="page-top">
@@ -151,7 +152,7 @@ font-size: 28px;
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-<!-- 프로젝트생성시작 -->
+<!-- 프로젝트생성버튼 시작 -->
 <div class="card shadow mb-4" onclick="javascript:location.href='createP.do'">
             <div class="card-body">
               <!-- 게시글안쪽 -->
@@ -161,15 +162,15 @@ font-size: 28px;
                             </h1>
             </div>
           </div>
-          <!-- 프로젝트생성끝 -->
+          <!-- 프로젝트생성버튼 끝 -->
           
-<!-- test start -->
+<!-- 조회된 프로젝트들 시작 -->
 
-<% ArrayList<Project> list = (ArrayList<Project>)request.getAttribute("project"); %>
-<% int w = 0; %>
-<% if(list.size() != 0) %>
-<% for(Project p : list ){ %>
 <% 
+ArrayList<Project> list = (ArrayList<Project>)request.getAttribute("project");
+int w = 0;
+if(list.size() != 0)
+for(Project p : list ){
 if((++w + 5) % 3 == 0){
 	out.write("<div class='row'>");
 }
@@ -185,11 +186,21 @@ if((++w + 5) % 3 == 0){
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">즐겨찾기 등록</a>
-                      <a class="dropdown-item" href="#">프로젝트 복사</a>
+                      <form action="starProject.do" method="post" >
+                      <%
+                      	String ucode ="";
+						if(session.getAttribute("ucode") != null){
+							ucode = (String)session.getAttribute("ucode");
+						}else{
+							ucode = "Guest";
+						}
+                      %>
+                      <input type="text" value="<%= p.getProject_num() %>" name="star" style="display:none">
+                      <input type="text" value="<%= ucode %>" name="ucode" style="display:none">
+                      <button class="dropdown-item" type="submit">즐겨찾기 등록</button>
+                      </form>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">프로젝트 삭제</a>
+                      <a class="dropdown-item" href="deleteProject.do?projectNumber=<%= p.getProject_num() %>">프로젝트 삭제</a>
                     </div>
                   </div>
                 </div>
@@ -218,290 +229,21 @@ if((++w + 5) % 3 == 0){
 </div>
 <!-- 프로젝트 낱개 폼 끝 -->
 <% 
-if((w >= 3 && (w + 9) % 3 == 0) || (list.size() % 3 != 0 && list.size() - w == 0 ) || (list.size() % 3 != 0 && list.size() - w == 1 && w + 1 != list.size())){
-	out.write("</div>");
-}
-%>
-<% } %>
+if((w >= 3 && (w + 9) % 3 == 0) || 
+	(list.size() % 3 != 0 && list.size() - w == 0 ) || 
+	(list.size() % 3 != 0 && list.size() - w == 1 && w + 1 != list.size())
+	){
+		out.write("</div>");
+	}
+} %>
 
-<!-- test end -->
+<!-- 조회된 프로젝트들 끝 -->
 
-         <!-- <div class="row">
-         프로젝트시작
-<div class="col-xl-4 col-lg-5" >
-              <div class="card shadow mb-4">
-                Card Header - Dropdown
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">관공서 UI 12월16일</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">즐겨찾기 등록</a>
-                      <a class="dropdown-item" href="#">프로젝트 복사</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">프로젝트 삭제</a>
-                    </div>
-                  </div>
-                </div>
-                Card Body
-                <div class="card-body" onclick="javascript:location.href='ftables.do'">
-                  그래프시작
-                  <div class="container">
-  <div class="donut-chart-block block"> 
-		<div class="donut-chart">
-			<div id="part1" class="portion-block"><div class="circle"></div></div>
-			<div id="part2" class="portion-block"><div class="circle"></div></div>
-			<div id="part3" class="portion-block"><div class="circle"></div></div>
-			<p class="center"></p>        
-		</div>
-   </div>
-</div>
-그래프끝
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> 구름과자 30%
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            프로젝트끝
-            프로젝트시작
-           <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                Card Header - Dropdown
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">google project2</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">즐겨찾기 등록</a>
-                      <a class="dropdown-item" href="#">프로젝트 복사</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">프로젝트 삭제</a>
-                    </div>
-                  </div>
-                </div>
-                Card Body
-                <div class="card-body" onclick="javascript:location.href='ftables.do'">
-                그래프시작
-                  <div class="container">
-  <div class="donut-chart-block block"> 
-		<div class="donut-chart">
-			<div id="part1" class="portion-block"><div class="circle"></div></div>
-			<div id="part2" class="portion-block"><div class="circle"></div></div>
-			<div id="part3" class="portion-block"><div class="circle"></div></div>
-			<p class="center"></p>        
-		</div>
-   </div>
-</div>
-그래프끝
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> 감전직전 40%
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-프로젝트끝
-프로젝트시작
-            Pie Chart
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                Card Header - Dropdown
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">clone kakaoTalk</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">즐겨찾기 등록</a>
-                      <a class="dropdown-item" href="#">프로젝트 복사</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">프로젝트 삭제</a>
-                    </div>
-                  </div>
-                </div>
-                Card Body
-                <div class="card-body" onclick="javascript:location.href='ftables.do'">
-                  그래프시작
-                  <div class="container">
-  <div class="donut-chart-block block"> 
-		<div class="donut-chart">
-			<div id="part1" class="portion-block"><div class="circle"></div></div>
-			<div id="part2" class="portion-block"><div class="circle"></div></div>
-			<div id="part3" class="portion-block"><div class="circle"></div></div>
-			<p class="center"></p>        
-		</div>
-   </div>
-</div>
-그래프끝
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> 마차 0%
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            프로젝트끝
-          </div> -->
-          
-          <% for(int i = 0; i < 10; i++){ %>
-          <!-- <div class="row">
-          프로젝트시작
-<div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                Card Header - Dropdown
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">beet</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">즐겨찾기 등록</a>
-                      <a class="dropdown-item" href="#">프로젝트 복사</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">프로젝트 삭제</a>
-                    </div>
-                  </div>
-                </div>
-                Card Body
-                <div class="card-body" onclick="javascript:location.href='ftables.do'">
-                  그래프시작
-                  <div class="container">
-  <div class="donut-chart-block block"> 
-		<div class="donut-chart">
-			<div id="part1" class="portion-block"><div class="circle"></div></div>
-			<div id="part2" class="portion-block"><div class="circle"></div></div>
-			<div id="part3" class="portion-block"><div class="circle"></div></div>
-			<p class="center"></p>        
-		</div>
-   </div>
-</div>
-그래프끝
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> 도도로 25%
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            프로젝트끝
-            프로젝트시작
-           <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                Card Header - Dropdown
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">naehaksa</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">즐겨찾기 등록</a>
-                      <a class="dropdown-item" href="#">프로젝트 복사</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">프로젝트 삭제</a>
-                    </div>
-                  </div>
-                </div>
-                Card Body
-                <div class="card-body" onclick="javascript:location.href='ftables.do'">
-                  그래프시작
-                  <div class="container">
-  <div class="donut-chart-block block"> 
-		<div class="donut-chart">
-			<div id="part1" class="portion-block"><div class="circle"></div></div>
-			<div id="part2" class="portion-block"><div class="circle"></div></div>
-			<div id="part3" class="portion-block"><div class="circle"></div></div>
-			<p class="center"></p>        
-		</div>
-   </div>
-</div>
-그래프끝
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> 뚜기 50%
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-프로젝트끝
-프로젝트시작
-            Pie Chart
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                Card Header - Dropdown
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">팡팡팡</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">즐겨찾기 등록</a>
-                      <a class="dropdown-item" href="#">프로젝트 복사</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">프로젝트 삭제</a>
-                    </div>
-                  </div>
-                </div>
-                Card Body
-                <div class="card-body" onclick="javascript:location.href='ftables.do'">
-                  그래프시작
-                  <div class="container">
-  <div class="donut-chart-block block"> 
-		<div class="donut-chart">
-			<div id="part1" class="portion-block"><div class="circle"></div></div>
-			<div id="part2" class="portion-block"><div class="circle"></div></div>
-			<div id="part3" class="portion-block"><div class="circle"></div></div>
-			<p class="center"></p>        
-		</div>
-   </div>
-</div>
-그래프끝
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> abc 34%
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            프로젝트끝
-          </div> -->
-<% } %>
         </div>
         <!-- /.container-fluid -->
 
       </div>
       <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
 
     </div>
  	 <!-- End of Content Wrapper -->

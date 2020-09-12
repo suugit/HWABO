@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.beet.HWABO.red.model.vo.Project;
+import com.beet.HWABO.red.model.vo.Star;
 
 @Repository("redDao")
 public class RedDao {
@@ -23,7 +24,7 @@ public class RedDao {
 	}
 
 	public int deleteProject(String project_num) {
-		return 0;
+		return session.delete("redMapper.deleteProject", project_num);
 	}
 
 	public ArrayList<Project> selectList() {
@@ -32,7 +33,21 @@ public class RedDao {
 	}
 
 	public Project selectProject(String project_num) {
-		return null;
+		return session.selectOne("redMapper.selectProject", project_num);
+	}
+
+	public int insertProjectStar(Star star) {
+		return session.insert("redMapper.insertProjectStar", star);
+	}
+
+	public ArrayList<Project> selectStar(String ucode) {
+		List<Project> list = session.selectList("redMapper.selectStar", ucode);
+		return (ArrayList<Project>)list;
+	}
+	
+	public ArrayList<Project> selectCheckStar(Star star) {
+		List<Project> list = session.selectList("redMapper.selectCheckStar", star);
+		return (ArrayList<Project>)list;
 	}
 
 }

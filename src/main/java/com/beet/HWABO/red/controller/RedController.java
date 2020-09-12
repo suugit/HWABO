@@ -1,7 +1,13 @@
 package com.beet.HWABO.red.controller;
 
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +15,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.red.model.service.RedService;
 import com.beet.HWABO.red.model.vo.Project;
+import com.beet.HWABO.red.model.vo.Star;
 
 @Controller
 public class RedController {
@@ -68,6 +77,55 @@ public class RedController {
 		
 		return mv;
 
+	}
+	@RequestMapping(value = "deleteProject.do", method = RequestMethod.GET)
+	public ModelAndView pDelete(@RequestParam("projectNumber") String projectNumber, ModelAndView mv) {
+		
+		if(redService.deleteProject(projectNumber) > 0) {
+			mv.setViewName("redirect:/cards.do");
+		}else {
+			mv.addObject("message", "프로젝트 삭제 실패...");
+			mv.setViewName("redirect:/red404.do");
+		}
+		
+		return mv;
+		
+	}
+	@RequestMapping(value = "starProject.do", method = RequestMethod.POST)
+	public ModelAndView pStar(
+			Star star, ModelAndView mv) {
+		logger.info("s는 " + star);
+		if( ((ArrayList<Project>)redService.selectCheckStar(star)).size() == 0 &&
+				redService.insertProjectStar(star) > 0) {
+			mv.setViewName("redirect:/cards.do");
+		}else {
+			mv.setViewName("redirect:/cards.do");
+		}
+		
+		return mv;
+		
+	}
+	@RequestMapping(value = "starList.do", method = RequestMethod.POST)
+	@ResponseBody 
+	public String sssListStar(@RequestParam("ucode") String ucode
+			,HttpServletResponse response) throws IOException {
+		logger.info("즐겨찾기 불러오기 run....");
+		
+		ArrayList<Project> list =  redService.selectStar(ucode);
+		
+		JSONObject sendJson = new JSONObject();
+
+		JSONArray jarr = new JSONArray();
+
+		for (Project project : list) {
+			JSONObject job = new JSONObject();
+			job.put("name", URLEncoder.encode(project.getName(), "utf-8"));
+			jarr.add(job);
+		}
+
+		sendJson.put("list5", jarr);
+
+		return sendJson.toJSONString();
 	}
 
 ////views start//////////////////////////////	
