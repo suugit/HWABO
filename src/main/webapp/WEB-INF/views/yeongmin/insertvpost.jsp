@@ -42,112 +42,16 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<!-- Sidebar -->
-		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
 
-			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.jsp">
-				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-laugh-wink"></i>
-				</div>
-				<div class="sidebar-brand-text mx-3">
-					SB Admin <sup>2</sup>
-				</div>
-			</a>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
 
-			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="index.jsp"> <i
-					class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+		<!-- Divider -->
+		<hr class="sidebar-divider d-none d-md-block">
 
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Heading -->
-			<div class="sidebar-heading">Interface</div>
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-cog"></i> <span>Components</span>
-			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Components:</h6>
-						<a class="collapse-item" href="buttons.jsp">Buttons</a> <a
-							class="collapse-item" href="cards.jsp">Cards</a>
-					</div>
-				</div></li>
-
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>Utilities</span>
-			</a>
-				<div id="collapseUtilities" class="collapse"
-					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="utilities-color.jsp">Colors</a> <a
-							class="collapse-item" href="utilities-border.jsp">Borders</a> <a
-							class="collapse-item" href="utilities-animation.jsp">Animations</a>
-						<a class="collapse-item" href="utilities-other.jsp">Other</a>
-					</div>
-				</div></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Heading -->
-			<div class="sidebar-heading">Addons</div>
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapsePages"
-				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>Pages</span>
-			</a>
-				<div id="collapsePages" class="collapse"
-					aria-labelledby="headingPages" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Login Screens:</h6>
-						<a class="collapse-item" href="login.jsp">Login</a> <a
-							class="collapse-item" href="register.jsp">Register</a> <a
-							class="collapse-item" href="forgot-password.jsp">Forgot
-							Password</a>
-						<div class="collapse-divider"></div>
-						<h6 class="collapse-header">Other Pages:</h6>
-						<a class="collapse-item" href="404.jsp">404 Page</a> <a
-							class="collapse-item" href="blank.jsp">Blank Page</a>
-					</div>
-				</div></li>
-
-			<!-- Nav Item - Charts -->
-			<li class="nav-item"><a class="nav-link" href="charts.jsp">
-					<i class="fas fa-fw fa-chart-area"></i> <span>Charts</span>
-			</a></li>
-
-			<!-- Nav Item - Tables -->
-			<li class="nav-item active"><a class="nav-link"
-				href="tables.jsp"> <i class="fas fa-fw fa-table"></i> <span>Tables</span></a>
-			</li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider d-none d-md-block">
-
-			<!-- Sidebar Toggler (Sidebar) -->
-			<div class="text-center d-none d-md-inline">
-				<button class="rounded-circle border-0" id="sidebarToggle"></button>
-			</div>
+		<!-- Sidebar Toggler (Sidebar) -->
+		<div class="text-center d-none d-md-inline">
+			<button class="rounded-circle border-0" id="sidebarToggle"></button>
+		</div>
 
 		</ul>
 		<!-- End of Sidebar -->
@@ -158,204 +62,8 @@
 			<!-- Main Content -->
 			<div id="content">
 
-				<!-- Topbar -->
-				<nav
-					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-					<!-- Sidebar Toggle (Topbar) -->
-					<form class="form-inline">
-						<button id="sidebarToggleTop"
-							class="btn btn-link d-md-none rounded-circle mr-3">
-							<i class="fa fa-bars"></i>
-						</button>
-					</form>
 
-					<!-- Topbar Search -->
-					<form
-						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-						<div class="input-group">
-							<input type="text" class="form-control bg-light border-0 small"
-								placeholder="Search for..." aria-label="Search"
-								aria-describedby="basic-addon2">
-							<div class="input-group-append">
-								<button class="btn btn-primary" type="button">
-									<i class="fas fa-search fa-sm"></i>
-								</button>
-							</div>
-						</div>
-					</form>
-
-					<!-- Topbar Navbar -->
-					<ul class="navbar-nav ml-auto">
-
-						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-						<li class="nav-item dropdown no-arrow d-sm-none"><a
-							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a> <!-- Dropdown - Messages -->
-							<div
-								class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-								aria-labelledby="searchDropdown">
-								<form class="form-inline mr-auto w-100 navbar-search">
-									<div class="input-group">
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="Search for..." aria-label="Search"
-											aria-describedby="basic-addon2">
-										<div class="input-group-append">
-											<button class="btn btn-primary" type="button">
-												<i class="fas fa-search fa-sm"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div></li>
-
-						<!-- Nav Item - Alerts -->
-						<li class="nav-item dropdown no-arrow mx-1"><a
-							class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-								<span class="badge badge-danger badge-counter">3+</span>
-						</a> <!-- Dropdown - Alerts -->
-							<div
-								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="alertsDropdown">
-								<h6 class="dropdown-header">Alerts Center</h6>
-								<a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="mr-3">
-										<div class="icon-circle bg-primary">
-											<i class="fas fa-file-alt text-white"></i>
-										</div>
-									</div>
-									<div>
-										<div class="small text-gray-500">December 12, 2019</div>
-										<span class="font-weight-bold">A new monthly report is
-											ready to download!</span>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="mr-3">
-										<div class="icon-circle bg-success">
-											<i class="fas fa-donate text-white"></i>
-										</div>
-									</div>
-									<div>
-										<div class="small text-gray-500">December 7, 2019</div>
-										$290.29 has been deposited into your account!
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="mr-3">
-										<div class="icon-circle bg-warning">
-											<i class="fas fa-exclamation-triangle text-white"></i>
-										</div>
-									</div>
-									<div>
-										<div class="small text-gray-500">December 2, 2019</div>
-										Spending Alert: We've noticed unusually high spending for your
-										account.
-									</div>
-								</a> <a class="dropdown-item text-center small text-gray-500"
-									href="#">Show All Alerts</a>
-							</div></li>
-
-						<!-- Nav Item - Messages -->
-						<li class="nav-item dropdown no-arrow mx-1"><a
-							class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i>
-								<!-- Counter - Messages --> <span
-								class="badge badge-danger badge-counter">7</span>
-						</a> <!-- Dropdown - Messages -->
-							<div
-								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="messagesDropdown">
-								<h6 class="dropdown-header">Message Center</h6>
-								<a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-										<div class="status-indicator bg-success"></div>
-									</div>
-									<div class="font-weight-bold">
-										<div class="text-truncate">Hi there! I am wondering if
-											you can help me with a problem I've been having.</div>
-										<div class="small text-gray-500">Emily Fowler Â· 58m</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-										<div class="status-indicator"></div>
-									</div>
-									<div>
-										<div class="text-truncate">I have the photos that you
-											ordered last month, how would you like them sent to you?</div>
-										<div class="small text-gray-500">Jae Chun Â· 1d</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-										<div class="status-indicator bg-warning"></div>
-									</div>
-									<div>
-										<div class="text-truncate">Last month's report looks
-											great, I am very happy with the progress so far, keep up the
-											good work!</div>
-										<div class="small text-gray-500">Morgan Alvarez Â· 2d</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-										<div class="status-indicator bg-success"></div>
-									</div>
-									<div>
-										<div class="text-truncate">Am I a good boy? The reason I
-											ask is because someone told me that people say this to all
-											dogs, even if they aren't good...</div>
-										<div class="small text-gray-500">Chicken the Dog Â· 2w</div>
-									</div>
-								</a> <a class="dropdown-item text-center small text-gray-500"
-									href="#">Read More Messages</a>
-							</div></li>
-
-						<div class="topbar-divider d-none d-sm-block"></div>
-
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie
-									Luna</span> <img class="img-profile rounded-circle"
-								src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-									Settings
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-									Activity Log
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									Logout
-								</a>
-							</div></li>
-
-					</ul>
-
-				</nav>
-				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
@@ -388,14 +96,17 @@
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
 							<form action="vpostinsert.do" name="VPost" method="post">
+							<!--  보이지않는 값 : 작성자는 로그인햇을당시 유저의 이름을 기록하게함  -->
+							<!--  추가로 project_num (primary key) 도 기록  -->
+							<!--  유일한  project_num 값의 유일한 ucode 값의 게시물을 등록함 ! -->
+							<!--  게시물 등록 처리시 프로젝트 고유번호와 작성자 아이디의 고유번호를 알게함으로써 -->
+							<!--  통합검색시 유용함 ! -->
+							<%-- <input type="hidden" name="vwriter" value="${ sessionScope.uname or ucode }" > --%>
+							
+							<!--  당장 값을 확인하기위하여 hidden 속성에 임의의값을 지정함 ! hidden 미사용시 mapper.xml 가서 작성자를 임의로 집어넣는것도 가능! -->
+							<input type="hidden" name="vwriter" value="테스트작성자">
 								<table style="text-align: center; width: 100%;">
-									<tr class="m-0 font-weight-bold text-primary">
-										<td style="width: 20%;"><span>글작성</span></td>
-										<td style="width: 20%;"><span>업무</span></td>
-										<td style="width: 20%;"><span>일정</span></td>
-										<td style="width: 20%;"><span>할일</span></td>
-										<td style="width: 20%;"><span>투표</span></td>
-									</tr>
+
 									<tr>
 										<td colspan="5">
 											<hr>
@@ -403,45 +114,156 @@
 									</tr>
 									<tr>
 										<td colspan="5"><span style="float: left;"><i
-												class="fa fa-pen"></i>&nbsp;제 목</span><input type="text" name="vwriter"
-											class="form-control" placeholder="투표 제목을 입력하세요"></td>
+												class="fa fa-pen"></i>&nbsp;제 목</span><input type="text"
+											name="vtitle" class="form-control"
+											placeholder="투표 제목을 입력하세요"></td>
 									</tr>
 									<tr>
-										<td><br><br><br></td>
+										<td><br>
+										<br>
+										<br></td>
 									</tr>
 									<tr>
-										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;내 용</span>
-										 <textarea
-												 cols="30" rows="10"
-												class="form-control" placeholder="투표 내용을 입력하세요" name="vtitle"
-												style="width: 100%; height: 200px; overflow: auto; resize: none;" >
-										</textarea> 
-										</td>
+										<td colspan="5"><span style="float: left;"><i
+												class="far fa-keyboard"></i>&nbsp;내 용</span> <textarea cols="30"
+												rows="10" class="form-control" placeholder="투표 내용을 입력하세요"
+												name="vcontent"
+												style="width: 100%; height: 200px; overflow: auto; resize: none;">
+										</textarea></td>
 									</tr>
 									<tr>
 										<td colspan="5">&nbsp;</td>
 									</tr>
-									
-										<!-- <td colspan="3"></td>
-										<td><a class="btn btn-success btn-icon-split"
-											href="javascript:vpostinsert.submit();" style="width: 90%;">
-												<span class="text">등록</span>
-										</a></td>
-										<td><a href="javascript:mainInsert.reset();"
-											class="btn btn-danger btn-icon-split" style="width: 90%;">
-												<span class="text">취소</span>
-										</a></td> -->
-								
+									<tr>
+										<td colspan="3"><input class="btn btn-primary"
+											type="submit" value="등록"> <input
+											class="btn btn-primary" type="reset" value="취소"></td>
+									</tr>
 								</table>
-								<input type="submit" value="등록하기">
+								<!-- <input type="submit" value="등록하기"> -->
 							</form>
 						</div>
 					</div>
 
+		 <!--  리스트  -->
+           selectlist(ArrayList) 출력화면 시작 !!
+           <c:forEach var="vpost" items="${requestScope.list }">
+           <div class="card shadow mb-4">
+           
+           	
+           
+           
+				 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				<h6 class="m-0 font-weight-bold text-primary">
+				
+				<i class="fas fa-user-circle"></i>
+				${vpost.vwriter}<br>${vpost.venrolldate }</h6>
+			<!-- 	<button type="submit" class="btn btn-custom btn-sm liketoggle" name="like"><span>보관</span> <i class="far fa-bookmark"></i></button>
+					 -->
+					
+					
+				<!-- 수정삭제 드롭다운 -->	
+                  <div class="dropdown no-arrow">
+                  
+                <!-- 보관함 담기여부 -->  
+				 <!--   <button id="cabinetshow" class="btn btn-custom btn-sm ">
+			   <i class="far fa-bookmark"></i></button>
+           		 -->
+               <!-- <form action="insertcabinet.do" method="post"> -->
+               <!--  보관 버튼눌럿을시 게시글 vno값과 member 의 ucode 를 보냄 (프로젝트 보관함)  -->
+               <input type="hidden" id="ucode" value="${sessionScope.ucode }">
+			   <input type="hidden" id="no" value="${vpost.vno }">
+               <button id="cabinetshow" class="btn btn-custom btn-sm liketoggle" name="like">
+           	   <span>보관</span> <i class="far fa-bookmark"></i></button>
+				
+           
+              <!--  </form> -->
+			 	<!--  여기서 부터는 게시글 작성자와 프로젝트로그인 member의 이름이 같을때 (단, 중복처리는 안됨) -->
+			 	<!--  예를들어 구영민이라는 이름이 2명이면 각자의 것을 건드릴수 있음!! -->
+			 	<!--  일단은 작성자와 member의 이름이 같을때는 수정과 삭제를 진행할수 있음 같지않으면 안뜸 -->
+		  		<c:if test="${sessionScope.uname eq vpost.vwriter }">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <c:url var="vupdate" value="vpostupdate.do">
+                      <!--  수정을 눌럿을시에 vno 값을 받아서 넘김 -->
+                      	<c:param name="vno" value="${vpost.vno }"/>
+                      </c:url>
+                     	<a class="dropdown-item" href="${vupdate }">수정</a>
+                     	
+                       <c:url var="vdelete" value="vpostdelete.do">
+                        <!--  수정을 눌럿을시에 vno 값을 받아서 넘김 -->
+                      	<c:param name="vno" value="${vpost.vno }"/>
+                    	
+                      </c:url>
+                      <a class="dropdown-item" href="${vdelete }">삭제</a>
+                 		
+                    </div>
+                    </c:if>
+                  </div> <!-- 드롭다운 끝 -->
+					
+				</div>
+				<!--  여기까지가 보관함 처리와, 본인 게시글 수정 삭제 버튼에대한 게시글 조회 뷰 -->
+					<div class="card-body">
+							<!-- 게시글조회시 게시글에 대한 내용 -->
+						
+						<table>	
+						<tr>
+						<td>
+							   제목 : ${vpost.vtitle}
+							   <td>
+							</tr>
+						</table>	
+							
+			
+							
+							
+						<table>
+							<tr>
+							   <td>내용</td>
+								<td> ${vpost.vcontent}</td>
+							</tr>
+						</table>
+							
+						
+						
+							<hr>
+							<hr>
+							<table>
+							<tr>
+							<td>
+							<!--  현재사용자가  votecheck 컬럼에 들어가잇지않다면 투표하기(voteinsert.do) 버튼 -->
+							<!--  현재사용자가 votecheck 컬럼에 들어가잇다면 투표취소(voteupdate.do) 혹은 (votedelete.do) 버튼 -->
+							<!--  여기는 따로질문해보기 !!! -->
+							<%-- <c:if test=""></c:if> --%>
+							 <button onclick="javascript:location.href='voteinsert.do'" style="width:120px;height:60px;background-color:black;color:white;">투표하기</button>
+							 	 
+							 	<%--  <c:if test="">
+							 	 <button onclick="javascript:location.href='voteupdate.do'" style="width:120px;height:60px;background-color:black;color:white;">투표취소</button>
+								</c:if> --%>
+							</td>
+							</tr>
+							</table>
+						</div>
+						
+					</div>
+				</c:forEach>
+				
+           
+           
+           
+           
+              
+            
+          </div>
+          </div>
 
-
-
-
+			<br>
+			<br>
+			<br>
+			게시글 구간임 select 만들고 확인해보면됨!
 
 
 				</div>
@@ -451,70 +273,70 @@
 			<!-- End of Main Content -->
 
 			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2020</span>
+				<footer class="sticky-footer bg-white">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span>Copyright &copy; Your Website 2020</span>
+						</div>
 					</div>
-				</div>
-			</footer>
-			<!-- End of Footer -->
-
+				</footer>
+				<!-- End of Footer -->
+			</div>
+			<!-- End of Content Wrapper -->
+			
+<div style="width:25%"></div>
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Page Wrapper -->
+</div>
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> <i
+			class="fas fa-angle-up"></i>
+		</a>
 
-	</div>
-	<!-- End of Page Wrapper -->
-
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">Ã</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.jsp">Logout</a>
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ready to
+							Leave?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">Ã</span>
+						</button>
+					</div>
+					<div class="modal-body">Select "Logout" below if you are
+						ready to end your current session.</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">Cancel</button>
+						<a class="btn btn-primary" href="login.jsp">Logout</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- Bootstrap core JavaScript-->
+		<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
+		<script
+			src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script
-		src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
+		<!-- Core plugin JavaScript-->
+		<script
+			src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for all pages-->
-	<script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
+		<!-- Custom scripts for all pages-->
+		<script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
 
-	<!-- Page level plugins -->
-	<script
-		src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
-	<script
-		src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+		<!-- Page level plugins -->
+		<script
+			src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
+		<script
+			src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-	<!-- Page level custom scripts -->
-	<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
-
+		<!-- Page level custom scripts -->
+		<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>
