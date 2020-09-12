@@ -174,6 +174,14 @@
              		</button>
               	</td>
               </tr>
+              <tr>
+              <td>
+              <form id="MultiUpload" action="upcpfile.do" method="post" enctype="multipart/form-data">
+              <input type="file" name="file" id="file" multiple>
+              <input type="submit" value="버튼한개전송">
+              </form>
+              </td>
+              </tr>
              </div>
               </table>
             </div>

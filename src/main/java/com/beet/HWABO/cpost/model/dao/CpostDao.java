@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.beet.HWABO.cpost.model.vo.AddOn;
 import com.beet.HWABO.cpost.model.vo.Cpost;
 
 @Repository("cpostDao")
@@ -19,5 +20,10 @@ public class CpostDao {
 	public int insertCpost(Cpost cpost) {
 		return session.insert("cpostMapper.insertCpost", cpost);
 	}
+
+	public int insertAddon(AddOn addon) {
+		return session.insert("cpostMapper.insertAddon", addon);
+	}
+	
 
 }

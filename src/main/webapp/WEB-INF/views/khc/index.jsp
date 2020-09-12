@@ -23,13 +23,15 @@
   <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-
+<!-- 흐름 : index.jsp -> khcController로가서 return을 통해(khc/mytodo) -> mytodo.jsp(여기서 폼태그를 작성하면 그걸받아서 -> 
+ khcController(단 RequestMapping은 아까 khc로 갔을때랑 다른거 하나 있어야됨) -> 모델객체를 받은것과 내가 전달하려는 vo객체를 받음 -> 서비스 -> 
+ 서비스impl -> dao -> 매퍼  -->
 <body id="page-top">
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
 	원하는 페이지로 :
 	<button onclick="javascript:location.href='projectmanagement.do'">프로젝트관리</button>
-    <button onclick="javascript:location.href='mytodo.do'">할일</button>
+    <button onclick="javascript:location.href='movetodojsp.do'">할일</button> <!-- 페이지이동위해 적어놓은것 -->
     <button onclick="javascript:location.href='participateproject.do'">프로젝트참가자</button>
     <button onclick="javascript:location.href='authorityadmin.do'">관리자권한</button>
     </div>
@@ -409,7 +411,6 @@
                       <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
 

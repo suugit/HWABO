@@ -1,5 +1,10 @@
 package com.beet.HWABO.suugit.controller;
 
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.cpost.model.service.CpostService;
+import com.beet.HWABO.cpost.model.vo.AddOn;
 import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.member.model.service.MailSendService;
 import com.beet.HWABO.member.model.service.MemberService;
@@ -234,7 +241,6 @@ public ModelAndView insertCpost(Cpost cpost, ModelAndView mv, HttpServletRequest
 	logger.info(cpost.getCopen());
 	logger.info(cpost.getCwriter());
 	
-	String savePath = request.getSession().getServletContext().getRealPath("/resources/cupfiles");
 	
 	
 	int result = cserivce.insertCpost(cpost);
@@ -246,5 +252,76 @@ public ModelAndView insertCpost(Cpost cpost, ModelAndView mv, HttpServletRequest
 		mv.setViewName("common/error");
 	}
 	return mv;
+}
+
+@RequestMapping(value="/upcpfile.do", method=RequestMethod.POST)
+public String insertCpost(AddOn addon,MultipartHttpServletRequest request) {
+	logger.info("upcpfile.do run...");
+	String savePath = request.getSession().getServletContext().getRealPath("/resources/cupfiles");
+	String oFileName ="";
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
+	
+	Iterator<String> files = request.getFileNames();
+	MultipartFile mpf = request.getFile(files.next());
+	int i = 1;
+	List<MultipartFile> fileList = request.getFiles("file");
+	logger.info(fileList.get(0).getOriginalFilename());
+	if(fileList.size() > 5) {
+		System.out.println("파일갯수 초과!");
+		return "suugit/tables";
+	}
+	for(MultipartFile filePart : fileList) {
+		if(!fileList.get(i).isEmpty()) {
+			String rfileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); 
+			oFileName = filePart.getOriginalFilename();
+			rfileName += "." + i + oFileName.substring(oFileName.lastIndexOf(".") + 1); 
+			oFileName.concat(Integer.toString(i));
+			
+			if(i == 1) {
+				addon.setOfile1(oFileName);
+				addon.setRfile1(rfileName);				
+				System.out.println("첫번쨰" + oFileName +rfileName );
+			}else if(i == 2){
+				addon.setOfile2(oFileName);
+				addon.setRfile2(rfileName);
+				System.out.println("e번쨰" + oFileName +rfileName );
+			}else if(i == 3){
+				addon.setOfile3(oFileName);
+				addon.setRfile3(rfileName);
+				System.out.println("3번쨰" + oFileName +rfileName );
+			}else {
+				System.out.println("파일 갯수 초과");
+				return "suugit/tables";
+			}
+
+			logger.info("파일 이름 " + oFileName);
+			logger.info("바꾼 이름" + rfileName);
+		}
+	}
+	/*for(MultipartFile filePart : fileList) {
+		String rfileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); 
+		oFileName = filePart.getOriginalFilename();
+		rfileName += "." + oFileName.substring(oFileName.lastIndexOf(".") + 1); 
+		long fileSize =filePart.getSize();
+		
+		addon.("setOfile".concat(i))(ofile1);
+		addon.setOfile1(ofile1);
+		logger.info("파일 이름 " + oFileName);
+		logger.info("바꾼 이름" + rfileName);
+		if(!oFileName.equals("")) {
+			try {
+				FileOutputStream fs = new FileOutputStream(savePath+rfileName);
+				fs.write(filePart.getBytes());
+				fs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}*/
+	
+	
+	return "suugit/tables";
 }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.beet.HWABO.cpost.model.dao.CpostDao;
+import com.beet.HWABO.cpost.model.vo.AddOn;
 import com.beet.HWABO.cpost.model.vo.Cpost;
 
 @Service("cpostService")
@@ -19,5 +20,10 @@ public class CpostServiceImpl implements CpostService{
 	@Override
 	public int insertCpost(Cpost cpost) {
 		return cpostDao.insertCpost(cpost);
+	}
+
+	@Override
+	public int insertAddon(AddOn addon) {
+		return cpostDao.insertAddon(addon);
 	}
 }

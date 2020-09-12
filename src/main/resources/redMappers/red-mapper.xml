@@ -30,11 +30,11 @@
 	</resultMap>
 
 <select id="selectList" resultMap="resultList">
-		select * from project
+		select * from project ORDER BY TO_NUMBER(project_num)
 </select>
 
 <insert id="insertProject" parameterType="Project">
-		insert into project VALUES ((select max(TO_NUMBER(project_num))+1 from project),#{name},#{explain},null,null,SYSDATE,default,default,default,#{right})
+		insert into project VALUES ((select max(TO_NUMBER(project_num))+1 from project),#{name},#{explain},default,default,default,default,default,default,#{right})
 </insert>
 	
 </mapper>

@@ -1,5 +1,7 @@
 package com.beet.HWABO.red.controller;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.beet.HWABO.HomeController;
 import com.beet.HWABO.red.model.service.RedService;
 import com.beet.HWABO.red.model.vo.Project;
 
 @Controller
 public class RedController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(RedController.class);
 
 	@Autowired
 	private RedService redService;
@@ -30,9 +31,43 @@ public class RedController {
 			logger.info("[RedController] 프로젝트 생성 성공");
 		} else {
 			mv.setViewName("redirect:/red404.do");
+			mv.addObject("message", "프로젝트 생성 실패...");
 			logger.info("[RedController] 프로젝트 생성 실패");
 		}
 		return mv;
+	}
+	
+	@RequestMapping(value = "cards.do", method = RequestMethod.GET)
+	public ModelAndView plist(ModelAndView mv) {
+		
+		ArrayList<Project> project = redService.selectList();
+		
+		if(project != null) {
+			mv.setViewName("red/cards");
+			mv.addObject("project",project);
+		}else {
+			mv.addObject("message", "프로젝트 페이지 조회 실패...");
+			mv.setViewName("redirect:/red404.do");
+		}
+		
+		return mv;
+
+	}
+	@RequestMapping(value = "createP.do", method = RequestMethod.GET)
+	public ModelAndView pCreate(ModelAndView mv) {
+		
+		ArrayList<Project> project = redService.selectList();
+		
+		if(project != null) {
+			mv.setViewName("red/create");
+			mv.addObject("project",project);
+		}else {
+			mv.addObject("message", "프로젝트 페이지 조회 실패...");
+			mv.setViewName("redirect:/red404.do");
+		}
+		
+		return mv;
+
 	}
 
 ////views start//////////////////////////////	
@@ -92,11 +127,7 @@ public class RedController {
 		
 		return "sample/buttons";
 	}
-	@RequestMapping(value = "cards.do", method = RequestMethod.GET)
-	public String cards(Model model) {
-		
-		return "red/cards";
-	}
+	
 	@RequestMapping(value = "scards.do", method = RequestMethod.GET)
 	public String scards(Model model) {
 		
@@ -161,11 +192,6 @@ public class RedController {
 	public String sother(Model model) {
 		
 		return "sample/utilities-other";
-	}
-	@RequestMapping(value = "createP.do", method = RequestMethod.GET)
-	public String creatP(Model model) {
-		
-		return "red/create";
 	}
 	@RequestMapping(value = "writeB.do", method = RequestMethod.GET)
 	public String writeB(Model model) {

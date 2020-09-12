@@ -24,21 +24,29 @@ public class KhcController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "mytodo.do", method = {RequestMethod.GET, RequestMethod.POST} )
+	//mytodo.do = 게시글등록하기위해 만든주소
+	@RequestMapping(value = "mytodo.do", method =  RequestMethod.POST )
 	public String mytodo(Dopost dopost, Model model) {
 		logger.info("mytodo.run ........................");
-		
+		logger.info("@@@@@@@@@@@@@dopost" + dopost);
 		int result = dopostService.insertdopost(dopost);
-		
+	
 		if(result > 0) {
-			return "khc/insetdoposttest";
+			return "khc/insertdoposttest";
 		}else {
-			model.addAttribute("message", "등록성공");
+			model.addAttribute("message", "등록실패");
 			return "common/error";
 		}
 }
 	
-	@RequestMapping(value = "participateproject.do", method = RequestMethod.POST)
+	//--------------------------------------------------------------------------------------------------------------
+	@RequestMapping(value = "movetodojsp.do", method = RequestMethod.GET)
+	public String movejspfile(Model model) {
+		return "khc/mytodo"; //경로
+		
+	}
+	
+	@RequestMapping(value = "participateproject.do", method = RequestMethod.GET)
 	public String participateproject(Model model) {
 		return "khc/participateproject";
 		

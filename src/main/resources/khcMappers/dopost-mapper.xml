@@ -15,7 +15,7 @@
 	
 	<insert id="insertdopost" parameterType="Dopost">
 	insert into dopost 
-	values(#{dno}, #{dtitle}, #{dwriter}, #{dcontent}, sysdate, {dopen})
+	values(#{dno}, #{dtitle}, #{dwriter}, #{dcontent}, SYSDATE, 'y')
 	
 	</insert>
 
