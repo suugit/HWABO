@@ -134,7 +134,22 @@ public class BpostController {
 			return new ModelAndView("filedown", "downFile", downFile);
 		}
 	 
-	 
+	 @RequestMapping(value="deletebpost.do")
+	 public String bpostDelete(Bpost bpost, Model model, HttpServletRequest request) {
+		 if(bpostService.deleteBpost(bpost) > 0) {
+			 String brenamefilename = bpost.getBrenamefile();
+			 logger.info("controller brenamefilename : "+brenamefilename);
+			 
+			 if(brenamefilename != null && !brenamefilename.isEmpty()) {
+				 String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
+				new File(savePath + "\\" + brenamefilename).delete();
+			 }
+			 return "redirect:/bpostlist.do";
+		 }else {
+			 model.addAttribute("message", bpost.getBno() + "번글 삭제 실패");
+				return "common/error";
+		 }
+	 }
 	 
 }
 

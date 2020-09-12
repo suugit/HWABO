@@ -10,4 +10,5 @@ public interface BpostService {
 	
 	int insertBpost(Bpost bpost);
 	ArrayList<Bpost> selectList();
+	int deleteBpost(Bpost bpost);
 }

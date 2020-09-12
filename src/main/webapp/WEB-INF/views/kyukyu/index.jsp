@@ -297,7 +297,9 @@ $(function(){
               <hr>
          
 	
-	           <input type="file" name="ofile" style="visibility: hidden;"><span class="fa fa-link m-2">첨부파일</span>
+	           <!-- <input type="file" name="ofile" style="visibility: hidden;"><span class="fa fa-link m-2">첨부파일</span> -->
+	          <input type="file" name="ofile">
+	          
 	           <select name="bopen" class="form-control">
 					<option value="y" selected>전체공개</option>
 					<option value="n">나만 공개</option>

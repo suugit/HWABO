@@ -54,6 +54,14 @@
 
 
 
+<delete id="deleteBpost" parameterType="Bpost">
+delete from bpost 
+where bno = #{ bno } 
+
+
+</delete>
+
 
 
 </mapper>
+
