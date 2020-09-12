@@ -101,8 +101,8 @@ div#showfile imag{
 
 
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
-
+<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
 function bkindshow(){
 $("#'${b.bkind}'").button('toggle')
 
@@ -139,8 +139,8 @@ function validate(){
 $(function(){
 	//보관함
 	$("#cabinetshow").on("click", function(){
-		alert("보관함 보내기 성공 !");
-		console.log("보관함 : ");
+		
+		
 		$.ajax({
 			url: "insertcabinet.do",
 			data: {ucode: $("#ucode").val() , no: $("#no").val() },  //보낼값 {} 안에 쓰면 object, 객체 취급
@@ -152,6 +152,7 @@ $(function(){
 					
 				}else{	//result가 "ok"가 아니면
 					alert("보관함 등록 실패 !");
+					console.log("result : " + result);
 				}
 			},
 			error: function(request, status, errorData){
@@ -159,6 +160,15 @@ $(function(){
 			}
 		}); //ajax
 	});
+	
+	 $(".liketoggle").click(function() {
+		   $(this).find("i").toggleClass("fas far");
+		   $(this).find("span").text(function(i, v) {
+		     return v === '보관' ? '보관됨' : '보관'
+		   })
+		 });
+	
+	
 });
 	 
 
@@ -328,19 +338,23 @@ $(function(){
 				
 				<i class="fas fa-user-circle"></i>
 				${b.bwriter}<br>${b.benrolldate }</h6>
-					
+			<!-- 	<button type="submit" class="btn btn-custom btn-sm liketoggle" name="like"><span>보관</span> <i class="far fa-bookmark"></i></button>
+					 -->
 					
 					
 				<!-- 수정삭제 드롭다운 -->	
                   <div class="dropdown no-arrow">
                   
                 <!-- 보관함 담기여부 -->  
-
+				 <!--   <button id="cabinetshow" class="btn btn-custom btn-sm ">
+			   <i class="far fa-bookmark"></i></button>
+           		 -->
                <!-- <form action="insertcabinet.do" method="post"> -->
                <input type="hidden" id="ucode" value="${sessionScope.ucode }">
 			   <input type="hidden" id="no" value="${b.bno }">
-			   <button id="cabinetshow" class="btn btn-custom btn-sm ">
-			   <i class="far fa-bookmark"></i></button>
+               <button id="cabinetshow" class="btn btn-custom btn-sm liketoggle" name="like">
+           	   <span>보관</span> <i class="far fa-bookmark"></i></button>
+				
            
               <!--  </form> -->
 			 
