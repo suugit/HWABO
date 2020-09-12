@@ -145,15 +145,11 @@ $(function(){
 			url: "insertcabinet.do",
 			data: {ucode: $("#ucode").val() , no: $("#no").val() },  //보낼값 {} 안에 쓰면 object, 객체 취급
 			type: "post",
-			success: function(result){
-				if(result == "ok"){
+			success: function(){
+				
 					alert("보관함 보내기 성공 !");
-					console.log("result : " + result);
-					
-				}else{	//result가 "ok"가 아니면
-					alert("보관함 등록 실패 !");
-					console.log("result : " + result);
-				}
+					console.log("보관함 보내기 성공 !");
+	
 			},
 			error: function(request, status, errorData){
 				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
