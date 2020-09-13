@@ -385,7 +385,7 @@
 
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
-							<form action="mytodo.do" id="dopost"  method="post">
+							<form action="updatemytodo.do" id="dopost2"  method="post">
 							
 								<table style="text-align: center; width: 100%;">
 									<tr class="m-0 font-weight-bold text-primary">
@@ -401,7 +401,7 @@
 										</td>
 									</tr>
 									
-									<input type="text" name="dno" value="글번호">
+									<input type="text" name="dno" value="글번호" readonly>
 									<tr>
 									<td>
 								
@@ -414,7 +414,7 @@
 									</tr>
 									
 									
-									<input type="text" name="dwriter" value="글쓴이"> 
+									<input type="text" name="dwriter" value="글쓴이" readonly> 
 									
 										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;할일</span>
 										 <textarea
@@ -448,8 +448,8 @@
 											class="btn btn-danger btn-icon-split" style="width: 90%;">
 												<span class="text">취소</span>
 										</a></td>  -->
-										<input type="submit" class="btn btn-sm btn-info" value=" 등  록 ">
-										<input type="submit" class="btn btn-sm btn-info" value=" 수정페이지로이동 ">
+										<input type="submit" class="btn btn-sm btn-info" value="수 정">
+										<input type="submit" class="btn btn-sm btn-info" value="글삭제">
 										<input type="reset" class="btn btn-sm btn-danger"  value=" 취  소 ">
 									</tr>
 								</table>

@@ -25,7 +25,7 @@
 </head>
 <!-- 흐름 : index.jsp -> khcController로가서 return을 통해(khc/mytodo) -> mytodo.jsp(여기서 폼태그를 작성하면 그걸받아서 -> 
  khcController(단 RequestMapping은 아까 khc로 갔을때랑 다른거 하나 있어야됨) -> 모델객체를 받은것과 내가 전달하려는 vo객체를 받음 -> 서비스 -> 
- 서비스impl -> dao -> 매퍼  -->
+ 서비스impl -> dao -> 매퍼 
 <body id="page-top">
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
