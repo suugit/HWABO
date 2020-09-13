@@ -18,5 +18,14 @@
 	values(#{dno}, #{dtitle}, #{dwriter}, #{dcontent}, SYSDATE, 'y')
 	
 	</insert>
-
+	
+	<select id="selectdopost" parameterType="_int">
+	select from dopost where dno = #{dno}
+	</select>
+	
+	<update id="updateOrigindopost" parameterType="Dopost">
+	update dopost
+	set dtitle = #{dtitle}, dtitle = #{dtitle}
+	where dwriter = #{dwriter}
+	</update>
 </mapper>

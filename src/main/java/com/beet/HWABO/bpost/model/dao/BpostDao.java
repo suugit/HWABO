@@ -31,4 +31,9 @@ public class BpostDao {
 		return (ArrayList<Bpost>)list;
 	}
 
+	public int deleteBpost(Bpost bpost) {
+		logger.info("bpost dao : " + bpost);
+		return session.delete("bpostMapper.deleteBpost", bpost);
+	}
+
 }

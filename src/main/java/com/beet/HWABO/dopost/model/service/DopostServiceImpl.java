@@ -30,7 +30,7 @@ public class DopostServiceImpl implements DopostService {
 	@Override
 	public int updatedopost(Dopost dopost) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dopostDao.updateOrigindopost(dopost);
 	}
 
 	@Override

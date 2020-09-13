@@ -99,9 +99,10 @@ div#showfile imag{
 </style>
 
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript">
 
+
+<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
 function bkindshow(){
 $("#'${b.bkind}'").button('toggle')
 
@@ -123,70 +124,53 @@ function addbcharge(){
 function unSelected(){
 	
 	$(event.target).parent().remove();
-	/* var name = $(event.target).parent().text();
-	var s = $('#bform').val();
-	var index = s.indexOf(name);
-	 
-	renames = s.replace(name, ",");
-	
-	alert(name);
-	 */
-	/* var or = "";
-	var re = "";
-	var orz = $('#bform').val();
-	var rez = $(event.target).parent().text();
-	or += orz;
-	re += rez;
-	
 
-	var na = or.replace(re, '귤');
-	
-
-	alert(re); */
-	
-	
-	/* var sOriginText = " 동해바다 서해바다 남해바다 ";
-
-	var sTargetText = "바다";
-
-	var sConvertedText = sOriginText.replace(sTargetText, '산');
-
-	alert(sConvertedText);
-
-
-	
-
-	/*  $('#bform').val(rename);
-	
-	 var rename = s.slice(index, index + 2);
-	var rename = s.slice(index, index + 2);
-		
-	
-	var str = "Hello World";
-	str = str.replace('H', 'k'); */
-	 
-
-	
-	
-	/* alert(names); */
-
-	/* var renames = s.substring(index, index + 2); */
-
-	/*  alert($("#bform").val());  */
  
 }
 
-/* function dis(){
-    if($('#dis').css('display') == 'none'){
-    $('#dis').show();
-    }
-} */
+
 
 
 function validate(){
+	//날짜에 빈 공백이 들어오니까 공백일때 널로 바꿔라 라는 내용을 추가한다
 	return true;
 }
+
+$(function(){
+	//보관함
+	$("#cabinetshow").on("click", function(){
+		
+		
+		$.ajax({
+			url: "insertcabinet.do",
+			data: {ucode: $("#ucode").val() , no: $("#no").val() },  //보낼값 {} 안에 쓰면 object, 객체 취급
+			type: "post",
+			success: function(){
+				
+					alert("보관함 보내기 성공 !");
+					console.log("보관함 보내기 성공 !");
+	
+			},
+			error: function(request, status, errorData){
+				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+			}
+		}); //ajax
+	});
+	
+	 $(".liketoggle").click(function() {
+		   $(this).find("i").toggleClass("fas far");
+		   $(this).find("span").text(function(i, v) {
+		     return v === '보관' ? '보관됨' : '보관'
+		   })
+		 });
+	
+	
+});
+	 
+
+
 </script>
+
  
 
 
@@ -240,6 +224,8 @@ function validate(){
               
               
     		<input type="hidden" name="bwriter" value="${sessionScope.uname }">
+    		<input type="hidden" id="bform" name="bcharge">
+    		
     		
 	        <input type="text" class="form-control mb-1" name="btitle" placeholder="제목(선택값)">
 	               
@@ -283,14 +269,7 @@ function validate(){
                         </a>
                     <!-- 담당자 이름 -->
            				<div id="selected"></div>
-           				
-           				
-           				<input type="hidden" id="bform" name="bcharge">
-           				
-           			
-          
-
-           			
+           	
            			
                         <div class="dropdown-menu dropdown-menu-left animated--grow-in" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" onclick="addbcharge()">백규림</a>
@@ -314,27 +293,19 @@ function validate(){
               
                <div class="row mt-2">
 					<p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					   <div class="col-5"><input type="date" class="form-control" name="bstartday" value=""></div>
+					   <div class="col-5"><input type="date" class="form-control" name="bstartday"></div>
 					      <label class="form-control-label h3">~</label>
-					   <div class="col-5"><input type="date" class="form-control" name="bendday" value=""></div>
+					   <div class="col-5"><input type="date" class="form-control" name="bendday"></div>
 		     </div>
-					              
-					              
-					              
-			
+	
               	<textarea cols="50" rows="6" class="w-100 form-control " name="bcontent"></textarea>
              
               <hr>
          
-              <!-- 옵션메뉴 -->
-              	
-              	
-              <!-- 	<td colspan="3" class="flex-grow-5"> -->
-              
-              
-              	
-              	
-	           <label><input type="file" name="ofile" style="visibility: hidden;"><span class="fa fa-link m-2" >첨부파일</span></label>
+	
+	           <!-- <input type="file" name="ofile" style="visibility: hidden;"><span class="fa fa-link m-2">첨부파일</span> -->
+	          <input type="file" name="ofile">
+	          
 	           <select name="bopen" class="form-control">
 					<option value="y" selected>전체공개</option>
 					<option value="n">나만 공개</option>
@@ -351,16 +322,58 @@ function validate(){
          </div>
            
            <!--  리스트  -->
+           
            <c:forEach var="b" items="${requestScope.list }">
            <div class="card shadow mb-4">
-				<div class="card-header py-3">
-				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-				  <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
-				  <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-				  <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
-				</svg>
-					<a>${b.bwriter}</a><br>
-					<b> ${b.benrolldate }</b>
+           
+           	
+           
+           
+				 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				<h6 class="m-0 font-weight-bold text-primary">
+				
+				<i class="fas fa-user-circle"></i>
+				${b.bwriter}<br>${b.benrolldate }</h6>
+			<!-- 	<button type="submit" class="btn btn-custom btn-sm liketoggle" name="like"><span>보관</span> <i class="far fa-bookmark"></i></button>
+					 -->
+					
+					
+				<!-- 수정삭제 드롭다운 -->	
+                  <div class="dropdown no-arrow">
+                  
+                <!-- 보관함 담기여부 -->  
+				 <!--   <button id="cabinetshow" class="btn btn-custom btn-sm ">
+			   <i class="far fa-bookmark"></i></button>
+           		 -->
+               <!-- <form action="insertcabinet.do" method="post"> -->
+               <input type="hidden" id="ucode" value="${sessionScope.ucode }">
+			   <input type="hidden" id="no" value="${b.bno }">
+               <button id="cabinetshow" class="btn btn-custom btn-sm liketoggle" name="like">
+           	   <span>보관</span> <i class="far fa-bookmark"></i></button>
+				
+           
+              <!--  </form> -->
+			 
+		  		<c:if test="${sessionScope.uname eq b.bwriter }">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <c:url var="bup" value="updatebpost.do">
+                      	<c:param name="bno" value="${b.bno }"/>
+                      </c:url>
+                     	<a class="dropdown-item" href="${bup }">수정</a>
+                     	
+                       <c:url var="bdel" value="deletebpost.do">
+                      	<c:param name="bno" value="${b.bno }"/>
+                    	<c:param name="brenamefile" value="${b.brenamefile }"/>
+                      </c:url>
+                      <a class="dropdown-item" href="${bdel }">삭제</a>
+                 		
+                    </div>
+                    </c:if>
+                  </div> <!-- 드롭다운 끝 -->
 					
 				</div>
 					<div class="card-body">
@@ -427,6 +440,8 @@ function validate(){
 							<hr>
 							<table style="width: 100%;">
 								<tr>
+								
+								
 									<td style="width: 20%;"><a href="#"
 										class="btn btn-primary btn-icon-split btn-sm"> <span
 											class="icon text-white-50"> <i class="far fa-heart"></i>

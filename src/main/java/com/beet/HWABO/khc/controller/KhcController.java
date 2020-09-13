@@ -37,6 +37,38 @@ public class KhcController {
 			model.addAttribute("message", "등록실패");
 			return "common/error";
 		}
+		
+	
+}
+	
+	@RequestMapping(value = "dopostupdate.do", method =  RequestMethod.POST )
+	public String dopostUpdate(Dopost dopost, Model model) {
+		logger.info("mytodo.run ........................");
+		logger.info("@@@@@@@@@@@@@dopost" + dopost);
+		int result = dopostService.updatedopost(dopost);
+	
+		if(result > 0) {
+			return "khc/index.jsp";
+		}else {
+			model.addAttribute("message", "수정실패");
+			return "common/error";
+			}
+		}
+		
+	@RequestMapping(value = "dopostdelte.do", method =  RequestMethod.POST )
+		public String dopostDelete(Dopost dopost, Model model) {
+			logger.info("mytodo.run ........................");
+			logger.info("@@@@@@@@@@@@@dopost" + dopost);
+			int result = dopostService.deletedopost(dopost);
+		
+			if(result > 0) {
+				return "khc/index.jsp";
+			}else {
+				model.addAttribute("message", "삭제실패");
+				return "common/error";
+			}
+		
+	
 }
 	
 	//--------------------------------------------------------------------------------------------------------------
@@ -45,6 +77,15 @@ public class KhcController {
 		return "khc/mytodo"; //경로
 		
 	}
+	
+
+	@RequestMapping()
+	public String moveselectjspfile(Model model) {
+		return "khc/updatemytodo"; //경로
+		
+	}
+	
+	
 	
 	@RequestMapping(value = "participateproject.do", method = RequestMethod.GET)
 	public String participateproject(Model model) {
