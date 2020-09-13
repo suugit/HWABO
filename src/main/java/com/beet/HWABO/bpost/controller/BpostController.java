@@ -4,19 +4,28 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -151,7 +160,218 @@ public class BpostController {
 		 }
 	 }
 	 
-}
+	 
+	 
+	 @RequestMapping("buppage.do")
+	 public String updatebpage(Bpost bpost, Model model) {
+		 Bpost selectbpost = bpostService.selectBpost(bpost.getBno());
+		model.addAttribute("bpost", selectbpost);
+		 return "kyukyu/bpostupdateForm";
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 @RequestMapping(value="updatebpost.do", method = RequestMethod.POST) 
+	 public String updatebpost(Bpost bpost, HttpServletRequest request, 
+			 HttpServletResponse response, @RequestParam(name="upfile", required=false) MultipartFile file){
+	 
+		 String deleteFlag = request.getParameter("deleteFlag");
+		 
+		 
+		 logger.info("bpost update going~");
+		 logger.info("boriginfile : "+bpost.getBoriginfile());
+		 logger.info("upfile : " + file);
+		 logger.info("bpost : " + bpost);
+		 String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
+		 file = null;
+		 
+		 if(bpost.getBoriginfile() != null) {
+			 if(deleteFlag != null && deleteFlag.equals("yes")) {
+				 if (new File(savePath + "\\" + bpost.getBrenamefile()).delete()) {
+	
+						logger.info("파일 삭제 ");
+						bpost.setBoriginfile(null);
+						bpost.setBrenamefile(null);
+					
+					} else {
+						logger.info("파일 삭제 안됨 originfile : "+ bpost.getBoriginfile());
+					}
+			 	}
+			 
+			 }
+		 
+		 if(file != null) {
+			 if(!file.getOriginalFilename().equals(bpost.getBoriginfile())
+					 && (new File(savePath + "\\" + bpost.getBrenamefile()).length() 
+							 != new File(savePath+ "\\" +file.getOriginalFilename()).length())) {
+				
+	
+					if ((new File(savePath + "\\" + bpost.getBrenamefile()).delete())) {
+						logger.info("파일 삭제 성공 !"); // 이름도 다르고 파일길이도 다를때 원래 파일 삭제
+						bpost.setBoriginfile(null);
+						bpost.setBrenamefile(null);
+
+					} else {
+						logger.info("파일 삭제 실패 131!");
+					}
+					bpost.setBoriginfile(file.getOriginalFilename());
+	
+					// 바꿀 파일명에 대한 포맷문자열 만들기 : 년월일시분초 형식으로 지정
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); // java.text.SimpleDateFormat
+
+					// 바꿀파일명 만들기 // 현재 시스템 시간의 long형 정수
+					// 업로드된 파일의 확장자를 추출해서, 새 파일명 뒤에 붙여줌
+					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); // 여기까지 파일명
+					renameFileName += "."
+							+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1); // 원래 파일명 . 뒤에서부터 추출해라
+
+					bpost.setBrenamefile(renameFileName);
+				
+
+					// 업로드된 파일을 지정한 폴더로 옮기는 작업
+					try {
+						file.transferTo(new File(savePath + "\\" + renameFileName));
+					} catch (IllegalStateException | IOException e) {
+						e.printStackTrace();
+					}
+
+				} else {
+					
+					bpost.setBoriginfile(file.getOriginalFilename());
+					
+					 logger.info("1");
+					// 바꿀 파일명에 대한 포맷문자열 만들기 : 년월일시분초 형식으로 지정
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); // java.text.SimpleDateFormat
+
+					// 바꿀파일명 만들기 // 현재 시스템 시간의 long형 정수
+					// 업로드된 파일의 확장자를 추출해서, 새 파일명 뒤에 붙여줌
+					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); // 여기까지 파일명
+					renameFileName += "."
+							+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1); // 원래 파일명 . 뒤에서부터 추출해라
+
+					bpost.setBrenamefile(renameFileName);
+					
+					 logger.info("2");
+					// 업로드된 파일을 지정한 폴더로 옮기는 작업
+					try {
+						file.transferTo(new File(savePath + "\\" + renameFileName));
+					} catch (IllegalStateException | IOException e) {
+						e.printStackTrace();
+					}
+				}
+		 }
+		 
+		 
+		 if(bpostService.updateBpost(bpost) > 0) { 
+			 logger.info("3");
+			 return "redirecr:bpostlist.do";
+		 }else { 
+			 return "common/error"; 
+			 }
+		  
+		  }
+		 
+		 
+
+		 
+		 
+		 
+
+	 }
+	 
+	 
+	 
+	 
+	 
+	/*
+	 * @RequestMapping(value="updatebpost.do", method = RequestMethod.POST) public
+	 * String updatebpost(Bpost bpost, HttpServletRequest
+	 * request, @RequestParam(name= "upfile", required =false) MultipartFile upfile)
+	 * {
+	 * 
+	 * String originFileName = bpost.getBoriginfile(); String renameFileName =
+	 * bpost.getBrenamefile(); String deleteFlag =
+	 * request.getParameter("deleteFlag"); String savePath =
+	 * request.getSession().getServletContext().getRealPath("resources/bupfile");
+	 * SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS"); String
+	 * newOriginalFileName = upfile != null ? upfile.getOriginalFilename() : null;
+	 * String newRenameFileName = null;
+	 * 
+	 * if (newOriginalFileName != null) { newRenameFileName = sdf.format(new
+	 * java.sql.Date(System.currentTimeMillis()));
+	 * logger.info("originFileName "+originFileName);
+	 * logger.info("newRenameFileName "+newRenameFileName); newRenameFileName += "."
+	 * + newOriginalFileName.substring(upfile.getOriginalFilename().lastIndexOf(".")
+	 * + 1); logger.info("newRenameFileName2 "+newRenameFileName); try {
+	 * upfile.transferTo(new File(savePath + "\\" + newRenameFileName)); } catch
+	 * (IllegalStateException | IOException e) { e.printStackTrace(); } if
+	 * (renameFileName != null) { new File(savePath + "\\" +
+	 * renameFileName).delete(); } bpost.setBoriginfile(newOriginalFileName);
+	 * bpost.setBrenamefile(newRenameFileName); } else if (!originFileName.isEmpty()
+	 * && deleteFlag != null && deleteFlag.equals("yes")) {
+	 * bpost.setBoriginfile(null); bpost.setBrenamefile(null); new File(savePath +
+	 * "\\" + renameFileName).delete(); } else if (!originFileName.isEmpty() &&
+	 * (newOriginalFileName == null || originFileName.equals(newOriginalFileName) &&
+	 * new File(savePath+
+	 * "\\" + renameFileName).length() == new File(savePath + "\\" +
+	 * newRenameFileName).length())) { bpost.setBoriginfile(originFileName);
+	 * bpost.setBrenamefile(renameFileName); } logger.info(newOriginalFileName);
+	 * 
+	 * if(bpostService.updateBpost(bpost) > 0) { return "redirecr:bpostlist.do";
+	 * }else { return "common/error"; }
+	 * 
+	 * }
+	 */
+	 
+	 
+	 
+	 
+	/* 
+	 
+	 
+	 @RequestMapping(value="updatebpostpage.do", method=RequestMethod.POST)
+	 @ResponseBody
+	 public String bpostupdatepage(@RequestBody String param, HttpServletResponse response) throws ParseException{
+		 logger.info("수정이동 중....");
+		 
+		 JSONParser jparser = new JSONParser();
+		 JSONObject bpost =(JSONObject)jparser.parse(param);	
+		 
+		 Bpost b = new Bpost();
+		 b.setBno((String)bpost.get("bno"));
+		 b.setBtitle((String)bpost.get("btitle"));
+		 b.setBcharge((String)bpost.get("bcharge"));
+		 b.setBstartday((Date)bpost.get("bstartday"));
+		 b.setBendday((Date)bpost.get("bendday"));
+		 b.setBcontent((String)bpost.get("bcontent"));
+		 b.setBoriginfile((String)bpost.get("boriginfile"));
+		 
+		
+		 
+		response.setContentType("application/json; charset=utf-8");
+		
+		
+		JSONObject bob = new JSONObject();
+		bob.put("bno", b.getBno());
+		bob.put("btitle", b.getBtitle());
+		bob.put("bcharge", b.getBcharge());
+		bob.put("bstartday", b.getBstartday());
+		bob.put("bendday", b.getBendday());
+		bob.put("bcontent", b.getBrcontent());
+		bob.put("boriginfile", b.getBoriginfile());
+		
+		 logger.info(bob.toString());
+		 
+		 return bob.toJSONString();
+	 }
+	 
+	 
+	 */
+	 
+
 
 
 

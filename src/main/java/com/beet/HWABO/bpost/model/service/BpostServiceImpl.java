@@ -40,4 +40,16 @@ public class BpostServiceImpl implements BpostService{
 		return bpostDao.deleteBpost(bpost);
 	}
 
+	@Override
+	public Bpost selectBpost(String bno) {
+		logger.info("service 옴 : " + bno);
+		return bpostDao.selectBpost(bno);
+	}
+
+	@Override
+	public int updateBpost(Bpost bpost) {
+		logger.info("update service 옴 : " + bpost);
+		return bpostDao.updateBpost(bpost);
+	}
+
 }

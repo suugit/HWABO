@@ -36,4 +36,14 @@ public class BpostDao {
 		return session.delete("bpostMapper.deleteBpost", bpost);
 	}
 
+	public Bpost selectBpost(String bno) {
+		logger.info("bpost dao : " + bno);
+		return session.selectOne("bpostMapper.selectBpost", bno);
+	}
+
+	public int updateBpost(Bpost bpost) {
+		logger.info("updatebpost dao : " + bpost);
+		return session.update("bpostMapper.updateBpost", bpost);
+	}
+
 }

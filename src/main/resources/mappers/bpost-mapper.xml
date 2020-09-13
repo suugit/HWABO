@@ -55,13 +55,50 @@
 
 
 <delete id="deleteBpost" parameterType="Bpost">
-delete from bpost 
-where bno = #{ bno } 
+	delete from bpost 
+	where bno = #{ bno } 
 
 
 </delete>
 
 
+<select id="selectBpost" parameterType="string" resultMap="resultBpost">
+
+	select * from bpost
+	where bno = #{bno}
+
+</select>
+
+
+
+<update id="updateBpost" parameterType="Bpost">
+	update bpost
+	set btitle = #{btitle}, bcharge = #{bcharge}, bstartday = #{bstartday}, bendday = #{bendday},
+		bcontent = #{bcontent},
+		
+	<if test="boriginfile != null">
+	boriginfile = #{boriginfile}, brenamefile = #{brenamefile}
+	</if>
+
+	<if test="boriginfile == null">
+	boriginfile = null, brenamefile = null
+	</if>
+	
+	where bno = #{bno}
+
+</update>
+
 
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
 
