@@ -35,4 +35,24 @@ public class MemberDao {
 	public int selectEmailCheck(String uemail) {
 		return session.selectOne("memberMapper.selectEmailCheck", uemail);
 	}
+
+
+	public Member selectMember(String ucode) {
+		return session.selectOne("memberMapper.selectMember", ucode);
+	}
+
+
+	public int updateInfo(Member member) {
+		return session.update("memberMapper.updateInfo", member);
+	}
+
+
+	public int deleteUser(String ucode) {
+		return session.delete("memberMapper.deleteUser", ucode);
+	}
+
+
+	public int updateImg(Member member) {
+		return session.update("memberMapper.updateImg", member);
+	}
 }

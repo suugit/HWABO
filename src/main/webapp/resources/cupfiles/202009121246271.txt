@@ -1,0 +1,31 @@
+access_token code state
+
+멤버
+멤버고유번호 이메일 비밀번호 이름 소속 역할 이메일인증여부 sns타입 인증키 프로필이미지  
+
+프로젝트
+프로젝트번호 이름 내용 멤버번호 관리자여부 
+
+게시글작성
+게시글번호 제목 작성자 내용 조회수 좋아요 댓글id 댓글내용 (대댓글대신 멘션처리~)   
+
+지도
+게시글번호 요청url x좌표 y좌표 
+
+첨부파일
+게시글번호 o파일1 r파일1 o파일2 r파일2 o파일3 r파일3  
+
+일정
+게시글번호 시작일 마감일 
+
+해시태그 테이블addtag
+id(pk) hashtag article-id(fk=article.pk) 
+
+멘션 테이블  addmt
+id(pk) mention member-id
+
+초대장
+멤버고유번호 초대자email 초대장식별키 사용여부 false 만료일 false 
+
+
+링크 클릭시 url에서 식별키로 검증 후 권한 부여 

@@ -1,0 +1,33 @@
+		<typeAlias type="com.beet.HWABO.cpost.model.vo.Cpost" alias="Cpost"/>
+		<typeAlias type="com.beet.HWABO.cpost.model.vo.AddOn" alias="AddOn"/>
+		<typeAlias type="com.beet.HWABO.cpost.model.vo.AddTag" alias="AddTag"/>
+		<typeAlias type="com.beet.HWABO.cpost.model.vo.HashTag" alias="HashTag"/>
+		<typeAlias type="com.beet.HWABO.invite.model.vo.Invite" alias="Invite"/>
+
+
+
+		<mapper resource="mappers/member-mapper.xml" />
+		<mapper resource="mappers/cpost-mapper.xml" />
+		<mapper resource="mappers/invite-mapper.xml" />
+
+
+
+<!-- 마크다운쓰기 -->
+	<!-- https://mvnrepository.com/artifact/org.pegdown/pegdown -->
+		<dependency>
+		    <groupId>org.pegdown</groupId>
+		    <artifactId>pegdown</artifactId>
+		    <version>1.6.0</version>
+		    <scope>test</scope>
+		</dependency>
+
+
+- 회원가입, 로그인, 비밀번호찾기, 
+
+
+
+구현 - 회원가입, 로그인, 로그아웃, 게시글작성 
+미구현 - 비밀번호찾기, 내정보조회, 게시글조회/수정/삭제, 팀초대(기존/신규)  
+
+
+<input type="hidden" name="cwriter" value="${sessionScope.uname }">

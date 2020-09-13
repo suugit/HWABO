@@ -48,6 +48,7 @@
 								<input type="password" class="form-control mb-2" id="newpwd" placeholder="새 비밀번호">
 								<input type="password" class="form-control mb-2" id="newpwdchk" placeholder="새 비밀번호 확인"> 
 								<a href="index.html" class="btn btn-primary btn-user btn-block">비밀번호 변경하기 </a>
+							
 							</div>
 						</div>
 					</form>

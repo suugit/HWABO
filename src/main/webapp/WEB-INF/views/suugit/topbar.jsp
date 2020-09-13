@@ -170,11 +170,14 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-capitalize font-weight-bold text-primary mr-1">${sessionScope.uname}</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <img class="img-profile rounded-circle border border-primary" src="${uimg}" style="max-width:80px;max-height:80px">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="${pageContext.servletContext.contextPath}/myinfo.do"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 내 정보</a>
+              	<c:url var="Myinfo" value="myinfo.do">
+					<c:param name="ucode" value="${ucode}"></c:param>
+				</c:url>
+                <a class="dropdown-item" href="${Myinfo}"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>내 정보</a>
                 <a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> 환경설정 </a>
                 <a class="dropdown-item" href="${pageContext.servletContext.contextPath}/mvlogin.do"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>로그인(임시) </a>
                 <div class="dropdown-divider"></div>

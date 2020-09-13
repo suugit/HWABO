@@ -1,10 +1,12 @@
-<!DOCTYPE mapper PUBLIC
+  <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cpostMapper">
-	<resultMap type="Cpost" id="selectCpost">
+	<resultMap type="Cpost" id="rsltCpost">
 		<id column="cno" property="cno" />
+		<result column="cpnum" property="cpnum" />
 		<result column="ctitle" property="ctitle" />
+		<result column="cucode" property="cucode" />
 		<result column="cwriter" property="cwriter" />
 		<result column="ccontent" property="ccontent" />
 		<result column="cenrolldate" property="cenrolldate" />
@@ -16,10 +18,20 @@
 		<result column="crcontent" property="crcontent" />
 		<result column="addonuse" property="addonuse" />
 	</resultMap>
-
+	
+	<resultMap type="AddOn" id="updateCfile">
+		<id column="cno" property="cno" />
+		<result column="ofile1" property="ofile1" />
+		<result column="rfile1" property="rfile1" />
+		<result column="ofile2" property="ofile2" />
+		<result column="rfile2" property="rfile2" />
+		<result column="ofile3" property="ofile3" />
+		<result column="rfile3" property="rfile3" />
+	</resultMap>
+	
 	<insert id="insertCpost" parameterType="Cpost">
-	insert into cpost (cno, ctitle, cwriter, ccontent, cenrolldate, copen)
-		values ('c' || cpost_seq.nextval, #{ctitle}, #{cwriter}, #{ccontent}, sysdate, #{copen})
+	insert into cpost (cno, cpnum, cucode, ctitle, cwriter, ccontent, cenrolldate, copen)
+		values ('c' || cpost_seq.nextval, #{cpnum, jdbcType=VARCHAR}, #{cucode, jdbcType=VARCHAR}, #{ctitle, jdbcType=VARCHAR}, #{cwriter, jdbcType=VARCHAR}, #{ccontent}, sysdate, #{copen})
 	</insert>
 	
 	<select id="selectCno" resultType="string">
@@ -31,21 +43,51 @@
 	<update id="updateCfile" parameterType="AddOn">
 	merge into addon using dual on (cno = #{cno})  
 	when matched then
-	update set 
-	<if test="ofile1 != null"> ofile1 = #{ofile1}, rfile1 = #{rfile1} 
+	update set
+	<if test="ofile1 != null and ofile2 == null"> ofile1 = #{ofile1}, rfile1 = #{rfile1} 
 	when not matched then 
-	insert (cno,  ofile1, rfile1) 
+	insert (cno, ofile1, rfile1) 
 	values (#{cno}, #{ofile1}, #{rfile1}) 
 	</if>
-	<if test="ofile2 != null">ofile1 = #{ofile1}, rfile1 = #{rfile1}, ofile2 = #{ofile2}, rfile2 = #{rfile2} 
-	when not matched then 
-	insert (cno,  ofile1, rfile1, ofile2, rfile2) 
-	values (#{cno}, #{ofile1}, #{rfile1}, #{ofile2}, #{rfile2}) 
+	<if test="ofile2 != null and ofile3 == null ">
+	 ofile1 = #{ofile1}, rfile1 = #{rfile1}, ofile2 = #{ofile2}, rfile2 = #{rfile2}
+    when not matched then 
+	insert (cno, ofile1, rfile1, ofile2, rfile2) 
+	values (#{cno}, #{ofile1}, #{rfile1}, #{ofile2}, #{rfile2})
 	</if>
-	<if test="ofile3 != null">ofile1 = #{ofile1}, rfile1 = #{rfile1}, ofile2 = #{ofile2}, rfile2 = #{rfile2}, ofile3 = #{ofile3}, rfile3 = #{rfile3}  
+	<if test="ofile3 !=null"> ofile1 = #{ofile1}, rfile1 = #{rfile1}, ofile2 = #{ofile2}, rfile2 = #{rfile2}, ofile3 = #{ofile3}, rfile3 = #{rfile3}  
 	when not matched then 
-	insert (cno,  ofile1, rfile1, ofile2, rfile2, ofile3, rfile3) 
+	insert (cno, ofile1, rfile1, ofile2, rfile2, ofile3, rfile3) 
 	values (#{cno}, #{ofile1}, #{rfile1}, #{ofile2}, #{rfile2}, #{ofile3}, #{rfile3}) 
 	</if>
 	</update>
+	
+	<select id="selectCpList" resultMap="rsltCpost">
+	select * from cpost
+	left join addon using #{cno}
+    order by cenrolldate desc
+	</select>
+	
+	<select id="selectCpOne" parameterType="string" resultMap="rsltCpost">
+	 select * from cpost
+     left join addon using (#{cno})
+     where cno = #{cno};
+	</select>
+	
+	<update id="updateCpost" parameterType="AddOn">
+	update cpost
+	set ctitle = #{ctitle}, ccontent=#{ccontent}, cenrolldate= sysdate
+	where cno = #{cno}
+	</update>
+	
+
+	<delete id="deleteCpost" parameterType="string"> 
+ 	declare
+           begin
+               delete from cpost where cno = #{cno}
+               delete from addon where cno = #{cno}
+           end
+	</delete>
+	
+	
 </mapper>

@@ -1,0 +1,65 @@
+//네이버 로그인 성공시 callback호출 메소드
+	@RequestMapping("naverLoginCallback.do")
+	public ModelAndView naverLoginCallback(HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam String code, @RequestParam String state, HttpSession session, ModelAndView mv) throws Exception {
+		logger.info("naver callback...");
+		// response를 위한 정의
+		PrintWriter writer = response.getWriter();
+		int cnt = 0;
+		OAuth2AccessToken oauthToken;
+		
+		oauthToken = naverLoginUtil.getAccessToken(session, code, state);
+		//1. 로그인 사용자 정보를 읽어온다.
+		String apiResult = naverLoginUtil.getUserProfile(oauthToken); //String형식의 json데이터
+		/** apiResult json 구조
+		{"resultcode":"00",
+		"message":"success",
+		"response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
+		**/
+		//2. String형식인 apiResult를 json형태로 바꿈
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(apiResult);
+		org.json.simple.JSONObject jsonObj = (org.json.simple.JSONObject) obj;
+		//3. 데이터 파싱
+		//Top레벨 단계 _response 파싱
+		org.json.simple.JSONObject response_obj = (org.json.simple.JSONObject)jsonObj.get("response");
+		// 네이버에서 주는 고유 ID
+		String naverIfId = (String) response_obj.get("id");
+		// 네이버에서 설정된 사용자 이름
+		String naverName = (String) response_obj.get("name");
+		// 네이버에서 설정된 사용자 별명
+		String naverNickname = (String) response_obj.get("nickname");
+		// 네이버에서 설정된 이메일
+		String naverEmail = (String) response_obj.get("email");
+		// 네이버에서 설정된 사용자 프로필 사진
+		String naverProfileImage = (String) response_obj.get("profile_image");
+		// 랜덤숫자 자리수 초기화(2자리)
+		DecimalFormat decimal2Format = new DecimalFormat("00");
+		// 랜덤숫자 자리수 초기화(3자리)
+		DecimalFormat decimal3Format = new DecimalFormat("000");
+		// 랜덤숫자 자리수 초기화(4자리)
+		DecimalFormat decimal4Format = new DecimalFormat("0000");
+		// 회원정보 세팅
+		Member member = new Member();
+		member.setUname(naverName);
+		member.setUemail(naverEmail);
+		member.setUimg(naverProfileImage);
+		member.setSigntype("n");
+		
+
+		boolean emailExists = false;
+		int emailchk = mservice.selectEmailCheck(member);
+				
+		// 중복되는 ID가 없을 경우 신규가입으로 아래 구문을 실행
+		if(emailchk == 0) {
+			int result = mservice.insertUser(member);
+			session.setAttribute("loginUser", member);
+			mv.addObject("member", member);
+			mv.setViewName("suugit/cards");
+		}else {
+				mv.addObject("message", "중복된 아이디입니다!");
+				mv.setViewName("suugit/sign.do");
+			}
+		
+		return mv;
+}

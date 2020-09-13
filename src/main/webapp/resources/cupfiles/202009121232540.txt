@@ -1,0 +1,19 @@
+	<if test="ofile1 != null">
+	insert into cpost (cno, ctitle, cwriter, ccontent, cenrolldate, copen)
+		values ('c' || cpost_seq.nextval, #{ctitle}, #{cwriter}, #{ccontent}, sysdate, #{copen})
+	</if>
+	<if test="ofile1 != null">
+	insert into cpost (cno, ctitle, cwriter, ccontent, cenrolldate, copen, ofile1, rfile1)
+		values ('c' || cpost_seq.nextval, #{ctitle}, #{cwriter}, #{ccontent}, sysdate, #{copen}, #{ofile1}, #{rfile1})
+	</if>
+	<if test="ofile2 != null">
+	insert into cpost (cno, ctitle, cwriter, ccontent, cenrolldate, copen, ofile1, rfile1, ofile2, rfile2)
+		values ('c' || cpost_seq.nextval, #{ctitle}, #{cwriter}, #{ccontent}, sysdate, #{copen}, 
+				#{ofile1}, #{rfile1}, #{ofile2}, #{rfile2})
+	</if>
+	<if test="ofile3 != null">
+	insert into cpost (cno, ctitle, cwriter, ccontent, cenrolldate, copen, ofile1, rfile1, ofile2, rfile2, ofile3, rfile3)
+		values ('c' || cpost_seq.nextval, #{ctitle}, #{cwriter}, #{ccontent}, sysdate, #{copen}, 
+				#{ofile1}, #{rfile1}, #{ofile2}, #{rfile2}, #{ofile3}, #{rfile3})
+	</if>
+	</insert>

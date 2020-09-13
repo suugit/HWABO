@@ -1,5 +1,8 @@
 package com.beet.HWABO.cpost.model.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +31,24 @@ public class CpostDao {
 	public int updateCfile(AddOn addon) {
 		return session.insert("cpostMapper.updateCfile", addon);
 	}
-	
+
+	public ArrayList<Cpost> selectCpList() {
+		List<Cpost> cplist = session.selectList("cpostMapper.selectCpList");
+		return (ArrayList<Cpost>)cplist;
+	}
+
+	public Cpost selectCpOne(String cno) {
+		return session.selectOne("cpostMapper.selectCpOne");
+	}
+
+	public int updateCpost(Cpost cpost) {
+		return session.update("cpostMapper.updateCpost", cpost);
+	}
+
+	public int deleteCpost(String cno) {
+		return session.update("cpostMapper.deleteCpost", cno);
+	}
+
+
 
 }

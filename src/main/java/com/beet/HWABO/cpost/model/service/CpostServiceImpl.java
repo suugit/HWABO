@@ -1,5 +1,7 @@
 package com.beet.HWABO.cpost.model.service;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +35,30 @@ public class CpostServiceImpl implements CpostService{
 	public int updateCfile(AddOn addon) {
 		return cpostDao.updateCfile(addon);
 	}
+
+
+	@Override
+	public ArrayList<Cpost> selectCpList() {
+		return cpostDao.selectCpList();
+	}
+
+
+	@Override
+	public Cpost selectCpOne(String cno) {
+		return cpostDao.selectCpOne(cno);
+	}
+
+
+	@Override
+	public int updateCpost(Cpost cpost) {
+		return cpostDao.updateCpost(cpost);
+	}
+
+
+	@Override
+	public int deleteCpost(String cno) {
+		return cpostDao.deleteCpost(cno);
+	}
+
 
 }

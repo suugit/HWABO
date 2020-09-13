@@ -35,6 +35,26 @@ public class MemberServiceImpl implements MemberService{
 	public int selectEmailCheck(String uemail) {
 		return memberDao.selectEmailCheck(uemail);
 	}
+
+	@Override
+	public Member selectMember(String ucode) {
+		return memberDao.selectMember(ucode);
+	}
+
+	@Override
+	public int updateInfo(Member member) {
+		return memberDao.updateInfo(member);
+	}
+
+	@Override
+	public int deleteUser(String ucode) {
+		return memberDao.deleteUser(ucode);
+	}
+
+	@Override
+	public int updateImg(Member member) {
+		return memberDao.updateImg(member);
+	}
 	
 	
 

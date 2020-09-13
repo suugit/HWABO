@@ -26,7 +26,7 @@ $(document).ready(function (e){
 
     preview(arr);
     
-  });//file change
+  });
 
   
   function preview(arr){
@@ -46,7 +46,7 @@ $(document).ready(function (e){
       if(f.type.match('image.*')){
         var reader = new FileReader(); 
         reader.onload = function (e) { 
-         // str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+         // str += '<button type="button" class="btn btn-danger" value="'+f.name+'" >x</button><br>';
           str += '<img src="'+e.target.result+'" title="'+f.name+'" width=100 height=100 />';
           str += '</td>';
           $(str).appendTo('#preview');
