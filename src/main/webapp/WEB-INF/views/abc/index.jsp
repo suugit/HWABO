@@ -31,7 +31,8 @@
     <button onclick="javascript:location.href='mybpost.do'">업무 모아보기</button>
     <button onclick="javascript:location.href='myhwabo.do'">나의 화보</button>
     <button onclick="javascript:location.href='yourhwabo.do'">팀원의 화보</button>
-    <button onclick="javascript:location.href='scheduleboard.do'">일정게시글 폼</button>
+    <button onclick="javascript:location.href='insertspost.do'">일정게시글 입력폼</button>
+    <button onclick="javascript:location.href='updatespost.do'">일정게시글 수정</button>
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->

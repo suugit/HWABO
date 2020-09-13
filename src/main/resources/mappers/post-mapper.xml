@@ -50,13 +50,20 @@
 	
 	</resultMap>
 
-<select id="selectAllPost" resultMap="resultPost">
-
+<select id="abcselectS" resultMap="resultPost">
+	select * from spost where ucode=#{sucode}
 </select>
-
-
-<select id="selectPost" resultMap="resultPost">
-
+<select id="abcselectB" resultMap="resultPost">
+	select * from bpost where ucode=#{bucode}
+</select>
+<select id="abcselectC" resultMap="resultPost">
+	select * from cpost where ucode=#{cucode}
+</select>
+<select id="abcselectV" resultMap="resultPost">
+	select * from vpost where ucode=#{vucode}
+</select>
+<select id="abcselectDo" resultMap="resultPost">
+	select * from dopost where ucode=#{ducode}
 </select>
 
 

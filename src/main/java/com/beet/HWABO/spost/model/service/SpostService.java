@@ -16,6 +16,7 @@ public interface SpostService {
 	int updateSpostLove(String sno);
 	int updateSpostUnlove(String sno);
 	String selectSpostAlarm(String sno);
+	Spost selectOneSpost(String sno);
 	
 	//post
 	ArrayList<Post> selectMyPost();

@@ -4,15 +4,24 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="spostMapper">
 
+<!-- spost insert -->
 	<insert id="insertSpost" parameterType="Spost" >
 		insert into spost(sno, stitle, swriter, sstartday, sendday, splace, salarm, scontent, senrolldate, sopen, slove)
 		values ( (select concat('s', (select nvl(max(to_number(substr(sno,2))),0)+1 from spost))from dual)  , #{stitle}, #{swriter}, #{sstartday}, #{sendday}, #{splace}, 
 				  #{salarm}, #{scontent}, sysdate, #{sopen}, default )
 	</insert>
 
+<!-- spost 전체 조회 -->
+	<select id="selectSpost" resultType="Spost">
+		select * from spost
+	</select>
 
+<!-- spost 1개 조회 -->
+	<select id="selectOneSpost" resultType="Spost" parameterType="string">
+		select * from spost where sno = #{sno}
+	</select>
 
-
+	
 
 
 

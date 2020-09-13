@@ -1,18 +1,20 @@
 package com.beet.HWABO.abc.controller;
 
-import java.util.Date;
-
-import javax.print.attribute.standard.DateTimeAtCompleted;
-
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.social.google.api.calendar.Event.DateTimeTimezone;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,23 +31,32 @@ public class abcController {
 	private static final Logger logger = LoggerFactory.getLogger(abcController.class);
 
 //============================================================	
+	
+	//나의 업무페이지
 	@RequestMapping("mybpost.do")
-	public String TESTtables() {
+	public String TESTtables() {	
 		
 		return "abc/myBPOST";
 	}
 	
+	//나의 화보
 	@RequestMapping("myhwabo.do")
-	public String myHWABO() {
+	public String myHWABO() {	
+		// 사용자와 관련된 게시글을 전부 긁어와야함.
+		// 사용자가 작성한 글, 내가 담당자인 글, 내가 언급된 글, 댓글단 글
+		
 		
 		return "abc/myhwabo";
 	}
 	
+	//팀원의 화보
 	@RequestMapping("yourhwabo.do")
 	public String yourHWABO() {
-		
+		// 팀원과 관련된 게시글을 전부 긁어와야함.
+		// 팀원이 작성한 글, 내가 담당자인 글, 내가 언급된 글, 댓글단 글
 		return "abc/yourhwabo";
 	}
+	
 	
 	@RequestMapping("myhwabotest.do")
 	public String myHWABOtest() {
@@ -53,10 +64,16 @@ public class abcController {
 		return "abc/myhwabotest";
 	}
 	
-	@RequestMapping("scheduleboard.do")
-	public String redtest() {
+	@RequestMapping("insertspost.do")
+	public String moveInsertSpostPage() {
 		
-		return "abc/scheduleboard";
+		return "abc/insertSpost";
+	}
+	
+	@RequestMapping("updatespost.do")
+	public String moveUpdateSpostPage() {
+		
+		return "abc/updateSpost";
 	}
 	
 //---------- Spost ----------------------------------------------------------------------------------------------------------------		
@@ -97,17 +114,69 @@ public class abcController {
 		return mav;
 	}
 	
+	//일정 수정
+	@RequestMapping(value="supdate.do", method=RequestMethod.POST)
+	public String updateSpost(Spost spost, Model m, HttpServletResponse response, @RequestParam("beforesstartday") String start,@RequestParam("beforesendday") String end) throws UnsupportedEncodingException {
+		// 업데이트하면 에이작스로 이것만 보내서 표시한다.
+		response.setContentType("application/json;charset=utf-8"); //어플리케이션이 나갈건데  json이라는 의미
+		  
+		JSONObject job = new JSONObject();
+		
+		// where sno = #{sno}로 처리
+		// 제목, 시작날짜, 끝날짜, 장소, 알람, 컨텐츠, 공개여부 변경
+		String Sstart = start.replace("T", " ");
+		String Send = end.replace("T", " ");
+
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+		try {
+			java.util.Date startdate = transFormat.parse(Sstart);
+			java.util.Date enddate = transFormat.parse(Send);
+
+			spost.setSstartday(startdate);
+			spost.setSendday(enddate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		Spost s = spostService.selectOneSpost(spost.getSno());
+		
+		if(spostService.updateSpost(spost) > 0) {
+			//jsp에서 result 값으로 성공여부 구분하기
+			job.put("result", "y");
+			job.put("sno", s.getSno());
+			job.put("stitle", s.getStitle());
+			
+			//job에 모든 컬럼 put 하기 !
+			//좋아요랑 댓글 셀렉트 다시해오기 ?
+			
+		
+			
+		}else {
+			//jsp에서 result 값으로 성공여부 구분하기
+			//실패해도 spost의 값 가지고 가고, alert창 띄우기
+			
+			job.put("result", "n");
+			job.put("sno", spost.getSno());
+		}
+		
+		
+		 return job.toJSONString(); //뷰 리졸버로 리턴함
+	}
+	
+	/*
+	 * //일정 1개 조회
+	 * 
+	 * @RequestMapping("selectOneSpost.do") public String selectOneSpost() { return
+	 * ""; }
+	 */
+	
 	//일정 삭제
 	@RequestMapping("sdelete.do")
 	public String deleteSpost() {
 		return "";
 	}
 	
-	//일정 수정
-	@RequestMapping("supdate.do")
-	public String updateSpost() {
-		return "";
-	}
 	
 	//일정 좋아요 증가
 	@RequestMapping("slove.do")
