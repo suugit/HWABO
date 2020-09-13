@@ -70,84 +70,46 @@
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800"></h1>
 					<p class="mb-4"></p>
+				
+	<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">				
+					
 
-					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<script type="text/javascript"
-							src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-						<script type="text/javascript">
-							$(function() {
-								$('#contentText').keyup(
-										function(e) {
-											var content = $(this).val();
-											$('#counter').val(
-													200 - content.length);
+	$(function(){
+	//보관함
+	$("#cabinetshow").on("click", function(){
+		
+		
+		$.ajax({
+			url: "insertcabinet.do",
+			data: {ucode: $("#ucode").val() , no: $("#no").val() },  //보낼값 {} 안에 쓰면 object, 객체 취급
+			type: "post",
+			success: function(){
+				
+					alert("보관함 보내기 성공 !");
+					console.log("보관함 보내기 성공 !");
+	
+			},
+			error: function(request, status, errorData){
+				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+			}
+		}); //ajax
+	});
+	
+	 $(".liketoggle").click(function() {
+		   $(this).find("i").toggleClass("fas far");
+		   $(this).find("span").text(function(i, v) {
+		     return v === '보관' ? '보관됨' : '보관'
+		   })
+		 });
+	
+	
+});				
 
-											if (content.length > 200) {
-												$(this).val(
-														$(this).val()
-																.substring(0,
-																		200));
-											}
-										});
-							});
-						</script>
-
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							<form action="vpostinsert.do" name="VPost" method="post">
-							<!--  보이지않는 값 : 작성자는 로그인햇을당시 유저의 이름을 기록하게함  -->
-							<!--  추가로 project_num (primary key) 도 기록  -->
-							<!--  유일한  project_num 값의 유일한 ucode 값의 게시물을 등록함 ! -->
-							<!--  게시물 등록 처리시 프로젝트 고유번호와 작성자 아이디의 고유번호를 알게함으로써 -->
-							<!--  통합검색시 유용함 ! -->
-							<%-- <input type="hidden" name= --%>
-							  <%-- <input type="hidden" name="vwriter" value="${ sessionScope.uname }">   --%>
-							
-							<!--  당장 값을 확인하기위하여 hidden 속성에 임의의값을 지정함 ! hidden 미사용시 mapper.xml 가서 작성자를 임의로 집어넣는것도 가능! -->
-							 <input type="hidden" name="vwriter" value="김회원"> 
-								<table style="text-align: center; width: 100%;">
-
-									<tr>
-										<td colspan="5">
-											<hr>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="5"><span style="float: left;"><i
-												class="fa fa-pen"></i>&nbsp;제 목</span><input type="text"
-											name="vtitle" class="form-control"
-											placeholder="투표 제목을 입력하세요"></td>
-									</tr>
-									<tr>
-										<td><br>
-										<br>
-										<br></td>
-									</tr>
-									<tr>
-										<td colspan="5"><span style="float: left;"><i
-												class="far fa-keyboard"></i>&nbsp;내 용</span> <textarea cols="30"
-												rows="10" class="form-control" placeholder="투표 내용을 입력하세요"
-												name="vcontent"
-												style="width: 100%; height: 200px; overflow: auto; resize: none;">
-										</textarea></td>
-									</tr>
-									<tr>
-										<td colspan="5">&nbsp;</td>
-									</tr>
-									<tr>
-										<td colspan="3"><input class="btn btn-primary"
-											type="submit" value="등록"> <input
-											class="btn btn-primary" type="reset" value="취소"></td>
-									</tr>
-								</table>
-								<!-- <input type="submit" value="등록하기"> -->
-							</form>
-						</div>
-					</div>
+	</script>					
 
 		 <!--  리스트  -->
-           selectlist(ArrayList) 출력화면 시작 !!
+           
            <c:forEach var="vpost" items="${requestScope.list }">
            <div class="card shadow mb-4">
            
@@ -261,11 +223,7 @@
           </div>
           </div>
 
-			<br>
-			<br>
-			<br>
-			게시글 구간임 select 만들고 확인해보면됨!
-				아아아아아아!
+			
 				<c:if test="${ empty sessionScope.uname} ">
 					sessionScope.uname 값 : ${ sessionScope.uname }						
 				</c:if>

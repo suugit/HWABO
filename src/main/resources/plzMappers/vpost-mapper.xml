@@ -8,23 +8,28 @@
 		<id column="vno" property="vno" />
 		<result column="vtitle" property="vtitle" />
 		<result column="vwriter" property="vwriter" />
-		<result column="vdate" property="vdate" />
+		<result column="venrolldate" property="venrolldate" />
 		<result column="alarm" property="alarm" />
 		<result column="votecheck" property="votecheck" />
 		<result column="votenumber" property="votenumber" />
-		<!-- <result column="vcontent" property="vcontent" /> -->
+		<result column="vcontent" property="vcontent" /> 
 		
 	</resultMap>
 
 <insert id="insertvpost" parameterType="VPost" >
 	insert into vpost
 	values ((select concat('v', (select nvl(max(to_number(substr(vno,2))),0)+1 from vpost))from dual), #{vtitle}, #{vwriter}, sysdate,
-	'y', 'y', 1 )
+	'y', 'y', 1, #{vcontent} )
 	
 </insert>
 
 
 <update id="updatevpost" parameterType="VPost">
-	update vpost set vwriter = #{vwriter} , vtitle = #{vtitle}
+	update vpost set vtitle = #{vtitle} , vcontent = #{vcontent}
 </update>
+
+<select id="selectList"  resultMap="resultVPost">
+	select* from vpost
+	order by venrolldate desc
+</select>
 </mapper>

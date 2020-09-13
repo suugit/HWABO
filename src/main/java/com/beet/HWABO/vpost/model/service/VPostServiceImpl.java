@@ -1,5 +1,7 @@
 package com.beet.HWABO.vpost.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,12 @@ public class VPostServiceImpl implements VPostService{
 	@Override
 	public int updatevpost(VPost vpost) {
 		return vpostdao.updatevpost(vpost);
+	}
+
+
+
+	@Override
+	public ArrayList<VPost> selectList() {
+		return vpostdao.selectvpost();
 	}
 }

@@ -20,8 +20,9 @@ vpost select 시 각 db컬럼데이터값 확인 !</h1>
 vno값 :	${ vpost.vno } <br>
 vwriter값 : 	${ vpost.vwriter } <br>
 vtitle값 : 	${ vpost.vtitle  } <br>
+vcontetn값 : ${ vpost.vcontent } <br>
 votecheck값 : 	${ vpost.votecheck } <br>
-vdate 값 : 	<fmt:formatDate value="${ vpost.vdate }" pattern="yyyy-MM-dd" /> <br>
+vdate 값 : 	<fmt:formatDate value="${ vpost.venrolldate }" pattern="yyyy-MM-dd" /> <br>
 
 </c:if>
 등등등~

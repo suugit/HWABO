@@ -42,6 +42,7 @@
     <button onclick="javascript:location.href='insertvp.do'">투표페이지로</button>
     <button onclick="javascript:location.href='fcolor.do'">채팅페이지로</button>
     <button onclick="javascript:location.href='fother.do'">알림페이지로</button>
+        <button onclick="javascript:location.href='vpostselect100.do'">전체조회해보기 ~</button>
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->
