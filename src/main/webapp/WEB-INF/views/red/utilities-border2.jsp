@@ -38,9 +38,9 @@
 <!-- 2.바로아래div추가 및 임포트 추가  -->
 <div style="height:100%;width:100%;display:flex;justify-content:center;align-item:center;">
 <!-- Sidebar2right -->
-     <c:import url="/WEB-INF/views/red/sideFixedCalendar.jsp"></c:import>
+     <c:import url="/WEB-INF/views/red/sideFixed.jsp"></c:import>
 <!-- End of Sidebar2right -->
- 
+
 <!-- 3. id="wrapper" 스타일 1300px설정 -->
   <!-- Page Wrapper -->
   <div id="wrapper" style="width:1300px;height:100%;">
@@ -52,7 +52,7 @@
 
 <!-- 5. class="d-flex flex-column bg-white" 그리고 style="width:62%;" -->
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column bg-white" style="width:83%;height:100%;">
+    <div id="content-wrapper" class="d-flex flex-column bg-white" style="width:62%;height:100%;">
 
       <!-- Main Content -->
       <div id="content" style="height:100%;">
@@ -88,6 +88,7 @@
     <!-- End of Content Wrapper -->
     
 <!-- 7번  -->
+<div style="width:25%"></div>
 </div>
 </div><!-- flex -->
 <!-- 7번끝 -->

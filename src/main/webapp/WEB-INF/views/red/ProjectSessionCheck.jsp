@@ -16,7 +16,7 @@
 <script type="text/javascript">
 
 	if("${ who }" == "Guest"){
-		location.href='/hwabo/';
+		location.href='mvlogin.do';
 	}else{
 		location.href='cards2.do?ucode=${ who }';
 	}

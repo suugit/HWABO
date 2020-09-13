@@ -39,9 +39,8 @@
           <i class="fas fa-fw fa-chart-area"></i>
           <span>캘린더</span></a>
       </li>
-      
-       <!-- Nav Item - Charts -->
-      <li class="nav-item">
+
+	  <li class="nav-item">
         <a class="nav-link" href="fborder2.do">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>캘린더2</span></a>
@@ -78,31 +77,7 @@
 </ul>
     
 </td>
-<td style="width:57%;">
-
-</td>
-<td style="width:23.5%;">
-
-
-
-<!-- 채팅위치조정테이블하단 시작 -->
-<table style="height:100%;width:100%;">
-<tr><td style="height:90px;"></td></tr><tr>
-<td style="height:30%;">
-<!-- 채팅위치조정테이블하단 시작 -->
-
-<!-- 채팅 폼 시작 -->
-
-<c:import url="/WEB-INF/views/red/sideRight.jsp"></c:import>
-
-<!-- 채팅 폼 끝 -->
-
-<!-- 채팅위치조정테이블하단 끝 -->
-</td>
-</tr>
-<tr><td style="height:70%;"></td></tr>
-</table>
-<!-- 채팅위치조정테이블하단 끝 -->
+<td style="width:83%;">
 </td>
 </tr>    
 </table>
