@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.beet.HWABO.dopost.model.dao.DopostDao;
 import com.beet.HWABO.dopost.model.vo.Dopost;
 
-
 @Service("dopostService")
 public class DopostServiceImpl implements DopostService {
 	private static final Logger logger = LoggerFactory.getLogger(DopostServiceImpl.class);
@@ -24,7 +23,7 @@ public class DopostServiceImpl implements DopostService {
 	@Override
 	public int deletedopost(Dopost dopost) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dopostDao.deletedopost(dopost);
 	}
 
 	@Override
@@ -44,11 +43,4 @@ public class DopostServiceImpl implements DopostService {
 		return dopostDao.selectdopost(dno);
 	}
 
-	
-
-
-	
-
-	
-	
 }

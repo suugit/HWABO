@@ -55,7 +55,7 @@ public class KhcController {
 			}
 		}
 		
-	@RequestMapping(value = "dopostdelte.do", method =  RequestMethod.POST )
+	@RequestMapping(value = "dopostdelete.do", method =  RequestMethod.POST )
 		public String dopostDelete(Dopost dopost, Model model) {
 			logger.info("mytodo.run ........................");
 			logger.info("@@@@@@@@@@@@@dopost" + dopost);
@@ -78,13 +78,11 @@ public class KhcController {
 		
 	}
 	
-
 	@RequestMapping()
-	public String moveselectjspfile(Model model) {
+	public String updatetodofile(Model model) {
 		return "khc/updatemytodo"; //경로
 		
 	}
-	
 	
 	
 	@RequestMapping(value = "participateproject.do", method = RequestMethod.GET)
