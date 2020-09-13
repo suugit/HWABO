@@ -52,6 +52,10 @@ public class SpostDao {
 			// TODO Auto-generated method stub
 			return null;
 		}
+		
+		public Spost selectOneSpost(String sno) {
+			return session.selectOne("spostMapper.selectOneSpost", sno);
+		}
 
 		
 	//-------- Post -------------------------------------------------------------------------------------------------	

@@ -55,6 +55,10 @@ public class SpostServiceImpl implements SpostService{
 		return null;
 	}
 
+	@Override
+	public Spost selectOneSpost(String sno) {
+		return spostDao.selectOneSpost(sno);
+	}
 	
 //-------- Post -------------------------------------------------------------------------------------------------	
 	
@@ -107,6 +111,8 @@ public class SpostServiceImpl implements SpostService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 	
 	
 	
