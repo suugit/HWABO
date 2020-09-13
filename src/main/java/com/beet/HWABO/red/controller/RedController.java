@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.beet.HWABO.red.model.service.RedService;
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
+import com.beet.HWABO.red.model.vo.UserProject;
 
 @Controller
 public class RedController {
@@ -91,6 +92,19 @@ public class RedController {
 		return mv;
 		
 	}
+	@RequestMapping(value = "delStar.do", method = RequestMethod.GET)
+	public ModelAndView starDelete(UserProject up, ModelAndView mv) {
+		logger.info("[RedController]delStar.do 실행됨....");
+		if(redService.delStar(up) > 0) {
+			mv.setViewName("redirect:/cards.do");
+		}else {
+			mv.addObject("message", "프로젝트 삭제 실패...");
+			mv.setViewName("redirect:/cards.do");
+		}
+		
+		return mv;
+		
+	}
 	@RequestMapping(value = "starProject.do", method = RequestMethod.POST)
 	public ModelAndView pStar(
 			Star star, ModelAndView mv) {
@@ -111,14 +125,16 @@ public class RedController {
 			,HttpServletResponse response) throws IOException {
 		logger.info("즐겨찾기 불러오기 run....");
 		
-		ArrayList<Project> list =  redService.selectStar(ucode);
+		ArrayList<UserProject> list =  redService.selectStar(ucode);
 		
 		JSONObject sendJson = new JSONObject();
 
 		JSONArray jarr = new JSONArray();
 
-		for (Project project : list) {
+		for (UserProject project : list) {
 			JSONObject job = new JSONObject();
+			job.put("ucode", URLEncoder.encode(project.getUcode(), "utf-8"));
+			job.put("star", URLEncoder.encode(project.getStar(), "utf-8"));
 			job.put("name", URLEncoder.encode(project.getName(), "utf-8"));
 			jarr.add(job);
 		}

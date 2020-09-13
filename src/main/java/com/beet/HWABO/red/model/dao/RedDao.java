@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
+import com.beet.HWABO.red.model.vo.UserProject;
 
 @Repository("redDao")
 public class RedDao {
@@ -40,14 +41,18 @@ public class RedDao {
 		return session.insert("redMapper.insertProjectStar", star);
 	}
 
-	public ArrayList<Project> selectStar(String ucode) {
-		List<Project> list = session.selectList("redMapper.selectStar", ucode);
-		return (ArrayList<Project>)list;
+	public ArrayList<UserProject> selectStar(String ucode) {
+		List<UserProject> list = session.selectList("redMapper.selectStar", ucode);
+		return (ArrayList<UserProject>)list;
 	}
 	
 	public ArrayList<Project> selectCheckStar(Star star) {
 		List<Project> list = session.selectList("redMapper.selectCheckStar", star);
 		return (ArrayList<Project>)list;
+	}
+
+	public int delStar(UserProject up) {
+		return session.delete("redMapper.delStar", up);
 	}
 
 }

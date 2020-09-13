@@ -1,9 +1,18 @@
-<%@page import="java.util.ArrayList, com.beet.HWABO.red.model.vo.Project"%>
+<%@ page import="java.util.ArrayList, com.beet.HWABO.red.model.vo.Project"%>
 <%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%
+    String ucode ="";
+	if(session.getAttribute("ucode") != null){
+		ucode = (String)session.getAttribute("ucode");
+	}else{
+		ucode = "Guest";
+	}
+%>
+<c:set var="who" value="<%= ucode %>"/>
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -187,14 +196,7 @@ if((++w + 5) % 3 == 0){
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <form action="starProject.do" method="post" >
-                      <%
-                      	String ucode ="";
-						if(session.getAttribute("ucode") != null){
-							ucode = (String)session.getAttribute("ucode");
-						}else{
-							ucode = "Guest";
-						}
-                      %>
+                      
                       <input type="text" value="<%= p.getProject_num() %>" name="star" style="display:none">
                       <input type="text" value="<%= ucode %>" name="ucode" style="display:none">
                       <button class="dropdown-item" type="submit">즐겨찾기 등록</button>

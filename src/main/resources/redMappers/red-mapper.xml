@@ -28,12 +28,26 @@
 		<result property="done" column="done" />
 		<result property="right" column="right" />
 	</resultMap>
+	<resultMap id="resultStarList" type="com.beet.HWABO.red.model.vo.UserProject">
+		<result property="ucode" column="ucode" />
+		<result property="star" column="star" />
+		<result property="project_num" column="project_num" />
+		<result property="name" column="name" />
+		<result property="explain" column="explain" />
+		<result property="startday" column="startday" />
+		<result property="endday" column="endday" />		
+		<result property="uploaddate" column="uploaddate" />
+		<result property="open" column="open" />
+		<result property="goal" column="goal" />
+		<result property="done" column="done" />
+		<result property="right" column="right" />
+	</resultMap>
 
 <select id="selectList" resultMap="resultList">
 		select * from project ORDER BY TO_NUMBER(project_num)
 </select>
 
-<select id="selectStar" parameterType="string" resultMap="resultList">
+<select id="selectStar" parameterType="string" resultMap="resultStarList">
 		select * from star join project on (star.star = project.project_num) where ucode = #{ ucode }
 </select>
 
@@ -55,6 +69,10 @@
 
 <delete id="deleteProject" parameterType="string">
 		delete from project where PROJECT_NUM = #{ projectNumber }
+</delete>
+
+<delete id="delStar" parameterType="com.beet.HWABO.red.model.vo.UserProject">
+		delete from star where star = #{ star } and ucode = #{ ucode } 
 </delete>
 	
 </mapper>

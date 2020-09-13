@@ -14,8 +14,33 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- 스나이퍼 재료 시작 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 6px;
+  margin: 1px 1px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button3 {
+  background-color: white; 
+  color: #f44336; 
+  border: 1px solid #f44336;
+  border-radius:50%;
+}
+
+.button3:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+</style>
 <!-- 스나이퍼 재료 끝 -->
 <script type="text/javascript" src="/hwabo/resources/js/jquery-3.5.1.min.js"></script>
 <script>
@@ -26,19 +51,23 @@ $(function(){
 		type: "POST",
 		dataType: "json", 
 		success: function(json){
-			console.log("success : " + JSON.stringify(json));
 			
 			var jsonStr = JSON.stringify(json);
 			var json = JSON.parse(jsonStr);
+			console.log("success : " + jsonStr);
 			
 			var values = "";
 			for(var i in json.list5){
+				var starName = decodeURIComponent(json.list5[i].name).replace(/\+/gi, " ");
+				var starUcode = decodeURIComponent(json.list5[i].ucode).replace(/\+/gi, " ");
+				var starStar = decodeURIComponent(json.list5[i].star).replace(/\+/gi, " ");
 				values += 
 					"<li class=\"nav-item\"><a class=\"nav-link\">" +
 		            "<i class=\"fas fa-fw fa-chart-area\"></i><span onclick=\"javascript:location.href=\'cards.do\'\">" +
-					decodeURIComponent(json.list5[i].name).replace(/\+/gi, " ") +
+					starName +
 					"</span><span>" +
-					"&nbsp;&nbsp;<div class=\"spinner-border spinner-border-sm text-light\" onclick=\"javascript:location.href=\'delStar.do\'\" >xx</div>" +
+					"&nbsp;&nbsp;<button class=\"button button3\" " +
+					"onclick=\"javascript:location.href=\'delStar.do?ucode=" + starUcode + "&star=" + starStar + "\'\" >X</button>" +
 					"</span></a></li>";
 			}
 			//$("stars").html() + 
