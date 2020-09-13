@@ -1,7 +1,18 @@
-<%@ page session="false" %>
+<%@page import="java.util.Random"%>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+Random ren = new Random();
+int r = ren.nextInt(99999999) + 1;
+%>
+<c:if test="${ empty sessionScope.ucode }">
+<c:set var="who" value="Guest"></c:set>
+</c:if>
+<c:if test="${ !empty sessionScope.ucode }">
+<c:set var="who" value="${ sessionScope.ucode }"></c:set>
+</c:if>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -30,7 +41,8 @@
                         <label class="custom-control-label" for="customCheck">가입시 관리자 승인후 가능</label>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                    <input type="hidden" name="project_num" value="<%= r %>">
+                    <button name="ucode" value="${ who }" type="submit" class="btn btn-primary btn-user btn-block">
                       	새 프로젝트 생성
                     </button>
                     <hr>

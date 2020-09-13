@@ -18,6 +18,30 @@ public class UserProject implements java.io.Serializable{
 	private int goal;
 	private int done; 
 	private int right;
+	private String order_by;
+	public UserProject(String ucode, String star, String project_num, String name, String explain, Date startday,
+			Date endday, Date uploaddate, String open, int goal, int done, int right, String order_by) {
+		super();
+		this.ucode = ucode;
+		this.star = star;
+		this.project_num = project_num;
+		this.name = name;
+		this.explain = explain;
+		this.startday = startday;
+		this.endday = endday;
+		this.uploaddate = uploaddate;
+		this.open = open;
+		this.goal = goal;
+		this.done = done;
+		this.right = right;
+		this.order_by = order_by;
+	}
+	public String getOrder_by() {
+		return order_by;
+	}
+	public void setOrder_by(String order_by) {
+		this.order_by = order_by;
+	}
 	public String getUcode() {
 		return ucode;
 	}
@@ -94,23 +118,8 @@ public class UserProject implements java.io.Serializable{
 	public String toString() {
 		return "UserProject [ucode=" + ucode + ", star=" + star + ", project_num=" + project_num + ", name=" + name
 				+ ", explain=" + explain + ", startday=" + startday + ", endday=" + endday + ", uploaddate="
-				+ uploaddate + ", open=" + open + ", goal=" + goal + ", done=" + done + ", right=" + right + "]";
-	}
-	public UserProject(String ucode, String star, String project_num, String name, String explain, Date startday,
-			Date endday, Date uploaddate, String open, int goal, int done, int right) {
-		super();
-		this.ucode = ucode;
-		this.star = star;
-		this.project_num = project_num;
-		this.name = name;
-		this.explain = explain;
-		this.startday = startday;
-		this.endday = endday;
-		this.uploaddate = uploaddate;
-		this.open = open;
-		this.goal = goal;
-		this.done = done;
-		this.right = right;
+				+ uploaddate + ", open=" + open + ", goal=" + goal + ", done=" + done + ", right=" + right
+				+ ", order_by=" + order_by + "]";
 	}
 	public UserProject() {
 		super();

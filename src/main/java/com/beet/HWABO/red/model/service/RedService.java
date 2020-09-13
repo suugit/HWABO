@@ -9,12 +9,13 @@ import com.beet.HWABO.red.model.vo.UserProject;
 
 public interface RedService {
 	int insertProjectStar(Star star);
-	int insertProject(Project project);
-	int updateProject(Project project);
+	int insertProject(UserProject project);
+	int updateProject(UserProject project);
 	int deleteProject(String project_num);
-	ArrayList<Project> selectList();
+	ArrayList<UserProject> selectList(String ucode);
 	ArrayList<UserProject> selectStar(String ucode);
-	ArrayList<Project> selectCheckStar(Star star);
+	ArrayList<UserProject> selectCheckStar(Star star);
 	Project selectProject(String project_num) ;
 	int delStar(UserProject up);
+	int insertProject2(UserProject project);
 }

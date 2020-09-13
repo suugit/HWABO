@@ -16,11 +16,11 @@ public class RedDao {
 	@Autowired
 	private SqlSessionTemplate session;
 	
-	public int insertProject(Project project) {
+	public int insertProject(UserProject project) {
 		return session.insert("redMapper.insertProject", project);
 	}
 
-	public int updateProject(Project project) {
+	public int updateProject(UserProject project) {
 		return 0;
 	}
 
@@ -28,9 +28,9 @@ public class RedDao {
 		return session.delete("redMapper.deleteProject", project_num);
 	}
 
-	public ArrayList<Project> selectList() {
-		List<Project> list = session.selectList("redMapper.selectList");
-		return (ArrayList<Project>)list;
+	public ArrayList<UserProject> selectList(String ucode) {
+		List<UserProject> list = session.selectList("redMapper.selectList", ucode);
+		return (ArrayList<UserProject>)list;
 	}
 
 	public Project selectProject(String project_num) {
@@ -46,13 +46,17 @@ public class RedDao {
 		return (ArrayList<UserProject>)list;
 	}
 	
-	public ArrayList<Project> selectCheckStar(Star star) {
-		List<Project> list = session.selectList("redMapper.selectCheckStar", star);
-		return (ArrayList<Project>)list;
+	public ArrayList<UserProject> selectCheckStar(Star star) {
+		List<UserProject> list = session.selectList("redMapper.selectCheckStar", star);
+		return (ArrayList<UserProject>)list;
 	}
 
 	public int delStar(UserProject up) {
 		return session.delete("redMapper.delStar", up);
+	}
+
+	public int insertProject2(UserProject project) {
+		return session.insert("redMapper.insertProject2", project);
 	}
 
 }

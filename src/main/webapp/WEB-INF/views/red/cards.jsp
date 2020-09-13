@@ -1,22 +1,20 @@
-<%@ page import="java.util.ArrayList, com.beet.HWABO.red.model.vo.Project"%>
+<%@ page import="java.util.ArrayList, com.beet.HWABO.red.model.vo.UserProject"%>
 <%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%
-    String ucode ="";
-	if(session.getAttribute("ucode") != null){
-		ucode = (String)session.getAttribute("ucode");
-	}else{
-		ucode = "Guest";
-	}
-%>
-<c:set var="who" value="<%= ucode %>"/>
+<c:if test="${ empty sessionScope.ucode }">
+<c:set var="who" value="Guest"></c:set>
+</c:if>
+<c:if test="${ !empty sessionScope.ucode }">
+<c:set var="who" value="${ sessionScope.ucode }"></c:set>
+</c:if>
 <!DOCTYPE html>
 <html lang="kr">
 
 <head>
+
   <link rel="icon" type="image/x-icon" href="/hwabo/resources/assets/img/favicon.png" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -162,7 +160,7 @@ font-size: 28px;
         <!-- Begin Page Content -->
         <div class="container-fluid">
 <!-- 프로젝트생성버튼 시작 -->
-<div class="card shadow mb-4" onclick="javascript:location.href='createP.do'">
+<div class="card shadow mb-4" onclick="javascript:location.href='createP.do?ucode=${ who }'">
             <div class="card-body">
               <!-- 게시글안쪽 -->
                             <h1 class="m-0 text-primary" style="text-align:center">
@@ -176,10 +174,11 @@ font-size: 28px;
 <!-- 조회된 프로젝트들 시작 -->
 
 <% 
-ArrayList<Project> list = (ArrayList<Project>)request.getAttribute("project");
+if(request.getAttribute("project") != null){
+ArrayList<UserProject> list = (ArrayList<UserProject>)request.getAttribute("project");
 int w = 0;
 if(list.size() != 0)
-for(Project p : list ){
+for(UserProject p : list ){
 if((++w + 5) % 3 == 0){
 	out.write("<div class='row'>");
 }
@@ -198,7 +197,7 @@ if((++w + 5) % 3 == 0){
                       <form action="starProject.do" method="post" >
                       
                       <input type="text" value="<%= p.getProject_num() %>" name="star" style="display:none">
-                      <input type="text" value="<%= ucode %>" name="ucode" style="display:none">
+                      <input type="text" value="${ who }" name="ucode" style="display:none">
                       <button class="dropdown-item" type="submit">즐겨찾기 등록</button>
                       </form>
                       <div class="dropdown-divider"></div>
@@ -237,7 +236,9 @@ if((w >= 3 && (w + 9) % 3 == 0) ||
 	){
 		out.write("</div>");
 	}
-} %>
+}//forEach
+}//null check
+%>
 
 <!-- 조회된 프로젝트들 끝 -->
 

@@ -17,12 +17,12 @@ public class RedServiceImpl implements RedService {
 	   private RedDao redDao;
 
 	@Override
-	public int insertProject(Project project) {
+	public int insertProject(UserProject project) {
 		return redDao.insertProject(project);
 	}
 
 	@Override
-	public int updateProject(Project project) {
+	public int updateProject(UserProject project) {
 		return redDao.updateProject(project);
 	}
 
@@ -32,8 +32,8 @@ public class RedServiceImpl implements RedService {
 	}
 
 	@Override
-	public ArrayList<Project> selectList() {
-		return redDao.selectList();
+	public ArrayList<UserProject> selectList(String ucode) {
+		return redDao.selectList(ucode);
 	}
 
 	@Override
@@ -52,13 +52,18 @@ public class RedServiceImpl implements RedService {
 	}
 
 	@Override
-	public ArrayList<Project> selectCheckStar(Star star) {
+	public ArrayList<UserProject> selectCheckStar(Star star) {
 		return redDao.selectCheckStar(star);
 	}
 
 	@Override
 	public int delStar(UserProject up) {
 		return redDao.delStar(up);
+	}
+
+	@Override
+	public int insertProject2(UserProject project) {
+		return redDao.insertProject2(project);
 	}
 	
 	

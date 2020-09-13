@@ -4,20 +4,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="redMapper">
 
-	<resultMap id="resultList" type="Project">
-		<result property="project_num" column="project_num" />
-		<result property="name" column="name" />
-		<result property="explain" column="explain" />
-		<result property="startday" column="startday" />
-		<result property="endday" column="endday" />		
-		<result property="uploaddate" column="uploaddate" />
-		<result property="open" column="open" />
-		<result property="goal" column="goal" />
-		<result property="done" column="done" />
-		<result property="right" column="right" />
-	</resultMap>
-	<resultMap id="resultProject" type="Project">
+	<resultMap id="resultProject" type="com.beet.HWABO.red.model.vo.UserProject">
 		<id property="project_num" column="project_num" />
+		<result property="ucode" column="ucode" />
+		<result property="star" column="star" />
 		<result property="name" column="name" />
 		<result property="explain" column="explain" />
 		<result property="startday" column="startday" />
@@ -27,8 +17,9 @@
 		<result property="goal" column="goal" />
 		<result property="done" column="done" />
 		<result property="right" column="right" />
+		<result property="order_by" column="order_by" />
 	</resultMap>
-	<resultMap id="resultStarList" type="com.beet.HWABO.red.model.vo.UserProject">
+	<resultMap id="resultList" type="com.beet.HWABO.red.model.vo.UserProject">
 		<result property="ucode" column="ucode" />
 		<result property="star" column="star" />
 		<result property="project_num" column="project_num" />
@@ -41,13 +32,14 @@
 		<result property="goal" column="goal" />
 		<result property="done" column="done" />
 		<result property="right" column="right" />
+		<result property="order_by" column="order_by" />
 	</resultMap>
 
-<select id="selectList" resultMap="resultList">
-		select * from project ORDER BY TO_NUMBER(project_num)
+<select id="selectList" parameterType="string" resultMap="resultList">
+		select * from project join pjmember on (project.project_num = pjmember.pnum) where ucode = #{ ucode }  ORDER BY TO_NUMBER(order_by)
 </select>
 
-<select id="selectStar" parameterType="string" resultMap="resultStarList">
+<select id="selectStar" parameterType="string" resultMap="resultProject">
 		select * from star join project on (star.star = project.project_num) where ucode = #{ ucode }
 </select>
 
@@ -59,8 +51,12 @@
 		select * from project where PROJECT_NUM = #{ projectNumber }
 </select>
 
-<insert id="insertProject" parameterType="Project">
-		insert into project VALUES ((select max(TO_NUMBER(project_num))+1 from project),#{name},#{explain},default,default,default,default,default,default,#{right})
+<insert id="insertProject" parameterType="com.beet.HWABO.red.model.vo.UserProject">
+		insert into project VALUES (#{project_num},#{name},#{explain},default,default,default,default,default,default,#{right},(select max(TO_NUMBER(order_by))+1 from project))
+</insert>
+
+<insert id="insertProject2" parameterType="com.beet.HWABO.red.model.vo.UserProject">
+		insert into pjmember VALUES (#{project_num},#{ucode})
 </insert>
 
 <insert id="insertProjectStar" parameterType="com.beet.HWABO.red.model.vo.Star">

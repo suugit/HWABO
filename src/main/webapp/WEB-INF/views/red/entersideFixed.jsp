@@ -1,12 +1,12 @@
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${ empty sessionScope.ucode }">
-<c:set var="ucodeCheck" value="Guest"></c:set>
+<c:set var="who" value="Guest"></c:set>
 </c:if>
 <c:if test="${ !empty sessionScope.ucode }">
-<c:set var="ucodeCheck" value="${ sessionScope.ucode }"></c:set>
+<c:set var="who" value="${ sessionScope.ucode }"></c:set>
 </c:if>
 <!DOCTYPE html>
 <html>
@@ -47,7 +47,7 @@
 
 $(function(){
 	$.ajax({
-		url: "starList.do?ucode=${ ucodeCheck }",
+		url: "starList.do?ucode=${ who }",
 		type: "POST",
 		dataType: "json", 
 		success: function(json){

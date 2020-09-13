@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
@@ -33,12 +34,19 @@ public class RedController {
 	private RedService redService;
 	
 	@RequestMapping(value = "createProject.do", method = RequestMethod.POST)
-	public ModelAndView createPro(Project project, ModelAndView mv) {
-		logger.info("[RedController]createProject.do 실행됨....");
+	public ModelAndView createPro(UserProject project, ModelAndView mv) {
+		logger.info("[RedController]createProject.do 실행됨...." + project);
 		
 		if (redService.insertProject(project) > 0) {
-			mv.setViewName("redirect:/cards.do");
-			logger.info("[RedController] 프로젝트 생성 성공");
+			logger.info("[RedController] 프로젝트 생성 성공 (1/2)");
+			if (redService.insertProject2(project) > 0) {
+				logger.info("[RedController] 프로젝트 생성 성공 (2/2)");
+				mv.setViewName("redirect:/cards.do");
+			} else {
+				mv.setViewName("redirect:/red404.do");
+				mv.addObject("message", "프로젝트 생성 실패...");
+				logger.info("[RedController] 프로젝트 생성 실패");
+			}
 		} else {
 			mv.setViewName("redirect:/red404.do");
 			mv.addObject("message", "프로젝트 생성 실패...");
@@ -46,34 +54,50 @@ public class RedController {
 		}
 		return mv;
 	}
-	
 	@RequestMapping(value = "cards.do", method = RequestMethod.GET)
 	public ModelAndView plist(ModelAndView mv) {
+		logger.info("[RedController]cards2.do 실행됨....");
 		
-		ArrayList<Project> project = redService.selectList();
+		mv.setViewName("red/ProjectSessionCheck");
 		
+		return mv;
+
+	}
+	@RequestMapping(value = "cards2.do", method = RequestMethod.GET)
+	public ModelAndView plist(@RequestParam("ucode") String ucode, 
+			ModelAndView mv) {
+		logger.info("[RedController]cards.do 실행됨....");
+		
+		ArrayList<UserProject> project = null;
+		
+		if(ucode != null) {
+		 project = redService.selectList(ucode);
+		}
 		if(project != null) {
 			mv.setViewName("red/cards");
 			mv.addObject("project",project);
 		}else {
 			mv.addObject("message", "프로젝트 페이지 조회 실패...");
-			mv.setViewName("redirect:/red404.do");
+			mv.setViewName("red/cards");
 		}
 		
 		return mv;
 
 	}
 	@RequestMapping(value = "createP.do", method = RequestMethod.GET)
-	public ModelAndView pCreate(ModelAndView mv) {
+	public ModelAndView pCreate(@RequestParam("ucode") String ucode, ModelAndView mv) {
+		logger.info("[RedController]createP.do 실행됨....");
+		ArrayList<UserProject> project = null;
 		
-		ArrayList<Project> project = redService.selectList();
-		
+		if(ucode != null) {
+		 project = redService.selectList(ucode);
+		}
 		if(project != null) {
 			mv.setViewName("red/create");
 			mv.addObject("project",project);
 		}else {
 			mv.addObject("message", "프로젝트 페이지 조회 실패...");
-			mv.setViewName("redirect:/red404.do");
+			mv.setViewName("red/cards");
 		}
 		
 		return mv;
@@ -81,7 +105,7 @@ public class RedController {
 	}
 	@RequestMapping(value = "deleteProject.do", method = RequestMethod.GET)
 	public ModelAndView pDelete(@RequestParam("projectNumber") String projectNumber, ModelAndView mv) {
-		
+		logger.info("[RedController]deleteProject.do 실행됨....");
 		if(redService.deleteProject(projectNumber) > 0) {
 			mv.setViewName("redirect:/cards.do");
 		}else {
@@ -108,8 +132,8 @@ public class RedController {
 	@RequestMapping(value = "starProject.do", method = RequestMethod.POST)
 	public ModelAndView pStar(
 			Star star, ModelAndView mv) {
-		logger.info("s는 " + star);
-		if( ((ArrayList<Project>)redService.selectCheckStar(star)).size() == 0 &&
+		logger.info("[RedController]deleteProject.do 실행됨....star : " + star);
+		if( ((ArrayList<UserProject>)redService.selectCheckStar(star)).size() == 0 &&
 				redService.insertProjectStar(star) > 0) {
 			mv.setViewName("redirect:/cards.do");
 		}else {
