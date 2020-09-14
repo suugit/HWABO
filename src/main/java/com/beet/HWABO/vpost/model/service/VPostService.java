@@ -13,6 +13,8 @@ public interface VPostService {
 	int updatevpost(VPost vpost);
 
 	ArrayList<VPost> selectList();
+
+	VPost selectOne(String vno);
 	
 	
 

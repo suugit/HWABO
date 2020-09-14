@@ -35,4 +35,12 @@ public class VPostServiceImpl implements VPostService{
 	public ArrayList<VPost> selectList() {
 		return vpostdao.selectvpost();
 	}
+
+
+
+	@Override
+	public VPost selectOne(String vno) {
+		VPost vpost = vpostdao.selectone(vno);
+		return vpost;
+	}
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.beet.HWABO.vpost.model.service.VPostService;
 import com.beet.HWABO.vpost.model.vo.VPost;
@@ -60,6 +61,29 @@ public class VPostController {
 		
 		
 	}
+	
+	@RequestMapping(value="vpostselectone.do")
+	public String vpostselectone(@RequestParam("vno") String vno,  Model model) {
+		
+		logger.info("vpostselectone 로 진입!!");
+		
+		VPost vpost = vpostservice.selectOne(vno);
+		
+		if( vpost !=null) {
+			model.addAttribute("vpost",vpost);
+			
+			return "yeongmin/importselectone";
+		}else {
+			model.addAttribute("message","한개조회실패 !");
+			return "common/error";
+			
+		}
+		
+		
+		
+	}
+	
+	
 	@RequestMapping(value="vpostselect100.do")
 	public String vpostselectall(Model model) {
 		

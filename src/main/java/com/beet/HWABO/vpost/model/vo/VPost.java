@@ -8,28 +8,31 @@ public class VPost implements java.io.Serializable{
 	
 	private String vno;
 	private String vtitle;
+	private String vucode;
 	private String vwriter;
+	private String valarm;
+	private String vcontent;
 	private java.sql.Date venrolldate;
-	private String alarm;
+	
 	private String votecheck;
 	private int votenumber;
-	private String vcontent;
 	
 	
 	public VPost() {}
 
 
-	public VPost(String vno, String vtitle, String vwriter, Date venrolldate, String alarm, String votecheck,
-			int votenumber, String vcontent) {
+	public VPost(String vno, String vtitle, String vucode, String vwriter, String valarm, String vcontent,
+			Date venrolldate, String votecheck, int votenumber) {
 		super();
 		this.vno = vno;
 		this.vtitle = vtitle;
+		this.vucode = vucode;
 		this.vwriter = vwriter;
+		this.valarm = valarm;
+		this.vcontent = vcontent;
 		this.venrolldate = venrolldate;
-		this.alarm = alarm;
 		this.votecheck = votecheck;
 		this.votenumber = votenumber;
-		this.vcontent = vcontent;
 	}
 
 
@@ -53,6 +56,16 @@ public class VPost implements java.io.Serializable{
 	}
 
 
+	public String getVucode() {
+		return vucode;
+	}
+
+
+	public void setVucode(String vucode) {
+		this.vucode = vucode;
+	}
+
+
 	public String getVwriter() {
 		return vwriter;
 	}
@@ -63,6 +76,26 @@ public class VPost implements java.io.Serializable{
 	}
 
 
+	public String getValarm() {
+		return valarm;
+	}
+
+
+	public void setValarm(String valarm) {
+		this.valarm = valarm;
+	}
+
+
+	public String getVcontent() {
+		return vcontent;
+	}
+
+
+	public void setVcontent(String vcontent) {
+		this.vcontent = vcontent;
+	}
+
+
 	public java.sql.Date getVenrolldate() {
 		return venrolldate;
 	}
@@ -70,16 +103,6 @@ public class VPost implements java.io.Serializable{
 
 	public void setVenrolldate(java.sql.Date venrolldate) {
 		this.venrolldate = venrolldate;
-	}
-
-
-	public String getAlarm() {
-		return alarm;
-	}
-
-
-	public void setAlarm(String alarm) {
-		this.alarm = alarm;
 	}
 
 
@@ -103,16 +126,6 @@ public class VPost implements java.io.Serializable{
 	}
 
 
-	public String getVcontent() {
-		return vcontent;
-	}
-
-
-	public void setVcontent(String vcontent) {
-		this.vcontent = vcontent;
-	}
-
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -120,10 +133,13 @@ public class VPost implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "VPost [vno=" + vno + ", vtitle=" + vtitle + ", vwriter=" + vwriter + ", venrolldate=" + venrolldate
-				+ ", alarm=" + alarm + ", votecheck=" + votecheck + ", votenumber=" + votenumber + ", vcontent="
-				+ vcontent + "]";
+		return "VPost [vno=" + vno + ", vtitle=" + vtitle + ", vucode=" + vucode + ", vwriter=" + vwriter + ", valarm="
+				+ valarm + ", vcontent=" + vcontent + ", venrolldate=" + venrolldate + ", votecheck=" + votecheck
+				+ ", votenumber=" + votenumber + "]";
 	}
+
+
+	
 	
 	
 	
