@@ -9,12 +9,14 @@
 <title>HWABO</title>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
 </head>
+
+
+</script>
 <body>
 	<div class="card shadow mb-4">
 		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary">
 				<i class="fas fa-user-circle"></i> 
-				수정용 ! <br>
 				${spost.swriter}<br> 
 				<fmt:formatDate value="${spost.senrolldate}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>
 				

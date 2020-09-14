@@ -9,6 +9,7 @@ public class Spost implements Serializable{
 	private String sno;
 	private String stitle;
 	private String swriter;
+	private String sucode;
 	private Date sstartday;
 	private Date sendday;
 	private String splace;
@@ -16,20 +17,18 @@ public class Spost implements Serializable{
 	private String scontent;
 	private Date senrolldate;
 	private String sopen;
-	private int slove;
-	private String srwriter;
-	private String srcontent;
 	
 	public Spost() {
 		super();
 	}
 
-	public Spost(String sno, String stitle, String swriter, Date sstartday, Date sendday, String splace, String salarm,
-			String scontent, Date senrolldate, String sopen, int slove, String srwriter, String srcontent) {
+	public Spost(String sno, String stitle, String swriter, String sucode, Date sstartday, Date sendday, String splace,
+			String salarm, String scontent, Date senrolldate, String sopen) {
 		super();
 		this.sno = sno;
 		this.stitle = stitle;
 		this.swriter = swriter;
+		this.sucode = sucode;
 		this.sstartday = sstartday;
 		this.sendday = sendday;
 		this.splace = splace;
@@ -37,9 +36,6 @@ public class Spost implements Serializable{
 		this.scontent = scontent;
 		this.senrolldate = senrolldate;
 		this.sopen = sopen;
-		this.slove = slove;
-		this.srwriter = srwriter;
-		this.srcontent = srcontent;
 	}
 
 	public String getSno() {
@@ -64,6 +60,14 @@ public class Spost implements Serializable{
 
 	public void setSwriter(String swriter) {
 		this.swriter = swriter;
+	}
+
+	public String getSucode() {
+		return sucode;
+	}
+
+	public void setSucode(String sucode) {
+		this.sucode = sucode;
 	}
 
 	public Date getSstartday() {
@@ -122,39 +126,14 @@ public class Spost implements Serializable{
 		this.sopen = sopen;
 	}
 
-	public int getSlove() {
-		return slove;
-	}
-
-	public void setSlove(int slove) {
-		this.slove = slove;
-	}
-
-	public String getSrwriter() {
-		return srwriter;
-	}
-
-	public void setSrwriter(String srwriter) {
-		this.srwriter = srwriter;
-	}
-
-	public String getSrcontent() {
-		return srcontent;
-	}
-
-	public void setSrcontent(String srcontent) {
-		this.srcontent = srcontent;
-	}
-
 	@Override
 	public String toString() {
-		return "Spost [sno=" + sno + ", stitle=" + stitle + ", swriter=" + swriter + ", sstartday=" + sstartday
-				+ ", sendday=" + sendday + ", splace=" + splace + ", salarm=" + salarm + ", scontent=" + scontent
-				+ ", senrolldate=" + senrolldate + ", sopen=" + sopen + ", slove=" + slove + ", srwriter=" + srwriter
-				+ ", srcontent=" + srcontent + "]";
+		return "Spost [sno=" + sno + ", stitle=" + stitle + ", swriter=" + swriter + ", sucode=" + sucode
+				+ ", sstartday=" + sstartday + ", sendday=" + sendday + ", splace=" + splace + ", salarm=" + salarm
+				+ ", scontent=" + scontent + ", senrolldate=" + senrolldate + ", sopen=" + sopen + "]";
 	}
-	
 	
 	
 	
 }
+

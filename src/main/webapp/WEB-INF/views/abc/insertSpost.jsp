@@ -30,6 +30,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
 <title>HWABO</title>
 
 <!-- Custom fonts for this template -->
@@ -122,7 +123,8 @@
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
 						<form action="sinsert.do" id="spostInsert"  name="spostInsert" method="post" onsubmit="return daycheck();">
-						<input type="hidden" name="swriter" value="정다운">
+						<input type="hidden" name="sucode" value="h127">
+						<input type="hidden" name="swriter" value="이창준">
 								<table style="text-align: center; width: 100%;">
 									<tr>
 										<td colspan="5">
@@ -162,7 +164,7 @@
 <div id="map" style="width:100%;height:150px;margin-top:10px;display:none"></div>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
+
 <script>
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {

@@ -7,21 +7,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
+
 </head>
 <body>
 
 <h1>Spost insert 성공시 내용 출력</h1>
 <br><br><br>
 <c:if test="${ ! empty spost }">
+
 ${ spost.sno } <br>
 ${ spost.stitle }<br>
 ${ spost.swriter } <br>
 <fmt:formatDate value="${spost.sstartday}" pattern="yyyy-MM-dd HH시 mm분 E"/><br>
 <fmt:formatDate value="${spost.sendday}" pattern="yyyy-MM-dd HH시 mm분 E"/><br>
 
-<div id="map" style="width:100%; height:50%; margin-top:10px;"></div> <br>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
+<div id="map" style="width:400px; height:200px; margin-top:5px;"></div> <br>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
@@ -66,8 +67,8 @@ ${ spost.salarm } <br>
 ${ spost.scontent} <br>
 <fmt:formatDate value="${spost.senrolldate}" pattern="yyyy-MM-dd HH시 mm분 E"/><br>
 ${ spost.sopen } <br>
-${ spost.slove } <br>
-
 </c:if>
+
+
 </body>
 </html>

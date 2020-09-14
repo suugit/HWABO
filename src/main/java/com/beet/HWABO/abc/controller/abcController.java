@@ -81,7 +81,7 @@ public class abcController {
 		String sno  = "s1";
 		Spost spost = spostService.selectOneSpost(sno);
 		m.addAttribute("spost", spost);
-		return "abc/selectSopst";
+		return "abc/selectSpost";
 	}
 	
 //---------- Spost ----------------------------------------------------------------------------------------------------------------		
@@ -89,16 +89,10 @@ public class abcController {
 	//일정 등록
 	@RequestMapping("sinsert.do")
 	public ModelAndView insertSpost(Spost spost, ModelAndView mav, @RequestParam("beforesstartday") String start,@RequestParam("beforesendday") String end ) {
-		logger.info(start.toString());
-		logger.info(end.toString());
-		
-		logger.info(spost.toString());
+
 		String Sstart = start.replace("T", " ");
 		String Send = end.replace("T", " ");
-		
-		logger.info(Sstart);
-		logger.info(Send);
-		
+
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 		try {
@@ -111,7 +105,10 @@ public class abcController {
 			e.printStackTrace();
 		}
 		
-		logger.info(spost.toString());
+		spost.setStitle(spost.getStitle().replace(" ","&nbsp;"));
+		spost.setScontent(spost.getScontent().replace("\r\n","<br>"));;
+		spost.setScontent(spost.getScontent().replace(" ","&nbsp;"));;
+		
 		if(spostService.insertSpost(spost) > 0) {
 			mav.addObject("spost", spost);
 			mav.setViewName("abc/insertTest");
