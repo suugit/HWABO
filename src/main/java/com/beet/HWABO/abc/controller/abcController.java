@@ -57,7 +57,6 @@ public class abcController {
 		return "abc/yourhwabo";
 	}
 	
-	
 	@RequestMapping("myhwabotest.do")
 	public String myHWABOtest() {
 		
@@ -74,6 +73,15 @@ public class abcController {
 	public String moveUpdateSpostPage() {
 		
 		return "abc/updateSpost";
+	}
+	
+	@RequestMapping("selectonespost.do")
+	public String moveSelectOneSpostPage(Model m) {
+		//수정하기 버튼 클릭시 sno 가지고 온다. 쿼리스트링이랑 매개변수에 추가해야한다.
+		String sno  = "s1";
+		Spost spost = spostService.selectOneSpost(sno);
+		m.addAttribute("spost", spost);
+		return "abc/selectSopst";
 	}
 	
 //---------- Spost ----------------------------------------------------------------------------------------------------------------		
