@@ -69,43 +69,10 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<div class="row">
-						<!-- 내정보 시작 -->
-						<div class="col-md-4">
-							<div class="card mb-4 py-3 border-left-info">
-								<div style="margin-top: 0px;">
-									<h1>&nbsp;&nbsp;내&nbsp; 정 보</h1>
-									<hr>
-								</div>
-								<div class="card-body" style="height: 400px;">
-									<!-- 게시글안쪽 -->
-									<table style="width: 100%; height: 90%; overflow: auto;">
-										<tr>
-											<th style="text-align: center;" rowspan="4" width="25%;">사진</th>
-											<th style="text-align: center;" width="25%;">이 &nbsp;름</th>
-											<td width="50%;">OOO</td>
-										</tr>
-										<tr>
-											<th style="text-align: center;" width="25%;">이메일</th>
-											<td width="55%;">OOO@naver.com</td>
-										</tr>
-										<tr>
-											<th style="text-align: center;" width="25%;">휴대폰</th>
-											<td width="55%;">010-0000-0000</td>
-										</tr>
-										<tr>
-											<th style="text-align: center;" width="25%;">부 &nbsp;서</th>
-											<td width="55%;">마케팅부</td>
-										</tr>
-									</table>
 
-								</div>
-							</div>
-						</div>
-						<!-- 내정보 끝 -->
 
 						<!-- 즐겨찾기 시작 -->
-						<div class="col-md-8">
+					
 							<div class="card mb-4 py-3 border-left-info">
 								<div style="margin-top: 0px;">
 									<h1>&nbsp;&nbsp;즐 겨 찾 기</h1>
@@ -189,9 +156,9 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						
 						<!-- 즐겨찾기 끝 -->
-					</div>
+					
 
 					<br>
 					<div class="checks" align="left"

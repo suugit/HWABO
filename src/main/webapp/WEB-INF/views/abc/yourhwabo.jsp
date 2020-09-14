@@ -76,57 +76,11 @@ $("div").on('click', function(e){
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<div class="row" >
-						<!-- 내정보 시작 -->
-						<div class="col-md-4">
-							<div class="card mb-4 py-3 border-left-info">
-								<div style="margin-top: 0px; height: 50px; overflow: hidden;">
-									<h3>&nbsp;&nbsp;OOO 님의&nbsp; 정 보</h3>
-									<hr>
-								</div>
-								<div class="card-body" style="height: 400px;">
-									<!-- 게시글안쪽 -->
-									<table style="width: 100%; height: 90%; overflow: auto;">
-										<tr>
-											<th style="text-align: center;" rowspan="4" width="25%;">사진</th>
-											<th style="text-align: center;" width="25%;">이 &nbsp;름</th>
-											<td width="50%;">OOO</td>
-										</tr>
-										<tr>
-											<th style="text-align: center;" width="25%;">이메일</th>
-											<td width="55%;">OOO@naver.com</td>
-										</tr>
-										<tr>
-											<th style="text-align: center;" width="25%;">휴대폰</th>
-											<td width="55%;">010-0000-0000</td>
-										</tr>
-										<tr>
-											<th style="text-align: center;" width="25%;">부 &nbsp;서</th>
-											<td width="55%;">마케팅부</td>
-										</tr>
-									</table>
-									<!-- 버튼 2개 -->
-									<div align="right">
-									                  <a href="#" class="btn btn-info btn-icon-split">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-box-open"></i>
-                    </span>
-                    <span class="text">보관함</span>                   
-                  </a>
-                                    <a href="#" class="btn btn-info btn-icon-split">
-                    <span class="icon text-white-50">
-                      <i class="far fa-folder-open"></i>
-                    </span>
-                    <span class="text">파일함</span>
-                  </a>
-                  </div>
-								</div>
-							</div>
-						</div>
-						<!-- 내정보 끝 -->
+					
+						
 
 						<!-- 즐겨찾기 시작 -->
-						<div class="col-md-8">
+						
 							<div class="card mb-4 py-3 border-left-info">
 								<div style="margin-top: 0px;  height: 50px;">
 									<h3>&nbsp;&nbsp;즐 겨 찾 기</h3>
@@ -210,9 +164,9 @@ $("div").on('click', function(e){
 									</div>
 								</div>
 							</div>
-						</div>
+						
 						<!-- 즐겨찾기 끝 -->
-					</div>
+					
 
 		<br>
 					<div class="checks" align="left" style="margin-left: 1%; font-size: 23px; " >

@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>HWABO</title>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
 </head>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -15,8 +14,8 @@
 	$(function(){
 		$("#spostupdate").css("display", "none" );
 		$("#changeselect").css("display", "none" );
-		
-	});
+	});	//document.ready;
+	
 	function changeform1(){
 		$("#spostview").css("display", "none" );
 		$("#spostupdate").css("display", "block" );
@@ -33,6 +32,7 @@
 	
 
 </script>
+
 <body>
 <button id="changeupdate" onclick="javascript: changeform1();">수 &nbsp;정</button>
 <button id="changeselect" onclick="javascript: changeform2();">수 정 취 소</button>

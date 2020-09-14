@@ -1,9 +1,9 @@
 package com.beet.HWABO.abc.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletResponse;
@@ -36,8 +36,9 @@ public class abcController {
 	//나의 업무페이지
 	@RequestMapping("mybpost.do")
 	public String TESTtables() {	
-		
-		return "abc/myBPOST";
+		//sesison 에서 작성자 아이디 받아오기.
+		//작성자인 글, 댓글 단 글, 
+		return "abc/myBpost";
 	}
 	
 	//나의 화보
@@ -77,12 +78,12 @@ public class abcController {
 	}
 	
 	@RequestMapping("selectonespost.do")
-	public String moveSelectOneSpostPage(Model m) {
+	public String moveSelectOneSpostPage(Model m, String sno) {
 		//수정하기 버튼 클릭시 sno 가지고 온다. 쿼리스트링이랑 매개변수에 추가해야한다.
-		String sno  = "s1";
+		sno  = "s1";
 		Spost spost = spostService.selectOneSpost(sno);
 		String startday = spost.getSstartday().toString();
-		String endday = spost.getSstartday().toString();
+		String endday = spost.getSendday().toString();
 		
 		SimpleDateFormat recvSimpleFormat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 		
@@ -100,10 +101,7 @@ public class abcController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		logger.info(startday);
-		logger.info(endday);
-		
-		logger.info(spost.getSstartday().toString());
+
 		m.addAttribute("spost", spost);
 		m.addAttribute("startday", startday);
 		m.addAttribute("endday", endday);
@@ -147,8 +145,9 @@ public class abcController {
 	
 	//일정 수정
 	@RequestMapping(value="supdate.do", method=RequestMethod.POST)
-	public String updateSpost(Spost spost, Model m, HttpServletResponse response, @RequestParam("beforesstartday") String start,@RequestParam("beforesendday") String end) throws UnsupportedEncodingException {
+	public String updateSpost(Spost spost, Model m, HttpServletResponse response, @RequestParam("beforesstartday") String start,@RequestParam("beforesendday") String end) throws IOException, UnsupportedEncodingException {
 		// 업데이트하면 에이작스로 이것만 보내서 표시한다.
+		logger.info("supdate.do 들어옴");
 		response.setContentType("application/json;charset=utf-8"); //어플리케이션이 나갈건데  json이라는 의미
 		  
 		JSONObject job = new JSONObject();
@@ -169,30 +168,22 @@ public class abcController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
-		Spost s = spostService.selectOneSpost(spost.getSno());
+		 
+		spost.setStitle(spost.getStitle().replace(" ","&nbsp;"));
+		spost.setScontent(spost.getScontent().replace("\r\n","<br>"));;
+		spost.setScontent(spost.getScontent().replace(" ","&nbsp;"));;
 		
 		if(spostService.updateSpost(spost) > 0) {
-			//jsp에서 result 값으로 성공여부 구분하기
-			job.put("result", "y");
-			job.put("sno", s.getSno());
-			job.put("stitle", s.getStitle());
-			
-			//job에 모든 컬럼 put 하기 !
+			return "redirect:/selectonespost.do?sno="+spost.getSno();
+
 			//좋아요랑 댓글 셀렉트 다시해오기 ?
-			
-		
-			
+
 		}else {
-			//jsp에서 result 값으로 성공여부 구분하기
+		
 			//실패해도 spost의 값 가지고 가고, alert창 띄우기
-			
-			job.put("result", "n");
-			job.put("sno", spost.getSno());
+			return "redirect:/selectonespost.do?sno="+spost.getSno();
 		}
-		
-		
-		 return job.toJSONString(); //뷰 리졸버로 리턴함
+
 	}
 	
 	/*

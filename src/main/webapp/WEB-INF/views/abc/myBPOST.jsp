@@ -34,18 +34,15 @@
 <link
 	href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
-	
-<style type="text/css">
 
-.online:link { text-decoration:none; color: black;}
+<script type="text/javascript" src="resources/js/scripts.js"></script>
+<script type="text/javascript">
+$("div").on('click', function(e){
 
-.online:visited { text-decoration:none;color: black;}
+	return false;
 
-.online:active {text-decoration:none; color: black; }
-
-.online:hover { text-decoration:none; color:#708090;}
-
-</style>
+	});
+</script>
 
 </head>
 
@@ -59,20 +56,18 @@
      <c:import url="/WEB-INF/views/abc/entersideFixed.jsp"></c:import>
 <!-- End of Sidebar2right -->
 
-
-	<!-- Page Wrapper -->
-	<div id="wrapper" style="width:1300px;">
+	
+	<div id="wrapper"  style="width:1300px;">
 
 		<!-- Sidebar -->
 <div style="width:17%"></div>
 		<!-- End of Sidebar -->
 
-
 		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column"  style="width:62%;">
+		<div id="content-wrapper" class="d-flex flex-column bg-white"  style="width:62%;">
 
 			<!-- Main Content -->
-			<div id="content">
+			<div id="content" style="width:100%;">
 
 				<!-- Topbar -->
 <br><br><br><br>
@@ -81,99 +76,246 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<div class="row">
-						<!-- 업무 모아보기 시작 -->
-						<div class="col-md-10">
+					
+						
+
+						<!-- 즐겨찾기 시작 -->
+						
 							<div class="card mb-4 py-3 border-left-info">
-								<div style="margin-top: 0px;">
-																	<h3>&nbsp;&nbsp;제 목(프로젝트전체업무 등등)</h3>
+								<div style="margin-top: 0px;  height: 50px;">
+									<h3>&nbsp;&nbsp;즐 겨 찾 기</h3>
 									<hr>
 								</div>
 								<!-- 게시글안쪽 -->
 
-								<div class="card-body" style="height: 680px; overflow: auto;">
+								<div class="card-body" style="height: 400px; overflow: auto;">
 									<div class="table-responsive">
 										<table class="table table-bordered" id="dataTable"
-											style="width: 95%; cellspacing: 0;">
+											style="width: 90%; cellspacing: 0;">
 											<thead>
 												<tr>
-													<th>번호</th>
-													<th>진행상황</th>
+													<th>유형</th>
 													<th>제목</th>
-													<th>담당자</th>
-													<th>시작일</th>
-													<th>마감일</th>
-													<th>작성자</th>
+													<th>내용</th>
+													<th>수정일</th>
 													<th>등록일</th>
 												</tr>
 
 											</thead>
 											<tbody>
-											<c:forEach var="pp"  begin="1" end="5" step="1"> 
 												<tr>
-													<td>${ pp }</td>
-													<td>요청</td>
-													<td>제목입니다</td>
-													<td>이순신, 신사임당</td>
-													<td>2020-08-20</td>
-													<td>2020-09-01</td>
-													<td>홍길동</td>
-													<td>2020-08-${pp + 1}</td>
+													<td>글</td>
+													<td>제목</td>
+													<td>내용</td>
+													<td>수정일</td>
+													<td>등록일</td>
 												</tr>
-												</c:forEach>
-												<c:forEach var="pp"  begin="6" end="10" step="1"> 
 												<tr>
-													<td>${ pp }</td>
-													<td>진행</td>
-													<td>제목입니다</td>
-													<td>나나나, 가가가, 신사임당</td>
-													<td>2020-08-27</td>
-													<td>2020-09-31</td>
-													<td>홍길동</td>
-													<td>2020-08-${pp + 1}</td>
+													<td>업무</td>
+													<td>제목</td>
+													<td>내용</td>
+													<td>수정일</td>
+													<td>등록일</td>
 												</tr>
-												</c:forEach>
-												<c:forEach var="pp"  begin="11" end="13" step="1"> 
 												<tr>
-													<td>${ pp }</td>
-													<td>완료</td>
-													<td>제목입니다</td>
-													<td>랄랄랄, 가가가</td>
-													<td>2020-09-27</td>
-													<td>2020-10-21</td>
-													<td>홍길동</td>
-													<td>2020-08-${pp + 1}</td>
+													<td>일정</td>
+													<td>제목</td>
+													<td>내용</td>
+													<td>수정일</td>
+													<td>등록일</td>
 												</tr>
-												</c:forEach>
-												<c:forEach var="pp"  begin="14" end="17" step="1"> 
 												<tr>
-													<td>${ pp }</td>
-													<td>피드백</td>
-													<td>피드백의 title</td>
-													<td>랄랄랄, 가가가</td>
-													<td>2020-09-02</td>
-													<td>2020-09-21</td>
-													<td>김철수</td>
-													<td>2020-08-${pp + 1}</td>
+													<td>할일</td>
+													<td>제목</td>
+													<td>내용</td>
+													<td>수정일</td>
+													<td>등록일</td>
 												</tr>
-												</c:forEach>
-											
+												<tr>
+													<td>할일</td>
+													<td>제목</td>
+													<td>내용</td>
+													<td>수정일</td>
+													<td>등록일</td>
+												</tr>
+												<tr>
+													<td>할일</td>
+													<td>제목</td>
+													<td>내용</td>
+													<td>수정일</td>
+													<td>등록일</td>
+												</tr>
+												<tr>
+													<td>할일</td>
+													<td>제목</td>
+													<td>내용</td>
+													<td>수정일</td>
+													<td>등록일</td>
+												</tr>
+												<tr>
+													<td>할일</td>
+													<td>제목</td>
+													<td>내용</td>
+													<td>수정일</td>
+													<td>등록일</td>
+												</tr>
 											</tbody>
-										</table>				
+										</table>
+									</div>
 								</div>
 							</div>
-						</div>
-						<!-- 업무 모아보기 끝 -->
+						
+						<!-- 즐겨찾기 끝 -->
+					
 
+		<br>
+					<div class="checks" align="left" style="margin-left: 1%; font-size: 23px; " >
+						<form action="#">
+							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;글 &nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;업 무 &nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;일 정&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;할 일&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;투 표&nbsp;&nbsp;&nbsp;&nbsp;</label></span>
+						</form>
 					</div>
+					
+					<!-- 게시글시작 -->
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h1>게시글 제목</h1>
+						</div>
+						<div class="card-body">
+							<!-- 게시글안쪽 -->
+							테이블 넣을 공간
+							<table>
 
-					<br>
+							</table>
+							<hr>
+							<table style="width: 100%;">
+								<tr>
+									<td style="width: 20%;"><a href="#"
+										class="btn btn-primary btn-icon-split btn-sm"> <span
+											class="icon text-white-50"> <i class="far fa-heart"></i>
+										</span> <span class="text">좋아요 0</span>
+									</a></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%; float: right;"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="px-3 py-5 bg-gradient-light text-white"
+							style="height: 10px;">
+							<input type="text" class="form-control" placeholder="답글을 입력하세요">
+						</div>
+					</div>
+					<!-- 게시글끝 -->
+
+					<!-- 게시글시작 -->
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h1>게시글 제목</h1>
+						</div>
+						<div class="card-body">
+							<!-- 게시글안쪽 -->
+							테이블 넣을 공간
+							<table>
+
+							</table>
+							<hr>
+							<table style="width: 100%;">
+								<tr>
+									<td style="width: 20%;"><a href="#"
+										class="btn btn-primary btn-icon-split btn-sm"> <span
+											class="icon text-white-50"> <i class="far fa-heart"></i>
+										</span> <span class="text">좋아요 0</span>
+									</a></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%; float: right;"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="px-3 py-5 bg-gradient-light text-white"
+							style="height: 10px;">
+							<input type="text" class="form-control" placeholder="답글을 입력하세요">
+						</div>
+					</div>
+					<!-- 게시글끝 -->
 
 
 					<!-- 게시글시작 -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h3>게시글 제목</h3>
+							<h1>게시글 제목</h1>
+						</div>
+						<div class="card-body">
+							<!-- 게시글안쪽 -->
+							테이블 넣을 공간
+							<table>
+
+							</table>
+							<hr>
+							<table style="width: 100%;">
+								<tr>
+									<td style="width: 20%;"><a href="#"
+										class="btn btn-primary btn-icon-split btn-sm"> <span
+											class="icon text-white-50"> <i class="far fa-heart"></i>
+										</span> <span class="text">좋아요 0</span>
+									</a></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%; float: right;"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="px-3 py-5 bg-gradient-light text-white"
+							style="height: 10px;">
+							<input type="text" class="form-control" placeholder="답글을 입력하세요">
+						</div>
+					</div>
+					<!-- 게시글끝 -->
+
+					<!-- 게시글시작 -->
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h1>게시글 제목</h1>
+						</div>
+						<div class="card-body">
+							<!-- 게시글안쪽 -->
+							테이블 넣을 공간
+							<table>
+
+							</table>
+							<hr>
+							<table style="width: 100%;">
+								<tr>
+									<td style="width: 20%;"><a href="#"
+										class="btn btn-primary btn-icon-split btn-sm"> <span
+											class="icon text-white-50"> <i class="far fa-heart"></i>
+										</span> <span class="text">좋아요 0</span>
+									</a></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%; float: right;"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="px-3 py-5 bg-gradient-light text-white"
+							style="height: 10px;">
+							<input type="text" class="form-control" placeholder="답글을 입력하세요">
+						</div>
+					</div>
+					<!-- 게시글끝 -->
+
+					<!-- 게시글시작 -->
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h1>게시글 제목</h1>
 						</div>
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
@@ -209,16 +351,10 @@
 				</div>
 				<!-- /.container-fluid -->
 
-				<!-- Begin Page Content -->
-				<div class="container-fluid"></div>
+			</div>
 				<!-- End of Main Content -->
 
-
-
-</div>
-			</div>
-			<!-- End of Content Wrapper -->
-				<!-- Footer -->
+								<!-- Footer -->
 				<footer class="sticky-footer bg-white">
 					<div class="container my-auto">
 						<div class="copyright text-center my-auto">
@@ -227,39 +363,15 @@
 					</div>
 				</footer>
 				<!-- End of Footer -->
+
+
+			</div>
+			<!-- End of Content Wrapper -->
+<div style="width:25%"></div>
 		</div>
 		<!-- End of Page Wrapper -->
-<div style="width:25%"></div>
-
-</div>
-		<!-- Scroll to Top Button-->
-		<a class="scroll-to-top rounded" href="#page-top"> <i
-			class="fas fa-angle-up"></i>
-		</a>
-
-		<!-- Logout Modal-->
-		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Ready to
-							Leave?</h5>
-						<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">Ã</span>
-						</button>
-					</div>
-					<div class="modal-body">Select "Logout" below if you are
-						ready to end your current session.</div>
-					<div class="modal-footer">
-						<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">Cancel</button>
-						<a class="btn btn-primary" href="login.jsp">Logout</a>
-					</div>
-				</div>
-			</div>
-		</div>
+			
+	</div>
 
 		<!-- Bootstrap core JavaScript-->
 		<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>

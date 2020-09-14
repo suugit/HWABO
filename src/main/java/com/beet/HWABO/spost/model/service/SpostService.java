@@ -13,8 +13,8 @@ public interface SpostService {
 	int deleteSpost(String sno);
 	int updateSpost(Spost spost);
 	
-	int updateSpostLove(String sno);
-	int updateSpostUnlove(String sno);
+	int insertSpostLove(String sno);
+	int deleteSpostUnlove(String sno);
 	String selectSpostAlarm(String sno);
 	Spost selectOneSpost(String sno);
 	
