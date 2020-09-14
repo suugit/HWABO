@@ -331,7 +331,6 @@ public class SuugitController {
 	public ModelAndView insertCpost(Cpost cpost, AddOn addon, ModelAndView mv, MultipartHttpServletRequest request) {
 		logger.info("incp.do run....");
 
-		cpost.setCpnum("1"); // 나중에 수정!
 		int result2 = cservice.insertCpost(cpost);
 		if (result2 > 0) {
 			mv.setViewName("suugit/tables");
@@ -433,12 +432,13 @@ public class SuugitController {
 	}
 
 	@RequestMapping("selcpone.do")
-	public ModelAndView bdetailView(@RequestParam("cno") String cno, ModelAndView mv) {
+	public ModelAndView selectCpOne(@RequestParam("cno") String cno, ModelAndView mv) {
+		logger.info(cno);
 		Cpost cpost = cservice.selectCpOne(cno);
 
 		if (cpost != null) {
 			mv.addObject("cpost", cpost);
-			mv.setViewName("suugit/페이지를 안정했어");
+			mv.setViewName("suugit/cpostCard");
 		} else {
 			mv.addObject("message", cno + "번 글을 조회할 수 없습니다!");
 			mv.setViewName("common/error");

@@ -4,19 +4,12 @@
 <mapper namespace="cpostMapper">
 	<resultMap type="Cpost" id="rsltCpost">
 		<id column="cno" property="cno" />
-		<result column="cpnum" property="cpnum" />
 		<result column="ctitle" property="ctitle" />
 		<result column="cucode" property="cucode" />
 		<result column="cwriter" property="cwriter" />
 		<result column="ccontent" property="ccontent" />
 		<result column="cenrolldate" property="cenrolldate" />
 		<result column="copen" property="copen" />
-		<result column="clove" property="clove" />
-		<result column="hashtags" property="hashtags" />
-		<result column="mentions" property="mentions" />
-		<result column="crwriter" property="crwriter" />
-		<result column="crcontent" property="crcontent" />
-		<result column="addonuse" property="addonuse" />
 	</resultMap>
 	
 	<resultMap type="AddOn" id="updateCfile">
@@ -30,8 +23,8 @@
 	</resultMap>
 	
 	<insert id="insertCpost" parameterType="Cpost">
-	insert into cpost (cno, cpnum, cucode, ctitle, cwriter, ccontent, cenrolldate, copen)
-		values ('c' || cpost_seq.nextval, #{cpnum, jdbcType=VARCHAR}, #{cucode, jdbcType=VARCHAR}, #{ctitle, jdbcType=VARCHAR}, #{cwriter, jdbcType=VARCHAR}, #{ccontent}, sysdate, #{copen})
+	insert into cpost (cno, cucode, ctitle, cwriter, ccontent, cenrolldate, copen)
+		values ('c' || cpost_seq.nextval, #{cucode, jdbcType=VARCHAR}, #{ctitle, jdbcType=VARCHAR}, #{cwriter, jdbcType=VARCHAR}, #{ccontent}, sysdate, #{copen})
 	</insert>
 	
 	<select id="selectCno" resultType="string">

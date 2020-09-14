@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +8,13 @@
 <title>HWABO</title>
 </head>
 <body>
+
 	<div class="card shadow mb-4">
 		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary">
 				<i class="fas fa-user-circle"></i> 
-				작성자<br> 
-				등록일자
+				{c.cwriter}<br> 
+				{c.cenrolldate}
 			</h6>
 
 			<div class="dropdown no-arrow">
@@ -29,11 +31,10 @@
 					class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
 				</a>
 				<div
-					class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-					aria-labelledby="dropdownMenuLink">
+					class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
 					<div class="dropdown-header">메뉴:</div>
-					<a class="dropdown-item" href="#">수정</a> <a class="dropdown-item"
-						href="#">삭제</a>
+					<a class="dropdown-item" href="#">수정</a> 
+					<a class="dropdown-item" href="#">삭제</a>
 				</div>
 
 			</div>
@@ -42,12 +43,12 @@
 		</div>
 		<div class="card-body">
 			<!-- 게시글안쪽 -->
-			<c>제목 : 제목을 여기쓰고</c>
+			<h6>${c.ctitle}<h6>
 			<hr>
 			<table>
 				<tr>
-					<td>내용</td>
-					<td>내용을 여기에 출력한다</td>
+					<td>${c.ctitle}</td>
+					<td>${c.content}</td>
 				</tr>
 			</table>
 
@@ -88,5 +89,6 @@
 			<input type="text" class="form-control" placeholder="답글을 입력하세요">
 		</div>
 	</div>
+
 </body>
 </html>
