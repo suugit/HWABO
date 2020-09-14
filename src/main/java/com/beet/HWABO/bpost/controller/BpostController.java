@@ -45,7 +45,10 @@ public class BpostController {
 	public String insertBpost(Bpost bpost, HttpServletRequest request,
 			@RequestParam(value = "ofile", required = false) MultipartFile file) {		
 		  logger.info("bpost : " + bpost); 
-		  logger.info("file : " + file.getOriginalFilename().length());		 
+		  logger.info("file : " + file.getOriginalFilename().length());		
+		  logger.info("file" + file);
+		  
+		  
 		  if(file != null && file.getOriginalFilename().length() > 0) {
 		 String fileName = file.getOriginalFilename();
 		 
@@ -174,20 +177,21 @@ public class BpostController {
 	 
 	 
 	 
-	 @RequestMapping(value="updatebpost.do", method = RequestMethod.POST) 
+	 @RequestMapping(value="updatebpost.do") 
 	 public String updatebpost(Bpost bpost, HttpServletRequest request, 
-			 HttpServletResponse response,
-			 @RequestParam(name="upfile", required=false) MultipartFile file,
+			 @RequestParam(name = "upfile", required = false) MultipartFile file,
 			 @RequestParam(name = "deleteFlag", required = false) String deleteFlag){
 	 
+		 
+		
 		 String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
 		 String returnView = null;
 
-		 
+		 logger.info("file : " + file.getOriginalFilename().length());	
+		 logger.info("file : " + file);
 		 logger.info("deleteFlag : "+deleteFlag);
 		 logger.info("bpost update going~");
 		 logger.info("boriginfile : "+bpost.getBoriginfile());
-		 logger.info("upfile : " + file);
 		 logger.info("bpost : " + bpost);
 		
 		 
@@ -206,12 +210,14 @@ public class BpostController {
 			 
 			 }
 		 
-		 if(file != null) {
+		 
+		 if(file != null && file.getOriginalFilename().length() > 0) {
+		 if(file != null ) {
 			 if(!file.getOriginalFilename().equals(bpost.getBoriginfile())
 					 && (new File(savePath + "\\" + bpost.getBrenamefile()).length() 
 							 != new File(savePath+ "\\" +file.getOriginalFilename()).length())) {
 				
-	
+				 
 					if ((new File(savePath + "\\" + bpost.getBrenamefile()).delete())) {
 						logger.info("파일 삭제 성공 !"); // 이름도 다르고 파일길이도 다를때 원래 파일 삭제
 						bpost.setBoriginfile(null);
@@ -265,9 +271,9 @@ public class BpostController {
 						e.printStackTrace();
 					}
 				}
+		 	}
+		 
 		 }
-		 
-		 
 		 if(bpostService.updateBpost(bpost) > 0) { 
 			 logger.info("3");
 			 return "redirect:bpostlist.do";
@@ -287,106 +293,4 @@ public class BpostController {
 	 
 	 
 	 
-	 
-	 
-	/*
-	 * @RequestMapping(value="updatebpost.do", method = RequestMethod.POST) public
-	 * String updatebpost(Bpost bpost, HttpServletRequest
-	 * request, @RequestParam(name= "upfile", required =false) MultipartFile upfile)
-	 * {
-	 * 
-	 * String originFileName = bpost.getBoriginfile(); String renameFileName =
-	 * bpost.getBrenamefile(); String deleteFlag =
-	 * request.getParameter("deleteFlag"); String savePath =
-	 * request.getSession().getServletContext().getRealPath("resources/bupfile");
-	 * SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS"); String
-	 * newOriginalFileName = upfile != null ? upfile.getOriginalFilename() : null;
-	 * String newRenameFileName = null;
-	 * 
-	 * if (newOriginalFileName != null) { newRenameFileName = sdf.format(new
-	 * java.sql.Date(System.currentTimeMillis()));
-	 * logger.info("originFileName "+originFileName);
-	 * logger.info("newRenameFileName "+newRenameFileName); newRenameFileName += "."
-	 * + newOriginalFileName.substring(upfile.getOriginalFilename().lastIndexOf(".")
-	 * + 1); logger.info("newRenameFileName2 "+newRenameFileName); try {
-	 * upfile.transferTo(new File(savePath + "\\" + newRenameFileName)); } catch
-	 * (IllegalStateException | IOException e) { e.printStackTrace(); } if
-	 * (renameFileName != null) { new File(savePath + "\\" +
-	 * renameFileName).delete(); } bpost.setBoriginfile(newOriginalFileName);
-	 * bpost.setBrenamefile(newRenameFileName); } else if (!originFileName.isEmpty()
-	 * && deleteFlag != null && deleteFlag.equals("yes")) {
-	 * bpost.setBoriginfile(null); bpost.setBrenamefile(null); new File(savePath +
-	 * "\\" + renameFileName).delete(); } else if (!originFileName.isEmpty() &&
-	 * (newOriginalFileName == null || originFileName.equals(newOriginalFileName) &&
-	 * new File(savePath+
-	 * "\\" + renameFileName).length() == new File(savePath + "\\" +
-	 * newRenameFileName).length())) { bpost.setBoriginfile(originFileName);
-	 * bpost.setBrenamefile(renameFileName); } logger.info(newOriginalFileName);
-	 * 
-	 * if(bpostService.updateBpost(bpost) > 0) { return "redirecr:bpostlist.do";
-	 * }else { return "common/error"; }
-	 * 
-	 * }
-	 */
-	 
-	 
-	 
-	 
-	/* 
-	 
-	 
-	 @RequestMapping(value="updatebpostpage.do", method=RequestMethod.POST)
-	 @ResponseBody
-	 public String bpostupdatepage(@RequestBody String param, HttpServletResponse response) throws ParseException{
-		 logger.info("수정이동 중....");
-		 
-		 JSONParser jparser = new JSONParser();
-		 JSONObject bpost =(JSONObject)jparser.parse(param);	
-		 
-		 Bpost b = new Bpost();
-		 b.setBno((String)bpost.get("bno"));
-		 b.setBtitle((String)bpost.get("btitle"));
-		 b.setBcharge((String)bpost.get("bcharge"));
-		 b.setBstartday((Date)bpost.get("bstartday"));
-		 b.setBendday((Date)bpost.get("bendday"));
-		 b.setBcontent((String)bpost.get("bcontent"));
-		 b.setBoriginfile((String)bpost.get("boriginfile"));
-		 
-		
-		 
-		response.setContentType("application/json; charset=utf-8");
-		
-		
-		JSONObject bob = new JSONObject();
-		bob.put("bno", b.getBno());
-		bob.put("btitle", b.getBtitle());
-		bob.put("bcharge", b.getBcharge());
-		bob.put("bstartday", b.getBstartday());
-		bob.put("bendday", b.getBendday());
-		bob.put("bcontent", b.getBrcontent());
-		bob.put("boriginfile", b.getBoriginfile());
-		
-		 logger.info(bob.toString());
-		 
-		 return bob.toJSONString();
-	 }
-	 
-	 
-	 */
-	 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	

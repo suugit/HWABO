@@ -265,11 +265,8 @@ function buppage(){
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-            
-              
-            </div>
-            <div class="card-body">
+         
+         <%--    <div class="card-body">
               <!-- 게시글안쪽 -->
               
               
@@ -389,8 +386,8 @@ function buppage(){
               <input class="btn btn-primary" type="submit" value="등록">
 			  <input class="btn btn-primary" type="reset" value="취소">
 			  </form>
-			 </div>
-         </div>
+			 </div> --%>
+         
            
            <!--  리스트  -->
            

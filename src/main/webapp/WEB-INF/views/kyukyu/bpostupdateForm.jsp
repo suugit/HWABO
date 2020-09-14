@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -103,7 +102,7 @@ function unSelected(){
 
                   <div class="card-body">
                      <!-- 게시글안쪽 -->
-                  <form action="updatebpost.do" name="b" method="post" id="bInsert" enctype="multipart/form-data">
+                  <form action="updatebpost.do" method="post" id="bupdate" enctype="multipart/form-data">
             
             
             		<input type ="hidden" name="bno" value="${bpost.bno }">
@@ -216,13 +215,19 @@ function unSelected(){
                                <c:if test="${!empty bpost.boriginfile }">
                              	${bpost.boriginfile }
                              
-                              <input type="checkbox" name="deleteFlag" value="yes">삭제
-                              </c:if>
-                               <input type="file" name="upfile"> 
-                              </td>
-                              <!--  #f8f9fc   -->
+                             	<input type="checkbox" name="deleteFlag" value="yes">삭제
+                          	  </c:if>
+                             </td>
+                           </tr>
+                           <tr>
+                             <td>
+                               <input type="file" name="upfile">
+                             </td>
+                            </tr>
+                            <tr>
+                             
                               <td>
-                              <select name="bopen" class="form-control" >
+                              <select name="bopen" class="form-control">
                                  <option value="y" selected>전체공개</option>
                                  <option value="n">나만보기</option>
                               </select>
@@ -230,12 +235,12 @@ function unSelected(){
                               <td colspan="3">
                               <!-- <a class="btn btn-success btn-icon-split"   href="javascript: spostInsert.submit();"  style="width: 90%;">
                                     <span class="text">등록</span> </a> -->
-                                    <input type="submit" class="btn btn-sm btn-info" value=" 등  록 ">
+                                    <input type="submit" class="btn btn-sm btn-info" value="등 록 ">
                                  <!--    <button type="submit" class="btn btn-sm btn-info" >&nbsp;등 &nbsp;록&nbsp;</button> -->
                            
                               <!-- <a href="javascript:spostInsert.reset();"   class="btn btn-danger btn-icon-split" style="width: 90%;">
                                     <span class="text">취소</span> </a> -->
-                                    <input type="reset" class="btn btn-sm btn-danger"  value=" 취  소 ">
+                                    <input type="reset" class="btn btn-sm btn-danger" alue="취 소">
                                     <!-- <button type="reset" class="btn btn-sm btn-danger" >&nbsp;취 &nbsp;소&nbsp;</button> -->
                               </td>
                            </tr>
