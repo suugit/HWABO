@@ -11,7 +11,7 @@
 spost의 값 input value에 넣어주고 
 1. 제목, 2. 시작날짜, 3. 끝날짜, 4. 장소, 5. 알람, 6. 컨텐츠, 7. 공개여부 까지 변경가능
 -->
-
+<c:set  />
 <%
 	long time = System.currentTimeMillis();
 	Date nowTime1 = new Date();
