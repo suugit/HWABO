@@ -41,6 +41,15 @@ public class VPostDao {
 		List<VPost> list = session.selectList("vpostMapper.selectList");
 		return (ArrayList<VPost>)list;
 	}
+
+
+
+
+	public VPost selectone(String vno) {
+		logger.info("vpostMapper.selectone 바로 가기직전!");
+		
+		return session.selectOne("vpostMapper.selectone", vno);
+	}
 	
 	
 	}

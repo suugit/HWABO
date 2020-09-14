@@ -18,11 +18,15 @@ vpost select 시 각 db컬럼데이터값 확인 !</h1>
 <br>
 <c:if test="${ ! empty vpost }">
 vno값 :	${ vpost.vno } <br>
-vwriter값 : 	${ vpost.vwriter } <br>
 vtitle값 : 	${ vpost.vtitle  } <br>
-vcontetn값 : ${ vpost.vcontent } <br>
+vucode값 : ${vpost.vucode } <br>
+vwriter값 : 	${ vpost.vwriter } <br>
+valarm값 : ${ vpost.valarm }	<br>
+vcontent값 : ${ vpost.vcontent } <br>
+venrolldate 값 : <fmt:formatDate value="${ vpost.venrolldate }" pattern="yyyy-MM-dd" /> <br>
 votecheck값 : 	${ vpost.votecheck } <br>
-vdate 값 : 	<fmt:formatDate value="${ vpost.venrolldate }" pattern="yyyy-MM-dd" /> <br>
+votenumber 값 : ${vpost.votenumber } <br>
+
 
 </c:if>
 등등등~

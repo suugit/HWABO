@@ -38,7 +38,10 @@
     <button onclick="javascript:location.href='flogin.do'">login</button>
     <button onclick="javascript:location.href='fregister.do'">register</button>
     <button onclick="javascript:location.href='ftables.do'">tables</button>
-    <button onclick="javascript:location.href='fanimation.do'">utilities-animation</button>
+    <c:url var="selectone" value="vpostselectone.do">
+	<c:param name="vno" value="v2" /> <!--  value="${ vpost.vno } -->
+</c:url>
+<a href="${ selectone }">게시글 1개출력확인(수정페이지로사용)</a>
     <button onclick="javascript:location.href='insertvp.do'">투표페이지로</button>
     <button onclick="javascript:location.href='fcolor.do'">채팅페이지로</button>
     <button onclick="javascript:location.href='fother.do'">알림페이지로</button>

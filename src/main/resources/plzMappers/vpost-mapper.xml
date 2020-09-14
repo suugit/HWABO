@@ -7,19 +7,21 @@
 	<resultMap type="VPost" id="resultVPost">
 		<id column="vno" property="vno" />
 		<result column="vtitle" property="vtitle" />
+		<result column="vucode" property="vucode" />
 		<result column="vwriter" property="vwriter" />
+		<result column="valarm" property="valarm" />
+		<result column="vcontent" property="vcontent" /> 
 		<result column="venrolldate" property="venrolldate" />
-		<result column="alarm" property="alarm" />
 		<result column="votecheck" property="votecheck" />
 		<result column="votenumber" property="votenumber" />
-		<result column="vcontent" property="vcontent" /> 
+	 
 		
 	</resultMap>
 
 <insert id="insertvpost" parameterType="VPost" >
 	insert into vpost
-	values ((select concat('v', (select nvl(max(to_number(substr(vno,2))),0)+1 from vpost))from dual), #{vtitle}, #{vwriter}, sysdate,
-	'y', 'y', 1, #{vcontent} )
+	values ((select concat('v', (select nvl(max(to_number(substr(vno,2))),0)+1 from vpost))from dual), #{vtitle},#{vucode}, #{vwriter},'n',#{vcontent}
+	, sysdate, 'n', default )
 	
 </insert>
 
@@ -31,5 +33,9 @@
 <select id="selectList"  resultMap="resultVPost">
 	select* from vpost
 	order by venrolldate desc
+</select>
+
+<select id="selectone" parameterType="String" resultMap="resultVPost">
+	select* from vpost where vno = #{ vno }
 </select>
 </mapper>

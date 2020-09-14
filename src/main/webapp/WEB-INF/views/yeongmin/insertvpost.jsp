@@ -102,10 +102,11 @@
 							<!--  게시물 등록 처리시 프로젝트 고유번호와 작성자 아이디의 고유번호를 알게함으로써 -->
 							<!--  통합검색시 유용함 ! -->
 							<%-- <input type="hidden" name= --%>
-							  <%-- <input type="hidden" name="vwriter" value="${ sessionScope.uname }">   --%>
-							
+							 <%--  <input type="hidden" name="vwriter" value="${ sessionScope.uname }">   
+								<input type="hidden" name="vucode" value="${ sessionScope.ucode } ">  --%>
 							<!--  당장 값을 확인하기위하여 hidden 속성에 임의의값을 지정함 ! hidden 미사용시 mapper.xml 가서 작성자를 임의로 집어넣는것도 가능! -->
-							 <input type="hidden" name="vwriter" value="김회원"> 
+							   <input type="hidden" name="vwriter" value="김회원">  
+							  <input type="hidden" name="vucode" value="h22"> 
 								<table style="text-align: center; width: 100%;">
 
 									<tr>
