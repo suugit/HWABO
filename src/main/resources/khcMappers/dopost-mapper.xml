@@ -28,4 +28,8 @@
 	set dtitle = #{dtitle}, dtitle = #{dtitle}
 	where dwriter = #{dwriter}
 	</update>
+	
+	<delete id="deletedopost" parameterType="Dopost">
+	delete dopost where dno = #{dno}
+	</delete>
 </mapper>

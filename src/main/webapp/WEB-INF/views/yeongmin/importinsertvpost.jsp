@@ -102,10 +102,10 @@
 							<!--  게시물 등록 처리시 프로젝트 고유번호와 작성자 아이디의 고유번호를 알게함으로써 -->
 							<!--  통합검색시 유용함 ! -->
 							<%-- <input type="hidden" name= --%>
-							  <%-- <input type="hidden" name="vwriter" value="${ sessionScope.uname }">   --%>
+							  <input type="hidden" name="vwriter" value="${ sessionScope.uname }">  
 							
 							<!--  당장 값을 확인하기위하여 hidden 속성에 임의의값을 지정함 ! hidden 미사용시 mapper.xml 가서 작성자를 임의로 집어넣는것도 가능! -->
-							 <input type="hidden" name="vwriter" value="김회원"> 
+							<!-- <input type="hidden" name="vwriter" value="테스트작성자">  -->
 								<table style="text-align: center; width: 100%;">
 
 									<tr>
@@ -146,133 +146,7 @@
 						</div>
 					</div>
 
-		 <!--  리스트  -->
-           selectlist(ArrayList) 출력화면 시작 !!
-           <c:forEach var="vpost" items="${requestScope.list }">
-           <div class="card shadow mb-4">
-           
-           	
-           
-           
-				 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-				<h6 class="m-0 font-weight-bold text-primary">
-				
-				<i class="fas fa-user-circle"></i>
-				${vpost.vwriter}<br>${vpost.venrolldate }</h6>
-			<!-- 	<button type="submit" class="btn btn-custom btn-sm liketoggle" name="like"><span>보관</span> <i class="far fa-bookmark"></i></button>
-					 -->
-					
-					
-				<!-- 수정삭제 드롭다운 -->	
-                  <div class="dropdown no-arrow">
-                  
-                <!-- 보관함 담기여부 -->  
-				 <!--   <button id="cabinetshow" class="btn btn-custom btn-sm ">
-			   <i class="far fa-bookmark"></i></button>
-           		 -->
-               <!-- <form action="insertcabinet.do" method="post"> -->
-               <!--  보관 버튼눌럿을시 게시글 vno값과 member 의 ucode 를 보냄 (프로젝트 보관함)  -->
-               <input type="hidden" id="ucode" value="${sessionScope.ucode }">
-			   <input type="hidden" id="no" value="${vpost.vno }">
-               <button id="cabinetshow" class="btn btn-custom btn-sm liketoggle" name="like">
-           	   <span>보관</span> <i class="far fa-bookmark"></i></button>
-				
-           
-              <!--  </form> -->
-			 	<!--  여기서 부터는 게시글 작성자와 프로젝트로그인 member의 이름이 같을때 (단, 중복처리는 안됨) -->
-			 	<!--  예를들어 구영민이라는 이름이 2명이면 각자의 것을 건드릴수 있음!! -->
-			 	<!--  일단은 작성자와 member의 이름이 같을때는 수정과 삭제를 진행할수 있음 같지않으면 안뜸 -->
-		  		<c:if test="${sessionScope.uname eq vpost.vwriter }">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <c:url var="vupdate" value="vpostupdate.do">
-                      <!--  수정을 눌럿을시에 vno 값을 받아서 넘김 -->
-                      	<c:param name="vno" value="${vpost.vno }"/>
-                      </c:url>
-                     	<a class="dropdown-item" href="${vupdate }">수정</a>
-                     	
-                       <c:url var="vdelete" value="vpostdelete.do">
-                        <!--  수정을 눌럿을시에 vno 값을 받아서 넘김 -->
-                      	<c:param name="vno" value="${vpost.vno }"/>
-                    	
-                      </c:url>
-                      <a class="dropdown-item" href="${vdelete }">삭제</a>
-                 		
-                    </div>
-                    </c:if>
-                  </div> <!-- 드롭다운 끝 -->
-					
-				</div>
-				<!--  여기까지가 보관함 처리와, 본인 게시글 수정 삭제 버튼에대한 게시글 조회 뷰 -->
-					<div class="card-body">
-							<!-- 게시글조회시 게시글에 대한 내용 -->
-						
-						<table>	
-						<tr>
-						<td>
-							   제 목 : ${vpost.vtitle}
-							   <td>
-							</tr>
-						</table>	
-							
-			
-						<hr>	
-							
-						<table>
-							<tr>
-							   <td>내 용 : </td>
-								<td> ${vpost.vcontent}</td>
-							</tr>
-						</table>
-							
-						
-						
-							<hr>
-							<hr>
-							<table>
-							<tr>
-							<td>
-							<!--  현재사용자가  votecheck 컬럼에 들어가잇지않다면 투표하기(voteinsert.do) 버튼 -->
-							<!--  현재사용자가 votecheck 컬럼에 들어가잇다면 투표취소(voteupdate.do) 혹은 (votedelete.do) 버튼 -->
-							<!--  여기는 따로질문해보기 !!! -->
-							<%-- <c:if test=""></c:if> --%>
-							 <button onclick="javascript:location.href='voteinsert.do'" style="width:120px;height:60px;background-color:black;color:white;">투표하기</button>
-							 	 
-							 	<%--  <c:if test="">
-							 	 <button onclick="javascript:location.href='voteupdate.do'" style="width:120px;height:60px;background-color:black;color:white;">투표취소</button>
-								</c:if> --%>
-							</td>
-							</tr>
-							</table>
-						</div>
-						
-					</div>
-				</c:forEach>
-				
-           
-           
-           
-           
-              
-            
-          </div>
-          </div>
-
-			<br>
-			<br>
-			<br>
-			게시글 구간임 select 만들고 확인해보면됨!
-				아아아아아아!
-				<c:if test="${ empty sessionScope.uname} ">
-					sessionScope.uname 값 : ${ sessionScope.uname }						
-				</c:if>
-				<c:if test="${ ! empty sessionScope.uname }">
-				
-					sessionScope.uname 값 : ${ sessionScope.uname }
-				</c:if>
+		
 
 				</div>
 				<!-- /.container-fluid -->

@@ -1,5 +1,9 @@
 package com.beet.HWABO.vpost.controller;
 
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +51,7 @@ public class VPostController {
 		int result = vpostservice.updatevpost(vpost);
 		
 		if(result >0) {
-			return "yeongmin/index.jsp";
+			return "yeongmin/index";
 			
 		}else {
 			model.addAttribute("message","회원 수정 실패");
@@ -56,5 +60,20 @@ public class VPostController {
 		
 		
 	}
-	
+	@RequestMapping(value="vpostselect100.do")
+	public String vpostselectall(Model model) {
+		
+		logger.info("vpostselect.do 진입");
+		
+		ArrayList<VPost> list = vpostservice.selectList();
+		
+		if(list != null) {
+			model.addAttribute("list",list);
+			logger.info("arrayList = 모든게시글출력결과 @@@@@@ : " + list);
+			return "yeongmin/importselectall";
+		}else{
+			model.addAttribute("message","조회출력결과실패!");
+			return "common/error";
+		}
+	}
 }

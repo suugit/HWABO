@@ -449,7 +449,6 @@
 												<span class="text">취소</span>
 										</a></td>  -->
 										<input type="submit" class="btn btn-sm btn-info" value=" 등  록 ">
-										<input type="submit" class="btn btn-sm btn-info" value=" 수정페이지로이동 ">
 										<input type="reset" class="btn btn-sm btn-danger"  value=" 취  소 ">
 									</tr>
 								</table>

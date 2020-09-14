@@ -271,6 +271,11 @@ public class RedController {
 		
 		return "red/utilities-border";
 	}
+	@RequestMapping(value = "fborder2.do", method = RequestMethod.GET)
+	public String border2(Model model) {
+		
+		return "red/utilities-border2";
+	}
 	@RequestMapping(value = "sfborder.do", method = RequestMethod.GET)
 	public String sborder(Model model) {
 		
