@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -112,7 +116,6 @@
 												data-toggle="modal" data-target="#pwdUpdateModal">비밀번호변경</button>
 										</div>
 									</div>
-
 									<form action="upinfo.do" method="post" id="myInfoForm"
 										class="col-md-8">
 										<input type="hidden" name="ucode" value="${member.ucode}">
@@ -245,17 +248,26 @@
 
 				</div>
 				<div class="modal-body">
-					<form>
+					<form action="uppwd.do" method="post" id="upPwdForm">
+					<input type="hidden" name="ucode" value="${ucode}">
+					<div class="form-group row">
+						<label class="control-label mypage text-center col-md-4">현재 비밀번호</label> 
+						<input class="form-control col-md-6" type="password" name="oldpwd">
+					</div>
 					<div class="form-group row">
 						<label class="control-label mypage text-center col-md-4">새 비밀번호</label> 
-						<input class="form-control col-md-6" type="email"
-							name="email">
+						<input class="form-control col-md-6" type="password" name="newpwd">
 					</div>
 					<div class="form-group row">
-						<label class="control-label mypage text-center col-md-4">비밀번호 확인</label> 
-						<input class="form-control col-md-6" type="email" name="email">
+						<label class="control-label mypage text-center col-md-4">새 비밀번호 확인</label> 
+						<input class="form-control col-md-6" type="password" name="newpwdChk">
 					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">변경하기</button>
 					</form>
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 			</div>
@@ -306,7 +318,7 @@
 
 				<!-- Page level custom scripts -->
 				<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
-
+				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 				<script src="resources/js/jquery-3.5.1.min.js"></script>
 				<script type="text/javascript">
 					function toggleModify() {
@@ -334,6 +346,13 @@
 					$('#btn_pwd').on('click',function(){
 						$('#pwdUpdateModal').modal('show')
 					})
+
+		/* 			 $(function(){
+        var responseMessage = "<c:out value="${message}" />";
+        if(responseMessage != ""){
+            alert(responseMessage)
+        }
+    })  */
 				</script>
 </body>
 

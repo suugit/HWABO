@@ -2,13 +2,13 @@ package com.beet.HWABO.suugit.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -26,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.cpost.model.service.CpostService;
 import com.beet.HWABO.cpost.model.vo.AddOn;
 import com.beet.HWABO.cpost.model.vo.Cpost;
@@ -243,14 +242,24 @@ public class SuugitController {
 	}
 	
 	@RequestMapping(value="/uppwd.do", method=RequestMethod.POST)
-	public String updatePwd(HttpServletRequest request) {
-		Member member = mservice.selectMember((String) request.getSession().getAttribute("ucode"));
-		bcryptPwdEncoder.matches(request.getParameter("upwd"), member.getUpwd());
-		
-		
-		return null;
-		
-		
+	public ModelAndView updatePwd(HttpServletRequest request, ModelAndView mav, HttpServletResponse response) {
+		String ucode = request.getParameter("ucode");
+		Member member = mservice.selectMember(ucode);
+		if(bcryptPwdEncoder.matches(request.getParameter("oldpwd"), member.getUpwd())) {
+			logger.info("비밀번호 일치! 비밀번호 변경 요청...");
+			member.setUpwd(bcryptPwdEncoder.encode(request.getParameter("newpwd")));
+			int result = mservice.updatePwd(member);
+			if(result > 0) {
+				mav.addObject("message", "비밀번호를 변경했습니다");
+			}else { 	
+				mav.addObject("message","비밀번호 변경에 실패했습니다!");
+			}
+		}else {
+			logger.info("비번 불일치!");
+			mav.addObject("message", "현재 비밀번호가 일치하지 않습니다!");
+		}
+		mav.setViewName("redirect:/myinfo.do?ucode="+ucode);		
+		return mav;
 	}
 	
 	/*

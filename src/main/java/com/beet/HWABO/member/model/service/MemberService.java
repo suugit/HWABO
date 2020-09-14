@@ -22,5 +22,7 @@ public interface MemberService {
 	int deleteUser(String ucode);
 
 	int updateImg(Member member);
+
+	int updatePwd(Member member);
 	
 }
