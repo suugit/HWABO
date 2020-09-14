@@ -78,11 +78,7 @@ public class KhcController {
 		
 	}
 	
-	@RequestMapping()
-	public String updatetodofile(Model model) {
-		return "khc/updatemytodo"; //경로
-		
-	}
+
 	
 	
 	@RequestMapping(value = "participateproject.do", method = RequestMethod.GET)

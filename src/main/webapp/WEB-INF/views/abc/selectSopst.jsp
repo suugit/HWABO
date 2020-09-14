@@ -10,6 +10,39 @@
 </head>
 <body>
 
+					<!-- 게시글시작 -->
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h1>게시글 제목</h1>
+						</div>
+						<div class="card-body">
+							<!-- 게시글안쪽 -->
+							테이블 넣을 공간
+							<table>
+
+							</table>
+							<hr>
+							<table style="width: 100%;">
+								<tr>
+									<td style="width: 20%;"><a href="#"
+										class="btn btn-primary btn-icon-split btn-sm"> <span
+											class="icon text-white-50"> <i class="far fa-heart"></i>
+										</span> <span class="text">좋아요 0</span>
+									</a></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%;"></td>
+									<td style="width: 20%; float: right;"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="px-3 py-5 bg-gradient-light text-white"
+							style="height: 10px;">
+							<input type="text" class="form-control" placeholder="답글을 입력하세요">
+						</div>
+					</div>
+					<!-- 게시글끝 -->
+
 <h1>Spost insert 성공시 내용 출력</h1>
 <br><br><br>
 <c:if test="${ ! empty spost }">
