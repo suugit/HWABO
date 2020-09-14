@@ -97,7 +97,7 @@
 								});		
 							});//document.ready 끝
 							
-							function daycheck(){
+						function daycheck(){
 
 								var startday = document.spostInsert.beforesstartday.value.replace("T", " ");
 								var endday = document.spostInsert.beforesendday.value.replace("T", " ");
@@ -169,10 +169,10 @@
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-            draggable: false, //지도 이동 금지
             level: 4 // 지도의 확대 레벨
         };
 
+    
     //지도를 미리 생성
     var map = new daum.maps.Map(mapContainer, mapOption);
     //주소-좌표 변환 객체를 생성
