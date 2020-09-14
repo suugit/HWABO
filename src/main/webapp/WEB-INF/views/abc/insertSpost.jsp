@@ -30,6 +30,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
 <title>HWABO</title>
 
 <!-- Custom fonts for this template -->
@@ -62,7 +63,7 @@
 	<div id="wrapper">
 
 		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
+		<div id="content-wrapper" class="d-flex flex-column bg-white">
 
 			<!-- Main Content -->
 			<div id="content">
@@ -122,7 +123,8 @@
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
 						<form action="sinsert.do" id="spostInsert"  name="spostInsert" method="post" onsubmit="return daycheck();">
-						<input type="hidden" name="swriter" value="정다운">
+						<input type="hidden" name="sucode" value="h127">
+						<input type="hidden" name="swriter" value="이창준">
 								<table style="text-align: center; width: 100%;">
 									<tr>
 										<td colspan="5">
@@ -162,7 +164,7 @@
 <div id="map" style="width:100%;height:150px;margin-top:10px;display:none"></div>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
+
 <script>
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
@@ -265,12 +267,12 @@
 										<!-- <a class="btn btn-success btn-icon-split"	href="javascript: spostInsert.submit();"  style="width: 90%;">
 												<span class="text">등록</span> </a> -->
 												<input type="submit" class="btn btn-sm btn-info" value=" 등  록 ">
-												<button type="submit" class="btn btn-sm btn-info" >&nbsp;등 &nbsp;록&nbsp;</button>
+												
 									
 										<!-- <a href="javascript:spostInsert.reset();"	class="btn btn-danger btn-icon-split" style="width: 90%;">
 												<span class="text">취소</span> </a> -->
 												<input type="reset" class="btn btn-sm btn-danger"  value=" 취  소 ">
-												<button type="reset" class="btn btn-sm btn-danger" >&nbsp;취 &nbsp;소&nbsp;</button>
+												
 										</td>
 									</tr>
 								</table>
@@ -285,49 +287,12 @@
 			</div>
 			<!-- End of Main Content -->
 
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2020</span>
-					</div>
-				</div>
-			</footer>
-			<!-- End of Footer -->
-
 		</div>
 		<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
 
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">Ã</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.jsp">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>

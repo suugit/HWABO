@@ -9,7 +9,7 @@
 	</welcome-file-list> -->
 	
 	<session-config>
-		<session-timeout>10</session-timeout>
+		<session-timeout>60</session-timeout>
 	</session-config>
 	<!-- 10분동안 동작안하면 자동 로그아웃 -->
 	

@@ -55,4 +55,11 @@ public class MemberDao {
 	public int updateImg(Member member) {
 		return session.update("memberMapper.updateImg", member);
 	}
+
+
+	public int updatePwd(Member member) {
+		return session.update("memberMapper.updatePwd", member);
+	}
+	
+
 }
