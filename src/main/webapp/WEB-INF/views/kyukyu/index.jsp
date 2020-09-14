@@ -446,54 +446,61 @@ function buppage(){
                   </div> <!-- 드롭다운 끝 -->
 					
 				</div>
-					<div class="card-body">
+			<div class="card-body">
 							<!-- 게시글안쪽 -->
 						
 							
-							   <c>제목 : ${b.btitle}</c>
-							<hr>
+			 <c>제목 : ${b.btitle}</c>
+			 <hr>
 							
 							
 			<div class="btn-group btn-group-toggle" data-toggle="buttons">
-			  <label class="btn btn-secondary active">
+			  <label class="btn btn-info active">
 			    <input type="radio" name="요청" id="요청" value="요청" >요청
 			  </label>
-			  <label class="btn btn-secondary">
+			  <label class="btn btn-primary">
 			    <input type="radio" name="진행" id="진행" value="진행">진행
 			  </label>
-			  <label class="btn btn-secondary">
+			  <label class="btn btn-warning">
 			    <input type="radio" name="피드백" id="피드백" value="피드백" >피드백
 			  </label>
-			   <label class="btn btn-secondary">
+			   <label class="btn btn-success">
 			    <input type="radio" name="완료" id="완료" value="완료">완료
 			  </label>
 			   <label class="btn btn-secondary">
 			    <input type="radio" name="보류" id="보류" value="보류">보류
 			  </label>
 			</div>
-							
-							
-						<table>
-							<tr>
-							   <td>내용</td>
-								<td> ${b.bcontent}</td>
-							</tr>
-						</table>
-							
-						<table>
-						<c:if test="${! empty b.boriginfile }">
-							<tr>
-							   <td>파일</td>
-							   <br>
-							   </tr>
-							   <tr>
-							   <th>
+			<hr>
+			
+			
+			
+			<div>
+			   <c><i class="fas fa-users">담당자 :  ${b.bcharge }</i></c>
+			</div>
+			<hr>
+			
+			<div>
+				<table>
+			<tr>
+					<td>내용 : </td>
+					<td> ${b.bcontent}</td>
+				 </tr>
+				 </table>
+					
+				 <table>
+					 <c:if test="${! empty b.boriginfile }">
+					  <tr>
+					   <td>파일 : </td>
+					   <br>
+					  </tr>
+					  <tr>
+						<th>
 							   
 							   	<div id="showfile" style="overflow:hidden;"> 
 							   	<img src="resources/bupfile/${b.brenamefile}" style="width : 60%;height : 60%;">
 								
 								 </div> 
-							   
 							  </th>
 						   <c:url var="ubf" value="bfdown.do">
 								<c:param name="ofile" value="${b.boriginfile}"/>
@@ -512,9 +519,8 @@ function buppage(){
 								<tr>
 								
 								
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
+							<td style="width: 20%;"><a href="#" class="btn btn-primary btn-icon-split btn-sm"> 
+							<span class="icon text-white-50"> <i class="far fa-heart"></i>
 										</span> <span class="text">좋아요 </span>
 									</a></td>
 									<td style="width: 20%;"></td>

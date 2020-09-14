@@ -41,6 +41,9 @@ public class BpostController {
 	@Autowired
 	private BpostService bpostService;
 	
+	
+	
+	
 	 @RequestMapping(value="insertbpost.do", method=RequestMethod.POST)
 	public String insertBpost(Bpost bpost, HttpServletRequest request,
 			@RequestParam(value = "ofile", required = false) MultipartFile file) {		
@@ -169,7 +172,7 @@ public class BpostController {
 	 public String updatebpage(Bpost bpost, Model model) {
 		 Bpost selectbpost = bpostService.selectBpost(bpost.getBno());
 		model.addAttribute("bpost", selectbpost);
-		 return "kyukyu/bpostupdateForm";
+		 return "kyukyu/bpostUpdatepage";
 	 }
 	 
 	 

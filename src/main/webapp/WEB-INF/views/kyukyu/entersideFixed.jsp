@@ -26,7 +26,11 @@
          <!-- Nav Item - Pages Collapse Menu -->
          
          <li class="nav-item">
-         
+             <a class="nav-link collapsed" href="binsertpage.do" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages"> 
+               <i class="far fa-folder-open"></i>
+             <span>글쓰기폼</span>
+            </a>
          <a class="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true"
                aria-controls="collapsePages"> 
                <i class="far fa-address-card"></i>
@@ -52,11 +56,7 @@
                <i class="far fa-folder-open"></i>
              <span>파일함</span>
             </a>
-               <a class="nav-link collapsed" href="bupage.do" data-target="#collapsePages"
-               aria-expanded="true" aria-controls="collapsePages"> 
-               <i class="far fa-folder-open"></i>
-             <span>글쓰기폼</span>
-            </a>
+           
             
          </li>
 

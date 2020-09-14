@@ -44,10 +44,10 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	}
 	
 
-	@RequestMapping(value = "bupage.do", method = RequestMethod.GET)
+	@RequestMapping(value = "binsertpage.do", method = RequestMethod.GET)
 	public String page(Model model) {
 		
-		return "kyukyu/bpostuppage";
+		return "kyukyu/binsertpage";
 	}
 	
 	

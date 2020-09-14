@@ -53,7 +53,7 @@ $("#'${b.bkind}'").button('toggle')
 var names = "";
 function addbcharge(){
    var name = $(event.target).text();
-   names += name + ",";
+   names += name + " ";
    
     $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>');
     //$('#bform').val(name); 
