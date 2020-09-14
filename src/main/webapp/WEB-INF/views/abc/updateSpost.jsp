@@ -13,7 +13,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 
-/* $("#uspost").on("click", function spostupdate(){
+ $("#uspost").on("click", function spostupdate(){
 		var param = $("#uspostform").serialize();
 		$.ajax({
 			url: "supdate.do",
@@ -39,7 +39,7 @@
 				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
 			}
 		}); //ajax
-}); */
+}); 
 	
 $(function(){	
 	$('#scontent').on("propertychange change keyup paste input", function() {
