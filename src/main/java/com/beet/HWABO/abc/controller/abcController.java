@@ -1,9 +1,10 @@
 package com.beet.HWABO.abc.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -80,7 +81,32 @@ public class abcController {
 		//수정하기 버튼 클릭시 sno 가지고 온다. 쿼리스트링이랑 매개변수에 추가해야한다.
 		String sno  = "s1";
 		Spost spost = spostService.selectOneSpost(sno);
+		String startday = spost.getSstartday().toString();
+		String endday = spost.getSstartday().toString();
+		
+		SimpleDateFormat recvSimpleFormat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+		SimpleDateFormat format2 = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
+		
+		try {
+			java.util.Date startdate = recvSimpleFormat.parse(startday);
+			java.util.Date enddate = recvSimpleFormat.parse(endday);
+			
+			startday = format1.format(startdate) + "T" + format2.format(startdate);
+			endday = format1.format(enddate) + "T" + format2.format(enddate);
+		
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		logger.info(startday);
+		logger.info(endday);
+		
+		logger.info(spost.getSstartday().toString());
 		m.addAttribute("spost", spost);
+		m.addAttribute("startday", startday);
+		m.addAttribute("endday", endday);
 		return "abc/selectSpost";
 	}
 	
