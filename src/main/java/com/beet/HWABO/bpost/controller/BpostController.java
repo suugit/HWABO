@@ -176,17 +176,20 @@ public class BpostController {
 	 
 	 @RequestMapping(value="updatebpost.do", method = RequestMethod.POST) 
 	 public String updatebpost(Bpost bpost, HttpServletRequest request, 
-			 HttpServletResponse response, @RequestParam(name="upfile", required=false) MultipartFile file){
+			 HttpServletResponse response,
+			 @RequestParam(name="upfile", required=false) MultipartFile file,
+			 @RequestParam(name = "deleteFlag", required = false) String deleteFlag){
 	 
-		 String deleteFlag = request.getParameter("deleteFlag");
+		 String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
+		 String returnView = null;
+
 		 
-		 
+		 logger.info("deleteFlag : "+deleteFlag);
 		 logger.info("bpost update going~");
 		 logger.info("boriginfile : "+bpost.getBoriginfile());
 		 logger.info("upfile : " + file);
 		 logger.info("bpost : " + bpost);
-		 String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
-		 file = null;
+		
 		 
 		 if(bpost.getBoriginfile() != null) {
 			 if(deleteFlag != null && deleteFlag.equals("yes")) {
@@ -267,7 +270,7 @@ public class BpostController {
 		 
 		 if(bpostService.updateBpost(bpost) > 0) { 
 			 logger.info("3");
-			 return "redirecr:bpostlist.do";
+			 return "redirect:bpostlist.do";
 		 }else { 
 			 return "common/error"; 
 			 }

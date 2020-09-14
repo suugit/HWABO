@@ -52,6 +52,12 @@
                <i class="far fa-folder-open"></i>
              <span>파일함</span>
             </a>
+               <a class="nav-link collapsed" href="bupage.do" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages"> 
+               <i class="far fa-folder-open"></i>
+             <span>글쓰기폼</span>
+            </a>
+            
          </li>
 
          <!-- Divider -->

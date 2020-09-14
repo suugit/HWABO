@@ -292,8 +292,9 @@ function buppage(){
         
               <!-- 글작성 본문 -->
               
-              
-    		<input type="hidden" name="bwriter" value="${sessionScope.uname }">
+              <input type="hidden" id="bucode" value="${sessionScope.ucode }">
+               <input type="hidden" id="bwriter" value="${sessionScope.uname }">
+    		
     		<input type="hidden" id="bform" name="bcharge">
     		
     		
@@ -368,7 +369,7 @@ function buppage(){
 					   <div class="col-5"><input type="date" class="form-control" name="bendday"></div>
 		     </div>
 	
-              	<textarea cols="50" rows="6" class="w-100 form-control " name="bcontent"></textarea>
+              	<textarea cols="50" rows="6" class="w-100 form-control" name="bcontent"></textarea>
              
               <hr>
          
@@ -416,6 +417,7 @@ function buppage(){
 			   <i class="far fa-bookmark"></i></button>
            		 -->
                <!-- <form action="insertcabinet.do" method="post"> -->
+               
                <input type="hidden" id="ucode" value="${sessionScope.ucode }">
 			   <input type="hidden" id="no" value="${b.bno }">
                <button id="cabinetshow" class="btn btn-custom btn-sm liketoggle" name="like">
@@ -424,7 +426,7 @@ function buppage(){
              
               <!--  </form> -->
 			 <div id="d5"></div>
-		  		<c:if test="${sessionScope.uname eq b.bwriter }">
+		  		<c:if test="${sessionScope.ucode eq b.bucode }">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
@@ -516,7 +518,7 @@ function buppage(){
 									<td style="width: 20%;"><a href="#"
 										class="btn btn-primary btn-icon-split btn-sm"> <span
 											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 ${b.blove }</span>
+										</span> <span class="text">좋아요 </span>
 									</a></td>
 									<td style="width: 20%;"></td>
 									<td style="width: 20%;"></td>
