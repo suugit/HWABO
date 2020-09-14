@@ -80,7 +80,6 @@ public class KhcController {
 	
 
 	
-	
 	@RequestMapping(value = "participateproject.do", method = RequestMethod.GET)
 	public String participateproject(Model model) {
 		return "khc/participateproject";
