@@ -34,9 +34,8 @@ public class DopostDao {
 	}
 
 	
-
-	public Dopost selectdopost(int dno) {
-		return session.selectOne("dopostMapper.selectdopost");
+	public Dopost selectdopost(String dno) {
+		return session.selectOne("dopostMapper.selectone", dno);
 	}
 
 }

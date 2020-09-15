@@ -1,5 +1,7 @@
 package com.beet.HWABO.khc.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class KhcController {
 	 */
 	// mytodo.do = 게시글등록하기위해 만든주소
 	@RequestMapping(value = "mytodo.do", method = RequestMethod.POST)
-	public String mytodo(Dopost dopost, Model model) {
+	public String mytodo(Dopost dopost, HttpServletRequest request, Model model) {
 		logger.info("mytodo.run ........................");
 		logger.info("@@@@@@@@@@@@@dopost" + dopost);
 		int result = dopostService.insertdopost(dopost);
@@ -39,10 +41,25 @@ public class KhcController {
 			model.addAttribute("message", "등록실패");
 			return "common/error";
 		}
-
+	}	
+	 
+	@RequestMapping(value="dopostselectone.do")
+	public String selectone(@RequestParam("dno") String dno, Model model) {
+		logger.info("dopostselectone.run......");
+		
+		Dopost dopost = dopostService.selectonedopost(dno);
+		
+		if(dopost != null) {
+			model.addAttribute("dopost", dopost);
+			return "khc/dopostselectone";
+		}else {
+			model.addAttribute("message", "실패!!");
+			return "common/error";
+		}
 	}
+		
 
-	@RequestMapping(value = "dopostupdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "updatemytodo.do", method = RequestMethod.POST)
 	public String dopostUpdate(Dopost dopost, Model model) {
 		logger.info("mytodo.run ........................");
 		logger.info("@@@@@@@@@@@@@dopost" + dopost);
@@ -70,17 +87,7 @@ public class KhcController {
 			}
 			
 		
-		/*
-		 * @RequestMapping(value="dopostselectone.do") public String
-		 * dopostselectone(@RequestParam("dno") String dno, Model model) {
-		 * logger.info("dopostselectone run..."); Dopost dopost =
-		 * dopostService.selectone(dno);
-		 * 
-		 * if(dopost != null) { model.addAttribute("dopost", dopost); }else {
-		 * model.addAttribute("message", "한개조회실패!"); return "common/error"; }
-		 * 
-		 * }
-		 */
+		
 		
 	
 }
