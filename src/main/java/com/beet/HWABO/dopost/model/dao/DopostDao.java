@@ -33,9 +33,7 @@ public class DopostDao {
 		return session.update("dopostMapper.updateOrigindopost", dopost);
 	}
 
-	public int updateAddReadCountdopost(int dno) {
-		return session.update("dopostMapper.updateAddReadCountdopost", dno);
-	}
+	
 
 	public Dopost selectdopost(int dno) {
 		return session.selectOne("dopostMapper.selectdopost");

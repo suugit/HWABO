@@ -7,6 +7,7 @@ public class Dopost implements java.io.Serializable{
 	
 	private String dno;
 	private String dtitle;
+	private String ducode;
 	private String dwriter;
 	private String dcontent;
 	private java.sql.Date denrolldate;
@@ -17,10 +18,12 @@ public class Dopost implements java.io.Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Dopost(String dno, String dtitle, String dwriter, String dcontent, Date denrolldate, String dopen) {
+	public Dopost(String dno, String dtitle, String ducode, String dwriter, String dcontent, Date denrolldate,
+			String dopen) {
 		super();
 		this.dno = dno;
 		this.dtitle = dtitle;
+		this.ducode = ducode;
 		this.dwriter = dwriter;
 		this.dcontent = dcontent;
 		this.denrolldate = denrolldate;
@@ -41,6 +44,14 @@ public class Dopost implements java.io.Serializable{
 
 	public void setDtitle(String dtitle) {
 		this.dtitle = dtitle;
+	}
+
+	public String getDucode() {
+		return ducode;
+	}
+
+	public void setDucode(String ducode) {
+		this.ducode = ducode;
 	}
 
 	public String getDwriter() {
@@ -75,11 +86,17 @@ public class Dopost implements java.io.Serializable{
 		this.dopen = dopen;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
-		return "Dopost [dno=" + dno + ", dtitle=" + dtitle + ", dwriter=" + dwriter + ", dcontent=" + dcontent
-				+ ", denrolldate=" + denrolldate + ", dopen=" + dopen + "]";
+		return "Dopost [dno=" + dno + ", dtitle=" + dtitle + ", ducode=" + ducode + ", dwriter=" + dwriter
+				+ ", dcontent=" + dcontent + ", denrolldate=" + denrolldate + ", dopen=" + dopen + "]";
 	}
+
+	
 	
 
 }

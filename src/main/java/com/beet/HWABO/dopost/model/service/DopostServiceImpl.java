@@ -1,5 +1,7 @@
 package com.beet.HWABO.dopost.model.service;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,25 +24,27 @@ public class DopostServiceImpl implements DopostService {
 
 	@Override
 	public int deletedopost(Dopost dopost) {
-		// TODO Auto-generated method stub
+		
 		return dopostDao.deletedopost(dopost);
 	}
 
 	@Override
 	public int updatedopost(Dopost dopost) {
-		// TODO Auto-generated method stub
+		
 		return dopostDao.updateOrigindopost(dopost);
 	}
 
+	
+
 	@Override
-	public int updateAddReadCountdopost(int dno) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Dopost selectonedopost(int dno) {
+		return dopostDao.selectdopost(dno);
 	}
 
 	@Override
-	public Dopost selectdopost(int dno) {
-		return dopostDao.selectdopost(dno);
+	public ArrayList<Dopost> selectList() {
+		return null;
+		
 	}
 
 }
