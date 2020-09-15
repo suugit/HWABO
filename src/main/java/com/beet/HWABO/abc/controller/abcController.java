@@ -1,6 +1,7 @@
 package com.beet.HWABO.abc.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.beet.HWABO.abc.model.service.LoveService;
+import com.beet.HWABO.abc.model.service.PostreplyService;
+import com.beet.HWABO.abc.model.vo.Love;
 import com.beet.HWABO.spost.model.service.SpostService;
 import com.beet.HWABO.spost.model.vo.Spost;
 
@@ -28,43 +32,21 @@ public class abcController {
 	
 	@Autowired
 	private SpostService spostService;
+
+	@Autowired
+	private LoveService loveService;
+	
+	@Autowired
+	private PostreplyService postreplyService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(abcController.class);
 
-//============================================================	
+//========== 페이지 이동 ==================================================	
 	//알림 테스트
 	@RequestMapping("alarm.do")
 	public String TESTalarm() {	
 		
 		return "abc/alarmtest";
-	}
-	
-	
-	
-	//나의 업무페이지
-	@RequestMapping("mybpost.do")
-	public String TESTtables() {	
-		//sesison 에서 작성자 아이디 받아오기.
-		//작성자인 글, 댓글 단 글, 
-		return "abc/myBpost";
-	}
-	
-	//나의 화보
-	@RequestMapping("myhwabo.do")
-	public String myHWABO() {	
-		// 사용자와 관련된 게시글을 전부 긁어와야함.
-		// 사용자가 작성한 글, 내가 담당자인 글, 내가 언급된 글, 댓글단 글
-		
-		
-		return "abc/myhwabo";
-	}
-	
-	//팀원의 화보
-	@RequestMapping("yourhwabo.do")
-	public String yourHWABO() {
-		// 팀원과 관련된 게시글을 전부 긁어와야함.
-		// 팀원이 작성한 글, 내가 담당자인 글, 내가 언급된 글, 댓글단 글
-		return "abc/yourhwabo";
 	}
 	
 	@RequestMapping("myhwabotest.do")
@@ -88,7 +70,7 @@ public class abcController {
 	@RequestMapping("selectonespost.do")
 	public String moveSelectOneSpostPage(Model m, String sno) {
 		//수정하기 버튼 클릭시 sno 가지고 온다. 쿼리스트링이랑 매개변수에 추가해야한다.
-		sno  = "s1";
+		sno  = "s2";
 		Spost spost = spostService.selectOneSpost(sno);
 		String startday = spost.getSstartday().toString();
 		String endday = spost.getSendday().toString();
@@ -203,20 +185,53 @@ public class abcController {
 	
 	//일정 삭제
 	@RequestMapping("sdelete.do")
-	public String deleteSpost(String sno) {
-		
+	public String deleteSpost(HttpServletResponse response, String sno) throws IOException {
+		PrintWriter out = response.getWriter();
+
 		if(spostService.deleteSpost(sno) > 0) {
-			return "abc/myhwabo";
+			out.println("<script>alert('계정이 등록 되었습니다');</script>");
+			 
+			out.flush();
+			return "redirect:/myhwabo.do";
 		}else {
-			return "abc/myhwabo";
+			out.println("<script>alert('계정이 등록 되었습니다');</script>");
+			 
+			out.flush();
+			return "redirect:/myhwabo.do";
 		}
 	}
 	
+	//좋아요 카운트 조회
+	@RequestMapping("slovecount.do")
+	public String selectCountLove(String no, Model m) {
+		
+		return "";
+	}
 	
+	//좋아요 눌렀던 글인지 조회
+	@RequestMapping("slovecheck.do")
+	public String selectDuplicationChk(Love love, Model m) {
+		
+		return "";
+	}
+	
+
 	//일정 좋아요 증가
 	@RequestMapping("slove.do")
-	public String insertSpostLove() {
-		return "";
+	public String insertSpostLove(Love love, Model m) {
+		String result = "";
+		if(loveService.selectDuplicationChk(love) > 0) {
+			m.addAttribute("dupli");// 이미 좋아요 누른 글일 때
+		}else {
+			if(loveService.insertSpostLove(love) > 0) {
+				m.addAttribute("success");
+				result= "redirect:/myhwabo.do";
+			}else {
+				m.addAttribute("fail");
+				result= "redirect:/myhwabo.do";
+			}
+		}
+		return "redirect:/myhwabo.do";
 	}
 	
 	//일정 좋아요 취소
@@ -225,22 +240,66 @@ public class abcController {
 		return "";
 	}
 	
-//---------- Post ----------------------------------------------------------------------------------------------------------------	
+	//게시글에 댓글 조회
+	@RequestMapping("ssereply.do")
+	public String selectPostReply() {
+		
+		return "";
+	}
 	
-	//나와 관련된 게시글 목록 조회용
-	@RequestMapping("mypost.do")
-	public String selectMyPost() {
+	//게시글에 댓글 등록
+	@RequestMapping("sinreply.do")
+	public String insertPostReply() {
+		
+		return "";
+	}
+	
+	//게시글에 댓글 수정
+	@RequestMapping("supreply.do")
+	public String updatePostReply() {
+		return "";
+	}
+	
+	//게시글에 댓글 삭제
+	@RequestMapping("sdereply.do")
+	public String deletePostReply() {
+		return "";
+	}
+	
+//---------- Post ----------------------------------------------------------------------------------------------------------------	
+	//나의 업무페이지
+	@RequestMapping("mybpost.do")
+	public String TESTtables() {	
+		//sesison 에서 작성자 아이디 받아오기.
+		//작성자인 글, 댓글 단 글, 
+		return "abc/myBpost";
+	}
+	
+	//나의 화보. 나와 관련된 게시글 목록 조회용
+	@RequestMapping("myhwabo.do")
+	public String myHWABO() {	
 		// bpost : 작성자, 담당자
 		// cpost : 작성자
 		// spost : 작성자
 		// vpost : 작성자
 		//dopost : 작성자
+		//댓글부터 좋아요까지
+		spostService.selectMyPost();
 		
-		return "";
+		return "abc/myhwabo";
 	}
 	
+	//팀원의 화보
+	@RequestMapping("yourhwabo.do")
+	public String yourHWABO() {
+		// 팀원과 관련된 게시글을 전부 긁어와야함.
+		// 팀원이 작성한 글, 내가 담당자인 글, 내가 언급된 글, 댓글단 글
+		return "abc/yourhwabo";
+	}
+	
+	
 	////나와 관련된 게시글 목록중에서 원하는 게시글 종류만 조회 
-	//... ? 이건 뷰에서 에이작스로 조절이 가능할 것 같지만 우선 넣어두기
+	//... ? 이건 뷰에서 조절이 가능할 것 같지만 우선 넣어두기
 	@RequestMapping("selectpost.do")
 	public String selecPost() {
 		return "";
@@ -249,28 +308,13 @@ public class abcController {
 	//게시글 클릭시 상세보기 조회용
 	@RequestMapping("onepost.do")
 	public String selectOneView() {
+		//이건 no 앞에 글자 하나 따서 각자 만들어둔 selectOne 메소드로 보내주어야하나 ?
+		
+		
 		return "";
 	}
 	
-	//게시글에 댓글 등록
-	@RequestMapping("inreply.do")
-	public String insertPostReply() {
-		return "";
-	}
 	
-	//게시글에 댓글 수정
-	@RequestMapping("upreply.do")
-	public String updatePostReply() {
-		return "";
-	}
-	
-	//게시글에 댓글 삭제
-	@RequestMapping("dereply.do")
-	public String deletePostReply() {
-		return "";
-	}
-	
-
 	
 //---------- Member ----------------------------------------------------------------------------------------------------------------	
 	

@@ -17,13 +17,14 @@ public class Spost implements Serializable{
 	private String scontent;
 	private Date senrolldate;
 	private String sopen;
+	private String spnum;
 	
 	public Spost() {
 		super();
 	}
 
 	public Spost(String sno, String stitle, String swriter, String sucode, Date sstartday, Date sendday, String splace,
-			String salarm, String scontent, Date senrolldate, String sopen) {
+			String salarm, String scontent, Date senrolldate, String sopen, String spnum) {
 		super();
 		this.sno = sno;
 		this.stitle = stitle;
@@ -36,6 +37,7 @@ public class Spost implements Serializable{
 		this.scontent = scontent;
 		this.senrolldate = senrolldate;
 		this.sopen = sopen;
+		this.spnum = spnum;
 	}
 
 	public String getSno() {
@@ -126,13 +128,24 @@ public class Spost implements Serializable{
 		this.sopen = sopen;
 	}
 
+	public String getSpnum() {
+		return spnum;
+	}
+
+	public void setSpnum(String spnum) {
+		this.spnum = spnum;
+	}
+
 	@Override
 	public String toString() {
 		return "Spost [sno=" + sno + ", stitle=" + stitle + ", swriter=" + swriter + ", sucode=" + sucode
 				+ ", sstartday=" + sstartday + ", sendday=" + sendday + ", splace=" + splace + ", salarm=" + salarm
-				+ ", scontent=" + scontent + ", senrolldate=" + senrolldate + ", sopen=" + sopen + "]";
+				+ ", scontent=" + scontent + ", senrolldate=" + senrolldate + ", sopen=" + sopen + ", spnum=" + spnum
+				+ "]";
 	}
 	
+	
+
 	
 	
 }

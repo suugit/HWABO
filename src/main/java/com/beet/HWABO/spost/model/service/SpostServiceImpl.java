@@ -16,7 +16,7 @@ public class SpostServiceImpl implements SpostService{
 	@Autowired
 	private SpostDao spostDao;
 	
-	public SpostServiceImpl() {}
+	public SpostServiceImpl() {};
 
 
 //-------- Spost -------------------------------------------------------------------------------------------------
@@ -42,15 +42,9 @@ public class SpostServiceImpl implements SpostService{
 	}
 
 	@Override
-	public int deleteSpostUnlove(String sno) {
+	public int deleteSpostLove(String sno) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	public String selectSpostAlarm(String sno) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -72,11 +66,6 @@ public class SpostServiceImpl implements SpostService{
 		return null;
 	}
 
-	@Override
-	public Post selectOneView(String postno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public int insertPostReply(String postno) {
@@ -104,11 +93,6 @@ public class SpostServiceImpl implements SpostService{
 		return null;
 	}
 
-	@Override
-	public Member selectMyInfo(String ucode) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	

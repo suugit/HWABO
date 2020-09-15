@@ -14,19 +14,17 @@ public interface SpostService {
 	int updateSpost(Spost spost);
 	
 	int insertSpostLove(String sno);
-	int deleteSpostUnlove(String sno);
-	String selectSpostAlarm(String sno);
+	int deleteSpostLove(String sno);
 	Spost selectOneSpost(String sno);
 	
 	//post
 	ArrayList<Post> selectMyPost();
 	ArrayList<Post> selectPost(String postno);
-	Post selectOneView(String postno);
+	
 	int insertPostReply(String postno);
 	int updatePostReply(String postno);
 	int deletePostReply(String postno);
 	
 	//member
 	ArrayList<Member> selectMyTeam(String num);
-	Member selectMyInfo (String ucode);
 }
