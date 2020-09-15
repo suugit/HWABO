@@ -46,7 +46,7 @@ public class VPostDao {
 
 
 	public VPost selectone(String vno) {
-		logger.info("vpostMapper.selectone 바로 가기직전!");
+		
 		
 		return session.selectOne("vpostMapper.selectone", vno);
 	}

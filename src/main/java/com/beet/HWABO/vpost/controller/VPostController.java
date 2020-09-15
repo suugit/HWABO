@@ -43,11 +43,14 @@ public class VPostController {
 		}
 	}
 	
-	@RequestMapping(value="vpostupdate.do" , method=RequestMethod.POST)
-	public String vpostUpdate(VPost vpost , Model model) {
+	
+	
+	
+	@RequestMapping(value="vpostupdate.do")
+	public String vpostUpdate(@RequestParam("vno") String vno, VPost vpost , Model model) {
 		
 		logger.info("vpostupdate 입장  !");
-		logger.info("수정하기전 vpost "+ vpost);
+		logger.info("수정하기전 vpost "+ vpost, vno);
 		
 		int result = vpostservice.updatevpost(vpost);
 		

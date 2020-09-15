@@ -27,24 +27,22 @@ public class SpostServiceImpl implements SpostService{
 
 	@Override
 	public int deleteSpost(String sno) {
-		// TODO Auto-generated method stub
-		return 0;
+		return spostDao.deleteSpost(sno);
 	}
 
 	@Override
 	public int updateSpost(Spost spost) {
+		return spostDao.updateSpost(spost);
+	}
+
+	@Override
+	public int insertSpostLove(String sno) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int updateSpostLove(String sno) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateSpostUnlove(String sno) {
+	public int deleteSpostUnlove(String sno) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

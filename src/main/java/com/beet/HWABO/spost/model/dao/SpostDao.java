@@ -25,24 +25,22 @@ public class SpostDao {
 
 		
 		public int deleteSpost(String sno) {
-			// TODO Auto-generated method stub
-			return 0;
+			return session.delete("spostMapper.deleteSpost", sno);
 		}
 
 		
 		public int updateSpost(Spost spost) {
+			return session.update("spostMapper.updateSpost", spost);
+		}
+
+		
+		public int insertSpostLove(String sno) {
 			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		
-		public int updateSpostLove(String sno) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		
-		public int updateSpostUnlove(String sno) {
+		public int deleteSpostUnlove(String sno) {
 			// TODO Auto-generated method stub
 			return 0;
 		}

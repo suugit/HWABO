@@ -37,7 +37,7 @@
 					class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
 					aria-labelledby="dropdownMenuLink">
 					<div class="dropdown-header">메뉴:</div>
-					<a class="dropdown-item" onclick="" href="#">수정</a> <a class="dropdown-item"
+					<a class="dropdown-item" href="#">수정</a> <a class="dropdown-item"
 						href="#">삭제</a>
 				</div>
 

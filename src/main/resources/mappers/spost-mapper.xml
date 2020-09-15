@@ -22,6 +22,28 @@
 	</select>
 
 	
+<!-- delete spost -->
+<delete id="deleteSpost" parameterType="string">
+	delete from spost where sno = #{sno}
+</delete>
+
+<!-- update spost -->
+<update id="updateSpost">
+	update spost
+	<if test="splace != null and scontent != null">
+		set stitle=#{stitle}, sstartday=#{sstartday}, sendday=#{sendday}, splace=#{splace}, salarm=#{salarm}, scontent=#{scontent}
+	</if>
+	<if test="splace != null and scontent == null">
+		set stitle=#{stitle}, sstartday=#{sstartday}, sendday=#{sendday}, splace=#{splace}, salarm=#{salarm}
+	</if>
+	<if test="splace == null and scontent != null">
+		set stitle=#{stitle}, sstartday=#{sstartday}, sendday=#{sendday}, salarm=#{salarm}, scontent=#{scontent}
+	</if>
+	<if test="splace == null and scontent == null">
+		set stitle=#{stitle}, sstartday=#{sstartday}, sendday=#{sendday}, salarm=#{salarm}
+	</if>
+	where sno=#{sno}
+</update>
 
 
 
