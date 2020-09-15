@@ -108,6 +108,7 @@ function unSelected(){
             		<input type ="hidden" name="bno" value="${bpost.bno }">
                      <input type="hidden" name="bucode" value="${sessionScope.ucode }">
                      <input type="hidden" name="bwriter" value="${sessionScope.uname }">
+                     <input type="hidden" name="bpnum" value="${sessionScope.pnum }">
                    	 <input type="hidden" id="bform" name="bcharge">
                    	 <input type="hidden" name="boriginfile" value="${bpost.boriginfile }">
                    	 <input type="hidden" name="brenamefile" value="${bpost.brenamefile }">

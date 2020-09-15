@@ -8,7 +8,7 @@
 <insert id="insertCabinet" parameterType="Cabinet">
 
 	insert into cabinet
-	values (#{ucode}, #{no}, sysdate)
+	values (#{ucode}, #{no}, sysdate, #{pnum})
 
 </insert>
 

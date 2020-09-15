@@ -107,6 +107,7 @@ function unSelected(){
             
                      <input type="hidden" name="bucode" value="${sessionScope.ucode }">
                      <input type="hidden" name="bwriter" value="${sessionScope.uname }">
+                     <input type="hidden" name="bpnum" value="${sessionScope.pnum }">
                        <input type="hidden" id="bform" name="bcharge">
                   
                         <table style="text-align: center; width: 100%;">
