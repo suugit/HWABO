@@ -202,9 +202,9 @@ public class RedController {
 			session.setAttribute("names", names);
 			session.setAttribute("ucodes", ucodes);
 			logger.info("세션에 프로젝트넘버 추가완료... 프로젝트번호 : " + pnum);
-			logger.info("세션에 프로젝트넘버 추가완료... memberProject : " + memberProject);
-			logger.info("세션에 프로젝트넘버 추가완료... names : " + names);
-			logger.info("세션에 프로젝트넘버 추가완료... ucodes : " + ucodes);
+			logger.info("세션에 회원정보 목록 추가완료... memberProject : " + memberProject);
+			logger.info("세션에 회원이름 목록 추가완료... names : " + names);
+			logger.info("세션에 회원아이디 목록 추가완료... ucodes : " + ucodes);
 			status.setComplete(); // 요청성공, 200 전송
 			mv.setViewName("red/tables");
 			return mv;
