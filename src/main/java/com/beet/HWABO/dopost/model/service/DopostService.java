@@ -10,6 +10,7 @@ public interface DopostService {
 	int insertdopost(Dopost dopost);
 	 int deletedopost(Dopost dopost);
 	 int updatedopost( Dopost dopost);
-	 Dopost selectonedopost(int dno);
 	 ArrayList<Dopost> selectList();
+	Dopost selectonedopost(String dno);
+	
 }

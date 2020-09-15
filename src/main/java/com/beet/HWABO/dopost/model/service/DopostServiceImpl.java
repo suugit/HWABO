@@ -36,15 +36,19 @@ public class DopostServiceImpl implements DopostService {
 
 	
 
-	@Override
-	public Dopost selectonedopost(int dno) {
-		return dopostDao.selectdopost(dno);
-	}
+
 
 	@Override
 	public ArrayList<Dopost> selectList() {
 		return null;
 		
 	}
+
+	@Override
+	public Dopost selectonedopost(String dno) {
+		return dopostDao.selectdopost(dno);
+	}
+	
+	
 
 }

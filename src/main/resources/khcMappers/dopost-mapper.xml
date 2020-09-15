@@ -7,6 +7,7 @@
 	<resultMap type="Dopost" id="resultDopost" >
 	<id column="dno" property="dno" />
 	<result column="dtitle" property="dtitle"/>
+	<result column="ducode" property="ducode"/>
 	<result column="dwriter" property="dwriter"/>
 	<result column="dcontent" property="dcontent"/>
 	<result column="denrolldate" property="denrolldate"/>
@@ -15,13 +16,11 @@
 	
 	<insert id="insertdopost" parameterType="Dopost">
 	insert into dopost 
-	values(#{dno}, #{dtitle}, #{dwriter}, #{dcontent}, SYSDATE, 'y')
+	values((select concat('d', (select nvl(max(to_number(substr(dno,2))),0)+1 from dopost))from dual), #{dtitle}, #{ducode}, #{dwriter}, #{dcontent}, SYSDATE, #{dopen})
 	
 	</insert>
 	
-	<select id="selectdopost" parameterType="_int">
-	select from dopost where dno = #{dno}
-	</select>
+	
 	
 	<update id="updateOrigindopost" parameterType="Dopost">
 	update dopost
@@ -32,4 +31,9 @@
 	<delete id="deletedopost" parameterType="Dopost">
 	delete dopost where dno = #{dno}
 	</delete>
+	
+	<select id="selectone" parameterType="String" resultMap="resultDopost">
+	select * from dopost
+	where dno = #{dno}
+	</select>
 </mapper>

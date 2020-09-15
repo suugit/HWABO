@@ -1,4 +1,4 @@
-<%@ page session="false"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -383,12 +383,12 @@
 							});
 						</script>
 
-						<div class="card-body">
+						<div class="card-body"> <!-- 정의 -->
 							<!-- 게시글안쪽 -->
 							<form action="mytodo.do" id="dopost"  method="post">
 							
 								<table style="text-align: center; width: 100%;">
-									<tr class="m-0 font-weight-bold text-primary">
+									<tr class="m-0 font-weight-bold text-primary">   <!-- tr:큰속성,  td:각각 속성 -->
 										<td style="width: 20%;"><span>글작성</span></td>
 										<td style="width: 20%;"><span>업무</span></td>
 										<td style="width: 20%;"><span>일정</span></td>
@@ -400,11 +400,21 @@
 											<hr>
 										</td>
 									</tr>
+									<tr>
 									
-									<input type="text" name="dno" value="글번호">
+									
+									<td>
+								<!-- 	<input type="hidden" name="ducode" value="h128">
+				
+									<input type="hidden" name="dwriter" value="김서장"> -->
+									<input type="hidden" name="ducode" value="${sessionScope.ducode }">
+								 	<input type="hidden" name="dwriter" value="${sessionScope.uname}">
+									<!-- <input type="text" name="dwriter" value="글쓴이"> -->
+									</td>
+									</tr>
+									
 									<tr>
 									<td>
-								
 									</td>
 									</tr>
 									<tr>
@@ -414,7 +424,7 @@
 									</tr>
 									
 									
-									<input type="text" name="dwriter" value="글쓴이"> 
+								
 									
 										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;할일</span>
 										 <textarea
@@ -433,8 +443,8 @@
 										<!--  #f8f9fc   -->
 										<td>
 										<select name="dopen" class="form-control">
-											<option value="y" >전체공개</option>
-											<option value="n" >나만보기</option>
+											<option value="Y" >전체공개</option>
+											<option value="N" >나만보기</option>
 										</select>
 										</td>
 										

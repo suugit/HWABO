@@ -401,7 +401,7 @@
 										</td>
 									</tr>
 									
-									<input type="text" name="dno" value="글번호" readonly>
+									<input type="text" name="dno" readonly>
 									<tr>
 									<td>
 								
@@ -414,7 +414,7 @@
 									</tr>
 									
 									
-									<input type="text" name="dwriter" value="글쓴이" readonly> 
+									<input type="text" name="dwriter" readonly> 
 									
 										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;할일</span>
 										 <textarea
@@ -449,7 +449,7 @@
 												<span class="text">취소</span>
 										</a></td>  -->
 										<input type="submit" class="btn btn-sm btn-info" value="수 정">
-										<input type="submit" class="btn btn-sm btn-info" value="글삭제">
+								<!-- 		<input type="button" onclick="return " class="btn btn-sm btn-info" value="글삭제"> -->
 										<input type="reset" class="btn btn-sm btn-danger"  value=" 취  소 ">
 									</tr>
 								</table>
