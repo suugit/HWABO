@@ -1,10 +1,10 @@
-
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  
-
+<%= session.getAttribute("pnum") %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,30 +111,36 @@ function validate(){
 
 <script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
-$(function(){
+$(function cabinetin(){
 	//보관함
- $("#cabinetin").on("click", function(){
+/*  $("#'(${b.bno})'").on("click", function(){ */
 		
-	$.ajax({
-		
-		url: "insertcabinet.do",
-		date: {no: $("#no").val(), ucode : $("#ucode").val(), pnum : $("#pnum").val()},	  
-		type: "post",
-		success: function(result){
-			if(result == "ok"){
-				alert("보관함 보내기 성공 !");
-				console.log("보관함 보내기 성공 !");
-			}else{
-				alert("값이 보내졌지만 결과는 ok가 아님");
-			}
-		
-		},
-		error: function(request, status, errorData){
-				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
-			}
-		
-		}); //에이작스
-	});
+	/*  var aa = new Object();
+	 aa.no = $("#no").val();
+	 aa.ucode = $("#ucode").val();
+	 aa.pnum = $("#pnum").val(); */
+	
+	  $.ajax({
+	      
+	      url: "insertcabinet.do",
+	      date: {no: $("#no").val(), ucode : $("#ucode").val(), pnum : $("#pnum").val()},     
+	      type: "post",
+	      success: function(result){
+	         if(result == "ok"){
+	            alert("보관함 보내기 성공 !");
+	            console.log("보관함 보내기 성공 !");
+	         }else{
+	            alert("값이 보내졌지만 결과는 ok가 아님");
+	         }
+	      
+	      },
+	      error: function(request, status, errorData){
+	    	 
+	            console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+	         }
+	      
+	      }); //에이작스
+	 
 	
 	 $(".liketoggle").click(function() {
 		   $(this).find("i").toggleClass("fas far");
@@ -142,7 +148,7 @@ $(function(){
 		     return v === '보관' ? '보관됨' : '보관'
 		   })
 		 });
-	
+	 }	
 });	 
 </script>
 
@@ -219,12 +225,13 @@ $(function(){
            		 -->
            		 
                <!-- <form action="insertcabinet.do" method="post"> -->
-               <input type="hidden" name="ucode" id="ucode" value="${sessionScope.ucode }">
-			   <input type="hidden" name="no" id="no" value="${b.bno }">
-			   <input type="hidden" name="pnum" id="pnum" value="${b.bpnum }" >
-               <button id="cabinetin" class="btn btn-custom btn-sm liketoggle" name="like">
+              
+               <button id="${b.bno }" class="btn btn-custom btn-sm liketoggle" name="like" onclick="cabinetin()">
            	   <span>보관</span> <i class="far fa-bookmark"></i></button>
-			 <!--  </form> -->
+           	    <input type="text" name="ucode" id="ucode" value="${sessionScope.ucode }" >
+			   <input type="text" name="no" id="no" value="${b.bno }" style="display:none">
+			   <input type="text" name="pnum" id="pnum" value="${b.bpnum }" style="display:none">
+	
              
 
 			 <div id="d5"></div>

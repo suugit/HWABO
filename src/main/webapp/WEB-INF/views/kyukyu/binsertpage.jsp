@@ -160,16 +160,16 @@ function unSelected(){
                              담당자
                         </a>
                     <!-- 담당자 이름 -->
-                       <div id="selected"></div>
+                       <div><input type="text" id="selected" name="bcharge"></div>
               
                     
                         <div class="dropdown-menu dropdown-menu-left animated--grow-in" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" onclick="addbcharge()">백규림</a>
-                          <a class="dropdown-item" onclick="addbcharge()">박수현</a>
-                          <a class="dropdown-item" onclick="addbcharge()">정다운</a>
-                          <a class="dropdown-item" onclick="addbcharge()">백신후</a>
+                        <c:forEach var="pm" items="${ }">
+                          <a class="dropdown-item" onclick="addbcharge()"> ${pm.puser }</a>
+                       	
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="#">더보기</a>
+                          </c:forEach>
                         </div>
                         
                         <a class="navbar-brand" href="#"></a>
