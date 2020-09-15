@@ -195,7 +195,13 @@ public class abcController {
 	
 	//일정 삭제
 	@RequestMapping("sdelete.do")
-	public String deleteSpost() {
+	public String deleteSpost(String sno) {
+		
+		if(spostService.deleteSpost(sno) > 0) {
+			
+		}
+		
+		
 		return "";
 	}
 	
