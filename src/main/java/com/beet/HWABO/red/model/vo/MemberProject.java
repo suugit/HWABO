@@ -23,6 +23,7 @@ public class MemberProject implements java.io.Serializable{
 	private String star;
 	private String project_num;
 	private String name; 
+	private String pjadmin; 
 	private String explain; 
 	private java.sql.Date startday; 
 	private java.sql.Date endday; 
@@ -36,17 +37,6 @@ public class MemberProject implements java.io.Serializable{
 	public MemberProject() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "MemberProject [uemail=" + uemail + ", upwd=" + upwd + ", uname=" + uname + ", uphone=" + uphone
-				+ ", ugroup=" + ugroup + ", urole=" + urole + ", ust=" + ust + ", ucert=" + ucert + ", udate=" + udate
-				+ ", signtype=" + signtype + ", accesstoken=" + accesstoken + ", uimg=" + uimg + ", uactive=" + uactive
-				+ ", ucode=" + ucode + ", star=" + star + ", project_num=" + project_num + ", name=" + name
-				+ ", explain=" + explain + ", startday=" + startday + ", endday=" + endday + ", uploaddate="
-				+ uploaddate + ", open=" + open + ", goal=" + goal + ", done=" + done + ", right=" + right
-				+ ", order_by=" + order_by + "]";
 	}
 
 	public String getUemail() {
@@ -185,6 +175,14 @@ public class MemberProject implements java.io.Serializable{
 		this.name = name;
 	}
 
+	public String getPjadmin() {
+		return pjadmin;
+	}
+
+	public void setPjadmin(String pjadmin) {
+		this.pjadmin = pjadmin;
+	}
+
 	public String getExplain() {
 		return explain;
 	}
@@ -257,10 +255,21 @@ public class MemberProject implements java.io.Serializable{
 		this.order_by = order_by;
 	}
 
+	@Override
+	public String toString() {
+		return "MemberProject [uemail=" + uemail + ", upwd=" + upwd + ", uname=" + uname + ", uphone=" + uphone
+				+ ", ugroup=" + ugroup + ", urole=" + urole + ", ust=" + ust + ", ucert=" + ucert + ", udate=" + udate
+				+ ", signtype=" + signtype + ", accesstoken=" + accesstoken + ", uimg=" + uimg + ", uactive=" + uactive
+				+ ", ucode=" + ucode + ", star=" + star + ", project_num=" + project_num + ", name=" + name
+				+ ", pjadmin=" + pjadmin + ", explain=" + explain + ", startday=" + startday + ", endday=" + endday
+				+ ", uploaddate=" + uploaddate + ", open=" + open + ", goal=" + goal + ", done=" + done + ", right="
+				+ right + ", order_by=" + order_by + "]";
+	}
+
 	public MemberProject(String uemail, String upwd, String uname, int uphone, String ugroup, String urole, String ust,
 			String ucert, Date udate, String signtype, String accesstoken, String uimg, String uactive, String ucode,
-			String star, String project_num, String name, String explain, Date startday, Date endday, Date uploaddate,
-			String open, int goal, int done, int right, String order_by) {
+			String star, String project_num, String name, String pjadmin, String explain, Date startday, Date endday,
+			Date uploaddate, String open, int goal, int done, int right, String order_by) {
 		super();
 		this.uemail = uemail;
 		this.upwd = upwd;
@@ -279,6 +288,7 @@ public class MemberProject implements java.io.Serializable{
 		this.star = star;
 		this.project_num = project_num;
 		this.name = name;
+		this.pjadmin = pjadmin;
 		this.explain = explain;
 		this.startday = startday;
 		this.endday = endday;
@@ -289,7 +299,6 @@ public class MemberProject implements java.io.Serializable{
 		this.right = right;
 		this.order_by = order_by;
 	}
-	
-	
+
 	
 }

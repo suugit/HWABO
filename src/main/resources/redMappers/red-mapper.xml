@@ -61,6 +61,7 @@
 		<result property="done" column="done" />
 		<result property="right" column="right" />
 		<result property="order_by" column="order_by" />
+		<result property="pjadmin" column="pjadmin" />
 	</resultMap>
 	<resultMap id="resultMember" type="com.beet.HWABO.red.model.vo.MemberProject">
 		<id property="project_num" column="project_num" />
@@ -89,6 +90,7 @@
 		<result property="done" column="done" />
 		<result property="right" column="right" />
 		<result property="order_by" column="order_by" />
+		<result property="pjadmin" column="pjadmin" />
 	</resultMap>
 	<resultMap id="resultProgressList" type="com.beet.HWABO.red.model.vo.Progress">
 		<result property="ucode" column="ucode" />
