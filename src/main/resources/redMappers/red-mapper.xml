@@ -34,6 +34,62 @@
 		<result property="right" column="right" />
 		<result property="order_by" column="order_by" />
 	</resultMap>
+	<resultMap id="resultMemberList" type="com.beet.HWABO.red.model.vo.MemberProject">
+		<result property="uemail" column="uemail" />
+		<result property="upwd" column="upwd" />
+		<result property="uname" column="uname" />
+		<result property="uphone" column="uphone" />
+		<result property="ugroup" column="ugroup" />
+		<result property="urole" column="urole" />
+		<result property="ust" column="ust" />
+		<result property="ucert" column="ucert" />
+		<result property="udate" column="udate" />
+		<result property="signtype" column="signtype" />
+		<result property="accesstoken" column="accesstoken" />
+		<result property="uimg" column="uimg" />
+		<result property="uactive" column="uactive" />
+		<result property="ucode" column="ucode" />
+		<result property="star" column="star" />
+		<result property="project_num" column="project_num" />
+		<result property="name" column="name" />
+		<result property="explain" column="explain" />
+		<result property="startday" column="startday" />
+		<result property="endday" column="endday" />		
+		<result property="uploaddate" column="uploaddate" />
+		<result property="open" column="open" />
+		<result property="goal" column="goal" />
+		<result property="done" column="done" />
+		<result property="right" column="right" />
+		<result property="order_by" column="order_by" />
+	</resultMap>
+	<resultMap id="resultMember" type="com.beet.HWABO.red.model.vo.MemberProject">
+		<id property="project_num" column="project_num" />
+		<result property="uemail" column="uemail" />
+		<result property="upwd" column="upwd" />
+		<result property="uname" column="uname" />
+		<result property="uphone" column="uphone" />
+		<result property="ugroup" column="ugroup" />
+		<result property="urole" column="urole" />
+		<result property="ust" column="ust" />
+		<result property="ucert" column="ucert" />
+		<result property="udate" column="udate" />
+		<result property="signtype" column="signtype" />
+		<result property="accesstoken" column="accesstoken" />
+		<result property="uimg" column="uimg" />
+		<result property="uactive" column="uactive" />
+		<result property="ucode" column="ucode" />
+		<result property="star" column="star" />
+		<result property="name" column="name" />
+		<result property="explain" column="explain" />
+		<result property="startday" column="startday" />
+		<result property="endday" column="endday" />		
+		<result property="uploaddate" column="uploaddate" />
+		<result property="open" column="open" />
+		<result property="goal" column="goal" />
+		<result property="done" column="done" />
+		<result property="right" column="right" />
+		<result property="order_by" column="order_by" />
+	</resultMap>
 	<resultMap id="resultProgressList" type="com.beet.HWABO.red.model.vo.Progress">
 		<result property="ucode" column="ucode" />
 		<result property="project_num" column="project_num" />
@@ -94,11 +150,23 @@
 </select>
 
 <select id="selectBpostList" parameterType="string" resultMap="resultBpostList">
-		select * from Bpost where project_num = #{ project_num }  ORDER BY title
+		select * from Bpost where bpnum = #{ bpnum }  ORDER BY btitle
 </select>
 
 <select id="selectBpost" parameterType="string" resultMap="resultBpost">
-		select * from Bpost where project_num = #{ project_num } and ucode = #{ ucode }  ORDER BY title
+		select * from Bpost where bpnum = #{ bpnum } and ucode = #{ ucode }  ORDER BY btitle
+</select>
+
+<select id="selectMemberList" parameterType="string" resultMap="resultMemberList">
+		select * from project join pjmember on (project.project_num = pjmember.pnum) join
+		(select UCODE,UEMAIL,UPWD,UNAME,UPHONE,UGROUP,UROLE,UST,UCERT,UDATE,SIGNTYPE,ACCESSTOKEN,UIMG,UACTIVE from member)
+		using (ucode) where project.PROJECT_NUM = #{ projectNumber }  ORDER BY TO_NUMBER(order_by)
+</select>
+
+<select id="selectMember" parameterType="string" resultMap="resultMember">
+		select * from project join pjmember on (project.project_num = pjmember.pnum) join 
+		(select UCODE,UEMAIL,UPWD,UNAME,UPHONE,UGROUP,UROLE,UST,UCERT,UDATE,SIGNTYPE,ACCESSTOKEN,UIMG,UACTIVE from member)
+		using (ucode) where project.PROJECT_NUM = #{ projectNumber } and pjmember.ucode = #{ ucode }  ORDER BY TO_NUMBER(order_by)
 </select>
 
 <select id="selectList" parameterType="string" resultMap="resultList">

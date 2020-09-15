@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.beet.HWABO.red.model.dao.RedDao;
+import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
@@ -64,6 +65,11 @@ public class RedServiceImpl implements RedService {
 	@Override
 	public int insertProject2(UserProject project) {
 		return redDao.insertProject2(project);
+	}
+
+	@Override
+	public ArrayList<MemberProject> selectMemberList(String pnum) {
+		return redDao.selectMemberList(pnum);
 	}
 	
 	

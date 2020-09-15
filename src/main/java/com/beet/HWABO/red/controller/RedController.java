@@ -22,9 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.red.model.service.RedService;
-import com.beet.HWABO.red.model.vo.Project;
+import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
 
@@ -185,10 +184,27 @@ public class RedController {
 		@RequestMapping(value = "ftables.do", method = RequestMethod.GET)
 		public ModelAndView selectLogin(@RequestParam("project_num") String pnum, HttpServletRequest request, ModelAndView mv,SessionStatus status) {
 			logger.info("세션에 프로젝트넘버 추가완료... 프로젝트번호 : " + pnum);
-
+			
+			ArrayList<MemberProject> memberProject = redService.selectMemberList(pnum);
+			ArrayList<String> names = new ArrayList<String>();
+			ArrayList<String> ucodes = new ArrayList<String>();
+			
+			for(MemberProject m : memberProject) {
+				names.add(m.getName());
+			}
+			for(MemberProject m : memberProject) {
+				ucodes.add(m.getUcode());
+			}
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("pnum", pnum);
-
+			session.setAttribute("pmlist", memberProject);
+			session.setAttribute("names", names);
+			session.setAttribute("ucodes", ucodes);
+			logger.info("세션에 프로젝트넘버 추가완료... 프로젝트번호 : " + pnum);
+			logger.info("세션에 프로젝트넘버 추가완료... memberProject : " + memberProject);
+			logger.info("세션에 프로젝트넘버 추가완료... names : " + names);
+			logger.info("세션에 프로젝트넘버 추가완료... ucodes : " + ucodes);
 			status.setComplete(); // 요청성공, 200 전송
 			mv.setViewName("red/tables");
 			return mv;

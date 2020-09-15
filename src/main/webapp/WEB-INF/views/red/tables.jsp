@@ -1,8 +1,9 @@
+<%@ page import="java.util.ArrayList, com.beet.HWABO.red.model.vo.MemberProject"%>
 <%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%= session.getAttribute("pnum") %>
+
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -73,69 +74,6 @@
           <h1 class="h3 mb-2 text-gray-800"></h1>
           <p class="mb-4"></p>
 
-          <!-- 게시글 작성 시작 -->
-         <!--  <div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              게시글안쪽
-              <form action="blank.do" id="mainInsert">
-              <table style="text-align:center;width:100%;">
-              <tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
-              <span>글작성</span>
-              </td><td style="width:20%;">
-              <span>업무</span>
-              </td><td style="width:20%;">
-              <span>일정</span>
-              </td><td style="width:20%;">
-              <span>할일</span>
-              </td><td style="width:20%;">
-              <span>투표</span>
-              </td></tr>
-              <tr><td colspan="5">
-              <hr>
-              </td></tr>
-              <tr><td colspan="5">
-              <input type="text" class="form-control" placeholder="일정 제목을 입력하세요">
-              </td></tr>
-              <tr><td colspan="5">&nbsp;</td></tr>
-              <tr><td colspan="2">
-              <input type="date" class="form-control">
-              </td><td>
-              <img src="/hwabo/resources/maincss/img/tilde.png" style="width:100px;height:35px;">
-              </td><td colspan="2">
-              <input type="date" class="form-control">
-              </td></tr>
-              <tr><td colspan="5">&nbsp;</td></tr>
-              <tr><td colspan="5">
-              <input type="text" class="form-control" placeholder="장소를 입력하세요">
-              </td></tr>
-              <tr><td colspan="5">&nbsp;</td></tr>
-              <tr><td colspan="5">
-              <input type="text" class="form-control" placeholder="일정 제목을 입력하세요">
-              </td></tr>
-              <tr><td colspan="5">&nbsp;</td></tr>
-              <tr><td colspan="5">
-              <input type="text" class="form-control" placeholder="메모를 입력하세요">
-              </td></tr>
-              <tr><td colspan="5">&nbsp;</td></tr>
-              <tr><td colspan="3"></td>
-              <td>
-              <a class="btn btn-success btn-icon-split" href="javascript:mainInsert.submit();" style="width:90%;" >
-                    <span class="text">등록</span>
-                  </a>
-              </td><td>
-              <a href="javascript:mainInsert.reset();" class="btn btn-danger btn-icon-split" style="width:90%;">
-                    <span class="text">취소</span>
-              </a>
-              </td></tr>
-              </table>
-              </form>
-            </div>
-          </div> -->
-          <!-- 게시글작성끝 -->
-          <!-- 새 글작성 시작 -->
-        
 <div class="card shadow mb-4">
             <div class="card-header py-3">
             </div>

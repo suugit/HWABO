@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
@@ -57,6 +58,11 @@ public class RedDao {
 
 	public int insertProject2(UserProject project) {
 		return session.insert("redMapper.insertProject2", project);
+	}
+
+	public ArrayList<MemberProject> selectMemberList(String pnum) {
+		List<MemberProject> list = session.selectList("redMapper.selectMemberList", pnum);
+		return (ArrayList<MemberProject>)list;
 	}
 
 }
