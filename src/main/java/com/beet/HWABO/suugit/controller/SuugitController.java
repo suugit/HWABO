@@ -206,7 +206,7 @@ public class SuugitController {
 		}
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/upuimg.do", method = RequestMethod.POST)
 	public ModelAndView updateUimg(Member member, MultipartHttpServletRequest request, ModelAndView mav) {
 		logger.info("사진 변경~");
@@ -240,28 +240,28 @@ public class SuugitController {
 		return mav;
 
 	}
-	
-	@RequestMapping(value="/uppwd.do", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/uppwd.do", method = RequestMethod.POST)
 	public ModelAndView updatePwd(HttpServletRequest request, ModelAndView mav, HttpServletResponse response) {
 		String ucode = request.getParameter("ucode");
 		Member member = mservice.selectMember(ucode);
-		if(bcryptPwdEncoder.matches(request.getParameter("oldpwd"), member.getUpwd())) {
+		if (bcryptPwdEncoder.matches(request.getParameter("oldpwd"), member.getUpwd())) {
 			logger.info("비밀번호 일치! 비밀번호 변경 요청...");
 			member.setUpwd(bcryptPwdEncoder.encode(request.getParameter("newpwd")));
 			int result = mservice.updatePwd(member);
-			if(result > 0) {
+			if (result > 0) {
 				mav.addObject("message", "비밀번호를 변경했습니다");
-			}else { 	
-				mav.addObject("message","비밀번호 변경에 실패했습니다!");
+			} else {
+				mav.addObject("message", "비밀번호 변경에 실패했습니다!");
 			}
-		}else {
+		} else {
 			logger.info("비번 불일치!");
 			mav.addObject("message", "현재 비밀번호가 일치하지 않습니다!");
 		}
-		mav.setViewName("redirect:/myinfo.do?ucode="+ucode);		
+		mav.setViewName("redirect:/myinfo.do?ucode=" + ucode);
 		return mav;
 	}
-	
+
 	/*
 	 * updateMyinfo(@RequestBody Map<String,Object> params) {
 	 * logger.info("정보 변경...");
@@ -283,18 +283,7 @@ public class SuugitController {
 		}
 	}
 
-//게시글
-	@RequestMapping("/gnwrite.do")
-	public String gnrlBoardWriteFormPage() {
 
-		return "suugit/gnrlBoardWriteForm.part";
-	}
-
-	@RequestMapping("/gnview.do")
-	public String gnrlBoardViewPage() {
-
-		return "suugit/gnrlBoardView.part";
-	}
 
 //모달
 	@RequestMapping("/modal.do")
@@ -311,10 +300,6 @@ public class SuugitController {
 		return "suugit/chnpwd.part";
 	}
 
-	@RequestMapping("/mvcpost.do")
-	public String testpage() {
-		return "suugit/tables";
-	}
 
 	@RequestMapping("/top1.do")
 	public String testpage2() {
@@ -325,7 +310,10 @@ public class SuugitController {
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================
-
+	@RequestMapping("/mvcpost.do")
+	public String testpage() {
+		return "suugit/tables";
+	}
 
 	@RequestMapping("/incp.do")
 	public ModelAndView insertCpost(Cpost cpost, AddOn addon, ModelAndView mv, MultipartHttpServletRequest request) {
@@ -360,7 +348,7 @@ public class SuugitController {
 			}
 			String cno = cservice.selectCno();
 			addon.setCno(cno);
-			
+
 			for (MultipartFile filePart : fileList) {
 
 				if (!fileList.get(i).isEmpty()) {
@@ -402,7 +390,7 @@ public class SuugitController {
 				}
 				i++;
 			}
-			
+
 			int result1 = cservice.updateCfile(addon);
 
 			if (result1 > 0) {
@@ -432,20 +420,26 @@ public class SuugitController {
 	}
 
 	@RequestMapping("selcpone.do")
-	public ModelAndView selectCpOne(@RequestParam("cno") String cno, ModelAndView mv) {
-		logger.info(cno);
-		Cpost cpost = cservice.selectCpOne(cno);
+	public ModelAndView selectCpOne(HttpServletRequest request, ModelAndView mv) {
+
+		logger.info(request.getParameter("cno"));
+		Cpost cpost = cservice.selectCpOne(request.getParameter("cno"));
 
 		if (cpost != null) {
-			mv.addObject("cpost", cpost);
-			mv.setViewName("suugit/cpostCard");
+			mv.addObject("c", cpost);
+			mv.setViewName("suugit/tables2");
 		} else {
-			mv.addObject("message", cno + "번 글을 조회할 수 없습니다!");
+			mv.addObject("message", "글을 조회할 수 없습니다!");
 			mv.setViewName("common/error");
 		}
 		return mv;
 	}
-
+	@RequestMapping("mvupcp.do")
+	public String moveUpdateCpost(Cpost cpost, Model model) {
+		model.addAttribute("cpost", cpost);
+		return "suugit/cpostUpdateForm";
+		
+	}
 	@RequestMapping("upcp.do")
 	public ModelAndView updateCpost(Cpost cpost, AddOn addon, MultipartHttpServletRequest request, ModelAndView mav) {
 
@@ -526,20 +520,20 @@ public class SuugitController {
 
 	@RequestMapping("delcp.do")
 	public String deleteCpost(@RequestParam("cno") String cno, AddOn addon, Model model, HttpServletRequest request) {
-		
+
 		File f = new File(request.getSession().getServletContext().getRealPath("resources/cupfiles"));
-		if(f.isDirectory()) {
-		    File[] fList = f.listFiles();
-		    for(int i=0; i < fList.length; i++)
-		    	if(fList[i].getName().contains(cno)) {
-		    		System.out.println(fList[i].getName());
-		    		fList[i].delete();
-		    	}
+		if (f.isDirectory()) {
+			File[] fList = f.listFiles();
+			for (int i = 0; i < fList.length; i++)
+				if (fList[i].getName().contains(cno)) {
+					System.out.println(fList[i].getName());
+					fList[i].delete();
+				}
 		}
-		
+
 		if (cservice.deleteCpost(cno) > 0) {
 			return "suugit/tables";
-		}else {
+		} else {
 			return "common/error";
 		}
 

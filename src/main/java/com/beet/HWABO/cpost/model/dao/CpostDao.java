@@ -38,7 +38,7 @@ public class CpostDao {
 	}
 
 	public Cpost selectCpOne(String cno) {
-		return session.selectOne("cpostMapper.selectCpOne");
+		return session.selectOne("cpostMapper.selectCpOne", cno);
 	}
 
 	public int updateCpost(Cpost cpost) {

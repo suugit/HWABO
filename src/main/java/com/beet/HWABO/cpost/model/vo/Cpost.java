@@ -6,18 +6,14 @@ public class Cpost implements java.io.Serializable{
 	private static final long serialVersionUId = 1133L;
 	
 	private String cno;
-	private String cpnum;
 	private String ctitle;
 	private String cucode;
 	private String cwriter;
 	private String ccontent;
 	private java.sql.Date cenrolldate;
 	private String copen;
-	private String clove;
 	private String hashtags;
 	private String mentions;
-	private String crwriter;
-	private String crcontent;
 	private String addonuse;
 	private String ofile1;
 	private String rfile1;
@@ -25,50 +21,25 @@ public class Cpost implements java.io.Serializable{
 	private String rfile2;
 	private String ofile3;
 	private String rfile3;
+	private String cpnum;
 	
 	
 	public Cpost() {}
 
 
-	public Cpost(String cno, String cpnum, String ctitle, String cucode, String cwriter, String ccontent,
-			Date cenrolldate, String copen, String clove, String hashtags, String mentions, String crwriter,
-			String crcontent, String addonuse) {
+	public Cpost(String cno, String ctitle, String cucode, String cwriter, String ccontent, Date cenrolldate,
+			String copen, String hashtags, String mentions, String addonuse, String ofile1, String rfile1,
+			String ofile2, String rfile2, String ofile3, String rfile3, String cpnum) {
 		super();
 		this.cno = cno;
-		this.cpnum = cpnum;
 		this.ctitle = ctitle;
 		this.cucode = cucode;
 		this.cwriter = cwriter;
 		this.ccontent = ccontent;
 		this.cenrolldate = cenrolldate;
 		this.copen = copen;
-		this.clove = clove;
 		this.hashtags = hashtags;
 		this.mentions = mentions;
-		this.crwriter = crwriter;
-		this.crcontent = crcontent;
-		this.addonuse = addonuse;
-	}
-
-
-	public Cpost(String cno, String cpnum, String ctitle, String cucode, String cwriter, String ccontent,
-			Date cenrolldate, String copen, String clove, String hashtags, String mentions, String crwriter,
-			String crcontent, String addonuse, String ofile1, String rfile1, String ofile2, String rfile2,
-			String ofile3, String rfile3) {
-		super();
-		this.cno = cno;
-		this.cpnum = cpnum;
-		this.ctitle = ctitle;
-		this.cucode = cucode;
-		this.cwriter = cwriter;
-		this.ccontent = ccontent;
-		this.cenrolldate = cenrolldate;
-		this.copen = copen;
-		this.clove = clove;
-		this.hashtags = hashtags;
-		this.mentions = mentions;
-		this.crwriter = crwriter;
-		this.crcontent = crcontent;
 		this.addonuse = addonuse;
 		this.ofile1 = ofile1;
 		this.rfile1 = rfile1;
@@ -76,6 +47,7 @@ public class Cpost implements java.io.Serializable{
 		this.rfile2 = rfile2;
 		this.ofile3 = ofile3;
 		this.rfile3 = rfile3;
+		this.cpnum = cpnum;
 	}
 
 
@@ -86,16 +58,6 @@ public class Cpost implements java.io.Serializable{
 
 	public void setCno(String cno) {
 		this.cno = cno;
-	}
-
-
-	public String getCpnum() {
-		return cpnum;
-	}
-
-
-	public void setCpnum(String cpnum) {
-		this.cpnum = cpnum;
 	}
 
 
@@ -159,16 +121,6 @@ public class Cpost implements java.io.Serializable{
 	}
 
 
-	public String getClove() {
-		return clove;
-	}
-
-
-	public void setClove(String clove) {
-		this.clove = clove;
-	}
-
-
 	public String getHashtags() {
 		return hashtags;
 	}
@@ -186,26 +138,6 @@ public class Cpost implements java.io.Serializable{
 
 	public void setMentions(String mentions) {
 		this.mentions = mentions;
-	}
-
-
-	public String getCrwriter() {
-		return crwriter;
-	}
-
-
-	public void setCrwriter(String crwriter) {
-		this.crwriter = crwriter;
-	}
-
-
-	public String getCrcontent() {
-		return crcontent;
-	}
-
-
-	public void setCrcontent(String crcontent) {
-		this.crcontent = crcontent;
 	}
 
 
@@ -279,16 +211,28 @@ public class Cpost implements java.io.Serializable{
 	}
 
 
-	@Override
-	public String toString() {
-		return "Cpost [cno=" + cno + ", cpnum=" + cpnum + ", ctitle=" + ctitle + ", cucode=" + cucode + ", cwriter="
-				+ cwriter + ", ccontent=" + ccontent + ", cenrolldate=" + cenrolldate + ", copen=" + copen + ", clove="
-				+ clove + ", hashtags=" + hashtags + ", mentions=" + mentions + ", crwriter=" + crwriter
-				+ ", crcontent=" + crcontent + ", addonuse=" + addonuse + ", ofile1=" + ofile1 + ", rfile1=" + rfile1
-				+ ", ofile2=" + ofile2 + ", rfile2=" + rfile2 + ", ofile3=" + ofile3 + ", rfile3=" + rfile3 + "]";
+	public String getCpnum() {
+		return cpnum;
 	}
 
-	
+
+	public void setCpnum(String cpnum) {
+		this.cpnum = cpnum;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Cpost [cno=" + cno + ", ctitle=" + ctitle + ", cucode=" + cucode + ", cwriter=" + cwriter
+				+ ", ccontent=" + ccontent + ", cenrolldate=" + cenrolldate + ", copen=" + copen + ", hashtags="
+				+ hashtags + ", mentions=" + mentions + ", addonuse=" + addonuse + ", ofile1=" + ofile1 + ", rfile1="
+				+ rfile1 + ", ofile2=" + ofile2 + ", rfile2=" + rfile2 + ", ofile3=" + ofile3 + ", rfile3=" + rfile3
+				+ ", cpnum=" + cpnum + "]";
+	}
+
+
+
+
 	
 	
 

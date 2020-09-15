@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -110,16 +110,14 @@
             </div>
           </div>
           
-<c:import url="/WEB-INF/views/suugit/modal.jsp"/>           
+           
           <!-- 새 글작성끝 -->
 
 	          
-<%-- <% for(int i = 0; i < 7; i++){ %>
-<!-- 게시글시작 -->
+
  <c:import url="/WEB-INF/views/suugit/cpostCard.jsp"></c:import>
-<!-- 게시글끝 -->
-<% } %>
- --%>
+
+
 
         </div>
         <!-- /.container-fluid -->
@@ -147,7 +145,7 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+<c:import url="/WEB-INF/views/suugit/modal.jsp"/>     
  
   <!-- Bootstrap core JavaScript-->
   <script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>

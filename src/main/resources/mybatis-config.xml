@@ -34,6 +34,7 @@
 
 		<!-- 수현 -->
 		<typeAlias type="com.beet.HWABO.member.model.vo.Member" alias="Member" />
+		<typeAlias type="com.beet.HWABO.member.model.vo.PjMember" alias="PjMember" />
 		<typeAlias type="com.beet.HWABO.cpost.model.vo.Cpost" alias="Cpost"/>
         <typeAlias type="com.beet.HWABO.cpost.model.vo.AddOn" alias="AddOn"/>
         <typeAlias type="com.beet.HWABO.cpost.model.vo.AddTag" alias="AddTag"/>

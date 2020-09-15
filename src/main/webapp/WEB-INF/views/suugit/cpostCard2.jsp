@@ -18,7 +18,6 @@ cfstyle >li {
 		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary">
 				<i class="fas fa-user-circle"></i> 
-				<input type="text" value="${c.cucode}">
 				${c.cwriter}<br> 
 				${c.cenrolldate}
 			</h6>
@@ -39,18 +38,15 @@ cfstyle >li {
 				<div
 					class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
 					<div class="dropdown-header">메뉴:</div>
-					<a name="mine" class="dropdown-item" onclick="toEdit()" >수정</a> 
-					<a name="mine" class="dropdown-item" href="#">삭제</a>
+					<a class="dropdown-item" href="#">수정</a> 
+					<a class="dropdown-item" href="#">삭제</a>
 				</div>
 
 			</div>
 			<!-- 드롭다운 끝 -->
 
 		</div>
-		<div id="cpView">
-		<div id="cpEdit" style="display:none"> 
-		 <c:import url="/WEB-INF/views/suugit/edit.jsp"></c:import>
-		</div>
+		<div id="chndiv"> 
 		<div class="card-body">
 			<!-- 게시글안쪽 -->
 			<h6>${c.ctitle}<h6>
@@ -108,25 +104,7 @@ cfstyle >li {
 		</div>
 	</div>
 	</div>
-	
-	
    <script src="resources/js/jquery-3.5.1.min.js"></script>
    <script src="resources/js/cpost.js"></script>
-   <script>
-
-   $(document).ready(function (e){
-	   if('${sessionScope.ucode}' === '${c.cucode}'){
-			$('a[name=mine]').addClass( 'active');
-	   }else{
-		   $('a[name=mine]').addClass( 'disabled');
-	   }
-	   
-   });
-   
-   function toEdit(){
-	   alert('hi');
-	   $("#cpView").hide();
-	   $("#cpEdit").show();
-   }   </script>
 </body>
 </html>

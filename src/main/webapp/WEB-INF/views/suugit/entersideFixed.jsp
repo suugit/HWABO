@@ -57,7 +57,7 @@
 
 <!-- 채팅 폼 시작 -->
 
-<c:import url="/WEB-INF/views/red/sideRight.jsp"></c:import>
+<c:import url="/WEB-INF/views/suugit/sideRight.jsp"></c:import>
 
 <!-- 채팅 폼 끝 -->
 

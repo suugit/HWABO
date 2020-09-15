@@ -16,8 +16,6 @@
               <tr id="file_list">
        				<input type="hidden" name="cwriter" value="${sessionScope.uname }">
        				<input type="hidden" name="cucode" value="${sessionScope.ucode }">
-       				<input type="text" name="cpnum" value="${sessionScope.pnum}">
-       				
               	<td>
               		<img src="" />
               		<a class="del_img" style="position:relative;bottom:80%;left:20%"><i class="fa fa-times-circle"></i></a>
@@ -84,7 +82,7 @@
 			<tr>
 			<td> 		
 			<c:url var="calln" value="selcpone.do">
-				<c:param name="cno" value="c27" />
+				<c:param name="cno" value="c5" />
 			</c:url>
 		<button><a href="${calln}">상세보기 테스트</a></button> 
 			</td>
