@@ -17,18 +17,18 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	@RequestMapping(value = "myfile.do", method = RequestMethod.GET)
 	public String suugitIndex(Model model) {
 		
-		return "kyukyu/myfile";
+		return "kyukyu/fileboxpage";
 	}
 	
-	@RequestMapping(value = "myfolder.do", method = RequestMethod.GET)
+	@RequestMapping(value = "mycabinet.do", method = RequestMethod.GET)
 	public String redIndex(Model model) {
 		
-		return "kyukyu/myfolder";
+		return "kyukyu/cabinetpage";
 	}
 	@RequestMapping(value = "mynote.do", method = RequestMethod.GET)
 	public String abcabcIndex(Model model) {
 		
-		return "kyukyu/mynote";
+		return "kyukyu/notepage";
 	}
 	
 	@RequestMapping(value = "test.do", method = RequestMethod.GET)

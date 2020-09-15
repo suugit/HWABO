@@ -50,19 +50,89 @@ $("#'${b.bkind}'").button('toggle')
 
 }
 
-var names = "";
-function addbcharge(){
+
+function addbcharge0(){
+	  var name = $(event.target).text();
+	  var code = $(event.target).val();
+	   
+	    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+	    //$('#bform').val(name); 
+	    
+	   $('#name0').val(name);
+	    $('#user0').val(code);
+	    alert($("#user0").val()+" 0번"+ $("#name0").val()); 
+	    
+	}
+
+
+function addbcharge1(){
    var name = $(event.target).text();
-   names += name + " ";
+	var code = $(event.target).val();
    
-    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>');
+    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
     //$('#bform').val(name); 
     
-    $('#bform').val(names);
-    alert($("#bform").val()); 
-   
+   $('#name1').val(name);
+    $('#user1').val(code);
+    alert($("#user1").val()+" 1번"+ $("#name1").val()); 
+    
 }
-
+function addbcharge2(){
+	   var name = $(event.target).text();
+	   var code = $(event.target).val();
+	    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+	    //$('#bform').val(name); 
+	    
+	   $('#name2').val(name);
+	    $('#user2').val(code);
+	    alert($("#user2").val()+" 2번" + $("#name2").val()); 
+	    
+	}
+function addbcharge3(){
+	   var name = $(event.target).text();
+	   var code = $(event.target).val();
+	    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+	    //$('#bform').val(name); 
+	    
+	   $('#name3').val(name);
+	    $('#user3').val(code);
+	    alert($("#user3").val()+" 3번"); 
+	    
+	}
+function addbcharge4(){
+	   var name = $(event.target).text();
+	   var code = $(event.target).val();
+	    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+	    //$('#bform').val(name); 
+	    
+	   $('#name4').val(name);
+	    $('#user4').val(code);
+	    alert($("#user4").val()+" 4번"); 
+	    
+	}
+function addbcharge5(){
+	   var name = $(event.target).text();
+	   var code = $(event.target).val();
+	    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+	    //$('#bform').val(name); 
+	    
+	   $('#name5').val(name);
+	    $('#user5').val(code);
+	    alert($("#user5").val()+" 5번"); 
+	    
+	}
+function addbcharge6(){
+	   var name = $(event.target).text();
+	   var code = $(event.target).val();
+	    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+	    //$('#bform').val(name); 
+	    
+	   
+	    $('#user6').val(code);
+	    $('#name6').val(name);
+	    alert($("#user6").val()+" 6번"); 
+	    
+	}
 function unSelected(){
    
    $(event.target).parent().remove();
@@ -108,8 +178,7 @@ function unSelected(){
                      <input type="hidden" name="bucode" value="${sessionScope.ucode }">
                      <input type="hidden" name="bwriter" value="${sessionScope.uname }">
                      <input type="hidden" name="bpnum" value="${sessionScope.pnum }">
-                       <input type="hidden" id="bform" name="bcharge">
-                  
+                 	 
                         <table style="text-align: center; width: 100%;">
                            <tr>
                               <td colspan="5">
@@ -156,21 +225,47 @@ function unSelected(){
                            <div>   
                         <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                     
-                        <br><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    
+                    
+                    
+                    
+                    <div class="dropdown">
+						  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    담당자
+						  </button>
+						    <div><input type="hidden" id="selected"></div>
+						    
+						  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+						   <c:forEach var="pm" items="${sessionScope.pmlist}" varStatus="status">
+						   <button class="dropdown-item" type="button" onclick="addbcharge${status.index}();" value="${pm.ucode }">${pm.uname }</button>
+						   <input type="hidden" id="user${status.index }" name="bcharge">
+						   <input type="hidden" id="name${status.index }" name="bchargename">
+						   </c:forEach>
+						   
+						  </div>
+						</div>
+						 
+						
+   <%--           <br><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              담당자
                         </a>
                     <!-- 담당자 이름 -->
-                       <div><input type="hidden" id="selected" name="bcharge"></div>
-              
+                       <div><input type="hidden" id="selected" ></div>
+           
                     
                         <div class="dropdown-menu dropdown-menu-left animated--grow-in" aria-labelledby="navbarDropdown">
-                        <c:forEach var="pm" items="${sessionScope.names } ">
-                          <a class="dropdown-item" onclick="addbcharge()"> ${pm }</a>
-                       	
+                        <c:forEach var="pm" items="${sessionScope.pmlist}" varStatus="status">
+                        
+                          <a class="dropdown-item" onclick="addbcharge${status.index}();">${pm.uname}</a>
+                           <input type="hidden" id="user${status.index }" name="bcharge">
+                    
+                       	 </c:forEach>
+                       	 
+                       	 
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="#">더보기</a>
-                          </c:forEach>
-                        </div>
+                         
+                        </div>  --%>
                         
                         <a class="navbar-brand" href="#"></a>
                     <ul class="navbar-nav ml-auto">
@@ -183,13 +278,11 @@ function unSelected(){
                      </tr>      
                            
                            <tr>
-                              <td width="20%"><span style="float: left;"><i
-                                    class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span><input
-                                 type="date" class="form-control" name="bstartday" id="beforesstartday"></td>
+                              <td width="20%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span>
+                              <input type="date" class="form-control" name="bstartday" id="beforesstartday"></td>
 
-                              <td width="20%"><span style="float: left;"><i
-                                    class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span><input
-                                 type="date" class="form-control" name="bendday" id="beforesendday"></td>
+                              <td width="20%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span>
+                              <input type="date" class="form-control" name="bendday" id="beforesendday"></td>
                               <td colspan="3"></td>
                            </tr>
                            <tr>
@@ -199,7 +292,7 @@ function unSelected(){
                         
                         
                            <tr>
-                              <td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;메 모</span>
+                              <td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;글쓰기</span>
                               <textarea cols="50" rows="6" class="w-100 form-control" name="bcontent"></textarea>
                               </td>
                            </tr>
@@ -220,12 +313,12 @@ function unSelected(){
                               <!-- <a class="btn btn-success btn-icon-split"   href="javascript: spostInsert.submit();"  style="width: 90%;">
                                     <span class="text">등록</span> </a> -->
                                     <input type="submit" class="btn btn-sm btn-info" value=" 등  록 ">
-                                 <!--    <button type="submit" class="btn btn-sm btn-info" >&nbsp;등 &nbsp;록&nbsp;</button> -->
+                                
                            
                               <!-- <a href="javascript:spostInsert.reset();"   class="btn btn-danger btn-icon-split" style="width: 90%;">
                                     <span class="text">취소</span> </a> -->
-                                    <input type="reset" class="btn btn-sm btn-danger"  value=" 취  소 ">
-                                    <!-- <button type="reset" class="btn btn-sm btn-danger" >&nbsp;취 &nbsp;소&nbsp;</button> -->
+                                    <input type="reset" class="btn btn-sm btn-danger" href="" value=" 취  소 ">
+                              
                               </td>
                            </tr>
                         </table>

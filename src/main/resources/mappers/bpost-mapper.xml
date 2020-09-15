@@ -19,6 +19,8 @@
 		<result column="brenamefile" property="brenamefile" />
 		<result column="boriginfile" property="boriginfile" />
 		<result column="bpnum" property="bpnum" />
+		<result column="bchargename" property="bchargename" />
+		
 	
 	</resultMap> 
 
@@ -26,19 +28,19 @@
 
 	 <if test="boriginfile != null"> 
 	insert into bpost
-	(bno, btitle, bucode, bwriter, bstartday, bendday, bkind, bcharge, bcontent, benrolldate, bopen, brenamefile, boriginfile, bpnum)
+	(bno, btitle, bucode, bwriter, bstartday, bendday, bkind, bcharge, bcontent, benrolldate, bopen, brenamefile, boriginfile, bpnum, bchargename)
 	values ((select concat('b', (select nvl(max(to_number(substr(bno, 2))),0)+1 from bpost))from dual), 
 	#{btitle}, #{bucode}, #{bwriter}, #{bstartday}, #{bendday}, #{bkind}, #{bcharge}, #{bcontent}, sysdate, 
-	#{bopen}, #{brenamefile}, #{boriginfile}, #{bpnum})
+	#{bopen}, #{brenamefile}, #{boriginfile}, #{bpnum}, #{bchargename})
 	
 	
 	
 	</if>
 	<if test="boriginfile == null">
 	insert into bpost
-	(bno, btitle, bucode, bwriter, bstartday, bendday, bkind, bcharge, bcontent, benrolldate, bopen, bpnum)
+	(bno, btitle, bucode, bwriter, bstartday, bendday, bkind, bcharge, bcontent, benrolldate, bopen, bpnum, bchargename)
 	values ((select concat('b', (select nvl(max(to_number(substr(bno, 2))),0)+1 from bpost))from dual), 
-	 #{btitle}, #{bucode}, #{bwriter}, #{bstartday}, #{bendday}, #{bkind}, #{bcharge}, #{bcontent}, sysdate, #{bopen}, #{bpnum})
+	 #{btitle}, #{bucode}, #{bwriter}, #{bstartday}, #{bendday}, #{bkind}, #{bcharge}, #{bcontent}, sysdate, #{bopen}, #{bpnum}, #{bchargename})
 
 	</if> 
 </insert>
@@ -74,7 +76,7 @@
 <update id="updateBpost" parameterType="Bpost">
 	update bpost
 	set btitle = #{btitle}, bcharge = #{bcharge}, bstartday = #{bstartday}, bendday = #{bendday},
-		bcontent = #{bcontent},
+		bcontent = #{bcontent}, bchargename = #{bchargename},
 		
 	<if test="boriginfile != null">
 	boriginfile = #{boriginfile}, brenamefile = #{brenamefile},

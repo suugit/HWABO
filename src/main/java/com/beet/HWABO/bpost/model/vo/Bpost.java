@@ -20,15 +20,17 @@ public class Bpost implements java.io.Serializable{
 	private String brenamefile;
 	private String boriginfile;
 	private String bpnum;
+	private String bchargename;
 	
 	public Bpost() {
 		super();
 	}
-
+	
+	
 
 	public Bpost(String bno, String btitle, String bucode, String bwriter, Date bstartday, Date bendday, String bkind,
 			String bcharge, String bcontent, Date benrolldate, String bopen, String brenamefile, String boriginfile,
-			String bpnum) {
+			String bpnum, String bchargename) {
 		super();
 		this.bno = bno;
 		this.btitle = btitle;
@@ -44,7 +46,9 @@ public class Bpost implements java.io.Serializable{
 		this.brenamefile = brenamefile;
 		this.boriginfile = boriginfile;
 		this.bpnum = bpnum;
+		this.bchargename = bchargename;
 	}
+
 
 
 	public String getBno() {
@@ -161,15 +165,33 @@ public class Bpost implements java.io.Serializable{
 		this.bpnum = bpnum;
 	}
 
+	
+	
+
+	public String getBchargename() {
+		return bchargename;
+	}
+
+
+
+	public void setBchargename(String bchargename) {
+		this.bchargename = bchargename;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "Bpost [bno=" + bno + ", btitle=" + btitle + ", bucode=" + bucode + ", bwriter=" + bwriter
 				+ ", bstartday=" + bstartday + ", bendday=" + bendday + ", bkind=" + bkind + ", bcharge=" + bcharge
 				+ ", bcontent=" + bcontent + ", benrolldate=" + benrolldate + ", bopen=" + bopen + ", brenamefile="
-				+ brenamefile + ", boriginfile=" + boriginfile + ", bpnum=" + bpnum + "]";
+				+ brenamefile + ", boriginfile=" + boriginfile + ", bpnum=" + bpnum + ", bchargename=" + bchargename
+				+ "]";
 	}
 
+
+
+	
 
 	
 

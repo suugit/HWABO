@@ -45,7 +45,7 @@
                <i class="fas fa-book-reader"></i>
                <span>노트</span>
             </a> 
-            <a class="nav-link collapsed" href="myfolder.do" data-target="#collapsePages" aria-expanded="true"
+            <a class="nav-link collapsed" href="mycabinet.do" data-target="#collapsePages" aria-expanded="true"
                aria-controls="collapsePages"> 
                <i class="fas fa-box-open"></i> 
                

@@ -1,12 +1,11 @@
-<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  
-<%= session.getAttribute("pnum") %>
+<%-- <%= session.getAttribute("pnum") %> --%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 
 <head>
   <link rel="icon" type="image/x-icon" href="/hwabo/resources/assets/img/favicon.png" />
@@ -225,9 +224,9 @@ $(function(){
               
                <button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle" name="like" onclick="sendInsert(${status.index});">
            	   <span>보관</span> <i class="far fa-bookmark"></i></button>
-           	    <input type="text" id="ucode_${status.index }" value="${sessionScope.ucode }" >
-			   <input type="text" id="no_${status.index }" value="${b.bno }">
-			   <input type="text" id="pnum_${status.index }" value="${b.bpnum }" >
+           	    <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
+			   <input type="hidden" id="no_${status.index }" value="${b.bno }">
+			   <input type="hidden" id="pnum_${status.index }" value="${b.bpnum }" >
 	
              
 
@@ -285,7 +284,7 @@ $(function(){
 			
 			
 			<div>
-			   <i class="fas fa-users">담당자 :  ${b.bcharge }</i>
+			   <i class="fas fa-users">담당자 :  ${b.bchargename }</i>
 			</div>
 			<hr>
 			
@@ -369,13 +368,17 @@ $(function(){
       <!-- End of Footer -->
 
    </div>
+    </div>
     
     <div style="width:25%"></div>
     <!-- End of Content Wrapper -->
 
    </div> 
+   
+    </div> <!-- 꼭대기 디브 닫기  div flex-->
   <!-- End of Page Wrapper -->
- </div> <!-- 꼭대기 디브 닫기  div flex-->
+
+ 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
