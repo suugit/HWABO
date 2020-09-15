@@ -160,12 +160,12 @@ function unSelected(){
                              담당자
                         </a>
                     <!-- 담당자 이름 -->
-                       <div><input type="text" id="selected" name="bcharge"></div>
+                       <div><input type="hidden" id="selected" name="bcharge"></div>
               
                     
                         <div class="dropdown-menu dropdown-menu-left animated--grow-in" aria-labelledby="navbarDropdown">
                         <c:forEach var="pm" items="${sessionScope.names } ">
-                          <a class="dropdown-item" onclick="addbcharge()"> ${pm.names }</a>
+                          <a class="dropdown-item" onclick="addbcharge()"> ${pm }</a>
                        	
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="#">더보기</a>
