@@ -26,8 +26,9 @@
 </insert>
 
 
-<update id="updatevpost" parameterType="VPost">
+<update id="updatevpost" >
 	update vpost set vtitle = #{vtitle} , vcontent = #{vcontent}
+	where vno=#{vno}
 </update>
 
 <select id="selectList"  resultMap="resultVPost">
