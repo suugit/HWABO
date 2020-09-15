@@ -32,6 +32,14 @@ public class abcController {
 	private static final Logger logger = LoggerFactory.getLogger(abcController.class);
 
 //============================================================	
+	//알림 테스트
+	@RequestMapping("alarm.do")
+	public String TESTalarm() {	
+		
+		return "abc/alarmtest";
+	}
+	
+	
 	
 	//나의 업무페이지
 	@RequestMapping("mybpost.do")
@@ -198,39 +206,36 @@ public class abcController {
 	public String deleteSpost(String sno) {
 		
 		if(spostService.deleteSpost(sno) > 0) {
-			
+			return "abc/myhwabo";
+		}else {
+			return "abc/myhwabo";
 		}
-		
-		
-		return "";
 	}
 	
 	
 	//일정 좋아요 증가
 	@RequestMapping("slove.do")
-	public String updateSpostLove() {
+	public String insertSpostLove() {
 		return "";
 	}
 	
 	//일정 좋아요 취소
 	@RequestMapping("sunlove.do")
-	public String updateSpostUnlove() {
+	public String deleteSpostLove() {
 		return "";
 	}
-	
-	//일정 알림 조회해서 알림보내기용
-	@RequestMapping("salarm.do")
-	public String selectSpostAlarm() {
-		return "";
-	}
-	
-	
 	
 //---------- Post ----------------------------------------------------------------------------------------------------------------	
 	
 	//나와 관련된 게시글 목록 조회용
 	@RequestMapping("mypost.do")
 	public String selectMyPost() {
+		// bpost : 작성자, 담당자
+		// cpost : 작성자
+		// spost : 작성자
+		// vpost : 작성자
+		//dopost : 작성자
+		
 		return "";
 	}
 	
@@ -274,12 +279,7 @@ public class abcController {
 	public String selectMyTeam() {
 		return "";
 	}
-	
-	//화보페이지에 띄울 정보 조회용
-	@RequestMapping("selinfo.do")
-	public String selectInfo() {
-		return "";
-	}
+
 	
 	
 }

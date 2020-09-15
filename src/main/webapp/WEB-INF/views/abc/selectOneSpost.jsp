@@ -113,26 +113,7 @@ geocoder.addressSearch(spostplace, function(result, status) {
 					</td>
 				</tr>
 				</c:if>
-				<tr>
-					<td>&nbsp;</td>
-				</tr>
-				
-				<tr>
-					<td>알 림</td>
-				</tr>
-				<tr>
-					<td>
-					<c:if test="${spost.salarm eq 'no' }">알림 없음</c:if>
-					<c:if test="${spost.salarm eq '10mm' }">10분 전 알림</c:if>
-					<c:if test="${spost.salarm eq '30mm' }">30분 전 알림</c:if>
-					<c:if test="${spost.salarm eq '1HH' }">1시간 전 알림</c:if>
-					<c:if test="${spost.salarm eq '2HH' }">2시간 전 알림</c:if>
-					<c:if test="${spost.salarm eq '3HH' }">3시간 전 알림</c:if>
-					<c:if test="${spost.salarm eq '1day' }">1일 전 알림</c:if>
-					<c:if test="${spost.salarm eq '2day'}">2일 전 알림</c:if>
-					<c:if test="${spost.salarm eq '7day' }">7일 전 알림</c:if>
-					</td>
-				</tr>
+			
 				<tr>
 					<td>&nbsp;</td>
 				</tr>

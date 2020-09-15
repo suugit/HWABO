@@ -6,9 +6,9 @@
 
 <!-- spost insert -->
 	<insert id="insertSpost" parameterType="Spost" >
-		insert into spost(sno, stitle, sucode, swriter, sstartday, sendday, splace, salarm, scontent, senrolldate, sopen)
+		insert into spost(sno, stitle, sucode, swriter, sstartday, sendday, splace, scontent, senrolldate, sopen)
 		values ( (select concat('s', (select nvl(max(to_number(substr(sno,2))),0)+1 from spost))from dual)  , #{stitle}, #{sucode}, #{swriter}, #{sstartday}, #{sendday}, #{splace}, 
-				  #{salarm}, #{scontent}, sysdate, #{sopen} )
+				   #{scontent}, sysdate, #{sopen} )
 	</insert>
 
 <!-- spost 전체 조회 -->
@@ -31,16 +31,16 @@
 <update id="updateSpost">
 	update spost
 	<if test="splace != null and scontent != null">
-		set stitle=#{stitle}, sstartday=#{sstartday}, sendday=#{sendday}, splace=#{splace}, salarm=#{salarm}, scontent=#{scontent}
+		set stitle=#{stitle}, sstartday=#{sstartday}, sendday=#{sendday}, splace=#{splace}, scontent=#{scontent}
 	</if>
 	<if test="splace != null and scontent == null">
-		set stitle=#{stitle}, sstartday=#{sstartday}, sendday=#{sendday}, splace=#{splace}, salarm=#{salarm}
+		set stitle=#{stitle}, sstartday=#{sstartday}, sendday=#{sendday}, splace=#{splace},
 	</if>
 	<if test="splace == null and scontent != null">
-		set stitle=#{stitle}, sstartday=#{sstartday}, sendday=#{sendday}, salarm=#{salarm}, scontent=#{scontent}
+		set stitle=#{stitle}, sstartday=#{sstartday}, sendday=#{sendday}, scontent=#{scontent}
 	</if>
 	<if test="splace == null and scontent == null">
-		set stitle=#{stitle}, sstartday=#{sstartday}, sendday=#{sendday}, salarm=#{salarm}
+		set stitle=#{stitle}, sstartday=#{sstartday}, sendday=#{sendday}
 	</if>
 	where sno=#{sno}
 </update>

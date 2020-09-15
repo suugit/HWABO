@@ -33,7 +33,7 @@
     <button onclick="javascript:location.href='yourhwabo.do'">팀원의 화보</button>
     <button onclick="javascript:location.href='insertspost.do'">일정게시글 입력폼</button>
     <button onclick="javascript:location.href='selectonespost.do'">일정게시글 1개 조회 > 수정</button>
-    
+     <button onclick="javascript:location.href='alarm.do'">알림테스트</button>
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->

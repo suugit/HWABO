@@ -225,25 +225,6 @@
 										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
-										<td colspan="1" style="width: 20%;"><span
-											style="float: left;"><i class="far fa-bell"></i>&nbsp;알
-												림</span> <select name="salarm" class="form-control">
-												<option value="no">--- 알림 없음 ---</option>
-												<option value="10mm">10분 전 알림</option>
-												<option value="30mm">30분 전 알림</option>
-												<option value="1HH">1시간 전 알림</option>
-												<option value="2HH">2시간 전 알림</option>
-												<option value="3HH">3시간 전 알림</option>
-												<option value="1day">1일 전 알림</option>
-												<option value="2day">2일 전 알림</option>
-												<option value="7day">7일 전 알림</option>
-										</select></td>
-										<td colspan="4">&nbsp;</td>
-									</tr>
-									<tr>
-										<td colspan="5">&nbsp;</td>
-									</tr>
-									<tr>
 										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;메 모</span>
 										<span style="float: left;">&nbsp;&nbsp;&nbsp;( 남은글자수 : <input size="2px;"  type="text"
 												readonly value="200" name="counter" id="counter"

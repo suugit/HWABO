@@ -13,33 +13,55 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 
- $("#uspost").on("click", function spostupdate(){
+function spostupdate(){
 		var param = $("#uspostform").serialize();
 		$.ajax({
 			url: "supdate.do",
 			data: param,
 			/* data: { sno: $("#sno").val(), stitle:$("#stitle").val(), beforesstartday:$("#beforesstartday").val(), beforesendday: $("#beforesendday").val(), 
 					 splace:$("#splace").val(), salarm:$("#salarm").val, scontent: $("#scontent").val() },	 */
-			type: "post", //json 을 받을 때는 post 로 지정해야함
+			type: "post", 
 			success: function(Data){	// 받는다고 했으니까 매개변수 있어야함
 				// json 한개를 받았을 때는 바로 출력 처리할 수 있음
 				if(Data != null){
 					alert("수정에 성공하였습니다");
 				}else{
 					alert("수정에 실패하였습니다");
-				}
-				 
-				
+				}	
 				/* $("#d2").html("번호 : "+jsonData.no+"<br>제목 : "+jsonData.title+"<br>작성자 : "+decodeURIComponent(jsonData.writer)+
 						"<br>내용 : "+decodeURIComponent(jsonData.content.replace(/\+/gi," "))+"<br><br>");
 				 */
-				
 			},
 			error: function(request, status, errorData){ //에러는 위에서 복붙
 				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
 			}
 		}); //ajax
-}); 
+}; 
+
+function spostdelete(){
+	$.ajax({
+		url: "sdelete.do",
+		data: { sno: $("#sno").val() },
+		/* data: { sno: $("#sno").val(), stitle:$("#stitle").val(), beforesstartday:$("#beforesstartday").val(), beforesendday: $("#beforesendday").val(), 
+				 splace:$("#splace").val(), salarm:$("#salarm").val, scontent: $("#scontent").val() },	 */
+		type: "post", 
+		success: function(Data){	// 받는다고 했으니까 매개변수 있어야함
+			// json 한개를 받았을 때는 바로 출력 처리할 수 있음
+			if(Data != null){
+				alert("삭제에 성공하였습니다");
+			}else{
+				alert("삭제에 실패하였습니다");
+			}	
+			/* $("#d2").html("번호 : "+jsonData.no+"<br>제목 : "+jsonData.title+"<br>작성자 : "+decodeURIComponent(jsonData.writer)+
+					"<br>내용 : "+decodeURIComponent(jsonData.content.replace(/\+/gi," "))+"<br><br>");
+			 */
+		},
+		error: function(request, status, errorData){ //에러는 위에서 복붙
+			console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+		}
+	}); //ajax
+}; 
+
 	
 $(function(){	
 	$('#scontent').on("propertychange change keyup paste input", function() {
@@ -144,7 +166,7 @@ $(function(){
 </script>
 	<div class="card shadow mb-4">
 	
-	<form action="supdate.do" name="uspostform" id="uspostform" method="post" onsubmit="return daycheck();">
+	<form name="uspostform" id="uspostform" method="post" onsubmit="return daycheck();">
 		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 		
 		
@@ -174,8 +196,8 @@ $(function(){
 					class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
 					aria-labelledby="dropdownMenuLink">
 					<div class="dropdown-header">메뉴:</div>
-					<button class="dropdown-item"  id="uspost" type="submit">수정하기</button> 
-					<button class="dropdown-item"	onclick ="">삭제</button>
+					<button class="dropdown-item"  id="uspost" type="submit" onclick="spostupdate(); return false;">수정하기</button> 
+					<button class="dropdown-item"  id="dspost" type="submit" onclick="spostdelete(); return false;">삭제하기</button>
 				</div>
 
 			</div>
@@ -198,6 +220,7 @@ $(function(){
 					<td width="20%">
 					<input type="datetime-local" class="form-control" name="beforesendday"  id="beforesendday" 
 					required="required"  value="${endday }"	></td>
+					<td><span style="color: blue;" id="placespan"></span></td>
 				</tr>
 			<c:if test="${ empty spost.splace }">
 				<tr>
@@ -233,127 +256,7 @@ $(function(){
 				<tr>
 					<td>&nbsp;</td>
 				</tr>
-				
-				<tr>
-					<td>알 림</td>
-				</tr>
-				<tr>
-					<td>
-					<c:if test="${spost.salarm eq 'no' }">
-					<select name="salarm" class="form-control" id="salarm">
-							<option value="no" selected="selected">--- 알림 없음 ---</option>
-							<option value="10mm">10분 전 알림</option>
-							<option value="30mm">30분 전 알림</option>
-							<option value="1HH">1시간 전 알림</option>
-							<option value="2HH">2시간 전 알림</option>
-							<option value="3HH">3시간 전 알림</option>
-							<option value="1day">1일 전 알림</option>
-							<option value="2day">2일 전 알림</option>
-							<option value="7day">7일 전 알림</option>
-					</select></c:if>
-					<c:if test="${spost.salarm eq '10mm' }">
-					<select name="salarm" class="form-control" id="salarm" >
-							<option value="no">--- 알림 없음 ---</option>
-							<option value="10mm" selected="selected">10분 전 알림</option>
-							<option value="30mm">30분 전 알림</option>
-							<option value="1HH">1시간 전 알림</option>
-							<option value="2HH">2시간 전 알림</option>
-							<option value="3HH">3시간 전 알림</option>
-							<option value="1day">1일 전 알림</option>
-							<option value="2day">2일 전 알림</option>
-							<option value="7day">7일 전 알림</option>
-					</select></c:if>
-					<c:if test="${spost.salarm eq '30mm' }">
-					<select name="salarm" class="form-control" id="salarm">
-							<option value="no">--- 알림 없음 ---</option>
-							<option value="10mm">10분 전 알림</option>
-							<option value="30mm" selected="selected">30분 전 알림</option>
-							<option value="1HH">1시간 전 알림</option>
-							<option value="2HH">2시간 전 알림</option>
-							<option value="3HH">3시간 전 알림</option>
-							<option value="1day">1일 전 알림</option>
-							<option value="2day">2일 전 알림</option>
-							<option value="7day">7일 전 알림</option>
-					</select></c:if>
-					<c:if test="${spost.salarm eq '1HH' }">
-					<select name="salarm" class="form-control" id="salarm">
-							<option value="no">--- 알림 없음 ---</option>
-							<option value="10mm">10분 전 알림</option>
-							<option value="30mm">30분 전 알림</option>
-							<option value="1HH" selected="selected">1시간 전 알림</option>
-							<option value="2HH">2시간 전 알림</option>
-							<option value="3HH">3시간 전 알림</option>
-							<option value="1day">1일 전 알림</option>
-							<option value="2day">2일 전 알림</option>
-							<option value="7day">7일 전 알림</option>
-					</select></c:if>
-					<c:if test="${spost.salarm eq '2HH' }">
-					<select name="salarm" class="form-control" id="salarm">
-							<option value="no">--- 알림 없음 ---</option>
-							<option value="10mm">10분 전 알림</option>
-							<option value="30mm">30분 전 알림</option>
-							<option value="1HH">1시간 전 알림</option>
-							<option value="2HH" selected="selected">2시간 전 알림</option>
-							<option value="3HH">3시간 전 알림</option>
-							<option value="1day">1일 전 알림</option>
-							<option value="2day">2일 전 알림</option>
-							<option value="7day">7일 전 알림</option>
-					</select></c:if>
-					<c:if test="${spost.salarm eq '3HH' }">
-					<select name="salarm" class="form-control" id="salarm">
-							<option value="no">--- 알림 없음 ---</option>
-							<option value="10mm">10분 전 알림</option>
-							<option value="30mm">30분 전 알림</option>
-							<option value="1HH">1시간 전 알림</option>
-							<option value="2HH">2시간 전 알림</option>
-							<option value="3HH" selected="selected">3시간 전 알림</option>
-							<option value="1day">1일 전 알림</option>
-							<option value="2day">2일 전 알림</option>
-							<option value="7day">7일 전 알림</option>
-					</select></c:if>
-					<c:if test="${spost.salarm eq '1day' }">
-					<select name="salarm" class="form-control" id="salarm">
-							<option value="no">--- 알림 없음 ---</option>
-							<option value="10mm">10분 전 알림</option>
-							<option value="30mm">30분 전 알림</option>
-							<option value="1HH">1시간 전 알림</option>
-							<option value="2HH">2시간 전 알림</option>
-							<option value="3HH">3시간 전 알림</option>
-							<option value="1day" selected="selected">1일 전 알림</option>
-							<option value="2day">2일 전 알림</option>
-							<option value="7day">7일 전 알림</option>
-					</select></c:if>
-					<c:if test="${spost.salarm eq '2day'}">
-					<select name="salarm" class="form-control" id="salarm">
-							<option value="no">--- 알림 없음 ---</option>
-							<option value="10mm">10분 전 알림</option>
-							<option value="30mm">30분 전 알림</option>
-							<option value="1HH">1시간 전 알림</option>
-							<option value="2HH">2시간 전 알림</option>
-							<option value="3HH">3시간 전 알림</option>
-							<option value="1day">1일 전 알림</option>
-							<option value="2day" selected="selected">2일 전 알림</option>
-							<option value="7day">7일 전 알림</option>
-					</select></c:if>
-					<c:if test="${spost.salarm eq '7day' }">
-					<select name="salarm" class="form-control" id="salarm">
-							<option value="no">--- 알림 없음 ---</option>
-							<option value="10mm">10분 전 알림</option>
-							<option value="30mm">30분 전 알림</option>
-							<option value="1HH">1시간 전 알림</option>
-							<option value="2HH">2시간 전 알림</option>
-							<option value="3HH">3시간 전 알림</option>
-							<option value="1day">1일 전 알림</option>
-							<option value="2day">2일 전 알림</option>
-							<option value="7day" selected="selected">7일 전 알림</option>
-					</select>
-					</c:if>
-					
-					</td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-				</tr>
+
 				<tr>
 					<td>메  모</td>
 				</tr>
