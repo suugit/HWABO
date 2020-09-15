@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.red.model.service.RedService;
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
@@ -167,6 +170,29 @@ public class RedController {
 
 		return sendJson.toJSONString();
 	}
+	//로그아웃
+		@RequestMapping("logoutRed.do")
+		public String logout(HttpServletRequest request, Model model) {
+			logger.info("로그아웃하는  회원 정보 : " + request.getAttribute("uname"));
+			HttpSession session = request.getSession(false);
+			if (session != null) {
+				session.invalidate();
+				return "welcome";
+			} else {
+				return "welcome";
+			}
+		}
+		@RequestMapping(value = "ftables.do", method = RequestMethod.GET)
+		public ModelAndView selectLogin(@RequestParam("project_num") String pnum, HttpServletRequest request, ModelAndView mv,SessionStatus status) {
+			logger.info("세션에 프로젝트넘버 추가완료... 프로젝트번호 : " + pnum);
+
+			HttpSession session = request.getSession();
+			session.setAttribute("pnum", pnum);
+
+			status.setComplete(); // 요청성공, 200 전송
+			mv.setViewName("red/tables");
+			return mv;
+		}
 
 ////views start//////////////////////////////	
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)
@@ -251,11 +277,7 @@ public class RedController {
 		
 		return "sample/register";
 	}
-	@RequestMapping(value = "ftables.do", method = RequestMethod.GET)
-	public String table(Model model) {
-		
-		return "red/tables";
-	}
+	
 	@RequestMapping(value = "sftables.do", method = RequestMethod.GET)
 	public String stable(Model model) {
 		

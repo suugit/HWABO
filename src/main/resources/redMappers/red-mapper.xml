@@ -34,6 +34,72 @@
 		<result property="right" column="right" />
 		<result property="order_by" column="order_by" />
 	</resultMap>
+	<resultMap id="resultProgressList" type="com.beet.HWABO.red.model.vo.Progress">
+		<result property="ucode" column="ucode" />
+		<result property="project_num" column="project_num" />
+		<result property="name" column="name" />
+		<result property="goal" column="goal" />
+		<result property="done" column="done" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+	</resultMap>
+	<resultMap id="resultProgress" type="com.beet.HWABO.red.model.vo.Progress">
+		<id property="ucode" column="ucode" />
+		<result property="project_num" column="project_num" />
+		<result property="name" column="name" />
+		<result property="goal" column="goal" />
+		<result property="done" column="done" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+	</resultMap>
+	<resultMap id="resultBpost" type="Bpost">
+		<id property="project_num" column="bno" />
+		<result property="name" column="btitle" />
+		<result property="goal" column="bucode" />
+		<result property="done" column="bwriter" />
+		<result property="title" column="bstartday" />
+		<result property="content" column="bendday" />
+		<result property="content" column="bkind" />
+		<result property="content" column="bcharge" />
+		<result property="content" column="bcontent" />
+		<result property="content" column="benrolldate" />
+		<result property="content" column="bopen" />
+		<result property="content" column="brenamefile" />
+		<result property="content" column="boriginfile" />
+		<result property="bpnum" column="bpnum" />
+	</resultMap>
+	<resultMap id="resultBpostList" type="Bpost">
+		<result property="project_num" column="bno" />
+		<result property="name" column="btitle" />
+		<result property="goal" column="bucode" />
+		<result property="done" column="bwriter" />
+		<result property="title" column="bstartday" />
+		<result property="content" column="bendday" />
+		<result property="content" column="bkind" />
+		<result property="content" column="bcharge" />
+		<result property="content" column="bcontent" />
+		<result property="content" column="benrolldate" />
+		<result property="content" column="bopen" />
+		<result property="content" column="brenamefile" />
+		<result property="content" column="boriginfile" />
+		<result property="bpnum" column="bpnum" />
+	</resultMap>
+
+<select id="selectProgressList" parameterType="string" resultMap="resultProgressList">
+		select * from progress where project_num = #{ project_num }  ORDER BY title
+</select>
+
+<select id="selectProgress" parameterType="string" resultMap="resultProgress">
+		select * from progress where project_num = #{ project_num } and ucode = #{ ucode } ORDER BY title
+</select>
+
+<select id="selectBpostList" parameterType="string" resultMap="resultBpostList">
+		select * from Bpost where project_num = #{ project_num }  ORDER BY title
+</select>
+
+<select id="selectBpost" parameterType="string" resultMap="resultBpost">
+		select * from Bpost where project_num = #{ project_num } and ucode = #{ ucode }  ORDER BY title
+</select>
 
 <select id="selectList" parameterType="string" resultMap="resultList">
 		select * from project join pjmember on (project.project_num = pjmember.pnum) where ucode = #{ ucode }  ORDER BY TO_NUMBER(order_by)

@@ -206,7 +206,7 @@ if((++w + 5) % 3 == 0){
                   </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body" onclick="javascript:location.href='ftables.do'">
+                <div class="card-body" onclick="javascript:location.href='ftables.do?project_num=<%= p.getProject_num() %>'">
                   <!-- 그래프시작 -->
                   <div class="container">
   <div class="donut-chart-block block"> 
@@ -264,24 +264,9 @@ if((w >= 3 && (w + 9) % 3 == 0) ||
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">Ã</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.jsp">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <!-- 8.로그아웃모달 -->
+        <c:import url="/WEB-INF/views/red/logoutModal.jsp"></c:import>
+  <!-- 8끝 -->
   <!-- Bootstrap core JavaScript-->
   <script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
   <script src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
