@@ -32,20 +32,12 @@ public class CabinetController {
    
    @RequestMapping(value="insertcabinet.do", method=RequestMethod.POST)
    //ajax는 뷰 리졸버를 거치지 않고 바로 통로를 만들어 보내므로 보이트처리
-   public void insertCabinet(Cabinet cabinet, HttpServletRequest request, HttpServletResponse response) throws Exception{
+   public void insertCabinet(Cabinet cabinet, HttpServletResponse response) throws Exception{
       logger.info("insertcabinet.do run...");
-      logger.info("전달받은 request" + request.getParameter("no") +", " + request.getParameter("ucode") +", " + request.getParameter("pnum"));
-      
-      
-      cabinet.setNo(request.getParameter("no"));
-      cabinet.setUcode(request.getParameter("ucode"));
-      cabinet.setPnum(request.getParameter("pnum"));
-      
       logger.info("cabinet : " + cabinet);
-      response.setContentType("text/html; charset=utf-8");
-      
-      PrintWriter out = response.getWriter();
-      
+     
+      response.setContentType("text/html; charset=utf-8");      
+      PrintWriter out = response.getWriter();      
       
       if(cabinetService.insertCabinet(cabinet) > 0) {
           logger.info("cabinet 인서트 성공");

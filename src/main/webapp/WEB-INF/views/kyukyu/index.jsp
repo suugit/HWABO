@@ -111,19 +111,12 @@ function validate(){
 
 <script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
-$(function cabinetin(){
-	//보관함
-/*  $("#'(${b.bno})'").on("click", function(){ */
-		
-	/*  var aa = new Object();
-	 aa.no = $("#no").val();
-	 aa.ucode = $("#ucode").val();
-	 aa.pnum = $("#pnum").val(); */
-	
-	  $.ajax({
-	      
+function sendInsert(index){
+	console.log("sendInsert : " + index);
+	console.log($("#no_"+ index).val());
+	$.ajax({	      
 	      url: "insertcabinet.do",
-	      date: {no: $("#no").val(), ucode : $("#ucode").val(), pnum : $("#pnum").val()},     
+	      data: {no: $("#no_"+ index).val(), ucode: $("#ucode_" + index).val(), pnum: $("#pnum_" + index).val()},     
 	      type: "post",
 	      success: function(result){
 	         if(result == "ok"){
@@ -140,7 +133,11 @@ $(function cabinetin(){
 	         }
 	      
 	      }); //에이작스
-	 
+}
+
+$(function(){
+	//보관함
+
 	
 	 $(".liketoggle").click(function() {
 		   $(this).find("i").toggleClass("fas far");
@@ -148,7 +145,7 @@ $(function cabinetin(){
 		     return v === '보관' ? '보관됨' : '보관'
 		   })
 		 });
-	 }	
+	
 });	 
 </script>
 
@@ -201,7 +198,7 @@ $(function cabinetin(){
 
 
            
-           	<c:forEach var="b" items="${requestScope.list }">
+           	<c:forEach var="b" items="${requestScope.list }" varStatus="status">
            	<div class="card shadow mb-4">
            
            	
@@ -226,11 +223,11 @@ $(function cabinetin(){
            		 
                <!-- <form action="insertcabinet.do" method="post"> -->
               
-               <button id="${b.bno }" class="btn btn-custom btn-sm liketoggle" name="like" onclick="cabinetin()">
+               <button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle" name="like" onclick="sendInsert(${status.index});">
            	   <span>보관</span> <i class="far fa-bookmark"></i></button>
-           	    <input type="text" name="ucode" id="ucode" value="${sessionScope.ucode }" >
-			   <input type="text" name="no" id="no" value="${b.bno }" style="display:none">
-			   <input type="text" name="pnum" id="pnum" value="${b.bpnum }" style="display:none">
+           	    <input type="text" id="ucode_${status.index }" value="${sessionScope.ucode }" >
+			   <input type="text" id="no_${status.index }" value="${b.bno }">
+			   <input type="text" id="pnum_${status.index }" value="${b.bpnum }" >
 	
              
 

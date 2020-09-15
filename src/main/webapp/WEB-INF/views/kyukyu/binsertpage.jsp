@@ -164,8 +164,8 @@ function unSelected(){
               
                     
                         <div class="dropdown-menu dropdown-menu-left animated--grow-in" aria-labelledby="navbarDropdown">
-                        <c:forEach var="pm" items="${ }">
-                          <a class="dropdown-item" onclick="addbcharge()"> ${pm.puser }</a>
+                        <c:forEach var="pm" items="${sessionScope.names } ">
+                          <a class="dropdown-item" onclick="addbcharge()"> ${pm.names }</a>
                        	
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="#">더보기</a>

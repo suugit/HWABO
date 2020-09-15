@@ -1,6 +1,6 @@
 package com.beet.HWABO.cabinet.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Cabinet implements java.io.Serializable{
 
