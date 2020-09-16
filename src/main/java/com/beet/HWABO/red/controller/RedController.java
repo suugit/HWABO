@@ -212,7 +212,7 @@ public class RedController {
 			return mv;
 		}
 		@RequestMapping(value = "fother.do", method = RequestMethod.GET)
-		public ModelAndView selectProgresses(@RequestParam("project_num") String pnum, HttpServletRequest request, ModelAndView mv,SessionStatus status) {
+		public ModelAndView selectProgresses(@RequestParam("project_num") String pnum,  ModelAndView mv) {
 			logger.info("진행률 페이지... 프로젝트번호 : " + pnum);
 			
 			int chk = 0;
@@ -224,7 +224,11 @@ public class RedController {
 				Progress p = new Progress();
 				 
 				p.setTitle(b.getBtitle());
-				p.setContent(b.getBcontent());
+				if(b.getBcontent() != null) {
+					p.setContent(b.getBcontent());
+				}else {
+					p.setContent("");
+				}
 				p.setName(b.getBwriter());
 				p.setUcode(b.getBucode());
 				p.setProject_num(pnum);
@@ -243,15 +247,17 @@ public class RedController {
 					p.setDone(0);
 				}
 				plist.add(p);
+				logger.info("담는중 : " + p);
 			}
-			if(redService.selectProgressList(pnum) != null) {
+			if(redService.selectProgressList(pnum).size() > 0) {
 				if(redService.deleteProgress(pnum) > 0) {
 					logger.info("진행률 초기화완료...");
 				}else {
 					logger.info("진행률 초기화오류...");
 				}
+			}else {
+				logger.info("진행률 초기화완료... : 초기화할 데이터 없음 (정상)");
 			}
-			
 			for(Progress p : plist) {
 				if(redService.insertProgress(p) < 1) {
 					chk++;

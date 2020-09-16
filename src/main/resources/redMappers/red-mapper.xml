@@ -218,7 +218,7 @@
 </delete>
 
 <update id="updateProjectProgress" parameterType="com.beet.HWABO.red.model.vo.MemberProject">
-		update project set goal = #{ goal }, done = #{ done } where project_num = #{ PROJECT_NUM }
+		update project set goal = #{ goal }, done = #{ done } where project_num = #{ project_num }
 </update>
 
 </mapper>
