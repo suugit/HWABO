@@ -94,6 +94,12 @@ public class SpostServiceImpl implements SpostService{
 	}
 
 
+	@Override
+	public ArrayList<Post> selectPostTest() {
+		return spostDao.selectPostTest();
+	}
+
+
 
 	
 	

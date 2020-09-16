@@ -8,12 +8,11 @@ public class Spost implements Serializable{
 	
 	private String sno;
 	private String stitle;
-	private String swriter;
 	private String sucode;
+	private String swriter;
 	private Date sstartday;
 	private Date sendday;
 	private String splace;
-	private String salarm;
 	private String scontent;
 	private Date senrolldate;
 	private String sopen;
@@ -23,22 +22,23 @@ public class Spost implements Serializable{
 		super();
 	}
 
-	public Spost(String sno, String stitle, String swriter, String sucode, Date sstartday, Date sendday, String splace,
-			String salarm, String scontent, Date senrolldate, String sopen, String spnum) {
+	public Spost(String sno, String stitle, String sucode, String swriter, Date sstartday, Date sendday, String splace,
+			String scontent, Date senrolldate, String sopen, String spnum) {
 		super();
 		this.sno = sno;
 		this.stitle = stitle;
-		this.swriter = swriter;
 		this.sucode = sucode;
+		this.swriter = swriter;
 		this.sstartday = sstartday;
 		this.sendday = sendday;
 		this.splace = splace;
-		this.salarm = salarm;
 		this.scontent = scontent;
 		this.senrolldate = senrolldate;
 		this.sopen = sopen;
 		this.spnum = spnum;
 	}
+
+
 
 	public String getSno() {
 		return sno;
@@ -96,13 +96,6 @@ public class Spost implements Serializable{
 		this.splace = splace;
 	}
 
-	public String getSalarm() {
-		return salarm;
-	}
-
-	public void setSalarm(String salarm) {
-		this.salarm = salarm;
-	}
 
 	public String getScontent() {
 		return scontent;
@@ -138,11 +131,13 @@ public class Spost implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Spost [sno=" + sno + ", stitle=" + stitle + ", swriter=" + swriter + ", sucode=" + sucode
-				+ ", sstartday=" + sstartday + ", sendday=" + sendday + ", splace=" + splace + ", salarm=" + salarm
+		return "Spost [sno=" + sno + ", stitle=" + stitle + ", sucode=" + sucode + ", swriter=" + swriter
+				+ ", sstartday=" + sstartday + ", sendday=" + sendday + ", splace=" + splace 
 				+ ", scontent=" + scontent + ", senrolldate=" + senrolldate + ", sopen=" + sopen + ", spnum=" + spnum
 				+ "]";
 	}
+
+	
 	
 	
 
