@@ -9,7 +9,7 @@ public class Filebox implements java.io.Serializable{
 	private int kb;
 	private String fwriter;
 	private String postno;
-	
+	private String enrolldate; 
 	
 	public Filebox() {
 		super();
@@ -17,14 +17,17 @@ public class Filebox implements java.io.Serializable{
 	}
 
 
-	public Filebox(String filerename, String fileoriginname, int kb, String fwriter, String postno) {
+
+	public Filebox(String filerename, String fileoriginname, int kb, String fwriter, String postno, String enrolldate) {
 		super();
 		this.filerename = filerename;
 		this.fileoriginname = fileoriginname;
 		this.kb = kb;
 		this.fwriter = fwriter;
 		this.postno = postno;
+		this.enrolldate = enrolldate;
 	}
+
 
 
 	public String getFilerename() {
@@ -76,13 +79,28 @@ public class Filebox implements java.io.Serializable{
 		this.postno = postno;
 	}
 
+	
+	
+
+	public String getEnrolldate() {
+		return enrolldate;
+	}
+
+
+
+	public void setEnrolldate(String enrolldate) {
+		this.enrolldate = enrolldate;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "Filebox [filerename=" + filerename + ", fileoriginname=" + fileoriginname + ", kb=" + kb + ", fwriter="
-				+ fwriter + ", postno=" + postno + "]";
+				+ fwriter + ", postno=" + postno + ", enrolldate=" + enrolldate + "]";
 	}
-	
+
+
 	
 }
 

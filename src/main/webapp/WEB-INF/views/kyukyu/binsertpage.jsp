@@ -1,9 +1,10 @@
-
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
+<%= session.getAttribute("pnum") %> 
 <!DOCTYPE html>
 
 <html lang="en">
@@ -168,7 +169,39 @@ function unSelected(){
 
 
 </script>
+<script type='text/javascript'>
+			//1MB(메가바이트)는 1024KB(킬로바이트)
+			var maxSize = 2048;
+			var SPACE_KB = 1024;
+			
+			function fileCheck() {
+				//input file 태그.
+				var file = document.getElementById('fileInput');
+				//파일 경로.
 
+				var filePath = file.value;
+				//전체경로를 \ 나눔.
+				var filePathSplit = filePath.split('\\'); 
+				//전체경로를 \로 나눈 길이.
+				var filePathLength = filePathSplit.length;
+				//마지막 경로를 .으로 나눔.
+				var fileNameSplit = filePathSplit[filePathLength-1].split('.');
+				//파일명 : .으로 나눈 앞부분
+				var fileName = fileNameSplit[0];
+				//파일 확장자 : .으로 나눈 뒷부분
+				var fileExt = fileNameSplit[1];
+				//파일 크기
+				var fileSize = (file.files[0].size)/1000;
+				
+				
+				alert("파일경로" + filePath + "확장자" + fileExt);
+				console.log('파일 경로 : ' + filePath);
+				console.log('파일명 : ' + fileName);
+				console.log('파일 확장자 : ' + fileExt);
+				console.log('파일 크기 : ' + fileSize);
+				console.log('파일 크기kb : ' + fileSize +"KB");
+			}
+		</script>
 
                         
 <body id="page-top">
@@ -324,7 +357,8 @@ function unSelected(){
                               <td colspan="5">&nbsp;</td>
                            </tr>
                            <tr>
-                              <td><input type="file" name="ofile"></td>
+                           <input type='button' value='확인' onclick='fileCheck()'>
+                              <td><input type="file" name="ofile" id="fileInput"></td>
                               <!--  #f8f9fc   -->
                               <td>
                               <select name="bopen" class="form-control" >
