@@ -18,8 +18,11 @@ public interface SpostService {
 	Spost selectOneSpost(String sno);
 	
 	//post
+	ArrayList<Post> selectPostTest();
+	
 	ArrayList<Post> selectMyPost();
 	ArrayList<Post> selectPost(String postno);
+	
 	
 	int insertPostReply(String postno);
 	int updatePostReply(String postno);

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +25,7 @@ import com.beet.HWABO.abc.model.service.LoveService;
 import com.beet.HWABO.abc.model.service.PostreplyService;
 import com.beet.HWABO.abc.model.vo.Love;
 import com.beet.HWABO.spost.model.service.SpostService;
+import com.beet.HWABO.spost.model.vo.Post;
 import com.beet.HWABO.spost.model.vo.Spost;
 
 
@@ -42,11 +44,23 @@ public class abcController {
 	private static final Logger logger = LoggerFactory.getLogger(abcController.class);
 
 //========== 페이지 이동 ==================================================	
+	@RequestMapping("posttest.do")
+	public void selectPostTest(){
+		ArrayList<Post> list = spostService.selectPostTest();
+	}
+	
 	//알림 테스트
 	@RequestMapping("alarm.do")
 	public String TESTalarm() {	
 		
 		return "abc/alarmtest";
+	}
+	
+	//입력, 출력, 수정 합친것
+	@RequestMapping("tables.do")
+	public String moveTables() {	
+		
+		return "abc/tables";
 	}
 	
 	@RequestMapping("myhwabotest.do")
