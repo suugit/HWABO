@@ -35,9 +35,6 @@ public class DopostServiceImpl implements DopostService {
 	}
 
 	
-
-
-
 	@Override
 	public ArrayList<Dopost> selectList() {
 		return null;
@@ -50,5 +47,4 @@ public class DopostServiceImpl implements DopostService {
 	}
 	
 	
-
 }

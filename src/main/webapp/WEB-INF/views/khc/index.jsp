@@ -1,4 +1,4 @@
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -34,11 +34,12 @@
     <button onclick="javascript:location.href='movetodojsp.do'">할일</button> <!-- 페이지이동위해 적어놓은것 -->
     <button onclick="javascript:location.href='participateproject.do'">프로젝트참가자</button>
     <button onclick="javascript:location.href='authorityadmin.do'">관리자권한</button>
-    <button onclick="javascript:location.href='dopostselectone.do'">게시글한개조회</button>
+    <c:if test="${sessionScope.ucode eq 'h128' }">
     <c:url var="selectone" value="dopostselectone.do" >
-    <c:param name="dno" value="d1" />
+    <c:param name="dno" value="d2"  />
     </c:url>
 <a href="${ selectone } "> 게시글 1개출력</a>
+</c:if>
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->

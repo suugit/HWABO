@@ -1,4 +1,4 @@
-
+<%-- <%@ page session="false" %> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -407,7 +407,7 @@
 								<!-- 	<input type="hidden" name="ducode" value="h128">
 				
 									<input type="hidden" name="dwriter" value="김서장"> -->
-									<input type="hidden" name="ducode" value="${sessionScope.ducode }">
+									<input type="hidden" name="ducode" value="${sessionScope.ucode }">
 								 	<input type="hidden" name="dwriter" value="${sessionScope.uname}">
 									<!-- <input type="text" name="dwriter" value="글쓴이"> -->
 									</td>
