@@ -7,18 +7,18 @@ public class Invite implements java.io.Serializable{
 	
 	private String invtkey;
 	private String ucode;
-	private String num;
+	private String pnum;
 	private String invtemail;
 	private String invtuse;
 	private java.sql.Date exprtdate;
 	
 	public Invite() {}
 
-	public Invite(String invtkey, String ucode, String num, String invtemail, String invtuse, Date exprtdate) {
+	public Invite(String invtkey, String ucode, String pnum, String invtemail, String invtuse, Date exprtdate) {
 		super();
 		this.invtkey = invtkey;
 		this.ucode = ucode;
-		this.num = num;
+		this.pnum = pnum;
 		this.invtemail = invtemail;
 		this.invtuse = invtuse;
 		this.exprtdate = exprtdate;
@@ -40,12 +40,12 @@ public class Invite implements java.io.Serializable{
 		this.ucode = ucode;
 	}
 
-	public String getNum() {
-		return num;
+	public String getPnum() {
+		return pnum;
 	}
 
-	public void setNum(String num) {
-		this.num = num;
+	public void setPnum(String pnum) {
+		this.pnum = pnum;
 	}
 
 	public String getInvtemail() {
@@ -74,9 +74,11 @@ public class Invite implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "Invite [invtkey=" + invtkey + ", ucode=" + ucode + ", num=" + num + ", invtemail=" + invtemail
+		return "Invite [invtkey=" + invtkey + ", ucode=" + ucode + ", pnum=" + pnum + ", invtemail=" + invtemail
 				+ ", invtuse=" + invtuse + ", exprtdate=" + exprtdate + "]";
 	}
+
+	
 	
 	
 }

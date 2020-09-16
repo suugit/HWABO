@@ -10,7 +10,6 @@ public class Member implements java.io.Serializable{
 	private String upwd;
 	private String uname;
 	private int uphone;
-	private String project_num;
 	private String ugroup;
 	private String urole;
 	private String ust;
@@ -20,19 +19,20 @@ public class Member implements java.io.Serializable{
 	private String accesstoken;
 	private String uimg;
 	private String uactive;
+	private String pnum;
+	private String pjadmin;
 	
 	public Member(){}
 
-	public Member(String ucode, String uemail, String upwd, String uname, int uphone, String project_num, String ugroup,
-			String urole, String ust, String ucert, Date udate, String signtype, String accesstoken, String uimg,
-			String uactive) {
+	public Member(String ucode, String uemail, String upwd, String uname, int uphone, String ugroup, String urole,
+			String ust, String ucert, Date udate, String signtype, String accesstoken, String uimg, String uactive,
+			String pnum, String pjadmin) {
 		super();
 		this.ucode = ucode;
 		this.uemail = uemail;
 		this.upwd = upwd;
 		this.uname = uname;
 		this.uphone = uphone;
-		this.project_num = project_num;
 		this.ugroup = ugroup;
 		this.urole = urole;
 		this.ust = ust;
@@ -42,6 +42,8 @@ public class Member implements java.io.Serializable{
 		this.accesstoken = accesstoken;
 		this.uimg = uimg;
 		this.uactive = uactive;
+		this.pnum = pnum;
+		this.pjadmin = pjadmin;
 	}
 
 	public String getUcode() {
@@ -82,14 +84,6 @@ public class Member implements java.io.Serializable{
 
 	public void setUphone(int uphone) {
 		this.uphone = uphone;
-	}
-
-	public String getProject_num() {
-		return project_num;
-	}
-
-	public void setProject_num(String project_num) {
-		this.project_num = project_num;
 	}
 
 	public String getUgroup() {
@@ -164,14 +158,31 @@ public class Member implements java.io.Serializable{
 		this.uactive = uactive;
 	}
 
+	public String getPnum() {
+		return pnum;
+	}
+
+	public void setPnum(String pnum) {
+		this.pnum = pnum;
+	}
+
+	public String getPjadmin() {
+		return pjadmin;
+	}
+
+	public void setPjadmin(String pjadmin) {
+		this.pjadmin = pjadmin;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [ucode=" + ucode + ", uemail=" + uemail + ", upwd=" + upwd + ", uname=" + uname + ", uphone="
-				+ uphone + ", project_num=" + project_num + ", ugroup=" + ugroup + ", urole=" + urole + ", ust=" + ust
-				+ ", ucert=" + ucert + ", udate=" + udate + ", signtype=" + signtype + ", accesstoken=" + accesstoken
-				+ ", uimg=" + uimg + ", uactive=" + uactive + "]";
+				+ uphone + ", ugroup=" + ugroup + ", urole=" + urole + ", ust=" + ust + ", ucert=" + ucert + ", udate="
+				+ udate + ", signtype=" + signtype + ", accesstoken=" + accesstoken + ", uimg=" + uimg + ", uactive="
+				+ uactive + ", pnum=" + pnum + ", pjadmin=" + pjadmin + "]";
 	}
 
+	
 	
 
 	
