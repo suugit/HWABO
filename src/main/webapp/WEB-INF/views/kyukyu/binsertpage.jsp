@@ -52,87 +52,110 @@ $("#'${b.bkind}'").button('toggle')
 
 
 function addbcharge0(){
-	  var name = $(event.target).text();
-	  var code = $(event.target).val();
-	   
-	    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
-	    //$('#bform').val(name); 
-	    
-	   $('#name0').val(name);
-	    $('#user0').val(code);
-	    alert($("#user0").val()+" 0번"+ $("#name0").val()); 
-	    
-	}
+     var name = $(event.target).text();
+     var code = $(event.target).val();
+      
+       $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+       //$('#bform').val(name); 
+       
+       $('#name0').val(name);
+       $('#user0').val(code);
+       $("input:checkbox[id='user0']").prop("checked", true);
+       $("input:checkbox[id='name0']").prop("checked", true);
+       
+
+       alert($("#user0").val()+" 0번"+ $("#name0").val()); 
+       
+   }
 
 
 function addbcharge1(){
    var name = $(event.target).text();
-	var code = $(event.target).val();
+   var code = $(event.target).val();
    
     $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
     //$('#bform').val(name); 
     
-   $('#name1').val(name);
+    $('#name1').val(name);
     $('#user1').val(code);
+    $("input:checkbox[id='user1']").prop("checked", true);
+    $("input:checkbox[id='name1']").prop("checked", true);
+    
     alert($("#user1").val()+" 1번"+ $("#name1").val()); 
     
 }
 function addbcharge2(){
-	   var name = $(event.target).text();
-	   var code = $(event.target).val();
-	    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
-	    //$('#bform').val(name); 
-	    
-	   $('#name2').val(name);
-	    $('#user2').val(code);
-	    alert($("#user2").val()+" 2번" + $("#name2").val()); 
-	    
-	}
+      var name = $(event.target).text();
+      var code = $(event.target).val();
+       $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+       //$('#bform').val(name); 
+       
+      $('#name2').val(name);
+       $('#user2').val(code);
+       $("input:checkbox[id='user2']").prop("checked", true);
+       $("input:checkbox[id='name2']").prop("checked", true);
+       
+       alert($("#user2").val()+" 2번" + $("#name2").val()); 
+       
+   }
 function addbcharge3(){
-	   var name = $(event.target).text();
-	   var code = $(event.target).val();
-	    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
-	    //$('#bform').val(name); 
-	    
-	   $('#name3').val(name);
-	    $('#user3').val(code);
-	    alert($("#user3").val()+" 3번"); 
-	    
-	}
+      var name = $(event.target).text();
+      var code = $(event.target).val();
+       $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+       //$('#bform').val(name); 
+       
+      $('#name3').val(name);
+       $('#user3').val(code);
+       $("input:checkbox[id='user3']").prop("checked", true);
+       $("input:checkbox[id='name3']").prop("checked", true);
+       
+       alert($("#user3").val()+" 3번"); 
+       
+   }
 function addbcharge4(){
-	   var name = $(event.target).text();
-	   var code = $(event.target).val();
-	    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
-	    //$('#bform').val(name); 
-	    
-	   $('#name4').val(name);
-	    $('#user4').val(code);
-	    alert($("#user4").val()+" 4번"); 
-	    
-	}
+      var name = $(event.target).text();
+      var code = $(event.target).val();
+       $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+       //$('#bform').val(name); 
+       
+      $('#name4').val(name);
+       $('#user4').val(code);
+       $("input:checkbox[id='user4']").prop("checked", true);
+       $("input:checkbox[id='name4']").prop("checked", true);
+       
+       alert($("#user4").val()+" 4번"); 
+       
+   }
 function addbcharge5(){
-	   var name = $(event.target).text();
-	   var code = $(event.target).val();
-	    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
-	    //$('#bform').val(name); 
-	    
-	   $('#name5').val(name);
-	    $('#user5').val(code);
-	    alert($("#user5").val()+" 5번"); 
-	    
-	}
+      var name = $(event.target).text();
+      var code = $(event.target).val();
+     
+       $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+       //$('#bform').val(name); 
+       
+      $('#name5').val(name);
+       $('#user5').val(code);
+       $("input:checkbox[id='user5']").prop("checked", true);
+       $("input:checkbox[id='name5']").prop("checked", true);
+       
+       alert($("#user5").val()+" 5번"); 
+       
+   }
 function addbcharge6(){
-	   var name = $(event.target).text();
-	   var code = $(event.target).val();
-	    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
-	    //$('#bform').val(name); 
-	    
-	   
-	    $('#user6').val(code);
-	    $('#name6').val(name);
-	    alert($("#user6").val()+" 6번"); 
-	    
-	}
+      var name = $(event.target).text();
+      var code = $(event.target).val();
+       $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+       //$('#bform').val(name); 
+       
+      
+       $('#user6').val(code);
+       $('#name6').val(name);
+       $("input:checkbox[id='user6']").prop("checked", true);
+       $("input:checkbox[id='name6']").prop("checked", true);
+       
+       alert($("#user6").val()+" 6번"); 
+       
+   }
 function unSelected(){
    
    $(event.target).parent().remove();
@@ -178,7 +201,7 @@ function unSelected(){
                      <input type="hidden" name="bucode" value="${sessionScope.ucode }">
                      <input type="hidden" name="bwriter" value="${sessionScope.uname }">
                      <input type="hidden" name="bpnum" value="${sessionScope.pnum }">
-                 	 
+                     
                         <table style="text-align: center; width: 100%;">
                            <tr>
                               <td colspan="5">
@@ -230,22 +253,22 @@ function unSelected(){
                     
                     
                     <div class="dropdown">
-						  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						    담당자
-						  </button>
-						    <div><input type="hidden" id="selected"></div>
-						    
-						  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-						   <c:forEach var="pm" items="${sessionScope.pmlist}" varStatus="status">
-						   <button class="dropdown-item" type="button" onclick="addbcharge${status.index}();" value="${pm.ucode }">${pm.uname }</button>
-						   <input type="hidden" id="user${status.index }" name="bcharge">
-						   <input type="hidden" id="name${status.index }" name="bchargename">
-						   </c:forEach>
-						   
-						  </div>
-						</div>
-						 
-						
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      담당자
+                    </button>
+                      <div><input type="hidden" id="selected"></div>
+                      
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                     <c:forEach var="pm" items="${sessionScope.pmlist}" varStatus="status">
+                     <button class="dropdown-item" type="button" onclick="addbcharge${status.index}();" value="${pm.ucode }">${pm.uname }</button>
+                     <input type="checkbox" id="user${status.index }" name="bcharge" style="display:none">
+                     <input type="checkbox" id="name${status.index }" name="bchargename" style="display:none">
+                     </c:forEach>
+                     
+                    </div>
+                  </div>
+                   
+                  
    <%--           <br><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              담당자
                         </a>
@@ -259,9 +282,9 @@ function unSelected(){
                           <a class="dropdown-item" onclick="addbcharge${status.index}();">${pm.uname}</a>
                            <input type="hidden" id="user${status.index }" name="bcharge">
                     
-                       	 </c:forEach>
-                       	 
-                       	 
+                           </c:forEach>
+                           
+                           
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="#">더보기</a>
                          

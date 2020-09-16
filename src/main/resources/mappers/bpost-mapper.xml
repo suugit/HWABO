@@ -75,15 +75,32 @@
 
 <update id="updateBpost" parameterType="Bpost">
 	update bpost
+	
+	<if test="bchargename != null">
+	
 	set btitle = #{btitle}, bcharge = #{bcharge}, bstartday = #{bstartday}, bendday = #{bendday},
 		bcontent = #{bcontent}, bchargename = #{bchargename},
 		
-	<if test="boriginfile != null">
-	boriginfile = #{boriginfile}, brenamefile = #{brenamefile},
-	</if>
+		<if test="boriginfile != null">
+		boriginfile = #{boriginfile}, brenamefile = #{brenamefile},
+		</if>
 
-	<if test="boriginfile == null">
-	boriginfile = null, brenamefile = null,
+		<if test="boriginfile == null">
+		boriginfile = null, brenamefile = null,
+		</if>
+	</if>
+	<if test="bchargename == null">
+	
+	set btitle = #{btitle}, bstartday = #{bstartday}, bendday = #{bendday},
+		bcontent = #{bcontent},
+		
+		<if test="boriginfile != null">
+		boriginfile = #{boriginfile}, brenamefile = #{brenamefile},
+		</if>
+
+		<if test="boriginfile == null">
+		boriginfile = null, brenamefile = null,
+		</if>
 	</if>
 	
 	bpnum = #{bpnum}
