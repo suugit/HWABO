@@ -2,22 +2,32 @@ package com.beet.HWABO.suugit.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,8 +39,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.beet.HWABO.cpost.model.service.CpostService;
 import com.beet.HWABO.cpost.model.vo.AddOn;
 import com.beet.HWABO.cpost.model.vo.Cpost;
+import com.beet.HWABO.invite.model.vo.Invite;
 import com.beet.HWABO.member.model.service.MailSendService;
 import com.beet.HWABO.member.model.service.MemberService;
+import com.beet.HWABO.member.model.vo.MailUtils;
 import com.beet.HWABO.member.model.vo.Member;
 
 @Controller
@@ -40,7 +52,10 @@ public class SuugitController {
 
 	@Autowired
 	private CpostService cservice;
-
+	
+	@Autowired
+	private JavaMailSenderImpl mailSender;
+	
 	@Autowired
 	private MailSendService msserivce;
 
@@ -76,7 +91,17 @@ public class SuugitController {
 		return "suugit/sign.part";
 
 	}
-
+//초대 신규유저
+//	@RequestMapping(value="/invtnew.do", method=RequestMethod.POST)
+//	public String inviteNew(@RequestBody ) {
+//		
+//	
+//		logger.info("신규 플젝멤버 추가!");
+//		
+//		
+//	}
+	
+	
 	@GetMapping("/signConfirm.do")
 	public ModelAndView signUpConfirm(HttpServletRequest request, ModelAndView mv, Member member) {
 		// email, authKey 가 일치할경우 authStatus 업데이트
@@ -306,6 +331,87 @@ public class SuugitController {
 		return "suugit/topbar";
 	}
 
+	
+//프로젝트 초대하기 ( 기존유저) 
+	
+	
+	  @RequestMapping("/invtexist.do") 
+	  public ResponseEntity<String> NotPjMember(HttpSession session, @RequestBody String param, Invite invt) throws ParseException {
+		  logger.info("신규 초대!");
+		  JSONParser jparse = new JSONParser();
+		 
+		  JSONArray fileData = (JSONArray)jparse.parse(param);
+		  invt.setUcode((String)session.getAttribute("ucode"));
+		  invt.setPnum((String)session.getAttribute("pnum"));
+		  for(int i=0;i <fileData.size(); i++) {
+			  invt.setInvtkey(Integer.toString((int)Math.floor(Math.random()*1000000+1)));
+			  invt.setInvtemail((String)fileData.get(i));
+			  
+			  
+			 try {
+				 MailUtils sendMail = new MailUtils(mailSender);
+				  sendMail.setSubject("HWABO로 초대합니다");
+		            sendMail.setText(new StringBuffer().append("<h1>[HWABO 이메일 인증]</h1>")
+		            .append("<p>아래 링크를 클릭하시면 프로젝트로 가입할 수 있습니다.</p>")
+		            .append("<a href='http://localhost:8282/hwabo/signConfirm.do?uemail=")
+		            .append(invt.getInvtemail())
+		            .append("&accesstoken=")
+		            .append(invt.getInvtkey())
+		            .append("' target='_blenk'>초대장 인증 확인</a>")
+		            .toString());
+		            sendMail.setFrom("hwabo49@gmail.com", "HWABO");
+		            sendMail.setTo(invt.getInvtemail());
+		            sendMail.send();
+			} catch (MessagingException e) {
+	            e.printStackTrace();
+	        } catch (UnsupportedEncodingException e) {
+	            e.printStackTrace();
+	        }
+
+		  }
+		  
+		  
+		  
+		  ArrayList<Invite> mnlist = new ArrayList<Invite>();
+		  
+		 
+		  	
+		  return new ResponseEntity<String>("success",HttpStatus.OK);
+	  }
+	 
+
+//	            MailUtils sendMail = new MailUtils(mailSender);
+//	            sendMail.setSubject("회원가입 이메일 인증");
+//	            sendMail.setText(new StringBuffer().append("<h1>[HWABO 이메일 인증]</h1>")
+//	            .append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
+//	            .append("<a href='http://localhost:8282/hwabo/signConfirm.do?uemail=")
+//	            .append(uemail)
+//	            .append("&accesstoken=")
+//	            .append(authKey)
+//	            .append("' target='_blenk'>이메일 인증 확인</a>")
+//	            .toString());
+//	            sendMail.setFrom("hwabo49@gmail.com", "HWABO");
+//	            sendMail.setTo(uemail);
+//	            sendMail.send();
+//	        } catch (MessagingException e) {
+//	            e.printStackTrace();
+//	        } catch (UnsupportedEncodingException e) {
+//	            e.printStackTrace();
+//	        }
+//
+//	          return authKey;
+//	    }	  
+	  
+	 
+		@RequestMapping("invtee.do")
+		public String selectInvtE(HttpSession session, Model model) {
+			logger.info("들어왕 ");
+		String pnum = (String)session.getAttribute("pnum");
+		
+		ArrayList<Member> mlist = mservice.selectinvte(pnum);
+		
+		return "123";
+		}
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================
@@ -355,7 +461,7 @@ public class SuugitController {
 					String rfileName = cno + sdf.format(new java.sql.Date(System.currentTimeMillis()));
 					oFileName = filePart.getOriginalFilename();
 					rfileName += i + "." + oFileName.substring(oFileName.lastIndexOf(".") + 1);
-
+					
 					if (i == 0) {
 						addon.setOfile1(oFileName);
 						addon.setRfile1(rfileName);
@@ -384,7 +490,6 @@ public class SuugitController {
 						}
 
 					}
-
 					logger.info("파일 이름 " + oFileName);
 					logger.info("바꾼 이름" + rfileName);
 				}

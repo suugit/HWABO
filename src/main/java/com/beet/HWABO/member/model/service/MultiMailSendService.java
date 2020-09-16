@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.beet.HWABO.member.model.vo.MailUtils;
 
-@Service("msserivce")
-public class MailSendService {
+@Service("multisserivce")
+public class MultiMailSendService {
 	
 	@Autowired
 	private JavaMailSenderImpl mailSender;

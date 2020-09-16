@@ -88,5 +88,9 @@
 		end
 	</delete>
 
-
+	<select id="notmb">
+	select * from member
+	left join pjmember using (ucode)
+	where pnum = #{pnum}
+	</select>
 </mapper>

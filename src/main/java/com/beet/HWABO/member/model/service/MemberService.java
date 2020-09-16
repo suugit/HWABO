@@ -1,5 +1,6 @@
 package com.beet.HWABO.member.model.service;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import com.beet.HWABO.member.model.vo.Member;
@@ -24,5 +25,7 @@ public interface MemberService {
 	int updateImg(Member member);
 
 	int updatePwd(Member member);
+
+	ArrayList<Member> selectinvte(String pnum);
 	
 }
