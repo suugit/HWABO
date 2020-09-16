@@ -247,7 +247,6 @@ public class RedController {
 					p.setDone(0);
 				}
 				plist.add(p);
-				logger.info("담는중 : " + p);
 			}
 			if(redService.selectProgressList(pnum).size() > 0) {
 				if(redService.deleteProgress(pnum) > 0) {
