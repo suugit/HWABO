@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.red.model.service.RedService;
 import com.beet.HWABO.red.model.vo.MemberProject;
+import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
 
@@ -209,6 +211,72 @@ public class RedController {
 			mv.setViewName("red/tables");
 			return mv;
 		}
+		@RequestMapping(value = "fother.do", method = RequestMethod.GET)
+		public ModelAndView selectProgresses(@RequestParam("project_num") String pnum, HttpServletRequest request, ModelAndView mv,SessionStatus status) {
+			logger.info("진행률 페이지... 프로젝트번호 : " + pnum);
+			
+			int chk = 0;
+			int goal = 0;
+			int done = 0;
+			ArrayList<Progress> plist = new ArrayList<Progress>(); 
+			ArrayList<Bpost> blist = redService.selectBpost(pnum);
+			for(Bpost b : blist) {
+				Progress p = new Progress();
+				 
+				p.setTitle(b.getBtitle());
+				p.setContent(b.getBcontent());
+				p.setName(b.getBwriter());
+				p.setUcode(b.getBucode());
+				p.setProject_num(pnum);
+				p.setGoal(3);
+				goal += 3;
+				if(b.getBkind().equals("완료")) {
+					p.setDone(3);
+					done += 3;
+				}else if(b.getBkind().equals("피드백")) {
+					p.setDone(2);
+					done += 2;
+				}else if(b.getBkind().equals("진행")) {
+					p.setDone(1);
+					done += 1;
+				}else {
+					p.setDone(0);
+				}
+				plist.add(p);
+			}
+			if(redService.selectProgressList(pnum) != null) {
+				if(redService.deleteProgress(pnum) > 0) {
+					logger.info("진행률 초기화완료...");
+				}else {
+					logger.info("진행률 초기화오류...");
+				}
+			}
+			
+			for(Progress p : plist) {
+				if(redService.insertProgress(p) < 1) {
+					chk++;
+					logger.info("PROGRESS 데이터 유실됨... 유실된 데이터 : " + p);
+				}
+			}
+			if(chk < 1) {
+				MemberProject mp = new MemberProject();
+				mp.setProject_num(pnum);
+				mp.setGoal(goal);
+				mp.setDone(done);
+				logger.info("PROGRESS 데이터 사용가능...");
+				if(redService.updateProjectProgress(mp) > 0) {
+					logger.info("전체 진행률 업데이트 성공...");
+				}else {
+					logger.info("전체 진행률 업데이트 실패...");
+				}
+				mv.addObject("plist", plist);
+				mv.setViewName("red/utilities-other");
+			}else {
+				mv.setViewName("welcome");
+			}
+			
+			return mv;
+		}	
 
 ////views start//////////////////////////////	
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)
@@ -323,11 +391,6 @@ public class RedController {
 	public String color(Model model) {
 		
 		return "sample/utilities-color";
-	}
-	@RequestMapping(value = "fother.do", method = RequestMethod.GET)
-	public String other(Model model) {
-		
-		return "red/utilities-other";
 	}
 	@RequestMapping(value = "sfother.do", method = RequestMethod.GET)
 	public String sother(Model model) {

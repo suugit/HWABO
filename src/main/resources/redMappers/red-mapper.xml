@@ -111,52 +111,54 @@
 		<result property="content" column="content" />
 	</resultMap>
 	<resultMap id="resultBpost" type="Bpost">
-		<id property="project_num" column="bno" />
-		<result property="name" column="btitle" />
-		<result property="goal" column="bucode" />
-		<result property="done" column="bwriter" />
-		<result property="title" column="bstartday" />
-		<result property="content" column="bendday" />
-		<result property="content" column="bkind" />
-		<result property="content" column="bcharge" />
-		<result property="content" column="bcontent" />
-		<result property="content" column="benrolldate" />
-		<result property="content" column="bopen" />
-		<result property="content" column="brenamefile" />
-		<result property="content" column="boriginfile" />
+		<id property="bno" column="bno" />
+		<result property="btitle" column="btitle" />
+		<result property="bucode" column="bucode" />
+		<result property="bwriter" column="bwriter" />
+		<result property="bstartday" column="bstartday" />
+		<result property="bendday" column="bendday" />
+		<result property="bkind" column="bkind" />
+		<result property="bcharge" column="bcharge" />
+		<result property="bcontent" column="bcontent" />
+		<result property="benrolldate" column="benrolldate" />
+		<result property="bopen" column="bopen" />
+		<result property="brenamefile" column="brenamefile" />
+		<result property="boriginfile" column="boriginfile" />
 		<result property="bpnum" column="bpnum" />
+		<result property="bchargename" column="bchargename" />
 	</resultMap>
 	<resultMap id="resultBpostList" type="Bpost">
-		<result property="project_num" column="bno" />
-		<result property="name" column="btitle" />
-		<result property="goal" column="bucode" />
-		<result property="done" column="bwriter" />
-		<result property="title" column="bstartday" />
-		<result property="content" column="bendday" />
-		<result property="content" column="bkind" />
-		<result property="content" column="bcharge" />
-		<result property="content" column="bcontent" />
-		<result property="content" column="benrolldate" />
-		<result property="content" column="bopen" />
-		<result property="content" column="brenamefile" />
-		<result property="content" column="boriginfile" />
+		<result property="bno" column="bno" />
+		<result property="btitle" column="btitle" />
+		<result property="bucode" column="bucode" />
+		<result property="bwriter" column="bwriter" />
+		<result property="bstartday" column="bstartday" />
+		<result property="bendday" column="bendday" />
+		<result property="bkind" column="bkind" />
+		<result property="bcharge" column="bcharge" />
+		<result property="bcontent" column="bcontent" />
+		<result property="benrolldate" column="benrolldate" />
+		<result property="bopen" column="bopen" />
+		<result property="brenamefile" column="brenamefile" />
+		<result property="boriginfile" column="boriginfile" />
 		<result property="bpnum" column="bpnum" />
+		<result property="bchargename" column="bchargename" />
 	</resultMap>
 
 <select id="selectProgressList" parameterType="string" resultMap="resultProgressList">
 		select * from progress where project_num = #{ project_num }  ORDER BY title
 </select>
 
-<select id="selectProgress" parameterType="string" resultMap="resultProgress">
+<select id="selectProgress" parameterType="com.beet.HWABO.red.model.vo.MemberProject" resultMap="resultProgress">
 		select * from progress where project_num = #{ project_num } and ucode = #{ ucode } ORDER BY title
 </select>
 
 <select id="selectBpostList" parameterType="string" resultMap="resultBpostList">
-		select * from Bpost where bpnum = #{ bpnum }  ORDER BY btitle
+		select * from bpost where bpnum = #{ bpnum }  ORDER BY btitle
 </select>
 
-<select id="selectBpost" parameterType="string" resultMap="resultBpost">
-		select * from Bpost where bpnum = #{ bpnum } and ucode = #{ ucode }  ORDER BY btitle
+<select id="selectBpost" parameterType="com.beet.HWABO.red.model.vo.MemberProject" resultMap="resultBpost">
+		select * from bpost where bpnum = #{ bpnum } and ucode = #{ ucode }  ORDER BY btitle
 </select>
 
 <select id="selectMemberList" parameterType="string" resultMap="resultMemberList">
@@ -165,7 +167,7 @@
 		using (ucode) where project.PROJECT_NUM = #{ projectNumber }  ORDER BY TO_NUMBER(order_by)
 </select>
 
-<select id="selectMember" parameterType="string" resultMap="resultMember">
+<select id="selectMember" parameterType="com.beet.HWABO.red.model.vo.MemberProject" resultMap="resultMember">
 		select * from project join pjmember on (project.project_num = pjmember.pnum) join 
 		(select UCODE,UEMAIL,UPWD,UNAME,UPHONE,UGROUP,UROLE,UST,UCERT,UDATE,SIGNTYPE,ACCESSTOKEN,UIMG,UACTIVE from member)
 		using (ucode) where project.PROJECT_NUM = #{ projectNumber } and pjmember.ucode = #{ ucode }  ORDER BY TO_NUMBER(order_by)
@@ -183,7 +185,7 @@
 		select * from star join project on (star.star = project.project_num) where ucode = #{ ucode } and star = #{ star }
 </select>
 
-<select id="selectProject" resultMap="resultProject">
+<select id="selectProject" parameterType="string" resultMap="resultProject">
 		select * from project where PROJECT_NUM = #{ projectNumber }
 </select>
 
@@ -199,6 +201,10 @@
 		insert into star values (#{ ucode },#{ star })
 </insert>
 
+<insert id="insertProgress" parameterType="com.beet.HWABO.red.model.vo.Progress">
+		insert into Progress values (#{ ucode },#{ project_num },#{ name },#{ goal },#{ done },#{ title },#{ content })
+</insert>
+
 <delete id="deleteProject" parameterType="string">
 		delete from project where PROJECT_NUM = #{ projectNumber }
 </delete>
@@ -206,5 +212,13 @@
 <delete id="delStar" parameterType="com.beet.HWABO.red.model.vo.UserProject">
 		delete from star where star = #{ star } and ucode = #{ ucode } 
 </delete>
-	
+
+<delete id="deleteProgress" parameterType="string">
+		delete from Progress where PROJECT_NUM = #{ projectNumber } 
+</delete>
+
+<update id="updateProjectProgress" parameterType="com.beet.HWABO.red.model.vo.MemberProject">
+		update project set goal = #{ goal }, done = #{ done } where project_num = #{ PROJECT_NUM }
+</update>
+
 </mapper>

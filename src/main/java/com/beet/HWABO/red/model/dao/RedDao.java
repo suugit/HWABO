@@ -7,7 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.red.model.vo.MemberProject;
+import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
@@ -65,4 +67,26 @@ public class RedDao {
 		return (ArrayList<MemberProject>)list;
 	}
 
+	public ArrayList<Bpost> selectBpost(String pnum) {
+		List<Bpost> list = session.selectList("redMapper.selectBpostList", pnum);
+		return (ArrayList<Bpost>)list;
+	}
+
+	public int deleteProgress(String pnum) {
+		return session.delete("redMapper.deleteProgress", pnum);
+	}
+
+	public int insertProgress(Progress p) {
+		return session.insert("redMapper.insertProgress", p);
+	}
+
+	public int updateProjectProgress(MemberProject mp) {
+		return session.update("redMapper.updateProjectProgress",mp);
+	}
+
+	public ArrayList<Progress> selectProgressList(String pnum) {
+		List<Progress> list = session.selectList("redMapper.selectProgressList", pnum);
+		return (ArrayList<Progress>)list;
+	}
+	
 }

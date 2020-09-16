@@ -1,4 +1,4 @@
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -66,7 +66,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="fother.do">
+        <a class="nav-link" href="fother.do?project_num=${ sessionScope.pnum }">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>목표</span></a>
       </li>

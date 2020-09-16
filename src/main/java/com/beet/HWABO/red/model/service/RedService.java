@@ -2,7 +2,9 @@ package com.beet.HWABO.red.model.service;
 
 import java.util.ArrayList;
 
+import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.red.model.vo.MemberProject;
+import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
@@ -20,4 +22,9 @@ public interface RedService {
 	int delStar(UserProject up);
 	int insertProject2(UserProject project);
 	ArrayList<MemberProject> selectMemberList(String pnum);
+	ArrayList<Bpost> selectBpost(String pnum);
+	int deleteProgress(String pnum);
+	int insertProgress(Progress p);
+	int updateProjectProgress(MemberProject mp);
+	ArrayList<Progress> selectProgressList(String pnum);
 }
