@@ -8,22 +8,20 @@
 		<!-- spost -->
 		<result column="sno" property="sno" />
 		<result column="stitle" property="stitle" />
+		<result column="bucode" property="bucode" />
 		<result column="swriter" property="swriter" />
 		<result column="sstartday" property="sstartday" />
 		<result column="sendday" property="sendday" />
 		<result column="splace" property="splace" />
-		<result column="salarm" property="salarm" />
 		<result column="scontent" property="scontent" />
 		<result column="senrolldate" property="senrolldate" />
 		<result column="sopen" property="sopen" />
-		<result column="slove" property="slove" />
-		<result column="srwriter" property="srwriter" />
-		<result column="srcontent" property="srcontent" />
+		<result column="spnum" property="spnum" />
 
-		
 		<!-- bpost -->
 		<result column="bno" property="bno" />
 		<result column="btitle" property="btitle" />
+		<result column="bucode" property="bucode" />
 		<result column="bwriter" property="bwriter" />
 		<result column="bstartday" property="bstartday" />
 		<result column="bendday" property="bendday" />
@@ -32,12 +30,10 @@
 		<result column="bcontent" property="bcontent" />
 		<result column="benrolldate" property="benrolldate" />
 		<result column="bopen" property="bopen" />
-		<result column="blove" property="blove" />
-		<result column="brwriter" property="brwriter" />
-		<result column="brcontent" property="brcontent" />
 		<result column="brenamefile" property="brenamefile" />
 		<result column="boriginfile" property="boriginfile" />
-		
+		<result column="bpnum" property="bpnum" />
+		<result column="bchargename" property="bchargename" />
 		<!-- cpost -->
 
 		
@@ -49,6 +45,20 @@
 
 	
 	</resultMap>
+
+<select id="selectSpost" resultType="Spost">
+	select * from spost
+</select>
+<select id="selectCpost" resultType="Cpost">
+	select * from cpost
+</select>
+<select id="selectBpost" resultType="Bpost">
+	select * from bpost
+</select>
+<select id="selectDopost" resultType="Dopost">
+	select * from dopost
+</select>
+
 
 <select id="abcselectS" resultMap="resultPost">
 	select * from spost where ucode=#{sucode}
