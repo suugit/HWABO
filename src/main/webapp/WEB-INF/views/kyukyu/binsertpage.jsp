@@ -193,12 +193,12 @@ function unSelected(){
 				//파일 크기
 				var fileSize = (file.files[0].size)/1000;
 				
-				
+				  $('#kb').val(fileSize);
+			      $('#kind').val(fileExt);
 				alert("파일경로" + filePath + "확장자" + fileExt);
 				console.log('파일 경로 : ' + filePath);
 				console.log('파일명 : ' + fileName);
 				console.log('파일 확장자 : ' + fileExt);
-				console.log('파일 크기 : ' + fileSize);
 				console.log('파일 크기kb : ' + fileSize +"KB");
 			}
 		</script>
@@ -234,6 +234,12 @@ function unSelected(){
                      <input type="hidden" name="bucode" value="${sessionScope.ucode }">
                      <input type="hidden" name="bwriter" value="${sessionScope.uname }">
                      <input type="hidden" name="bpnum" value="${sessionScope.pnum }">
+                     
+                     <!-- filebox -->
+                     <input type="hidden" name="kb" id="kb">
+                     <input type="hidden" name="kind" id="kind">
+                     <input type="hidden" name="pnum" value="${sessionScope.pnum }">
+                     
                      
                         <table style="text-align: center; width: 100%;">
                            <tr>
@@ -357,8 +363,8 @@ function unSelected(){
                               <td colspan="5">&nbsp;</td>
                            </tr>
                            <tr>
-                           <input type='button' value='확인' onclick='fileCheck()'>
-                              <td><input type="file" name="ofile" id="fileInput"></td>
+                         
+                              <td><input type="file" name="ofile" id="fileInput" onchange='fileCheck()'></td>
                               <!--  #f8f9fc   -->
                               <td>
                               <select name="bopen" class="form-control" >

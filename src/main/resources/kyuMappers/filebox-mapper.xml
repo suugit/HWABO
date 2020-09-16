@@ -5,4 +5,35 @@
 <mapper namespace="fileboxMapper">
 
 
+	
+	<resultMap type="Bpost" id="resultBpostfile">
+	
+		<result column="bwriter" property="bwriter" />
+		<result column="benrolldate" property="benrolldate" />
+		<result column="brenamefile" property="brenamefile" />
+		<result column="boriginfile" property="boriginfile" />
+		<result column="bpnum" property="bpnum" />
+	
+	</resultMap>
+
+
+<insert id="insertFilebox" parameterType="Filebox">
+	
+	inset into filebox
+	values (#{filerename}, #{fileoriginname}, #{kb}, #{kind}, #{fwriter}, #{postno}, sysdate, #{pnum})
+	
+
+</insert>
+
+
+<!-- <insert id="insertFilebox" parameterType="string">
+
+	insert all
+	into filebox values(filerename, fileoriginname, '#{kb}', '#{kind}', fwriter, '#{postno}', enrolldate, #{pnum})
+	select BWRITER fwriter, benrolldate enrolldate,
+       		 brenamefile filerename, boriginfile fileoriginname
+	from bpost
+	where bno = '#{postno}'
+
+</insert> -->
 </mapper>

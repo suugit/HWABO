@@ -23,6 +23,19 @@
 		
 	
 	</resultMap> 
+	
+		<resultMap type="Bpost" id="resultBpostfile">
+		
+		<result column="bwriter" property="bwriter" />
+		<result column="benrolldate" property="benrolldate" />
+		<result column="brenamefile" property="brenamefile" />
+		<result column="boriginfile" property="boriginfile" />
+	
+
+	</resultMap> 
+	
+	
+	
 
 <insert id="insertBpost" parameterType="Bpost" >
 
@@ -53,6 +66,22 @@
 
 </select>
 
+<select id="selectBno" resultType="string">
+
+	select max(bno)
+	from bpost
+	
+</select>
+
+
+<select id="selectfilelist" parameterType="bpost" resultMap="resultBpost">
+
+	select *
+	from bpost
+	where bno = #{bno}
+	
+
+</select>
 
 
 
@@ -64,9 +93,10 @@
 </delete>
 
 
-<select id="selectBpost" parameterType="string" resultMap="resultBpost">
+<select id="selectBpost" parameterType="bpost" resultMap="resultBpost">
 
-	select * from bpost
+	select * 
+	from bpost
 	where bno = #{bno}
 
 </select>

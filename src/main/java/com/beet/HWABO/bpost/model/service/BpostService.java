@@ -13,4 +13,6 @@ public interface BpostService {
 	int deleteBpost(Bpost bpost);
 	Bpost selectBpost(String bno);
 	int updateBpost(Bpost bpost);
+	String selectBno();
+	ArrayList<Bpost> selectfilelist(String bno);
 }

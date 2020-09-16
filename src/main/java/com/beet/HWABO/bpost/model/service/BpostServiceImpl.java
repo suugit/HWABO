@@ -52,4 +52,18 @@ public class BpostServiceImpl implements BpostService{
 		return bpostDao.updateBpost(bpost);
 	}
 
+	@Override
+	public String selectBno() {
+		
+		return bpostDao.selectBno();
+	}
+
+	@Override
+	public ArrayList<Bpost> selectfilelist(String bno) {
+		
+		return bpostDao.selectfilelist(bno);
+	}
+
+	
+
 }

@@ -46,4 +46,17 @@ public class BpostDao {
 		return session.update("bpostMapper.updateBpost", bpost);
 	}
 
+	
+
+	public String selectBno() {
+		
+		return session.selectOne("bpostMapper.selectBno");
+	}
+
+	public ArrayList<Bpost> selectfilelist(String bno) {
+		logger.info("selectfilelist dao : " + bno);
+		List<Bpost> list = session.selectList("bpostMapper.selectfilelist", bno);
+		return (ArrayList<Bpost>)list;
+	}
+
 }

@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.bpost.model.service.BpostService;
 import com.beet.HWABO.bpost.model.vo.Bpost;
+import com.beet.HWABO.filebox.model.service.FileboxService;
 import com.beet.HWABO.filebox.model.vo.Filebox;
 
 
@@ -33,13 +34,15 @@ public class BpostController {
 	@Autowired
 	private BpostService bpostService;
 	
-	
+	@Autowired
+	private FileboxService fileboxService;
 	
 	
 	 @RequestMapping(value="insertbpost.do", method=RequestMethod.POST)
 	public String insertBpost(Bpost bpost, Filebox filebox, HttpServletRequest request,
 			@RequestParam(value = "ofile", required = false) MultipartFile file) {		
 		  logger.info("bpost : " + bpost); 
+		  logger.info("Filebox" + filebox);
 		  logger.info("file : " + file.getOriginalFilename().length());		
 		  logger.info("file" + file);
 		  
@@ -57,6 +60,7 @@ public class BpostController {
 
 			bpost.setBoriginfile(fileName);
 			bpost.setBrenamefile(renameFileName);
+			
 			/* logger.info("renameFileName : " + renameFileName); */
 			try {
 				file.transferTo(new File(savePath + "\\" + renameFileName));
@@ -69,9 +73,43 @@ public class BpostController {
 		 
 		 
 		 if(bpostService.insertBpost(bpost) > 0) {
-			 logger.info("인서트 성공");
+			 logger.info("비포스트 인서트 성공");
 			 logger.info("비포스트"+bpost);
-			 return "redirect:/bpostlist.do";
+			 
+			 
+			 
+			 
+			 //bno 값만 먼저 추출 
+			String bno = bpostService.selectBno();
+			filebox.setPostno(bno);
+			
+			//bno 값을 Where 절에 이용해서 나머지 값을 추출
+			ArrayList<Bpost> list = bpostService.selectfilelist(bno);
+			logger.info(list.toString());
+			
+			
+		
+		
+			if( != null) {
+				
+				filebox.setPostno(n);
+				filebox.setFwriter(w);
+				filebox.setFilerename(r);
+				filebox.setFileoriginname(o);
+				
+				
+				
+				//애초에 컬럼의 내용을 확실히 채워준 뒤에 편하게 insert 해주기
+				if(fileboxService.insertFilebox(filebox) > 0) {
+					logger.info("파일박스 인서트 성공");
+					 logger.info("파일박스"+filebox);
+					
+					} 
+				}
+			
+			return "redirect:/bpostlist.do";
+			
+			
 		 }else {
 			 logger.info("인서트 실패");
 			 return"common/error";
