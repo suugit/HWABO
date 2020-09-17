@@ -56,10 +56,12 @@
 			<hr class="sidebar-divider">
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item">
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseOne"
+				aria-expanded="false" aria-controls="collapseOne" onclick="javascript: return false;"> 
 				<i class="fas fa-chalkboard-teacher"></i> <span>유 형</span>
-			
-				<div id="collapseOne" class="collapse" 
+			</a>
+				<div id="collapseOne" class="collapse visible"  aria-expanded="false"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">HWABO</h6>

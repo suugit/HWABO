@@ -129,7 +129,7 @@ $("div").on('click', function(e){
 <!-- 2.바로아래div추가 및 임포트 추가  -->
 	<div style="width:100%;display:flex;justify-content:center;align-item:center;">
 <!-- Sidebar2right -->
-     <c:import url="/WEB-INF/views/abc/myBPOSTsideFixed.jsp"></c:import>
+     <c:import url="/WEB-INF/views/abc/entersideFixed.jsp"></c:import>
 <!-- End of Sidebar2right -->
 
 	
@@ -159,12 +159,21 @@ $("div").on('click', function(e){
 						
 							<div class="card mb-4 py-3 border-info">
 								<div style="margin-top: 0px;">
-									<h1>&nbsp;&nbsp;즐 겨 찾 기</h1>
-									<hr>
+									<h4>&nbsp;&nbsp;나의 업무</h4>
+									<br>
 								</div>
 								<!-- 게시글안쪽 -->
 
 								<div class="card-body" style="overflow: auto;">
+								<div class="checks" align="right" style="margin-left: 1%; font-size: 23px; " >
+						<form action="#">
+							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;요 청&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;진 행&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;피드백&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;완 료&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;보 류&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+						</form>
+					</div>
 									<div class="table-responsive">
 										<table class="table table-bordered" id="dataTable"
 											style="width: 100%; cellspacing: 0;">
@@ -208,15 +217,6 @@ $("div").on('click', function(e){
 					
 
 		<br>
-					<div class="checks" align="left" style="margin-left: 1%; font-size: 23px; " >
-						<form action="#">
-							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;요 청&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;진 행&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;피드백&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;완 료&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;보 류&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-						</form>
-					</div>
 
 				</div>
 				<!-- /.container-fluid -->
