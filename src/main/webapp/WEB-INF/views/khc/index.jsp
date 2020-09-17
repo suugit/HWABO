@@ -40,6 +40,7 @@
     </c:url>
 <a href="${ selectone } "> 게시글 1개출력</a>
 </c:if>
+	<button onclick="javascript:location.href='dopostupdate.do'">업데이트페이지</button>
     </div>
 <div style="background-color:#F8E0E6;border:2px solid black;"><br><br><br></div>
 <!-- 테스트버튼 끝 -->

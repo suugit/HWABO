@@ -10,9 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.dopost.model.service.DopostService;
 import com.beet.HWABO.dopost.model.vo.Dopost;
+import com.beet.HWABO.member.model.vo.Member;
 
 /**
  * Handles requests for the application home page.
@@ -57,12 +59,28 @@ public class KhcController {
 			return "common/error";
 		}
 	}
+	
+	@RequestMapping(value = "dopostupdateview.do")
+	public ModelAndView selectAll(@RequestParam("uemail") String uemail, ModelAndView mav){
+		logger.info("dopostselectall.run...");
+		
+		Member member = dopostService.selectMember(uemail);
+		
+		if(member != null) {
+			mav.setViewName("khc/updatemytodo");
+			mav.addObject("member", member);
+		}else {
+			mav.addObject("message", uemail + "에 대한 수정페이지 이동 실패 !");
+			mav.setViewName("common/error");
+		}
+		return mav;
+	}
 		
 
 	@RequestMapping(value = "updatemytodo.do", method = RequestMethod.POST)
 	public String dopostUpdate(Dopost dopost, Model model) {
-		logger.info("mytodo.run ........................");
-		logger.info("@@@@@@@@@@@@@dopost" + dopost);
+		logger.info("updatemytodo.run ........................");
+		logger.info("***!!!!!!dopost" + dopost);
 		int result = dopostService.updatedopost(dopost);
 
 		if (result > 0) {
@@ -73,30 +91,18 @@ public class KhcController {
 		}
 	}
 
-	@RequestMapping(value = "dopostdelete.do", method =  RequestMethod.POST )
-		public String dopostDelete(Dopost dopost, Model model) {
-			logger.info("mytodo.run ........................");
-			logger.info("@@@@@@@@@@@@@dopost" + dopost);
-			int result = dopostService.deletedopost(dopost);
-		
-			if(result > 0) {
-				return "khc/index.jsp";
-			}else {
-				model.addAttribute("message", "삭제실패");
-				return "common/error";
-			}
-			
-		
-		
-		
 	
-}
 
 	// --------------------------------------------------------------------------------------------------------------
 	@RequestMapping(value = "movetodojsp.do", method = RequestMethod.GET)
 	public String movejspfile(Model model) {
 		return "khc/mytodo"; // 경로
 
+	}
+	
+	@RequestMapping(value= "dopostupdate.do", method = RequestMethod.GET)
+	public String updatetodo(Model model) {
+		return "khc/updatemytodo";
 	}
 
 	@RequestMapping(value = "participateproject.do", method = RequestMethod.GET)

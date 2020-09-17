@@ -12,15 +12,14 @@
 	<result column="dcontent" property="dcontent"/>
 	<result column="denrolldate" property="denrolldate"/>
 	<result column="dopen" property="dopen"/>
+	<result column="dpnum" property="dpnum"/>
 	</resultMap>
 	
 	<insert id="insertdopost" parameterType="Dopost">
 	insert into dopost 
-	values((select concat('d', (select nvl(max(to_number(substr(dno,2))),0)+1 from dopost))from dual), #{dtitle}, #{ducode}, #{dwriter}, #{dcontent}, SYSDATE, #{dopen})
+	values((select concat('d', (select nvl(max(to_number(substr(dno,2))),0)+1 from dopost))from dual), #{dtitle}, #{ducode}, #{dwriter}, #{dcontent}, SYSDATE, #{dopen}, #{dpnum})
 	
 	</insert>
-	
-	
 	
 	<update id="updateOrigindopost" parameterType="Dopost">
 	update dopost
@@ -36,4 +35,5 @@
 	select * from dopost
 	where dno = #{dno}
 	</select>
+	
 </mapper>

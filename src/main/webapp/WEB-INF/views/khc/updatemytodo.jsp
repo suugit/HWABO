@@ -385,7 +385,7 @@
 
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
-							<form action="updatemytodo.do" id="dopost2"  method="post">
+							<form action="updatemytodo.do" id="dopost"  method="post">
 							
 								<table style="text-align: center; width: 100%;">
 									<tr class="m-0 font-weight-bold text-primary">
@@ -401,7 +401,7 @@
 										</td>
 									</tr>
 									
-									<input type="text" name="dno" readonly>
+									<input type="text" name="dno" value="${sessionScope.dno}"readonly>
 									<tr>
 									<td>
 								
@@ -409,12 +409,12 @@
 									</tr>
 									<tr>
 										<td colspan="5"><span style="float: left;"><i
-												class="fa fa-pen"></i>&nbsp;제목 </span><input type="text" name="dtitle"
+												class="fa fa-pen"></i>&nbsp;제목 </span><input type="text" name="dtitle" value="${sessionScope.dtitle}"
 											class="form-control" placeholder="제목을입력하세요"></td>
 									</tr>
 									
 									
-									<input type="text" name="dwriter" readonly> 
+									<input type="text" name="dwriter" value="${sessionScope.dwriter}" readonly> 
 									
 										<td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;할일</span>
 										 <textarea
@@ -432,9 +432,9 @@
 										<td colspan="2"></td>
 										<!--  #f8f9fc   -->
 										<td>
-										<select name="dopen" class="form-control">
-											<option value="y" >전체공개</option>
-											<option value="n" >나만보기</option>
+										<select name="dopen" class="form-control" value="${sessionScope.dopen}">
+											<option value="Y" >전체공개</option>
+											<option value="N" >나만보기</option>
 										</select>
 										</td>
 										
