@@ -3,6 +3,10 @@ package com.beet.HWABO.red.controller;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -190,14 +194,10 @@ public class RedController {
 			ArrayList<MemberProject> memberProject = redService.selectMemberList(pnum);
 			ArrayList<String> names = new ArrayList<String>();
 			ArrayList<String> ucodes = new ArrayList<String>();
-			int goal = 0;
-			int done = 0;
 			
 			for(MemberProject m : memberProject) {
 				names.add(m.getUname());
 				ucodes.add(m.getUcode());
-				goal = m.getGoal();
-				done = m.getDone();
 			}
 			
 			HttpSession session = request.getSession();
@@ -205,20 +205,14 @@ public class RedController {
 			session.setAttribute("pmlist", memberProject);
 			session.setAttribute("names", names);
 			session.setAttribute("ucodes", ucodes);
-			session.setAttribute("totalProgress", 100/goal*done);
 			logger.info("세션에 프로젝트넘버 추가완료... 프로젝트번호 : " + pnum);
 			logger.info("세션에 회원정보 목록 추가완료... pmlist : " + memberProject);
 			logger.info("세션에 회원이름 목록 추가완료... names : " + names);
 			logger.info("세션에 회원아이디 목록 추가완료... ucodes : " + ucodes);
-			logger.info("세션에 전체진행률 추가완료... progress : " + 100/goal*done);
 			status.setComplete(); // 요청성공, 200 전송
 			mv.setViewName("red/tables");
-			return mv;
-		}
-		@RequestMapping(value = "fother.do", method = RequestMethod.GET)
-		public ModelAndView selectProgresses(@RequestParam("project_num") String pnum,  ModelAndView mv) {
-			logger.info("진행률 페이지... 프로젝트번호 : " + pnum);
 			
+			///
 			int chk = 0;
 			int goal = 0;
 			int done = 0;
@@ -279,7 +273,94 @@ public class RedController {
 				}else {
 					logger.info("전체 진행률 업데이트 실패...");
 				}
-				//mv.addObject("totalProgress",100/goal*done);
+			}
+			
+			session.setAttribute("totalProgress", done/goal*100);
+			logger.info("세션에 전체진행률 추가완료... progress : " + done/goal*100 + "%");
+			///
+			return mv;
+		}
+		@RequestMapping(value = "fother.do", method = RequestMethod.GET)
+		public ModelAndView selectProgresses(@RequestParam("project_num") String pnum,  ModelAndView mv) {
+			logger.info("진행률 페이지... 프로젝트번호 : " + pnum);
+			
+			int chk = 0;
+			int goal = 0;
+			int done = 0;
+			ArrayList<Progress> plist = new ArrayList<Progress>(); 
+			ArrayList<Bpost> blist = redService.selectBpost(pnum);
+			for(Bpost b : blist) {
+				Progress p = new Progress();
+				 
+				p.setTitle(b.getBtitle());
+				if(b.getBcontent() != null) {
+					p.setContent(b.getBcontent());
+				}else {
+					p.setContent("");
+				}
+				p.setName(b.getBwriter());
+				p.setUcode(b.getBucode());
+				p.setProject_num(pnum);
+				p.setGoal(3);
+				goal += 3;
+				if(b.getBkind().equals("완료")) {
+					p.setDone(3);
+					done += 3;
+				}else if(b.getBkind().equals("피드백")) {
+					p.setDone(2);
+					done += 2;
+				}else if(b.getBkind().equals("진행")) {
+					p.setDone(1);
+					done += 1;
+				}else {
+					p.setDone(0);
+				}
+				plist.add(p);
+			}
+			if(redService.selectProgressList(pnum).size() > 0) {
+				if(redService.deleteProgress(pnum) > 0) {
+					logger.info("진행률 초기화완료...");
+				}else {
+					logger.info("진행률 초기화오류...");
+				}
+			}else {
+				logger.info("진행률 초기화완료... : 초기화할 데이터 없음 (정상)");
+			}
+			for(Progress p : plist) {
+				if(redService.insertProgress(p) < 1) {
+					chk++;
+					logger.info("PROGRESS 데이터 유실됨... 유실된 데이터 : " + p);
+				}
+			}
+			
+			Set<String> MemberNames = new HashSet<String>();
+			for(Progress progress : plist) {
+				MemberNames.add(progress.getName());
+			}
+			
+			int i = 0;
+			for(String names : MemberNames) {
+				ArrayList<Progress> list = new ArrayList<Progress>();
+				for(Progress progress : plist) {
+					if(progress.getName().equals(names)) {
+						list.add(progress);
+					}
+				}
+				mv.addObject(names, list);
+			}
+			
+			if(chk < 1) {
+				MemberProject mp = new MemberProject();
+				mp.setProject_num(pnum);
+				mp.setGoal(goal);
+				mp.setDone(done);
+				logger.info("PROGRESS 데이터 사용가능...");
+				if(redService.updateProjectProgress(mp) > 0) {
+					logger.info("전체 진행률 업데이트 성공...");
+				}else {
+					logger.info("전체 진행률 업데이트 실패...");
+				}
+				mv.addObject("MemberNames",MemberNames);
 				mv.addObject("plist", plist);
 				mv.setViewName("red/utilities-other");
 			}else {
