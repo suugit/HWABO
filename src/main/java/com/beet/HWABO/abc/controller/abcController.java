@@ -52,17 +52,12 @@ public class abcController {
 	@RequestMapping("posttest.do")
 	public String selectPostTest(Model m){
 		ArrayList<Post> list = spostService.selectPostTest();
-		
-		logger.info(list.toString());
-		m.addAttribute("list", list);
+		if(list.isEmpty()) {
+			m.addAttribute("list", list);
+		}else {
+			m.addAttribute("message", "업무모아보기 페이지 조회에 실패하였습니다.");
+			}
 		return "abc/myhwabo";
-	}
-	
-	//알림 테스트
-	@RequestMapping("alarm.do")
-	public String TESTalarm() {	
-		
-		return "abc/alarmtest";
 	}
 	
 	//입력, 출력, 수정 합친것
@@ -71,12 +66,7 @@ public class abcController {
 		
 		return "abc/tables";
 	}
-	
-	@RequestMapping("myhwabotest.do")
-	public String myHWABOtest() {
-		
-		return "abc/myhwabotest";
-	}
+
 	
 	@RequestMapping("insertspost.do")
 	public String moveInsertSpostPage() {
@@ -299,25 +289,24 @@ public class abcController {
 		 
 		 if(list != null) {
 			 model.addAttribute("list", list);
-			 return "abc/myBPOST";
-			 
 		 }else {
-			 model.addAttribute("message", "업무게시글 리스트 실패");
-			 return "comm/error";
+			 model.addAttribute("message", "업무모아보기 페이지 조회에 실패하였습니다.");
 		 }
-		
+		 return "abc/myBPOST";
 	}
 	
 	//나의 화보. 나와 관련된 게시글 목록 조회용
 	@RequestMapping("myhwabo.do")
-	public String myHWABO() {	
-		// bpost : 작성자, 담당자
-		// cpost : 작성자
-		// spost : 작성자
-		// vpost : 작성자
-		//dopost : 작성자
-		//댓글부터 좋아요까지
-		spostService.selectMyPost();
+	public String myHWABO(Model m) {	
+			
+		//매개변수랑, where 절에 session에서 받아온 ucode랑 pnum 추가 해야한다.
+		
+		ArrayList<Post> list = spostService.selectPostTest();
+		if(list != null) {
+			m.addAttribute("list", list);
+		}else {
+			m.addAttribute("message", "업무모아보기 페이지 조회에 실패하였습니다.");
+			}
 		
 		return "abc/myhwabo";
 	}

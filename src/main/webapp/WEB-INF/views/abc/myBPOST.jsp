@@ -17,7 +17,81 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
 
+
+$(document).ready(function(){
+});
+
+function bkindshow(){
+$("#'${b.bkind}'").button('toggle')
+
+}
+
+var names = "";
+function addbcharge(){
+	var name = $(event.target).text();
+	names += name + " ";
+	
+	 $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>');
+	 //$('#bform').val(name); 
+	 
+	 $('#bform').val(names);
+	 alert($("#bform").val()); 
+	
+}
+
+function unSelected(){
+	$(event.target).parent().remove();
+}
+
+function validate(){
+	//날짜에 빈 공백이 들어오니까 공백일때 널로 바꿔라 라는 내용을 추가한다
+	return true;
+}
+
+</script>
+
+<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+function sendInsert(index){
+	console.log("sendInsert : " + index);
+	console.log($("#no_"+ index).val());
+	$.ajax({	      
+	      url: "insertcabinet.do",
+	      data: {no: $("#no_"+ index).val(), ucode: $("#ucode_" + index).val(), pnum: $("#pnum_" + index).val()},     
+	      type: "post",
+	      success: function(result){
+	         if(result == "ok"){
+	            alert("보관함 보내기 성공 !");
+	            console.log("보관함 보내기 성공 !");
+	         }else{
+	            alert("값이 보내졌지만 결과는 ok가 아님");
+	         }
+	      
+	      },
+	      error: function(request, status, errorData){
+	    	 
+	            console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+	         }
+	      
+	      }); //에이작스
+}
+
+$(function(){
+	//보관함
+
+	
+	 $(".liketoggle").click(function() {
+		   $(this).find("i").toggleClass("fas far");
+		   $(this).find("span").text(function(i, v) {
+		     return v === '보관' ? '보관됨' : '보관'
+		   })
+		 });
+	
+});	 
+</script>
 <title>HWABO</title>
 
 <!-- Custom fonts for this template -->
@@ -55,7 +129,7 @@ $("div").on('click', function(e){
 <!-- 2.바로아래div추가 및 임포트 추가  -->
 	<div style="width:100%;display:flex;justify-content:center;align-item:center;">
 <!-- Sidebar2right -->
-     <c:import url="/WEB-INF/views/abc/entersideFixed.jsp"></c:import>
+     <c:import url="/WEB-INF/views/abc/myBPOSTsideFixed.jsp"></c:import>
 <!-- End of Sidebar2right -->
 
 	
@@ -83,14 +157,14 @@ $("div").on('click', function(e){
 
 						<!-- 즐겨찾기 시작 -->
 						
-							<div class="card mb-4 py-3 border-left-info">
+							<div class="card mb-4 py-3 border-info">
 								<div style="margin-top: 0px;">
 									<h1>&nbsp;&nbsp;즐 겨 찾 기</h1>
 									<hr>
 								</div>
 								<!-- 게시글안쪽 -->
 
-								<div class="card-body" style="height: 400px; overflow: auto;">
+								<div class="card-body" style="overflow: auto;">
 									<div class="table-responsive">
 										<table class="table table-bordered" id="dataTable"
 											style="width: 100%; cellspacing: 0;">
@@ -112,10 +186,14 @@ $("div").on('click', function(e){
 										<% if(!list.isEmpty()){ %>
 											<% for(Bpost bpost : list){ %>
 													<tr>	
-														<td><div style='margin-top:22px; margin-left:20px; min-height: 43px; max-height:43px; overflow: hidden;' >업무</div></td>
-														<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBtitle()%></div></td>
-														<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBcontent()%></div></td>
-														<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBenrolldate()%></div></td>
+														<td class="table-info">
+																<%if(bpost.getBkind().equals("요청")){ %>
+																<strong style="color: #666666; margin-top:20px; vertical-align: middle; ">요청</strong>
+																<% } %>
+															</td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBtitle()%></div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBcontent()%></div></td>
+														<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBenrolldate()%></div></td>
 													</tr>	
 											<% } %>
 												
@@ -132,182 +210,13 @@ $("div").on('click', function(e){
 		<br>
 					<div class="checks" align="left" style="margin-left: 1%; font-size: 23px; " >
 						<form action="#">
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;글 &nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;업 무 &nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;일 정&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;할 일&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;투 표&nbsp;&nbsp;&nbsp;&nbsp;</label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;요 청&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;진 행&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;피드백&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;완 료&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;보 류&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
 						</form>
 					</div>
-					
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-
-
 
 				</div>
 				<!-- /.container-fluid -->
@@ -354,6 +263,17 @@ $("div").on('click', function(e){
 
 		<!-- Page level custom scripts -->
 		<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
+		<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+						<script type="text/javascript">
+						$(function(){
+							var message = ${message}
+							if(message != null){
+								alert(message);
+							}
+							
+						});
+						</script>
+						
 </body>
 
 </html>
