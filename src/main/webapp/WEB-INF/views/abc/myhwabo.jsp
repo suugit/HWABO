@@ -65,7 +65,7 @@
 		<div id="content-wrapper" class="d-flex flex-column bg-white"  style="width:62%;">
 
 			<!-- Main Content -->
-			<div id="content">
+			<div id="content" style="width:100%;">
 
 				<!-- Topbar -->
 <br><br><br><br>
@@ -104,7 +104,7 @@
 												</tr>
 											</thead>
 											<tbody>
-										
+									<%if(list != null){ %>
 										<% for(Post post : list){ %>
 											<% if( post.getFirstword().equals("s") ){ %>
 													<tr>
@@ -132,6 +132,7 @@
 											<% } %>
 										
 										<% } %>
+									<% } %>
 											<%-- <c:forEach var="post" items="${requestScope.list }" varStatus="status">
 														
 													<tr>
@@ -412,7 +413,7 @@
 				</div>
 			</div>
 		</div>
-
+		
 		<!-- Bootstrap core JavaScript-->
 		<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
 		<script
@@ -433,6 +434,7 @@
 
 		<!-- Page level custom scripts -->
 		<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
+
 </body>
 
 </html>
