@@ -45,6 +45,10 @@
 
 	
 	</resultMap>
+<select id="selectPost" resultType="Post">
+	select * from realpost;
+</select>
+
 
 <select id="selectSpost" resultType="Spost">
 	select * from spost

@@ -63,23 +63,11 @@ public class SpostDao {
 	//-------- Post -------------------------------------------------------------------------------------------------	
 		
 		public ArrayList<Post> selectPostTest() {
-			List<Post> list1 = session.selectList("postMapper.selectSpost");
-			List<Post> list2 = session.selectList("postMapper.selectBpost");
-		/*
-		 * List<Post> list3 = session.selectList("postMapper.selectBpost"); List<Post>
-		 * list4 = session.selectList("postMapper.selectDopost");
-		 */
-
-			List<Post> list = new ArrayList<>();
-			list.addAll(list1);
-			list.addAll(list2);
-		/*
-		 * list.addAll(list3); list.addAll(list4);
-		 */
-			
-			for(Post p : list) {
-				System.out.println(p.toString());
+			List<Post> list = session.selectList("postMapper.selectPost");
+			for (Post post : list) {
+				System.out.println(post);
 			}
+			
 			return (ArrayList<Post>)list;
 		}
 		
