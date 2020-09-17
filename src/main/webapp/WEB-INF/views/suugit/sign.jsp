@@ -44,40 +44,45 @@
 						<div class="col-md-7">
 							<center>
 								<h1 class="m-4">회원가입</h1>
+							<div class="alert alert-danger" role="alert">${message }</div>
 							</center>
 							<div><span id="chkmsg"></span></div>
 							<form  action="sign.do" method="post" id="signForm" onsubmit="return validate();">
 								<div class="form-group row">
 									<label for="email" class="col-sm-3 col-form-label ">이메일 주소</label>
 									<div class="col-sm-9">
-										<input type="email" class="form-control" name="uemail" placeholder="Email">
+										<input type="email" class="form-control" name="uemail" placeholder="Email" required>
+										 <form:input path="uemail" />
+     									   <form:errors path="uemail"/>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="email" class="col-sm-3 col-form-label ">이름</label>
 									<div class="col-sm-9">
-										<input type="text" class="form-control" name="uname" placeholder="Name">
+										<input type="text" class="form-control" name="uname" placeholder="Name" required>
+										<form:input path="uname" />
+        								<form:errors path="uname"/>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="email" class="col-sm-3 col-form-label ">비밀번호 </label>
 									<div class="col-sm-9">
 										<input type="password" class="form-control" name="upwd" placeholder="Password"
-												minlength="6" maxlength="12">
+												minlength="6" maxlength="12" required>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="email" class="col-sm-3 col-form-label ">비밀번호 확인</label>
 									<div class="col-sm-9">
 										<input type="password" class="form-control" name="pwdchk" placeholder="Password"
-												minlength="6" maxlength="12">
+												minlength="6" maxlength="12" required|same:upwd>
 									</div>
 								</div>
 
 								<div class="form-check mb-4 text-center">
 									<input class="form-check-input" type="checkbox" value="" id="toschk"> 
 									<label class="form-check-label text-sm" for="toschk">
-										<small>위의 <a href="#">이용약관 및 개인정보 수집및 이용</a>에 대한 안내에 동의합니다.</small>
+										<small>위의<a href="javascript:openWindowPop('/suugit/hwaboTermsOfUse.html', 'popup');">이용약관 및 개인정보 수집및 이용</a>에 대한 안내에 동의합니다.</small>
 									</label>
 								</div>
 								</form>
@@ -98,7 +103,6 @@
 						</div>
 					</div>
 				</div>
-	
 		</div>
 	</div>
 
@@ -118,7 +122,8 @@
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="/hwabo/resources/js/user.js">
+	<script src="/hwabo/resources/js/user.js"></script>
+	<script>
 	
 	</script>
 </body>

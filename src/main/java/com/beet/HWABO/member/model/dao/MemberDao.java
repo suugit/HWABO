@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.beet.HWABO.invite.model.vo.Invite;
 import com.beet.HWABO.member.model.vo.Member;
 
 @Repository("memberDao")
@@ -60,6 +61,13 @@ public class MemberDao {
 	public int updatePwd(Member member) {
 		return session.update("memberMapper.updatePwd", member);
 	}
+
+
+	public int insertInvtNew(Invite invt) {
+		return session.insert("memberMapper.insertInvtNew", invt);
+	}
+
+
 	
 
 }

@@ -43,6 +43,8 @@
               </div>
               <div class="col-lg-6">
                 <div class="p-5">
+              <div class="alert-success">  ${message } </div>
+              
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">화보로고</h1>
                   </div>
@@ -74,7 +76,7 @@
                   </div>
                   <div class="text-center">
                     화보가 처음이신가요?
-                    <a class="small" href="javascript:location.href='sign.do';">가입하기</a>
+                    <a class="small" href="javascript:location.href='mvsign.do';">가입하기</a>
                   </div>
                 </div>
               </div>

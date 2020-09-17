@@ -1,8 +1,11 @@
 package com.beet.HWABO.member.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.beet.HWABO.invite.model.vo.Invite;
 import com.beet.HWABO.member.model.dao.MemberDao;
 import com.beet.HWABO.member.model.vo.Member;
 
@@ -60,9 +63,11 @@ public class MemberServiceImpl implements MemberService{
 	public int updatePwd(Member member) {
 		return memberDao.updatePwd(member);
 	}
-	
-	
 
-	
+	@Override
+	public int insertInvtNew(Invite invt) {
+		return memberDao.insertInvtNew(invt);
+	}
+
 	
 }
