@@ -1,7 +1,11 @@
+<%@page import="java.util.ArrayList,java.util.Set,com.beet.HWABO.red.model.vo.Progress"%>
 <%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:if test="${ sessionScope.totalProgress < 4 }"><c:set var="tp" value="4" /></c:if>
+<c:if test="${ sessionScope.totalProgress >= 4 }"><c:set var="tp" value="${ sessionScope.totalProgress }" /></c:if>
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -18,7 +22,6 @@
   <!-- Custom fonts for this template-->
   <link href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
 <!-- 진행률시작 -->
 <style>
 #myProgress {
@@ -28,7 +31,7 @@
 }
 
 #myBar {
-  width: 75%;
+  width: ${ tp }%;
   height: 30px;
   background-color: #4e73df;
   text-align: center;
@@ -88,51 +91,46 @@
               <!-- 게시글안쪽 -->
 
 <div id="myProgress">
-  <div id="myBar">75%</div>
+  <div id="myBar">${ sessionScope.totalProgress }%</div>
 </div>
 <br>
-<table style="text-align:center;width:100%;color:white;"><tr><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;"></td><td style="width:20%;">
-<a class="btn btn-light btn-icon-split" style="width:90%;" onclick="move()">
-<span class="text" style="color:gray;">확인</span>
-</a>
-</td>
-</tr></table>
-<script>
-var i = 0;
-let c = 5;//목표 갯수 현재 5개
-var devide = 0;
-function move() {
-	devide += 100 / c;
-    if(devide > 100){
-    	devide = 100;
-    }
-  if (i == 0) {
-
-    var elem = document.getElementById("myBar");
-    var width = 0;
-    var id = setInterval(frame, 10);
-    function frame() {
-      if (width >= devide) {
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        elem.style.width = width + "%";
-        elem.innerHTML = width  + "%";
-      }
-    }
-  }
-}
-</script>
-            </div>
-          </div>
+</div>
+</div>
 <!-- 진행률끝 -->
-<% for(int i = 0; i < 7; i++){ %>
+<% for(String pnames : (Set<String>)request.getAttribute("MemberNames")){ %>
 <!-- 개인진행률시작 -->
           <div class="card mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">사용자 이름</h6>
+                  <h6 class="m-0 font-weight-bold text-primary"><%= pnames %></h6>
+                </div>
+                <div class="card-body">
+                  <% 
+                  int goal = 0;
+                  int done = 0;
+                  for(Progress info : (ArrayList<Progress>)request.getAttribute(pnames)){
+                	  goal += info.getGoal();
+                	  done += info.getDone();
+                  }
+                  %>
+                  <div class="mb-1 small">개인 전체 진행률 <%= done / goal * 100 %>%</div>
+                  <div class="progress mb-4">
+                    <div class="progress-bar1 progress-bar" role="progressbar" style="width: 80%;backgound-color:#F8E0E0;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <c:forEach var="userInfo" items="<%= (ArrayList<Progress>)request.getAttribute(pnames) %>" varStatus="status2">
+                  <fmt:parseNumber var= "percent" integerOnly= "true" value="${ userInfo.done / userInfo.goal * 100 }" />
+                  <div class="mb-1 small">${ userInfo.title } : 진행률 ${ percent }%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar progress-bar2" role="progressbar" style="width: ${ userInfo.done / userInfo.goal * 100 }%" aria-valuenow="${ userInfo.done / userInfo.goal * 100 }" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  </c:forEach>
+                </div>
+              </div>
+<!-- 개인진행률끝 -->
+<% } %>
+<!-- 샘플 폼시작 -->
+ <div class="card mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">영원한 친구 비트 (샘플 폼 입니다)</h6>
                 </div>
                 <div class="card-body">
                   <div class="mb-1 small">개인 전체 진행률 80%</div>
@@ -161,8 +159,7 @@ function move() {
                   </div>
                 </div>
               </div>
-<!-- 개인진행률끝 -->
-<% } %>
+<!-- 샘플폼 끝 -->
         </div>
         <!-- /.container-fluid -->
 

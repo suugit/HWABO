@@ -44,7 +44,11 @@
 		select * from member
 		where uemail = #{uemail} and signtype= 'h'
 	</select>
-
+	
+	<select id="selectreal" parameterType="string" resultType="_int">
+		select count(*) from member`
+		where uemail = #{uemia
+	</select>
 	<update id="updateUst" parameterType="Member">
 		update member
 		set ust='Y'
@@ -67,6 +71,7 @@
 		#{urole}
 		where ucode = #{ucode}
 	</update>
+	
 	<update id="updateImg" parameterType="String">
 		update member
 		set uimg = #{uimg}
@@ -83,9 +88,9 @@
 		where ucode = #{ucode}
 	</delete>
 
-	<insert id="invtNew" parameterType="Invite">
+	<insert id="insertInvtNew" parameterType="Invite">
 		insert into invite
-		values(#{ucode}, #{pnum}, #{invtemail}, 'N', sysdate+3)
+		values(#{invtkey}, #{ucode}, #{pnum}, #{invtemail}, default, default)
 	</insert>
 
 	<!-- <select id="NotPjMember" parameterType="string" resultMap="Member"> 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.beet.HWABO.dopost.model.dao.DopostDao;
 import com.beet.HWABO.dopost.model.vo.Dopost;
+import com.beet.HWABO.member.model.vo.Member;
 
 @Service("dopostService")
 public class DopostServiceImpl implements DopostService {
@@ -44,6 +45,13 @@ public class DopostServiceImpl implements DopostService {
 	@Override
 	public Dopost selectonedopost(String dno) {
 		return dopostDao.selectdopost(dno);
+	}
+
+	
+
+	@Override
+	public Member selectMember(String uemail) {
+		return dopostDao.selectMember(uemail);
 	}
 	
 	

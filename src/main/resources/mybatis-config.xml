@@ -46,6 +46,7 @@
 	
 		<!-- 다운 -->
 		<mapper resource="mappers/spost-mapper.xml" />
+		<mapper resource="mappers/post-mapper.xml" />
 		<mapper resource="mappers/love-mapper.xml" />
 		<mapper resource="mappers/postreply-mapper.xml" />
 		

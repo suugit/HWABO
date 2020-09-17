@@ -447,7 +447,7 @@
 											<option value="N" >나만보기</option>
 										</select>
 										</td>
-										
+									<input type="hidden" name="dpnum" value="${sessionScope.dpnum }">
 										
 								<!-- 		
 								 	<td><a class="btn btn-success btn-icon-split"

@@ -26,8 +26,5 @@ public class PlzController {
 	public String moveinsertvpost(Model model) {
 		return "yeongmin/insertvpost";
 }
-	
-	
-	
-	
+
 }

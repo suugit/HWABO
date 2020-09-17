@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
@@ -56,7 +56,7 @@
 	z-index: -1;
 }
 
-.modal{
+.modal {
 	z-index: 1050;
 }
 </style>
@@ -90,10 +90,7 @@
 				<div id="content">
 
 					<!-- Topbar -->
-					<br>
-					<br>
-					<br>
-					<br>
+					<br> <br> <br> <br>
 					<!-- End of Topbar -->
 
 					<!-- Begin Page Content -->
@@ -134,8 +131,8 @@
 										<div class="form-group row">
 											<label class="control-label mypage text-center">비밀번호</label>
 											<input class="form-control col-md-5 pl-2 " type="password"
-												name="upwd" placeholder="기존 비밀번호"> &nbsp
-											<label class="btn btn-info btn-sm text" id="btn_pwd" return false;>비밀번호변경</label>
+												name="upwd" placeholder="기존 비밀번호"> &nbsp <label
+												class="btn btn-info btn-sm text" id="btn_pwd" returnfalse;>비밀번호변경</label>
 										</div>
 										<div class="form-group row">
 											<label class="control-label mypage text-center">휴대폰</label> <input
@@ -249,20 +246,22 @@
 				</div>
 				<div class="modal-body">
 					<form action="uppwd.do" method="post" id="upPwdForm">
-					<input type="hidden" name="ucode" value="${ucode}">
-					<div class="form-group row">
-						<label class="control-label mypage text-center col-md-4">현재 비밀번호</label> 
-						<input class="form-control col-md-6" type="password" name="oldpwd">
-					</div>
-					<div class="form-group row">
-						<label class="control-label mypage text-center col-md-4">새 비밀번호</label> 
-						<input class="form-control col-md-6" type="password" name="newpwd">
-					</div>
-					<div class="form-group row">
-						<label class="control-label mypage text-center col-md-4">새 비밀번호 확인</label> 
-						<input class="form-control col-md-6" type="password" name="newpwdChk">
-					</div>
-					
+						<input type="hidden" name="ucode" value="${ucode}">
+						<div class="form-group row">
+							<label class="control-label mypage text-center col-md-4">현재
+								비밀번호</label> <input class="form-control col-md-6" type="password"
+								name="oldpwd">
+						</div>
+						<div class="form-group row">
+							<label class="control-label mypage text-center col-md-4">새
+								비밀번호</label> <input class="form-control col-md-6" type="password"
+								name="newpwd">
+						</div>
+						<div class="form-group row">
+							<label class="control-label mypage text-center col-md-4">새
+								비밀번호 확인</label> <input class="form-control col-md-6" type="password"
+								name="newpwdChk">
+						</div>
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-primary">변경하기</button>
@@ -270,90 +269,93 @@
 					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
-			</div>
-			</div>
-			
-				<!-- 회원탈퇴  모달-->
-				<div class="modal fade" id="LeaveModal" tabindex="-1" role="dialog"
-					aria-labelledby="LeaveModal" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalCenterTitle">회원 탈퇴</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">회원 탈퇴 시 어떠한 경우에도 계정을 복구할 수 없습니다.
-								계속하시겠습니까?</div>
-							<div class="modal-footer justify-content-center">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">닫기</button>
-								<button type="button" class="btn btn-danger" onclick="delUser()">탈퇴하기</button>
-							</div>
-						</div>
-					</div>
+		</div>
+	</div>
+
+	<!-- 회원탈퇴  모달-->
+	<div class="modal fade" id="LeaveModal" tabindex="-1" role="dialog"
+		aria-labelledby="LeaveModal" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalCenterTitle">회원 탈퇴</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
+				<div class="modal-body">회원 탈퇴 시 어떠한 경우에도 계정을 복구할 수 없습니다.
+					계속하시겠습니까?</div>
+				<div class="modal-footer justify-content-center">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-danger" onclick="delUser()">탈퇴하기</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
-				<!-- Bootstrap core JavaScript-->
-				<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
-				<script
-					src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Bootstrap core JavaScript-->
+	<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-				<!-- Core plugin JavaScript-->
-				<script
-					src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script
+		src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-				<!-- Custom scripts for all pages-->
-				<script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
 
-				<!-- Page level plugins -->
-				<script
-					src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
-				<script
-					src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+	<!-- Page level plugins -->
+	<script
+		src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-				<!-- Page level custom scripts -->
-				<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
-				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-				<script src="resources/js/jquery-3.5.1.min.js"></script>
-				<script type="text/javascript">
-					function toggleModify() {
-						var ele = $(event.target);
-						if (ele.val() == '수정하기') {
-							$('input[type=text]').removeClass(
-									'form-control-plaintext');
-							$('input[type=text]').attr('readonly', false);
-							$('#editBtn').removeClass('btn-primary')
-							$('#editBtn').addClass('btn-success')
-							ele.val('변경사항 저장');
-						} else {
-							$('#editBtn').addClass('btn-primary')
-							$('#editBtn').removeClass('btn-success')
-							ele.val('수정하기');
-							$('#myInfoForm').submit();
-						}
+	<!-- Page level custom scripts -->
+	<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="resources/js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+		function toggleModify() {
+			var ele = $(event.target);
+			if (ele.val() == '수정하기') {
+				$('input[type=text]').removeClass('form-control-plaintext');
+				$('input[type=text]').attr('readonly', false);
+				$('#editBtn').removeClass('btn-primary')
+				$('#editBtn').addClass('btn-success')
+				ele.val('변경사항 저장');
+			} else {
+				$('#editBtn').addClass('btn-primary')
+				$('#editBtn').removeClass('btn-success')
+				ele.val('수정하기');
+				$('#myInfoForm').submit();
+			}
 
-					}
+		}
 
-					function delUser() {
-						location.href = "deluser.do?ucode=${member.ucode}";
-					}
-					
-					$('#btn_pwd').on('click',function(){
-						$('#pwdUpdateModal').modal('show')
-					})
+		function delUser() {
+			location.href = "deluser.do?ucode=${member.ucode}";
+		}
+		
+		$('#btn_pwd').on('click', function() {
+			$('#pwdUpdateModal').modal('show')
+		})
 
 		/* 			 $(function(){
-        var responseMessage = "<c:out value="${message}" />";
-        if(responseMessage != ""){
-            alert(responseMessage)
-        }
-    })  */
-				</script>
+		var responseMessage = "<c:out value="${message}" />";
+		if(responseMessage != ""){
+		    alert(responseMessage)
+		}
+		})  */
+		
+
+		
+	</script>
 </body>
 
 </html>

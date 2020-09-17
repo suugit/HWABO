@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${ sessionScope.totalProgress < 4 }"><c:set var="tp" value="4" /></c:if>
+<c:if test="${ sessionScope.totalProgress >= 4 }"><c:set var="tp" value="${ sessionScope.totalProgress }" /></c:if>
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -67,9 +69,9 @@
 
 <!-- 진행률시작 -->
 <div class="card-body">
-                  <div class="mb-1 small">프로젝트 진행률 75%</div>
+                  <div class="mb-1 small">프로젝트 진행률 ${ sessionScope.totalProgress }%</div>
                   <div class="progress progress-sm mb-2">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" style="width: ${ tp }%" aria-valuenow="${ tp }" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
 <!-- 진행률끝 -->

@@ -35,20 +35,20 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="fborder.do">
+        <a class="nav-link" href="fborder.do?project_num=${ sessionScope.pnum }">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>캘린더</span></a>
       </li>
 
 	  <li class="nav-item">
-        <a class="nav-link" href="fborder2.do">
+        <a class="nav-link" href="fborder2.do?project_num=${ sessionScope.pnum }">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>캘린더2</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="ftables.do">
+        <a class="nav-link" href="ftables.do?project_num=${ sessionScope.pnum }">
           <i class="fas fa-fw fa-table"></i>
           <span>리스트</span></a>
       </li>

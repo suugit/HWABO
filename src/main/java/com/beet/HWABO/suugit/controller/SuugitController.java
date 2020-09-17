@@ -9,10 +9,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.mail.MessagingException;
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -26,7 +26,11 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -70,13 +74,29 @@ public class SuugitController {
 	public String moveSign() {
 		return "suugit/sign";
 	}
-
+	
+	@RequestMapping("/terms.do")
+	public String openTerms() {
+		return "suugit/";
+	}
+	
 	@RequestMapping(value = "/sign.do", method = RequestMethod.POST)
-	public String insertUser(Member member, Model model) {
+	public ModelAndView insertUser(@Valid Member member,Errors errors, ModelAndView mav) {
 		logger.info("sign.do 실행...");
-
+		 if (errors.hasErrors()) {
+			 mav.addObject("message", errors.getFieldError().getDefaultMessage());
+			 mav.setViewName("suugit/sign");
+			 return mav;
+		 }
+		Member loginUser = mservice.selectLogin(member);
+		if(loginUser != null) {
+			mav.addObject("message", "이미 가입한 회원입니다");
+			mav.setViewName("suugit/sign");
+			return mav; 
+		}
+		
 		// 패스워드 암호화
-		member.getUemail();
+		member.getUemail(); 
 		member.setUpwd(bcryptPwdEncoder.encode(member.getUpwd()));
 		logger.info("회원가입한 메일 주소 : " + member.getUemail());
 		member.setAccesstoken(msserivce.sendAuthMail(member.getUemail()));
@@ -84,12 +104,12 @@ public class SuugitController {
 		int result = mservice.insertUser(member);
 		logger.info("member 는 " + member);
 		if (result > 0) {
-			model.addAttribute("message", "인증 메일이 전송되었습니다!");
+			mav.addObject("message", "인증 메일이 전송되었습니다!");
 		} else {
-			model.addAttribute("message", "암호화 회원가입 실패!");
+			mav.addObject("message", "회원가입에 실패했습니다");
 		}
-		return "suugit/sign.part";
-
+		mav.setViewName("suugit/login");
+		return mav;
 	}
 //초대 신규유저
 //	@RequestMapping(value="/invtnew.do", method=RequestMethod.POST)
@@ -120,16 +140,20 @@ public class SuugitController {
 		return mv;
 	}
 
+	
+	
 	@RequestMapping("/sign_team.do")
 	public String signTeam() {
 
-		return "suugit/sign_team.part";
+		return "suugit/sign_team";
 	}
 
+	
+	
 //로그인관련 
 	@RequestMapping("/mvlogin.do")
 	public String moveLogin() {
-		return "suugit/login.part";
+		return "suugit/login";
 	}
 
 	/*
@@ -140,13 +164,19 @@ public class SuugitController {
 	 * 
 	 * if(result > 0) { return } }
 	 */
-
+	
+	
+	@PostMapping
+	public String submit(@ModelAttribute @Valid Member member, Errors errors) {
+	    if (errors.hasErrors()) return "form";
+	    return "submit";
+	}
+	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String selectLogin(Member member, Model model, HttpServletRequest request, SessionStatus status) {
+	public String selectLogin(@Valid Member member,BindingResult theBindingResult, Model model, HttpServletRequest request, SessionStatus status) {
 		logger.info("로그인");
-
 		Member loginUser = mservice.selectLogin(member);
-
+		
 		String returnPage = null;
 
 		if (loginUser != null) {
@@ -224,7 +254,7 @@ public class SuugitController {
 		if (member != null) {
 			mav.addObject("member", member);
 			mav.addObject("message", "회원정보가 정상적으로 변경되었습니다");
-			mav.setViewName("suugit/myinfo");
+			mav.setViewName("redirect:/myinfo.do?ucode=" + member.getUcode() );
 		} else {
 			mav.addObject("message", "회원정보 수정 실패");
 			mav.setViewName("common/error");
@@ -336,7 +366,7 @@ public class SuugitController {
 	
 	
 	  @RequestMapping("/invtexist.do") 
-	  public ResponseEntity<String> NotPjMember(HttpSession session, @RequestBody String param, Invite invt) throws ParseException {
+	  public ResponseEntity<String> invtNew(HttpSession session, @RequestBody String param, Invite invt) throws ParseException {
 		  logger.info("신규 초대!");
 		  JSONParser jparse = new JSONParser();
 		 
@@ -344,17 +374,18 @@ public class SuugitController {
 		  invt.setUcode((String)session.getAttribute("ucode"));
 		  invt.setPnum((String)session.getAttribute("pnum"));
 		  for(int i=0;i <fileData.size(); i++) {
-			  invt.setInvtkey(Integer.toString((int)Math.floor(Math.random()*1000000+1)));
+			  invt.setInvtkey("i" + Integer.toString((int)Math.floor(Math.random()*100000+1)));
 			  invt.setInvtemail((String)fileData.get(i));
-			  
 			  
 			 try {
 				 MailUtils sendMail = new MailUtils(mailSender);
 				  sendMail.setSubject("HWABO로 초대합니다");
 		            sendMail.setText(new StringBuffer().append("<h1>[HWABO 이메일 인증]</h1>")
-		            .append("<p>아래 링크를 클릭하시면 프로젝트로 가입할 수 있습니다.</p>")
-		            .append("<a href='http://localhost:8282/hwabo/signConfirm.do?uemail=")
+		            .append("<p>아래 링크를 클릭하시면 프로젝트에 가입할 수 있습니다.</p>")
+		            .append("<a href='http://localhost:8282/hwabo/invtConfirm.do?uemail=")
 		            .append(invt.getInvtemail())
+		            .append("&pnum=")
+		            .append(invt.getPnum())
 		            .append("&accesstoken=")
 		            .append(invt.getInvtkey())
 		            .append("' target='_blenk'>초대장 인증 확인</a>")
@@ -367,18 +398,40 @@ public class SuugitController {
 	        } catch (UnsupportedEncodingException e) {
 	            e.printStackTrace();
 	        }
-
+			 
+			 int result = mservice.insertInvtNew(invt);
 		  }
 		  
-		  
-		  
-		  ArrayList<Invite> mnlist = new ArrayList<Invite>();
-		  
-		 
 		  	
 		  return new ResponseEntity<String>("success",HttpStatus.OK);
 	  }
-	 
+	
+	  @GetMapping("/invtConfirm.do")
+		public void invtConfirm(HttpServletRequest request, ModelAndView mv, Member member,Invite invt) {
+			
+		  String uemail = request.getParameter("uemail");
+		  
+		//  int result = mservice.selectMember(uemail);
+//		  
+//			member.setUemail(request.getParameter("uemail"));
+//			member.setAccesstoken(request.getParameter("accesstoken"));
+//			
+//			request.getParameter("accesstoken");
+//			int result = mservice.updateUst(member);
+//
+//			if (result > 0) {
+//				mv.addObject("member", member);
+//				mv.setViewName("suugit/cards");
+//			} else {
+//				mv.addObject("message", "메일인증이 유효하지 않습니다!");
+//				mv.setViewName("common/error");
+//			}
+//
+//			return mv;
+		}
+	  
+	  
+	  
 
 //	            MailUtils sendMail = new MailUtils(mailSender);
 //	            sendMail.setSubject("회원가입 이메일 인증");
@@ -403,15 +456,19 @@ public class SuugitController {
 //	    }	  
 	  
 	 
-		@RequestMapping("invtee.do")
-		public String selectInvtE(HttpSession session, Model model) {
-			logger.info("들어왕 ");
-		String pnum = (String)session.getAttribute("pnum");
+	  @RequestMapping("/invtee.do")
+	  public void selectNmList(HttpServletRequest request) {
+		  System.out.println(request.getParameter("pum"));
+		  
+		 
+	  }
+	  
+	  
+	  
+	  
+	  
+	  
 		
-		ArrayList<Member> mlist = mservice.selectinvte(pnum);
-		
-		return "123";
-		}
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================

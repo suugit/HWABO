@@ -221,7 +221,7 @@ if((++w + 5) % 3 == 0){
 <!-- 그래프끝 -->
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
-<% int Pprogress = 100 / p.getGoal() * p.getDone(); %>
+<% int Pprogress = p.getDone() / p.getGoal() * 100; %>
                       <i class="fas fa-circle text-primary"></i> 진행률 <%= Pprogress %>%
                     </span>
                   </div>
