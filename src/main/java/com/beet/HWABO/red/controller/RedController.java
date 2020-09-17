@@ -190,12 +190,14 @@ public class RedController {
 			ArrayList<MemberProject> memberProject = redService.selectMemberList(pnum);
 			ArrayList<String> names = new ArrayList<String>();
 			ArrayList<String> ucodes = new ArrayList<String>();
+			int goal = 0;
+			int done = 0;
 			
 			for(MemberProject m : memberProject) {
 				names.add(m.getUname());
-			}
-			for(MemberProject m : memberProject) {
 				ucodes.add(m.getUcode());
+				goal = m.getGoal();
+				done = m.getDone();
 			}
 			
 			HttpSession session = request.getSession();
@@ -203,10 +205,12 @@ public class RedController {
 			session.setAttribute("pmlist", memberProject);
 			session.setAttribute("names", names);
 			session.setAttribute("ucodes", ucodes);
+			session.setAttribute("totalProgress", 100/goal*done);
 			logger.info("세션에 프로젝트넘버 추가완료... 프로젝트번호 : " + pnum);
 			logger.info("세션에 회원정보 목록 추가완료... pmlist : " + memberProject);
 			logger.info("세션에 회원이름 목록 추가완료... names : " + names);
 			logger.info("세션에 회원아이디 목록 추가완료... ucodes : " + ucodes);
+			logger.info("세션에 전체진행률 추가완료... progress : " + 100/goal*done);
 			status.setComplete(); // 요청성공, 200 전송
 			mv.setViewName("red/tables");
 			return mv;
@@ -263,6 +267,7 @@ public class RedController {
 					logger.info("PROGRESS 데이터 유실됨... 유실된 데이터 : " + p);
 				}
 			}
+			
 			if(chk < 1) {
 				MemberProject mp = new MemberProject();
 				mp.setProject_num(pnum);
@@ -274,6 +279,7 @@ public class RedController {
 				}else {
 					logger.info("전체 진행률 업데이트 실패...");
 				}
+				//mv.addObject("totalProgress",100/goal*done);
 				mv.addObject("plist", plist);
 				mv.setViewName("red/utilities-other");
 			}else {

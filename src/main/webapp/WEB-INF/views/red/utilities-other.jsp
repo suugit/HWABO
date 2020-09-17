@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${ sessionScope.totalProgress < 4 }"><c:set var="tp" value="4" /></c:if>
+<c:if test="${ sessionScope.totalProgress >= 4 }"><c:set var="tp" value="${ sessionScope.totalProgress }" /></c:if>
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -18,7 +20,6 @@
   <!-- Custom fonts for this template-->
   <link href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
 <!-- 진행률시작 -->
 <style>
 #myProgress {
@@ -28,7 +29,7 @@
 }
 
 #myBar {
-  width: 75%;
+  width: ${ tp }%;
   height: 30px;
   background-color: #4e73df;
   text-align: center;
@@ -88,17 +89,20 @@
               <!-- 게시글안쪽 -->
 
 <div id="myProgress">
-  <div id="myBar">75%</div>
+  <div id="myBar">${ sessionScope.totalProgress }%</div>
 </div>
 <br>
-<table style="text-align:center;width:100%;color:white;"><tr><td style="width:20%;"></td><td style="width:20%;"></td>
+
+<!-- <table style="text-align:center;width:100%;color:white;"><tr><td style="width:20%;"></td><td style="width:20%;"></td>
 <td style="width:20%;"></td><td style="width:20%;"></td><td style="width:20%;">
 <a class="btn btn-light btn-icon-split" style="width:90%;" onclick="move()">
 <span class="text" style="color:gray;">확인</span>
 </a>
-</td>
-</tr></table>
+</td> 
+</tr></table> -->
+
 <script>
+/*
 var i = 0;
 let c = 5;//목표 갯수 현재 5개
 var devide = 0;
@@ -122,17 +126,18 @@ function move() {
         elem.innerHTML = width  + "%";
       }
     }
-  }
+   }
 }
+*/
 </script>
             </div>
           </div>
 <!-- 진행률끝 -->
-<% for(int i = 0; i < 7; i++){ %>
+<c:forEach var="personal_progress" items="${ requestScope.plist }">
 <!-- 개인진행률시작 -->
           <div class="card mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">사용자 이름</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">${ personal_progress.name }</h6>
                 </div>
                 <div class="card-body">
                   <div class="mb-1 small">개인 전체 진행률 80%</div>
@@ -162,7 +167,7 @@ function move() {
                 </div>
               </div>
 <!-- 개인진행률끝 -->
-<% } %>
+</c:forEach>
         </div>
         <!-- /.container-fluid -->
 
