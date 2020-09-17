@@ -45,8 +45,12 @@ public class abcController {
 
 //========== 페이지 이동 ==================================================	
 	@RequestMapping("posttest.do")
-	public void selectPostTest(){
+	public String selectPostTest(Model m){
 		ArrayList<Post> list = spostService.selectPostTest();
+		
+		logger.info(list.toString());
+		m.addAttribute("list", list);
+		return "abc/myhwabo";
 	}
 	
 	//알림 테스트

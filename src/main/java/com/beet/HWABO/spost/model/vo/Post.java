@@ -7,6 +7,7 @@ public class Post implements Serializable{
 	private static final long serialVersionUID = 2453474L;
 	
 	//common (4)
+	private String firstword;
 	private String no;
 	private Date enrolldate;
 	private String pnum;
@@ -77,7 +78,7 @@ public class Post implements Serializable{
 	}
 
 
-	public Post(String no, Date enrolldate, String pnum, String ucode, String sno, String stitle, String sucode,
+	public Post(String firstword, String no, Date enrolldate, String pnum, String ucode, String sno, String stitle, String sucode,
 			String swriter, Date sstartday, Date sendday, String splace, String scontent, Date senrolldate,
 			String sopen, String spnum, String bno, String btitle, String bucode, String bwriter, Date bstartday,
 			Date bendday, String bkind, String bcharge, String bcontent, Date benrolldate, String bopen,
@@ -87,6 +88,7 @@ public class Post implements Serializable{
 			String rfile3, String dno, String dtitle, String ducode, String dwriter, String dcontent, Date denrolldate,
 			String dopen, String dpnum) {
 		super();
+		this.firstword = firstword;
 		this.no = no;
 		this.enrolldate = enrolldate;
 		this.pnum = pnum;
@@ -141,6 +143,16 @@ public class Post implements Serializable{
 		this.denrolldate = denrolldate;
 		this.dopen = dopen;
 		this.dpnum = dpnum;
+	}
+
+
+	public String getFirstword() {
+		return firstword;
+	}
+
+
+	public void setFirstword(String firstword) {
+		this.firstword = firstword;
 	}
 
 
@@ -686,7 +698,7 @@ public class Post implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Post [no=" + no + ", enrolldate=" + enrolldate + ", pnum=" + pnum + ", ucode=" + ucode + ", sno=" + sno
+		return "Post [firstword="+firstword+ ", no=" + no + ", enrolldate=" + enrolldate + ", pnum=" + pnum + ", ucode=" + ucode + ", sno=" + sno
 				+ ", stitle=" + stitle + ", sucode=" + sucode + ", swriter=" + swriter + ", sstartday=" + sstartday
 				+ ", sendday=" + sendday + ", splace=" + splace + ", scontent=" + scontent + ", senrolldate="
 				+ senrolldate + ", sopen=" + sopen + ", spnum=" + spnum + ", bno=" + bno + ", btitle=" + btitle

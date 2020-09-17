@@ -2,7 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
+<c:set var="postlist" value="${list }"/>
 <html lang="en">
 
 <head>
@@ -88,69 +91,59 @@
 												<tr>
 													<th>유형</th>
 													<th>제목</th>
-													<th>내용</th>
-													<th>수정일</th>
+													<th>내용</th>													
 													<th>등록일</th>
 												</tr>
-
 											</thead>
 											<tbody>
-												<tr>
-													<td>글</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>업무</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>일정</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
+										
+											<c:forEach var="post" items="${postlist }" varStatus="status">
+														
+													<tr>
+														<td colspan="4">${post.firstword }</td>
+														
+													</tr>										
+													<%-- <c:if test="${post.firstword == s}">
+													<tr>
+														<td>일정 ${status.index }</td>
+														<td>${post.stitle }</td>
+														<td>${post.scontent }</td>
+														<td>${post.senrolldate }</td>
+													</tr>
+													</c:if>
+												
+												
+													<c:if test="${post.firstword == b}">
+													<tr>	
+														<td>업무 ${status.index }</td>
+														<td>${post.btitle }</td>
+														<td>${post.bcontent }</td>
+														<td>${post.benrolldate }</td>
+													</tr>
+													</c:if>
+												
+												
+													<c:if test="${post.firstword == c}">
+													<tr>	
+														<td>글 ${status.index }</td>
+														<td>${post.ctitle }</td>
+														<td>${post.ccontent }</td>
+														<td>${post.cenrolldate }</td>
+													</tr>
+													</c:if>
+											
+												
+													<c:if test="${post.firstword == d}">
+													<tr>	
+														<td>할일 ${status.index }</td>
+														<td>${post.dtitle }</td>
+														<td>${post.dcontent }</td>
+														<td>${post.denrolldate }</td>
+													</tr>
+													</c:if> --%>
+												
+												</c:forEach>
+												
 											</tbody>
 										</table>
 									</div>
