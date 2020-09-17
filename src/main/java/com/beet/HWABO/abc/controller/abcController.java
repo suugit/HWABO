@@ -24,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.beet.HWABO.abc.model.service.LoveService;
 import com.beet.HWABO.abc.model.service.PostreplyService;
 import com.beet.HWABO.abc.model.vo.Love;
+import com.beet.HWABO.bpost.model.service.BpostService;
+import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.spost.model.service.SpostService;
 import com.beet.HWABO.spost.model.vo.Post;
 import com.beet.HWABO.spost.model.vo.Spost;
@@ -34,6 +36,9 @@ public class abcController {
 	
 	@Autowired
 	private SpostService spostService;
+	
+	@Autowired
+	private BpostService bpostService;
 
 	@Autowired
 	private LoveService loveService;
@@ -287,10 +292,20 @@ public class abcController {
 //---------- Post ----------------------------------------------------------------------------------------------------------------	
 	//나의 업무페이지
 	@RequestMapping("mybpost.do")
-	public String TESTtables() {	
+	public String selectMyBPOST(Model model) {	
 		//sesison 에서 작성자 아이디 받아오기.
 		//작성자인 글, 댓글 단 글, 
-		return "abc/myBpost";
+		ArrayList<Bpost> list = bpostService.selectList();
+		 
+		 if(list != null) {
+			 model.addAttribute("list", list);
+			 return "abc/myBPOST";
+			 
+		 }else {
+			 model.addAttribute("message", "업무게시글 리스트 실패");
+			 return "comm/error";
+		 }
+		
 	}
 	
 	//나의 화보. 나와 관련된 게시글 목록 조회용

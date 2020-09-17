@@ -1,9 +1,11 @@
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.ArrayList"%>
+<%@ page import="com.beet.HWABO.spost.model.vo.Post" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<% ArrayList<Post> list = (ArrayList<Post>)request.getAttribute("list"); %>
 <!DOCTYPE html>
 <c:set var="postlist" value="${list }"/>
 <html lang="en">
@@ -86,7 +88,13 @@
 								<div class="card-body" style="height: 400px; overflow: auto;">
 									<div class="table-responsive">
 										<table class="table table-bordered" id="dataTable"
-											style="width: 90%; cellspacing: 0;">
+											style="width: 100%; cellspacing: 0;">
+											<colgroup>
+											    <col style="width:15%" >
+											    <col style="width:25%">
+											    <col style="width:40%">
+											    <col style="width:20%">
+											  </colgroup> 
 											<thead>
 												<tr>
 													<th>유형</th>
@@ -97,12 +105,39 @@
 											</thead>
 											<tbody>
 										
-											<c:forEach var="post" items="${postlist }" varStatus="status">
+										<% for(Post post : list){ %>
+											<% if( post.getFirstword().equals("s") ){ %>
+													<tr>
+														<td><div style='margin-top:22px; margin-left:20px; min-height: 43px; max-height:43px; overflow: hidden;' >일정</div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getStitle()%></div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getScontent()%></div></td>
+														<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getSenrolldate()%></div></td>
+													</tr>
+											<% } %>
+											<% if( post.getFirstword().equals("c") ){ %>
+													<tr>	
+														<td><div style='margin-top:22px; margin-left:28px; min-height: 43px; max-height:43px; overflow: hidden;' >글</div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getCtitle()%></div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getCcontent()%></div></td>
+														<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getCenrolldate()%></div></td>
+													</tr>
+											<% } %>
+											<% if( post.getFirstword().equals("b") ){ %>
+													<tr>	
+														<td><div style='margin-top:22px; margin-left:20px; min-height: 43px; max-height:43px; overflow: hidden;' >업무</div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBtitle()%></div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBcontent()%></div></td>
+														<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBenrolldate()%></div></td>
+													</tr>
+											<% } %>
+										
+										<% } %>
+											<%-- <c:forEach var="post" items="${requestScope.list }" varStatus="status">
 														
 													<tr>
 														<td colspan="4">${post.firstword }</td>
 														
-													</tr>										
+													</tr>		 --%>								
 													<%-- <c:if test="${post.firstword == s}">
 													<tr>
 														<td>일정 ${status.index }</td>
@@ -130,19 +165,12 @@
 														<td>${post.ccontent }</td>
 														<td>${post.cenrolldate }</td>
 													</tr>
-													</c:if>
-											
+													</c:if> 
+													
+													</c:forEach>
+													--%>
 												
-													<c:if test="${post.firstword == d}">
-													<tr>	
-														<td>할일 ${status.index }</td>
-														<td>${post.dtitle }</td>
-														<td>${post.dcontent }</td>
-														<td>${post.denrolldate }</td>
-													</tr>
-													</c:if> --%>
 												
-												</c:forEach>
 												
 											</tbody>
 										</table>
@@ -157,17 +185,9 @@
 					<div class="checks" align="left"
 						style="margin-left: 1%; font-size: 23px;">
 						<form action="#">
-							<span style="color: #42BBBA;"><label><input
-									name="type" type="radio">&nbsp;글
-									&nbsp;&nbsp;&nbsp;&nbsp; </label></span> <span style="color: #42BBBA;"><label><input
-									name="type" type="radio">&nbsp;업 무
-									&nbsp;&nbsp;&nbsp;&nbsp; </label></span> <span style="color: #42BBBA;"><label><input
-									name="type" type="radio">&nbsp;일
-									정&nbsp;&nbsp;&nbsp;&nbsp; </label></span> <span style="color: #42BBBA;"><label><input
-									name="type" type="radio">&nbsp;할
-									일&nbsp;&nbsp;&nbsp;&nbsp; </label></span> <span style="color: #42BBBA;"><label><input
-									name="type" type="radio">&nbsp;투
-									표&nbsp;&nbsp;&nbsp;&nbsp;</label></span>
+							<span style="color: #42BBBA;"><label><input	name="c" type="radio">&nbsp;글	&nbsp;&nbsp;&nbsp;&nbsp; </label></span> 
+							<span style="color: #42BBBA;"><label><input	name="b" type="radio">&nbsp;업 무&nbsp;&nbsp;&nbsp;&nbsp; </label></span> 
+							<span style="color: #42BBBA;"><label><input	name="s" type="radio">&nbsp;일 정&nbsp;&nbsp;&nbsp;&nbsp; </label></span> 
 						</form>
 					</div>
 

@@ -1,7 +1,9 @@
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.ArrayList"%>
+<%@ page import="com.beet.HWABO.bpost.model.vo.Bpost" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% ArrayList<Bpost> list = (ArrayList<Bpost>)request.getAttribute("list"); %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,8 +84,8 @@ $("div").on('click', function(e){
 						<!-- 즐겨찾기 시작 -->
 						
 							<div class="card mb-4 py-3 border-left-info">
-								<div style="margin-top: 0px;  height: 50px;">
-									<h3>&nbsp;&nbsp;즐 겨 찾 기</h3>
+								<div style="margin-top: 0px;">
+									<h1>&nbsp;&nbsp;즐 겨 찾 기</h1>
 									<hr>
 								</div>
 								<!-- 게시글안쪽 -->
@@ -91,74 +93,33 @@ $("div").on('click', function(e){
 								<div class="card-body" style="height: 400px; overflow: auto;">
 									<div class="table-responsive">
 										<table class="table table-bordered" id="dataTable"
-											style="width: 90%; cellspacing: 0;">
+											style="width: 100%; cellspacing: 0;">
+											<colgroup>
+											    <col style="width:15%" >
+											    <col style="width:25%">
+											    <col style="width:40%">
+											    <col style="width:20%">
+											  </colgroup> 
 											<thead>
 												<tr>
 													<th>유형</th>
 													<th>제목</th>
-													<th>내용</th>
-													<th>수정일</th>
+													<th>내용</th>													
 													<th>등록일</th>
 												</tr>
-
 											</thead>
 											<tbody>
-												<tr>
-													<td>글</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>업무</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>일정</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
+										<% if(!list.isEmpty()){ %>
+											<% for(Bpost bpost : list){ %>
+													<tr>	
+														<td><div style='margin-top:22px; margin-left:20px; min-height: 43px; max-height:43px; overflow: hidden;' >업무</div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBtitle()%></div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBcontent()%></div></td>
+														<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBenrolldate()%></div></td>
+													</tr>	
+											<% } %>
+												
+										<% } %>
 											</tbody>
 										</table>
 									</div>
