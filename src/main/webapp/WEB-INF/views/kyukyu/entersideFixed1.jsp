@@ -117,13 +117,13 @@
       
       </div>
 
-</ul> -->
+</ul> 
     
 </td>
-<td style="width:57%;">
+<!-- <td style="width:100%;">
 
-</td>
-<td style="width:23.5%;">
+</td> -->
+ <%-- <td style="width:23.5%;">
 
 
 
@@ -145,7 +145,7 @@
 <tr><td style="height:70%;"></td></tr>
 </table>
 <!-- 채팅위치조정테이블하단 끝 -->
-</td>
+</td>   --%>
 </tr>    
 </table>
     

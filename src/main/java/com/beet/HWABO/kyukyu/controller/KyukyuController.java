@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.beet.HWABO.HomeController;
 
@@ -49,6 +50,13 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		
 		return "kyukyu/binsertpage";
 	}
+	
+	@RequestMapping(value = "FileboxTxtlist.do", method = RequestMethod.GET)
+	public String txtfilepage(Model model) {
+		
+		return "kyukyu/fileboxTxt";
+	}
+	
 	
 	
 }
