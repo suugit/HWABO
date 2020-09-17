@@ -11,25 +11,19 @@ import org.springframework.stereotype.Repository;
 
 import com.beet.HWABO.filebox.model.vo.Filebox;
 
-
 @Repository("fileboxDao")
 public class FileboxDao {
-	
 	private static final Logger logger = LoggerFactory.getLogger(FileboxDao.class);
-
+	
 	@Autowired
 	private SqlSessionTemplate session;
 	
 	public FileboxDao() {}
 	
-	public int insertFilebox(Filebox filebox) {
-		logger.info("filebox Dao :" + filebox);
-		return session.insert("fileboxMapper.insertFilebox", filebox);
-	}
-
-	public ArrayList<Filebox> selectList() {
-		logger.info("filebox Dao 옴");
-		List<Filebox>list = session.selectList("fileboxMapper.selectList");
+	public ArrayList<Filebox> selectList(String pnum) {
+		
+		List<Filebox>list = session.selectList("fileboxMapper.selectList", pnum);
+		logger.info("리턴 된 파일박스 리스트 : "+list.toString());
 		return (ArrayList<Filebox>)list;
 	}
 

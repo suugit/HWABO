@@ -6,13 +6,12 @@ public class Filebox implements java.io.Serializable{
 
 	private static final long serialVersionUID = 3633L;
 	
-	private String filerename;
-	private String fileoriginname;
-	private String kb;
-	private String kind;
-	private String fwriter;
-	private String postno;
-	private Date enrolldate; 
+	private String no;
+	private String title;
+	private String writer;
+	private Date enroll;
+	private String o;
+	private String r; 
 	private String pnum;
 	
 	public Filebox() {
@@ -20,92 +19,91 @@ public class Filebox implements java.io.Serializable{
 		
 	}
 
-	public Filebox(String filerename, String fileoriginname, String kb, String kind, String fwriter, String postno,
-			Date enrolldate, String pnum) {
+	
+
+	public Filebox(String no, String title, String writer, Date enroll, String o, String r, String pnum) {
 		super();
-		this.filerename = filerename;
-		this.fileoriginname = fileoriginname;
-		this.kb = kb;
-		this.kind = kind;
-		this.fwriter = fwriter;
-		this.postno = postno;
-		this.enrolldate = enrolldate;
+		this.no = no;
+		this.title = title;
+		this.writer = writer;
+		this.enroll = enroll;
+		this.o = o;
+		this.r = r;
 		this.pnum = pnum;
 	}
 
-	public String getFilerename() {
-		return filerename;
+
+
+	public String getNo() {
+		return no;
 	}
 
-	public void setFilerename(String filerename) {
-		this.filerename = filerename;
+	public void setNo(String no) {
+		this.no = no;
 	}
 
-	public String getFileoriginname() {
-		return fileoriginname;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setFileoriginname(String fileoriginname) {
-		this.fileoriginname = fileoriginname;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getKb() {
-		return kb;
+	public String getWriter() {
+		return writer;
 	}
 
-	public void setKb(String kb) {
-		this.kb = kb;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
-	public String getKind() {
-		return kind;
+	public Date getEnroll() {
+		return enroll;
 	}
 
-	public void setKind(String kind) {
-		this.kind = kind;
+	public void setEnroll(Date enroll) {
+		this.enroll = enroll;
 	}
 
-	public String getFwriter() {
-		return fwriter;
+	public String getO() {
+		return o;
 	}
 
-	public void setFwriter(String fwriter) {
-		this.fwriter = fwriter;
+	public void setO(String o) {
+		this.o = o;
 	}
 
-	public String getPostno() {
-		return postno;
+	public String getR() {
+		return r;
 	}
 
-	public void setPostno(String postno) {
-		this.postno = postno;
+	public void setR(String r) {
+		this.r = r;
 	}
 
-	public Date getEnrolldate() {
-		return enrolldate;
-	}
-
-	public void setEnrolldate(Date enrolldate) {
-		this.enrolldate = enrolldate;
-	}
-
+	
+	
 	public String getPnum() {
 		return pnum;
 	}
+
+
 
 	public void setPnum(String pnum) {
 		this.pnum = pnum;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Filebox [filerename=" + filerename + ", fileoriginname=" + fileoriginname + ", kb=" + kb + ", kind="
-				+ kind + ", fwriter=" + fwriter + ", postno=" + postno + ", enrolldate=" + enrolldate + ", pnum=" + pnum
-				+ "]";
+		return "Filebox [no=" + no + ", title=" + title + ", writer=" + writer + ", enroll=" + enroll + ", o=" + o
+				+ ", r=" + r + ", pnum=" + pnum + "]";
 	}
 
 
-
+	
 	
 }
 

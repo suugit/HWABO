@@ -10,25 +10,20 @@ import org.springframework.stereotype.Service;
 import com.beet.HWABO.filebox.model.dao.FileboxDao;
 import com.beet.HWABO.filebox.model.vo.Filebox;
 
-@Service("fileboxService")
-public class FileboxServiceImpl implements FileboxService {
+@Service("FileboxService")
+public class FileboxServiceImpl implements FileboxService{
 
-	private static final Logger logger = LoggerFactory.getLogger(FileboxServiceImpl.class);
 	
+	
+	private static final Logger logger = LoggerFactory.getLogger(FileboxServiceImpl.class);
 	
 	@Autowired
 	private FileboxDao fileboxDao;
 	
 	@Override
-	public int insertFilebox(Filebox filebox) {
-
-		return fileboxDao.insertFilebox(filebox);
-	}
-
-	@Override
-	public ArrayList<Filebox> selectList() {
-	
-		return fileboxDao.selectList();
+	public ArrayList<Filebox> selectList(String pnum) {
+		logger.info("dao 도착 " );
+		return fileboxDao.selectList(pnum);
 	}
 
 }

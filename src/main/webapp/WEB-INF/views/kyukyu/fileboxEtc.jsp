@@ -8,12 +8,6 @@
 <html lang="kr">
 
 <head>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
-  
   <link rel="icon" type="image/x-icon" href="/hwabo/resources/assets/img/favicon.png" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -91,42 +85,26 @@ $("#allCheckbox").click(function(){
           <h1 class="h3 mb-2 text-gray-800">보관함</h1>
           <p class="mb-4"></p>
 
-	<%-- 
+	
           <div class="container">
          
           <ui class="nav nav-tabs nav-justified" >
           <li class="nav-item">
              <a class="nav-link active" href="#img" role="tab" aria-controls="img" aria-selected="ture"><i class="far fa-file-image"></i>&nbsp&nbsp	이미지</a></li>
           <li class="nav-item">
-             <a class="nav-link" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="pnd" aria-selected="ture"><i class="far fa-file-pdf"></i>&nbsp&nbsp 문서</a>
+             <a class="nav-link" href="#pnd" role="tab" aria-controls="pnd" aria-selected="false"><i class="far fa-file-pdf"></i>&nbsp&nbsp 문서</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="zip" aria-selected="false"><i class="far fa-file-archive"></i>&nbsp&nbsp 압축파일</a>
+             <a class="nav-link" href="#zip" role="tab" aria-controls="zip" aria-selected="false"><i class="far fa-file-archive"></i>&nbsp&nbsp 압축파일</a>
           </li> 
           <li class="nav-item">
-             <a class="nav-link" href="FileboxEtcTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="etc" aria-selected="false"><i class="far fa-file-code"></i>&nbsp&nbsp 기타</a>
+             <a class="nav-link" href="#etc" role="tab" aria-controls="etc" aria-selected="false"><i class="far fa-file-code"></i>&nbsp&nbsp 기타</a>
           </li> 
          </ul>
   
           
       	</div>         
-    --%>
    
-   
-  <ul class="nav nav-tabs nav-justified">
-  <li class="nav-item">
-    <a class="nav-link active" href="#">Active</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" >Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="FileboxEtcTxtlist.do?pnum=${sessionScope.pnum }">Disabled</a>
-  </li>
-</ul>
           
    <!-- 파일 리스트 -->
          
@@ -232,10 +210,6 @@ $("#allCheckbox").click(function(){
 
   <!-- Page level custom scripts -->
   <script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
-
-
-
-
 
 </body>
 

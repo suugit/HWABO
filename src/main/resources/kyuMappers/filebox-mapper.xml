@@ -4,36 +4,33 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="fileboxMapper">
 
-
+<!-- <reaultMap type="Filebox" id="resultFilebox">
 	
-	<resultMap type="Bpost" id="resultBpostfile">
+		
+		<result column="no" property="no" />
+		<result column="title" property="title" />
+		<result column="writer" property="writer" />
+		<result column="enroll" property="enroll" />
+		<result column="o" property="o" />
+		<result column="r" property="r" />
 	
-		<result column="bwriter" property="bwriter" />
-		<result column="benrolldate" property="benrolldate" />
-		<result column="brenamefile" property="brenamefile" />
-		<result column="boriginfile" property="boriginfile" />
-		<result column="bpnum" property="bpnum" />
-	
-	</resultMap>
+	</reaultMap>
+ -->
 
 
-<insert id="insertFilebox" parameterType="Filebox">
-	
-	inset into filebox
-	values (#{filerename}, #{fileoriginname}, #{kb}, #{kind}, #{fwriter}, #{postno}, sysdate, #{pnum})
-	
 
-</insert>
+<select id="selectList" parameterType="string" resultType="Filebox">
+
+(select bno as no, btitle as title, bwriter as writer, benrolldate as enroll, boriginfile as o, brenamefile as r, bpnum as pnum
+from bpost
+where not boriginfile is null and bpnum = #{pnum})
+union all
+(select  cno as no, ctitle as title, cwriter as writer, cenrolldate as enroll, o ,r, cpnum as pnum 
+from cfile4
+where not o is null and cpnum = #{pnum})
+order by enroll desc
 
 
-<!-- <insert id="insertFilebox" parameterType="string">
+</select> 
 
-	insert all
-	into filebox values(filerename, fileoriginname, '#{kb}', '#{kind}', fwriter, '#{postno}', enrolldate, #{pnum})
-	select BWRITER fwriter, benrolldate enrolldate,
-       		 brenamefile filerename, boriginfile fileoriginname
-	from bpost
-	where bno = '#{postno}'
-
-</insert> -->
 </mapper>
