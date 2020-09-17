@@ -275,8 +275,8 @@ public class RedController {
 				}
 			}
 			
-			session.setAttribute("totalProgress", done/goal*100);
-			logger.info("세션에 전체진행률 추가완료... progress : " + done/goal*100 + "%");
+			session.setAttribute("totalProgress", done*100/goal);
+			logger.info("세션에 전체진행률 추가완료... progress : " + done*100/goal + "%");
 			///
 			return mv;
 		}
@@ -336,10 +336,12 @@ public class RedController {
 			Set<String> MemberNames = new HashSet<String>();
 			for(Progress progress : plist) {
 				MemberNames.add(progress.getName());
+				logger.info("들어가는 이름 : " + progress.getName());
 			}
 			
 			int i = 0;
 			for(String names : MemberNames) {
+				logger.info("나온 이름 : " + names);
 				ArrayList<Progress> list = new ArrayList<Progress>();
 				for(Progress progress : plist) {
 					if(progress.getName().equals(names)) {

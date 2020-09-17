@@ -108,19 +108,21 @@
                   int goal = 0;
                   int done = 0;
                   for(Progress info : (ArrayList<Progress>)request.getAttribute(pnames)){
-                	  goal += info.getGoal();
-                	  done += info.getDone();
+       				goal += info.getGoal();
+       				done += info.getDone();
                   }
+                  int total = done * 100 / goal;
                   %>
-                  <div class="mb-1 small">개인 전체 진행률 <%= done / goal * 100 %>%</div>
+                  <div class="mb-1 small">개인 전체 진행률 <%= total %>%</div>
                   <div class="progress mb-4">
-                    <div class="progress-bar1 progress-bar" role="progressbar" style="width: 80%;backgound-color:#F8E0E0;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar1 progress-bar" role="progressbar" style="width: <%= total %>%;backgound-color:#F8E0E0;" aria-valuenow="<%= total %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
+                  <% //int count = 0; %>
                   <c:forEach var="userInfo" items="<%= (ArrayList<Progress>)request.getAttribute(pnames) %>" varStatus="status2">
-                  <fmt:parseNumber var= "percent" integerOnly= "true" value="${ userInfo.done / userInfo.goal * 100 }" />
+                  <fmt:parseNumber var= "percent" integerOnly= "true" value="${userInfo.done * 100 / userInfo.goal}" />
                   <div class="mb-1 small">${ userInfo.title } : 진행률 ${ percent }%</div>
                   <div class="progress progress-sm mb-2">
-                    <div class="progress-bar progress-bar2" role="progressbar" style="width: ${ userInfo.done / userInfo.goal * 100 }%" aria-valuenow="${ userInfo.done / userInfo.goal * 100 }" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar progress-bar2" role="progressbar" style="width: ${ userInfo.done * 100 / userInfo.goal }%" aria-valuenow="${ userInfo.done * 100 / userInfo.goal }" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   </c:forEach>
                 </div>
