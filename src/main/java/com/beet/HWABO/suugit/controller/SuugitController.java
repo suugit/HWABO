@@ -74,7 +74,12 @@ public class SuugitController {
 	public String moveSign() {
 		return "suugit/sign";
 	}
-
+	
+	@RequestMapping("/terms.do")
+	public String openTerms() {
+		return "suugit/";
+	}
+	
 	@RequestMapping(value = "/sign.do", method = RequestMethod.POST)
 	public ModelAndView insertUser(@Valid Member member,Errors errors, ModelAndView mav) {
 		logger.info("sign.do 실행...");
@@ -135,12 +140,16 @@ public class SuugitController {
 		return mv;
 	}
 
+	
+	
 	@RequestMapping("/sign_team.do")
 	public String signTeam() {
 
 		return "suugit/sign_team";
 	}
 
+	
+	
 //로그인관련 
 	@RequestMapping("/mvlogin.do")
 	public String moveLogin() {
@@ -447,6 +456,18 @@ public class SuugitController {
 //	    }	  
 	  
 	 
+	  @RequestMapping("/invtee.do")
+	  public void selectNmList(HttpServletRequest request) {
+		  System.out.println(request.getParameter("pum"));
+		  
+		 
+	  }
+	  
+	  
+	  
+	  
+	  
+	  
 		
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================

@@ -341,7 +341,7 @@
 		function delUser() {
 			location.href = "deluser.do?ucode=${member.ucode}";
 		}
-
+		
 		$('#btn_pwd').on('click', function() {
 			$('#pwdUpdateModal').modal('show')
 		})
@@ -352,6 +352,9 @@
 		    alert(responseMessage)
 		}
 		})  */
+		
+
+		
 	</script>
 </body>
 

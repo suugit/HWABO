@@ -279,6 +279,7 @@
 		$.ajax({
 			url:"invtee.do",
 			type:"post",
+			data: {pnum : ${pnum}}
 			contentType:"application/json; charset=utf-8;",
 			success: function(){
 				alert("전송성공!")
