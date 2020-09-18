@@ -32,18 +32,7 @@ khc
 <i class="fas fa-circle text-dark"></i>
 daun
 <hr>
-<!-- 채팅내용 시작 -->
-<br>
-<br>
-<br>
-<input type="text" class="form-control">
-<!-- 채팅내용 끝 -->
-<hr>
-<a href="#" class="btn btn-primary btn-icon-split btn-sm" style="width:100%;">
-                    <span class="text">프로젝트 채팅</span>
-                  </a>
-
-            </div>
+</div>
 </div>
 
 <!-- 채팅 폼 끝 -->
