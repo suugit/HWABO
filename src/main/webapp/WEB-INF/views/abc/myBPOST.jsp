@@ -215,7 +215,7 @@ $("#").on('click', function(e){
 
 		<!-- Page level custom scripts -->
 		<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
-		<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script type="text/javascript"	src="/resources/js/jquery-3.5.1.min.js"></script>
 						<script type="text/javascript">
 						$(function(){
 							var message = ${message}

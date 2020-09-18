@@ -146,7 +146,7 @@ div#showfile imag {
 			class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary">
 
-				<i class="fas fa-user-circle"></i> ${b.bwriter}<br>${b.benrolldate }</h6>
+				<i class="fas fa-user-circle"></i> ${post.bwriter}<br>${post.benrolldate }</h6>
 			<!-- 	<button type="submit" class="btn btn-custom btn-sm liketoggle" name="like"><span>보관</span> <i class="far fa-bookmark"></i></button>
 					 -->
 
@@ -172,7 +172,7 @@ div#showfile imag {
 
 
 				<div id="d5"></div>
-				<c:if test="${sessionScope.ucode eq b.bucode }">
+				<c:if test="${sessionScope.ucode eq post.bucode }">
 					<a class="dropdown-toggle" href="#" role="button"
 						id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> <i
@@ -210,76 +210,51 @@ div#showfile imag {
 
 		<c:if test="${post.bkind eq '요청'}">
 			<div>
-				<label class="btn btn-info active"> <input type="radio" readonly="readonly"
-					name="요청" id="요청" value="요청">요청
-				</label> <label class="btn btn-primary"> <input type="radio" readonly="readonly"
-					name="진행" id="진행" value="진행">진행
-				</label> <label class="btn btn-warning"> <input type="radio" readonly="readonly"
-					name="피드백" id="피드백" value="피드백">피드백
-				</label> <label class="btn btn-success"> <input type="radio" readonly="readonly"
-					name="완료" id="완료" value="완료">완료
-				</label> <label class="btn btn-secondary"> <input type="radio" readonly="readonly"
-					name="보류" id="보류" value="보류">보류
+				<label class="btn btn-info">요청
+				</label> <label class="btn btn-light"> 진행
+				</label> <label class="btn btn-light">피드백
+				</label> <label class="btn btn-light">완료
+				</label> <label class="btn btn-light">보류
 				</label>
 			</div>
 		</c:if>
 		<c:if test="${post.bkind eq '진행'}">
-			<div >
-				<label class="btn btn-info active"> <input type="radio" readonly="readonly"
-					name="요청" id="요청" value="요청">요청
-				</label> <label class="btn btn-primary"> <input type="radio" readonly="readonly"
-					name="진행" id="진행" value="진행">진행
-				</label> <label class="btn btn-warning"> <input type="radio" readonly="readonly"
-					name="피드백" id="피드백" value="피드백">피드백
-				</label> <label class="btn btn-success"> <input type="radio" readonly="readonly"
-					name="완료" id="완료" value="완료">완료
-				</label> <label class="btn btn-secondary"> <input type="radio" readonly="readonly"
-					name="보류" id="보류" value="보류">보류
+			<div class="btn-group" >
+				<label class="btn btn-light">요청
+				</label> <label class="btn btn-primary">진행
+				</label> <label class="btn btn-light">피드백
+				</label> <label class="btn btn-light">완료
+				</label> <label class="btn btn-light">보류
 				</label>
 			</div>
 		</c:if>
 		<c:if test="${post.bkind eq '피드백'}">
-			<div >
-				<label class="btn btn-info active"> <input type="radio" readonly="readonly"
-					name="요청" id="요청" value="요청">요청
-				</label> <label class="btn btn-primary"> <input type="radio" readonly="readonly"
-					name="진행" id="진행" value="진행">진행
-				</label> <label class="btn btn-warning"> <input type="radio" readonly="readonly"
-					name="피드백" id="피드백" value="피드백">피드백
-				</label> <label class="btn btn-success"> <input type="radio" readonly="readonly"
-					name="완료" id="완료" value="완료">완료
-				</label> <label class="btn btn-secondary"> <input type="radio" readonly="readonly"
-					name="보류" id="보류" value="보류">보류
+			<div class="btn-group" >
+				<label class="btn btn-light">요청
+				</label> <label class="btn btn-light">진행
+				</label> <label class="btn btn-warning">피드백
+				</label> <label class="btn btn-light">완료
+				</label> <label class="btn btn-light">보류
 				</label>
 			</div>
 		</c:if>
 		<c:if test="${post.bkind eq '완료'}">
-			<div >
-				<label class="btn btn-info active"> <input type="radio" readonly="readonly"
-					name="요청" id="요청" value="요청">요청
-				</label> <label class="btn btn-primary"> <input type="radio" readonly="readonly"
-					name="진행" id="진행" value="진행">진행
-				</label> <label class="btn btn-warning"> <input type="radio" readonly="readonly"
-					name="피드백" id="피드백" value="피드백">피드백
-				</label> <label class="btn btn-success"> <input type="radio" readonly="readonly"
-					name="완료" id="완료" value="완료">완료
-				</label> <label class="btn btn-secondary"> <input type="radio" readonly="readonly"
-					name="보류" id="보류" value="보류">보류
+			<div class="btn-group" >
+				<label class="btn btn-light"> 요청
+				</label> <label class="btn btn-light">진행
+				</label> <label class="btn btn-light">피드백
+				</label> <label class="btn btn-success">완료
+				</label> <label class="btn btn-light">보류
 				</label>
 			</div>
 		</c:if>
 		<c:if test="${post.bkind eq '보류'}">
-			<div class="btn-group btn-group-toggle" data-toggle="buttons">
-				<label class="btn btn-info active"> <input type="radio" readonly="readonly"
-					name="요청" id="요청" value="요청">요청
-				</label> <label class="btn btn-primary"> <input type="radio" readonly="readonly"
-					name="진행" id="진행" value="진행">진행
-				</label> <label class="btn btn-warning"> <input type="radio" readonly="readonly"
-					name="피드백" id="피드백" value="피드백">피드백
-				</label> <label class="btn btn-success"> <input type="radio" readonly="readonly"
-					name="완료" id="완료" value="완료">완료
-				</label> <label class="btn btn-secondary"> <input type="radio" readonly="readonly"
-					name="보류" id="보류" value="보류">보류
+			<div class="btn-group" >
+				<label class="btn btn-light">요청
+				</label> <label class="btn btn-light">진행
+				</label> <label class="btn btn-light">피드백
+				</label> <label class="btn btn-light">완료
+				</label> <label class="btn btn-secondary">보류
 				</label>
 			</div>
 		</c:if>

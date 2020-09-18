@@ -151,7 +151,7 @@ $(function(){
 			<h6 class="m-0 font-weight-bold text-primary">
 				
 			<i class="fas fa-user-circle"></i>
-				${b.bwriter}<br>${b.benrolldate }</h6>
+				${post.bwriter}<br>${post.benrolldate }</h6>
 			<!-- 	<button type="submit" class="btn btn-custom btn-sm liketoggle" name="like"><span>보관</span> <i class="far fa-bookmark"></i></button>
 					 -->
 					
