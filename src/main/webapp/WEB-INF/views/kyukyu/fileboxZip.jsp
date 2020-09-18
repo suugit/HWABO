@@ -97,15 +97,18 @@ $("#allCheckbox").click(function(){
          
           <ui class="nav nav-tabs nav-justified" >
           <li class="nav-item">
-             <a class="nav-link " href="Fileboxlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="img" aria-selected="ture"><i class="far fa-file-image"></i>&nbsp&nbsp	이미지</a></li>
+             <a class="nav-link " href="Fileboxlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="img" aria-selected="ture"><i class="far fa-file-image"></i>이미지</a></li>
           <li class="nav-item">
-             <a class="nav-link active" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="pnd" aria-selected="ture"><i class="far fa-file-pdf"></i>&nbsp&nbsp 문서</a>
+             <a class="nav-link" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="pnd" aria-selected="ture"><i class="far fa-file-pdf"></i>문서</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="zip" aria-selected="ture"><i class="far fa-file-archive"></i>&nbsp&nbsp 압축파일</a>
+             <a class="nav-link active" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="zip" aria-selected="ture"><i class="far fa-file-archive"></i>압축파일</a>
           </li> 
           <li class="nav-item">
-             <a class="nav-link" href="FileboxEtcTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="etc" aria-selected="ture"><i class="far fa-file-code"></i>&nbsp&nbsp 기타</a>
+             <a class="nav-link" href="FileboxPptlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="ppt" aria-selected="false"><i class="far fa-file-powerpoint"></i></i>ppt</a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link" href="FileboxEtclist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="etc" aria-selected="ture"><i class="far fa-file-code"></i>기타</a>
           </li> 
          </ul>
   
@@ -163,7 +166,7 @@ $("#allCheckbox").click(function(){
                     		
                     		
                     	</th>
-                    	<th> <img src="resources/bupfile/${file.r }" style="width:40px; height : 40px" > &nbsp; &nbsp; &nbsp;${file.o} </th>
+                    	<th> &nbsp; &nbsp; &nbsp;${file.o} </th>
                     	<th> ${file.writer}</th>
                     	<th>${file.title }</th>
                     	<th> ${file.enroll } </th>

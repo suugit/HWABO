@@ -28,8 +28,29 @@ public class FileboxServiceImpl implements FileboxService{
 
 	@Override
 	public ArrayList<Filebox> selectTxtList(String pnum) {
-		logger.info("dao 도착 " );
+		logger.info("dao 도착 pnum" + pnum);
 		return fileboxDao.selectTxtList(pnum);
 	}
+
+	@Override
+	public ArrayList<Filebox> selectZipList(String pnum) {
+
+		logger.info("dao 도착 pnum" + pnum);
+		return fileboxDao.selectZipList(pnum);
+	}
+	
+	@Override
+	public ArrayList<Filebox> selectPptList(String pnum) {
+		logger.info("dao 도착 pnum" + pnum);
+		return fileboxDao.selectPptList(pnum);
+	}
+
+	@Override
+	public ArrayList<Filebox> selectEtcList(String pnum) {
+		logger.info("dao 도착 pnum" + pnum);
+		return fileboxDao.selectEtcList(pnum);
+	}
+
+	
 
 }

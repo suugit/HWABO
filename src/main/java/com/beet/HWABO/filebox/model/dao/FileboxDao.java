@@ -33,4 +33,22 @@ public class FileboxDao {
 		return (ArrayList<Filebox>)list;
 	}
 
+	public ArrayList<Filebox> selectZipList(String pnum) {
+		List<Filebox>list = session.selectList("fileboxMapper.selectZipList", pnum);
+		logger.info("리턴 된 파일박스 리스트 : "+list.toString());
+		return (ArrayList<Filebox>)list;
+	}
+
+	public ArrayList<Filebox> selectEtcList(String pnum) {
+		List<Filebox>list = session.selectList("fileboxMapper.selectEtcList", pnum);
+		logger.info("리턴 된 파일박스 리스트 : "+list.toString());
+		return (ArrayList<Filebox>)list;
+	}
+
+	public ArrayList<Filebox> selectPptList(String pnum) {
+		List<Filebox>list = session.selectList("fileboxMapper.selectPptList", pnum);
+		logger.info("리턴 된 파일박스 리스트 : "+list.toString());
+		return (ArrayList<Filebox>)list;
+	}
+
 }

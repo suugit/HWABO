@@ -34,26 +34,7 @@
   <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
-<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript">
 
-$(function(){
-$("#allCheckbox").click(function(){
-
-	if($('#allCheckbox').prop("checked")){
-		
-		$("input[type=checkbox]").prop("checked",true);
-	}else{
-		
-		$("input[type='checkbox']").prop("checked",false);
-	}
-	
-	
-	
-})
-})
-
-</script>
 
 
 <body id="page-top">
@@ -97,21 +78,49 @@ $("#allCheckbox").click(function(){
          
           <ui class="nav nav-tabs nav-justified" >
           <li class="nav-item">
-             <a class="nav-link active" href="#img" role="tab" aria-controls="img" aria-selected="ture"><i class="far fa-file-image"></i>&nbsp&nbsp	이미지</a></li>
+             <a class="nav-link active" href="#img" role="tab" aria-controls="img" aria-selected="ture"><i class="far fa-file-image"></i>이미지</a></li>
           <li class="nav-item">
-             <a class="nav-link" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="pnd" aria-selected="false"><i class="far fa-file-pdf"></i>&nbsp&nbsp 문서</a>
+             <a class="nav-link" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="pnd" aria-selected="false"><i class="far fa-file-pdf"></i>문서</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="zip" aria-selected="false"><i class="far fa-file-archive"></i>&nbsp&nbsp 압축파일</a>
+             <a class="nav-link" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="zip" aria-selected="false"><i class="far fa-file-archive"></i> 압축파일</a>
           </li> 
+           <li class="nav-item">
+             <a class="nav-link" href="FileboxPptlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="ppt" aria-selected="false"><i class="far fa-file-powerpoint"></i>ppt</a>
+          </li>
           <li class="nav-item">
-             <a class="nav-link" href="FileboxEtcTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="etc" aria-selected="false"><i class="far fa-file-code"></i>&nbsp&nbsp 기타</a>
+             <a class="nav-link" href="FileboxEtclist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="etc" aria-selected="false"><i class="far fa-file-code"></i> 기타</a>
           </li> 
          </ul>
   
           
       	</div>         
 
+   
+   
+   
+   
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(function(){
+$("#allCheckbox").click(function(){
+
+	if($('#allCheckbox').prop("checked")){
+	
+		$("input[type=checkbox]").prop("checked",true);
+	}else{
+		
+		$("input[type='checkbox']").prop("checked",false);
+	}
+	
+	
+	
+})
+})
+
+</script>
+   
    
    
  <%--  <ul class="nav nav-tabs nav-justified">

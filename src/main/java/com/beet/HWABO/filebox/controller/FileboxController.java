@@ -54,7 +54,9 @@ public class FileboxController {
 			
 			logger.info("파일박스 Txt 리스트 성공");
 			logger.info("파일박스 Txt list"+list);
-			model.addAttribute("Txt list", list);
+			model.addAttribute("list", list);
+			
+			
 			return "kyukyu/fileboxTxt";
 		}else {
 			
@@ -64,7 +66,97 @@ public class FileboxController {
 		
 	}
 	
+	@RequestMapping("FileboxZiplist.do")
+	public String selectListFileboxZip(@RequestParam("pnum") String pnum, Model model) {
+		logger.info("전달 온 pnum 값 : " + pnum);
+		
+		ArrayList<Filebox> list = fileboxService.selectZipList(pnum);
+		
+		if(list != null) {
+			
+			logger.info("파일박스 zip 리스트 성공");
+			logger.info("파일박스 zip list"+list);
+			model.addAttribute("list", list);
+			
+
+			return "kyukyu/fileboxZip";
+		}else {
+			
+			 model.addAttribute("message", "filebox 리스트 실패");
+			 return "comm/error";
+		}
+		
+	}
 	
+	
+	@RequestMapping("FileboxPptlist.do")
+	public String selectListFileboxPpt(@RequestParam("pnum") String pnum, Model model) {
+		logger.info("전달 온 pnum 값 : " + pnum);
+		
+		ArrayList<Filebox> list = fileboxService.selectPptList(pnum);
+		
+		if(list != null) {
+			
+			logger.info("파일박스 zip 리스트 성공");
+			logger.info("파일박스 zip list"+list);
+			model.addAttribute("list", list);
+			
+
+			return "kyukyu/fileboxPpt";
+		}else {
+			
+			 model.addAttribute("message", "filebox 리스트 실패");
+			 return "comm/error";
+		}
+		
+	}
+	
+	
+	@RequestMapping("FileboxEtclist.do")
+	public String selectListFileboxEtc(@RequestParam("pnum") String pnum, Model model) {
+		logger.info("전달 온 pnum 값 : " + pnum);
+		
+		ArrayList<Filebox> list = fileboxService.selectEtcList(pnum);
+		
+		if(list != null) {
+			
+			logger.info("파일박스 zip 리스트 성공");
+			logger.info("파일박스 zip list"+list);
+			model.addAttribute("list", list);
+			
+
+			return "kyukyu/fileboxEtc";
+		}else {
+			
+			 model.addAttribute("message", "filebox 리스트 실패");
+			 return "comm/error";
+		}
+		
+	}
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
