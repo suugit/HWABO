@@ -43,7 +43,7 @@
 </style>
 
 <!-- 진행률끝 -->
-<link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="/hwabo/resources/maincss/css/sb-admin-2.css" rel="stylesheet">
   <link href="/hwabo/resources/maincss/css/progressbar.css" rel="stylesheet">
 </head>
 

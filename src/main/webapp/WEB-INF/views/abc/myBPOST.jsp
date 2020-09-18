@@ -103,7 +103,7 @@ $(function(){
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="/hwabo/resources/maincss/css/sb-admin-2.min.css"
+<link href="/hwabo/resources/maincss/css/sb-admin-2.css"
 	rel="stylesheet">
 
 <!-- Custom styles for this page -->

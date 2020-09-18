@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="/hwabo/resources/maincss/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/hwabo/resources/maincss/css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 <!-- 흐름 : index.jsp -> khcController로가서 return을 통해(khc/mytodo) -> mytodo.jsp(여기서 폼태그를 작성하면 그걸받아서 -> 
