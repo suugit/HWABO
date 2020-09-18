@@ -12,9 +12,10 @@ public class Member implements java.io.Serializable{
 	
 	private String ucode;
 	
+	
 	@Email(message="이메일을 입력해주세요")
 	private String uemail;
-	@NotNull
+
 	@Pattern(regexp="^[a-zA-Z0-9] {6,}", message="비밀번호는 영어대/소문자, 숫자로 6글자 이상 입력해야합니다")
 	private String upwd;
 	@NotNull(message="이름을 입력해주세요")

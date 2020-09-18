@@ -69,5 +69,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.insertInvtNew(invt);
 	}
 
+	@Override
+	public ArrayList<Member> selectNotMember(String pnum) {
+		return memberDao.selectNotMember(pnum);
+	}
+
 	
 }

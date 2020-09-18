@@ -26,7 +26,7 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="/hwabo/resources/maincss/css/styles_suugit.css"
+<link href="/hwabo/resources/maincss/css/sb-admin-2.css"
 	rel="stylesheet">
 <style>
 .modal-backdrop {
@@ -96,8 +96,7 @@
 
 						<li class="nav-item" id="invtEBtn"><a class="nav-link" data-toggle="tab"
 							href="#existingE" role="tab" aria-controls="existingE"
-							aria-selected="false"> <i class="fas fa-user-plus mr-1"></i>기존회원
-								초대하기
+							aria-selected="false"> <i class="fas fa-user-plus mr-1"></i>기존회원 초대하기
 						</a></li>
 
 						<li style="margin-left: 50px">
@@ -180,19 +179,21 @@
 										<th>이름</th>
 										<th>부서</th>
 										<th>직책</th>
-										<th>추가</th>
+										<th>초대여부</th>
 									</thead>
-									<tbody>
+									<tbody id="nmlistBox">
+									<%-- <c:forEach var="nm" items="nmlist">>
 										<tr style="height: 80px">
 											<td colspan="2" class="thumbnail circle"
 												style="background-image: url('/hwabo/resources/maincss/img/suugit/face.jpg')"></td>
-											<td class="my-6">${nmlist.uname}</td>
-											<td>김부서</td>
-											<td>김팀장</td>
+											<td class="my-6">${nm.uname}</td>
+											<td>${um.ugroup }</td>
+											<td>${um.urole }</td>
 											<td><input type="button"
 												class="btn btn-sm btn-outline-primary" value="추가"
 												onclick="addInvite()"></td>
 										</tr>
+										</c:forEach> --%>
 									</tbody>
 								</table>
 							</div>
@@ -204,7 +205,7 @@
 				</div>
 			</div>
 		</div>
-
+</div>
 
 		<!-- Bootstrap core JavaScript-->
 		<script src="vendor/jquery/jquery.min.js"></script>
@@ -239,8 +240,13 @@
 		});
 	
 	function addInvite(){
-		var name = $(event.target).parent().parent().children().eq(1).text();
-		$('#selected').append('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>')
+		var ele = $(event.target);
+		if(ele.val() ==  '초대하기'){
+			$(event.target).val("초대완료");
+			$(event.target).addClass('disable btn-outline-dark')
+			var name = $(event.target).parent().parent().children().eq(1).text();
+			$('#selected').append('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>')
+		}
 	}
 	
 	function unSelected(){
@@ -261,12 +267,10 @@
 			data:JSON.stringify(fileData),
 			dataType:"json",
 			contentType:"application/json; charset=utf-8;",
-			success: function(mnlist){
-				alert("전송성공!" + mnlist)
-				for(var i in fileData){
-					
-					values = i + "번째 " + fileData[i].value
-				}
+			success: function(data){
+				alert("전송성공!")
+				
+				
 			},
 			error: function(request, status, errorData){
 				alert('b');
@@ -276,20 +280,41 @@
 	});
 	
 	$('#invtEBtn').on('click',function(){
-		$.ajax({
+		
+		 $.ajax({
 			url:"invtee.do",
 			type:"post",
-			data: {pnum : ${pnum}}
 			contentType:"application/json; charset=utf-8;",
-			success: function(){
-				alert("전송성공!")
-					
+			dataType:"Json",
+			success: function(data){
+				alert('성공');
+				var values = $("#nmlistBox").html();
+				
+				var values = $("#nmlistBox").html("");
+				for(var i in data){
+					values += 
+					'<tr style="width:80px height: 80px">'
+					+ '<td colspan="2" class="thumbnail circle"'
+					+ 'style="background-image: url(\'' + data[i].uimg + '\')"></td>'
+					+ '<td class="my-6">' + data[i].uname + '</td>'
+					+ '<td>' + data[i].ugroup + '</td>'
+					+ '<td>' + data[i].urole + '</td>'
+					+ '<td><input type="button"'
+					+ 'class="btn btn-sm btn-outline-primary" value="초대하기"'
+					+ 'onclick="addInvite()"></td></tr>'
+			
+				}
+				
+				$('#nmlistBox').html(values);
 			},
 			error: function(request, status, errorData){
-				alert('b');
+				alert('h');
 			}
-		});
+		}); 
 	});
+	
+	
+	
 	</script>
 </body>
 

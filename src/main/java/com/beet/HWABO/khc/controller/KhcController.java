@@ -60,22 +60,17 @@ public class KhcController {
 		}
 	}
 	
-	@RequestMapping(value = "dopostupdateview.do")
-	public ModelAndView selectAll(@RequestParam("uemail") String uemail, ModelAndView mav){
-		logger.info("dopostselectall.run...");
-		
-		Member member = dopostService.selectMember(uemail);
-		
-		if(member != null) {
-			mav.setViewName("khc/updatemytodo");
-			mav.addObject("member", member);
-		}else {
-			mav.addObject("message", uemail + "에 대한 수정페이지 이동 실패 !");
-			mav.setViewName("common/error");
-		}
-		return mav;
-	}
-		
+	/*
+	 * @RequestMapping(value = "dopostupdateview.do") public ModelAndView
+	 * selectAll(@RequestParam("uemail") String uemail, ModelAndView mav){
+	 * logger.info("dopostselectall.run...");
+	 * 
+	 * Member member = dopostService.selectMember(uemail);
+	 * 
+	 * if(member != null) { mav.setViewName("khc/updatemytodo");
+	 * mav.addObject("member", member); }else { mav.addObject("message", uemail +
+	 * "에 대한 수정페이지 이동 실패 !"); mav.setViewName("common/error"); } return mav; }
+	 */
 
 	@RequestMapping(value = "updatemytodo.do", method = RequestMethod.POST)
 	public String dopostUpdate(Dopost dopost, Model model) {

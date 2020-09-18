@@ -1,5 +1,8 @@
 package com.beet.HWABO.member.model.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -66,6 +69,15 @@ public class MemberDao {
 	public int insertInvtNew(Invite invt) {
 		return session.insert("memberMapper.insertInvtNew", invt);
 	}
+
+
+	public ArrayList<Member> selectNotMember(String pnum) {
+		System.out.println(pnum);
+		List<Member> nmlist = session.selectList("memberMapper.selectNotMember", pnum);
+		return (ArrayList<Member>)nmlist;
+	}
+	
+	
 
 
 	

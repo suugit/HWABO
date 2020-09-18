@@ -2,9 +2,12 @@ package com.beet.HWABO.bpost.model.vo;
 
 import java.sql.Date;
 
+import javax.validation.constraints.Future;
+
 public class Bpost implements java.io.Serializable{
 
 	private static final long serialVersionUID = 3333L;
+	
 	
 	private String bno;
 	private String btitle;
@@ -15,6 +18,7 @@ public class Bpost implements java.io.Serializable{
 	private String bkind;
 	private String bcharge;
 	private String bcontent;
+	
 	private Date benrolldate;
 	private String bopen;
 	private String brenamefile;

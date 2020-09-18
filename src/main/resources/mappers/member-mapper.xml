@@ -30,6 +30,8 @@
 		<result property="invtuse" column="invtuse" />
 		<result property="exprtdate" column="exprtdate" />
 	</resultMap>
+	
+
 
 	<insert id="insertUser" parameterType="Member">
 		insert into member (ucode,
@@ -93,8 +95,10 @@
 		values(#{invtkey}, #{ucode}, #{pnum}, #{invtemail}, default, default)
 	</insert>
 
-	<!-- <select id="NotPjMember" parameterType="string" resultMap="Member"> 
-		select * from member left join pjmember using (ucode) where pnum != #{pnum} 
-		</select> -->
+	<select id="selectNotMember" parameterType="string" resultMap="resultMember"> 
+			select * from member
+		where ucode not in (
+		(select ucode from pjmember where pnum = #{pnum}))
+		</select>
 
 </mapper>

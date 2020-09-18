@@ -28,5 +28,7 @@ public interface MemberService {
 	int updatePwd(Member member);
 
 	int insertInvtNew(Invite invt);
+
+	ArrayList<Member> selectNotMember(String pnum);
 	
 }

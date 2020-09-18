@@ -49,10 +49,7 @@ public class DopostServiceImpl implements DopostService {
 
 	
 
-	@Override
-	public Member selectMember(String uemail) {
-		return dopostDao.selectMember(uemail);
-	}
+
 	
 	
 }

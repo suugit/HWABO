@@ -13,6 +13,6 @@ public interface DopostService {
 	 int updatedopost( Dopost dopost);
 	 ArrayList<Dopost> selectList();
 	Dopost selectonedopost(String dno);
-	Member selectMember(String uemail);
+
 	
 }

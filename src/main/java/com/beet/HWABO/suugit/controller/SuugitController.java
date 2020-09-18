@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
@@ -35,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -456,11 +458,35 @@ public class SuugitController {
 //	    }	  
 	  
 	 
-	  @RequestMapping("/invtee.do")
-	  public void selectNmList(HttpServletRequest request) {
-		  System.out.println(request.getParameter("pum"));
+	  @PostMapping("/invtee.do")
+	  @ResponseBody
+	  public JSONArray selectNmList(HttpSession session, ModelAndView mav) {
+		  String pnum = (String)session.getAttribute("pnum");
+		  ArrayList<Member> nmlist = mservice.selectNotMember(pnum);
 		  
-		 
+		  JSONObject obj = new JSONObject();
+		  
+		  JSONArray jarr = new JSONArray();
+
+		  try {
+			
+			for(int i = 0 ; i < nmlist.size() ; i++) {
+				System.out.println(nmlist.get(i));
+				JSONObject job = new JSONObject();
+				job.put("ucode", nmlist.get(i).getUcode());
+				job.put("uname", nmlist.get(i).getUname());
+				job.put("ugroup", nmlist.get(i).getUgroup());
+				job.put("urole", nmlist.get(i).getUrole());
+				job.put("uimg", nmlist.get(i).getUimg());
+				
+				jarr.add(job);
+			}
+			mav.addObject("nmlist", jarr);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  return jarr;
 	  }
 		
 //게시글 관련 ====================================================================================================================================================================
