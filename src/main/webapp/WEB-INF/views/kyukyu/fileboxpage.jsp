@@ -119,9 +119,108 @@ $("#allCheckbox").click(function(){
 })
 })
 
+
+
+
+
+
+  $(document).ready(function(){
+            alert("들어옴");
+        	
+            
+            
+   
+            var iFrameCnt = 0;
+               
+               $('#all_download').click(function(event, index){ //다운로드 이미지 실행
+                   
+                $('img[name*="ImageList"]').each(function(i){ //img 태그중 ImageList 명으로 시작하는 요소를 가져옴
+                    
+                
+                	
+                       urlPath = $(this).attr("src"); //전체 URL 경로
+                       ofile = $(this).attr("id");
+                       rfile = $(this).attr("src").substring($(this).attr("src").lastIndexOf("/")+1); //파일명 추출
+                       
+                       var url = "bfdown.do?ofile="+ofile+"&rfile="+rfile; //다운로드 받는 경로 와 변수
+                                               
+                       fnCreateIframe(iFrameCnt); // 보이지 않는 iframe 생성, name는 숫자로
+                       
+                       $("iframe[name=" + iFrameCnt + "]").attr("src", url);
+                       
+                       iFrameCnt++;
+                       
+                       fnSleep(1000); //각 파일별 시간 텀을 준다
+                	
+                   });
+                   
+               });
+               
+               fnSleep = function (delay){
+                   
+                   var start = new Date().getTime();
+                   while (start + delay > new Date().getTime());
+ 
+               };
+               
+               fnCreateIframe = function (name){
+                   
+                   var frm = $('<iframe name="' + name + '" style="display: none;"></iframe>');
+                   frm.appendTo("body");
+ 
+               }
+               
+        });
+
 </script>
-   
-   
+
+
+
+ <!--   
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            alert("들어옴");
+        	
+            var iFrameCnt = 0;
+               
+               $('.all_download').click(function(event){ //다운로드 이미지 실행
+                   
+                $('img[name*="ImageList"]').each(function(i){ //img 태그중 ImageList 명으로 시작하는 요소를 가져옴
+                    
+                       urlPath = $(this).attr("src"); //전체 URL 경로
+                       fileName = $(this).attr("src").substring($(this).attr("src").lastIndexOf("/")+1); //파일명 추출
+                       
+                       var url = "download.do?urlPath="+urlPath+"&fileName="+fileName; //다운로드 받는 경로 와 변수
+                                               
+                       fnCreateIframe(iFrameCnt); // 보이지 않는 iframe 생성, name는 숫자로
+                       
+                       $("iframe[name=" + iFrameCnt + "]").attr("src", url);
+                       
+                       iFrameCnt++;
+                       
+                       fnSleep(1000); //각 파일별 시간 텀을 준다
+ 
+                   });
+                   
+               });
+               
+               fnSleep = function (delay){
+                   
+                   var start = new Date().getTime();
+                   while (start + delay > new Date().getTime());
+ 
+               };
+               
+               fnCreateIframe = function (name){
+                   
+                   var frm = $('<iframe name="' + name + '" style="display: none;"></iframe>');
+                   frm.appendTo("body");
+ 
+               }
+               
+        });
+    </script>   -->
    
  <%--  <ul class="nav nav-tabs nav-justified">
   <li class="nav-item">
@@ -140,18 +239,23 @@ $("#allCheckbox").click(function(){
         --%>   
    <!-- 파일 리스트 -->
          
-             <div class="tab-pane active" id="img" role="tabpanel" style="font-size: 84%;">
+             <div class="tab-pane active" id="img" role="tabpanel">
             <div class="card-body">
+            
+            <br>
+                  <button type="button" id="all_download" class="btn btn-primary btn-sm" style="background-color:#24AA9E">All Download</button>&nbsp; &nbsp;
+                   <button type="button" id="sdown" class="btn btn-primary btn-sm" style="background-color:#24AA9E">select Download</button><br>
+                   
               <div class="table-responsive">
               
               
          
                 <table class="table table-bordered" id="dataTable" >
-                  
-                  <thead>
+                
+                  <thead style="font-size: 100%;">
                     <tr>
-                      <th>전체<input type="checkbox" id="allCheckbox"></th>
-                      <th>파일명</th>
+                      <th><input type="checkbox" id="allCheckbox">  All</th>
+                      <td>파일명</th>
                       <th>올린이</th>
                       <th>원본 글 제목</th>
                       <th>업로드 날짜</th>
@@ -162,26 +266,24 @@ $("#allCheckbox").click(function(){
                   
                   
                   
-                   <tbody>
+                   <tbody style="font-size: 84%;">
                     <c:forEach var="file" items="${requestScope.list}" varStatus="status">
                		 <tr>
                     	<th>
-                    	 	<input type="checkbox" id="downnum">
-                    	
-                    	 	<i class="far fa-arrow-alt-circle-down"></i>
-                    		
-                    		
+                    	 	<input type="checkbox" class="downnum" value="${file.o}" id="${file.r }">
+                    	   
                     	</th>
-                    	<th> <img src="resources/bupfile/${file.r }" style="width:40px; height : 40px" > &nbsp; &nbsp; &nbsp;${file.o} </th>
+                    	<th> <img name= "ImageList_${status.index }" src="resources/bupfile/${file.r }" id="${file.o }" style="width:40px; height : 40px" > &nbsp; &nbsp; &nbsp;${file.o} </th>
                     	<th> ${file.writer}</th>
-                    	<th>${file.title }</th>
+                    	<th>[ ${file.title } ]</th>
                     	<th> ${file.enroll } </th>
                     	
                     </tr>
-                    
-                    </c:forEach>
+                 
+                    </c:forEach> 
+                    <!-- <button type="button" id="all_download" class="btn btn-secondary btn-sm" download>All Download</button> -->
                     </tbody>
-                    <input type="button" value="모두 저장" >
+               <!--      <input type="button" value="모두 저장" > -->
        </table>
        
        

@@ -1,6 +1,19 @@
 package com.beet.HWABO.filebox.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Map;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.beet.HWABO.filebox.model.service.FileboxService;
@@ -135,6 +147,58 @@ public class FileboxController {
 	}
 	
 	
+	@RequestMapping("download.do")
+	public void imageDownload(@RequestParam Map<String,Object> param, HttpServletResponse response, HttpServletRequest request){
+        
+		
+        String originname = (String) param.get("ofile"); //full경로
+        String rename = (String) param.get("rfile"); //파일명
+        logger.info("ofile"+ originname +", rfile :" +rename);
+		
+        
+        BufferedInputStream buffer = null;
+		ServletOutputStream serout = null;
+
+		logger.info("originname" + originname);
+		logger.info("rename" + rename);
+
+		String dir = request.getSession().getServletContext().getRealPath("resources/bupfile");
+		File savedFile = new File(dir + "/" + rename);
+		try {
+			FileInputStream fis = new FileInputStream(savedFile);
+			buffer = new BufferedInputStream(fis);
+			serout = response.getOutputStream();
+
+			String resFilename = "";
+			boolean isMSIE = request.getHeader("user-agent").indexOf("MSIE") != -1
+					|| request.getHeader("user-agent").indexOf("Trident") != -1;
+			if (isMSIE) {
+				resFilename = URLEncoder.encode(originname, "UTF-8");
+				resFilename = resFilename.replaceAll("\\+", "%20");
+			} else {
+				resFilename = new String(originname.getBytes("UTF-8"), "ISO-8859-1");
+
+			}
+			response.setContentType("application/octet-stream;charset=utf-8");
+			response.addHeader("Content-Disposition", "attachment;filename=\"" + resFilename + "\"");
+			// 파일길이 설정
+			response.setContentLength((int) savedFile.length());
+
+			int read = 0;
+			while ((read = buffer.read()) != -1) {
+				serout.write(read);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				serout.close();
+				buffer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
 
 
