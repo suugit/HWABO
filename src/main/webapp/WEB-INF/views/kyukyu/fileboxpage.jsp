@@ -103,40 +103,57 @@
    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 
+/* 
+$('img[name*="ImageList"]').each(function(i){ 
+
+ */
 $(function(){
 $("#allCheckbox").click(function(){
 
 	if($('#allCheckbox').prop("checked")){
-	
+		
 		$("input[type=checkbox]").prop("checked",true);
+		 $('img[class*="yes_"]').attr("name", "ImageList"); 
+		console.log("if문");
 	}else{
 		
 		$("input[type='checkbox']").prop("checked",false);
+	 	$('img[class*="yes_"]').attr("name", "yet"); 
+		console.log("else문");
 	}
 	
 	
 	
 })
 })
+/* 
+if ($("input:checked[id='in_'+index]").is(":checked")){
 
-
-
+ */
+function changein(index){
+	console.log("체크박스 인덱스 : " + index);
+	 if($("#in_"+index).is(":checked") == true){
+		 console.log("if 문 성립");
+		 $(".yes_" + index).attr("name", "ImageList");
+		 
+	 }else{
+		 console.log("else 문 성립");
+		 $(".yes_" + index).attr("name", "yet");
+	 }
+}
 
 
 
   $(document).ready(function(){
-            alert("들어옴");
-        	
-            
-            
+     
    
             var iFrameCnt = 0;
                
                $('#all_download').click(function(event, index){ //다운로드 이미지 실행
-                   
+            	  
                 $('img[name*="ImageList"]').each(function(i){ //img 태그중 ImageList 명으로 시작하는 요소를 가져옴
                     
-                
+                	
                 	
                        urlPath = $(this).attr("src"); //전체 URL 경로
                        ofile = $(this).attr("id");
@@ -176,75 +193,13 @@ $("#allCheckbox").click(function(){
 
 
 
- <!--   
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            alert("들어옴");
-        	
-            var iFrameCnt = 0;
-               
-               $('.all_download').click(function(event){ //다운로드 이미지 실행
-                   
-                $('img[name*="ImageList"]').each(function(i){ //img 태그중 ImageList 명으로 시작하는 요소를 가져옴
-                    
-                       urlPath = $(this).attr("src"); //전체 URL 경로
-                       fileName = $(this).attr("src").substring($(this).attr("src").lastIndexOf("/")+1); //파일명 추출
-                       
-                       var url = "download.do?urlPath="+urlPath+"&fileName="+fileName; //다운로드 받는 경로 와 변수
-                                               
-                       fnCreateIframe(iFrameCnt); // 보이지 않는 iframe 생성, name는 숫자로
-                       
-                       $("iframe[name=" + iFrameCnt + "]").attr("src", url);
-                       
-                       iFrameCnt++;
-                       
-                       fnSleep(1000); //각 파일별 시간 텀을 준다
- 
-                   });
-                   
-               });
-               
-               fnSleep = function (delay){
-                   
-                   var start = new Date().getTime();
-                   while (start + delay > new Date().getTime());
- 
-               };
-               
-               fnCreateIframe = function (name){
-                   
-                   var frm = $('<iframe name="' + name + '" style="display: none;"></iframe>');
-                   frm.appendTo("body");
- 
-               }
-               
-        });
-    </script>   -->
-   
- <%--  <ul class="nav nav-tabs nav-justified">
-  <li class="nav-item">
-    <a class="nav-link active" href="#">Active</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" >Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="FileboxEtcTxtlist.do?pnum=${sessionScope.pnum }">Disabled</a>
-  </li>
-</ul>
-        --%>   
-   <!-- 파일 리스트 -->
          
              <div class="tab-pane active" id="img" role="tabpanel">
             <div class="card-body">
             
             <br>
-                  <button type="button" id="all_download" class="btn btn-primary btn-sm" style="background-color:#24AA9E">All Download</button>&nbsp; &nbsp;
-                   <button type="button" id="sdown" class="btn btn-primary btn-sm" style="background-color:#24AA9E">select Download</button><br>
+                  <button type="button" id="all_download" class="btn btn-primary btn-sm" style="background-color:#24AA9E">Download</button>&nbsp; &nbsp;
+          
                    
               <div class="table-responsive">
               
@@ -270,10 +225,10 @@ $("#allCheckbox").click(function(){
                     <c:forEach var="file" items="${requestScope.list}" varStatus="status">
                		 <tr>
                     	<th>
-                    	 	<input type="checkbox" class="downnum" value="${file.o}" id="${file.r }">
+                    	 	<input type="checkbox" id="in_${status.index }" onchange="changein(${status.index});">
                     	   
                     	</th>
-                    	<th> <img name= "ImageList_${status.index }" src="resources/bupfile/${file.r }" id="${file.o }" style="width:40px; height : 40px" > &nbsp; &nbsp; &nbsp;${file.o} </th>
+                    	<th> <img name= "yet" src="resources/bupfile/${file.r }" class="yes_${status.index }" id="${file.o }" style="width:40px; height : 40px" > &nbsp; &nbsp; &nbsp;${file.o} </th>
                     	<th> ${file.writer}</th>
                     	<th>[ ${file.title } ]</th>
                     	<th> ${file.enroll } </th>
