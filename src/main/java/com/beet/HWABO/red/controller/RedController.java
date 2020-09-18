@@ -3,9 +3,7 @@ package com.beet.HWABO.red.controller;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.red.model.service.RedService;
+import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Star;
@@ -372,6 +371,30 @@ public class RedController {
 			return mv;
 		}	
 
+		@RequestMapping(value = "riseChat.do", method = RequestMethod.POST)
+		@ResponseBody 
+		public String intervalChat(@RequestParam("project_num") String pnum
+				,HttpServletResponse response) throws IOException {
+			logger.info("즐겨찾기 불러오기 run....");
+			
+			ArrayList<Chatting> list =  redService.selectChat(pnum);
+			
+			JSONObject sendJson = new JSONObject();
+
+			JSONArray jarr = new JSONArray();
+
+			for (Chatting c : list) {
+				JSONObject job = new JSONObject();
+				job.put("ucode", URLEncoder.encode(project.getUcode(), "utf-8"));
+				job.put("star", URLEncoder.encode(project.getStar(), "utf-8"));
+				job.put("name", URLEncoder.encode(project.getName(), "utf-8"));
+				jarr.add(job);
+			}
+
+			sendJson.put("chatList", jarr);
+
+			return sendJson.toJSONString();
+		}
 ////views start//////////////////////////////	
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)
 	public String suugitIndex(Model model) {

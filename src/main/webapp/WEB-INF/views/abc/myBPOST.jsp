@@ -158,9 +158,9 @@ $("div").on('click', function(e){
 						<!-- 즐겨찾기 시작 -->
 						
 							<div class="card mb-4 py-3 border-info">
-								<div style="margin-top: 0px;">
-									<h4>&nbsp;&nbsp;나의 업무</h4>
-									<br>
+								<div style="margin-top: 10px; margin-left: 15px;margin-bottom: 0px;">
+									<h3>&nbsp;&nbsp;OOO님의 업무</h3>
+								
 								</div>
 								<!-- 게시글안쪽 -->
 
@@ -195,14 +195,26 @@ $("div").on('click', function(e){
 										<% if(!list.isEmpty()){ %>
 											<% for(Bpost bpost : list){ %>
 													<tr>	
-														<td class="table-info">
+														<td style="vertical-align: middle; text-align: center;">
 																<%if(bpost.getBkind().equals("요청")){ %>
-																<strong style="color: #666666; margin-top:20px; vertical-align: middle; ">요청</strong>
+																	<strong style="font-size:15pt; color: #0E90C8; margin-top:30px; vertical-align: middle; ">요 청</strong>															
+																<% } %>
+																<%if(bpost.getBkind().equals("진행")){ %>
+																	<strong style="font-size:15pt; color: #0244ED; margin-top:20px; vertical-align: middle; ">진 행</strong>																
+																<% } %>
+																<%if(bpost.getBkind().equals("피드백")){ %>
+																	<strong style="font-size:15pt; color: #f4b30d; margin-top:20px; vertical-align: middle; ">피드백</strong>																
+																<% } %>
+																<%if(bpost.getBkind().equals("완료")){ %>
+																	<strong style="font-size:15pt; color: #0C860F; margin-top:20px; vertical-align: middle; ">완 료</strong>																
+																<% } %>
+																<%if(bpost.getBkind().equals("보류")){ %>
+																	<strong style="font-size:15pt; color: #6b6d7d; margin-top:20px; vertical-align: middle; ">보 류</strong>																
 																<% } %>
 															</td>
-														<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBtitle()%></div></td>
-														<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBcontent()%></div></td>
-														<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBenrolldate()%></div></td>
+														<td style="vertical-align: middle; text-align: center;"><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBtitle()%></div></td>
+														<td style="vertical-align: middle; text-align: center;"><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBcontent()%></div></td>
+														<td style="vertical-align: middle; text-align: center;"><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBenrolldate()%></div></td>
 													</tr>	
 											<% } %>
 												
