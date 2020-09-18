@@ -8,6 +8,12 @@
 <html lang="kr">
 
 <head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  
   <link rel="icon" type="image/x-icon" href="/hwabo/resources/assets/img/favicon.png" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,20 +62,20 @@ $("#allCheckbox").click(function(){
  
  <div style="width:100%;display:flex;justify-content:center;align-item:center;">
 <!-- Sidebar2right -->
-       <c:import url="/WEB-INF/views/kyukyu/entersideFixed.jsp"></c:import>
+        <c:import url="/WEB-INF/views/kyukyu/entersideFixed1.jsp"></c:import> 
 <!-- End of Sidebar2right -->
 <!-- dd -->
  
  
   <!-- Page Wrapper -->
-  <div id="wrapper" style="width:1300px;">
+  <div id="wrapper"  >
 
     <!-- Sidebar -->
-    <div style="width:17%"></div>
+    <!-- <div style="width:17%"></div> -->
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column bg-white" style="width:62%;">
+    <div id="content-wrapper" class="d-flex flex-column bg-white" style="width:100%; ">
 
       <!-- Main Content -->
      <div id="content">
@@ -79,10 +85,11 @@ $("#allCheckbox").click(function(){
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid" style="width:1000px; position:relative; left:50px;">
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">보관함</h1>
+         <div class="col-lg-12">
           <p class="mb-4"></p>
 
 	
@@ -90,25 +97,41 @@ $("#allCheckbox").click(function(){
          
           <ui class="nav nav-tabs nav-justified" >
           <li class="nav-item">
-             <a class="nav-link active" href="#img" role="tab" aria-controls="img" aria-selected="ture"><i class="far fa-file-image"></i>&nbsp&nbsp	이미지</a></li>
+             <a class="nav-link " href="Fileboxlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="img" aria-selected="ture"><i class="far fa-file-image"></i>&nbsp&nbsp	이미지</a></li>
           <li class="nav-item">
-             <a class="nav-link" href="#pnd" role="tab" aria-controls="pnd" aria-selected="false"><i class="far fa-file-pdf"></i>&nbsp&nbsp 문서</a>
+             <a class="nav-link active" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="pnd" aria-selected="ture"><i class="far fa-file-pdf"></i>&nbsp&nbsp 문서</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="#zip" role="tab" aria-controls="zip" aria-selected="false"><i class="far fa-file-archive"></i>&nbsp&nbsp 압축파일</a>
+             <a class="nav-link" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="zip" aria-selected="ture"><i class="far fa-file-archive"></i>&nbsp&nbsp 압축파일</a>
           </li> 
           <li class="nav-item">
-             <a class="nav-link" href="#etc" role="tab" aria-controls="etc" aria-selected="false"><i class="far fa-file-code"></i>&nbsp&nbsp 기타</a>
+             <a class="nav-link" href="FileboxEtcTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="etc" aria-selected="ture"><i class="far fa-file-code"></i>&nbsp&nbsp 기타</a>
           </li> 
          </ul>
   
           
       	</div>         
+
    
-          
+   
+ <%--  <ul class="nav nav-tabs nav-justified">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Active</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" >Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="FileboxEtcTxtlist.do?pnum=${sessionScope.pnum }">Disabled</a>
+  </li>
+</ul>
+        --%>   
    <!-- 파일 리스트 -->
          
-             <div class="tab-pane active" id="img" role="tabpanel">
+             <div class="tab-pane active" id="img" role="tabpanel" style="font-size: 84%;">
             <div class="card-body">
               <div class="table-responsive">
               
@@ -140,9 +163,9 @@ $("#allCheckbox").click(function(){
                     		
                     		
                     	</th>
-                    	<th> <img src="../plus.jpg" > &nbsp; &nbsp; &nbsp;${file.title} </th>
+                    	<th> <img src="resources/bupfile/${file.r }" style="width:40px; height : 40px" > &nbsp; &nbsp; &nbsp;${file.o} </th>
                     	<th> ${file.writer}</th>
-                    	<th>${file.o }</th>
+                    	<th>${file.title }</th>
                     	<th> ${file.enroll } </th>
                     	
                     </tr>
@@ -151,6 +174,17 @@ $("#allCheckbox").click(function(){
                     </tbody>
                     <input type="button" value="모두 저장" >
        </table>
+       
+       
+        <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
 
        </div>
        </div>
@@ -164,23 +198,23 @@ $("#allCheckbox").click(function(){
 
         </div>
         <!-- /.container-fluid -->
-
+</div>
      </div>
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+    <!--   <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; Your Website 2020</span>
           </div>
         </div>
-      </footer>
+      </footer> -->
       <!-- End of Footer -->
 
     </div>
     <!-- End of Content Wrapper -->
-<div style="width:25%"></div>
+<!-- <div style="width:25%"></div> !!!!!!!!!!!!!!!!!!!!!!-->
   </div>
   <!-- End of Page Wrapper -->
 </div><!-- div flex -->
@@ -210,6 +244,10 @@ $("#allCheckbox").click(function(){
 
   <!-- Page level custom scripts -->
   <script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
+
+
+
+
 
 </body>
 

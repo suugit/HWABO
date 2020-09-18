@@ -68,7 +68,7 @@ $("#allCheckbox").click(function(){
  
  
   <!-- Page Wrapper -->
-  <div id="wrapper" style="width:1000px; position:absolute; left:290px;" >
+  <div id="wrapper"  >
 
     <!-- Sidebar -->
     <!-- <div style="width:17%"></div> -->
@@ -85,11 +85,11 @@ $("#allCheckbox").click(function(){
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid" style="width:1000px; position:relative; left:50px;">
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">보관함</h1>
-         <div class="col-lg-14">
+         <div class="col-lg-12">
           <p class="mb-4"></p>
 
 	
@@ -97,15 +97,15 @@ $("#allCheckbox").click(function(){
          
           <ui class="nav nav-tabs nav-justified" >
           <li class="nav-item">
-             <a class="nav-link " href="#img" role="tab" aria-controls="img" aria-selected="false"><i class="far fa-file-image"></i>&nbsp&nbsp	이미지</a></li>
+             <a class="nav-link " href="Fileboxlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="img" aria-selected="ture"><i class="far fa-file-image"></i>&nbsp&nbsp	이미지</a></li>
           <li class="nav-item">
-             <a class="nav-link active" href="FileboxTxtlist.do" role="tab" aria-controls="pnd" aria-selected="ture"><i class="far fa-file-pdf"></i>&nbsp&nbsp 문서</a>
+             <a class="nav-link active" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="pnd" aria-selected="ture"><i class="far fa-file-pdf"></i>&nbsp&nbsp 문서</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="zip" aria-selected="false"><i class="far fa-file-archive"></i>&nbsp&nbsp 압축파일</a>
+             <a class="nav-link" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="zip" aria-selected="ture"><i class="far fa-file-archive"></i>&nbsp&nbsp 압축파일</a>
           </li> 
           <li class="nav-item">
-             <a class="nav-link" href="FileboxEtcTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="etc" aria-selected="false"><i class="far fa-file-code"></i>&nbsp&nbsp 기타</a>
+             <a class="nav-link" href="FileboxEtcTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="etc" aria-selected="ture"><i class="far fa-file-code"></i>&nbsp&nbsp 기타</a>
           </li> 
          </ul>
   
@@ -174,6 +174,17 @@ $("#allCheckbox").click(function(){
                     </tbody>
                     <input type="button" value="모두 저장" >
        </table>
+       
+       
+        <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
 
        </div>
        </div>
@@ -192,13 +203,13 @@ $("#allCheckbox").click(function(){
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+    <!--   <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; Your Website 2020</span>
           </div>
         </div>
-      </footer>
+      </footer> -->
       <!-- End of Footer -->
 
     </div>

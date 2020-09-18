@@ -51,11 +51,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		return "kyukyu/binsertpage";
 	}
 	
-	@RequestMapping(value = "FileboxTxtlist.do", method = RequestMethod.GET)
-	public String txtfilepage(Model model) {
-		
-		return "kyukyu/fileboxTxt";
-	}
+	
 	
 	
 	
