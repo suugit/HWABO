@@ -1,4 +1,4 @@
-<%@ page session="false" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -63,19 +63,11 @@
 			</a>
 				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
 					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
+					<div class="bg-white py-2 collapse-inner rounded" style="overflow: auto; max-height: 350px;">
 						<h6 class="collapse-header">HWABO</h6>
-						<a class="collapse-item" href="yourhawbo.do"><span><label>테스트페이지</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름2</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름3</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름4</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름5</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름6</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름7</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름8</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름9</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름10</label></span></a>
-						<a class="collapse-item" href="#"><span><label>사람이름11</label></span></a>
+							<c:forEach var="user" items="${sessionScope.pmlist }">
+							<a class="collapse-item" href="yourhwabo.do?ucode=${user.ucode }"><span><label>${user.uname }</label></span></a>
+							</c:forEach>							
 					</div>
 				</div></li>
 

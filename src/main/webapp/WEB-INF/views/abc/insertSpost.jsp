@@ -1,4 +1,3 @@
-<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -127,6 +126,7 @@
 						<input type="hidden" name="swriter" value="${sessionScope.uname }">
        					<input type="hidden" name="sucode" value="${sessionScope.ucode }">
        					<input type="hidden" name="spnum" value="${sessionScope.pnum}">
+       					
        					<input type="hidden" name="sopen" value="n">
 						
 								<table style="text-align: center; width: 100%;">
