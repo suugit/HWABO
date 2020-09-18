@@ -7,6 +7,46 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 채팅기능 시작 -->
+<script>
+
+$(function(){
+	$.ajax({
+		url: "starList.do?ucode=${ who }",
+		type: "POST",
+		dataType: "json", 
+		success: function(json){
+			
+			var jsonStr = JSON.stringify(json);
+			var json = JSON.parse(jsonStr);
+			console.log("success : " + jsonStr);
+			
+			var values = "";
+			for(var i in json.list5){
+				var starName = decodeURIComponent(json.list5[i].name).replace(/\+/gi, " ");
+				var starUcode = decodeURIComponent(json.list5[i].ucode).replace(/\+/gi, " ");
+				var starStar = decodeURIComponent(json.list5[i].star).replace(/\+/gi, " ");
+				values += 
+					"<li class=\"nav-item\"><a class=\"nav-link\">" +
+		            "<i class=\"fas fa-fw fa-chart-area\"></i><span onclick=\"javascript:location.href=\'cards.do\'\">" +
+					starName +
+					"</span><span>" +
+					"&nbsp;&nbsp;<button class=\"button button3\" " +
+					"onclick=\"javascript:location.href=\'delStar.do?ucode=" + starUcode + "&star=" + starStar + "\'\" >X</button>" +
+					"</span></a></li>";
+			}
+			//$("stars").html() + 
+			$("#chat").html(values); 		
+		},
+		error: function(jqXHR, textstatus, errorthrown){
+			console.log("error : " +jqXHR+", "+textstatus+", "+errorthrown);
+		}
+	});//ajax
+	
+});
+
+</script>
+<!-- 채팅기능 끝 -->
 </head>
 <body>
 
@@ -33,9 +73,7 @@ khc
 daun
 <hr>
 <!-- 채팅내용 시작 -->
-<br>
-<br>
-<br>
+<div id="chat"></div>
 <input type="text" class="form-control">
 <!-- 채팅내용 끝 -->
 <hr>

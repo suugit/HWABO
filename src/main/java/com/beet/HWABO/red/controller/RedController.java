@@ -175,8 +175,8 @@ public class RedController {
 		return sendJson.toJSONString();
 	}
 	//로그아웃
-		@RequestMapping("logoutRed.do")
-		public String logout(HttpServletRequest request, Model model) {
+	@RequestMapping("logoutRed.do")
+	public String logout(HttpServletRequest request, Model model) {
 			logger.info("로그아웃하는  회원 정보 : " + request.getAttribute("uname"));
 			HttpSession session = request.getSession(false);
 			if (session != null) {
@@ -185,9 +185,9 @@ public class RedController {
 			} else {
 				return "welcome";
 			}
-		}
-		@RequestMapping(value = "ftables.do", method = RequestMethod.GET)
-		public ModelAndView selectLogin(@RequestParam("project_num") String pnum, HttpServletRequest request, ModelAndView mv,SessionStatus status) {
+	}
+	@RequestMapping(value = "ftables.do", method = RequestMethod.GET)
+	public ModelAndView selectLogin(@RequestParam("project_num") String pnum, HttpServletRequest request, ModelAndView mv,SessionStatus status) {
 			logger.info("세션에 프로젝트넘버 추가완료... 프로젝트번호 : " + pnum);
 			
 			ArrayList<MemberProject> memberProject = redService.selectMemberList(pnum);
@@ -287,9 +287,9 @@ public class RedController {
 			}
 			///
 			return mv;
-		}
-		@RequestMapping(value = "fother.do", method = RequestMethod.GET)
-		public ModelAndView selectProgresses(@RequestParam("project_num") String pnum,  ModelAndView mv) {
+	}
+	@RequestMapping(value = "fother.do", method = RequestMethod.GET)
+	public ModelAndView selectProgresses(@RequestParam("project_num") String pnum,  ModelAndView mv) {
 			logger.info("진행률 페이지... 프로젝트번호 : " + pnum);
 			
 			int chk = 0;
@@ -358,56 +358,56 @@ public class RedController {
 				mv.addObject(names, list);
 			}
 			
-			if(chk < 1) {
-				MemberProject mp = new MemberProject();
-				mp.setProject_num(pnum);
-				mp.setGoal(goal);
-				mp.setDone(done);
-				if(goal == 0 && done == 0) {
-					mp.setGoal(100000);
-					mp.setDone(1);
-				}
-				logger.info("PROGRESS 데이터 사용가능...");
-				if(redService.updateProjectProgress(mp) > 0) {
-					logger.info("전체 진행률 업데이트 성공...");
-				}else {
-					logger.info("전체 진행률 업데이트 실패...");
-				}
-				mv.addObject("MemberNames",MemberNames);
-				mv.addObject("plist", plist);
-				mv.setViewName("red/utilities-other");
+		if(chk < 1) {
+			MemberProject mp = new MemberProject();
+			mp.setProject_num(pnum);
+			mp.setGoal(goal);
+			mp.setDone(done);
+			if(goal == 0 && done == 0) {
+				mp.setGoal(100000);
+				mp.setDone(1);
+			}
+			logger.info("PROGRESS 데이터 사용가능...");
+			if(redService.updateProjectProgress(mp) > 0) {
+				logger.info("전체 진행률 업데이트 성공...");
 			}else {
-				mv.setViewName("welcome");
-				logger.info("전체 진행률 업데이트 실패... 추측 : DB테이블과 매치 불가");
+				logger.info("전체 진행률 업데이트 실패...");
 			}
-			
-			return mv;
-		}	
-
-		@RequestMapping(value = "riseChat.do", method = RequestMethod.POST)
-		@ResponseBody 
-		public String intervalChat(@RequestParam("project_num") String pnum
-				,HttpServletResponse response) throws IOException {
-			logger.info("즐겨찾기 불러오기 run....");
-			
-			ArrayList<Chatting> list =  redService.selectChat(pnum);
-			
-			JSONObject sendJson = new JSONObject();
-
-			JSONArray jarr = new JSONArray();
-
-			for (Chatting c : list) {
-				JSONObject job = new JSONObject();
-				job.put("ucode", URLEncoder.encode(project.getUcode(), "utf-8"));
-				job.put("star", URLEncoder.encode(project.getStar(), "utf-8"));
-				job.put("name", URLEncoder.encode(project.getName(), "utf-8"));
-				jarr.add(job);
-			}
-
-			sendJson.put("chatList", jarr);
-
-			return sendJson.toJSONString();
+			mv.addObject("MemberNames",MemberNames);
+			mv.addObject("plist", plist);
+			mv.setViewName("red/utilities-other");
+		}else {
+			mv.setViewName("welcome");
+			logger.info("전체 진행률 업데이트 실패... 추측 : DB테이블과 매치 불가");
 		}
+			
+		return mv;
+	}	
+
+	@RequestMapping(value = "riseChat.do", method = RequestMethod.POST)
+	@ResponseBody 
+	public String intervalChat(@RequestParam("project_num") String pnum
+			,HttpServletResponse response) throws IOException {
+		logger.info("즐겨찾기 불러오기 run....");
+			
+		ArrayList<Chatting> list =  redService.selectChat(pnum);
+			
+		JSONObject sendJson = new JSONObject();
+
+		JSONArray jarr = new JSONArray();
+
+		for (Chatting c : list) {
+			JSONObject job = new JSONObject();
+			job.put("uname", URLEncoder.encode(c.getUname(), "utf-8"));
+			job.put("content", URLEncoder.encode(c.getContent(), "utf-8"));
+			job.put("time", c.getChat_time().toString());
+			jarr.add(job);
+		}
+
+		sendJson.put("chatList", jarr);
+
+		return sendJson.toJSONString();
+	}
 ////views start//////////////////////////////	
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)
 	public String suugitIndex(Model model) {

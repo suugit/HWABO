@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/hwabo/resources/js/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 <div style="position:fixed;height:100%;">
