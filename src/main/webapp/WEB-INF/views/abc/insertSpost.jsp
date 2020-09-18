@@ -122,9 +122,13 @@
 
 						<div class="card-body">
 							<!-- 게시글안쪽 -->
+							유저네임 : ${sessionScope.uname } ${sessionScope.ucode } ${sessionScope.pnum}
 						<form action="sinsert.do" id="spostInsert"  name="spostInsert" method="post" onsubmit="return daycheck();">
-						<input type="hidden" name="sucode" value="h127">
-						<input type="hidden" name="swriter" value="이창준">
+						<input type="hidden" name="swriter" value="${sessionScope.uname }">
+       					<input type="hidden" name="sucode" value="${sessionScope.ucode }">
+       					<input type="hidden" name="spnum" value="${sessionScope.pnum}">
+       					<input type="hidden" name="sopen" value="n">
+						
 								<table style="text-align: center; width: 100%;">
 									
 									<tr>
@@ -235,10 +239,7 @@
 										<td></td>
 										<!--  #f8f9fc   -->
 										<td>
-										<select name="sopen" class="form-control" >
-											<option value="y" selected>전체공개</option>
-											<option value="n">나만보기</option>
-										</select>
+										
 										</td>
 										<td colspan="3">
 										<!-- <a class="btn btn-success btn-icon-split"	href="javascript: spostInsert.submit();"  style="width: 90%;">

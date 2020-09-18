@@ -74,7 +74,14 @@
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 <!-- 왼쪽사이드바 끝 -->
-
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:location.href='insertspost.do'">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>일정등록테스트</span></a>
+      </li>
+		
+	
 </ul>
     
 </td>

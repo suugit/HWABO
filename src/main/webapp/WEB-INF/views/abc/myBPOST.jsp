@@ -157,7 +157,7 @@ $("div").on('click', function(e){
 
 						<!-- 즐겨찾기 시작 -->
 						
-							<div class="card mb-4 py-3 border-info">
+							<div class="card mb-4 py-3 ">
 								<div style="margin-top: 10px; margin-left: 15px;margin-bottom: 0px;">
 									<h3>&nbsp;&nbsp;OOO님의 업무</h3>
 								

@@ -63,10 +63,10 @@ geocoder.addressSearch(spostplace, function(result, status) {
     } 
 });    
 </script>
-${ spost.salarm } <br>
+${spost.sopen }<br>
 ${ spost.scontent} <br>
 <fmt:formatDate value="${spost.senrolldate}" pattern="yyyy-MM-dd HH시 mm분 E"/><br>
-${ spost.sopen } <br>
+
 </c:if>
 
 
