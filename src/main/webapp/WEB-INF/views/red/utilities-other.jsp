@@ -120,7 +120,9 @@
                   <% //int count = 0; %>
                   <c:forEach var="userInfo" items="<%= (ArrayList<Progress>)request.getAttribute(pnames) %>" varStatus="status2">
                   <fmt:parseNumber var= "percent" integerOnly= "true" value="${userInfo.done * 100 / userInfo.goal}" />
-                  <div class="mb-1 small">${ userInfo.title } : 진행률 ${ percent }%</div>
+                  <div class="mb-1 small">
+                  ${ userInfo.title } 
+                  </div>
                   <div class="progress progress-sm mb-2">
                     <div class="progress-bar progress-bar2" role="progressbar" style="width: ${ userInfo.done * 100 / userInfo.goal }%" aria-valuenow="${ userInfo.done * 100 / userInfo.goal }" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>

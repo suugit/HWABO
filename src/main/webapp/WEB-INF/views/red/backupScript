@@ -1,0 +1,73 @@
+$(function(){
+	$("#enter_chat").on("click", function(){
+		alert('hi');
+		$.ajax({
+			url:"sendChat.do",
+			data: {
+				content : $("#enter_content").val(),
+				ucode :
+				project_num :
+				project_name :
+				uname : 
+			},
+			type: "POST",
+			success: function(result){
+				if(result == "ok"){
+					console.log("보낸 채팅 :" + result);
+				}else{
+					console.log("채팅 전송 실패...");
+				}
+			},
+			error: function(request,status, errorDate){
+				console.log("error code : " + requet.status + "\nMessage :" + request.responseText + "\nError :" + errorData);
+			}
+	 	}); //ajax
+	}); //enter btn click
+});
+
+setInterval(function(){
+	$.ajax({
+		url: "riseChat.do?project_num=${ sessionScope.pnum }",
+		type: "POST",
+		dataType: "json", 
+		success: function(json){
+			
+			var jsonStr = JSON.stringify(json);
+			var json = JSON.parse(jsonStr);
+			console.log("success : " + jsonStr);
+			
+			var values = "";
+			for(var i in json.chatList){
+				var chat_ucode = decodeURIComponent(json.chatList[i].ucode).replace(/\+/gi, " ");
+				var chat_uname = decodeURIComponent(json.chatList[i].uname).replace(/\+/gi, " ");
+				var chat_content = decodeURIComponent(json.chatList[i].content).replace(/\+/gi, " ");
+				var chat_time = decodeURIComponent(json.chatList[i].time).replace(/\+/gi, " ");
+				if(chat_ucode == "${ sessionScope.ucode }"){
+					"<div class=\"outgoing_msg\"><div class=\"sent_msg\"><p>" +
+					chat_content +
+		            "</p><span class=\"time_date\">" +
+		            chat_time +
+		            "</span> </div></div>"
+				}else{
+				values += 
+					"<div class=\"incoming_msg\">" +
+	              	"<div class=\"incoming_msg_img\"> <img src=\"https://ptetutorials.com/images/user-profile.png\" alt=\"sunil\"></div>" +
+	              	"<span style=\"font-size:9pt;\">" +
+	              	chat_uname +
+	              	"</span><div class=\"received_msg\">" +
+	                "<div class=\"received_withd_msg\"><p>" +
+	                chat_content +
+	                "</p><span class=\"time_date\">" +
+	                chat_time +
+	                "</span></div></div></div>";
+				}
+			}
+			//$("stars").html() + 
+			$("#chat").html(values); 		
+		},
+		error: function(jqXHR, textstatus, errorthrown){
+			console.log("error : " +jqXHR+", "+textstatus+", "+errorthrown);
+		}
+	});//ajax
+	
+},1000);

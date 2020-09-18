@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.red.model.dao.RedDao;
+import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Project;
@@ -97,6 +98,11 @@ public class RedServiceImpl implements RedService {
 	@Override
 	public ArrayList<Progress> selectProgressList(String pnum) {
 		return redDao.selectProgressList(pnum);
+	}
+
+	@Override
+	public ArrayList<Chatting> selectChat(String pnum) {
+		return redDao.selectChat(pnum);
 	}
 	
 }

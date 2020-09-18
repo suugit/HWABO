@@ -144,6 +144,26 @@
 		<result property="bpnum" column="bpnum" />
 		<result property="bchargename" column="bchargename" />
 	</resultMap>
+	<resultMap id="resultChatList" type="Bpost">
+		<result property="ucode" column="ucode" />
+		<result property="project_num" column="project_num" />
+		<result property="project_name" column="project_name" />
+		<result property="uname" column="uname" />
+		<result property="content" column="content" />
+		<result property="chat_time" column="chat_time" />
+		<result property="orignal_file" column="orignal_file" />
+		<result property="rename_file" column="rename_file" />
+	</resultMap>
+	<resultMap id="resultChat" type="Bpost">
+		<id property="content" column="content" />
+		<result property="ucode" column="ucode" />
+		<result property="project_num" column="project_num" />
+		<result property="project_name" column="project_name" />
+		<result property="uname" column="uname" />
+		<result property="chat_time" column="chat_time" />
+		<result property="orignal_file" column="orignal_file" />
+		<result property="rename_file" column="rename_file" />
+	</resultMap>
 
 <select id="selectProgressList" parameterType="string" resultMap="resultProgressList">
 		select * from progress where project_num = #{ project_num }  ORDER BY title
@@ -187,6 +207,10 @@
 
 <select id="selectProject" parameterType="string" resultMap="resultProject">
 		select * from project where PROJECT_NUM = #{ projectNumber }
+</select>
+
+<select id="selectChat" parameterType="string" resultMap="resultChatList">
+		select * from chatting where PROJECT_NUM = #{ projectNumber }
 </select>
 
 <insert id="insertProject" parameterType="com.beet.HWABO.red.model.vo.UserProject">

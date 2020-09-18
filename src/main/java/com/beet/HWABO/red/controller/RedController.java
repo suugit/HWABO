@@ -1,6 +1,7 @@
 package com.beet.HWABO.red.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -398,6 +399,7 @@ public class RedController {
 
 		for (Chatting c : list) {
 			JSONObject job = new JSONObject();
+			job.put("ucode", URLEncoder.encode(c.getUcode(), "utf-8"));
 			job.put("uname", URLEncoder.encode(c.getUname(), "utf-8"));
 			job.put("content", URLEncoder.encode(c.getContent(), "utf-8"));
 			job.put("time", c.getChat_time().toString());
@@ -407,6 +409,21 @@ public class RedController {
 		sendJson.put("chatList", jarr);
 
 		return sendJson.toJSONString();
+	}
+	@RequestMapping(value="sendChat.do", method=RequestMethod.POST)
+	public void throwChatToServer(Chatting chat, HttpServletResponse response) throws IOException {
+		logger.info("채팅 정보 : " + chat);
+			response.setContentType("test/html; charset=utf-8"); //여기에 오타나면 파일 선택창이 뜬다
+			int r = redService.insertChat(chat);
+			PrintWriter out = response.getWriter();
+			if(r > 0) {
+				out.append("ok");
+				out.flush();
+			}else {
+				out.append("fail");
+				out.flush();
+			}
+			out.close();
 	}
 ////views start//////////////////////////////	
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)
