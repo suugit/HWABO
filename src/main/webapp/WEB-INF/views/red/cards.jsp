@@ -222,7 +222,7 @@ if((++w + 5) % 3 == 0){
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
                     <% //int num = p.getGoal() > 0 ? p.getGoal() : 0; %>
-                      <i class="fas fa-circle text-primary"></i> 진행률 <%// p.getDone() * 100 / num %>%
+                      <i class="fas fa-circle text-primary"></i> 진행률 <%= p.getDone() * 100 / p.getGoal() %>%
                     </span>
                   </div>
                 </div>

@@ -190,7 +190,7 @@
 </select>
 
 <insert id="insertProject" parameterType="com.beet.HWABO.red.model.vo.UserProject">
-		insert into project VALUES (#{project_num},#{name},#{explain},default,default,default,default,default,default,#{right},(select max(TO_NUMBER(order_by))+1 from project))
+		insert into project VALUES (#{project_num},#{name},#{explain},default,default,default,default,100000,1,#{right},(select max(TO_NUMBER(order_by))+1 from project))
 </insert>
 
 <insert id="insertProject2" parameterType="com.beet.HWABO.red.model.vo.UserProject">

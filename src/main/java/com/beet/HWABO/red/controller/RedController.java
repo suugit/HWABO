@@ -211,6 +211,7 @@ public class RedController {
 			status.setComplete(); // 요청성공, 200 전송
 			mv.setViewName("red/tables");
 			
+			session.setAttribute("totalProgress", 0);//진행률 기본값 (실제값은 아래에있어요)
 			ArrayList<Bpost> blist = redService.selectBpost(pnum);
 			if(blist.size() > 0) {
 			///
@@ -268,6 +269,10 @@ public class RedController {
 				mp.setProject_num(pnum);
 				mp.setGoal(goal);
 				mp.setDone(done);
+				if(goal == 0 && done == 0) {
+					mp.setGoal(100000);
+					mp.setDone(1);
+				}
 				logger.info("PROGRESS 데이터 사용가능...");
 				if(redService.updateProjectProgress(mp) > 0) {
 					logger.info("전체 진행률 업데이트 성공...");
@@ -276,6 +281,7 @@ public class RedController {
 				}
 			}
 			int total = done*100/goal;
+			/////////////////
 			session.setAttribute("totalProgress", total);
 			logger.info("세션에 전체진행률 추가완료... progress : " + total + "%");
 			}
@@ -341,7 +347,6 @@ public class RedController {
 				logger.info("들어가는 이름 : " + progress.getName());
 			}
 			
-			int i = 0;
 			for(String names : MemberNames) {
 				logger.info("나온 이름 : " + names);
 				ArrayList<Progress> list = new ArrayList<Progress>();
@@ -358,6 +363,10 @@ public class RedController {
 				mp.setProject_num(pnum);
 				mp.setGoal(goal);
 				mp.setDone(done);
+				if(goal == 0 && done == 0) {
+					mp.setGoal(100000);
+					mp.setDone(1);
+				}
 				logger.info("PROGRESS 데이터 사용가능...");
 				if(redService.updateProjectProgress(mp) > 0) {
 					logger.info("전체 진행률 업데이트 성공...");
@@ -369,6 +378,7 @@ public class RedController {
 				mv.setViewName("red/utilities-other");
 			}else {
 				mv.setViewName("welcome");
+				logger.info("전체 진행률 업데이트 실패... 추측 : DB테이블과 매치 불가");
 			}
 			
 			return mv;
