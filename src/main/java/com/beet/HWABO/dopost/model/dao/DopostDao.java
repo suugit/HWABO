@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.beet.HWABO.dopost.model.vo.Dopost;
-import com.beet.HWABO.member.model.vo.Member;
 
 
 @Repository("dopostDao")
@@ -39,5 +38,4 @@ public class DopostDao {
 		return session.selectOne("dopostMapper.selectone", dno);
 	}
 
-	
 }
