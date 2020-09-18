@@ -27,4 +27,10 @@ public class FileboxDao {
 		return (ArrayList<Filebox>)list;
 	}
 
+	public ArrayList<Filebox> selectTxtList(String pnum) {
+		List<Filebox>list = session.selectList("fileboxMapper.selectTxtList", pnum);
+		logger.info("리턴 된 파일박스 리스트 : "+list.toString());
+		return (ArrayList<Filebox>)list;
+	}
+
 }

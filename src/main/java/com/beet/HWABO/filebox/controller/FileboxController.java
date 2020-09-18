@@ -48,7 +48,7 @@ public class FileboxController {
 	public String selectListFileboxTxt(@RequestParam("pnum") String pnum, Model model) {
 		logger.info("전달 온 pnum 값 : " + pnum);
 		
-		ArrayList<Filebox> list = fileboxService.selectList(pnum);
+		ArrayList<Filebox> list = fileboxService.selectTxtList(pnum);
 		
 		if(list != null) {
 			

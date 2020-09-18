@@ -26,4 +26,10 @@ public class FileboxServiceImpl implements FileboxService{
 		return fileboxDao.selectList(pnum);
 	}
 
+	@Override
+	public ArrayList<Filebox> selectTxtList(String pnum) {
+		logger.info("dao 도착 " );
+		return fileboxDao.selectTxtList(pnum);
+	}
+
 }
