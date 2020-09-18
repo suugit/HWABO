@@ -104,5 +104,15 @@ public class RedServiceImpl implements RedService {
 	public ArrayList<Chatting> selectChat(String pnum) {
 		return redDao.selectChat(pnum);
 	}
+
+	@Override
+	public int insertChat(Chatting chat) {
+		return redDao.insertChat(chat);
+	}
+
+	@Override
+	public int delChat(Chatting chat) {
+		return redDao.delChat(chat);
+	}
 	
 }

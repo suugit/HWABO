@@ -3,6 +3,7 @@ package com.beet.HWABO.red.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -194,10 +195,12 @@ public class RedController {
 			ArrayList<MemberProject> memberProject = redService.selectMemberList(pnum);
 			ArrayList<String> names = new ArrayList<String>();
 			ArrayList<String> ucodes = new ArrayList<String>();
+			ArrayList<String> pnames = new ArrayList<String>();
 			
 			for(MemberProject m : memberProject) {
 				names.add(m.getUname());
 				ucodes.add(m.getUcode());
+				pnames.add(m.getName());
 			}
 			
 			HttpSession session = request.getSession();
@@ -205,10 +208,12 @@ public class RedController {
 			session.setAttribute("pmlist", memberProject);
 			session.setAttribute("names", names);
 			session.setAttribute("ucodes", ucodes);
+			session.setAttribute("pnames", ucodes);
 			logger.info("세션에 프로젝트넘버 추가완료... 프로젝트번호 : " + pnum);
 			logger.info("세션에 회원정보 목록 추가완료... pmlist : " + memberProject);
 			logger.info("세션에 회원이름 목록 추가완료... names : " + names);
 			logger.info("세션에 회원아이디 목록 추가완료... ucodes : " + ucodes);
+			logger.info("세션에 프로젝트명 추가완료... pnames : " + pnames);
 			status.setComplete(); // 요청성공, 200 전송
 			mv.setViewName("red/tables");
 			
@@ -389,7 +394,6 @@ public class RedController {
 	@ResponseBody 
 	public String intervalChat(@RequestParam("project_num") String pnum
 			,HttpServletResponse response) throws IOException {
-		logger.info("즐겨찾기 불러오기 run....");
 			
 		ArrayList<Chatting> list =  redService.selectChat(pnum);
 			
@@ -403,6 +407,7 @@ public class RedController {
 			job.put("uname", URLEncoder.encode(c.getUname(), "utf-8"));
 			job.put("content", URLEncoder.encode(c.getContent(), "utf-8"));
 			job.put("time", c.getChat_time().toString());
+			job.put("pnum", URLEncoder.encode(c.getProject_num(), "utf-8"));
 			jarr.add(job);
 		}
 
@@ -412,7 +417,6 @@ public class RedController {
 	}
 	@RequestMapping(value="sendChat.do", method=RequestMethod.POST)
 	public void throwChatToServer(Chatting chat, HttpServletResponse response) throws IOException {
-		logger.info("채팅 정보 : " + chat);
 			response.setContentType("test/html; charset=utf-8"); //여기에 오타나면 파일 선택창이 뜬다
 			int r = redService.insertChat(chat);
 			PrintWriter out = response.getWriter();
@@ -424,6 +428,24 @@ public class RedController {
 				out.flush();
 			}
 			out.close();
+	}
+	@RequestMapping(value = "delChat.do", method = RequestMethod.GET)
+	public String starDelete(Chatting chat, HttpServletResponse response) throws IOException {
+		response.setContentType("test/html; charset=utf-8");
+		Timestamp t = Timestamp.valueOf(chat.getContent());
+		chat.setChat_time(t);
+		PrintWriter out = response.getWriter();
+		if(redService.delChat(chat) > 0) {
+			logger.info("선택한 채팅기록 삭제됨 ....");
+			//out.append("ok");
+			//out.flush();
+		}else {
+			logger.info("채팅 삭제 실패....");
+			//out.append("fail");
+			//out.flush();
+		}
+		//out.close();
+		return "redirect:/ftables.do?project_num=" + chat.getProject_num();
 	}
 ////views start//////////////////////////////	
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)

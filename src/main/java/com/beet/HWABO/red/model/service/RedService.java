@@ -29,4 +29,6 @@ public interface RedService {
 	int updateProjectProgress(MemberProject mp);
 	ArrayList<Progress> selectProgressList(String pnum);
 	ArrayList<Chatting> selectChat(String pnum);
+	int insertChat(Chatting chat);
+	int delChat(Chatting chat);
 }

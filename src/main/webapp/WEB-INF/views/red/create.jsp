@@ -50,7 +50,6 @@ int r = ren.nextInt(99999999) + 1;
                       	 취소
                     </a>
                   </form>
-                  
                 </div>
 </td><td style="width:30%;"></td></tr>
 <tr><td>&nbsp;</td><td style="height:35%;">&nbsp;</td><td>&nbsp;</td></tr>      

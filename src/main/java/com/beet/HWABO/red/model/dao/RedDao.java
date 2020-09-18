@@ -94,5 +94,13 @@ public class RedDao {
 		List<Chatting> list = session.selectList("redMapper.selectChat", pnum);
 		return (ArrayList<Chatting>)list;
 	}
+
+	public int insertChat(Chatting chat) {
+		return session.insert("redMapper.insertChat", chat);
+	}
+
+	public int delChat(Chatting chat) {
+		return session.delete("redMapper.delChat", chat);
+	}
 	
 }

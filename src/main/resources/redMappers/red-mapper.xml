@@ -144,7 +144,7 @@
 		<result property="bpnum" column="bpnum" />
 		<result property="bchargename" column="bchargename" />
 	</resultMap>
-	<resultMap id="resultChatList" type="Bpost">
+	<resultMap id="resultChatList" type="com.beet.HWABO.red.model.vo.Chatting">
 		<result property="ucode" column="ucode" />
 		<result property="project_num" column="project_num" />
 		<result property="project_name" column="project_name" />
@@ -154,7 +154,7 @@
 		<result property="orignal_file" column="orignal_file" />
 		<result property="rename_file" column="rename_file" />
 	</resultMap>
-	<resultMap id="resultChat" type="Bpost">
+	<resultMap id="resultChat" type="com.beet.HWABO.red.model.vo.Chatting">
 		<id property="content" column="content" />
 		<result property="ucode" column="ucode" />
 		<result property="project_num" column="project_num" />
@@ -229,6 +229,10 @@
 		insert into Progress values (#{ ucode },#{ project_num },#{ name },#{ goal },#{ done },#{ title },#{ content })
 </insert>
 
+<insert id="insertChat" parameterType="com.beet.HWABO.red.model.vo.Chatting">
+		insert into chatting values (#{ ucode },#{ project_num },#{ project_name },#{ uname },#{ content },sysdate,null,null)
+</insert>
+
 <delete id="deleteProject" parameterType="string">
 		delete from project where PROJECT_NUM = #{ projectNumber }
 </delete>
@@ -239,6 +243,10 @@
 
 <delete id="deleteProgress" parameterType="string">
 		delete from Progress where PROJECT_NUM = #{ projectNumber } 
+</delete>
+
+<delete id="delChat" parameterType="com.beet.HWABO.red.model.vo.Chatting">
+		delete from chatting where project_num = #{ project_num } and ucode = #{ ucode } and chat_time = #{ chat_time }
 </delete>
 
 <update id="updateProjectProgress" parameterType="com.beet.HWABO.red.model.vo.MemberProject">
