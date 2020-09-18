@@ -1,4 +1,3 @@
-<%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -28,9 +27,9 @@
 <!-- 테스트버튼 시작 -->
 <div style="position:absolute;z-index:5;"><br>&nbsp;
 	원하는 페이지로 :
-    <button onclick="javascript:location.href='mybpost.do'">업무 모아보기</button>
-    <button onclick="javascript:location.href='myhwabo.do'">나의 화보</button>
-    <button onclick="javascript:location.href='yourhwabo.do'">팀원의 화보</button>
+    <button onclick="javascript:location.href='mybpost.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">업무 모아보기</button>
+    <button onclick="javascript:location.href='myhwabo.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">나의 화보</button>
+    <button onclick="javascript:location.href='yourhwabo.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">팀원의 화보</button>
     <button onclick="javascript:location.href='insertspost.do'">일정게시글 입력폼</button>
     <button onclick="javascript:location.href='selectonespost.do'">일정게시글 1개 조회 > 수정</button>
     <button onclick="javascript:location.href='alarm.do'">알림테스트</button>

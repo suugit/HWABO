@@ -59,13 +59,16 @@
 	
 <select id="selectPost" parameterType="PjMember" resultType="Post">
 	select * from realpost 
-	where ( ucode=#{ucode} 
-		      or 
-			  bcharge like '%#{ucode}%' )
-			and
-			( pnum = #{pnum} )
+	where ( ucode = #{ucode}  or  bcharge like '%'||#{ucode}||'%' )
+	and	( pnum = #{pnum} )
+	order by enrolldate desc
 </select>
 
+
+<select id="selectOneBpost" parameterType="string" resultType="Bpost">
+	select * from bpost 
+	where bno = #{bno}
+</select>
 
 
 

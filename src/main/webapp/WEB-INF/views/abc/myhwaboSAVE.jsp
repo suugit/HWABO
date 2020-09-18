@@ -1,7 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="java.util.ArrayList"%>
+<%@ page import="com.beet.HWABO.spost.model.vo.Post" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="pm"  value="${sessionScope.pmlist}" />
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<% ArrayList<Post> list = (ArrayList<Post>)request.getAttribute("list"); %>
 <!DOCTYPE html>
+<c:set var="postlist" value="${list }"/>
 <html lang="en">
 
 <head>
@@ -34,15 +40,6 @@
 	href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
 
-<script type="text/javascript" src="resources/js/scripts.js"></script>
-<script type="text/javascript">
-$("div").on('click', function(e){
-
-	return false;
-
-	});
-</script>
-
 </head>
 
 <body id="page-top">
@@ -55,8 +52,10 @@ $("div").on('click', function(e){
      <c:import url="/WEB-INF/views/abc/entersideFixed.jsp"></c:import>
 <!-- End of Sidebar2right -->
 
-	
-	<div id="wrapper"  style="width:1300px;">
+
+
+	<!-- Page Wrapper -->
+	<div id="wrapper" style="width:1300px;">
 
 		<!-- Sidebar -->
 <div style="width:17%"></div>
@@ -75,11 +74,13 @@ $("div").on('click', function(e){
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
+
+
 						<!-- 즐겨찾기 시작 -->
-						
+					
 							<div class="card mb-4 py-3 border-left-info">
-								<div style="margin-top: 0px;  height: 50px;">
-									<h3>&nbsp;&nbsp;즐 겨 찾 기</h3>
+								<div style="margin-top: 0px;">
+									<h1>&nbsp;&nbsp;즐 겨 찾 기</h1>
 									<hr>
 								</div>
 								<!-- 게시글안쪽 -->
@@ -87,74 +88,91 @@ $("div").on('click', function(e){
 								<div class="card-body" style="height: 400px; overflow: auto;">
 									<div class="table-responsive">
 										<table class="table table-bordered" id="dataTable"
-											style="width: 90%; cellspacing: 0;">
+											style="width: 100%; cellspacing: 0;">
+											<colgroup>
+											    <col style="width:15%" >
+											    <col style="width:25%">
+											    <col style="width:40%">
+											    <col style="width:20%">
+											  </colgroup> 
 											<thead>
 												<tr>
 													<th>유형</th>
 													<th>제목</th>
-													<th>내용</th>
-													<th>수정일</th>
+													<th>내용</th>													
 													<th>등록일</th>
 												</tr>
-
 											</thead>
 											<tbody>
-												<tr>
-													<td>글</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>업무</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>일정</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
+									<%if(list != null){ %>
+										<% for(Post post : list){ %>
+											<% if( post.getFirstword().equals("s") ){ %>
+													<tr>
+														<td><div style='margin-top:22px; margin-left:20px; min-height: 43px; max-height:43px; overflow: hidden;' >일정</div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getStitle()%></div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getScontent()%></div></td>
+														<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getSenrolldate()%></div></td>
+													</tr>
+											<% } %>
+											<% if( post.getFirstword().equals("c") ){ %>
+													<tr>	
+														<td><div style='margin-top:22px; margin-left:28px; min-height: 43px; max-height:43px; overflow: hidden;' >글</div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getCtitle()%></div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getCcontent()%></div></td>
+														<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getCenrolldate()%></div></td>
+													</tr>
+											<% } %>
+											<% if( post.getFirstword().equals("b") ){ %>
+													<tr>	
+														<td><div style='margin-top:22px; margin-left:20px; min-height: 43px; max-height:43px; overflow: hidden;' >업무</div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBtitle()%></div></td>
+														<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBcontent()%></div></td>
+														<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBenrolldate()%></div></td>
+													</tr>
+											<% } %>
+										
+										<% } %>
+									<% } %>
+											<%-- <c:forEach var="post" items="${requestScope.list }" varStatus="status">
+														
+													<tr>
+														<td colspan="4">${post.firstword }</td>
+														
+													</tr>		 --%>								
+													<%-- <c:if test="${post.firstword == s}">
+													<tr>
+														<td>일정 ${status.index }</td>
+														<td>${post.stitle }</td>
+														<td>${post.scontent }</td>
+														<td>${post.senrolldate }</td>
+													</tr>
+													</c:if>
+												
+												
+													<c:if test="${post.firstword == b}">
+													<tr>	
+														<td>업무 ${status.index }</td>
+														<td>${post.btitle }</td>
+														<td>${post.bcontent }</td>
+														<td>${post.benrolldate }</td>
+													</tr>
+													</c:if>
+												
+												
+													<c:if test="${post.firstword == c}">
+													<tr>	
+														<td>글 ${status.index }</td>
+														<td>${post.ctitle }</td>
+														<td>${post.ccontent }</td>
+														<td>${post.cenrolldate }</td>
+													</tr>
+													</c:if> 
+													
+													</c:forEach>
+													--%>
+												
+												
+												
 											</tbody>
 										</table>
 									</div>
@@ -164,17 +182,16 @@ $("div").on('click', function(e){
 						<!-- 즐겨찾기 끝 -->
 					
 
-		<br>
-					<div class="checks" align="left" style="margin-left: 1%; font-size: 23px; " >
+					<br>
+					<div class="checks" align="left"
+						style="margin-left: 1%; font-size: 23px;">
 						<form action="#">
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;글 &nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;업 무 &nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;일 정&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;할 일&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;투 표&nbsp;&nbsp;&nbsp;&nbsp;</label></span>
+							<span style="color: #42BBBA;"><label><input	name="c" type="radio">&nbsp;글	&nbsp;&nbsp;&nbsp;&nbsp; </label></span> 
+							<span style="color: #42BBBA;"><label><input	name="b" type="radio">&nbsp;업 무&nbsp;&nbsp;&nbsp;&nbsp; </label></span> 
+							<span style="color: #42BBBA;"><label><input	name="s" type="radio">&nbsp;일 정&nbsp;&nbsp;&nbsp;&nbsp; </label></span> 
 						</form>
 					</div>
-					
+
 					<!-- 게시글시작 -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
@@ -347,10 +364,12 @@ $("div").on('click', function(e){
 				</div>
 				<!-- /.container-fluid -->
 
-			</div>
+				<!-- Begin Page Content -->
+				</div>
 				<!-- End of Main Content -->
 
-								<!-- Footer -->
+
+				<!-- Footer -->
 				<footer class="sticky-footer bg-white">
 					<div class="container my-auto">
 						<div class="copyright text-center my-auto">
@@ -359,16 +378,42 @@ $("div").on('click', function(e){
 					</div>
 				</footer>
 				<!-- End of Footer -->
-
-
 			</div>
 			<!-- End of Content Wrapper -->
+			
 <div style="width:25%"></div>
 		</div>
 		<!-- End of Page Wrapper -->
-			
-	</div>
+</div>
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> <i
+			class="fas fa-angle-up"></i>
+		</a>
 
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ready to
+							Leave?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">Ã</span>
+						</button>
+					</div>
+					<div class="modal-body">Select "Logout" below if you are
+						ready to end your current session.</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">Cancel</button>
+						<a class="btn btn-primary" href="login.jsp">Logout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<!-- Bootstrap core JavaScript-->
 		<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
 		<script
@@ -389,6 +434,7 @@ $("div").on('click', function(e){
 
 		<!-- Page level custom scripts -->
 		<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
+
 </body>
 
 </html>

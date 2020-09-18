@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -37,7 +36,7 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			<li class="nav-item"><a class="nav-link collapsed" href="mybpost.do"
+			<li class="nav-item"><a class="nav-link collapsed" href="myhwabo.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}"
 				data-target="#collapsePages" aria-expanded="true"
 				aria-controls="collapsePages"> <i class="fas fa-tasks"></i> <span>업무 모아보기</span>
 			</a> </li>
@@ -60,7 +59,7 @@
 						<!-- Divider -->
 			<hr class="sidebar-divider">
 			
-			<li class="nav-item"><a class="nav-link collapsed" href="myhwabo.do?ucode=${sessionScope.ucode }"
+			<li class="nav-item"><a class="nav-link collapsed" href="myhwabo.do?ucode=${sessionScope.ucode }&pnum=${sessionScope.pnum}"
 				data-target="#collapsePages" aria-expanded="true"
 				aria-controls="collapsePages"> <i class="fas fa-chalkboard"></i>
 					<span>나의 화보</span>
@@ -80,7 +79,11 @@
 					<div class="bg-white py-2 collapse-inner rounded" style="overflow: auto; max-height: 300px;">
 						<h6 class="collapse-header">HWABO</h6>
 							<c:forEach var="user" items="${sessionScope.pmlist }">
-							<a class="collapse-item" href="yourhwabo.do?ucode=${user.ucode }"><span><label>${user.uname }</label></span></a>
+								
+								<a class="collapse-item" href="javascript: location.href='yourhwabo.do?ucode=${user.ucode}&pnum=${user.project_num}'">
+									<span><label>${user.uname }</label></span>
+								</a>
+							
 							</c:forEach>							
 					</div>
 				</div></li>

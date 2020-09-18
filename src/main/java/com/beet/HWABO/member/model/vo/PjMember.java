@@ -6,6 +6,10 @@ public class PjMember implements java.io.Serializable{
 	private String pnum;
 	private String ucode;
 	
+	public PjMember() {
+		super();
+	}
+	
 	public PjMember(String pnum, String ucode) {
 		super();
 		this.pnum = pnum;

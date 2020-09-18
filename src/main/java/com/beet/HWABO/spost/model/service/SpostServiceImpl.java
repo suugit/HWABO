@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.beet.HWABO.abc.model.vo.Love;
+import com.beet.HWABO.abc.model.vo.Postreply;
 import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.PjMember;
@@ -22,6 +24,17 @@ public class SpostServiceImpl implements SpostService{
 
 
 //-------- Spost -------------------------------------------------------------------------------------------------
+	
+	@Override
+	public Spost selectOneSpost(String sno) {
+		return spostDao.selectOneSpost(sno);
+	}
+	
+	@Override
+	public ArrayList<Spost> selectAllSpost() {
+		return spostDao.selectAllSpost();
+	}
+	
 	@Override
 	public int insertSpost(Spost spost) {
 		return spostDao.insertSpost(spost);
@@ -37,75 +50,72 @@ public class SpostServiceImpl implements SpostService{
 		return spostDao.updateSpost(spost);
 	}
 
-	@Override
-	public int insertSpostLove(String sno) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public int deleteSpostLove(String sno) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
+	
+//-------- Bpost -------------------------------------------------------------------------------------------------	
+	
 	@Override
-	public Spost selectOneSpost(String sno) {
-		return spostDao.selectOneSpost(sno);
+	public ArrayList<Bpost> selectMyBPOST(PjMember pmember) {
+		return spostDao.selectMyBPOST(pmember);
 	}
+	
+	@Override
+	public Bpost selectOneBpost(String bno) {
+		return spostDao.selectOneBpost(bno);
+	}
+	
+	
 	
 //-------- Post -------------------------------------------------------------------------------------------------	
 	
 	@Override
-	public ArrayList<Post> selectMyPost() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Post> selectMyPost(PjMember pmember) {
+		return spostDao.selectMyPost(pmember);
 	}
 	
-	@Override
-	public ArrayList<Post> selectPost(String postno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+//-------- Love -------------------------------------------------------------------------------------------------	
 
 	@Override
-	public int insertPostReply(String postno) {
+	public int insertSpostLove(Love love) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+
+	@Override
+	public int deleteSpostLove(Love love) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+		
+//-------- Postreply -------------------------------------------------------------------------------------------------	
+	
+	@Override
+	public int insertPostReply(Postreply reply) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public int deletePostReply(String postno) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	@Override
 	public int updatePostReply(String postno) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
-	public int deletePostReply(String postno) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	
-//-------- Member -------------------------------------------------------------------------------------------------
-	@Override
-	public ArrayList<Member> selectMyTeam(String num) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
-	@Override
-	public ArrayList<Post> selectPostTest() {
-		return spostDao.selectPostTest();
-	}
 
 
-	@Override
-	public ArrayList<Bpost> selectMyBPOST(PjMember pmember) {
-		return spostDao.selectMyPost(pmember);
-	}
+
 
 
 

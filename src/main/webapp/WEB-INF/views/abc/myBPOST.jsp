@@ -1,4 +1,3 @@
-<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.ArrayList"%>
 <%@ page import="com.beet.HWABO.bpost.model.vo.Bpost" %>
@@ -16,82 +15,6 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript">
-
-
-$(document).ready(function(){
-});
-
-function bkindshow(){
-$("#'${b.bkind}'").button('toggle')
-
-}
-
-var names = "";
-function addbcharge(){
-	var name = $(event.target).text();
-	names += name + " ";
-	
-	 $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>');
-	 //$('#bform').val(name); 
-	 
-	 $('#bform').val(names);
-	 alert($("#bform").val()); 
-	
-}
-
-function unSelected(){
-	$(event.target).parent().remove();
-}
-
-function validate(){
-	//날짜에 빈 공백이 들어오니까 공백일때 널로 바꿔라 라는 내용을 추가한다
-	return true;
-}
-
-</script>
-
-<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript">
-function sendInsert(index){
-	console.log("sendInsert : " + index);
-	console.log($("#no_"+ index).val());
-	$.ajax({	      
-	      url: "insertcabinet.do",
-	      data: {no: $("#no_"+ index).val(), ucode: $("#ucode_" + index).val(), pnum: $("#pnum_" + index).val()},     
-	      type: "post",
-	      success: function(result){
-	         if(result == "ok"){
-	            alert("보관함 보내기 성공 !");
-	            console.log("보관함 보내기 성공 !");
-	         }else{
-	            alert("값이 보내졌지만 결과는 ok가 아님");
-	         }
-	      
-	      },
-	      error: function(request, status, errorData){
-	    	 
-	            console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
-	         }
-	      
-	      }); //에이작스
-}
-
-$(function(){
-	//보관함
-
-	
-	 $(".liketoggle").click(function() {
-		   $(this).find("i").toggleClass("fas far");
-		   $(this).find("span").text(function(i, v) {
-		     return v === '보관' ? '보관됨' : '보관'
-		   })
-		 });
-	
-});	 
-</script>
 <title>HWABO</title>
 
 <!-- Custom fonts for this template -->
@@ -113,7 +36,11 @@ $(function(){
 
 <script type="text/javascript" src="resources/js/scripts.js"></script>
 <script type="text/javascript">
-$("div").on('click', function(e){
+function selectOneBpost(){
+	var 
+}
+
+$("#").on('click', function(e){
 
 	return false;
 
@@ -158,9 +85,8 @@ $("div").on('click', function(e){
 						<!-- 즐겨찾기 시작 -->
 						
 							<div class="card mb-4 py-3 ">
-								<div style="margin-top: 10px; margin-left: 15px;margin-bottom: 0px;">
-									<h3>&nbsp;&nbsp;OOO님의 업무</h3>
-								
+								<div style="font-size:15pt; margin-top: 10px; margin-left: 15px;margin-bottom: 0px;">
+									<strong>&nbsp;&nbsp;${sessionScope.uname } </strong>님의 업무 모아보기								
 								</div>
 								<!-- 게시글안쪽 -->
 
@@ -175,6 +101,8 @@ $("div").on('click', function(e){
 						</form>
 					</div>
 									<div class="table-responsive">
+									
+									
 										<table class="table table-bordered" id="dataTable"
 											style="width: 100%; cellspacing: 0;">
 											<colgroup>
@@ -191,11 +119,15 @@ $("div").on('click', function(e){
 													<th>등록일</th>
 												</tr>
 											</thead>
+											
 											<tbody>
 										<% if(!list.isEmpty()){ %>
 											<% for(Bpost bpost : list){ %>
-													<tr>	
+												
+													<tr onclick="selectOneBpost();"  style="cursor:hand">	
+													
 														<td style="vertical-align: middle; text-align: center;">
+														
 																<%if(bpost.getBkind().equals("요청")){ %>
 																	<strong style="font-size:15pt; color: #047AAC; margin-top:30px; vertical-align: middle; ">요 청</strong>															
 																<% } %>
@@ -213,14 +145,25 @@ $("div").on('click', function(e){
 																<% } %>
 															</td>
 														<td style="vertical-align: middle; text-align: center;"><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBtitle()%></div></td>
-														<td style="vertical-align: middle; text-align: center;"><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBcontent()%></div></td>
+														<td style="vertical-align: middle; text-align: center;">
+															<label><a href="bpostOne.do?bno=<%= bpost.getBno()%>"><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' >
+															<%= bpost.getBcontent()%></a></div></label>
+														</td>
 														<td style="vertical-align: middle; text-align: center;"><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBenrolldate()%></div></td>
 													</tr>	
+													
 											<% } %>
-												
+											
+										<% }else{ %>
+											<tr>
+												<td colspan="4" style="vertical-align: middle; text-align: center;">
+													조회된 ${sessionScope.uname } 님의 업무가 없습니다
+												</td>
+											</tr>
 										<% } %>
 											</tbody>
 										</table>
+							
 									</div>
 								</div>
 							</div>
