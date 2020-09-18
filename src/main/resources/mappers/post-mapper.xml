@@ -47,7 +47,8 @@
 	
 <select id="selectBpost" parameterType="PjMember" resultType="Bpost">
 
-	select * from bpost
+	select BNO, BTITLE, BUCODE, BWRITER, BSTARTDAY, BENDDAY, BKIND, BCHARGE, BCONTENT, BENROLLDATE, BOPEN, BRENAMEFILE, BORIGINFILE, BPNUM, BCHARGENAME
+	from bpost
 	where bucode=#{ucode}
 			and
 			bpnum=#{pnum}

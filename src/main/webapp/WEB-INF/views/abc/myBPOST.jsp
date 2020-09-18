@@ -37,6 +37,21 @@
 <script type="text/javascript" src="resources/js/scripts.js"></script>
 <script type="text/javascript">
 
+$(function(){
+    $("#trclick").click(function(){
+    	$.ajax({
+    		url: "bpostOne.do",
+    		data: { ucode: ${sessionScope.ucode}, pnum:  ${sessionScope.pnum}, bno= }
+    		
+    	});
+    	
+        $('div.modal').modal({
+                      remote : 'bpostOneView.jsp'
+                });
+    })
+})
+
+
 $("#").on('click', function(e){
 
 	return false;
@@ -76,10 +91,8 @@ $("#").on('click', function(e){
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					
-						
 
-						<!-- 즐겨찾기 시작 -->
+						<!-- 업무 모아보기 시작 -->
 						
 							<div class="card mb-4 py-3 ">
 								<div style="font-size:15pt; margin-top: 10px; margin-left: 15px;margin-bottom: 0px;">
@@ -100,7 +113,7 @@ $("#").on('click', function(e){
 									<div class="table-responsive">
 									
 									
-										<table class="table table-bordered" id="dataTable"
+										<table class="table table-bordered table-hover" id="dataTable"
 											style="width: 100%; cellspacing: 0;">
 											<colgroup>
 											    <col style="width:15%" >
@@ -121,7 +134,7 @@ $("#").on('click', function(e){
 										<% if(!list.isEmpty()){ %>
 											<% for(Bpost bpost : list){ %>
 												
-													<tr style="cursor:hand">	
+													<tr id="trclick" onclick="javascript:location.href='bpostOne.do?bno=<%= bpost.getBno()%>&ucode=${sessionScope.ucode }&pnum=${sessionScope.pnum }'" style="cursor:hand;">	
 													
 														<td style="vertical-align: middle; text-align: center;">
 														
@@ -141,10 +154,16 @@ $("#").on('click', function(e){
 																	<strong style="font-size:15pt; color: #6b6d7d; margin-top:20px; vertical-align: middle; ">보 류</strong>																
 																<% } %>
 															</td>
+														
 														<td style="vertical-align: middle; text-align: center;"><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBtitle()%></div></td>
 														<td style="vertical-align: middle; text-align: center;">
-															<label><a href="bpostOne.do?bno=<%= bpost.getBno()%>"><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' >
-															<%= bpost.getBcontent()%></a></div></label>
+														<div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' >
+															<%if(bpost.getBcontent() != null){%> 
+																<%= bpost.getBcontent()%> 
+															<% }else{ %>
+															&nbsp;
+															<% } %>
+															</div>
 														</td>
 														<td style="vertical-align: middle; text-align: center;"><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBenrolldate()%></div></td>
 													</tr>	
@@ -218,7 +237,7 @@ $("#").on('click', function(e){
 		<script type="text/javascript"	src="/resources/js/jquery-3.5.1.min.js"></script>
 						<script type="text/javascript">
 						$(function(){
-							var message = ${message}
+							var message = ${requestScope.message}
 							if(message != null){
 								alert(message);
 							}

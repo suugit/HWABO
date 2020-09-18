@@ -27,31 +27,14 @@
 
 <title>HWABO</title>
 
-<style>
-#myProgress {
-	width: 100%;
-	background-color: #ddd;
-}
-#myBar {
-	width: 0%;
-	height: 30px;
-	background-color: #4CAF50;
-	text-align: center;
-	line-height: 30px;
-	color: white;
-}
-</style>
-<style type="text/css">
-#dis {
-	/* display 안보이게 해라 */
-	display: none;
-	/* background : gray; */
-}
-</style>
 <style type="text/css">
 div#showfile imag {
 	width: 10%;
 	height: 10%;
+}
+
+#import{
+	pointer-events: none; 
 }
 </style>
 </head>
@@ -136,201 +119,78 @@ div#showfile imag {
 
 <body id="page-top">
 
-
-	<div class="card shadow mb-4">
-
-
-
-
-		<div
-			class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-			<h6 class="m-0 font-weight-bold text-primary">
-
-				<i class="fas fa-user-circle"></i> ${post.bwriter}<br>${post.benrolldate }</h6>
-			<!-- 	<button type="submit" class="btn btn-custom btn-sm liketoggle" name="like"><span>보관</span> <i class="far fa-bookmark"></i></button>
-					 -->
-
-
-			<!-- 수정삭제 드롭다운 -->
-			<div class="dropdown no-arrow">
-
-				<!-- 보관함 담기여부 -->
-				<!--   <button id="cabinetshow" class="btn btn-custom btn-sm ">
-			   <i class="far fa-bookmark"></i></button>
-           		 -->
-
-				<!-- <form action="insertcabinet.do" method="post"> -->
-
-				<button id="cabinetshow" class="btn btn-custom btn-sm liketoggle"
-					name="like" onclick="sendInsert();">
-					<span>보관</span> <i class="far fa-bookmark"></i>
-				</button>
-				<input type="hidden" id="ucode" value="${sessionScope.ucode }">
-				<input type="hidden" id="no" value="${post.bno }"> <input
-					type="hidden" id="pnum" value="${post.bpnum }">
-
-
-
-				<div id="d5"></div>
-				<c:if test="${sessionScope.ucode eq post.bucode }">
-					<a class="dropdown-toggle" href="#" role="button"
-						id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> <i
-						class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-					</a>
-					<div
-						class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-						aria-labelledby="dropdownMenuLink">
-
-						<c:url var="bup" value="buppage.do">
-							<c:param name="bno" value="${post.bno }" />
-
-						</c:url>
-						<a class="dropdown-item" href="${bup }">수정</a>
-
-						<c:url var="bdel" value="deletebpost.do">
-							<c:param name="bno" value="${post.bno }" />
-							<c:param name="brenamefile" value="${post.brenamefile }" />
-						</c:url>
-						<a class="dropdown-item" href="${bdel }">삭제</a>
-
-					</div>
-				</c:if>
-			</div>
-			<!-- 드롭다운 끝 -->
-
-		</div>
-		<!-- card-header py-3 d-flex flex-row align-items-center justify-content-between -->
-
-		<!-- 게시글안쪽 -->
-		<div class="card-body">
-
-			<c>제목 : ${post.btitle}</c>
-			<hr>
-
-		<c:if test="${post.bkind eq '요청'}">
-			<div>
-				<label class="btn btn-info">요청
-				</label> <label class="btn btn-light"> 진행
-				</label> <label class="btn btn-light">피드백
-				</label> <label class="btn btn-light">완료
-				</label> <label class="btn btn-light">보류
-				</label>
-			</div>
-		</c:if>
-		<c:if test="${post.bkind eq '진행'}">
-			<div class="btn-group" >
-				<label class="btn btn-light">요청
-				</label> <label class="btn btn-primary">진행
-				</label> <label class="btn btn-light">피드백
-				</label> <label class="btn btn-light">완료
-				</label> <label class="btn btn-light">보류
-				</label>
-			</div>
-		</c:if>
-		<c:if test="${post.bkind eq '피드백'}">
-			<div class="btn-group" >
-				<label class="btn btn-light">요청
-				</label> <label class="btn btn-light">진행
-				</label> <label class="btn btn-warning">피드백
-				</label> <label class="btn btn-light">완료
-				</label> <label class="btn btn-light">보류
-				</label>
-			</div>
-		</c:if>
-		<c:if test="${post.bkind eq '완료'}">
-			<div class="btn-group" >
-				<label class="btn btn-light"> 요청
-				</label> <label class="btn btn-light">진행
-				</label> <label class="btn btn-light">피드백
-				</label> <label class="btn btn-success">완료
-				</label> <label class="btn btn-light">보류
-				</label>
-			</div>
-		</c:if>
-		<c:if test="${post.bkind eq '보류'}">
-			<div class="btn-group" >
-				<label class="btn btn-light">요청
-				</label> <label class="btn btn-light">진행
-				</label> <label class="btn btn-light">피드백
-				</label> <label class="btn btn-light">완료
-				</label> <label class="btn btn-secondary">보류
-				</label>
-			</div>
-		</c:if>
-
-			
-			<hr>
-
-
-
-			<div>
-				<i class="fas fa-users">담당자 : ${post.bchargename }</i>
-			</div>
-			<hr>
-
-			<div>
-				<table>
-					<tr>
-						<td>내용 :</td>
-						<td>${post.bcontent}</td>
-					</tr>
-				</table>
-
-				<table>
-					<c:if test="${! empty post.boriginfile }">
-						<tr>
-							<td>파일 :</td>
-							<br>
-						</tr>
-						<tr>
-							<th>
-
-								<div id="showfile" style="overflow: hidden;">
-									<img src="resources/bupfile/${post.brenamefile}"
-										style="width: 40%; height: 10%;">
-								</div>
-							</th>
-							<c:url var="ubf" value="bfdown.do">
-								<c:param name="ofile" value="${post.boriginfile}" />
-								<c:param name="rfile" value="${post.brenamefile}" />
-							</c:url>
-							<td><a href="${ubf }"> ${post.boriginfile}</a></td>
-						</tr>
-					</c:if>
-					<c:if test="${empty post.boriginfile}">
-					&nbsp;
-					</c:if>
-				</table>
-				<hr>
-				<table style="width: 100%;">
-					<tr>
-
-
-						<td style="width: 20%;"><a href="#"
-							class="btn btn-primary btn-icon-split btn-sm"> <span
-								class="icon text-white-50"> <i class="far fa-heart"></i>
-							</span> <span class="text">좋아요 </span>
-						</a></td>
-						<td style="width: 20%;"></td>
-						<td style="width: 20%;"></td>
-						<td style="width: 20%;"></td>
-						<td style="width: 20%; float: right;"></td>
-					</tr>
-				</table>
-			</div>
-			<div class="px-3 py-5 bg-gradient-light text-white"
-				style="height: 10px;">
-				<input type="text" class="form-control" placeholder="답글을 입력하세요">
-			</div>
-
-		</div>
-		<!-- 게시글안쪽  -->
-		
-		
-	</div>
+	<table class="table" style="margin:auto;z-index:8; position:fixed; width:40%;height:40%;  background-color:white; border: 1px solid grey;border-radius: 10px;">
+	<tr>
+		<td>&nbsp;</td>
 	
-	<!-- card shadow mb-4 -->
+		<td align="right">
+
+			<button id="cabinetshow" class="btn btn-light"
+				name="like" onclick="sendInsert();">
+				<span>보관</span>
+			</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+			<span >
+				<c:url var="bup" value="buppage.do">
+							<c:param name="bno" value="${post.bno }" />
+				</c:url>
+				<a class="btn btn-light" href="${bup }">수정</a>
+			</span>
+			&nbsp;
+			<span>
+				<c:url var="bdel" value="deletebpost.do">
+					<c:param name="bno" value="${post.bno }" />
+					<c:param name="brenamefile" value="${post.brenamefile }" />
+				</c:url>
+				<a class="btn btn-light" href="${bdel }">삭제</a>
+			</span>
+		</td>
+	</tr>
+	<tr><th style="width: 10%">작성자</th><td>${post.bwriter }</td></tr>
+	<tr><th>제 목</th><td>${post.btitle }</td></tr>
+	<tr><th>유 형</th>
+		  <td>
+				<c:if test="${post.bkind eq '요청'}">
+					요청
+				</c:if>
+				<c:if test="${post.bkind eq '진행'}">
+					진행
+				</c:if>
+				<c:if test="${post.bkind eq '피드백'}">
+					피드백
+				</c:if>
+				<c:if test="${post.bkind eq '완료'}">
+					완료
+				</c:if>
+				<c:if test="${post.bkind eq '보류'}">
+					보류
+				</c:if>
+		  </td>
+	</tr>
+	<tr><th>담당자</th><td>${post.bchargename }</td></tr>
+	<tr><th>내 용</th><td><c:if test="${post.bcontent != null }" > ${post.bcontent }</c:if><c:if test="${post.bcontent == null }" >&nbsp;</c:if></td></tr>
+	
+	<c:if test="${! empty post.boriginfile }">
+		<tr>
+			<th>파 일</th>
+			<td><div id="showfile" style="overflow: hidden;">
+					<img src="resources/bupfile/${post.brenamefile}"
+						style="width: 40%; height: 10%;">
+				</div>
+				<br>
+				<c:url var="ubf" value="bfdown.do">
+					<c:param name="ofile" value="${post.boriginfile}" />
+					<c:param name="rfile" value="${post.brenamefile}" />
+				</c:url>
+				<a href="${ubf }"> ${post.boriginfile}</a>
+			</td>
+	</c:if>
+	<c:if test="${empty post.boriginfile}">
+	 <tr><td colspan="2">&nbsp;</td></tr>
+	</c:if>
+	
+	
+	</table>
 		<!-- Bootstrap core JavaScript-->
 		<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
 		<script
