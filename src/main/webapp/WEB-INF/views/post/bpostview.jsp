@@ -166,11 +166,11 @@ $(function(){
            		 
                <!-- <form action="insertcabinet.do" method="post"> -->
               
-               <button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle" name="like" onclick="sendInsert(${status.index});">
+               <button id="cabinetshow" class="btn btn-custom btn-sm liketoggle" name="like" onclick="sendInsert();">
            	   <span>보관</span> <i class="far fa-bookmark"></i></button>
-           	    <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
-			   <input type="hidden" id="no_${status.index }" value="${b.bno }">
-			   <input type="hidden" id="pnum_${status.index }" value="${b.bpnum }" >
+           	    <input type="hidden" id="ucode" value="${sessionScope.ucode }" >
+			   <input type="hidden" id="no" value="${post.bno }">
+			   <input type="hidden" id="pnum" value="${post.bpnum }" >
 	
              
 
@@ -182,14 +182,14 @@ $(function(){
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                      
                       <c:url var="bup" value="buppage.do">
-                      	<c:param name="bno" value="${b.bno }"/>
+                      	<c:param name="bno" value="${post.bno }"/>
                     
                       </c:url> 
                      <a class="dropdown-item" href="${bup }">수정</a>
                      	
                        <c:url var="bdel" value="deletebpost.do">
-                      	<c:param name="bno" value="${b.bno }"/>
-                    	<c:param name="brenamefile" value="${b.brenamefile }"/>
+                      	<c:param name="bno" value="${post.bno }"/>
+                    	<c:param name="brenamefile" value="${post.brenamefile }"/>
                       </c:url>
                       <a class="dropdown-item" href="${bdel }">삭제</a>
                  		
@@ -202,7 +202,7 @@ $(function(){
 			<!-- 게시글안쪽 -->	
 			<div class="card-body">
 							
-			   <c>제목 : ${b.btitle}</c>
+			   <c>제목 : ${post.btitle}</c>
 			   <hr>
 							
 							
@@ -228,7 +228,7 @@ $(function(){
 			
 			
 			<div>
-			   <i class="fas fa-users">담당자 :  ${b.bchargename }</i>
+			   <i class="fas fa-users">담당자 :  ${post.bchargename }</i>
 			</div>
 			<hr>
 			
@@ -236,12 +236,12 @@ $(function(){
 			  <table>
 				<tr>
 					<td>내용 : </td>
-					<td> ${b.bcontent}</td>
+					<td> ${post.bcontent}</td>
 				 </tr>
 		      </table>
 					
 			  <table>
-				 <c:if test="${! empty b.boriginfile }">
+				 <c:if test="${! empty post.boriginfile }">
 				 <tr>
 					<td>파일 : </td>
 					   <br>
@@ -250,17 +250,17 @@ $(function(){
 				   <th>
 							   
 					 <div id="showfile" style="overflow:hidden;"> 
-				     <img src="resources/bupfile/${b.brenamefile}" style="width : 40%;height : 10%;">
+				     <img src="resources/bupfile/${post.brenamefile}" style="width : 40%;height : 10%;">
 					 </div> 
 				   </th>
 					 <c:url var="ubf" value="bfdown.do">
-					  <c:param name="ofile" value="${b.boriginfile}"/>
-					  <c:param name="rfile" value="${b.brenamefile}"/>
+					  <c:param name="ofile" value="${post.boriginfile}"/>
+					  <c:param name="rfile" value="${post.brenamefile}"/>
 					 </c:url> 
-					 <td><a href="${ubf }"> ${b.boriginfile}</a></td>
+					 <td><a href="${ubf }"> ${post.boriginfile}</a></td>
 				</tr>
 			    </c:if>
-					<c:if test="${empty b.boriginfile}">
+					<c:if test="${empty post.boriginfile}">
 					&nbsp;
 					</c:if>
 			 </table><hr>

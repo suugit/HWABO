@@ -236,14 +236,16 @@ public class abcController {
 	
 	// 업무 게시글 상세보기용 메소드
 	@RequestMapping("bpostOne.do")
-	public void selectOneBpost(Model model, String bno) {
+	public String selectOneBpost(Model model, String bno) {
 
 		Bpost bpost = spostService.selectOneBpost(bno);
 
 		if (bpost != null) {
-			model.addAttribute("bpost", bpost);
+			model.addAttribute("post", bpost);
+			return "post/bpostOneview";
 		} else {
 			model.addAttribute("message", "업무 게시글 상세보기에 실패하였습니다.");
+			return "redirect:/mybpost.do";
 		}
 
 	}

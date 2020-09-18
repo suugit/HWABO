@@ -15,8 +15,8 @@
 		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary">
 				<i class="fas fa-user-circle"></i> 
-				${spost.swriter}<br> 
-				<fmt:formatDate value="${spost.senrolldate}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>
+				${post.swriter}<br> 
+				<fmt:formatDate value="${post.senrolldate}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>
 				
 			</h6>
 
@@ -47,18 +47,18 @@
 		</div>
 		<div class="card-body">
 			<!-- 게시글안쪽 -->
-			<h6>${spost.stitle }</h6>
+			<h6>${post.stitle }</h6>
 			<hr>
 			<table>
 				<tr>
 					<td>시 작 날 짜</td><td>끝 날 짜</td>
 				</tr>
 				<tr>
-					<td><fmt:formatDate value="${spost.sstartday}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>
+					<td><fmt:formatDate value="${post.sstartday}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>
 					</td>
-					<td><fmt:formatDate value="${spost.sendday}" pattern="yyyy-MM-dd HH시 mm분 E요일"/></td>
+					<td><fmt:formatDate value="${post.sendday}" pattern="yyyy-MM-dd HH시 mm분 E요일"/></td>
 				</tr>
-				<c:if test="${ !empty spost.splace }">
+				<c:if test="${ !empty post.splace }">
 				<tr>
 					<td>&nbsp;</td>
 				</tr>
@@ -84,7 +84,7 @@ var map1 = new kakao.maps.Map(mapContainer1, mapOption1);
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder1 = new kakao.maps.services.Geocoder();
 
-var spostplace1 ="${spost.splace}";
+var spostplace1 ="${post.splace}";
 // 주소로 좌표를 검색합니다
 geocoder1.addressSearch(spostplace1, function(result, status) {
 
@@ -121,7 +121,7 @@ geocoder1.addressSearch(spostplace1, function(result, status) {
 					<td>메  모</td>
 				</tr>
 				<tr>
-					<td>${spost.scontent }</td>
+					<td>${post.scontent }</td>
 				</tr>
 		
 			</table>
@@ -150,8 +150,6 @@ geocoder1.addressSearch(spostplace1, function(result, status) {
 			<form action="#" method="post">
 			<input type="text" class="form-control" placeholder="답글을 입력하세요">
 			</form>
-			댓글이 있다면 c:if 로 한 줄마다 br 태그해서 보여주기 본인의 댓글이라면 수정, 삭제버튼 추가
-			
 		</div>
 	</div>
 </body>

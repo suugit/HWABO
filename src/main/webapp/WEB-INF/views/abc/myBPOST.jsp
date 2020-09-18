@@ -36,9 +36,6 @@
 
 <script type="text/javascript" src="resources/js/scripts.js"></script>
 <script type="text/javascript">
-function selectOneBpost(){
-	var 
-}
 
 $("#").on('click', function(e){
 
@@ -93,11 +90,11 @@ $("#").on('click', function(e){
 								<div class="card-body" style="overflow: auto;">
 								<div class="checks" align="right" style="margin-left: 1%; font-size: 17px; font-weight: bold; " >
 						<form action="#">
-							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;요 청&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;진 행&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;피드백&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;완 료&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;보 류&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox1" name="type" type="checkbox" checked="checked">&nbsp;요 청&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox2" name="type" type="checkbox" checked="checked">&nbsp;진 행&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox3" name="type" type="checkbox" checked="checked">&nbsp;피드백&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox4" name="type" type="checkbox" checked="checked">&nbsp;완 료&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox5" name="type" type="checkbox" checked="checked">&nbsp;보 류&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
 						</form>
 					</div>
 									<div class="table-responsive">
@@ -124,7 +121,7 @@ $("#").on('click', function(e){
 										<% if(!list.isEmpty()){ %>
 											<% for(Bpost bpost : list){ %>
 												
-													<tr onclick="selectOneBpost();"  style="cursor:hand">	
+													<tr style="cursor:hand">	
 													
 														<td style="vertical-align: middle; text-align: center;">
 														

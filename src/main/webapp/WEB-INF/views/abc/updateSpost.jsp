@@ -123,9 +123,9 @@ $(function(){
 			<h6 class="m-0 font-weight-bold text-primary">
 				<i class="fas fa-user-circle"></i> 
 				수정용 ! <br>
-				<input type="hidden" id="sno" name=sno value="${spost.sno }">
-				${spost.swriter}<br> 
-				<fmt:formatDate value="${spost.senrolldate}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>
+				<input type="hidden" id="sno" name=sno value="${post.sno }">
+				${post.swriter}<br> 
+				<fmt:formatDate value="${post.senrolldate}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>
 				
 			</h6>
 
@@ -156,7 +156,7 @@ $(function(){
 		</div>
 		<div class="card-body">
 			<!-- 게시글안쪽 -->
-			<c><input type="text" id="stitle" name="stitle" class="form-control" value="${spost.stitle }"></c>
+			<c><input type="text" id="stitle" name="stitle" class="form-control" value="${post.stitle }"></c>
 			<hr>
 			<table>
 				<tr>
@@ -181,11 +181,11 @@ $(function(){
 				</tr>
 				<tr>
 					<td colspan="2">
-					<c:if test="${ empty spost.splace }">
+					<c:if test="${ empty post.splace }">
 					장 소 미 정 <br>
 					</c:if>	
-					<c:if test="${ !empty spost.splace }">
-					${spost.splace } <br>
+					<c:if test="${ !empty post.splace }">
+					${post.splace } <br>
 					</c:if>
 						<input type="text" id="sample_address3" placeholder="장소를 입력하세요" class="form-control" id ="splace" name="splace"  value="${spost.splace }">
 						<input type="button" onclick="sample5_execDaumPostcode2();" value="장소검색"  class="form-control"><br>
@@ -255,7 +255,7 @@ $(function(){
 										<span style="float: left;">&nbsp;&nbsp;&nbsp;( 남은글자수 : <input size="2px;"  type="text"
 												readonly value="200" name="counter" id="counter"
 												style="border: none;">)</span>
-<textarea name="scontent" id="scontent" cols="30" rows="10"	class="form-control"	onkeypress="onTestChange();" style="width: 100%; height: 200px; overflow: auto; resize: none;">${spost.scontent }</textarea> </td>
+<textarea name="scontent" id="scontent" cols="30" rows="10"	class="form-control"	onkeypress="onTestChange();" style="width: 100%; height: 200px; overflow: auto; resize: none;">${post.scontent }</textarea> </td>
 									</tr>
 		
 			</table>
