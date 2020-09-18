@@ -26,6 +26,7 @@ import com.beet.HWABO.abc.model.service.PostreplyService;
 import com.beet.HWABO.abc.model.vo.Love;
 import com.beet.HWABO.bpost.model.service.BpostService;
 import com.beet.HWABO.bpost.model.vo.Bpost;
+import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.spost.model.service.SpostService;
 import com.beet.HWABO.spost.model.vo.Post;
 import com.beet.HWABO.spost.model.vo.Spost;
@@ -67,7 +68,6 @@ public class abcController {
 		return "abc/tables";
 	}
 
-	
 	@RequestMapping("insertspost.do")
 	public String moveInsertSpostPage() {
 		
@@ -83,7 +83,6 @@ public class abcController {
 	@RequestMapping("selectonespost.do")
 	public String moveSelectOneSpostPage(Model m, String sno) {
 		//수정하기 버튼 클릭시 sno 가지고 온다. 쿼리스트링이랑 매개변수에 추가해야한다.
-		sno  = "s2";
 		Spost spost = spostService.selectOneSpost(sno);
 		String startday = spost.getSstartday().toString();
 		String endday = spost.getSendday().toString();
@@ -202,12 +201,12 @@ public class abcController {
 		PrintWriter out = response.getWriter();
 
 		if(spostService.deleteSpost(sno) > 0) {
-			out.println("<script>alert('계정이 등록 되었습니다');</script>");
+			out.println("<script>alert('일정 게시글 삭제가 완료되었습니다.');</script>");
 			 
 			out.flush();
 			return "redirect:/myhwabo.do";
 		}else {
-			out.println("<script>alert('계정이 등록 되었습니다');</script>");
+			out.println("<script>alert('일정 게시글 삭제에 실패하였습니다.');</script>");
 			 
 			out.flush();
 			return "redirect:/myhwabo.do";
@@ -282,10 +281,11 @@ public class abcController {
 //---------- Post ----------------------------------------------------------------------------------------------------------------	
 	//나의 업무페이지
 	@RequestMapping("mybpost.do")
-	public String selectMyBPOST(Model model) {	
-		//sesison 에서 작성자 아이디 받아오기.
-		//작성자인 글, 댓글 단 글, 
-		ArrayList<Bpost> list = bpostService.selectList();
+	public String selectMyBPOST(Model model, @RequestParam("ucode") String ucode, @RequestParam("pnum") String pnum) {	
+		//sesison 에서 작성자 아이디, pnum 받아오기.
+		PjMember pmember = new PjMember(pnum, ucode);
+		//작성자인 글
+		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
 		 
 		 if(list != null) {
 			 model.addAttribute("list", list);

@@ -79,17 +79,11 @@
               <!-- 게시글안쪽 -->
               <form action="ftables.do" id="mainInsert">
               <table style="text-align:center;width:100%;">
-              <tbody><tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
-              <span>글작성</span>
-              </td><td style="width:20%;">
-              <span>업무</span>
-              </td><td style="width:20%;">
-              <span>일정</span>
-              </td><td style="width:20%;">
-              <span>할일</span>
-              </td><td style="width:20%;">
-              <span>투표</span>
-              </td></tr>
+              <tbody><tr class="m-0 font-weight-bold text-primary">
+              <td style="width:33%;">    <span>글작성</span>          </td>
+              <td style="width:33%;">    <span>업무</span>             </td>
+              <td style="width:33%;">    <span>일정</span>             </td>
+              </tr>
               
                <!-- 구분선 -->
               <tr><td colspan="5">

@@ -165,7 +165,7 @@ $("div").on('click', function(e){
 								<!-- 게시글안쪽 -->
 
 								<div class="card-body" style="overflow: auto;">
-								<div class="checks" align="right" style="margin-left: 1%; font-size: 23px; " >
+								<div class="checks" align="right" style="margin-left: 1%; font-size: 17px; font-weight: bold; " >
 						<form action="#">
 							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;요 청&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
 							<span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;진 행&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
@@ -197,10 +197,10 @@ $("div").on('click', function(e){
 													<tr>	
 														<td style="vertical-align: middle; text-align: center;">
 																<%if(bpost.getBkind().equals("요청")){ %>
-																	<strong style="font-size:15pt; color: #0E90C8; margin-top:30px; vertical-align: middle; ">요 청</strong>															
+																	<strong style="font-size:15pt; color: #047AAC; margin-top:30px; vertical-align: middle; ">요 청</strong>															
 																<% } %>
 																<%if(bpost.getBkind().equals("진행")){ %>
-																	<strong style="font-size:15pt; color: #0244ED; margin-top:20px; vertical-align: middle; ">진 행</strong>																
+																	<strong style="font-size:15pt; color: #173192; ; margin-top:20px; vertical-align: middle; ">진 행</strong>																
 																<% } %>
 																<%if(bpost.getBkind().equals("피드백")){ %>
 																	<strong style="font-size:15pt; color: #f4b30d; margin-top:20px; vertical-align: middle; ">피드백</strong>																

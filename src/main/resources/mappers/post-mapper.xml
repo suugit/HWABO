@@ -41,44 +41,32 @@
 		
 		
 		<!-- dopost -->
+</resultMap>
 	
-
 	
-	</resultMap>
-<select id="selectPost" resultType="Post">
-	select * from realpost
-</select>
+	
+<select id="selectBpost" parameterType="PjMember" resultType="Bpost">
 
-
-<select id="selectSpost" resultType="Spost">
-	select * from spost
-</select>
-<select id="selectCpost" resultType="Cpost">
-	select * from cpost
-</select>
-<select id="selectBpost" resultType="Bpost">
 	select * from bpost
+	where bucode=#{ucode}
+			and
+			bpnum=#{pnum}
+    order by benrolldate desc
+
 </select>
-<select id="selectDopost" resultType="Dopost">
-	select * from dopost
+
+	
+	
+<select id="selectPost" parameterType="PjMember" resultType="Post">
+	select * from realpost 
+	where ( ucode=#{ucode} 
+		      or 
+			  bcharge like '%#{ucode}%' )
+			and
+			( pnum = #{pnum} )
 </select>
 
 
-<select id="abcselectS" resultMap="resultPost">
-	select * from spost where ucode=#{sucode}
-</select>
-<select id="abcselectB" resultMap="resultPost">
-	select * from bpost where ucode=#{bucode}
-</select>
-<select id="abcselectC" resultMap="resultPost">
-	select * from cpost where ucode=#{cucode}
-</select>
-<select id="abcselectV" resultMap="resultPost">
-	select * from vpost where ucode=#{vucode}
-</select>
-<select id="abcselectDo" resultMap="resultPost">
-	select * from dopost where ucode=#{ducode}
-</select>
 
 
 

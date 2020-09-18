@@ -1,4 +1,4 @@
-<%@ page session="false" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -21,8 +21,21 @@
       <!-- Sidebar - Brand -->
       <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='/hwabo/'">
 
+			<li class="nav-item"><a class="nav-link collapsed" href="cards2.do?ucode=${sessionScope.ucode }"
+				data-target="#collapsePages" aria-expanded="true"
+				aria-controls="collapsePages"> <i class="fas fa-tasks"></i> <span>프로젝트 선택</span>
+			</a> </li>
 
-<br>
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+			
+			<li class="nav-item"><a class="nav-link collapsed" href="ftables.do?project_num=${sessionScope.pnum }"
+				data-target="#collapsePages" aria-expanded="true"
+				aria-controls="collapsePages"> <i class="fas fa-tasks"></i> <span>프로젝트 메인페이지로</span>
+			</a> </li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
 
 			<li class="nav-item"><a class="nav-link collapsed" href="mybpost.do"
 				data-target="#collapsePages" aria-expanded="true"
@@ -37,16 +50,17 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapsePages" aria-expanded="true"
 				aria-controls="collapsePages" onclick="javascript: return false;"><i class="fas fa-box-open"></i>
-					<span>보관함</span>
-			</a> <a class="nav-link collapsed" href="#" data-target="#collapsePages"
+					<span>보관함</span></a> 
+					
+				<a class="nav-link collapsed" href="Fileboxlist.do?pnum=${sessionScope.pnum }" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages" onclick="javascript: return false;"> 
-				<i class="far fa-folder-open"></i><span>파일함</span>
+				<i class="far fa-folder-open"></i><span> 파일함</span>
 			</a></li>
 			
 						<!-- Divider -->
 			<hr class="sidebar-divider">
 			
-			<li class="nav-item"><a class="nav-link collapsed" href="myhwabo.do"
+			<li class="nav-item"><a class="nav-link collapsed" href="myhwabo.do?ucode=${sessionScope.ucode }"
 				data-target="#collapsePages" aria-expanded="true"
 				aria-controls="collapsePages"> <i class="fas fa-chalkboard"></i>
 					<span>나의 화보</span>
@@ -58,18 +72,16 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseOne"
-				aria-expanded="false" aria-controls="collapseOne" onclick="javascript: return false;"> 
-				<i class="fas fa-chalkboard-teacher"></i> <span>유 형</span>
+				aria-expanded="true" aria-controls="collapseOne" onclick="javascript: return false;"> 
+				<i class="fas fa-chalkboard-teacher"></i> <span>팀원들의 화보</span>
 			</a>
-				<div id="collapseOne" class="collapse visible"  aria-expanded="false"
+				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
 					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
+					<div class="bg-white py-2 collapse-inner rounded" style="overflow: auto; max-height: 300px;">
 						<h6 class="collapse-header">HWABO</h6>
-						<a class="collapse-item" href="#"><span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;요 청&nbsp;</label></span></a>
-						<a class="collapse-item" href="#"><span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;진 행&nbsp;</label></span></a>
-						<a class="collapse-item" href="#"><span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;피드백&nbsp;</label></span></a>
-						<a class="collapse-item" href="#"><span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;완 료&nbsp;</label></span></a>
-						<a class="collapse-item" href="#"><span style="color: #42BBBA;"><label><input name="type" type="checkbox" checked="checked">&nbsp;보 류&nbsp;</label></span></a>
+							<c:forEach var="user" items="${sessionScope.pmlist }">
+							<a class="collapse-item" href="yourhwabo.do?ucode=${user.ucode }"><span><label>${user.uname }</label></span></a>
+							</c:forEach>							
 					</div>
 				</div></li>
 

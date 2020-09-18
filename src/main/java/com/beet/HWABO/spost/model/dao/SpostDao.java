@@ -7,7 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.member.model.vo.Member;
+import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.spost.model.vo.Post;
 import com.beet.HWABO.spost.model.vo.Spost;
 import com.sun.org.slf4j.internal.LoggerFactory;
@@ -72,9 +74,9 @@ public class SpostDao {
 		}
 		
 	
-		public ArrayList<Post> selectMyPost() {
-			// TODO Auto-generated method stub
-			return null;
+		public ArrayList<Bpost> selectMyPost(PjMember pmember) {
+			List<Bpost> list = session.selectList("postMapper.selectBpost", pmember);
+			return (ArrayList<Bpost>)list;
 		}
 		
 

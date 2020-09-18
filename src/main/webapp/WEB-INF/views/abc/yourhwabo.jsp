@@ -53,7 +53,7 @@ $("div").on('click', function(e){
 <!-- 2.바로아래div추가 및 임포트 추가  -->
 	<div style="width:100%;display:flex;justify-content:center;align-item:center;">
 <!-- Sidebar2right -->
-     <c:import url="/WEB-INF/views/abc/entersideFixed.jsp"></c:import>
+     <c:import url="/WEB-INF/views/abc/yourHside.jsp"></c:import>
 <!-- End of Sidebar2right -->
 
 	
