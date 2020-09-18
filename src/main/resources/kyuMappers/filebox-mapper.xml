@@ -33,4 +33,18 @@ order by enroll desc
 
 </select> 
 
+
+<select id="selectTxtList" parameterType="string" resultType="Filebox">
+
+(select bno as no, btitle as title, bwriter as writer, benrolldate as enroll, boriginfile as o, brenamefile as r, bpnum as pnum
+from bpost
+where not boriginfile is null and bpnum = #{pnum} and substr(boriginfile, instr(boriginfile,'.',-1)+1) = 'txt')
+union all
+(select  cno as no, ctitle as title, cwriter as writer, cenrolldate as enroll, o ,r, cpnum as pnum 
+from cfile4
+where not o is null and cpnum = #{pnum} and substr(o, instr(o,'.',-1)+1) = 'txt')
+order by enroll desc
+</select>
+
+
 </mapper>
