@@ -211,12 +211,14 @@ public class RedController {
 			status.setComplete(); // 요청성공, 200 전송
 			mv.setViewName("red/tables");
 			
+			ArrayList<Bpost> blist = redService.selectBpost(pnum);
+			if(blist.size() > 0) {
 			///
 			int chk = 0;
 			int goal = 0;
 			int done = 0;
 			ArrayList<Progress> plist = new ArrayList<Progress>(); 
-			ArrayList<Bpost> blist = redService.selectBpost(pnum);
+			
 			for(Bpost b : blist) {
 				Progress p = new Progress();
 				 
@@ -273,9 +275,10 @@ public class RedController {
 					logger.info("전체 진행률 업데이트 실패...");
 				}
 			}
-			
-			session.setAttribute("totalProgress", done*100/goal);
-			logger.info("세션에 전체진행률 추가완료... progress : " + done*100/goal + "%");
+			int total = done*100/goal;
+			session.setAttribute("totalProgress", total);
+			logger.info("세션에 전체진행률 추가완료... progress : " + total + "%");
+			}
 			///
 			return mv;
 		}
