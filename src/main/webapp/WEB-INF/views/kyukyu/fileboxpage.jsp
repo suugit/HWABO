@@ -69,7 +69,7 @@
         <div class="container-fluid" style="width:1000px; position:relative; left:50px;">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">보관함</h1>
+       
          <div class="col-lg-12">
           <p class="mb-4"></p>
 

@@ -34,26 +34,7 @@
   <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
-<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript">
 
-$(function(){
-$("#allCheckbox").click(function(){
-
-	if($('#allCheckbox').prop("checked")){
-	
-		$("input[type=checkbox]").prop("checked",true);
-	}else{
-		
-		$("input[type='checkbox']").prop("checked",false);
-	}
-	
-	
-	
-})
-})
-
-</script>
 
 
 <body id="page-top">
@@ -88,7 +69,7 @@ $("#allCheckbox").click(function(){
         <div class="container-fluid" style="width:1000px; position:relative; left:50px;">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">보관함</h1>
+       
          <div class="col-lg-12">
           <p class="mb-4"></p>
 
@@ -99,16 +80,16 @@ $("#allCheckbox").click(function(){
           <li class="nav-item">
              <a class="nav-link" href="Fileboxlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="img" aria-selected="ture"><i class="far fa-file-image"></i>이미지</a></li>
           <li class="nav-item">
-             <a class="nav-link active"  href="FileboxTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="pnd" aria-selected="ture"><i class="far fa-file-pdf"></i>문서</a>
+             <a class="nav-link active" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="pnd" aria-selected="false"><i class="far fa-file-pdf"></i>문서</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="zip" aria-selected="ture"><i class="far fa-file-archive"></i>압축파일</a>
+             <a class="nav-link" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="zip" aria-selected="false"><i class="far fa-file-archive"></i> 압축파일</a>
           </li> 
-          <li class="nav-item">
-             <a class="nav-link" href="FileboxPptlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="ppt" aria-selected="false"><i class="far fa-file-powerpoint"></i></i>ppt</a>
+           <li class="nav-item">
+             <a class="nav-link" href="FileboxPptlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="ppt" aria-selected="false"><i class="far fa-file-powerpoint"></i>ppt</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="FileboxEtclist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="etc" aria-selected="ture"><i class="far fa-file-code"></i>기타</a>
+             <a class="nav-link" href="FileboxEtclist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="etc" aria-selected="false"><i class="far fa-file-code"></i> 기타</a>
           </li> 
          </ul>
   
@@ -117,35 +98,119 @@ $("#allCheckbox").click(function(){
 
    
    
- <%--  <ul class="nav nav-tabs nav-justified">
-  <li class="nav-item">
-    <a class="nav-link active" href="#">Active</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" >Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="FileboxEtcTxtlist.do?pnum=${sessionScope.pnum }">Disabled</a>
-  </li>
-</ul>
-        --%>   
-   <!-- 파일 리스트 -->
+   
+   
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+
+/* 
+$('img[name*="ImageList"]').each(function(i){ 
+
+ */
+$(function(){
+$("#allCheckbox").click(function(){
+
+	if($('#allCheckbox').prop("checked")){
+		
+		$("input[type=checkbox]").prop("checked",true);
+		 $('img[class*="yes_"]').attr("name", "ImageList"); 
+		console.log("if문");
+	}else{
+		
+		$("input[type='checkbox']").prop("checked",false);
+	 	$('img[class*="yes_"]').attr("name", "yet"); 
+		console.log("else문");
+	}
+	
+	
+	
+})
+})
+/* 
+if ($("input:checked[id='in_'+index]").is(":checked")){
+
+ */
+function changein(index){
+	console.log("체크박스 인덱스 : " + index);
+	 if($("#in_"+index).is(":checked") == true){
+		 console.log("if 문 성립");
+		 $(".yes_" + index).attr("name", "ImageList");
+		 
+	 }else{
+		 console.log("else 문 성립");
+		 $(".yes_" + index).attr("name", "yet");
+	 }
+}
+
+
+
+  $(document).ready(function(){
+     
+   
+            var iFrameCnt = 0;
+               
+               $('#all_download').click(function(event, index){ //다운로드 이미지 실행
+            	  
+                $('img[name*="ImageList"]').each(function(i){ //img 태그중 ImageList 명으로 시작하는 요소를 가져옴
+                    
+                	
+                	
+                       urlPath = $(this).attr("src"); //전체 URL 경로
+                       ofile = $(this).attr("id");
+                       rfile = $(this).attr("src").substring($(this).attr("src").lastIndexOf("/")+1); //파일명 추출
+                       
+                       var url = "bfdown.do?ofile="+ofile+"&rfile="+rfile; //다운로드 받는 경로 와 변수
+                                               
+                       fnCreateIframe(iFrameCnt); // 보이지 않는 iframe 생성, name는 숫자로
+                       
+                       $("iframe[name=" + iFrameCnt + "]").attr("src", url);
+                       
+                       iFrameCnt++;
+                       
+                       fnSleep(1000); //각 파일별 시간 텀을 준다
+                	
+                   });
+                   
+               });
+               
+               fnSleep = function (delay){
+                   
+                   var start = new Date().getTime();
+                   while (start + delay > new Date().getTime());
+ 
+               };
+               
+               fnCreateIframe = function (name){
+                   
+                   var frm = $('<iframe name="' + name + '" style="display: none;"></iframe>');
+                   frm.appendTo("body");
+ 
+               }
+               
+        });
+
+</script>
+
+
+
          
-             <div class="tab-pane active" id="img" role="tabpanel" style="font-size: 84%;">
+             <div class="tab-pane active" id="img" role="tabpanel">
             <div class="card-body">
+            
+            <br>
+                  <button type="button" id="all_download" class="btn btn-primary btn-sm" style="background-color:#24AA9E">Download</button>&nbsp; &nbsp;
+          
+                   
               <div class="table-responsive">
               
               
          
                 <table class="table table-bordered" id="dataTable" >
-                  
-                  <thead>
+                
+                  <thead style="font-size: 100%;">
                     <tr>
-                      <th>전체<input type="checkbox" id="allCheckbox"></th>
-                      <th>파일명</th>
+                      <th><input type="checkbox" id="allCheckbox">  All</th>
+                      <td>파일명</th>
                       <th>올린이</th>
                       <th>원본 글 제목</th>
                       <th>업로드 날짜</th>
@@ -156,26 +221,24 @@ $("#allCheckbox").click(function(){
                   
                   
                   
-                   <tbody>
+                   <tbody style="font-size: 84%;">
                     <c:forEach var="file" items="${requestScope.list}" varStatus="status">
                		 <tr>
                     	<th>
-                    	 	<input type="checkbox" id="downnum">
-                    	
-                    	 	<i class="far fa-arrow-alt-circle-down"></i>
-                    		
-                    		
+                    	 	<input type="checkbox" id="in_${status.index }" onchange="changein(${status.index});">
+                    	   
                     	</th>
-                    	<th>${file.o} </th>
+                    	<th> <img name= "yet" src="resources/img/filemoon.png"" class="yes_${status.index }" id="${file.o }" style="width:40px; height : 40px" > &nbsp; &nbsp; &nbsp;${file.o} </th>
                     	<th> ${file.writer}</th>
-                    	<th>${file.title }</th>
+                    	<th>[ ${file.title } ]</th>
                     	<th> ${file.enroll } </th>
                     	
                     </tr>
-                    
-                    </c:forEach>
+                 
+                    </c:forEach> 
+                    <!-- <button type="button" id="all_download" class="btn btn-secondary btn-sm" download>All Download</button> -->
                     </tbody>
-                    <input type="button" value="모두 저장" >
+               <!--      <input type="button" value="모두 저장" > -->
        </table>
        
        

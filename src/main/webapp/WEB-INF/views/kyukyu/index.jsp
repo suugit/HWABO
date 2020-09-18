@@ -323,7 +323,7 @@ $(function(){
 				   <th>
 							   
 					 <div id="showfile" style="overflow:hidden;"> 
-				     <img src="resources/bupfile/${b.brenamefile}" style="width : 40%;height : 10%;">
+				     <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 40%;height : 10%;">
 					 </div> 
 				   </th>
 					 <c:url var="ubf" value="bfdown.do">
