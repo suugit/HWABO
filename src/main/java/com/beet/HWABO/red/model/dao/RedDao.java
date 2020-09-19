@@ -102,5 +102,9 @@ public class RedDao {
 	public int delChat(Chatting chat) {
 		return session.delete("redMapper.delChat", chat);
 	}
+
+	public int delChatAll(Chatting chat) {
+		return session.delete("redMapper.delChatAll", chat);
+	}
 	
 }

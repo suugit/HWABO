@@ -130,7 +130,7 @@ function selectChat(){
 					"<div class=\"outgoing_msg\"><div class=\"sent_msg\"><p>" +
 					chat_content +
 		            "</p><span class=\"time_date\">" +
-		            chat_time +
+		            chat_time.substring(0, 16) +
 		            //삭제버튼 시작
 	                "&nbsp;&nbsp;<button class=\"button button3\" " +
 					"onclick=\"javascript:location.href=\'delChat.do?project_num=${sessionScope.pnum}&ucode=${sessionScope.ucode}&content="+chat_time+"\' \" >X</button>" +
@@ -141,7 +141,7 @@ function selectChat(){
 					"<div class=\"incoming_msg\">" +
 	              	"<div class=\"incoming_msg_img\"> <img src=\"https://ptetutorials.com/images/user-profile.png\" alt=\"sunil\"></div>" +
 	              	"<span style=\"font-size:9pt;\">" +
-	              	chat_uname +
+	              	chat_uname.substring(0, 16) +
 	              	"</span><div class=\"received_msg\">" +
 	                "<div class=\"received_withd_msg\"><p>" +
 	                chat_content +

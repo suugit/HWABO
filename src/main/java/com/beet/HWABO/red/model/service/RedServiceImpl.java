@@ -114,5 +114,10 @@ public class RedServiceImpl implements RedService {
 	public int delChat(Chatting chat) {
 		return redDao.delChat(chat);
 	}
+
+	@Override
+	public int delChatAll(Chatting chat) {
+		return redDao.delChatAll(chat);
+	}
 	
 }

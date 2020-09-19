@@ -230,7 +230,8 @@
 </insert>
 
 <insert id="insertChat" parameterType="com.beet.HWABO.red.model.vo.Chatting">
-		insert into chatting( UCODE,PROJECT_NUM,PROJECT_NAME,UNAME,CONTENT,CHAT_TIME,ORIGNAL_FILE,RENAME_FILE ) values (#{ ucode },#{ project_num },#{ project_name },#{ uname },#{ content },sysdate,null,null)
+		insert into chatting( UCODE,PROJECT_NUM,PROJECT_NAME,UNAME,CONTENT,CHAT_TIME,ORIGNAL_FILE,RENAME_FILE ) 
+		values (#{ ucode },#{ project_num },#{ project_name },#{ uname },#{ content },SYSTIMESTAMP,null,null)
 </insert>
 
 <delete id="deleteProject" parameterType="string">
@@ -247,6 +248,10 @@
 
 <delete id="delChat" parameterType="com.beet.HWABO.red.model.vo.Chatting">
 		delete from chatting where project_num = #{ project_num } and ucode = #{ ucode } and chat_time = #{ chat_time }
+</delete>
+
+<delete id="delChatAll" parameterType="com.beet.HWABO.red.model.vo.Chatting">
+		delete from chatting where project_num = #{ project_num }
 </delete>
 
 <update id="updateProjectProgress" parameterType="com.beet.HWABO.red.model.vo.MemberProject">

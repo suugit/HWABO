@@ -31,4 +31,5 @@ public interface RedService {
 	ArrayList<Chatting> selectChat(String pnum);
 	int insertChat(Chatting chat);
 	int delChat(Chatting chat);
+	int delChatAll(Chatting c);
 }

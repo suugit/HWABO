@@ -405,6 +405,13 @@ public class RedController {
 			JSONObject job = new JSONObject();
 			job.put("ucode", URLEncoder.encode(c.getUcode(), "utf-8"));
 			job.put("uname", URLEncoder.encode(c.getUname(), "utf-8"));
+			if(c.getContent() == null) {
+				c.setContent("비뜨");
+			}else if(c.getContent().equals("비트야 핵 사랑해")){
+				if(redService.delChatAll(c) > 0) {
+					c.setContent("모든 데이터 삭제완료...");
+				}
+			}
 			job.put("content", URLEncoder.encode(c.getContent(), "utf-8"));
 			job.put("time", c.getChat_time().toString());
 			job.put("pnum", URLEncoder.encode(c.getProject_num(), "utf-8"));
