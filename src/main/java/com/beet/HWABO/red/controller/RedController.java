@@ -195,12 +195,12 @@ public class RedController {
 			ArrayList<MemberProject> memberProject = redService.selectMemberList(pnum);
 			ArrayList<String> names = new ArrayList<String>();
 			ArrayList<String> ucodes = new ArrayList<String>();
-			ArrayList<String> pnames = new ArrayList<String>();
+			String pnames = "";
 			
 			for(MemberProject m : memberProject) {
 				names.add(m.getUname());
 				ucodes.add(m.getUcode());
-				pnames.add(m.getName());
+				pnames = m.getName();
 			}
 			
 			HttpSession session = request.getSession();
@@ -208,7 +208,7 @@ public class RedController {
 			session.setAttribute("pmlist", memberProject);
 			session.setAttribute("names", names);
 			session.setAttribute("ucodes", ucodes);
-			session.setAttribute("pnames", ucodes);
+			session.setAttribute("pnames", pnames);
 			logger.info("세션에 프로젝트넘버 추가완료... 프로젝트번호 : " + pnum);
 			logger.info("세션에 회원정보 목록 추가완료... pmlist : " + memberProject);
 			logger.info("세션에 회원이름 목록 추가완료... names : " + names);

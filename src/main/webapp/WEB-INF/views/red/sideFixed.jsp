@@ -24,31 +24,23 @@
       <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='/hwabo/'">
 	
 <!-- 왼쪽사이드바 시작 -->
-      <!-- Divider -->
       <hr class="sidebar-divider my-0">
-      <!-- Heading -->
       <div class="sidebar-heading">
         Main
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-
-      <!-- Nav Item - Charts -->
       <li class="nav-item">
         <a class="nav-link" href="fborder.do?project_num=${ sessionScope.pnum }">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>캘린더</span></a>
       </li>
       
-       <!-- Nav Item - Charts -->
       <li class="nav-item">
         <a class="nav-link" href="fborder2.do?project_num=${ sessionScope.pnum }">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>캘린더2</span></a>
       </li>
 
-      <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="ftables.do?project_num=${ sessionScope.pnum }">
           <i class="fas fa-fw fa-table"></i>
@@ -62,10 +54,6 @@
         progress
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-
-      <!-- Nav Item - Charts -->
       <li class="nav-item">
         <a class="nav-link" href="fother.do?project_num=${ sessionScope.pnum }">
           <i class="fas fa-fw fa-chart-area"></i>
@@ -129,12 +117,8 @@
 </ul>
     
 </td>
-<td style="width:57%;">
-
-</td>
+<td style="width:57%;"></td>
 <td style="width:23.5%;">
-
-
 
 <!-- 채팅위치조정테이블하단 시작 -->
 <table style="height:100%;width:100%;">
@@ -158,6 +142,6 @@
 </tr>    
 </table>
     
-    </div>
+</div><!-- fiexd -->
 </body>
 </html>
