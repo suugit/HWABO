@@ -63,7 +63,7 @@ $(function(){
 				var starStar = decodeURIComponent(json.list5[i].star).replace(/\+/gi, " ");
 				values += 
 					"<li class=\"nav-item\"><a class=\"nav-link\">" +
-		            "<i class=\"fas fa-fw fa-chart-area\"></i><span onclick=\"javascript:location.href=\'cards.do\'\">" +
+		            "<i class=\"fas fa-fw fa-chart-area\" onclick=\"javascript:location.href=\'ftables.do?project_num="+starStar+"\'\"></i><span onclick=\"javascript:location.href=\'ftables.do?project_num="+starStar+"\'\">" +
 					starName +
 					"</span><span>" +
 					"&nbsp;&nbsp;<button class=\"button button3\" " +
