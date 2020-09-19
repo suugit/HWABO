@@ -71,17 +71,60 @@
           <i class="fas fa-fw fa-chart-area"></i>
           <span>목표</span></a>
       </li>
-
-      <!-- Divider -->
+ <!-- 왼쪽사이드바 메인끝 -->     
       <hr class="sidebar-divider d-none d-md-block">
-<!-- 왼쪽사이드바 끝 -->
+	
+	<!-- ekdnsekdns 시작 -->	
+	<li class="nav-item"><a class="nav-link collapsed" href="mybpost.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}"
+				data-target="#collapsePages" aria-expanded="true"
+				aria-controls="collapsePages"> <i class="fas fa-tasks"></i> <span>업무 모아보기</span>
+	</a> </li>
+	
+	<hr class="sidebar-divider">
+			
+			<li class="nav-item"><a class="nav-link collapsed" href="myhwabo.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}"
+				data-target="#collapsePages" aria-expanded="true"
+				aria-controls="collapsePages"> <i class="fas fa-chalkboard"></i>
+					<span>나의 화보</span>
+			</a></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseOne"
+				aria-expanded="true" aria-controls="collapseOne" onclick="javascript: return false;"> 
+				<i class="fas fa-chalkboard-teacher"></i> <span>팀원들의 화보</span>
+			</a>
+				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded" style="overflow: auto; max-height: 250px;">
+						<h6 class="collapse-header">HWABO</h6>
+						
+							<c:forEach var="user" items="${sessionScope.pmlist}">
+							
+								<a class="collapse-item" href="javascript: location.href='yourhwabo.do?ucode=${user.ucode}&pnum=${user.project_num}'">
+									<span><label>${user.uname }</label></span>
+								</a>
+							
+							</c:forEach>							
+					</div>
+				</div></li>
+	
+	<!-- ekdnsekdns 끝 -->
+
+
+ <hr class="sidebar-divider d-none d-md-block">
+
       <!-- Nav Item - Charts -->
       <li class="nav-item">
         <a class="nav-link" href="javascript:location.href='insertspost.do'">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>일정등록테스트</span></a>
       </li>
-		
+
+<!-- 왼쪽사이드바 끝 -->
 	
 </ul>
     
