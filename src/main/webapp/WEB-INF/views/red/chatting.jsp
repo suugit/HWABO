@@ -161,7 +161,7 @@ function selectChat(){
 };
 
 selectChat();
-setInterval(selectChat(),3000);
+setInterval(selectChat,3000);
 
 </script>
 <!-- 채팅기능 끝 -->
