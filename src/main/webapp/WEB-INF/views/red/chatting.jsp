@@ -141,12 +141,12 @@ function selectChat(){
 					"<div class=\"incoming_msg\">" +
 	              	"<div class=\"incoming_msg_img\"> <img src=\"https://ptetutorials.com/images/user-profile.png\" alt=\"sunil\"></div>" +
 	              	"<span style=\"font-size:9pt;\">" +
-	              	chat_uname.substring(0, 16) +
+	              	chat_uname +
 	              	"</span><div class=\"received_msg\">" +
 	                "<div class=\"received_withd_msg\"><p>" +
 	                chat_content +
 	                "</p><span class=\"time_date\">" +
-	                chat_time +
+	                chat_time.substring(0, 16) +
 	                "</span></div></div></div>";
 				}
 			}
