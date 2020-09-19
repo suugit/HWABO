@@ -29,31 +29,7 @@
 
 </head>
 
-<!-- 진행률시작 -->
-<style>
-#myProgress {
-  width: 100%;
-  background-color: #ddd;
-}
 
-#myBar {
-  width: 0%;
-  height: 30px;
-  background-color: #4CAF50;
-  text-align: center;
-  line-height: 30px;
-  color: white;
-}
-</style>
-<style type="text/css">
-#dis{ 
-/* display 안보이게 해라 */
-	display : none;
-	/* background : gray; */
-	
-}
-
-</style>
 <style type="text/css">
 
 div#showfile imag{
@@ -72,16 +48,6 @@ div#showfile imag{
 
 <script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
-
-
-$(document).ready(function(){
-});
-
-
-
-
-
-
 
 
 
@@ -171,7 +137,7 @@ function sendInsert(index){
 		      },
 		      error: function(request, status, errorData){
 		    	 
-		            console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+		         console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
 		         }
 		      
 		      }); //에이작스
@@ -287,11 +253,10 @@ $(document).ready(function(){
               
                <button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle${status.index }" name="like" onclick="sendInsert(${status.index});">
            	   <span>보관</span> <i class="far fa-bookmark"></i></button>
-           	    <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
+           	   <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
 			   <input type="hidden" id="no_${status.index }" value="${b.bno }">
 			   <input type="hidden" id="pnum_${status.index }" value="${b.bpnum }" >
-			 
-				<input type="text" id="open_${status.index }" value="${b.bopen }" >
+			   <input type="text" id="open_${status.index }" value="${b.bopen }" >
              
 
 			 <div id="d5"></div>
@@ -466,15 +431,7 @@ $(document).ready(function(){
       </div>
     </div>
   </div>
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-부가적인 테마
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-합쳐지고 최소화된 최신 자바스크립트
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
- -->
 
   <!-- Bootstrap core JavaScript-->
   <script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>

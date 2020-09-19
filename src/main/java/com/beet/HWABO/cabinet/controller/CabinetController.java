@@ -2,26 +2,20 @@ package com.beet.HWABO.cabinet.controller;
 
 import java.io.PrintWriter;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.beet.HWABO.bpost.model.service.BpostService;
-import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.cabinet.model.service.CabinetService;
 import com.beet.HWABO.cabinet.model.vo.Cabinet;
+import com.beet.HWABO.cpost.model.service.CpostService;
+import com.beet.HWABO.spost.model.service.SpostService;
 
 @Controller
 public class CabinetController {
@@ -33,6 +27,12 @@ public class CabinetController {
    
    @Autowired
    private BpostService bpostService;
+   
+   @Autowired
+   private CpostService cpostService;
+   
+   @Autowired
+   private SpostService spostService;
    
    
    
@@ -62,22 +62,37 @@ public class CabinetController {
 	        		if(bpostService.updateOpen(bno) > 0) {
 	        			logger.info("bpost open update 보관함 y로 설정 완료");
 	        		}else {
-	        			logger.info("bpost open update 보관함  실패!!!!!!!!!!");
+	        			logger.info("bpost open update 보관함  실패");
 	        		}
 	        	  
 	        	  
 	        	 
 	          	}else if(no.substring(0, 1).equals("s")) {
-	        	  
-	        	  logger.info("spost 이퀄스 비교 셩공!!!!!!!!!!!!!!");  
+	          		logger.info("spost if 문 들어온 no 값 : " + no);  
+	        		String sno = no;
+		        	
+	        		if(spostService.updateOpen(sno) > 0) {
+	        			logger.info("spost open update 보관함 y로 설정 완료");
+	        		}else {
+	        			logger.info("spost open update 보관함  실패");
+	        		}
+	        
+	        		
+	        		
+	        		
 	          	}else if(no.substring(0, 1).equals("c")) {
+	          		logger.info("cpost if 문 들어온 no 값 : " + no);
+	        		String cno = no;
+		        	
+	        		if(cpostService.updateOpen(cno) > 0) {
+	        			logger.info("cpost open update 보관함 y로 설정 완료");
+	        		}else {
+	        			logger.info("cpost open update 보관함  실패");
+	        		}
 	        	  
-	        	  logger.info("cpost 이퀄스 비교 셩공!!!!!!!!!!!!!!");
+	        	  
 	          }
-	           
-	       
-	       
-	       
+	 
 	       
 	   }else {
 	        logger.info("cabinet 인서트 실패");
@@ -119,17 +134,33 @@ public class CabinetController {
         		if(bpostService.updateOpen(bno) > 0) {
         			logger.info("bpost open update 보관함 n으로 설정 완료");
         		}else {
-        			logger.info("bpost open update 보관함  실패!!!!!!!!!!");
+        			logger.info("bpost open update 보관함  실패");
         		}
         	  
         	  
         	 
           	}else if(no.substring(0, 1).equals("s")) {
+          		logger.info("spost 이퀄스로 업데이트 if 문 들어옴 no 값 :" + no);
+        	
+          		String sno = no;
+            	
+        		if(spostService.updateOpen(sno) > 0) {
+        			logger.info("spost open update 보관함 n으로 설정 완료");
+        		}else {
+        			logger.info("spost open update 보관함  실패");
+        		}
         	  
-        	  logger.info("spost 이퀄스 비교 셩공!!!!!!!!!!!!!!");  
+          		
           	}else if(no.substring(0, 1).equals("c")) {
-        	  
-        	  logger.info("cpost 이퀄스 비교 셩공!!!!!!!!!!!!!!");
+          		logger.info("cpost 이퀄스로 업데이트 if 문 들어옴 no 값 :" + no);
+            	
+          		String cno = no;
+            	
+        		if(cpostService.updateOpen(cno) > 0) {
+        			logger.info("cpost open update 보관함 n으로 설정 완료");
+        		}else {
+        			logger.info("cpost open update 보관함  실패");
+        		}
           }
           
   

@@ -76,22 +76,29 @@
 	
           <div class="container">
          
-          <ui class="nav nav-tabs nav-justified" >
-          <li class="nav-item">
-             <a class="nav-link" href="Fileboxlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="img" aria-selected="ture"><i class="far fa-file-image"></i>이미지</a></li>
-          <li class="nav-item">
-             <a class="nav-link" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="pnd" aria-selected="false"><i class="far fa-file-pdf"></i>문서</a>
-          </li>
-          <li class="nav-item">
-             <a class="nav-link active" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="zip" aria-selected="false"><i class="far fa-file-archive"></i> 압축파일</a>
-          </li> 
-           <li class="nav-item">
-             <a class="nav-link" href="FileboxPptlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="ppt" aria-selected="false"><i class="far fa-file-powerpoint"></i>ppt</a>
-          </li>
-          <li class="nav-item">
-             <a class="nav-link" href="FileboxEtclist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="etc" aria-selected="false"><i class="far fa-file-code"></i> 기타</a>
-          </li> 
-         </ul>
+            <ui class="nav nav-tabs nav-justified" >
+	          <li class="nav-item">
+	             <a class="nav-link" href="Fileboxlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="img" aria-selected="ture">
+	             <i class="far fa-file-image"></i>이미지</a>
+	          </li>
+	          <li class="nav-item">
+	             <a class="nav-link" href="FileboxTxtlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="pnd" aria-selected="false">
+	             <i class="far fa-file-pdf"></i>문서</a>
+	          </li>
+	          <li class="nav-item">
+	             <a class="nav-link active" href="FileboxZiplist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="zip" aria-selected="false">
+	             <i class="far fa-file-archive"></i> 압축파일</a>
+	          </li> 
+	           <li class="nav-item">
+	             <a class="nav-link" href="FileboxPptlist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="ppt" aria-selected="false">
+	             <i class="far fa-file-powerpoint"></i>ppt</a>
+	          </li>
+	          <li class="nav-item">
+	             <a class="nav-link" href="FileboxEtclist.do?pnum=${sessionScope.pnum }" role="tab" aria-controls="etc" aria-selected="false">
+	             <i class="far fa-file-code"></i> 기타</a>
+	          </li> 
+         </ui>
+  
   
           
       	</div>         
@@ -100,36 +107,44 @@
    
    
    
-   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 
-/* 
-$('img[name*="ImageList"]').each(function(i){ 
 
- */
+ 
+ $(document).ready(function() {
+	 $('#dataTable').dataTable( {
+		  "lengthChange": false,
+	
+		} );
+	 });
+ 
+ 
+  
+  
+ 
+ 
 $(function(){
-$("#allCheckbox").click(function(){
-
-	if($('#allCheckbox').prop("checked")){
+	$("#allCheckbox").click(function(){
+	
+		if($('#allCheckbox').prop("checked")){
+			
+			$("input[type=checkbox]").prop("checked",true);
+			 $('img[class*="yes_"]').attr("name", "ImageList"); 
+			console.log("if문");
+		}else{
+			
+			$("input[type='checkbox']").prop("checked",false);
+		 	$('img[class*="yes_"]').attr("name", "yet"); 
+			console.log("else문");
+		}
 		
-		$("input[type=checkbox]").prop("checked",true);
-		 $('img[class*="yes_"]').attr("name", "ImageList"); 
-		console.log("if문");
-	}else{
 		
-		$("input[type='checkbox']").prop("checked",false);
-	 	$('img[class*="yes_"]').attr("name", "yet"); 
-		console.log("else문");
-	}
-	
-	
-	
-})
-})
-/* 
-if ($("input:checked[id='in_'+index]").is(":checked")){
+		
+	});
+});
 
- */
+
 function changein(index){
 	console.log("체크박스 인덱스 : " + index);
 	 if($("#in_"+index).is(":checked") == true){
@@ -194,23 +209,21 @@ function changein(index){
 
 
          
-             <div class="tab-pane active" id="img" role="tabpanel">
+           <div class="tab-pane active" id="img" role="tabpanel">
             <div class="card-body">
             
             <br>
-                  <button type="button" id="all_download" class="btn btn-primary btn-sm" style="background-color:#24AA9E">Download</button>&nbsp; &nbsp;
+            <button type="button" id="all_download" class="btn btn-primary btn-sm" style="background-color:#24AA9E">Download</button>&nbsp; &nbsp;
           
                    
               <div class="table-responsive">
               
-              
-         
                 <table class="table table-bordered" id="dataTable" >
                 
                   <thead style="font-size: 100%;">
                     <tr>
                       <th><input type="checkbox" id="allCheckbox">  All</th>
-                      <td>파일명</th>
+                      <th>파일명</th>
                       <th>올린이</th>
                       <th>원본 글 제목</th>
                       <th>업로드 날짜</th>
@@ -228,7 +241,9 @@ function changein(index){
                     	 	<input type="checkbox" id="in_${status.index }" onchange="changein(${status.index});">
                     	   
                     	</th>
-                    	<th> <img name= "yet" src="resources/img/zipimg.png" class="yes_${status.index }" id="${file.o }" style="width:40px; height : 40px" > &nbsp; &nbsp; &nbsp;${file.o} </th>
+                    	<th>
+                    	<img src="resources/img/zipimg.png" style="width:40px; height :40px" >
+                    	 <img name= "yet" src="resources/bupfile/${file.r }" class="yes_${status.index }" id="${file.o }" style="display:none" > &nbsp; &nbsp; &nbsp;${file.o} </th>
                     	<th> ${file.writer}</th>
                     	<th>[ ${file.title } ]</th>
                     	<th> ${file.enroll } </th>
