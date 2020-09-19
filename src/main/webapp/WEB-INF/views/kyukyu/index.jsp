@@ -105,7 +105,7 @@ function sendInsert(index){
 
 		         if(result == "ok"){
 		            $("#open_"+index).val('n');
-   
+   					alert("보관 성공");
 		            console.log("보관함 보내기 성공 !");
 		         }else{
 		            alert("값이 보내졌지만 결과는 ok가 아님");
@@ -128,7 +128,7 @@ function sendInsert(index){
 		      success: function(result){
 		         if(result == "ok"){
 		        	  $("#open_"+index).val('y');
-		          
+		          	alert("보관 취소 성공");
 		            console.log("보관함 삭제 성공 !");
 		         }else{
 		            alert("디비 내부에서 삭제 문제 생김");
@@ -287,7 +287,7 @@ $(document).ready(function(){
 			<!-- 게시글안쪽 -->	
 			<div class="card-body">
 							
-			   <c>제목 : ${b.btitle}</c>
+			   <b>제목 : ${b.btitle}</b>
 			   <hr>
 							
 							
@@ -308,42 +308,59 @@ $(document).ready(function(){
 			    <input type="radio" name="보류" id="보류" value="보류">보류
 			  </label>
 			</div>
-			<hr>
+			<br><br>
 			
 			
 			
 			<div>
-			   <i class="fas fa-users">담당자 :  ${b.bchargename }</i>
+			   <i class="fas fa-user-friends"></i> 담당자 :  ${b.bchargename }
 			</div>
 			<hr>
+			<div>
+				 <td width="20%"><span style="float: left;">
+				 	<i class="far fa-calendar-alt"> 시작일 : &nbsp;${b.bstartday }</i></span>
+				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+	             </td>
+				 <td width="20%"><span style="float: center;">
+				 	<i class="far fa-calendar-alt"> 마감일 : &nbsp;${b.bendday }</i></span>
+	           	 </td>
+			</div>
+		
+			<hr>
 			
 			<div>
 			  <table>
-				<tr>
-					<td>내용 : </td>
-					<td> ${b.bcontent}</td>
-				 </tr>
-		      </table>
+			   <c:if test="${! empty b.bcontent }">
+			<!-- 	<tr>
+					<td><i class="fas fa-chalkboard"> : </i></td>
 					
+				 </tr> -->
+				 <tr>
+				 <td><b><big>${b.bcontent}</big></b></td>
+				 </tr>
+				</c:if>
+		      </table>
+			<br>	
 			  <table>
 				 <c:if test="${! empty b.boriginfile }">
-				 <tr>
-					<td>파일 : </td>
-					   <br>
-				</tr>
-				<tr>
-				   <th>
-							   
-					 <div id="showfile" style="overflow:hidden;"> 
-				     <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 40%;height : 10%;">
-					 </div> 
-				   </th>
+			
+					<tr>
+					   <td>
+								   
+						 <div id="showfile" style="overflow:hidden;"> 
+					     <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 220px;height : 150px;">
+					     <br>
+					     <a href="${ubf }"><i class="far fa-file"></i> :  ${b.boriginfile}</a>
+			
+						 </div> 
+					   </td>
 					 <c:url var="ubf" value="bfdown.do">
 					  <c:param name="ofile" value="${b.boriginfile}"/>
 					  <c:param name="rfile" value="${b.brenamefile}"/>
 					 </c:url> 
-					 <td><a href="${ubf }"> ${b.boriginfile}</a></td>
-				</tr>
+			
+					</tr>
+				
 			    </c:if>
 					<c:if test="${empty b.boriginfile}">
 					&nbsp;
