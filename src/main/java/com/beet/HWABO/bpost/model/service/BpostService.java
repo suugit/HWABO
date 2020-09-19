@@ -15,4 +15,5 @@ public interface BpostService {
 	int updateBpost(Bpost bpost);
 	String selectBno();
 	ArrayList<Bpost> selectfilelist(String bno);
+	int updateOpen(String bno);
 }

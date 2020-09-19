@@ -161,6 +161,27 @@ $(function(){
 });	 
 
 
+$(document).ready(function(){
+	console.log("0");
+	
+	for(var a = 0; a <= ${fn:length(requestScope.list)}; a++ ){
+	
+		if($("#open_"+a).val() == 'n'){
+			console.log("#open_"+a);
+			   $(".liketoggle"+a).find("i").toggleClass("fas far");
+			   $(".liketoggle"+a).find("span").text(function(i, v) {
+			     return v === '보관' ? '보관됨' : '보관'
+		   })
+			
+		}
+		
+	}
+	/* if( $("#open")
+			)
+		
+		<input type="hidden" id="open_${status.index }" value="${b.bopen }" > */
+	
+});
 
 
 </script>
@@ -239,12 +260,13 @@ $(function(){
            		 
                <!-- <form action="insertcabinet.do" method="post"> -->
               
-               <button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle" name="like" onclick="sendInsert(${status.index});">
+               <button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle${status.index }" name="like" onclick="sendInsert(${status.index});">
            	   <span>보관</span> <i class="far fa-bookmark"></i></button>
            	    <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
 			   <input type="hidden" id="no_${status.index }" value="${b.bno }">
 			   <input type="hidden" id="pnum_${status.index }" value="${b.bpnum }" >
-	
+			 
+				<input type="text" id="open_${status.index }" value="${b.bopen }" >
              
 
 			 <div id="d5"></div>

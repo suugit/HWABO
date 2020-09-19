@@ -147,6 +147,8 @@ if ($("input:checked[id='in_'+index]").is(":checked")){
  */
 function changein(index){
 	console.log("체크박스 인덱스 : " + index);
+	
+	
 	 if($("#in_"+index).is(":checked") == true){
 		 console.log("if 문 성립");
 		 $(".yes_" + index).attr("name", "ImageList");

@@ -74,6 +74,10 @@
 </select>
 
 
+
+
+
+
 <select id="selectfilelist" parameterType="bpost" resultMap="resultBpost">
 
 	select *
@@ -101,7 +105,13 @@
 
 </select>
 
+<update id="updateOpen" parameterType="string">
 
+update bpost
+set bopen = 'n'
+where bno = #{bno}
+
+</update>
 
 <update id="updateBpost" parameterType="Bpost">
 	update bpost
