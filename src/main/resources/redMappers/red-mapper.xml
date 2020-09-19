@@ -210,7 +210,7 @@
 </select>
 
 <select id="selectChat" parameterType="string" resultMap="resultChatList">
-		select * from chatting where PROJECT_NUM = #{ projectNumber }
+		select * from chatting where PROJECT_NUM = #{ projectNumber } order by chat_time
 </select>
 
 <insert id="insertProject" parameterType="com.beet.HWABO.red.model.vo.UserProject">
