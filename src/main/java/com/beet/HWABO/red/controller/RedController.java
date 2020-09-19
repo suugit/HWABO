@@ -312,7 +312,11 @@ public class RedController {
 				}else {
 					p.setContent("");
 				}
-				p.setName(b.getBwriter());
+				if(b.getBwriter() != null) {
+					p.setName(b.getBwriter());
+				}else {
+					p.setName("비뜨 애호가");
+				}
 				p.setUcode(b.getBucode());
 				p.setProject_num(pnum);
 				p.setGoal(3);
@@ -403,8 +407,16 @@ public class RedController {
 
 		for (Chatting c : list) {
 			JSONObject job = new JSONObject();
-			job.put("ucode", URLEncoder.encode(c.getUcode(), "utf-8"));
-			job.put("uname", URLEncoder.encode(c.getUname(), "utf-8"));
+			if(c.getUcode() != null) {
+				job.put("ucode", URLEncoder.encode(c.getUcode(), "utf-8"));
+			}else {
+				job.put("ucode", "Guest");
+			}
+			if(c.getUname() != null) {
+				job.put("uname", URLEncoder.encode(c.getUname(), "utf-8"));
+			}else {
+				job.put("uname", URLEncoder.encode("손님 비뜨^^", "utf-8"));
+			}
 			if(c.getContent() == null) {
 				c.setContent("비뜨");
 			}else if(c.getContent().equals("비트야 핵 사랑해")){
