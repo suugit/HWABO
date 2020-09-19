@@ -80,16 +80,17 @@ function enterChat(){
 		$("#chat").scrollTop($("#chat")[0].scrollHeight);
 }
 
-function delChat(target,target_code,target_num){
+function delChat(target){
 		$.ajax({
 			url:"delChat.do",
 			data: {
 				content : target,
-				ucode :	target_code,
-				project_num : target_num
+				ucode :	$("#enter_ucode").val().toString(),
+				project_num : $("#enter_project_num").val().toString()
 			},
 			type: "POST",
 			success: function(result){
+				selectChat();
 				if(result == "ok"){
 					console.log("메시지 삭제성공...");
 				}else{
@@ -100,6 +101,7 @@ function delChat(target,target_code,target_num){
 				console.log("error code : " + requet.status + "\nMessage :" + request.responseText + "\nError :" + errorData);
 			}
 	 	}); //ajax
+		$("#chat").scrollTop($("#chat")[0].scrollHeight);
 }
 
 function selectChat(){
@@ -128,7 +130,7 @@ function selectChat(){
 		            chat_time.substring(0, 16) +
 		            //삭제버튼 시작
 	                "&nbsp;&nbsp;<button class=\"button button3\" " +
-					"onclick=\"javascript:location.href=\'delChat.do?project_num=${sessionScope.pnum}&ucode=${sessionScope.ucode}&content="+chat_time+"\' \" >X</button>" +
+					"onclick=\"javascript:delChat(\'"+chat_time+"\')\" >X</button>" +
 	                //삭제버튼끝
 		            "</span> </div></div>";
 				}else{

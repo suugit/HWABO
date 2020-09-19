@@ -24,6 +24,12 @@
       <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='/hwabo/'">
 	
 <!-- 왼쪽사이드바 시작 -->
+	  	
+	  <li class="nav-item"><a class="nav-link collapsed" href="cards2.do?ucode=${sessionScope.ucode }"
+				data-target="#collapsePages" aria-expanded="true"
+				aria-controls="collapsePages"><i class="fas fa-list"></i> <span>프로젝트 모아보기</span>
+	  </a> </li>
+
       <hr class="sidebar-divider my-0">
       <div class="sidebar-heading">
         Main
@@ -68,6 +74,18 @@
 				aria-controls="collapsePages"> <i class="fas fa-tasks"></i> <span>업무 모아보기</span>
 	</a> </li>
 	
+	<hr class="sidebar-divider">
+	
+	<li class="nav-item"><a class="nav-link collapsed" href="mycabinet.do"
+	data-target="#collapsePages" aria-expanded="true"
+	aria-controls="collapsePages" ><i class="fas fa-box-open"></i>
+	<span>보관함</span></a> 
+					
+	<a class="nav-link collapsed" href="Fileboxlist.do?pnum=${sessionScope.pnum }" data-target="#collapsePages"
+	aria-expanded="true" aria-controls="collapsePages" > 
+	<i class="far fa-folder-open"></i><span> 파일함</span>
+	</a></li>
+			
 	<hr class="sidebar-divider">
 			
 			<li class="nav-item"><a class="nav-link collapsed" href="myhwabo.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}"
