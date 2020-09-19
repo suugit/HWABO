@@ -81,11 +81,6 @@ function enterChat(){
 }
 
 function delChat(target,target_code,target_num){
-	console.log("sdsds");
-	console.log(target);
-	console.log(target_code);
-	console.log(target_num);
-	console.log("sdsds");
 		$.ajax({
 			url:"delChat.do",
 			data: {
