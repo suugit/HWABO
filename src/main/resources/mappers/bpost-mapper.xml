@@ -105,13 +105,7 @@
 
 </select>
 
-<update id="updateOpen" parameterType="string">
 
-update bpost
-set bopen = 'n'
-where bno = #{bno}
-
-</update>
 
 <update id="updateBpost" parameterType="Bpost">
 	update bpost
@@ -145,6 +139,28 @@ where bno = #{bno}
 	
 	bpnum = #{bpnum}
 	where bno = #{bno}
+
+</update>
+
+<!-- 보관함 관련!!! -->
+
+
+<update id="updateOpen" parameterType="string">
+
+<!-- update bpost
+set bopen = 'n'
+where bno = #{bno} -->
+
+
+
+update bpost
+set bopen =
+case
+when bopen = 'n' then 'y'
+when bopen = 'y' then 'n'
+end
+where bno = #{bno}
+
 
 </update>
 

@@ -5,5 +5,7 @@ import com.beet.HWABO.cabinet.model.vo.Cabinet;
 public interface CabinetService {
 
 	int insertCabinet(Cabinet cabinet);
+
+	int deleteCabinet(Cabinet cabinet);
 	
 }

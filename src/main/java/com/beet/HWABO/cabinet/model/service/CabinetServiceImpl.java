@@ -25,5 +25,11 @@ public class CabinetServiceImpl implements CabinetService{
 		return cabinetDao.insertCabinet(cabinet);
 	}
 
+	@Override
+	public int deleteCabinet(Cabinet cabinet) {
+		logger.info("service 옴" + cabinet);
+		return cabinetDao.deleteCabinet(cabinet);
+	}
+
 	
 }

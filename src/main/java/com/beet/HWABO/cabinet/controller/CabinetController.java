@@ -36,6 +36,62 @@ public class CabinetController {
    
    
    
+   @RequestMapping(value="deletecabinet.do", method=RequestMethod.POST)
+   public void deletecabinet(Cabinet cabinet, HttpServletResponse response)throws Exception {
+	   logger.info("deletecabinet.do run...");
+	      logger.info("cabinet : " + cabinet);
+	     
+	      response.setContentType("text/html; charset=utf-8");      
+	      PrintWriter out = response.getWriter();      
+	     
+	     
+	   
+	   if(cabinetService.deleteCabinet(cabinet) > 0) {
+		   logger.info("보관함 삭제 성공!");
+		   out.append("ok");
+	       out.flush();
+	       
+	       String no = cabinet.getNo();
+	       
+	          
+	          if(no.substring(0, 1).equals("b")) {
+	        	logger.info("bpost 이퀄스로 업데이트 if 문 들어옴 no 값 :" + no);
+	        		
+	        		String bno = no;
+	        	
+	        		if(bpostService.updateOpen(bno) > 0) {
+	        			logger.info("bpost open update 보관함 y로 설정 완료");
+	        		}else {
+	        			logger.info("bpost open update 보관함  실패!!!!!!!!!!");
+	        		}
+	        	  
+	        	  
+	        	 
+	          	}else if(no.substring(0, 1).equals("s")) {
+	        	  
+	        	  logger.info("spost 이퀄스 비교 셩공!!!!!!!!!!!!!!");  
+	          	}else if(no.substring(0, 1).equals("c")) {
+	        	  
+	        	  logger.info("cpost 이퀄스 비교 셩공!!!!!!!!!!!!!!");
+	          }
+	           
+	       
+	       
+	       
+	       
+	   }else {
+	        logger.info("cabinet 인서트 실패");
+	        out.append("fail");
+	        out.flush();
+	        }
+	        out.close();
+		   
+		   
+	   }
+	   
+   
+   
+   
    @RequestMapping(value="insertcabinet.do", method=RequestMethod.POST)
    //ajax는 뷰 리졸버를 거치지 않고 바로 통로를 만들어 보내므로 보이트처리
    public void insertCabinet(Cabinet cabinet, HttpServletResponse response) throws Exception{

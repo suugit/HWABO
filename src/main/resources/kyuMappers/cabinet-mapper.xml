@@ -12,4 +12,14 @@
 
 </insert>
 
+
+<delete id="deleteCabinet" parameterType="Cabinet">
+	
+	delete from cabinet
+	where no = #{no} and ucode= #{ucode}
+
+</delete>
+
+
+
 </mapper>

@@ -124,41 +124,78 @@ function validate(){
 <script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 function sendInsert(index){
+	
+	
 	console.log("sendInsert : " + index);
 	console.log($("#no_"+ index).val());
-	$.ajax({	      
-	      url: "insertcabinet.do",
-	      data: {no: $("#no_"+ index).val(), ucode: $("#ucode_" + index).val(), pnum: $("#pnum_" + index).val()},     
-	      type: "post",
-	      success: function(result){
-	         if(result == "ok"){
-	            alert("보관함 보내기 성공 !");
-	            console.log("보관함 보내기 성공 !");
-	         }else{
-	            alert("값이 보내졌지만 결과는 ok가 아님");
-	         }
+	
+	if($("#open_"+index).val() == 'y'){
+	
+		$.ajax({	      
+		      url: "insertcabinet.do",
+		      data: {no: $("#no_"+ index).val(), ucode: $("#ucode_" + index).val(), pnum: $("#pnum_" + index).val()},     
+		      type: "post",
+		      success: function(result){
+		         if(result == "ok"){
+		            alert("보관함 보내기 성공 !");
+		            console.log("보관함 보내기 성공 !");
+		         }else{
+		            alert("값이 보내졌지만 결과는 ok가 아님");
+		         }
+		      
+		      },
+		      error: function(request, status, errorData){
+		    	 
+		            console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+		         }
+		      
+		      }); //에이작스
 	      
-	      },
-	      error: function(request, status, errorData){
-	    	 
-	            console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
-	         }
+	}else{  //이미 보관된 게시물이라면 n -> y 로 (현재 보관을 n 보관 안함을 y 로 설정해놀음 이유는 내가 청개구리라서)
+		
+		$.ajax({	      
+		      url: "deletecabinet.do",
+		      data: {no: $("#no_"+ index).val(), ucode: $("#ucode_" + index).val()},     
+		      type: "post",
+		      success: function(result){
+		         if(result == "ok"){
+		            alert("보관함 삭제 성공 !");
+		            console.log("보관함 삭제 성공 !");
+		         }else{
+		            alert("디비 내부에서 삭제 문제 생김");
+		         }
+		      
+		      },
+		      error: function(request, status, errorData){
+		    	 
+		            console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+		         }
+		      
+		      }); //에이작스
+		
+		
+		
+	}   
 	      
-	      }); //에이작스
+	      $(".liketoggle"+index).find("i").toggleClass("fas far");
+		   $(".liketoggle"+index).find("span").text(function(i, v) {
+		     return v === '보관' ? '보관됨' : '보관'
+		    		 
+		   });
 }
-
-$(function(){
+	
+/* $(function(index){
 	//보관함
 
 	
-	 $(".liketoggle").click(function() {
-		   $(this).find("i").toggleClass("fas far");
-		   $(this).find("span").text(function(i, v) {
+	 $(".liketoggle"+index).click(function() {
+		   $(".liketoggle"+index).find("i").toggleClass("fas far");
+		   $(".liketoggle"+index).find("span").text(function(i, v) {
 		     return v === '보관' ? '보관됨' : '보관'
 		   })
 		 });
 	
-});	 
+});	 */ 
 
 
 $(document).ready(function(){
@@ -171,7 +208,7 @@ $(document).ready(function(){
 			   $(".liketoggle"+a).find("i").toggleClass("fas far");
 			   $(".liketoggle"+a).find("span").text(function(i, v) {
 			     return v === '보관' ? '보관됨' : '보관'
-		   })
+		   });
 			
 		}
 		

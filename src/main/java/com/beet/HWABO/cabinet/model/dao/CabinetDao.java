@@ -23,4 +23,9 @@ public class CabinetDao {
 		return session.insert("cabinetMappper.insertCabinet", cabinet);
 	}
 
+	public int deleteCabinet(Cabinet cabinet) {
+		logger.info("cabinet dao :"+ cabinet);
+		return session.delete("cabinetMapper.deleteCabinet", cabinet);
+	}
+
 }
