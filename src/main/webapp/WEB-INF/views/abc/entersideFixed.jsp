@@ -18,19 +18,19 @@
 
 <br><br><br><br>
       <!-- Sidebar - Brand -->
+      <c:if test="${sessionScope.ucode == null and sessionScope.pnum == null }">
       <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='/hwabo/'">
-
+      </c:if>
+      <c:if test="${sessionScope.ucode != null and sessionScope.pnum == null }">
+      <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='cards2.do?ucode=${sessionScope.ucode }'">
+      </c:if>
+      <c:if test="${sessionScope.ucode != null and sessionScope.pnum != null }">
+      <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='ftables.do?project_num=${sessionScope.pnum }'">
+      </c:if>
+     
 			<li class="nav-item"><a class="nav-link collapsed" href="cards2.do?ucode=${sessionScope.ucode }"
 				data-target="#collapsePages" aria-expanded="true"
-				aria-controls="collapsePages"> <i class="fas fa-tasks"></i> <span>프로젝트 선택</span>
-			</a> </li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-			
-			<li class="nav-item"><a class="nav-link collapsed" href="ftables.do?project_num=${sessionScope.pnum }"
-				data-target="#collapsePages" aria-expanded="true"
-				aria-controls="collapsePages"> <i class="fas fa-tasks"></i> <span>프로젝트 메인페이지로</span>
+				aria-controls="collapsePages"><i class="fas fa-list"></i> <span>프로젝트 모아보기</span>
 			</a> </li>
 
 			<!-- Divider -->
@@ -38,7 +38,7 @@
 
 			<li class="nav-item"><a class="nav-link collapsed" href="mybpost.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}"
 				data-target="#collapsePages" aria-expanded="true"
-				aria-controls="collapsePages"> <i class="fas fa-tasks"></i> <span>업무 모아보기</span>
+				aria-controls="collapsePages"> <i class="far fa-list-alt"></i></i> <span>업무 모아보기</span>
 			</a> </li>
 
 			<!-- Divider -->
@@ -46,13 +46,13 @@
 
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+			<li class="nav-item"><a class="nav-link collapsed" href="mycabinet.do"
 				data-target="#collapsePages" aria-expanded="true"
-				aria-controls="collapsePages" onclick="javascript: return false;"><i class="fas fa-box-open"></i>
+				aria-controls="collapsePages" ><i class="fas fa-box-open"></i>
 					<span>보관함</span></a> 
 					
 				<a class="nav-link collapsed" href="Fileboxlist.do?pnum=${sessionScope.pnum }" data-target="#collapsePages"
-				aria-expanded="true" aria-controls="collapsePages" onclick="javascript: return false;"> 
+				aria-expanded="true" aria-controls="collapsePages" > 
 				<i class="far fa-folder-open"></i><span> 파일함</span>
 			</a></li>
 			

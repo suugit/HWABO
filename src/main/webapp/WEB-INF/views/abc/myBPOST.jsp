@@ -36,20 +36,11 @@
 
 <script type="text/javascript" src="resources/js/scripts.js"></script>
 <script type="text/javascript">
-
-$(function(){
-    $("#trclick").click(function(){
-    	$.ajax({
-    		url: "bpostOne.do",
-    		data: { ucode: ${sessionScope.ucode}, pnum:  ${sessionScope.pnum}, bno= }
-    		
-    	});
-    	
-        $('div.modal').modal({
-                      remote : 'bpostOneView.jsp'
-                });
-    })
-})
+$(document).ready(function() {
+	 $('#dataTable').dataTable( {
+		  "lengthChange": false
+		} );
+	 });
 
 
 $("#").on('click', function(e){
@@ -139,19 +130,19 @@ $("#").on('click', function(e){
 														<td style="vertical-align: middle; text-align: center;">
 														
 																<%if(bpost.getBkind().equals("요청")){ %>
-																	<strong style="font-size:15pt; color: #047AAC; margin-top:30px; vertical-align: middle; ">요 청</strong>															
+																	<strong style="font-size:13pt; color: #047AAC; margin-top:30px; vertical-align: middle; ">요 청</strong>															
 																<% } %>
 																<%if(bpost.getBkind().equals("진행")){ %>
-																	<strong style="font-size:15pt; color: #173192; ; margin-top:20px; vertical-align: middle; ">진 행</strong>																
+																	<strong style="font-size:13pt; color: #173192; ; margin-top:20px; vertical-align: middle; ">진 행</strong>																
 																<% } %>
 																<%if(bpost.getBkind().equals("피드백")){ %>
-																	<strong style="font-size:15pt; color: #f4b30d; margin-top:20px; vertical-align: middle; ">피드백</strong>																
+																	<strong style="font-size:13pt; color: #f4b30d; margin-top:20px; vertical-align: middle; ">피드백</strong>																
 																<% } %>
 																<%if(bpost.getBkind().equals("완료")){ %>
-																	<strong style="font-size:15pt; color: #0C860F; margin-top:20px; vertical-align: middle; ">완 료</strong>																
+																	<strong style="font-size:13pt; color: #0C860F; margin-top:20px; vertical-align: middle; ">완 료</strong>																
 																<% } %>
 																<%if(bpost.getBkind().equals("보류")){ %>
-																	<strong style="font-size:15pt; color: #6b6d7d; margin-top:20px; vertical-align: middle; ">보 류</strong>																
+																	<strong style="font-size:13pt; color: #6b6d7d; margin-top:20px; vertical-align: middle; ">보 류</strong>																
 																<% } %>
 															</td>
 														

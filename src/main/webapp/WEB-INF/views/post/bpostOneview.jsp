@@ -3,22 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!-- Custom fonts for this template -->
-<link
-	href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-
-<!-- Custom styles for this template -->
-<link href="/hwabo/resources/maincss/css/sb-admin-2.css"
-	rel="stylesheet">
-
-<!-- Custom styles for this page -->
-<link
-	href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css"
-	rel="stylesheet">
 
 <!DOCTYPE html>
 <html lang="kr">
@@ -36,6 +20,7 @@ div#showfile imag {
 #import{
 	pointer-events: none; 
 }
+
 </style>
 </head>
 <script type="text/javascript"
@@ -118,37 +103,38 @@ div#showfile imag {
 
 
 <body id="page-top">
-
-	<table class="table" style="margin:auto;z-index:8; position:fixed; width:40%;height:40%;  background-color:white; border: 1px solid grey;border-radius: 10px;">
-	<tr>
-		<td>&nbsp;</td>
-	
-		<td align="right">
-
-			<button id="cabinetshow" class="btn btn-light"
+<table style="position:fixed;z-index:8; width:100%;height:100%;">
+<tr onclick="javascript:location.href='mybpost.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'"><td>&nbsp;</td><td style="height:20%;">&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td  onclick="javascript:location.href='mybpost.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'" style="width:30%;"></td><td style="width:40%;height:45%;background-color:white;border:1px solid skyblue;">
+<div class="p-5" style="width:100%;">
+                  <div class="text-center">
+                    <h3 class="h4 text-gray-900 mb-4">${post.btitle }</h3>
+                  </div>
+                  <div align="right" style="padding-bottom: 10px;">
+                  			<button id="cabinetshow" class="btn btn-light"
 				name="like" onclick="sendInsert();">
 				<span>보관</span>
 			</button>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 			<span >
-				<c:url var="bup" value="buppage.do">
+				<c:url var="bup" value="bpostup.do">
 							<c:param name="bno" value="${post.bno }" />
 				</c:url>
 				<a class="btn btn-light" href="${bup }">수정</a>
 			</span>
 			&nbsp;
 			<span>
-				<c:url var="bdel" value="deletebpost.do">
+				<c:url var="bdel" value="bpostdel.do">
 					<c:param name="bno" value="${post.bno }" />
 					<c:param name="brenamefile" value="${post.brenamefile }" />
 				</c:url>
 				<a class="btn btn-light" href="${bdel }">삭제</a>
 			</span>
-		</td>
-	</tr>
-	<tr><th style="width: 10%">작성자</th><td>${post.bwriter }</td></tr>
-	<tr><th>제 목</th><td>${post.btitle }</td></tr>
-	<tr><th>유 형</th>
+                  </div>
+                  
+ 	<table class="table">
+	<tr><th style="width: 13%; text-align: center;">작성자</th><td>${post.bwriter }</td></tr>
+	<tr><th style="text-align: center;">유 형</th>
 		  <td>
 				<c:if test="${post.bkind eq '요청'}">
 					요청
@@ -167,12 +153,12 @@ div#showfile imag {
 				</c:if>
 		  </td>
 	</tr>
-	<tr><th>담당자</th><td>${post.bchargename }</td></tr>
-	<tr><th>내 용</th><td><c:if test="${post.bcontent != null }" > ${post.bcontent }</c:if><c:if test="${post.bcontent == null }" >&nbsp;</c:if></td></tr>
+	<tr><th style="text-align: center;">담당자</th><td>${post.bchargename }</td></tr>
+	<tr><th style="text-align: center;">내 용</th><td><c:if test="${post.bcontent != null }" > ${post.bcontent }</c:if><c:if test="${post.bcontent == null }" >&nbsp;</c:if></td></tr>
 	
 	<c:if test="${! empty post.boriginfile }">
 		<tr>
-			<th>파 일</th>
+			<th style="text-align: center;">파 일</th>
 			<td><div id="showfile" style="overflow: hidden;">
 					<img src="resources/bupfile/${post.brenamefile}"
 						style="width: 40%; height: 10%;">
@@ -188,28 +174,16 @@ div#showfile imag {
 	<c:if test="${empty post.boriginfile}">
 	 <tr><td colspan="2">&nbsp;</td></tr>
 	</c:if>
-	
-	
 	</table>
-		<!-- Bootstrap core JavaScript-->
-		<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
-		<script
-			src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-		<!-- Core plugin JavaScript-->
-		<script
-			src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
+</div>
+</td><td  onclick="javascript:location.href='mybpost.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'" style="width:30%;"></td></tr>
+<tr  onclick="javascript:location.href='mybpost.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'"><td>&nbsp;</td><td style="height:35%;">&nbsp;</td><td>&nbsp;</td></tr>      
+</table>
 
-		<!-- Custom scripts for all pages-->
-		<script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
-
-		<!-- Page level plugins -->
-		<script
-			src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
-		<script
-			src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-
+<div id="import" style="opacity: 0.5">
+<c:import url="/WEB-INF/views/abc/myBPOST.jsp" />
+</div>
 </body>
 
 </html>
