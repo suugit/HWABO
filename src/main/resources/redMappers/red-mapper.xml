@@ -230,7 +230,7 @@
 </insert>
 
 <insert id="insertChat" parameterType="com.beet.HWABO.red.model.vo.Chatting">
-		insert into chatting values (#{ ucode },#{ project_num },#{ project_name },#{ uname },#{ content },sysdate,null,null)
+		insert into chatting( UCODE,PROJECT_NUM,PROJECT_NAME,UNAME,CONTENT,CHAT_TIME,ORIGNAL_FILE,RENAME_FILE ) values (#{ ucode },#{ project_num },#{ project_name },#{ uname },#{ content },sysdate,null,null)
 </insert>
 
 <delete id="deleteProject" parameterType="string">
