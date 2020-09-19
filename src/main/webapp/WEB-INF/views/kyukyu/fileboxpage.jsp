@@ -107,6 +107,21 @@
 $('img[name*="ImageList"]').each(function(i){ 
 
  */
+ 
+ /* <div class="dataTables_length" id="dataTable_length">
+  */
+ 
+ $(document).ready(function() {
+	 $('#dataTable').dataTable( {
+		  "lengthChange": false,
+	
+		} );
+	 });
+ 
+ 
+  
+  
+  
 $(function(){
 $("#allCheckbox").click(function(){
 
