@@ -136,8 +136,10 @@ function sendInsert(index){
 		      data: {no: $("#no_"+ index).val(), ucode: $("#ucode_" + index).val(), pnum: $("#pnum_" + index).val()},     
 		      type: "post",
 		      success: function(result){
+
 		         if(result == "ok"){
-		            alert("보관함 보내기 성공 !");
+		            $("#open_"+index).val('n');
+   
 		            console.log("보관함 보내기 성공 !");
 		         }else{
 		            alert("값이 보내졌지만 결과는 ok가 아님");
@@ -155,11 +157,12 @@ function sendInsert(index){
 		
 		$.ajax({	      
 		      url: "deletecabinet.do",
-		      data: {no: $("#no_"+ index).val(), ucode: $("#ucode_" + index).val()},     
+		      data: {no: $("#no_"+ index).val(), ucode: $("#ucode_" + index).val(), pnum: $("#pnum_" + index).val()},     
 		      type: "post",
 		      success: function(result){
 		         if(result == "ok"){
-		            alert("보관함 삭제 성공 !");
+		        	  $("#open_"+index).val('y');
+		          
 		            console.log("보관함 삭제 성공 !");
 		         }else{
 		            alert("디비 내부에서 삭제 문제 생김");
@@ -172,30 +175,19 @@ function sendInsert(index){
 		         }
 		      
 		      }); //에이작스
+
 		
-		
-		
-	}   
+			}   
 	      
 	      $(".liketoggle"+index).find("i").toggleClass("fas far");
-		   $(".liketoggle"+index).find("span").text(function(i, v) {
+		  $(".liketoggle"+index).find("span").text(function(i, v) {
 		     return v === '보관' ? '보관됨' : '보관'
 		    		 
-		   });
+	 });
 }
-	
-/* $(function(index){
-	//보관함
 
-	
-	 $(".liketoggle"+index).click(function() {
-		   $(".liketoggle"+index).find("i").toggleClass("fas far");
-		   $(".liketoggle"+index).find("span").text(function(i, v) {
-		     return v === '보관' ? '보관됨' : '보관'
-		   })
-		 });
-	
-});	 */ 
+
+
 
 
 $(document).ready(function(){
@@ -213,10 +205,6 @@ $(document).ready(function(){
 		}
 		
 	}
-	/* if( $("#open")
-			)
-		
-		<input type="hidden" id="open_${status.index }" value="${b.bopen }" > */
 	
 });
 

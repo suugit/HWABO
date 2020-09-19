@@ -20,7 +20,7 @@ public class CabinetDao {
 	
 	public int insertCabinet(Cabinet cabinet) {
 		logger.info("cabinet dao :"+ cabinet);
-		return session.insert("cabinetMappper.insertCabinet", cabinet);
+		return session.insert("cabinetMapper.insertCabinet", cabinet);
 	}
 
 	public int deleteCabinet(Cabinet cabinet) {

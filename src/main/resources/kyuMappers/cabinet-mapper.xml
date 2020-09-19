@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cabinetMappper">
+<mapper namespace="cabinetMapper">
 
 
 <insert id="insertCabinet" parameterType="Cabinet">
@@ -16,7 +16,7 @@
 <delete id="deleteCabinet" parameterType="Cabinet">
 	
 	delete from cabinet
-	where no = #{no} and ucode= #{ucode}
+	where no = #{no} and ucode= #{ucode} and pnum = #{pnum}
 
 </delete>
 
