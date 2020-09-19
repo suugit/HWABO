@@ -448,23 +448,23 @@ public class RedController {
 			}
 			out.close();
 	}
-	@RequestMapping(value = "delChat.do", method = RequestMethod.GET)
-	public String starDelete(Chatting chat, HttpServletResponse response) throws IOException {
+	@RequestMapping(value = "delChat.do", method = RequestMethod.POST)
+	public void starDelete(Chatting chat, HttpServletResponse response) throws IOException {
 		response.setContentType("test/html; charset=utf-8");
 		Timestamp t = Timestamp.valueOf(chat.getContent());
 		chat.setChat_time(t);
 		PrintWriter out = response.getWriter();
 		if(redService.delChat(chat) > 0) {
 			logger.info("선택한 채팅기록 삭제됨 ....");
-			//out.append("ok");
-			//out.flush();
+			out.append("ok");
+			out.flush();
 		}else {
 			logger.info("채팅 삭제 실패....");
-			//out.append("fail");
-			//out.flush();
+			out.append("fail");
+			out.flush();
 		}
-		//out.close();
-		return "redirect:/ftables.do?project_num=" + chat.getProject_num();
+		out.close();
+		//return "redirect:/ftables.do?project_num=" + chat.getProject_num();
 	}
 ////views start//////////////////////////////	
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)

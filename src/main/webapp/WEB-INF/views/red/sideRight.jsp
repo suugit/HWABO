@@ -24,7 +24,7 @@
 
 <!-- 접속자 명단시작 -->
 <hr>
-<div style="font-size:50%;color:pink;">MEMBER</div>
+<div style="font-size:50%;color:pink;" onclick="javascript:console.log('꾸쭈')">MEMBER</div>
 <i class="fas fa-circle text-success"></i>
 suggit
 <hr>
