@@ -13,7 +13,7 @@
 <link href="/hwabo/resources/maincss/css/chatting.css" type="text/css" rel="stylesheet">
 
 
-<!-- 스나이퍼 재료 시작 -->
+<!-- 삭제버튼 css 시작 -->
 <style>
 .button {
   background-color: #4CAF50; /* Green */
@@ -41,7 +41,7 @@
 }
 
 </style>
-<!-- 스나이퍼 재료 끝 -->
+<!-- 삭제버튼 css 끝 -->
 
 
 <script>
@@ -147,7 +147,6 @@ function selectChat(){
 	                "</span></div></div></div>";
 				}
 			}
-			//$("stars").html() + 
 			$("#chat").html(values); 
 			$("#chat").scrollTop($("#chat")[0].scrollHeight);
 		},
