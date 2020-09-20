@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.beet.HWABO.bpost.model.vo.Bpost;
+import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
+import com.beet.HWABO.spost.model.vo.Post;
 
 @Repository("redDao")
 public class RedDao {
@@ -105,6 +107,16 @@ public class RedDao {
 
 	public int delChatAll(Chatting chat) {
 		return session.delete("redMapper.delChatAll", chat);
+	}
+
+	public ArrayList<Post> selectAllPost(String pnum) {
+		List<Post> list = session.selectList("redMapper.selectAllPost", pnum);
+		return (ArrayList<Post>)list;
+	}
+
+	public ArrayList<Cpost> selectCpost(String pnum) {
+		List<Cpost> list = session.selectList("redMapper.selectCpost", pnum);
+		return (ArrayList<Cpost>)list;
 	}
 	
 }

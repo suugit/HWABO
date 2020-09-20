@@ -32,35 +32,26 @@
 
 <!-- 스크립트 모으기 끝 -->
 </head>
-
 <body id="page-top">
-
 <!-- 11111111111111111 -->
 <c:import url="/WEB-INF/views/red/topbar.jsp"></c:import>
- 
  <div style="width:100%;display:flex;justify-content:center;align-item:center;">
 <!-- Sidebar2right -->
      <c:import url="/WEB-INF/views/red/sideFixed.jsp"></c:import>
 <!-- End of Sidebar2right -->
 <!-- 111111111111111111 -->
- 
   <!-- Page Wrapper -->
   <div id="wrapper" style="width:1300px;">
-
     <!-- Sidebar -->
     <div style="width:17%"></div>
     <!-- End of Sidebar -->
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column bg-white" style="width:62%;">
-
       <!-- Main Content -->
      <div id="content">
-
         <!-- Topbar -->
         <br><br><br><br>
         <!-- End of Topbar -->
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
 <!-- 진행률 시작 -->
@@ -76,13 +67,13 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800"></h1>
           <p class="mb-4"></p>
-
+<!-- 글작성 샘플 시작 -->
 <div class="card shadow mb-4">
             <div class="card-header py-3">
             </div>
             <div class="card-body">
               <!-- 게시글안쪽 -->
-              <form action="ftables.do" id="mainInsert">
+              <form action="ftables.do?project_num=${ sessionScope.pnum }" id="mainInsert" method="GET">
               <table style="text-align:center;width:100%;">
               <tbody><tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
               <span>글작성</span>
@@ -124,11 +115,11 @@
               <tr><td colspan="5">&nbsp;</td></tr>
               <tr><td colspan="3"></td>
               <td>
-              <a class="btn btn-success btn-icon-split" href="javascript:mainInsert.submit();" style="width:90%;">
+              <a class="btn btn-success btn-icon-split" href="ftables.do?project_num=${ sessionScope.pnum }" style="width:90%;">
                     <span class="text">등록</span>
                   </a>
               </td><td>
-              <a href="ftables.do" class="btn btn-danger btn-icon-split" style="width:90%;">
+              <a href="ftables.do?project_num=${ sessionScope.pnum }" class="btn btn-danger btn-icon-split" style="width:90%;">
                     <span class="text">취소</span>
               </a>
               </td></tr>
@@ -136,12 +127,24 @@
               </form>
             </div>
           </div>
-          <!-- 새 글작성끝 -->
+<!-- 글작성 샘플 끝 -->
          
+<!-- abc 시작 -->  
+----abc 시작----------------------------------------------------------------------------------------<br>   
+<c:import url="/WEB-INF/views/red/bodyAbc.jsp"></c:import>
+----abc 끝----------------------------------------------------------------------------------------<br>        
+<!-- abc 끝 -->   
+      
+<!-- suugit 시작 -->  
+----suugit 시작----------------------------------------------------------------------------------------<br>   
+<c:import url="/WEB-INF/views/red/bodySuugit.jsp"></c:import>
+----suugit 끝----------------------------------------------------------------------------------------<br>        
+<!-- suugit 끝 -->         
+
 <!-- kyu 시작 -->  
 ----kyukyu 시작----------------------------------------------------------------------------------------<br>   
 <c:import url="/WEB-INF/views/red/bodyKyu.jsp"></c:import>
-----kyukyu 끝----------------------------------------------------------------------------------------       
+----kyukyu 끝----------------------------------------------------------------------------------------<br>        
 <!-- kyu 끝 -->         
           
           

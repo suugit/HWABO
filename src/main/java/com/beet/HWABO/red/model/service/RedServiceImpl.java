@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.beet.HWABO.bpost.model.vo.Bpost;
+import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.red.model.dao.RedDao;
 import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
@@ -13,6 +14,7 @@ import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
+import com.beet.HWABO.spost.model.vo.Post;
 
 
 @Service("redService")
@@ -118,6 +120,16 @@ public class RedServiceImpl implements RedService {
 	@Override
 	public int delChatAll(Chatting chat) {
 		return redDao.delChatAll(chat);
+	}
+
+	@Override
+	public ArrayList<Post> selectAllPost(String pnum) {
+		return redDao.selectAllPost(pnum);
+	}
+
+	@Override
+	public ArrayList<Cpost> selectCpost(String pnum) {
+		return redDao.selectCpost(pnum);
 	}
 	
 }

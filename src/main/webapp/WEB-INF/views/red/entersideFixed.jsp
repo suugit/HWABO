@@ -95,7 +95,15 @@ $(function(){
 <br><br><br><br>
 
       <!-- 화보 이미지 -->
+	  <c:if test="${sessionScope.ucode == null and sessionScope.pnum == null }">
       <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='/hwabo/'">
+      </c:if>
+      <c:if test="${sessionScope.ucode != null and sessionScope.pnum == null }">
+      <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='cards2.do?ucode=${sessionScope.ucode }'">
+      </c:if>
+      <c:if test="${sessionScope.ucode != null and sessionScope.pnum != null }">
+      <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='ftables.do?project_num=${sessionScope.pnum }'">
+      </c:if>
 	
 <!-- 왼쪽사이드바 시작 -->
       <!-- Divider -->

@@ -3,12 +3,14 @@ package com.beet.HWABO.red.model.service;
 import java.util.ArrayList;
 
 import com.beet.HWABO.bpost.model.vo.Bpost;
+import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
+import com.beet.HWABO.spost.model.vo.Post;
 
 
 public interface RedService {
@@ -32,4 +34,6 @@ public interface RedService {
 	int insertChat(Chatting chat);
 	int delChat(Chatting chat);
 	int delChatAll(Chatting c);
+	ArrayList<Post> selectAllPost(String pnum);
+	ArrayList<Cpost> selectCpost(String pnum);
 }

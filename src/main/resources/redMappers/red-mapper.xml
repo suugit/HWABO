@@ -144,6 +144,16 @@
 		<result property="bpnum" column="bpnum" />
 		<result property="bchargename" column="bchargename" />
 	</resultMap>
+	<resultMap type="Cpost" id="rsltCpost">
+		<id column="cno" property="cno" />
+		<result column="ctitle" property="ctitle" />
+		<result column="cucode" property="cucode" />
+		<result column="cwriter" property="cwriter" />
+		<result column="ccontent" property="ccontent" />
+		<result column="cenrolldate" property="cenrolldate" />
+		<result column="copen" property="copen" />
+		<result column="cpnum" property="cpnum" />
+	</resultMap>
 	<resultMap id="resultChatList" type="com.beet.HWABO.red.model.vo.Chatting">
 		<result property="ucode" column="ucode" />
 		<result property="project_num" column="project_num" />
@@ -209,8 +219,22 @@
 		select * from project where PROJECT_NUM = #{ projectNumber }
 </select>
 
+
 <select id="selectChat" parameterType="string" resultMap="resultChatList">
 		select * from chatting where PROJECT_NUM = #{ projectNumber } order by chat_time
+</select>
+
+<select id="selectAllPost" parameterType="string" resultType="Post">
+		select * from realpost 
+		where pnum = #{pnum}
+		order by enrolldate desc
+</select>
+
+<select id="selectCpost" parameterType="string" resultMap="rsltCpost">
+		select * from cpost
+		left join addon using (cno)
+		where cpnum = #{ project_num }
+		order by cenrolldate desc
 </select>
 
 <insert id="insertProject" parameterType="com.beet.HWABO.red.model.vo.UserProject">
