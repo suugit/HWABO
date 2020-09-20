@@ -356,7 +356,6 @@ public class abcController {
 	// 나의 화보. 나와 관련된 게시글 목록 조회용
 	@RequestMapping("myhwabo.do")
 	public String myHWABO(Model m, PjMember pmember) {
-		logger.info(pmember.toString());
 		
 		// 매개변수랑, where 절에 session에서 받아온 ucode랑 pnum 추가 해야한다.
 		// Pjmember 에 ucode랑 pnum 필드 있어서 그걸로 이용해서 2개 값 담아서 이동 !

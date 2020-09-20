@@ -6,7 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <% ArrayList<Post> list = (ArrayList<Post>)request.getAttribute("list"); %>
 <!DOCTYPE html>
-<c:set var="postlist" value="${list }"/>
+<c:set var="list" value="${list }"/>
 <html lang="en">
 
 <head>
@@ -131,47 +131,7 @@
 											<% } %>
 										
 										<% } %>
-									<% } %>
-											<%-- <c:forEach var="post" items="${requestScope.list }" varStatus="status">
-														
-													<tr>
-														<td colspan="4">${post.firstword }</td>
-														
-													</tr>		 --%>								
-													<%-- <c:if test="${post.firstword == s}">
-													<tr>
-														<td>일정 ${status.index }</td>
-														<td>${post.stitle }</td>
-														<td>${post.scontent }</td>
-														<td>${post.senrolldate }</td>
-													</tr>
-													</c:if>
-												
-												
-													<c:if test="${post.firstword == b}">
-													<tr>	
-														<td>업무 ${status.index }</td>
-														<td>${post.btitle }</td>
-														<td>${post.bcontent }</td>
-														<td>${post.benrolldate }</td>
-													</tr>
-													</c:if>
-												
-												
-													<c:if test="${post.firstword == c}">
-													<tr>	
-														<td>글 ${status.index }</td>
-														<td>${post.ctitle }</td>
-														<td>${post.ccontent }</td>
-														<td>${post.cenrolldate }</td>
-													</tr>
-													</c:if> 
-													
-													</c:forEach>
-													--%>
-												
-												
-												
+									<% } %>								
 											</tbody>
 										</table>
 									</div>
@@ -223,149 +183,48 @@
 						</div>
 					</div>
 					<!-- 게시글끝 -->
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-
-
-
-				</div>
-				<!-- /.container-fluid -->
-
-				<!-- Begin Page Content -->
-				</div>
-				<!-- End of Main Content -->
+<%-- 			<c:if test="${!empty list }">
+			 	<c:forEach var="post" items="${sessionScope.list }">
+			 		<c:if test="${post.firstword eq 's'}">
+			 			<c:import url="/WEB-INF/views/abc/selectSpost.jsp"></c:import>
+			 		</c:if>
+			 		<c:if test="${post.firstword eq 'c'}">
+			 			<c:import url="/WEB-INF/views/post/cpostview.jsp"></c:import>
+			 		</c:if>
+			 		<c:if test="${post.firstword eq 'b'}">
+			 			<c:import url="/WEB-INF/views/post/bpostview.jsp"></c:import>
+			 		</c:if>	
+			 	</c:forEach>
+			</c:if> --%>
+			<%if(list != null){ %>
+				<% for(Post post : list){ %>
+					<% if( post.getFirstword().equals("s") ){ %>
+							<tr>
+								<td><div style='margin-top:22px; margin-left:20px; min-height: 43px; max-height:43px; overflow: hidden;' >일정</div></td>
+								<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getStitle()%></div></td>
+								<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getScontent()%></div></td>
+								<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getSenrolldate()%></div></td>
+							</tr>
+					<% } %>
+					<% if( post.getFirstword().equals("c") ){ %>
+							<tr>	
+								<td><div style='margin-top:22px; margin-left:28px; min-height: 43px; max-height:43px; overflow: hidden;' >글</div></td>
+								<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getCtitle()%></div></td>
+								<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getCcontent()%></div></td>
+								<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getCenrolldate()%></div></td>
+							</tr>
+					<% } %>
+					<% if( post.getFirstword().equals("b") ){ %>
+							<tr>	
+								<td><div style='margin-top:22px; margin-left:20px; min-height: 43px; max-height:43px; overflow: hidden;' >업무</div></td>
+								<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBtitle()%></div></td>
+								<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBcontent()%></div></td>
+								<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBenrolldate()%></div></td>
+							</tr>
+					<% } %>
+				
+				<% } %>
+			<% } %>		
 
 
 				<!-- Footer -->

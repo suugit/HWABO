@@ -112,6 +112,7 @@ div#showfile imag {
 				<span>보관</span>
 			</button>
 		&nbsp;&nbsp;&nbsp;&nbsp;
+		<c:if test="${post.bucode eq ${sessionScope.ucode}">
 			<span >
 				<c:url var="bup" value="moveBpostUpdate.do">
 							<c:param name="bno" value="${post.bno }" />
@@ -128,10 +129,12 @@ div#showfile imag {
 				</c:url>
 				<a class="btn btn-light" href="${bdel }">삭제</a>
 			</span>
+		</c:if>
+			
                   </div>
                   
  	<table class="table">
-	<tr><th style="width: 13%; text-align: center;">작성자</th><td>${post.bwriter }</td></tr>
+	<tr><th style="width: 13%; text-align: center; vertical-align:middle;">작성자</th><td>${post.bwriter }</td></tr>
 	<tr><th style="text-align: center;">유 형</th>
 		  <td>
 				<c:if test="${post.bkind eq '요청'}">
@@ -152,14 +155,15 @@ div#showfile imag {
 		  </td>
 	</tr>
 	<c:if test="${!empty post.bstartday and !empty post.bendday }">
-		<tr><th style="text-align: center;">날짜</th><td style="text-align: center;">시작날짜 : ${post.bstartday } 끝날짜<br>${post.bendday }</td></tr>
+		<tr><th style="text-align: center;">날 짜</th><td style="text-align: left;">${post.bstartday }&nbsp; ~ &nbsp;${post.bendday }</td></tr>
+		
 	</c:if>
-	<tr><th style="text-align: center;">담당자</th><td>${post.bchargename }</td></tr>
-	<tr><th style="text-align: center;">내 용</th><td><c:if test="${post.bcontent != null }" > ${post.bcontent }</c:if><c:if test="${post.bcontent == null }" >&nbsp;</c:if></td></tr>
+	<tr><th style="text-align: center; vertical-align:middle;">담당자</th><td>${post.bchargename }</td></tr>
+	<tr><th style="text-align: center; vertical-align:middle;">내 용</th><td><c:if test="${post.bcontent != null }" > ${post.bcontent }</c:if><c:if test="${post.bcontent == null }" >&nbsp;</c:if></td></tr>
 	
 	<c:if test="${! empty post.boriginfile }">
 		<tr>
-			<th style="text-align: center;">파 일</th>
+			<th style="text-align: center; vertical-align:middle;">파 일</th>
 			<td><div id="showfile" style="overflow: hidden;">
 					<img src="resources/bupfile/${post.brenamefile}"
 						style="width: 40%; height: 10%;">
