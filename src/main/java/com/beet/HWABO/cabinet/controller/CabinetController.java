@@ -71,12 +71,11 @@ public class CabinetController {
 	          		logger.info("spost if 문 들어온 no 값 : " + no);  
 	        		String sno = no;
 		        	
-	        		if(spostService.updateOpen(sno) > 0) {
-	        			logger.info("spost open update 보관함 y로 설정 완료");
-	        		}else {
-	        			logger.info("spost open update 보관함  실패");
-	        		}
-	        
+				/*
+				 * if(spostService.updateOpen(sno) > 0) {
+				 * logger.info("spost open update 보관함 y로 설정 완료"); }else {
+				 * logger.info("spost open update 보관함  실패"); }
+				 */
 	        		
 	        		
 	        		
@@ -84,12 +83,11 @@ public class CabinetController {
 	          		logger.info("cpost if 문 들어온 no 값 : " + no);
 	        		String cno = no;
 		        	
-	        		if(cpostService.updateOpen(cno) > 0) {
-	        			logger.info("cpost open update 보관함 y로 설정 완료");
-	        		}else {
-	        			logger.info("cpost open update 보관함  실패");
-	        		}
-	        	  
+				/*
+				 * if(cpostService.updateOpen(cno) > 0) {
+				 * logger.info("cpost open update 보관함 y로 설정 완료"); }else {
+				 * logger.info("cpost open update 보관함  실패"); }
+				 */
 	        	  
 	          }
 	 
@@ -105,7 +103,7 @@ public class CabinetController {
 	   }
 	   
    
-   
+
    
    @RequestMapping(value="insertcabinet.do", method=RequestMethod.POST)
    //ajax는 뷰 리졸버를 거치지 않고 바로 통로를 만들어 보내므로 보이트처리
@@ -144,23 +142,22 @@ public class CabinetController {
         	
           		String sno = no;
             	
-        		if(spostService.updateOpen(sno) > 0) {
-        			logger.info("spost open update 보관함 n으로 설정 완료");
-        		}else {
-        			logger.info("spost open update 보관함  실패");
-        		}
+				/*
+				 * if(spostService.updateOpen(sno) > 0) {
+				 * logger.info("spost open update 보관함 n으로 설정 완료"); }else {
+				 * logger.info("spost open update 보관함  실패"); }
+				 */
         	  
           		
           	}else if(no.substring(0, 1).equals("c")) {
           		logger.info("cpost 이퀄스로 업데이트 if 문 들어옴 no 값 :" + no);
             	
           		String cno = no;
-            	
-        		if(cpostService.updateOpen(cno) > 0) {
-        			logger.info("cpost open update 보관함 n으로 설정 완료");
-        		}else {
-        			logger.info("cpost open update 보관함  실패");
-        		}
+				/*
+				 * if(cpostService.updateOpen(cno) > 0) {
+				 * logger.info("cpost open update 보관함 n으로 설정 완료"); }else {
+				 * logger.info("cpost open update 보관함  실패"); }
+				 */
           }
           
   

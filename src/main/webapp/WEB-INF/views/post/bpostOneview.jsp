@@ -23,8 +23,7 @@ div#showfile imag {
 
 </style>
 </head>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript"src="resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	function bkindshow() {
 		$("#'${b.bkind}'").button('toggle')
@@ -54,11 +53,7 @@ div#showfile imag {
 		//날짜에 빈 공백이 들어오니까 공백일때 널로 바꿔라 라는 내용을 추가한다
 		return true;
 	}
-</script>
-
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript">
+	
 	function sendInsert(index) {
 		console.log("sendInsert : " + index);
 		console.log($("#no_" + index).val());
@@ -102,6 +97,7 @@ div#showfile imag {
 </script>
 
 
+
 <body id="page-top">
 <table style="position:fixed;z-index:8; width:100%;height:100%;">
 <tr onclick="javascript:location.href='mybpost.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'"><td>&nbsp;</td><td style="height:20%;">&nbsp;</td><td>&nbsp;</td></tr>
@@ -117,8 +113,10 @@ div#showfile imag {
 			</button>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 			<span >
-				<c:url var="bup" value="bpostup.do">
+				<c:url var="bup" value="moveBpostUpdate.do">
 							<c:param name="bno" value="${post.bno }" />
+							<c:param name="ucode" value="${sessionScope.ucode }" />
+							<c:param name="pnum" value="${sessionScope.pnum }" />
 				</c:url>
 				<a class="btn btn-light" href="${bup }">수정</a>
 			</span>
@@ -153,6 +151,9 @@ div#showfile imag {
 				</c:if>
 		  </td>
 	</tr>
+	<c:if test="${!empty post.bstartday and !empty post.bendday }">
+		<tr><th style="text-align: center;">날짜</th><td style="text-align: center;">시작날짜 : ${post.bstartday } 끝날짜<br>${post.bendday }</td></tr>
+	</c:if>
 	<tr><th style="text-align: center;">담당자</th><td>${post.bchargename }</td></tr>
 	<tr><th style="text-align: center;">내 용</th><td><c:if test="${post.bcontent != null }" > ${post.bcontent }</c:if><c:if test="${post.bcontent == null }" >&nbsp;</c:if></td></tr>
 	

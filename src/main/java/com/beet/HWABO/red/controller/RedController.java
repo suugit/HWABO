@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.beet.HWABO.bpost.model.service.BpostService;
 import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.red.model.service.RedService;
 import com.beet.HWABO.red.model.vo.Chatting;
@@ -41,6 +42,8 @@ public class RedController {
 
 	@Autowired
 	private RedService redService;
+	@Autowired
+	private BpostService bpostService;
 	
 	@RequestMapping(value = "createProject.do", method = RequestMethod.POST)
 	public ModelAndView createPro(UserProject project, ModelAndView mv) {
@@ -66,11 +69,8 @@ public class RedController {
 	@RequestMapping(value = "cards.do", method = RequestMethod.GET)
 	public ModelAndView plist(ModelAndView mv) {
 		logger.info("[RedController]cards2.do 실행됨....");
-		
 		mv.setViewName("red/ProjectSessionCheck");
-		
 		return mv;
-
 	}
 	@RequestMapping(value = "cards2.do", method = RequestMethod.GET)
 	public ModelAndView plist(@RequestParam("ucode") String ucode, 
@@ -291,7 +291,15 @@ public class RedController {
 			session.setAttribute("totalProgress", total);
 			logger.info("세션에 전체진행률 추가완료... progress : " + total + "%");
 			}
-			///
+			////kyu////
+			ArrayList<Bpost> list = bpostService.selectList();
+			if (list != null) {
+				logger.info("bpost list" + list);
+				mv.addObject("list", list);
+			}else {
+				logger.info("bpost list 불러오기 실패? 어째서... ㅠ");
+			}
+			////kyu////
 			return mv;
 	}
 	@RequestMapping(value = "fother.do", method = RequestMethod.GET)

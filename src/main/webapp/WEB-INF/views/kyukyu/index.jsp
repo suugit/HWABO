@@ -105,7 +105,7 @@ function sendInsert(index){
 
 		         if(result == "ok"){
 		            $("#open_"+index).val('n');
-   
+   					alert("보관 성공");
 		            console.log("보관함 보내기 성공 !");
 		         }else{
 		            alert("값이 보내졌지만 결과는 ok가 아님");
@@ -128,7 +128,7 @@ function sendInsert(index){
 		      success: function(result){
 		         if(result == "ok"){
 		        	  $("#open_"+index).val('y');
-		          
+		          	alert("보관 취소 성공");
 		            console.log("보관함 삭제 성공 !");
 		         }else{
 		            alert("디비 내부에서 삭제 문제 생김");
@@ -287,63 +287,166 @@ $(document).ready(function(){
 			<!-- 게시글안쪽 -->	
 			<div class="card-body">
 							
-			   <c>제목 : ${b.btitle}</c>
+			   <b>제목 : ${b.btitle}</b>
 			   <hr>
+				
 							
-							
-			<div class="btn-group btn-group-toggle" data-toggle="buttons">
-			  <label class="btn btn-info active">
-			    <input type="radio" name="요청" id="요청" value="요청" >요청
-			  </label>
-			  <label class="btn btn-primary">
-			    <input type="radio" name="진행" id="진행" value="진행">진행
-			  </label>
-			  <label class="btn btn-warning">
-			    <input type="radio" name="피드백" id="피드백" value="피드백" >피드백
-			  </label>
-			   <label class="btn btn-success">
-			    <input type="radio" name="완료" id="완료" value="완료">완료
-			  </label>
-			   <label class="btn btn-secondary">
-			    <input type="radio" name="보류" id="보류" value="보류">보류
-			  </label>
+			<div class="btn-group btn-group-toggle"  >
+			  <c:if test="${b.bkind eq '요청' }">
+				
+				
+				 <label class="btn btn-info">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
+				  </label> 
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>
+				
+				
+			  </c:if>
+			  
+			  
+			  <c:if test="${b.bkind eq '진행' }">
+					
+					
+				 <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
+				  </label> 
+				  <label class="btn btn-info">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-secondary"">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="완료" id="완료" value="완료"readonly>완료
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>			
+			  </c:if>
+			 
+			  <c:if test="${b.bkind eq '피드백' }">
+					
+				 <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
+				  </label> 
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-info">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>				
+			  </c:if>
+			  
+			   <c:if test="${b.bkind eq '완료' }">
+						
+				 <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
+				  </label> 
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-secondary"">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-info">
+				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>			
+			  </c:if>
+			  
+			  
+			   <c:if test="${b.bkind eq '보류' }">
+						
+				 <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly >요청
+				  </label> 
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-secondary"">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
+				  </label>
+				   <label class="btn btn-info">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>			
+			  </c:if>
+
 			</div>
-			<hr>
+			<br><br>
 			
 			
 			
 			<div>
-			   <i class="fas fa-users">담당자 :  ${b.bchargename }</i>
+			   <i class="fas fa-user-friends"></i> 담당자 :  ${b.bchargename }
 			</div>
+			<hr>
+			<div>
+				 <td width="20%"><span style="float: left;">
+				 	<i class="far fa-calendar-alt"> 시작일 : &nbsp;${b.bstartday }</i></span>
+				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+	             </td>
+				 <td width="20%"><span style="float: center;">
+				 	<i class="far fa-calendar-alt"> 마감일 : &nbsp;${b.bendday }</i></span>
+	           	 </td>
+			</div>
+		
 			<hr>
 			
 			<div>
 			  <table>
-				<tr>
-					<td>내용 : </td>
-					<td> ${b.bcontent}</td>
-				 </tr>
-		      </table>
+			   <c:if test="${! empty b.bcontent }">
+			<!-- 	<tr>
+					<td><i class="fas fa-chalkboard"> : </i></td>
 					
+				 </tr> -->
+				 <tr>
+				 <td><b><big>${b.bcontent}</big></b></td>
+				 </tr>
+				</c:if>
+		      </table>
+			<br>	
 			  <table>
 				 <c:if test="${! empty b.boriginfile }">
-				 <tr>
-					<td>파일 : </td>
-					   <br>
-				</tr>
-				<tr>
-				   <th>
-							   
-					 <div id="showfile" style="overflow:hidden;"> 
-				     <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 40%;height : 10%;">
-					 </div> 
-				   </th>
+			
+					<tr>
+					   <td>
+								   
+						 <div id="showfile" style="overflow:hidden;"> 
+					     <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 220px;height : 150px;">
+					     <br>
+					     <a href="${ubf }"><i class="far fa-file"></i> :  ${b.boriginfile}</a>
+			
+						 </div> 
+					   </td>
 					 <c:url var="ubf" value="bfdown.do">
 					  <c:param name="ofile" value="${b.boriginfile}"/>
 					  <c:param name="rfile" value="${b.brenamefile}"/>
 					 </c:url> 
-					 <td><a href="${ubf }"> ${b.boriginfile}</a></td>
-				</tr>
+			
+					</tr>
+				
 			    </c:if>
 					<c:if test="${empty b.boriginfile}">
 					&nbsp;

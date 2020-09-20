@@ -37,10 +37,17 @@
 <script type="text/javascript" src="resources/js/scripts.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	 $('#dataTable').dataTable( {
-		  "lengthChange": false
-		} );
-	 });
+	$('#dataTable').dataTable( {
+	  "lengthChange": false
+	});
+
+	var message = ${requestScope.message}
+	if(message != null){
+		alert(message);
+	}
+	
+ 
+});
 
 
 $("#").on('click', function(e){
@@ -225,16 +232,7 @@ $("#").on('click', function(e){
 
 		<!-- Page level custom scripts -->
 		<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
-		<script type="text/javascript"	src="/resources/js/jquery-3.5.1.min.js"></script>
-						<script type="text/javascript">
-						$(function(){
-							var message = ${requestScope.message}
-							if(message != null){
-								alert(message);
-							}
-							
-						});
-						</script>
+
 						
 </body>
 

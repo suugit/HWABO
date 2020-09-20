@@ -12,7 +12,6 @@
 
 <link href="/hwabo/resources/maincss/css/chatting.css" type="text/css" rel="stylesheet">
 
-
 <!-- 삭제버튼 css 시작 -->
 <style>
 .button {
@@ -27,31 +26,26 @@
   transition-duration: 0.4s;
   cursor: pointer;
 }
-
 .button3 {
   background-color: white; 
   color: #f44336; 
   border: 1px solid #f44336;
   border-radius:50%;
 }
-
 .button3:hover {
   background-color: #f44336;
   color: white;
 }
-
 </style>
 <!-- 삭제버튼 css 끝 -->
 
-
 <script>
-
+var speed = 3000;
 $(function(){
 	$("#enter_chat").on("click", function(){
 		enterChat();
 	}); //enter btn click
 });
-
 function enterChat(){
 		$.ajax({
 			url:"sendChat.do",
@@ -67,7 +61,7 @@ function enterChat(){
 				selectChat();
 				$("#enter_content").val("");
 				if(result == "ok"){
-					console.log("보낸 채팅 :" + result);
+					console.log("채팅 보내기 성공...");
 					
 				}else{
 					console.log("채팅 전송 실패...");
@@ -79,7 +73,6 @@ function enterChat(){
 	 	}); //ajax
 		$("#chat").scrollTop($("#chat")[0].scrollHeight);
 }
-
 function delChat(target){
 		$.ajax({
 			url:"delChat.do",
@@ -103,28 +96,41 @@ function delChat(target){
 	 	}); //ajax
 		$("#chat").scrollTop($("#chat")[0].scrollHeight);
 }
-
 function selectChat(){
 	$.ajax({
 		url: "riseChat.do?project_num=${ sessionScope.pnum }",
 		type: "POST",
 		dataType: "json", 
 		success: function(json){
-			
 			var jsonStr = JSON.stringify(json);
 			var json = JSON.parse(jsonStr);
 			console.log("success : " + jsonStr);
-			
 			var values = "";
+			//시계 시작 ///////////////////
+			const date = new Date();
+			var h = date.getHours();
+			if(h < 10){
+				h = "0" + h; 
+			}
+			var m = date.getMinutes();
+			if(m < 10){
+				m = "0" + m; 
+			}
+			values +=
+				"<center><div style=\"width:70%;\"><div style=\"position:fixed;font-size:300%;\"><br>HWABO<br>" +
+				h +":"+ m + 
+				"</div></div></center>";
+			//시계 끝 ////////////////////
 			for(var i in json.chatList){
 				var chat_ucode = decodeURIComponent(json.chatList[i].ucode).replace(/\+/gi, " ");
 				var chat_uname = decodeURIComponent(json.chatList[i].uname).replace(/\+/gi, " ");
 				var chat_content = decodeURIComponent(json.chatList[i].content).replace(/\+/gi, " ");
 				var chat_pnum = decodeURIComponent(json.chatList[i].pnum).replace(/\+/gi, " ");
 				var chat_time = decodeURIComponent(json.chatList[i].time).replace(/\+/gi, " ");
+				
 				if(chat_ucode == "${ sessionScope.ucode }"){
 					values += 
-					"<div class=\"outgoing_msg\"><div class=\"sent_msg\"><p>" +
+					"<div class=\"outgoing_msg\" style=\"position:relative;z-index:2;\"><div class=\"sent_msg\"><p>" +
 					chat_content +
 		            "</p><span class=\"time_date\">" +
 		            chat_time.substring(0, 16) +
@@ -157,7 +163,7 @@ function selectChat(){
 };
 
 selectChat();
-setInterval(selectChat,3000);
+setInterval(selectChat,speed);
 
 </script>
 <!-- 채팅기능 끝 -->
