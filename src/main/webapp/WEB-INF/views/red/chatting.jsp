@@ -45,6 +45,7 @@
 
 
 <script>
+var speed = 3000;
 
 $(function(){
 	$("#enter_chat").on("click", function(){
@@ -67,7 +68,7 @@ function enterChat(){
 				selectChat();
 				$("#enter_content").val("");
 				if(result == "ok"){
-					console.log("보낸 채팅 :" + result);
+					console.log("채팅 보내기 성공...");
 					
 				}else{
 					console.log("채팅 전송 실패...");
@@ -147,6 +148,21 @@ function selectChat(){
 	                "</span></div></div></div>";
 				}
 			}
+			if(json.chatList.length < 1){
+				const date = new Date();
+				var h = date.getHours();
+				if(h < 10){
+					h = "0" + h; 
+				}
+				var m = date.getMinutes();
+				if(m < 10){
+					m = "0" + m; 
+				}
+				values +=
+					"<center style=\"font-size:300%\"><br>HWABO<br>" +
+					h +":"+ m + 
+					"</center>";
+			}
 			$("#chat").html(values); 
 			$("#chat").scrollTop($("#chat")[0].scrollHeight);
 		},
@@ -157,7 +173,7 @@ function selectChat(){
 };
 
 selectChat();
-setInterval(selectChat,3000);
+setInterval(selectChat,speed);
 
 </script>
 <!-- 채팅기능 끝 -->
