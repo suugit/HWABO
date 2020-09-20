@@ -27,20 +27,22 @@
 
   <!-- Custom styles for this page -->
   <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<!-- 스크립트 모으기 시작 -->
+<c:import url="/WEB-INF/views/red/metaKyu.jsp"></c:import>
 
+<!-- 스크립트 모으기 끝 -->
 </head>
 
 <body id="page-top">
 
 <!-- 11111111111111111 -->
-  <c:import url="/WEB-INF/views/red/topbar.jsp"></c:import>
+<c:import url="/WEB-INF/views/red/topbar.jsp"></c:import>
  
  <div style="width:100%;display:flex;justify-content:center;align-item:center;">
 <!-- Sidebar2right -->
      <c:import url="/WEB-INF/views/red/sideFixed.jsp"></c:import>
 <!-- End of Sidebar2right -->
 <!-- 111111111111111111 -->
- 
  
   <!-- Page Wrapper -->
   <div id="wrapper" style="width:1300px;">
@@ -134,48 +136,18 @@
               </form>
             </div>
           </div>
-          
-          
           <!-- 새 글작성끝 -->
+         
+<!-- kyu 시작 -->  
+----kyukyu----------------------------------------------------------------------------------------<br>   
+<c:import url="/WEB-INF/views/red/bodyKyu.jsp"></c:import>
+----kyukyu----------------------------------------------------------------------------------------       
+<!-- kyu 끝 -->         
           
           
-<% for(int i = 0; i < 7; i++){ %>
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<% } %>
-
+<!-- 샘플폼 시작 -->
+<c:import url="/WEB-INF/views/red/sampleFormMain.jsp"></c:import>
+<!-- 샘플폼 끝 -->
 
         </div>
         <!-- /.container-fluid -->
