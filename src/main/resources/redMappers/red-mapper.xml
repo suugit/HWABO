@@ -224,7 +224,7 @@
 		select * from chatting where PROJECT_NUM = #{ projectNumber } order by chat_time
 </select>
 
-<select id="selectAllPost" parameterType="string" resultType="Post">
+<select id="selectAllPost" parameterType="string" resultType="com.beet.HWABO.red.model.vo.PostPlus">
 		select * from realpost 
 		where pnum = #{pnum}
 		order by enrolldate desc

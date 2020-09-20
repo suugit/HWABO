@@ -11,6 +11,7 @@ import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
+import com.beet.HWABO.red.model.vo.PostPlus;
 import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
@@ -109,9 +110,9 @@ public class RedDao {
 		return session.delete("redMapper.delChatAll", chat);
 	}
 
-	public ArrayList<Post> selectAllPost(String pnum) {
-		List<Post> list = session.selectList("redMapper.selectAllPost", pnum);
-		return (ArrayList<Post>)list;
+	public ArrayList<PostPlus> selectAllPost(String pnum) {
+		List<PostPlus> list = session.selectList("redMapper.selectAllPost", pnum);
+		return (ArrayList<PostPlus>)list;
 	}
 
 	public ArrayList<Cpost> selectCpost(String pnum) {

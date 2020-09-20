@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <body>
-<c:forEach var="b" items="${requestScope.list }" varStatus="status">
+<c:if test="${ main.firstword eq 'b' }">
+<c:set var="b" value="${ main }"></c:set>
            	<div class="card shadow mb-4">
 			 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 				<h6 class="m-0 font-weight-bold text-primary">
@@ -192,5 +193,5 @@
 	  	 </div>
 	 </div><!-- 게시글안쪽  -->			
 	</div><!-- card shadow mb-4 -->
-	</c:forEach>
+</c:if>
 </body>

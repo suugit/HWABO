@@ -6,7 +6,7 @@
 
 <body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
-<c:forEach var="post" items="${ requestScope.list }"></c:forEach>
+
 	<div class="card shadow mb-4">
 		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary">
@@ -139,4 +139,5 @@ geocoder1.addressSearch(spostplace1, function(result, status) {
 			</form>
 		</div>
 	</div>
+
 </body>

@@ -5,6 +5,8 @@
 
 
 <body>
+<c:if test="${ main.firstword eq 's' }">
+<c:set var="post" value="${ main }"></c:set>
 <button id="changeupdate" onclick="javascript: changeform1();">수 &nbsp;정</button>
 <button id="changeselect" onclick="javascript: changeform2();">수 정 취 소</button>
 
@@ -29,4 +31,5 @@
 		$("#changeselect").css("display", "none" );
 	};
 </script>
+</c:if>
 </body>

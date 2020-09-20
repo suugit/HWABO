@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 
 <body>
-<c:forEach var="c" items="${ requestScope.clist }">
+<c:if test="${ main.firstword eq 'c' }">
+<c:set var="c" value="${ main }"></c:set>
 <div class="card shadow mb-4">
 		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary">
@@ -89,7 +90,7 @@
 		</div>
 	</div>
 	</div>
-</c:forEach>
+</c:if>
 	<script src="resources/js/cpost.js"></script>
    <script>
    $(document).ready(function (e){

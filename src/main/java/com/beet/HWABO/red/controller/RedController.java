@@ -34,12 +34,12 @@ import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.red.model.service.RedService;
 import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
+import com.beet.HWABO.red.model.vo.PostPlus;
 import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
 import com.beet.HWABO.spost.model.service.SpostService;
 import com.beet.HWABO.spost.model.vo.Post;
-import com.beet.HWABO.spost.model.vo.Spost;
 
 @Controller
 public class RedController {
@@ -308,36 +308,48 @@ public class RedController {
 			logger.info("세션에 전체진행률 추가완료... progress : " + total + "%");
 			}
 			
+//			int cFilterCount = 0;
+//			ArrayList<Cpost> clistFilter = new ArrayList<Cpost>();
+			ArrayList<Cpost> clist = redService.selectCpost(pnum);
+//			for(Cpost cpost : clist) {
+//				if(!cpost.getCopen().equals("N")) {
+//					clistFilter.add(cpost);
+//				}else {
+//					cFilterCount++;
+//				}
+//			}
+//			if (clist != null) {
+//				logger.info("cpost list 가져오기 성공... 비공개 된 cpost게시물 : " + cFilterCount + "개");
+//				mv.addObject("clist", clist);
+//			}
+			
 			int allListFilterCount = 0;
-			ArrayList<Post> allListFilter = new ArrayList<Post>();
-			ArrayList<Post> allList = redService.selectAllPost(pnum);
-			for(Post post : allList) {
+			ArrayList<PostPlus> allListFilter = new ArrayList<PostPlus>();
+			ArrayList<PostPlus> allList = redService.selectAllPost(pnum);
+			for(PostPlus post : allList) {
 				if(!((post.getSopen() !=null && post.getSopen().equals("n")) || 
 				(post.getBopen() !=null && post.getBopen().equals("n")) || 
 				(post.getCopen() !=null && post.getCopen().equals("N")))) {
-					allListFilter.add(post);
+					if(post.getFirstword().equals("c")) {
+						for(Cpost cpost : clist) {
+							if(post.getNo().equals(cpost.getCno())) {
+								post.setAddonuse(cpost.getAddonuse());
+							}
+						}
+						allListFilter.add(post);
+					}else {
+						allListFilter.add(post);
+					}
 				}else {
 					allListFilterCount++;
 				}
 			}
 			if (allListFilter != null) {
 				logger.info("post list 가져오기 성공... 비공개 된 전체 게시물 : " + allListFilterCount + "개");
+				logger.info("전체 게시물 : " + allListFilter);
 				mv.addObject("list", allListFilter);
 			}
-			int cFilterCount = 0;
-			ArrayList<Cpost> clistFilter = new ArrayList<Cpost>();
-			ArrayList<Cpost> clist = redService.selectCpost(pnum);
-			for(Cpost cpost : clist) {
-				if(!cpost.getCopen().equals("N")) {
-					clistFilter.add(cpost);
-				}else {
-					cFilterCount++;
-				}
-			}
-			if (clist != null) {
-				logger.info("cpost list 가져오기 성공... 비공개 된 cpost게시물 : " + cFilterCount + "개");
-				mv.addObject("clist", clist);
-			}
+			
 			////kyu////
 //			ArrayList<Bpost> list = bpostService.selectList();
 //			if (list != null) {
