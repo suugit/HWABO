@@ -41,9 +41,6 @@
 <link href="/hwabo/resources/maincss/css/github-markdown.css"
 	rel="stylesheet">
 <style>
-body {
-background-color: #fff;
-}
 .mypage {
 	width: 80px;
 	font-weight: bold;
@@ -75,7 +72,7 @@ background-color: #fff;
 	<div
 		style="width: 100%; display: flex; justify-content: center; align-item: center;">
 		<!-- Sidebar2right -->
-		<c:import url="/WEB-INF/views/suugit/leftsidebar.jsp"></c:import>
+		<c:import url="/WEB-INF/views/red/sideFixed.jsp"></c:import>
 		<!-- End of Sidebar2right -->
 		<!-- 111111111111111111 -->
 
@@ -102,78 +99,120 @@ background-color: #fff;
 					<div class="container-fluid col-text-left float-left"
 						style="min-width: fit-content"">
 
-						<div class="card shadow">
-							<div class="card-header border-left-info">
-								<br>
-								<h3 class="font-weight-bold mb-3 text-gray-800"
-									style="display: inline-block">계정정보</h3>
-								<div class="row">
-									<div class="col-sm-8 col-md-4">
-										<img width=100% src="${member.uimg}"
-											style="max-width: 200px; max-height: 200px"></img>
-										<div class="text-center m-2">
-											<button class="btn btn-outline-secondary btn-sm text upimgbtn mb-2"
-												data-toggle="modal" data-target="#imgUpdateModal">파일업로드</button>
-											<button class="btn btn-outline-secondary btn-sm text upimgbtn"
-												data-toggle="modal" data-target="#pwdUpdateModal">비밀번호변경</button>
-										</div>
-									</div>
-									<form action="upinfo.do" method="post" id="myInfoForm"
-										class="col-md-8">
-										<input type="hidden" name="ucode" value="${member.ucode}">
-										<div class="form-group row">
-											<label
-												class="control-label mypage text-center form-control-static">이메일</label>
-											<input
-												class="form-control col-md-8 pl-2 form-control-plaintext"
-												type="email" name="uemail" value="${member.uemail}" readonly>
-										</div>
-										<div class="form-group row">
-											<label class="control-label mypage text-center">이름</label> <input
-												class="form-control col-md-8 pl-2 form-control-plaintext"
-												type="text" name="uname" value="${member.uname}" readonly>
-										</div>
-										<!-- <div class="form-group row">
-											<label class="control-label mypage text-center">비밀번호</label>
-											<input class="form-control col-md-5 pl-2 " type="password"
-												name="upwd" placeholder="기존 비밀번호"> &nbsp <label
-												class="btn btn-info btn-sm text" id="btn_pwd" returnfalse;>비밀번호변경</label>
-										</div> -->
-										<div class="form-group row">
-											<label class="control-label mypage text-center">휴대폰</label> <input
-												class="form-control col-md-8 form-control-plaintext pl-2 "
-												type="text" name="uphone" readonly value="${member.uphone}">
-										</div>
-
-										<hr>
-
-										<div class="form-group row">
-											<label class="control-label mypage text-center">소속</label> <input
-												type="text" name="ugroup"
-												class="form-control col-md-8 form-control-plaintext pl-2 "
-												readonly value="${member.ugroup}">
-										</div>
-										<div class="form-group row">
-											<label class="control-label mypage text-center">역할</label> <input
-												class="form-control col-md-8 form-control-plaintext"
-												type="text" name="urole" readonly value="${member.urole}">
-										</div>
-										<br>
-										<div class="col-md-12 text-center">
-											<input type="button" id="editBtn" value="수정하기"
-												onclick="toggleModify()"
-												class="btn btn-primary col-sm-4 btn-sm"> <input
-												type="reset" value="취소"
-												class="btn btn-secondary col-sm-2 btn-sm"> <input
-												id="btn_signout" type="button" value="회원탈퇴"
-												data-toggle="modal" data-target="#LeaveModal"
-												class="btn btn-default col-sm-3 btn-sm text-right">
-										</div>
-								</div>
-
-								</form>
-							</div>
-						</div>
+					 <div class="card mb-4">
+					        <div class="card-header">
+					          <ul class="nav nav-tabs card-header-tabs" id="writeForm" role="tablist">
+					            <li class="nav-item">
+					            <a class="nav-link active" href="#gnrlwrite" role="tab" aria-controls="gnrlwrite" aria-selected="true">글 작성</a>
+					            </li>
+					            <li class="nav-item">
+					              <a class="nav-link"  href="#tap2" role="tab" aria-controls="tap2" aria-selected="false">업무</a>
+					            </li>
+					            <li class="nav-item">
+					              <a class="nav-link" href="#tap3" role="tab" aria-controls="tap3" aria-selected="false">일정</a>
+					            </li>
+					            <li class="nav-item">
+					              <a class="nav-link" href="#tap4" role="tab" aria-controls="tap4" aria-selected="false">할일</a>
+					            </li>
+					            <li class="nav-item">
+					              <a class="nav-link" href="#tap5" role="tab" aria-controls="tap5" aria-selected="false">투표</a>
+					            </li>
+					          </ul>
+					        </div>
+					        <form action="blank.do" id="mainInsert" > 
+					        <div class="card-body ">
+					         <!--  <h4 class="card-title">글 작성</h4> -->
+					          
+					           <div class="tab-content mt-3">
+					           <!-- 글 작성  -->
+					            <div class="tab-pane active" id="gnrlwrite" role="tabpanel">
+					            <input type="text" class="form-control mb-1" placeholder="제목(선택값)">
+					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+						            <div class="form-inline m-2 border-primary">
+						            <i class="fa fa-link mr-2"><a href="#"></a></i>
+						            <i class="fa fa-calendar-alt mr-2"></i>
+						            <i class="fa fa-map-marker-alt mr-2"></i>
+						            <i class="fa fa-code mr-5"></i>
+						            <i class="fa fa-hashtag mr-2"></i>
+						            <i class="fa fa-at mr-2" ></i>
+						            <button class="ml-auto mr-2 btn btn-sm btn-success" style="padding:4px 30px;" onclick="javascript:mainInsert.submit();">등록</button>
+						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
+					            	</div>
+					            </div>
+					            
+					            
+					            <!-- 업무 -->
+					            <div class="tab-pane" id="tap2" role="tabpanel">
+					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
+					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+						            <div class="form-inline m-2 border-primary">
+						            
+						            <i class="fa fa-hashtag mr-2"></i>
+						            <i class="fa fa-at mr-2" ></i>
+						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
+						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
+					            	</div>
+					            </div>
+					            
+					            <!-- 일정 -->
+					            <div class="tab-pane" id="tap3" role="tabpanel">
+					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
+					              <div class="row mt-2">
+					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              <label class="form-control-label h3">~</label>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              </div>
+					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+						            <div class="form-inline m-2 border-primary">
+						            <i class="fa fa-hashtag mr-2"></i>
+						            <i class="fa fa-at mr-2" ></i>
+						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
+						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
+					            	</div>
+					            </div>
+					            
+					          	
+					            <!-- 할일 -->
+					         <div class="tab-pane" id="tap3" role="tabpanel">
+					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
+					              <div class="row mt-2">
+					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              <label class="form-control-label h3">~</label>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              </div>
+					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+						            <div class="form-inline m-2 border-primary">
+						            <i class="fa fa-hashtag mr-2"></i>
+						            <i class="fa fa-at mr-2" ></i>
+						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
+						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
+					            	</div>
+					            </div>
+					            
+					              <!--투표 -->
+					            <div class="tab-pane" id="tap3" role="tabpanel">
+					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
+					              <div class="row mt-2">
+					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              <label class="form-control-label h3">~</label>
+					              <div class="col-5"><input type="date" class="form-control"></div>
+					              </div>
+					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
+						            <div class="form-inline m-2 border-primary">
+						            <i class="fa fa-hashtag mr-2"></i>
+						            <i class="fa fa-at mr-2" ></i>
+						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
+						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
+					            	</div>
+					            </div>
+					             
+					            
+					          </div>
+					        </div>
+					      </div>
 
 					</div>
 					<!-- /.container-fluid -->

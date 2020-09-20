@@ -136,12 +136,25 @@
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="/hwabo/resources/js/user.js"></script>
+	  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 	<script>
 	
-	if(${message} != null) { 
-		$('#msgBox').removeClass('d-none');
-		$('#msgBox').addClass('d-flex');
-	}
+	 function init() {
+         gapi.load('auth2', function() { 
+             var gauth = gapi.auth2.init({
+                 client_id: 'CLIENT_ID.apps.googleusercontent.com'
+             });
+             
+             gauth.then(function(){
+                 console.log('init success');
+             }, function(){
+                 console.error('init fail');
+             })
+         });
+     }
+	
+	
+	
 	</script>
 </body>
 

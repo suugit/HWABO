@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>HWABO</title>
-<style>
-cfstyle >li {
-	color:red;
-}
-</style>
+
 </head>
 <body>
 
@@ -18,7 +15,6 @@ cfstyle >li {
 		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary">
 				<i class="fas fa-user-circle"></i> 
-				<input type="text" value="${c.cucode}">
 				${c.cwriter}<br> 
 				${c.cenrolldate}
 			</h6>
@@ -26,9 +22,13 @@ cfstyle >li {
 			<div class="dropdown no-arrow">
 
 				<!-- 보관함 담기여부 -->
-				<button id="cabinetshow" class="btn btn-custom btn-sm liketoggle" name="like">
-					<span>보관</span> <i class="far fa-bookmark"></i>
-				</button>
+				
+				<button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle${status.index }" name="like" onclick="sendInsert(${status.index});">
+           	   <span>보관</span> <i class="far fa-bookmark"></i></button>
+           	   <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
+			   <input type="hidden" id="no_${status.index }" value="${c.cno }">
+			   <input type="hidden" id="pnum_${status.index }" value="${c.cpnum }" >
+			   <input type="hidden" id="open_${status.index }" value="${c.copen }" >
 				
 				<!-- 드롭다운 -->
 				<a class="dropdown-toggle" href="#" role="button"
@@ -47,10 +47,10 @@ cfstyle >li {
 			<!-- 드롭다운 끝 -->
 
 		</div>
-		<div id="cpView">
 		<div id="cpEdit" style="display:none"> 
 		 <c:import url="/WEB-INF/views/suugit/edit.jsp"></c:import>
 		</div>
+		<div id="cpView">
 		<div class="card-body">
 			<!-- 게시글안쪽 -->
 			<h6>${c.ctitle}<h6>
@@ -61,30 +61,74 @@ cfstyle >li {
 					
 				</tr>
 				<tr>
-				<td>
 				
-				</td>
+				<td><br><hr></td>
+				</tr>
+				<tr id="preview">
+				
+				<c:if test="${!empty c.ofile1 }">
+					<td class="rounded" style="width:33%">
+					<c:set var="fileName" value="${fn:split(c.ofile1, '.')}" />
+					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
+						<c:if test="${fn:contains(fileType,'jpg') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">	
+								<img src="resources/bupfile/${c.rfile1}" style="max-width:150px">
+						</c:if>
+						<c:if test="${not fn:contains(fileType,'jpg') && not fn:contains(fileType,'png') && not fn:contains(fileType,'svg') && not fn:contains(fileType,'gif')}">	
+								<img src="resources/maincss/img/suugit/file_altimg.svg" style="max-width:150px">
+							</c:if>
+							<br>
+					<label class="ml-4 text-center">${c.ofile1} </label>
+					</td>
+				</c:if>
+				<c:if test="${!empty c.ofile2 }">
+					<td class="rounded" style="width:33%">
+					<c:set var="fileName" value="${fn:split(c.ofile2, '.')}" />
+					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
+						<c:if test="${fn:contains(fileType,'jpg') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">	
+								<img src="resources/bupfile/${c.rfile2}" style="max-width:150px">
+						</c:if>
+						<c:if test="${not fn:contains(fileType,'jpg') && not fn:contains(fileType,'png') && not fn:contains(fileType,'svg') && not fn:contains(fileType,'gif')}">	
+								<img src="resources/maincss/img/suugit/file_altimg.svg" style="max-width:150px">
+							</c:if>
+							<br>
+					<label class="ml-4 text-center">${c.ofile2} </label>
+					</td>
+				</c:if>
+				<c:if test="${!empty c.ofile3 }">
+					<td class="rounded" style="width:33%">
+					<c:set var="fileName" value="${fn:split(c.ofile3, '.')}" />
+					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
+						<c:if test="${fn:contains(fileType,'jpg') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">	
+								<img src="resources/bupfile/${c.rfile3}" style="max-width:150px">
+						</c:if>
+						<c:if test="${not fn:contains(fileType,'jpg') && not fn:contains(fileType,'png') && not fn:contains(fileType,'svg') && not fn:contains(fileType,'gif')}">	
+								<img src="resources/maincss/img/suugit/file_altimg.svg" style="max-width:150px">
+							</c:if>
+							<br>
+					<label class="ml-4 text-center">${c.ofile3} </label>
+					</td>
+				</c:if>
 				</tr>
 			</table>
-				<ul class="cfstyle row-group" style="display:flex; list-style-type:none;-webkit-padding-start:0px;">
+			<%-- 	<ul class="cfstyle row-group" style="display:flex; list-style-type:none;-webkit-padding-start:0px;">
 				<c:if test="${!empty c.ofile1 }">
 					<li class="col-sm-3 border border-secondary rounded m-2" style="flex:auto;">
-					<img src="resources/cupfiles/${c.rfile1}" style="max-width:150px">
+					<img src="resources/bupfile/${c.rfile1}" style="max-width:150px">
 					<label>${c.ofile1}</label>
 				</c:if>
 				<c:if test="${!empty c.ofile2 }">
 					<li class="col-sm-3 border border-secondary rounded m-2" style="flex:auto;">
-					<img src="resources/cupfiles/${c.rfile2}" style="max-width:150px">
+					<img src="resources/bupfile/${c.rfile2}" style="max-width:150px">
 					<label>${c.ofile2}</label>
 				</c:if>
 				<c:if test="${!empty c.ofile3 }">
 					<li class="col-sm-3 border border-secondary rounded m-2" style="flex:auto;">
-					<img src="resources/cupfiles/${c.rfile3}" style="max-width:150px">
+					<img src="resources/bupfile/${c.rfile3}" style="max-width:150px">
 					<label>${c.ofile3}</label>
 				</c:if>
 					</li>
 				</ul>
-
+ --%>
 
 			<hr>
 			<table style="width: 100%;">
@@ -111,6 +155,7 @@ cfstyle >li {
 	
 	
    <script src="resources/js/jquery-3.5.1.min.js"></script>
+   <script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
    <script src="resources/js/cpost.js"></script>
    <script>
 
@@ -127,6 +172,92 @@ cfstyle >li {
 	   alert('hi');
 	   $("#cpView").hide();
 	   $("#cpEdit").show();
-   }   </script>
+   }  
+   
+   function sendInsert(index){
+		
+		
+		console.log("sendInsert : " + index);
+		console.log($("#no_"+ index).val());
+		
+		if($("#open_"+index).val() == 'y'){
+		
+			$.ajax({	      
+			      url: "insertcabinet.do",
+			      data: {no: $("#no_"+ index).val(), ucode: $("#ucode_" + index).val(), pnum: $("#pnum_" + index).val()},     
+			      type: "post",
+			      success: function(result){
+			         if(result == "ok"){
+			            $("#open_"+index).val('n');
+	   
+			            console.log("보관함 보내기 성공 !");
+			         }else{
+			            alert("값이 보내졌지만 결과는 ok가 아님");
+			         }
+			      
+			      },
+			      error: function(request, status, errorData){
+			    	 
+			            console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+			         }
+			      
+			      }); //에이작스
+		      
+		}else{  //이미 보관된 게시물이라면 n -> y 로 (현재 보관을 n 보관 안함을 y 로 설정해놀음 이유는 내가 청개구리라서)
+			
+			$.ajax({	      
+			      url: "deletecabinet.do",
+			      data: {no: $("#no_"+ index).val(), ucode: $("#ucode_" + index).val(), pnum: $("#pnum_" + index).val()},     
+			      type: "post",
+			      success: function(result){
+			         if(result == "ok"){
+			        	  $("#open_"+index).val('y');
+			          
+			            console.log("보관함 삭제 성공 !");
+			         }else{
+			            alert("디비 내부에서 삭제 문제 생김");
+			         }
+			      
+			      },
+			      error: function(request, status, errorData){
+			    	 
+			         console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+			         }
+			      
+			      }); //에이작스
+
+			
+				}   
+		      
+		      $(".liketoggle"+index).find("i").toggleClass("fas far");
+			  $(".liketoggle"+index).find("span").text(function(i, v) {
+			     return v === '보관' ? '보관됨' : '보관'
+			    		 
+		 });
+	}
+
+
+
+
+
+	$(document).ready(function(){
+		console.log("0");
+		
+		for(var a = 0; a <= ${fn:length(requestScope.list)}; a++ ){
+		
+			if($("#open_"+a).val() == 'n'){
+				console.log("#open_"+a);
+				   $(".liketoggle"+a).find("i").toggleClass("fas far");
+				   $(".liketoggle"+a).find("span").text(function(i, v) {
+				     return v === '보관' ? '보관됨' : '보관'
+			   });
+				
+			}
+			
+		}
+		
+	});
+
+   </script>
 </body>
 </html>

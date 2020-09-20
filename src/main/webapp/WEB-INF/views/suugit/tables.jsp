@@ -25,6 +25,7 @@
   <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link href="/hwabo/resources/maincss/css/github-markdown.css"  rel="stylesheet">
 <style>
+
 .del_img{
     color: red;
     display: none;
@@ -85,7 +86,7 @@
             </div>
                <div class="card-body">
               <!-- 게시글안쪽 -->
-              <table style="text-align:center;width:100%;">
+              <table id="InsertTable" style="text-align:center;width:100%;">
               <tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
               <span>글작성</span>
               </td><td style="width:20%;">

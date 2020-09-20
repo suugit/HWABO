@@ -59,7 +59,7 @@
 </style>
 </head>
 
-<body class="bg-gradient-primary">
+<body>
 	<div class="container mt-5">
 		<div class="row justify-content-center">
 			<!-- 버튼 -->
