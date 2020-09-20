@@ -90,7 +90,7 @@
 		</div>
 	</div>
 	</div>
-</c:if>
+
 	<script src="resources/js/cpost.js"></script>
    <script>
    $(document).ready(function (e){
@@ -106,4 +106,6 @@
 	   $("#cpEdit").show();
    }   
    </script>
+   
+</c:if>
 </body>
