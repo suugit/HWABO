@@ -233,10 +233,9 @@ public class abcController {
 		return "abc/myBPOST";
 	}
 	
-	
 	// 업무 게시글 상세보기용 메소드
 	@RequestMapping("bpostOne.do")
-	public String selectOneBpost(Model model, String bno, PjMember pmember) {
+	public String selectOneBpost(Model model,@RequestParam("bno") String bno, PjMember pmember) {
 
 		Bpost bpost = spostService.selectOneBpost(bno);
 		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
@@ -252,6 +251,16 @@ public class abcController {
 		}
 
 	}
+	// 업무 게시글 수정페이지로 이동용 메소드
+	@RequestMapping("moveBpostUpdate.do")
+	public String moveBpostUpdatePage(@RequestParam("bno") String bno, Model m, PjMember pmember) {
+		Bpost bpost = bpostService.selectBpost(bno);
+		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
+		
+		m.addAttribute("post", bpost);
+		m.addAttribute("list", list);
+		return "post/bpostUpdatepage";
+	}
 	
 	// 업무 게시글 수정용 메소드
 	@RequestMapping(value = "bpostup.do")
@@ -259,6 +268,7 @@ public class abcController {
 			@RequestParam(name = "upfile", required = false) MultipartFile file,
 			@RequestParam(name = "deleteFlag", required = false) String deleteFlag, PjMember pmember) {
 
+		logger.info(bpost.getBkind());
 		String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
 		String returnView = null;
 
@@ -313,7 +323,7 @@ public class abcController {
 		if (bpostService.updateBpost(bpost) > 0) {
 			//성공하면 bno가지고 selectOne 한번 실행
 			request.setAttribute("bno", bpost.getBno() );
-			return "redirect:/bpostOne.do?ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
+			return "redirect:/bpostOne.do?bno="+bpost.getBno()+"&ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
 		} else {
 			//수정실패하면 list로 
 			request.setAttribute("message", "업무 게시글 수정에 실패하였습니다." );
