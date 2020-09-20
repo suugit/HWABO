@@ -297,11 +297,11 @@ function unSelected(){
                     </button>
                       <div><input type="hidden" id="selected"></div>
                       
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2" >
                      <c:forEach var="pm" items="${sessionScope.pmlist}" varStatus="status">
-                     <button class="dropdown-item" type="button" onclick="addbcharge${status.index}();" value="${pm.ucode }">${pm.uname }</button>
+                     <button class="dropdown-item" type="button" onclick="addbcharge${status.index}();" value="${pm.ucode }" required>${pm.uname }</button>
                      <input type="checkbox" id="user${status.index }" name="bcharge" style="display:none" >
-                     <input type="checkbox" id="name${status.index }" name="bchargename" style="display:none" required>
+                     <input type="checkbox" id="name${status.index }" name="bchargename" style="display:none">
                      </c:forEach>
                      
                     </div>
