@@ -367,7 +367,7 @@ function unSelected(){
                               <td><input type="file" name="ofile" id="fileInput" onchange='fileCheck()'></td>
                               <!--  #f8f9fc   -->
                               <td>
-                              <select name="bopen" class="form-control" >
+                              <select name="bopen" class="form-control" style="display:none">
                                  <option value="y" selected>전체공개</option>
                                  <option value="n">나만보기</option>
                               </select>

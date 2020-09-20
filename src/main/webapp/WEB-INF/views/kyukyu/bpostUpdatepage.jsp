@@ -166,7 +166,7 @@ function unSelected(){
 
 function upcharge(){
 	var result = "y";
-	$('#upc').var(result);
+	$('#upc').val(result);
 
 }
 </script>
@@ -208,7 +208,7 @@ function upcharge(){
                    	 <input type="hidden" id="bform" name="bcharge">
                    	 <input type="hidden" name="boriginfile" value="${bpost.boriginfile }">
                    	 <input type="hidden" name="brenamefile" value="${bpost.brenamefile }">
-                   	 
+                   	 <input type="hidden" name="bopen" value="${bpost.bopen }">
                   
                         <table style="text-align: center; width: 100%;">
                            <tr>
@@ -229,7 +229,7 @@ function upcharge(){
                               
                               <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label class="btn btn-secondary active">
-                                  <input type="radio" name="bkind" id="option1" value="요청" checked>요청
+                                  <input type="radio" name="bkind" id="option1" value="요청">요청
                                 </label>
                                 <label class="btn btn-secondary">
                                   <input type="radio" name="bkind" id="option2" value="진행">진행
@@ -276,22 +276,7 @@ function upcharge(){
              </div> 
         
                     
-                    
-                  <%--       <br><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             담당자
-                        </a>
-                    <!-- 담당자 이름 -->
-                       <div id="selected">${ bpost.bchargename }</div>
-              
-                    
-                        <div class="dropdown-menu dropdown-menu-left animated--grow-in" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" onclick="addbcharge()">백규림</a>
-                          <a class="dropdown-item" onclick="addbcharge()">박수현</a>
-                          <a class="dropdown-item" onclick="addbcharge()">정다운</a>
-                          <a class="dropdown-item" onclick="addbcharge()">백신후</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">더보기</a>
-                        </div> --%>
+     
                         
                         <a class="navbar-brand" href="#"></a>
                     <ul class="navbar-nav ml-auto">
@@ -344,12 +329,11 @@ function upcharge(){
                             </tr>
                             <tr>
                              
-                              <td>
-                              <select name="bopen" class="form-control">
-                                 <option value="y" selected>전체공개</option>
-                                 <option value="n">나만보기</option>
+<%--                               <td>
+                              <select name="bopen" class="form-control" value="${b.bopen }" style="display:none">
+                             
                               </select>
-                              </td>
+                              </td> --%>
                               <td colspan="3">
                               <!-- <a class="btn btn-success btn-icon-split"   href="javascript: spostInsert.submit();"  style="width: 90%;">
                                     <span class="text">등록</span> </a> -->
