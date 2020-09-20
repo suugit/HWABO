@@ -417,10 +417,7 @@ $(document).ready(function(){
 			<div>
 			  <table>
 			   <c:if test="${! empty b.bcontent }">
-			<!-- 	<tr>
-					<td><i class="fas fa-chalkboard"> : </i></td>
-					
-				 </tr> -->
+		
 				 <tr>
 				 <td><b><big>${b.bcontent}</big></b></td>
 				 </tr>
@@ -432,13 +429,28 @@ $(document).ready(function(){
 			
 					<tr>
 					   <td>
+					  
+				   
 								   
-						 <div id="showfile" style="overflow:hidden;"> 
-					     <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 220px;height : 150px;">
+			 		 <div id="showfile" style="overflow:hidden;"> 
+						<c:forTokens var="ext" items="${b.brenamefile}" delims="." varStatus="status">
+						
+						    <c:if test="${status.last}">
+						        <c:choose>
+						            <c:when test="${ext eq 'jpg'}">
+						               <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 220px;height : 150px;">
+						            </c:when>
+						            <c:when test="${ext != 'jpg'}">
+						                <img src="resources/img/eettcc.png" style="width:40px; height :40px" >
+						            </c:when>
+						       
+						        </c:choose>
+						    </c:if>
+						</c:forTokens>
 					     <br>
 					     <a href="${ubf }"><i class="far fa-file"></i> :  ${b.boriginfile}</a>
 			
-						 </div> 
+					</div> 
 					   </td>
 					 <c:url var="ubf" value="bfdown.do">
 					  <c:param name="ofile" value="${b.boriginfile}"/>
