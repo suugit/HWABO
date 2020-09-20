@@ -36,7 +36,7 @@
 <button id="changeupdate" onclick="javascript: changeform1();">수 &nbsp;정</button>
 <button id="changeselect" onclick="javascript: changeform2();">수 정 취 소</button>
 
-<div id="spostview"><c:import url="/WEB-INF/views/abc/selectOneSpost.jsp"></c:import></div>
-<div id="spostupdate"><c:import url="/WEB-INF/views/abc/updateSpost.jsp"></c:import></div>
+<div id="spostview"><c:import url="/WEB-INF/views/post/selectOneSpost.jsp"></c:import></div>
+<div id="spostupdate"><c:import url="/WEB-INF/views/post/updateSpost.jsp"></c:import></div>
 </body>
 </html>
