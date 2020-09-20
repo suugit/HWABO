@@ -159,6 +159,33 @@ function sendInsert(index){
 $(document).ready(function(){
 	console.log("0");
 	
+	
+	$.ajax({
+		
+		url: "openList.do?ucode=${sessionScope.ucode }, pnum=${sessionScope.pnum }",    
+		type: "post",
+		dataType: "json",
+		success: function(obj){
+			
+			var str = JSON.stringify(obj);
+			var json = JSON.parse(str);
+			console.log("success : " + str);
+			
+			var values = "";
+			
+			
+		},
+		error: function(jqXHR, textstatus, errorthrown){
+			console.log("error : " +jqXHR+", "+textstatus+", "+errorthrown);
+		}
+		
+		
+	});
+	
+	
+	
+	
+	
 	for(var a = 0; a <= ${fn:length(requestScope.list)}; a++ ){
 	
 		if($("#open_"+a).val() == 'n'){
