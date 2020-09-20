@@ -34,16 +34,12 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                        <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li> -->
-                   
-                          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='mvcpost.do'">suugit페이지</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='abc.do'">다운다운 페이지</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='cards.do'">red 페이지</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='bpostlist.do'">kyukyu페이지</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='khc.do'">khc 페이지</a></li>
-                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='mvlogin.do';">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='mvlogin.do';">로그인</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='mvsign.do'">회원가입</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='logout.do'">로그아웃</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='gnview.do'">임시테이블연결용</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='modal.do'">모달테스트</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:location.href='logout.do'">${sessionScope.uname}${sessionScope.ucode}님 로그아웃</a></li>
                         
                     </ul>
                 </div>
@@ -260,7 +256,7 @@
         </section>  -->
         <!-- Footer-->
         <footer class="bg-light py-5">
-            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - 화보에 오신것을 환영합니다</div></div>
+            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

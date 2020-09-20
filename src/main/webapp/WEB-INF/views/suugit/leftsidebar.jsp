@@ -28,9 +28,9 @@
       <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='ftables.do?project_num=${sessionScope.pnum }'">
       </c:if>
      
-			<li class="nav-item"><a class="nav-link collapsed" href="cards2.do?ucode=${sessionScope.ucode }"
+			<li class="nav-item"><a class="nav-link collapsed" href="myinfo?ucode=${sessionScope.ucode }"
 				data-target="#collapsePages" aria-expanded="true"
-				aria-controls="collapsePages"><i class="fas fa-list"></i> <span>프로젝트 모아보기</span>
+				aria-controls="collapsePages"><i class="fas fa-list"></i> <span>내 정보</span>
 			</a> </li>
 
 			<!-- Divider -->
@@ -38,7 +38,7 @@
 
 			<li class="nav-item"><a class="nav-link collapsed" href="mybpost.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}"
 				data-target="#collapsePages" aria-expanded="true"
-				aria-controls="collapsePages"> <i class="far fa-list-alt"></i></i> <span>업무 모아보기</span>
+				aria-controls="collapsePages"> <i class="far fa-list-alt"></i></i> <span>프로젝트 관리</span>
 			</a> </li>
 
 			<!-- Divider -->
@@ -92,7 +92,7 @@
 </ul>
     
 </td>
-<td style="width:57%;">
+<td style="width:80.5%;">
 
 </td>
 <td style="width:23.5%;">
@@ -101,18 +101,10 @@
 
 <!-- 채팅위치조정테이블하단 시작 -->
 <table style="height:100%;width:100%;">
-<tr><td style="height:90px;"></td></tr><tr>
-<td style="height:30%;">
-<!-- 채팅위치조정테이블하단 시작 -->
-
-<!-- 채팅 폼 시작 -->
-
-<c:import url="/WEB-INF/views/red/sideRight.jsp"></c:import>
-
-<!-- 채팅 폼 끝 -->
-
-<!-- 채팅위치조정테이블하단 끝 -->
-</td>
+<tr><td style="height:90px;"></td></tr>
+<tr>
+<td style="height:30%;">사용자 정보 </td>
+<td style="height:30%;">프로젝트 관리 </td>
 </tr>
 <tr><td style="height:70%;"></td></tr>
 </table>

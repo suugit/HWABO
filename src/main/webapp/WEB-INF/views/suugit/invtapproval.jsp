@@ -59,7 +59,7 @@
 </style>
 </head>
 
-<body class="bg-gradient-primary">
+<body>
                   <div class="mr-3">
                   
                     <div class="icon-circle bg-primary">

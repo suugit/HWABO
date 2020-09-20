@@ -2,7 +2,6 @@ package com.beet.HWABO.member.model.vo;
 
 import java.sql.Date;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -12,14 +11,16 @@ public class Member implements java.io.Serializable{
 	
 	private String ucode;
 	
-	
-	@Email(message="이메일을 입력해주세요")
+	@NotNull(message="이메일을 입력해주세요")
+	@Pattern(regexp="^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$", message="올바른 이메일을 입력해주세요")
 	private String uemail;
 
+	@NotNull(message="비밀번호를 입력해주세요")
 	@Pattern(regexp="^[a-zA-Z0-9] {6,}", message="비밀번호는 영어대/소문자, 숫자로 6글자 이상 입력해야합니다")
 	private String upwd;
 	@NotNull(message="이름을 입력해주세요")
 	private String uname;
+	
 	private int uphone;
 	private String ugroup;
 	private String urole;

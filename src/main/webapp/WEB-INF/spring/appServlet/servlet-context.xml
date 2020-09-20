@@ -57,6 +57,34 @@
 	
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	
+	<interceptors>
+ 	
+	<!-- 세션체크 -->
+		<interceptor>
+		  <mapping path="/**" /> 
+		  <exclude-mapping path="/" /> 
+		  <exclude-mapping path="/welcome.do" /> 
+		  <exclude-mapping path="/mvsign.do" /> 
+		  <exclude-mapping path="/sign.do" /> 
+		  <exclude-mapping path="/terms.do" /> 
+		  <exclude-mapping path="/mvlogin.do" /> 
+		  <exclude-mapping path="/login.do" /> 
+		  <exclude-mapping path="/logout.do" /> 
+		  <exclude-mapping path="/forgotpwd.do" /> 
+		  <exclude-mapping path="/chnpwd.do" /> 
+			<beans:bean id="SessionChkInterceptor" class="com.beet.HWABO.common.interceptor.SessionChkInterceptor" />
+		</interceptor>
+	
+	<interceptor>
+		  <mapping path="/mvcpost.do" /> 
+		  <exclude-mapping path="/cards.do" /> 
+		  <exclude-mapping path="/cards2.do" /> 
+		  <exclude-mapping path="/riseChat.do" /> 
+		  
+			<beans:bean id="PnumChkInterceptor" class="com.beet.HWABO.common.interceptor.PnumChkInterceptor" />
+		</interceptor>
+	</interceptors>
+	 
 
 </beans:beans>
 

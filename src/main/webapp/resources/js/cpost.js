@@ -15,21 +15,41 @@
 	    
 
 $(document).ready(function (e){
-  $("input[type='file']").change(function(e){
-
+	$("input[id='file']").on('change',function(e){
+		var fileArea = $('#InsertTable [id=preview]');
     //div 내용 비워주기
-	  $('#preview').empty();
+	//var fileArea = $('#InsertTable [id=preview]');
+	fileArea.empty();
 	
-	  
     var files = e.target.files;
     var arr =Array.prototype.slice.call(files);
 
-    preview(arr);
+    preview(fileArea, arr);
     
   });
 
-  
-  function preview(arr){
+
+	//파일수정
+
+		$('#updatecPost').find("input[type='file']").on('change',function(e){
+			alert('h');
+			event.preventDefault();
+			var fileArea = $('#CpostUpTable [id=preview]');
+			//alert(fileArea.cells.length());
+			//fileArea.empty();
+			if(fileArea.children('td').length >= 3){
+				alert('첨부파일은 최대 3개까지 가능합니다');
+				return false;
+			}
+				var file = e.target.file;
+				var arr =Array.prototype.slice.call(file);
+				preview(fileArea, arr);
+			
+		    
+		  });
+});		
+		
+  function preview(fileArea, arr){
     arr.forEach(function(f){
     	
     	var fileName = f.name;
@@ -49,25 +69,29 @@ $(document).ready(function (e){
          // str += '<button type="button" class="btn btn-danger" value="'+f.name+'" >x</button><br>';
           str += '<img src="'+e.target.result+'" title="'+f.name+'" width=100 height=100 />';
           str += '</td>';
-          $(str).appendTo('#preview');
+          $(str).appendTo(fileArea);
         } 
         reader.readAsDataURL(f);
       }else{
         str += '<img src="resources/maincss/img/suugit/file_altimg.svg" title="'+f.name+'" width=100 height=100 />';
-        $(str).appendTo('#preview');
+        $(str).appendTo(fileArea);
       }
     }); 
   }
-});
 
-function removetd() {
+
+
+
+function removeuptd() {
 	$(event.target).value = "";
 	$(event.target).closest('td').remove();
 
 }
 
-
-
+function removefile(){
+	$(event.target).value = "";
+	$(event.target).closest('td').remove();
+}
 function resize(img){
 
  

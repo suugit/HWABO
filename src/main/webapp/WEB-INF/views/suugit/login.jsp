@@ -50,10 +50,10 @@
                   </div>
                   <form action="login.do" method="post" class="user">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" name="uemail" aria-describedby="emailHelp" placeholder="이메일 주소">
+                      <input type="email" class="form-control form-control-user" name="uemail" aria-describedby="emailHelp" placeholder="이메일 주소" required>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" name="upwd" placeholder="비밀번호">
+                      <input type="password" class="form-control form-control-user" name="upwd" placeholder="비밀번호" required>
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">

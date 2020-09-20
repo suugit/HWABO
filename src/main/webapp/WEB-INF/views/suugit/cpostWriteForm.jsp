@@ -10,13 +10,13 @@
 <body><!-- 글작성 본문 -->
              <form action="incp.do" id="InsertCpost" method="post" enctype="multipart/form-data">
              
-              <tr><td colspan="5"> <input name="ctitle" type="text" class="form-control mb-1" placeholder="제목"></td></tr>
-              <tr><td colspan="5"><textarea id="ccontent" name="ccontent" rows="6" class="w-100 form-control "></textarea></td></tr>
+              <tr><td colspan="5"> <input name="ctitle" type="text" class="form-control mb-1" placeholder="제목" required></td></tr>
+              <tr><td colspan="5"><textarea id="ccontent" name="ccontent" rows="6" class="w-100 form-control "  placeholder="내용을 입력해주세요"  required></textarea></td></tr>
               <tr id="preview"></tr>
               <tr id="file_list">
        				<input type="hidden" name="cwriter" value="${sessionScope.uname }">
        				<input type="hidden" name="cucode" value="${sessionScope.ucode }">
-       				<input type="text" name="cpnum" value="${sessionScope.pnum}">
+       				<input type="hidden" name="cpnum" value="${sessionScope.pnum}">
        				
               	<td>
               		<img src="" />
@@ -46,7 +46,6 @@
               <!-- 옵션메뉴 --> 
               	<div class="clearfix d-flex ">
               	<td colspan="2" class="flex-grow-5 ">
-              	
               		<label class="btn btn-light small" onclick="fileUpload" >
               			 <input type="file" name="file" id="file" style="display:none" multiple>
               			<i class="fa fa-link ">&nbsp;파일</i>
@@ -84,7 +83,7 @@
 			<tr>
 			<td> 		
 			<c:url var="calln" value="selcpone.do">
-				<c:param name="cno" value="c27" />
+				<c:param name="cno" value="c130" />
 			</c:url>
 		<button><a href="${calln}">상세보기 테스트</a></button> 
 			</td>
