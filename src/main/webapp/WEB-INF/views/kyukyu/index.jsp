@@ -324,7 +324,7 @@ $(document).ready(function(){
 				  <label class="btn btn-info">
 				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
 				  </label>
-				  <label class="btn btn-secondary"">
+				  <label class="btn btn-secondary">
 				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
 				  </label>
 				   <label class="btn btn-secondary">
@@ -362,7 +362,7 @@ $(document).ready(function(){
 				  <label class="btn btn-secondary">
 				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
 				  </label>
-				  <label class="btn btn-secondary"">
+				  <label class="btn btn-secondary">
 				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
 				  </label>
 				   <label class="btn btn-info">
@@ -382,7 +382,7 @@ $(document).ready(function(){
 				  <label class="btn btn-secondary">
 				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
 				  </label>
-				  <label class="btn btn-secondary"">
+				  <label class="btn btn-secondary">
 				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
 				  </label>
 				   <label class="btn btn-secondary">
@@ -403,6 +403,7 @@ $(document).ready(function(){
 			</div>
 			<hr>
 			<div>
+				<tr>
 				 <td width="20%"><span style="float: left;">
 				 	<i class="far fa-calendar-alt"> 시작일 : &nbsp;${b.bstartday }</i></span>
 				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
@@ -410,6 +411,7 @@ $(document).ready(function(){
 				 <td width="20%"><span style="float: center;">
 				 	<i class="far fa-calendar-alt"> 마감일 : &nbsp;${b.bendday }</i></span>
 	           	 </td>
+	           	</tr>
 			</div>
 		
 			<hr>
@@ -419,7 +421,7 @@ $(document).ready(function(){
 			   <c:if test="${! empty b.bcontent }">
 		
 				 <tr>
-				 <td><b><big>${b.bcontent}</big></b></td>
+				 <td><b>${b.bcontent}</b></td>
 				 </tr>
 				</c:if>
 		      </table>
@@ -429,11 +431,14 @@ $(document).ready(function(){
 			
 					<tr>
 					   <td>
-					  
+					  	 <c:url var="ubf" value="bfdown.do">
+						  <c:param name="ofile" value="${b.boriginfile}"/>
+						  <c:param name="rfile" value="${b.brenamefile}"/>
+						 </c:url> 
 				   
 								   
 			 		 <div id="showfile" style="overflow:hidden;"> 
-						<c:forTokens var="ext" items="${b.brenamefile}" delims="." varStatus="status">
+					<c:forTokens var="ext" items="${b.brenamefile}" delims="." varStatus="status">
 						
 						    <c:if test="${status.last}">
 						        <c:choose>
@@ -446,18 +451,14 @@ $(document).ready(function(){
 						       
 						        </c:choose>
 						    </c:if>
-						</c:forTokens>
+						</c:forTokens> 
 					     <br>
 					     <a href="${ubf }"><i class="far fa-file"></i> :  ${b.boriginfile}</a>
 			
 					</div> 
-					   </td>
-					 <c:url var="ubf" value="bfdown.do">
-					  <c:param name="ofile" value="${b.boriginfile}"/>
-					  <c:param name="rfile" value="${b.brenamefile}"/>
-					 </c:url> 
+				</td>
 			
-					</tr>
+				</tr>
 				
 			    </c:if>
 					<c:if test="${empty b.boriginfile}">

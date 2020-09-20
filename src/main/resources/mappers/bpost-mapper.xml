@@ -147,11 +147,6 @@
 
 <update id="updateOpen" parameterType="string">
 
-<!-- update bpost
-set bopen = 'n'
-where bno = #{bno} -->
-
-
 
 update bpost
 set bopen =
