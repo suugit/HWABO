@@ -105,5 +105,15 @@
 		where ucode not in (
 		(select ucode from pjmember where pnum = #{pnum}))
 		</select>
+	
+	<insert id="insertSnsUser" parameterType="member">
+		merge into member using dual on (uemail = #{uemail} and signtype =#{signtype})
+		when matched then
+		update set 
+        uname = #{uname},  uimg = #{uimg}, ust='Y'
+        when not matched then 
+			insert (ucode, uemail, uname, uimg,signtype,ust) 
+			values ('n'||member_seq.nextval, #{uemail},#{uname},#{uimg}, #{signtype}, 'Y')
+	</insert>
 
 </mapper>

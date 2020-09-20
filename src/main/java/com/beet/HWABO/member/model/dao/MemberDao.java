@@ -81,6 +81,15 @@ public class MemberDao {
 	public int updateTmpPwd(Member member) {
 		return session.update("memberMapper.updateTmpPwd", member);
 	}
+
+
+	public int insertSnsUser(Member member) {
+		System.out.println(member.getUemail());
+		System.out.println(member.getUname());
+		System.out.println(member.getUimg());
+		System.out.println(member.getSigntype());
+		return session.insert("memberMapper.insertSnsUser", member);
+	}
 	
 	
 

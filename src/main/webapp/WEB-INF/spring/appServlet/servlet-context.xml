@@ -74,6 +74,7 @@
 		  <exclude-mapping path="/mvforgotpwd.do" /> 
 		  <exclude-mapping path="/chnpwd.do" /> 
 		  <exclude-mapping path="/mvchnpwd.do" /> 
+		  <exclude-mapping path="/snsloginrslt.do" /> 
 			<beans:bean id="SessionChkInterceptor" class="com.beet.HWABO.common.interceptor.SessionChkInterceptor" />
 		</interceptor>
 	
@@ -87,7 +88,7 @@
 		</interceptor>
 	</interceptors>
 	 
-
+	<beans:bean class="com.beet.HWABO.member.model.vo.NaverLoginUtil" id="NaverLoginUtil"/>
 </beans:beans>
 
 

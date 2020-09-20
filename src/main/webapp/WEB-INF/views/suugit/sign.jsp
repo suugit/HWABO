@@ -72,18 +72,18 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="email" class="col-sm-3 col-form-label ">비밀번호
+								<label for="upwd" class="col-sm-3 col-form-label ">비밀번호
 								</label>
 								<div class="col-sm-9">
-									<input type="password" class="form-control" name="upwd"
+									<input type="password" class="form-control" id="upwd" name="upwd"
 										placeholder="Password" minlength="6" maxlength="12" required>
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="email" class="col-sm-3 col-form-label ">비밀번호
+								<label for="pwdchk" class="col-sm-3 col-form-label ">비밀번호
 									확인</label>
 								<div class="col-sm-9">
-									<input type="password" class="form-control" name="pwdchk"
+									<input type="password" class="form-control" id="pwdchk" name="pwdchk"
 										placeholder="Password" minlength="6" maxlength="12"
 										required|same:upwd>
 								</div>
@@ -138,22 +138,19 @@
 	<script src="/hwabo/resources/js/user.js"></script>
 	  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 	<script>
+	function pwdChk(){
+		var upwd = document.getElementById('upwd')
+		var pwdchk = document.getElementById('pwdchk')
+		if(pwdchk.length > 0){
+			if(upwd != pwdchk){
+				 	alert('비밀번호가 일치하지 않습니다');
+				 	return false;
+			}
+		}
+	}
 	
-	 function init() {
-         gapi.load('auth2', function() { 
-             var gauth = gapi.auth2.init({
-                 client_id: 'CLIENT_ID.apps.googleusercontent.com'
-             });
-             
-             gauth.then(function(){
-                 console.log('init success');
-             }, function(){
-                 console.error('init fail');
-             })
-         });
-     }
-	
-	
+	 
+
 	
 	</script>
 </body>
