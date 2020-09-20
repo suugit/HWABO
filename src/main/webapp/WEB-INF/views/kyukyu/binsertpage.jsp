@@ -300,8 +300,8 @@ function unSelected(){
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                      <c:forEach var="pm" items="${sessionScope.pmlist}" varStatus="status">
                      <button class="dropdown-item" type="button" onclick="addbcharge${status.index}();" value="${pm.ucode }">${pm.uname }</button>
-                     <input type="checkbox" id="user${status.index }" name="bcharge" style="display:none">
-                     <input type="checkbox" id="name${status.index }" name="bchargename" style="display:none">
+                     <input type="checkbox" id="user${status.index }" name="bcharge" style="display:none" >
+                     <input type="checkbox" id="name${status.index }" name="bchargename" style="display:none" required>
                      </c:forEach>
                      
                     </div>
@@ -341,10 +341,10 @@ function unSelected(){
                            
                            <tr>
                               <td width="20%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span>
-                              <input type="date" class="form-control" name="bstartday" id="beforesstartday"></td>
+                              <input type="date" class="form-control" name="bstartday" id="beforesstartday" required></td>
 
                               <td width="20%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span>
-                              <input type="date" class="form-control" name="bendday" id="beforesendday"></td>
+                              <input type="date" class="form-control" name="bendday" id="beforesendday" required></td>
                               <td colspan="3"></td>
                            </tr>
                            <tr>
