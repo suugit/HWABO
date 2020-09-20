@@ -146,7 +146,7 @@ $(function(){
 				<h6 class="m-0 font-weight-bold text-primary">
 				
 				<i class="fas fa-user-circle"></i>
-				<%=post.getBwriter() %><br><%=post.getBenrolldate() %></h6>
+				${post.bwriter}<br>${post.benrolldate }</h6>
 			<!-- 	<button type="submit" class="btn btn-custom btn-sm liketoggle" name="like"><span>보관</span> <i class="far fa-bookmark"></i></button>
 					 -->
 					
@@ -161,30 +161,30 @@ $(function(){
            		 
                <!-- <form action="insertcabinet.do" method="post"> -->
               
-               <button id="cavinetin_" class="btn btn-custom btn-sm liketoggle" name="like" onclick="sendInsert(${status.index});">
+               <button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle${status.index }" name="like" onclick="sendInsert(${status.index});">
            	   <span>보관</span> <i class="far fa-bookmark"></i></button>
            	   <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
-			   <input type="hidden" id="no_${status.index }" value="${b.bno }">
-			   <input type="hidden" id="pnum_${status.index }" value="${b.bpnum }" >
-			   <input type="text" id="open_${status.index }" value="${b.bopen }" >
+			   <input type="hidden" id="no_${status.index }" value="${post.bno }">
+			   <input type="hidden" id="pnum_${status.index }" value="${post.bpnum }" >
+			   <input type="text" id="open_${status.index }" value="${post.bopen }" >
              
 
 			 <div id="d5"></div>
-		  		<c:if test="${sessionScope.ucode eq b.bucode }">
+		  		<c:if test="${sessionScope.ucode eq post.bucode }">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                      
                       <c:url var="bup" value="buppage.do">
-                      	<c:param name="bno" value="${b.bno }"/>
+                      	<c:param name="bno" value="${post.bno }"/>
                     
                       </c:url> 
                      <a class="dropdown-item" href="${bup }">수정</a>
                      	
                        <c:url var="bdel" value="deletebpost.do">
-                      	<c:param name="bno" value="${b.bno }"/>
-                    	<c:param name="brenamefile" value="${b.brenamefile }"/>
+                      	<c:param name="bno" value="${post.bno }"/>
+                    	<c:param name="brenamefile" value="${post.brenamefile }"/>
                       </c:url>
                       <a class="dropdown-item" href="${bdel }">삭제</a>
                  		
@@ -197,12 +197,12 @@ $(function(){
 			<!-- 게시글안쪽 -->	
 			<div class="card-body">
 							
-			   <b>제목 : ${b.btitle}</b>
+			   <b>제목 : ${post.btitle}</b>
 			   <hr>
 				
 							
 			<div class="btn-group btn-group-toggle"  >
-			  <c:if test="${b.bkind eq '요청' }">
+			  <c:if test="${post.bkind eq '요청' }">
 				
 				
 				 <label class="btn btn-info">
@@ -225,7 +225,7 @@ $(function(){
 			  </c:if>
 			  
 			  
-			  <c:if test="${b.bkind eq '진행' }">
+			  <c:if test="${post.bkind eq '진행' }">
 					
 					
 				 <label class="btn btn-secondary">
@@ -245,7 +245,7 @@ $(function(){
 				  </label>			
 			  </c:if>
 			 
-			  <c:if test="${b.bkind eq '피드백' }">
+			  <c:if test="${post.bkind eq '피드백' }">
 					
 				 <label class="btn btn-secondary">
 				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
@@ -264,7 +264,7 @@ $(function(){
 				  </label>				
 			  </c:if>
 			  
-			   <c:if test="${b.bkind eq '완료' }">
+			   <c:if test="${post.bkind eq '완료' }">
 						
 				 <label class="btn btn-secondary">
 				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
@@ -284,7 +284,7 @@ $(function(){
 			  </c:if>
 			  
 			  
-			   <c:if test="${b.bkind eq '보류' }">
+			   <c:if test="${post.bkind eq '보류' }">
 						
 				 <label class="btn btn-secondary">
 				    <input type="radio" name="진행" id="요청" value="요청" readonly >요청
@@ -309,17 +309,17 @@ $(function(){
 			
 			
 			<div>
-			   <i class="fas fa-user-friends"></i> 담당자 :  ${b.bchargename }
+			   <i class="fas fa-user-friends"></i> 담당자 :  ${post.bchargename }
 			</div>
 			<hr>
 			<div>
 				<tr>
 				 <td width="20%"><span style="float: left;">
-				 	<i class="far fa-calendar-alt"> 시작일 : &nbsp;${b.bstartday }</i></span>
+				 	<i class="far fa-calendar-alt"> 시작일 : &nbsp;${post.bstartday }</i></span>
 				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
 	             </td>
 				 <td width="20%"><span style="float: center;">
-				 	<i class="far fa-calendar-alt"> 마감일 : &nbsp;${b.bendday }</i></span>
+				 	<i class="far fa-calendar-alt"> 마감일 : &nbsp;${post.bendday }</i></span>
 	           	 </td>
 	           	</tr>
 			</div>
@@ -328,32 +328,32 @@ $(function(){
 			
 			<div>
 			  <table>
-			   <c:if test="${! empty b.bcontent }">
+			   <c:if test="${! empty post.bcontent }">
 		
 				 <tr>
-				 <td><b>${b.bcontent}</b></td>
+				 <td><b>${post.bcontent}</b></td>
 				 </tr>
 				</c:if>
 		      </table>
 			<br>	
 			  <table>
-				 <c:if test="${! empty b.boriginfile }">
+				 <c:if test="${! empty post.boriginfile }">
 			
 					<tr>
 					   <td>
 					  	 <c:url var="ubf" value="bfdown.do">
-						  <c:param name="ofile" value="${b.boriginfile}"/>
-						  <c:param name="rfile" value="${b.brenamefile}"/>
+						  <c:param name="ofile" value="${post.boriginfile}"/>
+						  <c:param name="rfile" value="${post.brenamefile}"/>
 						 </c:url> 
 				   
 								   
 			 		 <div id="showfile" style="overflow:hidden;"> 
-					<c:forTokens var="ext" items="${b.brenamefile}" delims="." varStatus="status">
+					<c:forTokens var="ext" items="${post.brenamefile}" delims="." varStatus="status">
 						
 						    <c:if test="${status.last}">
 						        <c:choose>
 						            <c:when test="${ext eq 'jpg'}">
-						               <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 220px;height : 150px;">
+						               <img src="resources/bupfile/${post.brenamefile}" class="rounded" style="width : 220px;height : 150px;">
 						            </c:when>
 						            <c:when test="${ext != 'jpg'}">
 						                <img src="resources/img/eettcc.png" style="width:40px; height :40px" >
@@ -363,7 +363,7 @@ $(function(){
 						    </c:if>
 						</c:forTokens> 
 					     <br>
-					     <a href="${ubf }"><i class="far fa-file"></i> :  ${b.boriginfile}</a>
+					     <a href="${ubf }"><i class="far fa-file"></i> :  ${post.boriginfile}</a>
 			
 					</div> 
 				</td>
@@ -371,7 +371,7 @@ $(function(){
 				</tr>
 				
 			    </c:if>
-					<c:if test="${empty b.boriginfile}">
+					<c:if test="${empty post.boriginfile}">
 					&nbsp;
 					</c:if>
 			 </table><hr>
