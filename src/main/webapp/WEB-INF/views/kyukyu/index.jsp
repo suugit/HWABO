@@ -289,24 +289,110 @@ $(document).ready(function(){
 							
 			   <b>제목 : ${b.btitle}</b>
 			   <hr>
+				
 							
-							
-			<div class="btn-group btn-group-toggle" data-toggle="buttons">
-			  <label class="btn btn-info active">
-			    <input type="radio" name="요청" id="요청" value="요청" >요청
-			  </label>
-			  <label class="btn btn-primary">
-			    <input type="radio" name="진행" id="진행" value="진행">진행
-			  </label>
-			  <label class="btn btn-warning">
-			    <input type="radio" name="피드백" id="피드백" value="피드백" >피드백
-			  </label>
-			   <label class="btn btn-success">
-			    <input type="radio" name="완료" id="완료" value="완료">완료
-			  </label>
-			   <label class="btn btn-secondary">
-			    <input type="radio" name="보류" id="보류" value="보류">보류
-			  </label>
+			<div class="btn-group btn-group-toggle"  >
+			  <c:if test="${b.bkind eq '요청' }">
+				
+				
+				 <label class="btn btn-info">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
+				  </label> 
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>
+				
+				
+			  </c:if>
+			  
+			  
+			  <c:if test="${b.bkind eq '진행' }">
+					
+					
+				 <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
+				  </label> 
+				  <label class="btn btn-info">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-secondary"">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="완료" id="완료" value="완료"readonly>완료
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>			
+			  </c:if>
+			 
+			  <c:if test="${b.bkind eq '피드백' }">
+					
+				 <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
+				  </label> 
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-info">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>				
+			  </c:if>
+			  
+			   <c:if test="${b.bkind eq '완료' }">
+						
+				 <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
+				  </label> 
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-secondary"">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-info">
+				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>			
+			  </c:if>
+			  
+			  
+			   <c:if test="${b.bkind eq '보류' }">
+						
+				 <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly >요청
+				  </label> 
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-secondary"">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
+				  </label>
+				   <label class="btn btn-info">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>			
+			  </c:if>
+
 			</div>
 			<br><br>
 			
