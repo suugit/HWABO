@@ -3,6 +3,7 @@ package com.beet.HWABO.suugit.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -219,12 +220,60 @@ public class SuugitController {
 		}
 	}
 
-	@RequestMapping("/forgotpwd.do")
-	public String forgotPwdPage() {
+//비번찾기
+		@RequestMapping("/mvforgotpwd.do")
+		public String forgotPwdPage() {
 
-		return "suugit/forgotpwd.part";
-	}
+			return "suugit/forgotpwd";
+		}
 
+		@RequestMapping("/forgotpwd.do")
+		public void updatefotgotpwd(@RequestParam String uemail, Member member, ModelAndView mav) {
+			logger.info("비밀번호 찾기 요청...");
+			int result = mservice.selectEmailCheck(uemail);
+			
+			if(result > 0 ) {
+				//member.setAccesstoken(msserivce.sendAuthMail(uemail));
+				SecureRandom random = new SecureRandom ();
+				StringBuffer sbf = new StringBuffer();
+				for(int i= 0 ; i< 6 ;i++) {
+					if(random.nextBoolean()) {
+						 sbf.append((char)((int)(random.nextInt(26))+97));
+					}else {
+						sbf.append(random.nextInt(10));
+					}
+				}
+				try {
+					  MailUtils sendMail = new MailUtils(mailSender);
+					  sendMail.setSubject("[HWABO] 임시 비밀번호 발급");
+					  sendMail.setText(new StringBuffer().append("<h1>[HWABO] 임시 비밀번호 </h1><br><br>")
+					  .append("<p>아래의 임시코드를 사용하여 로그인 후 비밀번호를 변경해주세요.</p>")
+					  .append("<br><br><h3> 임시 비밀번호 : " + sbf + "</h3><br><br><br>")
+					  .append("새 비밀번호를 이용하여 로그인하러가기")
+					  .append("<a href='http://localhost:8282/hwabo/mvlogin.do'")
+					  .append(" target='_blenk'><img src='https://files.slack.com/files-pri/T01724B8QMC-F01BR631W2C/______2.png'/></a>")
+					  .toString());
+					  sendMail.setFrom("hwabo49@gmail.com", "HWABO");
+					  sendMail.setTo(uemail); 
+					  sendMail.send();
+				} catch (Exception e) {
+					e.printStackTrace();
+					
+				}
+				member.setUpwd(bcryptPwdEncoder.encode(sbf));
+				
+				if(mservice.updateTmpPwd(member) > 0) {
+					logger.info(uemail + "임시비밀번호 발급 완료");
+				}else {
+					logger.info(uemail + "임시 비밀번호 발급 실패");
+				}
+				
+			}else {
+				mav.addObject("message","일치하는 정보가 존재하지 않습니다");
+			}
+		}
+		
+		
 //내 정보
 	@RequestMapping("/myinfo1.do")
 	public String myinfoPag1e() {
@@ -318,16 +367,6 @@ public class SuugitController {
 		return mav;
 	}
 
-	/*
-	 * updateMyinfo(@RequestBody Map<String,Object> params) {
-	 * logger.info("정보 변경...");
-	 * 
-	 * Map<String,Object> resultMap = new HashMap<String,Object>();
-	 * System.out.println(params); try {
-	 * 
-	 * } catch (Exception e) { resultMap.put("message", "업데이트실패"); return resultMap;
-	 * } resultMap.put("message", "회원정보가 정상적으로 변경되었습니다"); return resultMap; }
-	 */
 
 	@RequestMapping("deluser.do")
 	public String deleteUser(@RequestParam("ucode") String ucode, Model model) {
@@ -339,8 +378,6 @@ public class SuugitController {
 		}
 	}
 
-
-
 //모달
 	@RequestMapping("/modal.do")
 	public String ModalPage() {
@@ -348,14 +385,8 @@ public class SuugitController {
 		return "suugit/modal.page";
 	}
 
-//비번찾기
-//모달
-	@RequestMapping("/chnpwd.do")
-	public String ChnpwdPage() {
 
-		return "suugit/chnpwd.part";
-	}
-
+	
 
 	@RequestMapping("/top1.do")
 	public String testpage2() {
@@ -364,8 +395,6 @@ public class SuugitController {
 
 	
 //프로젝트 초대하기 ( 기존유저) 
-	
-	
 	  @RequestMapping("/invtexist.do") 
 	  public ResponseEntity<String> invtNew(HttpSession session, @RequestBody String param, Invite invt) throws ParseException {
 		  logger.info("신규 초대!");
@@ -430,9 +459,6 @@ public class SuugitController {
 //
 //			return mv;
 		}
-	  
-	  
-	  
 
 //	            MailUtils sendMail = new MailUtils(mailSender);
 //	            sendMail.setSubject("회원가입 이메일 인증");
@@ -495,8 +521,6 @@ public class SuugitController {
 			return "suugit/invtmanage";
 		}
 
-	  
-	  
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================
@@ -721,12 +745,8 @@ public class SuugitController {
 					fList[i].delete();
 				}
 		}
-
-		if (cservice.deleteCpost(cno) > 0) {
+		cservice.deleteCpost(cno);
 			return "suugit/tables";
-		} else {
-			return "common/error";
-		}
 
 	}
 }

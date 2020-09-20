@@ -76,6 +76,11 @@ public class MemberDao {
 		List<Member> nmlist = session.selectList("memberMapper.selectNotMember", pnum);
 		return (ArrayList<Member>)nmlist;
 	}
+
+
+	public int updateTmpPwd(Member member) {
+		return session.update("memberMapper.updateTmpPwd", member);
+	}
 	
 	
 

@@ -47,9 +47,9 @@
 		where uemail = #{uemail} and signtype= 'h'
 	</select>
 	
-	<select id="selectreal" parameterType="string" resultType="_int">
-		select count(*) from member`
-		where uemail = #{uemia
+	<select id="selectEmailCheck" parameterType="string" resultType="_int">
+		select count(*) from member
+		where uemail = #{uemail}
 	</select>
 	<update id="updateUst" parameterType="Member">
 		update member
@@ -84,6 +84,11 @@
 		update member
 		set upwd = #{upwd}
 		where ucode = #{ucode}
+	</update>
+	<update id="updateTmpPwd" parameterType="string">
+		update member
+		set upwd = #{upwd}
+		where uemail = #{uemail} and signtype= 'h'
 	</update>
 	<delete id="deleteUser" parameterType="string">
 		delete member

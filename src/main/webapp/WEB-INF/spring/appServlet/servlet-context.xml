@@ -71,7 +71,9 @@
 		  <exclude-mapping path="/login.do" /> 
 		  <exclude-mapping path="/logout.do" /> 
 		  <exclude-mapping path="/forgotpwd.do" /> 
+		  <exclude-mapping path="/mvforgotpwd.do" /> 
 		  <exclude-mapping path="/chnpwd.do" /> 
+		  <exclude-mapping path="/mvchnpwd.do" /> 
 			<beans:bean id="SessionChkInterceptor" class="com.beet.HWABO.common.interceptor.SessionChkInterceptor" />
 		</interceptor>
 	

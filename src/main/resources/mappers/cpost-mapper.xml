@@ -80,12 +80,12 @@
 	</update>
 
 
-	<delete id="deleteCpost" parameterType="string">
+	<delete id="deleteCpost" parameterType="string" >
 		declare
 		begin
-		delete from cpost where cno = #{cno}
-		delete from addon where cno = #{cno}
-		end
+		delete from cpost where cno = #{cno};
+		delete from addon where cno = #{cno};
+		end;
 	</delete>
 
 	<select id="notmb">

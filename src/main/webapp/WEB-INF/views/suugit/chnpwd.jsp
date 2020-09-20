@@ -42,7 +42,7 @@
 							<li>이메일로 발송된 임시코드와 변경할 새 비밀번호를 입력해주세요</li>
 						</small>
 					</ul>
-					<form>
+					<form action="chnpwd.do" method="post">
 						<div class="justify-content-center">
 							<div class="form-group mx-5">
 								<input type="password" class="form-control mb-2" id="newpwd" placeholder="새 비밀번호">

@@ -72,7 +72,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="javascript:location.href='forgotpwd.do';">비밀번호가 생각나지 않으신가요?</a>
+                    <a class="small" href="javascript:location.href='mvforgotpwd.do';">비밀번호가 생각나지 않으신가요?</a>
                   </div>
                   <div class="text-center">
                     화보가 처음이신가요?
