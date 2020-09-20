@@ -18,10 +18,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.abc.model.service.LoveService;
@@ -29,6 +31,9 @@ import com.beet.HWABO.abc.model.service.PostreplyService;
 import com.beet.HWABO.abc.model.vo.Love;
 import com.beet.HWABO.bpost.model.service.BpostService;
 import com.beet.HWABO.bpost.model.vo.Bpost;
+import com.beet.HWABO.cpost.model.service.CpostService;
+import com.beet.HWABO.cpost.model.vo.AddOn;
+import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.spost.model.service.SpostService;
 import com.beet.HWABO.spost.model.vo.Post;
@@ -42,6 +47,9 @@ public class abcController {
 
 	@Autowired
 	private BpostService bpostService;
+	
+	@Autowired
+	private CpostService cservice;
 
 	@Autowired
 	private LoveService loveService;
@@ -205,11 +213,13 @@ public class abcController {
 			out.println("<script>alert('일정 게시글 삭제가 완료되었습니다.');</script>");
 
 			out.flush();
+			out.close();
 			return "redirect:/myhwabo.do";
 		} else {
 			out.println("<script>alert('일정 게시글 삭제에 실패하였습니다.');</script>");
 
 			out.flush();
+			out.close();
 			return "redirect:/myhwabo.do";
 		}
 	}
@@ -356,7 +366,6 @@ public class abcController {
 	// 나의 화보. 나와 관련된 게시글 목록 조회용
 	@RequestMapping("myhwabo.do")
 	public String myHWABO(Model m, PjMember pmember) {
-		logger.info(pmember.toString());
 		
 		// 매개변수랑, where 절에 session에서 받아온 ucode랑 pnum 추가 해야한다.
 		// Pjmember 에 ucode랑 pnum 필드 있어서 그걸로 이용해서 2개 값 담아서 이동 !
@@ -383,9 +392,279 @@ public class abcController {
 		}
 		return "abc/yourhwabo";
 	}
+	
+//3 게시글 관련 상세보기, 수정, 삭제 메소드	
+
+	//1. bpost
+	// 업무 게시글 상세보기용 메소드
+	@RequestMapping("HBOne.do")
+	public String hwaboselectBpost(Model model,@RequestParam("bno") String bno, PjMember pmember) {
+
+		Bpost bpost = spostService.selectOneBpost(bno);
+		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
+		
+		if (bpost != null) {
+			model.addAttribute("post", bpost);
+			model.addAttribute("list", list);
+			return "post/bpostOneview";
+		} else {
+			model.addAttribute("message", "업무 게시글 상세보기에 실패하였습니다.");
+			model.addAttribute("list", list);
+			return "redirect:/mybpost.do";
+		}
+
+	}
+	// 업무 게시글 수정페이지로 이동용 메소드
+	@RequestMapping("moveHBUpdate.do")
+	public String hwabomoveBpostUpdatePage(@RequestParam("bno") String bno, Model m, PjMember pmember) {
+		Bpost bpost = bpostService.selectBpost(bno);
+		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
+		
+		m.addAttribute("post", bpost);
+		m.addAttribute("list", list);
+		return "post/bpostUpdatepage";
+	}
+	
+	// 업무 게시글 수정용 메소드
+	@RequestMapping(value = "HBupdate.do")
+	public String hwaboupdatebpost(Bpost bpost, HttpServletRequest request,
+			@RequestParam(name = "upfile", required = false) MultipartFile file,
+			@RequestParam(name = "deleteFlag", required = false) String deleteFlag, PjMember pmember) {
+
+		logger.info(bpost.getBkind());
+		String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
+		String returnView = null;
+
+		if (bpost.getBoriginfile() != null) {
+			if (deleteFlag != null && deleteFlag.equals("yes")) {
+				if (new File(savePath + "\\" + bpost.getBrenamefile()).delete()) {
+					logger.info("파일 삭제 ");
+					bpost.setBoriginfile(null);
+					bpost.setBrenamefile(null);
+				} else {
+					logger.info("파일 삭제 안됨 originfile : " + bpost.getBoriginfile());
+				}
+			}
+		}
+
+		if (file != null && file.getOriginalFilename().length() > 0) {
+			if (file != null) {
+				if (!file.getOriginalFilename().equals(bpost.getBoriginfile())
+						&& (new File(savePath + "\\" + bpost.getBrenamefile())
+								.length() != new File(savePath + "\\" + file.getOriginalFilename()).length())) {
+					if ((new File(savePath + "\\" + bpost.getBrenamefile()).delete())) {
+						logger.info("파일 삭제 성공 !");
+						bpost.setBoriginfile(null);
+						bpost.setBrenamefile(null);
+					} else {
+						logger.info("파일 삭제 실패 131!");
+					}			
+					bpost.setBoriginfile(file.getOriginalFilename());
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); // java.text.SimpleDateFormat
+					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); 
+					renameFileName += "."+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1); 								
+					bpost.setBrenamefile(renameFileName);
+					try {
+						file.transferTo(new File(savePath + "\\" + renameFileName));
+					} catch (IllegalStateException | IOException e) {
+						e.printStackTrace();
+					}
+				} else {
+					bpost.setBoriginfile(file.getOriginalFilename());
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
+					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); 
+					renameFileName += "."+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
+					bpost.setBrenamefile(renameFileName);
+					try {
+						file.transferTo(new File(savePath + "\\" + renameFileName));
+					} catch (IllegalStateException | IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		if (bpostService.updateBpost(bpost) > 0) {
+			//성공하면 bno가지고 selectOne 한번 실행
+			request.setAttribute("bno", bpost.getBno() );
+			return "redirect:/bpostOne.do?bno="+bpost.getBno()+"&ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
+		} else {
+			//수정실패하면 list로 
+			request.setAttribute("message", "업무 게시글 수정에 실패하였습니다." );
+			return "redirect:/mybpost.do?ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
+		}
+	}
+	
+	// 업무 삭제용 메소드
+	@RequestMapping(value = "HBdelete.do")
+	public String hwabobpostDelete(Bpost bpost, Model model, HttpServletRequest request, PjMember pmember) {
+		if (bpostService.deleteBpost(bpost) > 0) {
+			String brenamefilename = bpost.getBrenamefile();
+			logger.info("controller brenamefilename : " + brenamefilename);
+
+			if (brenamefilename != null && !brenamefilename.isEmpty()) {
+
+				String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
+				new File(savePath + "\\" + brenamefilename).delete();
+			}
+			return "redirect:/mybpost.do?ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
+		} else {
+			model.addAttribute("message", "업무 게시글 삭제에 실패하였습니다.");
+			return "redirect:/mybpost.do?ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
+		}
+	}
+
 
 	
 	
+	//2. spost
+	// 일정 selectOne 메소드
+	@RequestMapping("HSOne.do")
+	public String hwaboselectSpost(Model m, String sno) {
+		// 수정하기 버튼 클릭시 sno 가지고 온다. 쿼리스트링이랑 매개변수에 추가해야한다.
+		Spost spost = spostService.selectOneSpost(sno);
+		String startday = spost.getSstartday().toString();
+		String endday = spost.getSendday().toString();
+
+		SimpleDateFormat recvSimpleFormat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+		SimpleDateFormat format2 = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
+
+		try {
+			java.util.Date startdate = recvSimpleFormat.parse(startday);
+			java.util.Date enddate = recvSimpleFormat.parse(endday);
+
+			startday = format1.format(startdate) + "T" + format2.format(startdate);
+			endday = format1.format(enddate) + "T" + format2.format(enddate);
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		m.addAttribute("spost", spost);
+		m.addAttribute("startday", startday);
+		m.addAttribute("endday", endday);
+		return "abc/selectSpost";
+	}
+
+	
+	// 일정 수정 메소드
+	@RequestMapping(value = "HSupdate.do", method = RequestMethod.POST)
+	public String hwaboupdateSpost(Spost spost, Model m, HttpServletResponse response,
+			@RequestParam("beforesstartday") String start, @RequestParam("beforesendday") String end)
+			throws IOException, UnsupportedEncodingException {
+		// 업데이트하면 에이작스로 이것만 보내서 표시한다.
+
+		// where sno = #{sno}로 처리
+		// 제목, 시작날짜, 끝날짜, 장소, 알람, 컨텐츠, 공개여부 변경
+		String Sstart = start.replace("T", " ");
+		String Send = end.replace("T", " ");
+
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+		try {
+			java.util.Date startdate = transFormat.parse(Sstart);
+			java.util.Date enddate = transFormat.parse(Send);
+
+			spost.setSstartday(startdate);
+			spost.setSendday(enddate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		spost.setStitle(spost.getStitle().replace(" ", "&nbsp;"));
+		spost.setScontent(spost.getScontent().replace("\r\n", "<br>"));
+		;
+		spost.setScontent(spost.getScontent().replace(" ", "&nbsp;"));
+		;
+
+		if (spostService.updateSpost(spost) > 0) {
+			return "redirect:/selectonespost.do?sno=" + spost.getSno();
+
+			// 좋아요랑 댓글 셀렉트 다시해오기 ?
+
+		} else {
+
+			// 실패해도 spost의 값 가지고 가고, alert창 띄우기
+			return "redirect:/selectonespost.do?sno=" + spost.getSno();
+		}
+
+	}
+
+	// 일정 삭제 메소드
+	@RequestMapping("HSdelete.do")
+	public String hwabodeleteSpost(HttpServletResponse response, String sno) throws IOException {
+		PrintWriter out = response.getWriter();
+
+		if (spostService.deleteSpost(sno) > 0) {
+			out.println("<script>alert('일정 게시글 삭제가 완료되었습니다.');</script>");
+
+			out.flush();
+			out.close();
+			return "redirect:/myhwabo.do";
+		} else {
+			out.println("<script>alert('일정 게시글 삭제에 실패하였습니다.');</script>");
+
+			out.flush();
+			out.close();
+			return "redirect:/myhwabo.do";
+		}
+	}	
+	
+	
+	//3. cpost
+	// 글 상세보기용 메소드
+	@RequestMapping("HCOne.do")
+	public ModelAndView selectCpOne(HttpServletRequest request, ModelAndView mv) {
+
+		logger.info(request.getParameter("cno"));
+		Cpost cpost = cservice.selectCpOne(request.getParameter("cno"));
+
+		if (cpost != null) {
+			mv.addObject("post", cpost);
+			mv.setViewName("suugit/tables2");
+		} else {
+			mv.addObject("message", "글을 조회할 수 없습니다!");
+			mv.setViewName("common/error");
+		}
+		return mv;
+	}
+	
+	@RequestMapping("moveHCUpdate.do")
+	public String moveUpdateCpost(Cpost cpost, Model model) {
+		model.addAttribute("cpost", cpost);
+		return "suugit/cpostUpdateForm";
+		
+	}
+	
+	@RequestMapping("HCupdate.do")
+	public void updateCpost(Cpost cpost, AddOn addon,MultipartHttpServletRequest request, ModelAndView mav) {
+		//다중파일이라 완성되면 옮겨오기
+		
+		
+		
+	}
+
+	@RequestMapping("HCdelete.do")
+	public String deleteCpost(@RequestParam("cno") String cno, AddOn addon, Model model, HttpServletRequest request) {
+
+		File f = new File(request.getSession().getServletContext().getRealPath("resources/bupfile"));
+		if (f.isDirectory()) {
+			File[] fList = f.listFiles();
+			for (int i = 0; i < fList.length; i++)
+				if (fList[i].getName().contains(cno)) {
+					System.out.println(fList[i].getName());
+					fList[i].delete();
+				}
+		}
+
+		if (cservice.deleteCpost(cno) > 0) {
+			return "suugit/tables";
+		} else {
+			return "common/error";
+		}
+
+	}
 	
 //========== 좋아요 관련 메소드 ==================================================	
 	

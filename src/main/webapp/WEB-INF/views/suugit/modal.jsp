@@ -132,7 +132,7 @@
 												class="form-control-static fa fa-2x fa-user-circle prefix"
 												style="min-height: auto; line-height: normal;"></i></td>
 											<td><input class="form-control newe" name="newinvt" type="email"
-												name="new" placeholder="초대할 이메일을 입력해주세요"></td>
+												name="new" placeholder="초대할 이메일을 입력해주세요" required></td>
 											<td></td>
 										</tr>
 									</tbody>
@@ -254,11 +254,15 @@
 	}
 	
 	$('#invtBtn').on('click',function(){
+		
 		var n = $('input[name=newinvt]').length;
 		var fileData = new Array(n);
 		for(var i=0;i<n;i++){
 			fileData[i] = $('input[name=newinvt]')[i].value;
-
+			if(fileData[i] == ""){
+				alert('이메일을 입력해주세요')
+				return false;
+			}
 		}
 		
 		$.ajax({
@@ -273,7 +277,7 @@
 				
 			},
 			error: function(request, status, errorData){
-				alert('b');
+				alert('올바른 이메일을 입력해주세요');
 			}
 		});
 		

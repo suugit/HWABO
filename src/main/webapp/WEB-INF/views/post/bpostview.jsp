@@ -142,15 +142,10 @@ $(function(){
 <body id="page-top">
 
 
-     <div class="card shadow mb-4">
-           
-           	
-           
-           
-		 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-			<h6 class="m-0 font-weight-bold text-primary">
+			 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				<h6 class="m-0 font-weight-bold text-primary">
 				
-			<i class="fas fa-user-circle"></i>
+				<i class="fas fa-user-circle"></i>
 				${post.bwriter}<br>${post.benrolldate }</h6>
 			<!-- 	<button type="submit" class="btn btn-custom btn-sm liketoggle" name="like"><span>보관</span> <i class="far fa-bookmark"></i></button>
 					 -->
@@ -166,16 +161,16 @@ $(function(){
            		 
                <!-- <form action="insertcabinet.do" method="post"> -->
               
-               <button id="cabinetshow" class="btn btn-custom btn-sm liketoggle" name="like" onclick="sendInsert();">
+               <button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle${status.index }" name="like" onclick="sendInsert(${status.index});">
            	   <span>보관</span> <i class="far fa-bookmark"></i></button>
-           	    <input type="hidden" id="ucode" value="${sessionScope.ucode }" >
-			   <input type="hidden" id="no" value="${post.bno }">
-			   <input type="hidden" id="pnum" value="${post.bpnum }" >
-	
+           	   <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
+			   <input type="hidden" id="no_${status.index }" value="${post.bno }">
+			   <input type="hidden" id="pnum_${status.index }" value="${post.bpnum }" >
+			   <input type="text" id="open_${status.index }" value="${post.bopen }" >
              
 
 			 <div id="d5"></div>
-		  		<c:if test="${sessionScope.ucode eq b.bucode }">
+		  		<c:if test="${sessionScope.ucode eq post.bucode }">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
@@ -202,63 +197,179 @@ $(function(){
 			<!-- 게시글안쪽 -->	
 			<div class="card-body">
 							
-			   <c>제목 : ${post.btitle}</c>
+			   <b>제목 : ${post.btitle}</b>
 			   <hr>
+				
 							
-							
-			<div class="btn-group btn-group-toggle" data-toggle="buttons">
-			  <label class="btn btn-info active">
-			    <input type="radio" name="요청" id="요청" value="요청" >요청
-			  </label>
-			  <label class="btn btn-primary">
-			    <input type="radio" name="진행" id="진행" value="진행">진행
-			  </label>
-		     <label class="btn btn-warning">
-			    <input type="radio" name="피드백" id="피드백" value="피드백" >피드백
-			  </label>
-			   <label class="btn btn-success">
-			    <input type="radio" name="완료" id="완료" value="완료">완료
-			  </label>
-			   <label class="btn btn-secondary">
-			    <input type="radio" name="보류" id="보류" value="보류">보류
-			  </label>
+			<div class="btn-group btn-group-toggle"  >
+			  <c:if test="${post.bkind eq '요청' }">
+				
+				
+				 <label class="btn btn-info">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
+				  </label> 
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>
+				
+				
+			  </c:if>
+			  
+			  
+			  <c:if test="${post.bkind eq '진행' }">
+					
+					
+				 <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
+				  </label> 
+				  <label class="btn btn-info">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="완료" id="완료" value="완료"readonly>완료
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>			
+			  </c:if>
+			 
+			  <c:if test="${post.bkind eq '피드백' }">
+					
+				 <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
+				  </label> 
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-info">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>				
+			  </c:if>
+			  
+			   <c:if test="${post.bkind eq '완료' }">
+						
+				 <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
+				  </label> 
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-info">
+				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>			
+			  </c:if>
+			  
+			  
+			   <c:if test="${post.bkind eq '보류' }">
+						
+				 <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="요청" value="요청" readonly >요청
+				  </label> 
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
+				  </label>
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+				  </label>
+				   <label class="btn btn-secondary">
+				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
+				  </label>
+				   <label class="btn btn-info">
+				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
+				  </label>			
+			  </c:if>
+
 			</div>
-			<hr>
+			<br><br>
 			
 			
 			
 			<div>
-			   <i class="fas fa-users">담당자 :  ${post.bchargename }</i>
+			   <i class="fas fa-user-friends"></i> 담당자 :  ${post.bchargename }
 			</div>
+			<hr>
+			<div>
+				<tr>
+				 <td width="20%"><span style="float: left;">
+				 	<i class="far fa-calendar-alt"> 시작일 : &nbsp;${post.bstartday }</i></span>
+				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+	             </td>
+				 <td width="20%"><span style="float: center;">
+				 	<i class="far fa-calendar-alt"> 마감일 : &nbsp;${post.bendday }</i></span>
+	           	 </td>
+	           	</tr>
+			</div>
+		
 			<hr>
 			
 			<div>
 			  <table>
-				<tr>
-					<td>내용 : </td>
-					<td> ${post.bcontent}</td>
+			   <c:if test="${! empty post.bcontent }">
+		
+				 <tr>
+				 <td><b>${post.bcontent}</b></td>
 				 </tr>
+				</c:if>
 		      </table>
-					
+			<br>	
 			  <table>
 				 <c:if test="${! empty post.boriginfile }">
-				 <tr>
-					<td>파일 : </td>
-					   <br>
+			
+					<tr>
+					   <td>
+					  	 <c:url var="ubf" value="bfdown.do">
+						  <c:param name="ofile" value="${post.boriginfile}"/>
+						  <c:param name="rfile" value="${post.brenamefile}"/>
+						 </c:url> 
+				   
+								   
+			 		 <div id="showfile" style="overflow:hidden;"> 
+					<c:forTokens var="ext" items="${post.brenamefile}" delims="." varStatus="status">
+						
+						    <c:if test="${status.last}">
+						        <c:choose>
+						            <c:when test="${ext eq 'jpg'}">
+						               <img src="resources/bupfile/${post.brenamefile}" class="rounded" style="width : 220px;height : 150px;">
+						            </c:when>
+						            <c:when test="${ext != 'jpg'}">
+						                <img src="resources/img/eettcc.png" style="width:40px; height :40px" >
+						            </c:when>
+						       
+						        </c:choose>
+						    </c:if>
+						</c:forTokens> 
+					     <br>
+					     <a href="${ubf }"><i class="far fa-file"></i> :  ${post.boriginfile}</a>
+			
+					</div> 
+				</td>
+			
 				</tr>
-				<tr>
-				   <th>
-							   
-					 <div id="showfile" style="overflow:hidden;"> 
-				     <img src="resources/bupfile/${post.brenamefile}" style="width : 40%;height : 10%;">
-					 </div> 
-				   </th>
-					 <c:url var="ubf" value="bfdown.do">
-					  <c:param name="ofile" value="${post.boriginfile}"/>
-					  <c:param name="rfile" value="${post.brenamefile}"/>
-					 </c:url> 
-					 <td><a href="${ubf }"> ${post.boriginfile}</a></td>
-				</tr>
+				
 			    </c:if>
 					<c:if test="${empty post.boriginfile}">
 					&nbsp;
@@ -284,8 +395,8 @@ $(function(){
 			<input type="text" class="form-control" placeholder="답글을 입력하세요">
 	  	 </div>
 	
-	 </div><!-- 게시글안쪽  -->			
-	</div><!-- card shadow mb-4 -->
+	 </div><!-- 게시글안쪽  -->				
+
 	
     
 

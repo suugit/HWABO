@@ -19,7 +19,6 @@
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
   <!-- Custom styles for this template-->
   <link href="/hwabo/resources/maincss/css/styles_suugit.css" rel="stylesheet">
 
@@ -63,16 +62,20 @@
                     </div>
                     <input type="submit" class="btn btn-primary btn-user btn-block" value="로그인">
                     <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
+                    <div id = "naver_id_login"></div>
+                    <a class="btn btn-google btn-user btn-block" data-onsuccess="onSignIn">
                       <i class="fab fa-google fa-fw"></i> Google로 로그인
                     </a>
                     <a href="index.html" class="btn btn-naver btn-user btn-block">
                       <span class="font-weight-bolder" style="font-weight-bolder;font-size:1em">N&nbsp;</span>Naver로 로그인
                     </a>
+                    <div id="naver_id_login" style="text-align:center"><a href="${url}">
+					<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
+					<br>
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="javascript:location.href='forgotpwd.do';">비밀번호가 생각나지 않으신가요?</a>
+                    <a class="small" href="javascript:location.href='mvforgotpwd.do';">비밀번호가 생각나지 않으신가요?</a>
                   </div>
                   <div class="text-center">
                     화보가 처음이신가요?
@@ -98,8 +101,47 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
+  <script src="resources/js/jquery-3.5.1.min.js"></script>
   <script src="js/sb-admin-2.min.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  
+<script>
+function onSignIn(googleUser) {
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log("Image URL: " + profile.getImageUrl());
+    console.log("Email: " + profile.getEmail());
+    
+    var name = profile.getEmail();
+    
+    // The ID token you need to pass to your backend:
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);
+if (name !== null){
+	location.href="/hwabo/mvlogin.do";
+	//location.href = "/hwabo/login.do?userid=" + userid + "&ok=false";
+} else if (name == null){
+	location.href="/hwabo/";	        
+}
 
+  }
+  
+  
+var naver_id_login = new naver_id_login("G3PRvkIGwkhdkqV8S5N7", "http://localhost:8282//hwabo/mvsign.do");    // Client ID, CallBack URL 삽입
+// 단 'localhost'가 포함된 CallBack URL
+var state = naver_id_login.getUniqState();
+
+naver_id_login.setButton("white", 4, 40);
+naver_id_login.setDomain("http://localhost:8282/hwabo/login.do");    //  URL
+naver_id_login.setState(state);
+naver_id_login.setPopup();
+naver_id_login.init_naver_id_login(); 
+</script>
 </body>
 
 </html>

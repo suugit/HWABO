@@ -36,18 +36,16 @@
 		<div class="row justify-content-center">
 			<div class="card o-hidden border-0 shadow-lg col-md-6">
 				<div class="card-body">
-					<center><h2 class="m-4">비밀번호 재발급</h2></center>
+					<center><h2 class="m-4">로그인성공!</h2></center>
 					<ul class="list-unstyled text-center">
 						<small>
-							<li>이메일로 발송된 임시코드와 변경할 새 비밀번호를 입력해주세요</li>
+							<li>HWABO에 오신 것을 환영합니다</li>
 						</small>
 					</ul>
 					<form action="chnpwd.do" method="post">
 						<div class="justify-content-center">
 							<div class="form-group mx-5">
-								<input type="password" class="form-control mb-2" id="newpwd" placeholder="새 비밀번호">
-								<input type="password" class="form-control mb-2" id="newpwdchk" placeholder="새 비밀번호 확인"> 
-								<a href="index.html" class="btn btn-primary btn-user btn-block">비밀번호 변경하기 </a>
+								<a href="javascript:location.href='red/cards.do'" class="btn btn-primary btn-user btn-block">새 프로젝트 생성하기 </a>
 							
 							</div>
 						</div>

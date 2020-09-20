@@ -2,7 +2,9 @@ package com.beet.HWABO.suugit.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -50,6 +52,8 @@ import com.beet.HWABO.member.model.service.MailSendService;
 import com.beet.HWABO.member.model.service.MemberService;
 import com.beet.HWABO.member.model.vo.MailUtils;
 import com.beet.HWABO.member.model.vo.Member;
+import com.beet.HWABO.member.model.vo.NaverLoginUtil;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
 public class SuugitController {
@@ -57,11 +61,16 @@ public class SuugitController {
 	private static final Logger logger = LoggerFactory.getLogger(SuugitController.class);
 
 	@Autowired
+	private void setNaverLoginUtil(NaverLoginUtil NaverLoginUtil) {
+		this.NaverLoginUtil = NaverLoginUtil;
+	}
+
+	@Autowired
 	private CpostService cservice;
-	
+
 	@Autowired
 	private JavaMailSenderImpl mailSender;
-	
+
 	@Autowired
 	private MailSendService msserivce;
 
@@ -77,35 +86,35 @@ public class SuugitController {
 		logger.info("사이트 접속!");
 		return "welcome";
 	}
-	
+
 //회원가입 페이지 이동 
 	@RequestMapping("/mvsign.do")
 	public String moveSign() {
 		return "suugit/sign";
 	}
-	
+
 	@RequestMapping("/terms.do")
 	public String openTerms() {
 		return "suugit/";
 	}
-	
+
 	@RequestMapping(value = "/sign.do", method = RequestMethod.POST)
-	public ModelAndView insertUser(@Valid Member member,Errors errors, ModelAndView mav) {
+	public ModelAndView insertUser(@Valid Member member, Errors errors, ModelAndView mav) {
 		logger.info("sign.do 실행...");
-		 if (errors.hasErrors()) {
-			 mav.addObject("message", errors.getFieldError().getDefaultMessage());
-			 mav.setViewName("suugit/sign");
-			 return mav;
-		 }
+		if (errors.hasErrors()) {
+			mav.addObject("message", errors.getFieldError().getDefaultMessage());
+			mav.setViewName("suugit/sign");
+			return mav;
+		}
 		Member loginUser = mservice.selectLogin(member);
-		if(loginUser != null) {
+		if (loginUser != null) {
 			mav.addObject("message", "이미 가입한 회원입니다");
 			mav.setViewName("suugit/sign");
-			return mav; 
+			return mav;
 		}
-		
+
 		// 패스워드 암호화
-		member.getUemail(); 
+		member.getUemail();
 		member.setUpwd(bcryptPwdEncoder.encode(member.getUpwd()));
 		logger.info("회원가입한 메일 주소 : " + member.getUemail());
 		member.setAccesstoken(msserivce.sendAuthMail(member.getUemail()));
@@ -129,8 +138,7 @@ public class SuugitController {
 //		
 //		
 //	}
-	
-	
+
 	@GetMapping("/signConfirm.do")
 	public ModelAndView signUpConfirm(HttpServletRequest request, ModelAndView mv, Member member) {
 		// email, authKey 가 일치할경우 authStatus 업데이트
@@ -140,7 +148,7 @@ public class SuugitController {
 
 		if (result > 0) {
 			mv.addObject("member", member);
-			mv.setViewName("suugit/cards");
+			mv.setViewName("redirect:/cards.do");
 		} else {
 			mv.addObject("message", "메일인증이 유효하지 않습니다!");
 			mv.setViewName("common/error");
@@ -148,12 +156,18 @@ public class SuugitController {
 
 		return mv;
 	}
-
 	
+	private NaverLoginUtil NaverLoginUtil;
+	private String apiResult = null;
 	
 //로그인관련 
 	@RequestMapping("/mvlogin.do")
-	public String moveLogin() {
+	public String moveLogin(Model model, HttpSession session) {
+		String naverAuthUrl = NaverLoginUtil.getAuthorizationUrl(session);
+		System.out.println("네이버:" + naverAuthUrl);
+		// 네이버
+		model.addAttribute("url", naverAuthUrl);
+
 		return "suugit/login";
 	}
 
@@ -165,19 +179,20 @@ public class SuugitController {
 	 * 
 	 * if(result > 0) { return } }
 	 */
-	
-	
+
 	@PostMapping
 	public String submit(@ModelAttribute @Valid Member member, Errors errors) {
-	    if (errors.hasErrors()) return "form";
-	    return "submit";
+		if (errors.hasErrors())
+			return "form";
+		return "submit";
 	}
-	
+
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String selectLogin(@Valid Member member,BindingResult theBindingResult, Model model, HttpServletRequest request, SessionStatus status) {
+	public String selectLogin(@Valid Member member, BindingResult theBindingResult, Model model,
+			HttpServletRequest request, SessionStatus status) {
 		logger.info("로그인");
 		Member loginUser = mservice.selectLogin(member);
-		
+
 		String returnPage = null;
 
 		if (loginUser != null) {
@@ -188,7 +203,9 @@ public class SuugitController {
 				session.setAttribute("uimg", loginUser.getUimg());
 				session.setAttribute("ucode", loginUser.getUcode());
 				session.setAttribute("uname", loginUser.getUname());
+				session.setAttribute("signtype", loginUser.getSigntype());
 				request.setAttribute("uname", loginUser.getUname());
+				
 
 				status.setComplete(); // 요청성공, 200 전송
 				return "redirect:/cards.do";
@@ -204,6 +221,64 @@ public class SuugitController {
 	}
 
 //snsObject 
+	@RequestMapping("mvsnslogin.do")
+	public String snsloginResult() {
+		logger.info("소셜로그인1");
+		return "suugit/loginResult";
+	}
+
+	/* NaverLoginUtil */
+
+
+	/*
+	 * //로그인 첫 화면 요청 메소드
+	 * 
+	 * @RequestMapping(value = "/snslogin.do", method = { RequestMethod.GET,
+	 * RequestMethod.POST }) public String login(Model model, HttpSession session) {
+	 * 네이버아이디로 인증 URL을 생성하기 위하여 NaverLoginUtil클래스의 getAuthorizationUrl메소드 호출 String
+	 * naverAuthUrl = NaverLoginUtil.getAuthorizationUrl(session);
+	 * //https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***
+	 * ************&
+	 * //redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&
+	 * state=e68c269c-5ba9-4c31-85da-54c16c658125 System.out.println("네이버:" +
+	 * naverAuthUrl); //네이버 model.addAttribute("url", naverAuthUrl); return
+	 * "suugit/login"; }
+	 */
+	// 네이버 로그인 성공시 callback호출 메소드
+	
+	@RequestMapping(value = "/snsloginrslt.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+			throws IOException, ParseException {
+		System.out.println("네이버 로그인성공!");
+		OAuth2AccessToken oauthToken;
+		oauthToken = NaverLoginUtil.getAccessToken(session, code, state);
+		// 1. 로그인 사용자 정보를 읽어온다.
+		apiResult = NaverLoginUtil.getUserProfile(oauthToken); // String형식의 json데이터
+
+		// 2. String형식인 apiResult를 json형태로 바꿈
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(apiResult);
+		JSONObject jsonObj = (JSONObject) obj;
+		
+		// 3. 데이터 파싱
+		JSONObject response_obj = (JSONObject) jsonObj.get("response");
+		
+		Member member = new Member();
+		
+		member.setUemail((String) response_obj.get("email"));
+		member.setUname((String) response_obj.get("nickname"));
+		member.setUimg((String) response_obj.get("profile_image"));
+		member.setSigntype("n");
+		
+		int result1 = mservice.insertSnsUser(member);
+		
+			member = mservice.selectLogin(member);
+			session.setAttribute("ucode", member.getUcode());
+			session.setAttribute("uname", member.getUname());
+			session.setAttribute("uimg", member.getUimg());
+			session.setAttribute("signtype", member.getSigntype());
+			return "suugit/loginResult";
+	}
 
 //로그아웃
 	@RequestMapping("logout.do")
@@ -212,6 +287,9 @@ public class SuugitController {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			session.invalidate();
+			if(session.getAttribute("signtype") == "n") {
+				return "http://nid.naver.com/nidlogin.logout"; 
+			}
 			return "welcome";
 		} else {
 			model.addAttribute("message", "로그인 정보가 존재하지 않습니다!");
@@ -219,10 +297,56 @@ public class SuugitController {
 		}
 	}
 
-	@RequestMapping("/forgotpwd.do")
+//비번찾기
+	@RequestMapping("/mvforgotpwd.do")
 	public String forgotPwdPage() {
 
-		return "suugit/forgotpwd.part";
+		return "suugit/forgotpwd";
+	}
+
+	@RequestMapping("/forgotpwd.do")
+	public void updatefotgotpwd(@RequestParam String uemail, Member member, ModelAndView mav) {
+		logger.info("비밀번호 찾기 요청...");
+		int result = mservice.selectEmailCheck(uemail);
+
+		if (result > 0) {
+			// member.setAccesstoken(msserivce.sendAuthMail(uemail));
+			SecureRandom random = new SecureRandom();
+			StringBuffer sbf = new StringBuffer();
+			for (int i = 0; i < 6; i++) {
+				if (random.nextBoolean()) {
+					sbf.append((char) ((int) (random.nextInt(26)) + 97));
+				} else {
+					sbf.append(random.nextInt(10));
+				}
+			}
+			try {
+				MailUtils sendMail = new MailUtils(mailSender);
+				sendMail.setSubject("[HWABO] 임시 비밀번호 발급");
+				sendMail.setText(new StringBuffer().append("<h1>[HWABO] 임시 비밀번호 </h1><br><br>")
+						.append("<p>아래의 임시코드를 사용하여 로그인 후 비밀번호를 변경해주세요.</p>")
+						.append("<br><br><h3> 임시 비밀번호 : " + sbf + "</h3><br><br><br>").append("새 비밀번호를 이용하여 로그인하러가기")
+						.append("<a href='http://localhost:8282/hwabo/mvlogin.do'")
+						.append(" target='_blenk'><img src='https://files.slack.com/files-pri/T01724B8QMC-F01BR631W2C/______2.png'/></a>")
+						.toString());
+				sendMail.setFrom("hwabo49@gmail.com", "HWABO");
+				sendMail.setTo(uemail);
+				sendMail.send();
+			} catch (Exception e) {
+				e.printStackTrace();
+
+			}
+			member.setUpwd(bcryptPwdEncoder.encode(sbf));
+
+			if (mservice.updateTmpPwd(member) > 0) {
+				logger.info(uemail + "임시비밀번호 발급 완료");
+			} else {
+				logger.info(uemail + "임시 비밀번호 발급 실패");
+			}
+
+		} else {
+			mav.addObject("message", "일치하는 정보가 존재하지 않습니다");
+		}
 	}
 
 //내 정보
@@ -255,7 +379,7 @@ public class SuugitController {
 		if (member != null) {
 			mav.addObject("member", member);
 			mav.addObject("message", "회원정보가 정상적으로 변경되었습니다");
-			mav.setViewName("redirect:/myinfo.do?ucode=" + member.getUcode() );
+			mav.setViewName("redirect:/myinfo.do?ucode=" + member.getUcode());
 		} else {
 			mav.addObject("message", "회원정보 수정 실패");
 			mav.setViewName("common/error");
@@ -318,17 +442,6 @@ public class SuugitController {
 		return mav;
 	}
 
-	/*
-	 * updateMyinfo(@RequestBody Map<String,Object> params) {
-	 * logger.info("정보 변경...");
-	 * 
-	 * Map<String,Object> resultMap = new HashMap<String,Object>();
-	 * System.out.println(params); try {
-	 * 
-	 * } catch (Exception e) { resultMap.put("message", "업데이트실패"); return resultMap;
-	 * } resultMap.put("message", "회원정보가 정상적으로 변경되었습니다"); return resultMap; }
-	 */
-
 	@RequestMapping("deluser.do")
 	public String deleteUser(@RequestParam("ucode") String ucode, Model model) {
 		if (mservice.deleteUser(ucode) > 0) {
@@ -339,8 +452,6 @@ public class SuugitController {
 		}
 	}
 
-
-
 //모달
 	@RequestMapping("/modal.do")
 	public String ModalPage() {
@@ -348,71 +459,54 @@ public class SuugitController {
 		return "suugit/modal.page";
 	}
 
-//비번찾기
-//모달
-	@RequestMapping("/chnpwd.do")
-	public String ChnpwdPage() {
-
-		return "suugit/chnpwd.part";
-	}
-
-
 	@RequestMapping("/top1.do")
 	public String testpage2() {
 		return "suugit/topbar";
 	}
 
-	
 //프로젝트 초대하기 ( 기존유저) 
-	
-	
-	  @RequestMapping("/invtexist.do") 
-	  public ResponseEntity<String> invtNew(HttpSession session, @RequestBody String param, Invite invt) throws ParseException {
-		  logger.info("신규 초대!");
-		  JSONParser jparse = new JSONParser();
-		 
-		  JSONArray fileData = (JSONArray)jparse.parse(param);
-		  invt.setUcode((String)session.getAttribute("ucode"));
-		  invt.setPnum((String)session.getAttribute("pnum"));
-		  for(int i=0;i <fileData.size(); i++) {
-			  invt.setInvtkey("i" + Integer.toString((int)Math.floor(Math.random()*100000+1)));
-			  invt.setInvtemail((String)fileData.get(i));
-			  
-			 try {
-				 MailUtils sendMail = new MailUtils(mailSender);
-				  sendMail.setSubject("HWABO로 초대합니다");
-		            sendMail.setText(new StringBuffer().append("<h1>[HWABO 이메일 인증]</h1>")
-		            .append("<p>아래 링크를 클릭하시면 프로젝트에 가입할 수 있습니다.</p>")
-		            .append("<a href='http://localhost:8282/hwabo/invtConfirm.do?uemail=")
-		            .append(invt.getInvtemail())
-		            .append("&pnum=")
-		            .append(invt.getPnum())
-		            .append("&accesstoken=")
-		            .append(invt.getInvtkey())
-		            .append("' target='_blenk'>초대장 인증 확인</a>")
-		            .toString());
-		            sendMail.setFrom("hwabo49@gmail.com", "HWABO");
-		            sendMail.setTo(invt.getInvtemail());
-		            sendMail.send();
+	@RequestMapping("/invtexist.do")
+	public ResponseEntity<String> invtNew(HttpSession session, @RequestBody String param, Invite invt)
+			throws ParseException {
+		logger.info("신규 초대!");
+		JSONParser jparse = new JSONParser();
+
+		JSONArray fileData = (JSONArray) jparse.parse(param);
+		invt.setUcode((String) session.getAttribute("ucode"));
+		invt.setPnum((String) session.getAttribute("pnum"));
+		for (int i = 0; i < fileData.size(); i++) {
+			invt.setInvtkey("i" + Integer.toString((int) Math.floor(Math.random() * 100000 + 1)));
+			invt.setInvtemail((String) fileData.get(i));
+
+			try {
+				MailUtils sendMail = new MailUtils(mailSender);
+				sendMail.setSubject("HWABO로 초대합니다");
+				sendMail.setText(new StringBuffer().append("<h1>[HWABO 이메일 인증]</h1>")
+						.append("<p>아래 링크를 클릭하시면 프로젝트에 가입할 수 있습니다.</p>")
+						.append("<a href='http://localhost:8282/hwabo/invtConfirm.do?uemail=")
+						.append(invt.getInvtemail()).append("&pnum=").append(invt.getPnum()).append("&accesstoken=")
+						.append(invt.getInvtkey()).append("' target='_blenk'>초대장 인증 확인</a>").toString());
+				sendMail.setFrom("hwabo49@gmail.com", "HWABO");
+				sendMail.setTo(invt.getInvtemail());
+				sendMail.send();
 			} catch (MessagingException e) {
-	            e.printStackTrace();
-	        } catch (UnsupportedEncodingException e) {
-	            e.printStackTrace();
-	        }
-			 
-			 int result = mservice.insertInvtNew(invt);
-		  }
-		  
-		  	
-		  return new ResponseEntity<String>("success",HttpStatus.OK);
-	  }
-	
-	  @GetMapping("/invtConfirm.do")
-		public void invtConfirm(HttpServletRequest request, ModelAndView mv, Member member,Invite invt) {
-			
-		  String uemail = request.getParameter("uemail");
-		  
-		//  int result = mservice.selectMember(uemail);
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+
+			int result = mservice.insertInvtNew(invt);
+		}
+
+		return new ResponseEntity<String>("success", HttpStatus.OK);
+	}
+
+	@GetMapping("/invtConfirm.do")
+	public void invtConfirm(HttpServletRequest request, ModelAndView mv, Member member, Invite invt) {
+
+		String uemail = request.getParameter("uemail");
+
+		// int result = mservice.selectMember(uemail);
 //		  
 //			member.setUemail(request.getParameter("uemail"));
 //			member.setAccesstoken(request.getParameter("accesstoken"));
@@ -429,10 +523,7 @@ public class SuugitController {
 //			}
 //
 //			return mv;
-		}
-	  
-	  
-	  
+	}
 
 //	            MailUtils sendMail = new MailUtils(mailSender);
 //	            sendMail.setSubject("회원가입 이메일 인증");
@@ -455,21 +546,20 @@ public class SuugitController {
 //
 //	          return authKey;
 //	    }	  
-	  
-	 
-	  @PostMapping("/invtee.do")
-	  @ResponseBody
-	  public JSONArray selectNmList(HttpSession session, ModelAndView mav) {
-		  String pnum = (String)session.getAttribute("pnum");
-		  ArrayList<Member> nmlist = mservice.selectNotMember(pnum);
-		  
-		  JSONObject obj = new JSONObject();
-		  
-		  JSONArray jarr = new JSONArray();
 
-		  try {
-			
-			for(int i = 0 ; i < nmlist.size() ; i++) {
+	@PostMapping("/invtee.do")
+	@ResponseBody
+	public JSONArray selectNmList(HttpSession session, ModelAndView mav) {
+		String pnum = (String) session.getAttribute("pnum");
+		ArrayList<Member> nmlist = mservice.selectNotMember(pnum);
+
+		JSONObject obj = new JSONObject();
+
+		JSONArray jarr = new JSONArray();
+
+		try {
+
+			for (int i = 0; i < nmlist.size(); i++) {
 				System.out.println(nmlist.get(i));
 				JSONObject job = new JSONObject();
 				job.put("ucode", nmlist.get(i).getUcode());
@@ -477,26 +567,24 @@ public class SuugitController {
 				job.put("ugroup", nmlist.get(i).getUgroup());
 				job.put("urole", nmlist.get(i).getUrole());
 				job.put("uimg", nmlist.get(i).getUimg());
-				
+
 				jarr.add(job);
 			}
 			mav.addObject("nmlist", jarr);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		  return jarr;
-	  }
-	
-//초대관리페이지
-	  @RequestMapping("/admin/invtadmin.do")
-		public String InviteManage() {
-		  
-			return "suugit/invtmanage";
-		}
+		return jarr;
+	}
 
-	  
-	  
+//초대관리페이지
+	@RequestMapping("/admin/invtadmin.do")
+	public String InviteManage() {
+
+		return "suugit/invtmanage";
+	}
+
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================
@@ -546,7 +634,7 @@ public class SuugitController {
 					String rfileName = cno + sdf.format(new java.sql.Date(System.currentTimeMillis()));
 					oFileName = filePart.getOriginalFilename();
 					rfileName += i + "." + oFileName.substring(oFileName.lastIndexOf(".") + 1);
-					
+
 					if (i == 0) {
 						addon.setOfile1(oFileName);
 						addon.setRfile1(rfileName);
@@ -624,22 +712,23 @@ public class SuugitController {
 		}
 		return mv;
 	}
+
 	@RequestMapping("mvupcp.do")
 	public String moveUpdateCpost(Cpost cpost, Model model) {
 		model.addAttribute("cpost", cpost);
 		return "suugit/cpostUpdateForm";
-		
+
 	}
+
 	@PostMapping("upcp.do")
-	public void updateCpost(Cpost cpost, AddOn addon,MultipartHttpServletRequest request, ModelAndView mav) {
+	public void updateCpost(Cpost cpost, AddOn addon, MultipartHttpServletRequest request, ModelAndView mav) {
 		logger.info("게시글 수정...");
 		System.out.println(request.getParameter("ucode"));
 		System.out.println(request.getParameter("cno"));
 		System.out.println(request.getParameter("rfile1"));
 		System.out.println(request.getParameter("rfile2"));
 		System.out.println(request.getParameter("rfile3"));
-		
-		
+
 //		if (mpf.getSize() > 0) {
 //			String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
 //			String oFileName = "";
@@ -721,12 +810,8 @@ public class SuugitController {
 					fList[i].delete();
 				}
 		}
-
-		if (cservice.deleteCpost(cno) > 0) {
-			return "suugit/tables";
-		} else {
-			return "common/error";
-		}
+		cservice.deleteCpost(cno);
+		return "suugit/tables";
 
 	}
 }

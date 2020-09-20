@@ -30,5 +30,9 @@ public interface MemberService {
 	int insertInvtNew(Invite invt);
 
 	ArrayList<Member> selectNotMember(String pnum);
+
+	int updateTmpPwd(Member member);
+
+	int insertSnsUser(Member member);
 	
 }

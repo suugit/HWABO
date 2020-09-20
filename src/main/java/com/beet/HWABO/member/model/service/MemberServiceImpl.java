@@ -74,5 +74,15 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectNotMember(pnum);
 	}
 
+	@Override
+	public int updateTmpPwd(Member member) {
+		return memberDao.updateTmpPwd(member);
+	}
+
+	@Override
+	public int insertSnsUser(Member member) {
+		return memberDao.insertSnsUser(member);
+	}
+
 	
 }

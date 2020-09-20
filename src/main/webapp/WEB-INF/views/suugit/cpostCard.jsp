@@ -40,7 +40,10 @@
 					class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
 					<div class="dropdown-header">메뉴:</div>
 					<a name="mine" class="dropdown-item" onclick="toEdit()" >수정</a> 
-					<a name="mine" class="dropdown-item" href="#">삭제</a>
+					<c:url var="delcp" value="delcp.do">
+                      	<c:param name="cno" value="${c.cno }"/>
+                     </c:url> 
+                     <a name="mine" class="dropdown-item" href="${delcp }">삭제</a>
 				</div>
 
 			</div>

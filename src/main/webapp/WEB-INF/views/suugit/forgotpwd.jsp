@@ -43,10 +43,10 @@
 							<li>이메일로 발송된 임시코드를 통해 새 비밀번호로 변경합니다.</li>
 						</small>
 					</ul>
-					<form>
+					<form action="forgotpwd.do" method="post">
 						<div class="justify-content-center">
 							<div class="form-group mx-5">
-								<input type="email" class="form-control mb-2" id="email"
+								<input type="email" class="form-control mb-2" id="uemail" name="uemail"
 									placeholder="이메일 입력"> <a href="index.html"
 									class="btn btn-primary btn-user btn-block">이메일로 임시코드 받기</a>
 							</div>
@@ -57,7 +57,7 @@
 					
 					<div class="text-center">
 						<a class="small" href="javascript:location.href='login.do';">로그인으로 돌아가기</a>
-						<a class="small" href="javascript:location.href='chnpwd.do';">비밀번호 변경페이지(임시)</a>
+						<a class="small" href="javascript:location.href='mvchnpwd.do';">비밀번호 변경페이지(임시)</a>
 					</div>
 
 				</div>

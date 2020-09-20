@@ -44,7 +44,7 @@
 </resultMap>
 	
 	
-	
+<!-- 업부 모아보기 페이지용 -->
 <select id="selectBpost" parameterType="PjMember" resultType="Bpost">
 
 	select BNO, BTITLE, BUCODE, BWRITER, BSTARTDAY, BENDDAY, BKIND, BCHARGE, BCONTENT, BENROLLDATE, BOPEN, BRENAMEFILE, BORIGINFILE, BPNUM, BCHARGENAME
@@ -56,8 +56,13 @@
 
 </select>
 
+<!-- 업무모아보기페이지  상세보기용 -->
+<select id="selectOneBpost" parameterType="string" resultType="Bpost">
+	select * from bpost 
+	where bno = #{bno}
+</select>
 	
-	
+<!-- 나의 화보, 팀원의 화보 조회용  -->	
 <select id="selectPost" parameterType="PjMember" resultType="Post">
 	select * from realpost 
 	where ( ucode = #{ucode}  or  bcharge like '%'||#{ucode}||'%' )
@@ -66,10 +71,6 @@
 </select>
 
 
-<select id="selectOneBpost" parameterType="string" resultType="Bpost">
-	select * from bpost 
-	where bno = #{bno}
-</select>
 
 
 

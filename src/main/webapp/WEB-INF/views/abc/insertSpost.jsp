@@ -88,7 +88,7 @@
 		<input type="hidden" name="sucode" value="${sessionScope.ucode }">
 		<input type="hidden" name="spnum" value="${sessionScope.pnum}">
 
-		<input type="hidden" name="sopen" value="n">
+		<input type="hidden" name="sopen" value="y">
 
 		<tr>
 			<td colspan="3"><span style="float: left;"><i

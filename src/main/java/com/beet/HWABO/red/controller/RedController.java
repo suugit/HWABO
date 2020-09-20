@@ -28,12 +28,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.bpost.model.service.BpostService;
 import com.beet.HWABO.bpost.model.vo.Bpost;
+import com.beet.HWABO.cpost.model.service.CpostService;
+import com.beet.HWABO.cpost.model.vo.Cpost;
+import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.red.model.service.RedService;
 import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
+import com.beet.HWABO.red.model.vo.PostPlus;
 import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
+import com.beet.HWABO.spost.model.service.SpostService;
+import com.beet.HWABO.spost.model.vo.Post;
 
 @Controller
 public class RedController {
@@ -44,6 +50,10 @@ public class RedController {
 	private RedService redService;
 	@Autowired
 	private BpostService bpostService;
+	@Autowired
+	private CpostService cservice;
+	@Autowired
+	private SpostService spostService;
 	
 	@RequestMapping(value = "createProject.do", method = RequestMethod.POST)
 	public ModelAndView createPro(UserProject project, ModelAndView mv) {
@@ -189,9 +199,15 @@ public class RedController {
 			}
 	}
 	@RequestMapping(value = "ftables.do", method = RequestMethod.GET)
-	public ModelAndView selectLogin(@RequestParam("project_num") String pnum, HttpServletRequest request, ModelAndView mv,SessionStatus status) {
-			logger.info("세션에 프로젝트넘버 추가완료... 프로젝트번호 : " + pnum);
-			
+	public ModelAndView tableChk(@RequestParam("project_num") String pnum, ModelAndView mv) {
+		mv.addObject("pnum",pnum);
+		mv.setViewName("red/listSessionCheck");
+		return mv;
+	}
+	@RequestMapping(value = "ftables2.do", method = RequestMethod.GET)
+	public ModelAndView selectLogin(PjMember pj, HttpServletRequest request, ModelAndView mv,SessionStatus status) {
+			logger.info("세션에 프로젝트넘버 추가완료... 프로젝트번호 : " + pj.getPnum());
+			String pnum = pj.getPnum();
 			ArrayList<MemberProject> memberProject = redService.selectMemberList(pnum);
 			ArrayList<String> names = new ArrayList<String>();
 			ArrayList<String> ucodes = new ArrayList<String>();
@@ -291,15 +307,83 @@ public class RedController {
 			session.setAttribute("totalProgress", total);
 			logger.info("세션에 전체진행률 추가완료... progress : " + total + "%");
 			}
-			////kyu////
-			ArrayList<Bpost> list = bpostService.selectList();
-			if (list != null) {
-				logger.info("bpost list" + list);
-				mv.addObject("list", list);
-			}else {
-				logger.info("bpost list 불러오기 실패? 어째서... ㅠ");
+			
+//			int cFilterCount = 0;
+//			ArrayList<Cpost> clistFilter = new ArrayList<Cpost>();
+			ArrayList<Cpost> clist = redService.selectCpost(pnum);
+//			for(Cpost cpost : clist) {
+//				if(!cpost.getCopen().equals("N")) {
+//					clistFilter.add(cpost);
+//				}else {
+//					cFilterCount++;
+//				}
+//			}
+//			if (clist != null) {
+//				logger.info("cpost list 가져오기 성공... 비공개 된 cpost게시물 : " + cFilterCount + "개");
+//				mv.addObject("clist", clist);
+//			}
+			
+			int allListFilterCount = 0;
+			ArrayList<PostPlus> allListFilter = new ArrayList<PostPlus>();
+			ArrayList<PostPlus> allList = redService.selectAllPost(pnum);
+			for(PostPlus post : allList) {
+				if(!((post.getSopen() !=null && post.getSopen().equals("n")) || 
+				(post.getBopen() !=null && post.getBopen().equals("n")) || 
+				(post.getCopen() !=null && post.getCopen().equals("N")))) {
+					if(post.getFirstword().equals("c")) {
+						for(Cpost cpost : clist) {
+							if(post.getNo().equals(cpost.getCno())) {
+								post.setAddonuse(cpost.getAddonuse());
+							}
+						}
+						allListFilter.add(post);
+					}else {
+						allListFilter.add(post);
+					}
+				}else {
+					allListFilterCount++;
+				}
 			}
+			if (allListFilter != null) {
+				logger.info("post list 가져오기 성공... 비공개 된 전체 게시물 : " + allListFilterCount + "개");
+				logger.info("전체 게시물 : " + allListFilter);
+				mv.addObject("list", allListFilter);
+			}
+			
 			////kyu////
+//			ArrayList<Bpost> list = bpostService.selectList();
+//			if (list != null) {
+//				logger.info("bpost list" + list);
+//				mv.addObject("list", list);
+//			}else {
+//				logger.info("bpost list 불러오기 실패? 어째서... ㅠ");
+//			}
+			////kyu end////
+
+			////abc//////////
+			
+//			String startday = spost.getSstartday().toString();
+//			String endday = spost.getSendday().toString();
+//
+//			SimpleDateFormat recvSimpleFormat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+//
+//			SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+//			SimpleDateFormat format2 = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
+//
+//			try {
+//				java.util.Date startdate = recvSimpleFormat.parse(startday);
+//				java.util.Date enddate = recvSimpleFormat.parse(endday);
+//
+//				startday = format1.format(startdate) + "T" + format2.format(startdate);
+//				endday = format1.format(enddate) + "T" + format2.format(enddate);
+//
+//			} catch (ParseException e) {
+//				e.printStackTrace();
+//			}
+			//mv.addObject("startday", startday);
+			//mv.addObject("endday", endday);
+			////abc end///////
+			
 			return mv;
 	}
 	@RequestMapping(value = "fother.do", method = RequestMethod.GET)
@@ -472,7 +556,6 @@ public class RedController {
 			out.flush();
 		}
 		out.close();
-		//return "redirect:/ftables.do?project_num=" + chat.getProject_num();
 	}
 ////views start//////////////////////////////	
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)

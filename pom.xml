@@ -343,14 +343,14 @@
 		<dependency>
 		    <groupId>com.github.scribejava</groupId>
 		    <artifactId>scribejava-apis</artifactId>
-		    <version>6.9.0</version>
+		    <version>2.8.1</version>
 		</dependency>
 				
 			<!-- https://mvnrepository.com/artifact/com.github.scribejava/scribejava-core -->
 		<dependency>
 		    <groupId>com.github.scribejava</groupId>
 		    <artifactId>scribejava-core</artifactId>
-		    <version>6.9.0</version>
+		    <version>2.8.1</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/com.github.spring-social/spring-social-google -->

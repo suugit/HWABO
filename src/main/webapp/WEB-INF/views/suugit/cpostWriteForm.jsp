@@ -83,7 +83,7 @@
 			<tr>
 			<td> 		
 			<c:url var="calln" value="selcpone.do">
-				<c:param name="cno" value="c130" />
+				<c:param name="cno" value="c132" />
 			</c:url>
 		<button><a href="${calln}">상세보기 테스트</a></button> 
 			</td>
