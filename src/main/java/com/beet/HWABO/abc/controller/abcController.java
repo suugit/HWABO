@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -226,6 +226,23 @@ public class abcController {
 
 
 //========== Bpost 조회 업무모아보기페이지 관련 메소드 ==================================================	
+	
+	//원하는 업무글 유형만 보기 메소드
+	@RequestMapping(value="chooseBpost.do", method = RequestMethod.POST)
+	public ArrayList<Bpost> chooseBpostMethod(@RequestParam(value="types[]") List<String> types, 
+															@RequestParam(value="ucode") String ucode, @RequestParam(value="pnum") String pnum) {
+		logger.info(types.toString());
+		logger.info("@@@@@@@@@@@@@@@@@@@ chooseBpost 들어옴 @@@@@@@@@@@@@@@@ ");
+		ArrayList<Bpost> list = spostService.chooseBpost(types);
+		
+		if(list != null) {
+			logger.info("유형 골라보기 성공");
+		}else {
+			logger.info("유형 골라보기 실패");
+		}
+		return list;
+	}
+	
 	
 	// 업무 모아보기 페이지 조회용
 	@RequestMapping("mybpost.do")

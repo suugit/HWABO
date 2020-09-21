@@ -1,6 +1,7 @@
 package com.beet.HWABO.spost.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.beet.HWABO.abc.model.vo.Love;
 import com.beet.HWABO.abc.model.vo.Postreply;
@@ -21,6 +22,7 @@ public interface SpostService {
 	//Bpost
 	ArrayList<Bpost> selectMyBPOST(PjMember pmember);
 	Bpost selectOneBpost(String bno);
+	ArrayList<Bpost> chooseBpost(List<String> types);
 	
 	//all Post
 	ArrayList<Post> selectMyPost(PjMember pmember);
