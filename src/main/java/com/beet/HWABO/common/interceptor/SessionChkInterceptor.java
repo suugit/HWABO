@@ -28,7 +28,7 @@ public class SessionChkInterceptor extends HandlerInterceptorAdapter{
 			String location = request.getHeader("Referer").replace(origin.replace(origin,"") + request.getContextPath(), "");
 			request.setAttribute("loc", location);
 			request.setAttribute("message", "로그인 후 이용가능합니다");
-			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/suugit/login.jsp").forward(request, response);
 		}
 		return true;
 	}
