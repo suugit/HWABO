@@ -84,5 +84,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.insertSnsUser(member);
 	}
 
+	@Override
+	public ArrayList<Member> selectPMember(String pnum) {
+		return memberDao.selectPMember(pnum);
+	}
+
 	
 }

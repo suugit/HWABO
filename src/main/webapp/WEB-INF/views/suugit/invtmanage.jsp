@@ -61,6 +61,35 @@
 .modal {
 	z-index: 1050;
 }
+
+.modal-backdrop {
+	z-index: -1;
+}
+
+.thumbnail {
+	background-color: gray;
+	width: 100px;
+	height: 100px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.thumbnail.round {
+	border-radius: 10%;
+}
+
+.thumbnail.circle {
+	border-radius: 100%;
+	width:80px;
+	height:auto;
+}
+
+#selected span {
+	background-color: rgba(66, 182, 187, 0.5);
+	padding: 0px 5px;
+	margin: 0px 3px;
+}
 </style>
 </head>
 
@@ -101,114 +130,72 @@
 
 					 <div class="card mb-4">
 					        <div class="card-header">
-					          <ul class="nav nav-tabs card-header-tabs" id="writeForm" role="tablist">
-					            <li class="nav-item">
-					            <a class="nav-link active" href="#gnrlwrite" role="tab" aria-controls="gnrlwrite" aria-selected="true">글 작성</a>
-					            </li>
-					            <li class="nav-item">
-					              <a class="nav-link"  href="#tap2" role="tab" aria-controls="tap2" aria-selected="false">업무</a>
-					            </li>
-					            <li class="nav-item">
-					              <a class="nav-link" href="#tap3" role="tab" aria-controls="tap3" aria-selected="false">일정</a>
-					            </li>
-					            <li class="nav-item">
-					              <a class="nav-link" href="#tap4" role="tab" aria-controls="tap4" aria-selected="false">할일</a>
-					            </li>
-					            <li class="nav-item">
-					              <a class="nav-link" href="#tap5" role="tab" aria-controls="tap5" aria-selected="false">투표</a>
-					            </li>
-					          </ul>
+					          <ul class="nav nav-tabs" id="myTab" role="tablist">
+							  <li class="nav-item">
+							    <a class="nav-link active" id="pmember-tab" data-toggle="tab" href="#pmember" role="tab" aria-controls="pmember" aria-selected="true">멤버 관리</a>
+							  </li>
+							  <li class="nav-item">
+							    <a class="nav-link" id="npmember-tab" data-toggle="tab" href="#npmember" role="tab" aria-controls="profile" aria-selected="false">멤버 초대</a>
+							  </li>
 					        </div>
-					        <form action="blank.do" id="mainInsert" > 
+					        
 					        <div class="card-body ">
 					         <!--  <h4 class="card-title">글 작성</h4> -->
 					          
 					           <div class="tab-content mt-3">
 					           <!-- 글 작성  -->
-					            <div class="tab-pane active" id="gnrlwrite" role="tabpanel">
-					            <input type="text" class="form-control mb-1" placeholder="제목(선택값)">
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-link mr-2"><a href="#"></a></i>
-						            <i class="fa fa-calendar-alt mr-2"></i>
-						            <i class="fa fa-map-marker-alt mr-2"></i>
-						            <i class="fa fa-code mr-5"></i>
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success" style="padding:4px 30px;" onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					            
-					            
-					            <!-- 업무 -->
-					            <div class="tab-pane" id="tap2" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					            
-					            <!-- 일정 -->
-					            <div class="tab-pane" id="tap3" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              </div>
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					            
-					          	
-					            <!-- 할일 -->
-					         <div class="tab-pane" id="tap3" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              </div>
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					            
-					              <!--투표 -->
-					            <div class="tab-pane" id="tap3" role="tabpanel">
-					              <input type="text" class="form-control mb-1" placeholder="일정 제목을 입력하세요">
-					              <div class="row mt-2">
-					            <p class="form-control-static"><i class="fa fa-clock ml-4 mt-2"></i></p>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              <label class="form-control-label h3">~</label>
-					              <div class="col-5"><input type="date" class="form-control"></div>
-					              </div>
-					              <textarea id="boardtext" rows="6" class="w-100 form-control "></textarea>
-						            <div class="form-inline m-2 border-primary">
-						            <i class="fa fa-hashtag mr-2"></i>
-						            <i class="fa fa-at mr-2" ></i>
-						            <button class="ml-auto mr-2 btn btn-sm btn-success " onclick="javascript:mainInsert.submit();">등록</button>
-						            <button class="btn btn-sm btn-danger " onclick="javascript:mainInsert.reset();">취소</button>
-					            	</div>
-					            </div>
-					             
+					           <div class="tab-pane fade show active" id="pmember" role="tabpanel" aria-labelledby="nav-pmember-tab">
+					           <div id="dataTable_wrapper"
+								class="dataTables_wrapper no-footer text-center">
+								<table class="table">
+									<thead>
+										<th colspan="2">사진</th>
+										<th>이름</th>
+										<th>부서</th>
+										<th>직책</th>
+										<th>초대여부</th>
+									</thead>
+									<tbody id="pmlistBox">
+										<%-- <tr>
+											<td colspan="2" style="padding:0px;position:relative;left:5%"><img class="thumbnail circle" src="/hwabo/resources/maincss/img/suugit/face.jpg"> 
+											</td>
+											<td class="align-middle my-6 ">${nm.uname}이름</td>
+											<td class="align-middle">${um.ugroup }그룹</td>
+											<td class="align-middle">${um.urole }역할</td>
+											<td class="align-middle"><input type="button"
+												class="btn btn-sm btn-outline-primary" value="추가"
+												onclick="addInvite()"></td>
+										</tr> --%>
+									</tbody>
+								</table>
+							</div>
+					           
+					           </div>
+							  <div class="tab-pane fade" id="npmember" role="tabpanel" aria-labelledby="nav-npmember-tab">
+							  <div id="dataTable_wrapper"
+								class="dataTables_wrapper no-footer text-center">
+								<table class="table">
+									<thead>
+										<th colspan="2">사진</th>
+										<th>이름</th>
+										<th>부서</th>
+										<th>직책</th>
+										<th>초대여부</th>
+									</thead>
+									<tbody id="nmlistBox">
+										<%-- <tr>
+											<td colspan="2" style="padding:0px;position:relative;left:5%"><img class="thumbnail circle" src="/hwabo/resources/maincss/img/suugit/face.jpg"> 
+											</td>
+											<td class="align-middle my-6 ">${nm.uname}이름</td>
+											<td class="align-middle">${um.ugroup }그룹</td>
+											<td class="align-middle">${um.urole }역할</td>
+											<td class="align-middle"><input type="button"
+												class="btn btn-sm btn-outline-primary" value="추가"
+												onclick="addInvite()"></td>
+										</tr> --%>
+									</tbody>
+								</table>
+							</div>
 					            
 					          </div>
 					        </div>
@@ -241,114 +228,13 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-	<!--사진변경모달창-->
-	<div class="modal fade" id="imgUpdateModal" tabindex="-1" role="dialog"
-		aria-labelledby="imgModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title col-text-left" id="imgModalLabel">사진업로드</h4>
-
-				</div>
-				<div class="modal-body ">변경할 사진 파일을 선택해주세요</div>
-				<div class="col-sm-4 justify-content-center">
-					<table>
-						<form action="upuimg.do" id="updateUimgForm" method="post"
-							enctype="multipart/form-data">
-							<tr id="preview"></tr>
-					</table>
-					<label class="btn btn-light small" onclick="fileUpload"> <input
-						type="hidden" name="ucode" value="${sessionScope.ucode}">
-						<input type="file" name="file" id="file" style="display: none"
-						accept=".jpg,.png,.svg"> <i class="fa fa-link ">&nbsp;파일
-							선택</i>
-					</label>
-
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary">저장하기</button>
-					</form>
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<!--비밀번호 변경 모달창 -->
-	<div class="modal fade" id="pwdUpdateModal" tabindex="-1" role="dialog"
-		aria-labelledby="pwdModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title col-text-left" id="pwdModalLabel">비밀번호변경</h4>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-
-				</div>
-				<div class="modal-body">
-					<form action="uppwd.do" method="post" id="upPwdForm">
-						<input type="hidden" name="ucode" value="${ucode}">
-						<div class="form-group row">
-							<label class="control-label mypage text-center col-md-4">현재
-								비밀번호</label> <input class="form-control col-md-6" type="password"
-								name="oldpwd">
-						</div>
-						<div class="form-group row">
-							<label class="control-label mypage text-center col-md-4">새
-								비밀번호</label> <input class="form-control col-md-6" type="password"
-								name="newpwd">
-						</div>
-						<div class="form-group row">
-							<label class="control-label mypage text-center col-md-4">새
-								비밀번호 확인</label> <input class="form-control col-md-6" type="password"
-								name="newpwdChk">
-						</div>
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary">변경하기</button>
-					</form>
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- 회원탈퇴  모달-->
-	<div class="modal fade" id="LeaveModal" tabindex="-1" role="dialog"
-		aria-labelledby="LeaveModal" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalCenterTitle">회원 탈퇴</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">회원 탈퇴 시 어떠한 경우에도 계정을 복구할 수 없습니다.
-					계속하시겠습니까?</div>
-				<div class="modal-footer justify-content-center">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-danger" onclick="delUser()">탈퇴하기</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
-	<script
-		src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Custom scripts for all pages-->
 	<script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
@@ -364,41 +250,80 @@
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="resources/js/jquery-3.5.1.min.js"></script>
-	<script type="text/javascript">
-		function toggleModify() {
-			var ele = $(event.target);
-			if (ele.val() == '수정하기') {
-				$('input[type=text]').removeClass('form-control-plaintext');
-				$('input[type=text]').attr('readonly', false);
-				$('#editBtn').removeClass('btn-primary')
-				$('#editBtn').addClass('btn-success')
-				ele.val('변경사항 저장');
-			} else {
-				$('#editBtn').addClass('btn-primary')
-				$('#editBtn').removeClass('btn-success')
-				ele.val('수정하기');
-				$('#myInfoForm').submit();
+	<script>
+
+	
+	$('#pmember-tab').on('click',function(){
+		 $.ajax({
+			url:"pmlist.do",
+			type:"post",
+			contentType:"application/json; charset=utf-8;",
+			dataType:"Json",
+			success: function(data){
+				alert('성공');
+				var values = $("#pmlistBox").html();
+				
+				var values = $("#pmlistBox").html("");
+				for(var i in data){
+					values += 
+					'<tr>'
+					+ '<td colspan="2" style="padding:0px;left:5%">'
+					+ '<img class="thumbnail circle" src="'
+					+ data[i].uimg
+					+ '">' 
+					+ '</td> <td class="align-middle my-6 ">'
+					+ data[i].uname
+					+ '</td> <td class="align-middle">'
+					+ data[i].ugroup
+					+ '</td> <td class="align-middle">'
+					+ data[i].urole
+					+'</td><td class="align-middle"><input type="button" class="btn btn-sm btn-outline-primary" value="추가"'
+					+ 'onclick="addInvite()"></td></tr>'
+				}
+				
+				$('#pmlistBox').html(values);
+			},
+			error: function(request, status, errorData){
+				alert('오류!'); 
 			}
-
-		}
-
-		function delUser() {
-			location.href = "deluser.do?ucode=${member.ucode}";
-		}
-		
-		$('#btn_pwd').on('click', function() {
-			$('#pwdUpdateModal').modal('show')
-		})
-
-		/* 			 $(function(){
-		var responseMessage = "<c:out value="${message}" />";
-		if(responseMessage != ""){
-		    alert(responseMessage)
-		}
-		})  */
-		
-
-		
+		}); 
+	});
+	
+	$('#pmember-tab').on('click',function(){
+		 $.ajax({
+			url:"nmlist.do",
+			type:"post",
+			contentType:"application/json; charset=utf-8;",
+			dataType:"Json",
+			success: function(data){
+				alert('성공');
+				var values = $("#nmlistBox").html();
+				
+				var values = $("#nmlistBox").html("");
+				for(var i in data){
+					values += 
+					'<tr>'
+					+ '<td colspan="2" style="padding:0px;left:5%">'
+					+ '<img class="thumbnail circle" src="'
+					+ data[i].uimg
+					+ '">' 
+					+ '</td> <td class="align-middle my-6 ">'
+					+ data[i].uname
+					+ '</td> <td class="align-middle">'
+					+ data[i].ugroup
+					+ '</td> <td class="align-middle">'
+					+ data[i].urole
+					+'</td><td class="align-middle"><input type="button" class="btn btn-sm btn-outline-primary" value="추가"'
+					+ 'onclick="addInvite()"></td></tr>'
+				}
+				
+				$('#nmlistBox').html(values);
+			},
+			error: function(request, status, errorData){
+				alert('오류!'); 
+			}
+		}); 
+	});
 	</script>
 </body>
 

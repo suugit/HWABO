@@ -61,4 +61,10 @@ public class CpostServiceImpl implements CpostService{
 	}
 
 
+	@Override
+	public int updateCfileAll(AddOn addon) {
+		return cpostDao.updateCfileAll(addon);
+	}
+
+
 }
