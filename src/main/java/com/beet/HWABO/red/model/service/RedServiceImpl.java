@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.red.model.dao.RedDao;
+import com.beet.HWABO.red.model.vo.ChatSpeed;
 import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.red.model.vo.PostPlus;
@@ -130,6 +131,16 @@ public class RedServiceImpl implements RedService {
 	@Override
 	public ArrayList<Cpost> selectCpost(String pnum) {
 		return redDao.selectCpost(pnum);
+	}
+
+	@Override
+	public ChatSpeed selectChatSpeed(ChatSpeed c) {
+		return redDao.selectChatSpeed(c);
+	}
+
+	@Override
+	public int updateChatSpeed(ChatSpeed c) {
+		return redDao.updateChatSpeed(c);
 	}
 	
 }

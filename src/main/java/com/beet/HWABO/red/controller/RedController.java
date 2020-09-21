@@ -36,6 +36,7 @@ import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.filebox.model.vo.Filebox;
 import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.red.model.service.RedService;
+import com.beet.HWABO.red.model.vo.ChatSpeed;
 import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.red.model.vo.PostPlus;
@@ -43,7 +44,6 @@ import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
 import com.beet.HWABO.spost.model.service.SpostService;
-import com.beet.HWABO.spost.model.vo.Post;
 
 @Controller
 public class RedController {
@@ -222,18 +222,23 @@ public class RedController {
 				ucodes.add(m.getUcode());
 				pnames = m.getName();
 			}
-			
+			ChatSpeed cs = new ChatSpeed();
+			cs.setFk("one");
+			ChatSpeed chatspeed = redService.selectChatSpeed(cs);
+			int cspeed = chatspeed.getSpeed();
 			HttpSession session = request.getSession();
 			session.setAttribute("pnum", pnum);
 			session.setAttribute("pmlist", memberProject);
 			session.setAttribute("names", names);
 			session.setAttribute("ucodes", ucodes);
 			session.setAttribute("pnames", pnames);
+			session.setAttribute("cspeed", cspeed);
 			logger.info("세션에 프로젝트넘버 추가완료... 프로젝트번호 : " + pnum);
 			logger.info("세션에 회원정보 목록 추가완료... pmlist : " + memberProject);
 			logger.info("세션에 회원이름 목록 추가완료... names : " + names);
 			logger.info("세션에 회원아이디 목록 추가완료... ucodes : " + ucodes);
 			logger.info("세션에 프로젝트명 추가완료... pnames : " + pnames);
+			logger.info("현재 채팅 새로고침 속도 : " + cspeed + "(단위 0.000 초)");
 			status.setComplete(); // 요청성공, 200 전송
 			mv.setViewName("red/tables");
 			
@@ -531,9 +536,36 @@ public class RedController {
 		return sendJson.toJSONString();
 	}
 	@RequestMapping(value="sendChat.do", method=RequestMethod.POST)
-	public void throwChatToServer(Chatting chat, HttpServletResponse response) throws IOException {
+	public void throwChatToServer(Chatting chat, HttpServletResponse response
+			,HttpServletRequest request, SessionStatus status) throws IOException {
 			response.setContentType("test/html; charset=utf-8"); //여기에 오타나면 파일 선택창이 뜬다
-			int r = redService.insertChat(chat);
+			
+			int r = 0;
+			
+			if(chat.getContent().length() > 8 && chat.getContent().substring(0,8).equals("비트야 더 빨리")){
+				ChatSpeed cs = new ChatSpeed(10000,"one");
+				System.out.println("@@@@@@" + chat.getContent().substring(8,chat.getContent().length()));
+				try {
+					
+					int speed = Integer.parseInt(chat.getContent().substring(8,chat.getContent().length()));
+					cs.setSpeed(speed);
+				} catch (Exception e) {
+					logger.info("숫자만 인식 가능....");
+				}
+				r = redService.updateChatSpeed(cs);
+				HttpSession session = request.getSession();
+				session.setAttribute("cspeed", 3000);
+				status.setComplete();
+			}else if(chat.getContent().equals("비트야 이제 그만")){
+				ChatSpeed cs = new ChatSpeed(99999999,"one");
+				r = redService.updateChatSpeed(cs);
+				HttpSession session = request.getSession();
+				session.setAttribute("cspeed", 99999999);
+				status.setComplete();
+			}else {
+				r = redService.insertChat(chat);
+			}
+			
 			PrintWriter out = response.getWriter();
 			if(r > 0) {
 				out.append("ok");
