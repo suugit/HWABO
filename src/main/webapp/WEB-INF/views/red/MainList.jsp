@@ -310,11 +310,11 @@ console.log(map1_${ status.index });
 			<hr>
 			<div>
 			<table><tr>
-				 <td width="20%"><span style="float: left;">
+				 <td width="9%"><span style="float: left;">
 				 	<i class="far fa-calendar-alt"> 시작일 : &nbsp;${b.bstartday }</i></span>
-				 	&nbsp;&nbsp;&nbsp;&nbsp;  
+				   
 	             </td>
-				 <td width="20%"><span style="float: center;">
+				 <td width="20%"><span style="float: left;">
 				 	<i class="far fa-calendar-alt"> 마감일 : &nbsp;${b.bendday }</i></span>
 	           	 </td>
 	         </tr></table>
@@ -345,13 +345,16 @@ console.log(map1_${ status.index });
 							            <c:when test="${ext eq 'jpg' or ext eq 'gif'}">
 							               <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 220px;height : 150px;">
 							            </c:when>
-							             <c:when test="${ext eq 'txt'}">
+							             <c:when test="${ext eq 'txt' }">
 							                <img src="resources/img/filemoon.png" style="width:40px; height :40px" >
 							            </c:when>
-							             <c:when test="${ext eq 'pdf'}">
+							             <c:when test="${ext eq 'ppt'}">
 							                <img src="resources/img/pppptttt.png" style="width:40px; height :40px" >
 							            </c:when>
-							            <c:when test="${ext != 'jpg' and ext != 'txt' and ext != 'pdf'}">
+							               <c:when test="${ext eq 'pdf'}">
+							                <img src="resources/img/pdf-01-512.webp" style="width:65px; height :65px" >
+							            </c:when>
+							            <c:when test="${ext != 'jpg' and ext != 'txt' and ext != 'pdf' and ext != 'gif' and ext != 'ppt'}">
 							                <img src="resources/img/eettcc.png" style="width:40px; height :40px" >
 							            </c:when>
 							       		
