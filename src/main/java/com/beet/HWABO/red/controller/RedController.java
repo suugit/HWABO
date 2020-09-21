@@ -543,7 +543,11 @@ public class RedController {
 			int r = 0;
 			
 			if(chat.getContent().length() > 8 && chat.getContent().substring(0,8).equals("비트야 더 빨리")){
-				ChatSpeed cs = new ChatSpeed(10000,"one");
+				ChatSpeed cs = new ChatSpeed();
+				cs.setFk("one");
+				ChatSpeed chatspeed = redService.selectChatSpeed(cs);
+				int cspeed = chatspeed.getSpeed();
+				cs.setSpeed(cspeed);
 				System.out.println("@@@@@@" + chat.getContent().substring(8,chat.getContent().length()));
 				try {
 					
