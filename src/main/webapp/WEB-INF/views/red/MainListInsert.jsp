@@ -112,6 +112,9 @@ function fileCheck() {
 </script>
 
                <div class="card shadow mb-4">
+<!-- @@@@시작@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->               
+<!-- @@@  -->      <div class="card-header py-3"></div>                                                              <!-- @@@  -->
+<!-- @@@@끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
                   <div class="card-body">
                      <!-- 게시글안쪽 -->
                   <form action="insertbpostMain.do" name="b" method="post" id="bInsert" enctype="multipart/form-data">
@@ -123,21 +126,28 @@ function fileCheck() {
                      <input type="hidden" name="kind" id="kind">
                      <input type="hidden" name="pnum" value="${sessionScope.pnum }">
                         <table style="text-align: center; width: 100%;">
+<!-- @@@@시작@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@  -->                                                                                                        <!-- @@@  -->
+			  <tr><td style="width:100%;" colspan="5"><table style="width:100%;">
+			  <tr class="m-0 font-weight-bold text-primary" style="width:100%;"><td style="width:20%;">          
+              <span>글작성</span>
+              </td><td style="width:20%;">
+              <span>업무</span>
+              </td><td style="width:20%;">
+              <span>일정</span>
+              </td><td style="width:20%;">
+              <span>할일</span>
+              </td><td style="width:20%;">
+              <span>투표</span>
+              </td></tr>
+              <tr><td colspan="5">
+              <hr>
+              </td></tr></table></td></tr>
+<!-- @@@  -->                                                                                                        <!-- @@@  -->
+<!-- @@@@끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->  
                            <tr>
                               <td colspan="5">
-                                 <hr>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td colspan="5"><span style="float: left;"><i class="fa fa-pen"></i>&nbsp;제 목</span>                                 
-                              <input type="text" name="btitle" class="form-control" placeholder="일정 제목을 입력하세요" required="required"></td>
-                           </tr>
-                           <tr>
-                              <td colspan="5">&nbsp;</td>
-                           </tr>
-                           <tr>
-                              <td colspan="5">
-                              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                              <div class="btn-group btn-group-toggle" data-toggle="buttons" style="width:100%;">
                                 <label class="btn btn-secondary active">
                                   <input type="radio" name="bkind" id="option1" value="요청" checked>요청
                                 </label>
@@ -160,6 +170,13 @@ function fileCheck() {
                               <td colspan="5">&nbsp;</td>
                            </tr>
                            <tr>
+                              <td colspan="5"><span style="float: left;"><i class="fa fa-pen"></i>&nbsp;제 목</span>                                 
+                              <input type="text" name="btitle" class="form-control" placeholder="일정 제목을 입력하세요" required="required"></td>
+                           </tr>
+                           <tr>
+                              <td colspan="5">&nbsp;</td>
+                           </tr>
+                           <tr>
                            <td colspan="5">
                            <div>   
                         <nav class="navbar navbar-expand navbar-light bg-light mb-4">
@@ -167,6 +184,14 @@ function fileCheck() {
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       담당자
                     </button>
+                    
+<!-- @@@@시작@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->               
+<!-- @@@  -->
+<% if(request.getParameter("choicethat") != null){ %>
+	<b style="color:red;position:relative;z-index:10;">&nbsp;&nbsp; 담당자 지정은 필수 입니다.</b>
+<% } %>			                   
+<!-- @@@  -->                                                                                                <!-- @@@  -->
+<!-- @@@@끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
                       <div><input type="hidden" id="selected"></div>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2" >
                      <c:forEach var="pm" items="${sessionScope.pmlist}" varStatus="status">

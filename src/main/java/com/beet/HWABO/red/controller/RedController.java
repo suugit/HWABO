@@ -562,8 +562,15 @@ public class RedController {
 		out.close();
 	}
 	@RequestMapping(value = "insertbpostMain.do", method = RequestMethod.POST)
-	public String insertBpostMoveToMain(Bpost bpost, Filebox filebox, HttpServletRequest request,
+	public ModelAndView insertBpostMoveToMain(ModelAndView mv, Bpost bpost, Filebox filebox, HttpServletRequest request,
 			@RequestParam(value = "ofile", required = false) MultipartFile file) {
+		if(bpost.getBchargename() == null || bpost.getBcharge() == null) {
+			logger.info("bpost 등록실패 : 담당자 지정해주세요 ");
+			mv.addObject("choicethat","the_Best_is_BEET_root!_BBTT");
+			mv.setViewName("redirect:/ftables2.do?pnum=" + bpost.getBpnum() + "&ucode=" + bpost.getBucode());
+			return mv;
+		}
+		
 		logger.info("bpost : " + bpost);
 		logger.info("file : " + file.getOriginalFilename().length());
 		logger.info("file" + file);
@@ -590,12 +597,14 @@ public class RedController {
 		} /// 업로드파일이 있다면
 
 		if (bpostService.insertBpost(bpost) > 0) {
-			logger.info("인서트 성공");
+			logger.info("BPOST 인서트 성공");
 			logger.info("비포스트" + bpost);
-			return "redirect:/ftables.do?project_num=" + bpost.getBpnum();
+			mv.setViewName("redirect:/ftables.do?project_num=" + bpost.getBpnum());
+			return mv;
 		} else {
-			logger.info("인서트 실패");
-			return "common/error";
+			logger.info("BPOST 인서트 실패");
+			mv.setViewName("common/error");
+			return mv;
 		}
 
 	}
