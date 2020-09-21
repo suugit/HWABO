@@ -22,9 +22,12 @@
 			</h6>
 			<div class="dropdown no-arrow">
 				<!-- 보관함 담기여부 -->
-				<button id="cabinetshow" class="btn btn-custom btn-sm liketoggle" name="like">
-					<span>보관</span> <i class="far fa-bookmark"></i>
-				</button>
+				<button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle${status.index }" name="like" onclick="sendInsert(${status.index});">
+           	   <span>보관</span> <i class="far fa-bookmark"></i></button>
+           	   <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
+			   <input type="hidden" id="no_${status.index }" value="${post.sno }">
+			   <input type="hidden" id="pnum_${status.index }" value="${post.spnum }" >
+			   
 				<!-- 드롭다운 -->
 				<a class="dropdown-toggle" href="#" role="button"
 					id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
@@ -175,20 +178,22 @@ console.log(map1_${ status.index });
 <!-- spost끝 -->
 <c:if test="${ main.firstword eq 'b' }">
 <c:set var="b" value="${ main }"></c:set>
-           	<div class="card shadow mb-4">
-			 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-				<h6 class="m-0 font-weight-bold text-primary">
-				<i class="fas fa-user-circle"></i>
-				${b.bwriter}<br>${b.benrolldate }</h6>
+<div class="card shadow mb-4">
+	<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+		<h6 class="m-0 font-weight-bold text-primary">
+			<i class="fas fa-user-circle"></i>
+			${b.bwriter}<br>${b.benrolldate }
+		</h6>
 				<!-- 수정삭제 드롭다운 -->	
              <div class="dropdown no-arrow">
+             <!-- 보관함 담기 여부 -->
                <button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle${status.index }" name="like" onclick="sendInsert(${status.index});">
            	   <span>보관</span> <i class="far fa-bookmark"></i></button>
            	   <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
-			   <input type="text" id="no_${status.index }" value="${b.bno }">
+			   <input type="hidden" id="no_${status.index }" value="${b.bno }">
 			   <input type="hidden" id="pnum_${status.index }" value="${b.bpnum }" >
 			   
-			 <div id="d5"></div>
+			 
 		  		<c:if test="${sessionScope.ucode eq b.bucode }">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -401,13 +406,13 @@ console.log(map1_${ status.index });
 			<div class="dropdown no-arrow">
 
 				<!-- 보관함 담기여부 -->
-				
+			
 				<button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle${status.index }" name="like" onclick="sendInsert(${status.index});">
            	   <span>보관</span> <i class="far fa-bookmark"></i></button>
            	   <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
 			   <input type="hidden" id="no_${status.index }" value="${c.cno }">
 			   <input type="hidden" id="pnum_${status.index }" value="${c.cpnum }" >
-			   <input type="hidden" id="open_${status.index }" value="${c.copen }" >
+			   
 				
 				<!-- 드롭다운 -->
 				<a class="dropdown-toggle" href="#" role="button"
