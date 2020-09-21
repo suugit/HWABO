@@ -1,9 +1,11 @@
 package com.beet.HWABO.red.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,12 +26,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.bpost.model.service.BpostService;
 import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.cpost.model.service.CpostService;
 import com.beet.HWABO.cpost.model.vo.Cpost;
+import com.beet.HWABO.filebox.model.vo.Filebox;
 import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.red.model.service.RedService;
 import com.beet.HWABO.red.model.vo.Chatting;
@@ -557,7 +561,60 @@ public class RedController {
 		}
 		out.close();
 	}
-////views start//////////////////////////////	
+	@RequestMapping(value = "insertbpostMain.do", method = RequestMethod.POST)
+	public String insertBpostMoveToMain(Bpost bpost, Filebox filebox, HttpServletRequest request,
+			@RequestParam(value = "ofile", required = false) MultipartFile file) {
+		logger.info("bpost : " + bpost);
+		logger.info("file : " + file.getOriginalFilename().length());
+		logger.info("file" + file);
+
+		if (file != null && file.getOriginalFilename().length() > 0) {
+			String fileName = file.getOriginalFilename();
+
+			String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); // java.text.SimpleDateFormat
+
+			String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); // 여기까지 파일명
+			renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1); // 원래 파일명 . 뒤에서부터 추출해라
+
+			bpost.setBoriginfile(fileName);
+			bpost.setBrenamefile(renameFileName);
+			/* logger.info("renameFileName : " + renameFileName); */
+			try {
+				file.transferTo(new File(savePath + "\\" + renameFileName));
+				/* logger.info("이클립스에 파일 들어감 : " + renameFileName); */
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		} /// 업로드파일이 있다면
+
+		if (bpostService.insertBpost(bpost) > 0) {
+			logger.info("인서트 성공");
+			logger.info("비포스트" + bpost);
+			return "redirect:/ftables.do?project_num=" + bpost.getBpnum();
+		} else {
+			logger.info("인서트 실패");
+			return "common/error";
+		}
+
+	}
+	@RequestMapping(value = "deletebpostMain.do")
+	public String bpostDeleteToMain(Bpost bpost, Model model, HttpServletRequest request) {
+		if (bpostService.deleteBpost(bpost) > 0) {
+			String brenamefilename = bpost.getBrenamefile();
+			logger.info("controller brenamefilename : " + brenamefilename);
+			if (brenamefilename != null && !brenamefilename.isEmpty()) {
+				String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
+				new File(savePath + "\\" + brenamefilename).delete();
+			}
+			return "redirect:/ftables.do?project_num=" + bpost.getBpnum();
+		} else {
+			model.addAttribute("message", bpost.getBno() + "번글 삭제 실패");
+			return "common/error";
+		}
+	}
+////views start//////////////////////////////
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)
 	public String suugitIndex(Model model) {
 		
