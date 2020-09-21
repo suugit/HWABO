@@ -41,26 +41,48 @@ $(document).ready(function() {
 	  "lengthChange": false
 	});
 
-
-	
 	
 	$('.type').change(function(){
 		var types = [];
+		
 		$("input[name=type]:checked").each(function(){
 			types.push($(this).val());
 		});	
+		alert(types+"types");
 		
-		var allData ={'ucode': ${sessionScope.ucode}, 'pnum':${sessionScope.pnum}, 'types': types};
-		
+		var ucodeval = '${ucode}';
+		var pnumval = '${pnum}';
+		var allData ={'ucode': ucodeval , 'pnum': pnumval, 'types': types};
 		$.ajax({
-			type: 'POST',
 			url: "chooseBpost.do",
-			data: allData,
-			success: function(){
-				alert("원하는 유형글만 보기 성공 ~");
-			},
-			error: function(){
-				alert("원하는 유형글만 보기 실패 !!");
+			type: "post",
+			data: allData, 
+			dataType: "json",
+			success: function(obj){
+				alert(obj);
+				// 리턴된 객체를 문자열로 변환 처리
+				var objStr = JSON.stringify(obj);
+				// 객체 문자열을 다시 json 객체로 바꿈
+				var jsonObj = JSON.parse(objStr);
+				//출력용 문자열 만들기 (for in 문을 사용해보자)
+			//	$("#bpost_tbody").empty();
+				
+			//	$.each(res, function(r){
+			//	       $("#trclick").append("<td>"+decodeURIComponent(jsonObj.list[i].bkind.replace(/\+/gi," "))+"</td><td>"+decodeURIComponent(jsonObj.list[i].btitle.replace(/\+/gi," "))+"</td><td>"+decodeURIComponent(jsonObj.list[i].bcontent.replace(/\+/gi," "))+"</td><td>"+jsonObj.list[i].benrolldate+"</td>");
+			//	    });
+				
+				
+				//for(var i in jsonObj.list){
+			//		 val tablerow = "<tr><td>decodeURIComponent(jsonObj.list[i].bkind.replace(/\+/gi," "))</td><td>decodeURIComponent(jsonObj.list[i].btitle.replace(/\+/gi," "))</td><td>decodeURIComponent(jsonObj.list[i].bcontent.replace(/\+/gi," "))</td><td>jsonObj.list[i].benrolldate</td></tr>";
+				// val tablerow = "<tr><td>"+decodeURIComponent(jsonObj.list[i].bkind.replace(/\+/gi," "))+"</td><td>"+decodeURIComponent(jsonObj.list[i].btitle.replace(/\+/gi," "))+"</td><td>"+decodeURIComponent(jsonObj.list[i].bcontent.replace(/\+/gi," "))+"</td><td>"+jsonObj.list[i].benrolldate+"</td></tr>";
+				//	 
+				//	 $("#bkind").html(decodeURIComponent(jsonObj.list[i].bkind.replace(/\+/gi," ")));
+				//	$("#btitle").html(decodeURIComponent(jsonObj.list[i].btitle.replace(/\+/gi," ")));
+				//	$("#bcontent").html(decodeURIComponent(jsonObj.list[i].bcontent.replace(/\+/gi," ")));
+				//	$("#benrolldate").html(jsonObj.list[i].benrolldate); }	
+			}, 
+			error: function(request, status, errorData){ //에러는 위에서 복붙
+				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
 			}
 			
 		});
@@ -123,7 +145,7 @@ $(document).ready(function() {
 							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox5" class="type" name="type" type="checkbox" value="보류" checked="checked">&nbsp;보 류&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
 						</form>
 					</div>
-									<div class="table-responsive">
+									<div id ="bpost_table"  class="table-responsive">
 									
 									
 										<table class="table table-bordered table-hover" id="dataTable"
@@ -143,13 +165,13 @@ $(document).ready(function() {
 												</tr>
 											</thead>
 											
-											<tbody>
+											<tbody id = "bpost_tbody">
 										<% if(!list.isEmpty()){ %>
 											<% for(Bpost bpost : list){ %>
 												
 													<tr id="trclick" onclick="javascript:location.href='bpostOne.do?bno=<%= bpost.getBno()%>&ucode=${sessionScope.ucode }&pnum=${sessionScope.pnum }'" style="cursor:hand;">	
 													
-														<td style="vertical-align: middle; text-align: center;">
+														<td id="bkind" style="vertical-align: middle; text-align: center;">
 														
 																<%if(bpost.getBkind().equals("요청")){ %>
 																	<strong style="font-size:13pt; color: #047AAC; margin-top:30px; vertical-align: middle; ">요 청</strong>															
@@ -168,8 +190,8 @@ $(document).ready(function() {
 																<% } %>
 															</td>
 														
-														<td style="vertical-align: middle; text-align: center;"><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBtitle()%></div></td>
-														<td style="vertical-align: middle; text-align: center;">
+														<td id="btitle" style="vertical-align: middle; text-align: center;"><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBtitle()%></div></td>
+														<td id="bcontent" style="vertical-align: middle; text-align: center;">
 														<div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' >
 															<%if(bpost.getBcontent() != null){%> 
 																<%= bpost.getBcontent()%> 
@@ -178,7 +200,7 @@ $(document).ready(function() {
 															<% } %>
 															</div>
 														</td>
-														<td style="vertical-align: middle; text-align: center;"><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBenrolldate()%></div></td>
+														<td id="benrolldate" style="vertical-align: middle; text-align: center;"><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBenrolldate()%></div></td>
 													</tr>	
 													
 											<% } %>

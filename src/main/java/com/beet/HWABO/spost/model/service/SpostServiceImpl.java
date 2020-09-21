@@ -12,6 +12,7 @@ import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.spost.model.dao.SpostDao;
+import com.beet.HWABO.spost.model.vo.Bpostchk;
 import com.beet.HWABO.spost.model.vo.Post;
 import com.beet.HWABO.spost.model.vo.Spost;
 
@@ -67,8 +68,8 @@ public class SpostServiceImpl implements SpostService{
 	}
 	
 	@Override
-	public ArrayList<Bpost> chooseBpost(List<String> types) {
-		return spostDao.chooseBpost(types);
+	public ArrayList<Bpost> chooseBpost(Bpostchk chk) {
+		return spostDao.chooseBpost(chk);
 	}
 	
 	

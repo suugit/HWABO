@@ -11,6 +11,7 @@ import com.beet.HWABO.abc.model.vo.Love;
 import com.beet.HWABO.abc.model.vo.Postreply;
 import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.member.model.vo.PjMember;
+import com.beet.HWABO.spost.model.vo.Bpostchk;
 import com.beet.HWABO.spost.model.vo.Post;
 import com.beet.HWABO.spost.model.vo.Spost;
 import com.sun.org.slf4j.internal.LoggerFactory;
@@ -60,8 +61,8 @@ public class SpostDao {
 		return session.selectOne("postMapper.selectOneBpost", bno);
 	}
 			
-	public ArrayList<Bpost> chooseBpost(List<String> types) {
-		List<Bpost> list = session.selectList("postMapper.chooseBpost", types);
+	public ArrayList<Bpost> chooseBpost(Bpostchk chk) {
+		List<Bpost> list = session.selectList("postMapper.chooseBpost", chk);
 		return (ArrayList<Bpost>) list;
 	}
 	

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,8 +13,8 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,9 +38,6 @@ import com.beet.HWABO.cpost.model.vo.AddOn;
 import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.red.model.service.RedService;
-import com.beet.HWABO.red.model.vo.MemberProject;
-import com.beet.HWABO.red.model.vo.PostPlus;
-import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.spost.model.service.SpostService;
 import com.beet.HWABO.spost.model.vo.Bpostchk;
 import com.beet.HWABO.spost.model.vo.Post;
@@ -54,10 +51,10 @@ public class abcController {
 
 	@Autowired
 	private BpostService bpostService;
-	
+
 	@Autowired
 	private CpostService cservice;
-	
+
 	@Autowired
 	private RedService redService;
 
@@ -69,180 +66,6 @@ public class abcController {
 
 	private static final Logger logger = LoggerFactory.getLogger(abcController.class);
 
-	@RequestMapping(value = "testhwabo.do", method = RequestMethod.GET)
-	public ModelAndView selectLogin(PjMember pj, HttpServletRequest request, ModelAndView mv,SessionStatus status) {
-			logger.info("세션에 프로젝트넘버 추가완료... 프로젝트번호 : " + pj.getPnum());
-			String pnum = pj.getPnum();
-			ArrayList<MemberProject> memberProject = redService.selectMemberList(pnum);
-			ArrayList<String> names = new ArrayList<String>();
-			ArrayList<String> ucodes = new ArrayList<String>();
-			String pnames = "";
-			
-			for(MemberProject m : memberProject) {
-				names.add(m.getUname());
-				ucodes.add(m.getUcode());
-				pnames = m.getName();
-			}
-			
-			HttpSession session = request.getSession();
-
-			status.setComplete(); // 요청성공, 200 전송
-			mv.setViewName("abc/tables");
-			
-			session.setAttribute("totalProgress", 0);//진행률 기본값 (실제값은 아래에있어요)
-			ArrayList<Bpost> blist = redService.selectBpost(pnum);
-			if(blist.size() > 0) {
-			///
-			int chk = 0;
-			int goal = 0;
-			int done = 0;
-			ArrayList<Progress> plist = new ArrayList<Progress>(); 
-			
-			for(Bpost b : blist) {
-				Progress p = new Progress();
-				 
-				p.setTitle(b.getBtitle());
-				if(b.getBcontent() != null) {
-					p.setContent(b.getBcontent());
-				}else {
-					p.setContent("");
-				}
-				p.setName(b.getBwriter());
-				p.setUcode(b.getBucode());
-				p.setProject_num(pnum);
-				p.setGoal(3);
-				goal += 3;
-				if(b.getBkind().equals("완료")) {
-					p.setDone(3);
-					done += 3;
-				}else if(b.getBkind().equals("피드백")) {
-					p.setDone(2);
-					done += 2;
-				}else if(b.getBkind().equals("진행")) {
-					p.setDone(1);
-					done += 1;
-				}else {
-					p.setDone(0);
-				}
-				plist.add(p);
-			}
-			if(redService.selectProgressList(pnum).size() > 0) {
-				if(redService.deleteProgress(pnum) > 0) {
-					logger.info("진행률 초기화완료...");
-				}else {
-					logger.info("진행률 초기화오류...");
-				}
-			}else {
-				logger.info("진행률 초기화완료... : 초기화할 데이터 없음 (정상)");
-			}
-			for(Progress p : plist) {
-				if(redService.insertProgress(p) < 1) {
-					chk++;
-					logger.info("PROGRESS 데이터 유실됨... 유실된 데이터 : " + p);
-				}
-			}
-			
-			if(chk < 1) {
-				MemberProject mp = new MemberProject();
-				mp.setProject_num(pnum);
-				mp.setGoal(goal);
-				mp.setDone(done);
-				if(goal == 0 && done == 0) {
-					mp.setGoal(100000);
-					mp.setDone(1);
-				}
-				logger.info("PROGRESS 데이터 사용가능...");
-				if(redService.updateProjectProgress(mp) > 0) {
-					logger.info("전체 진행률 업데이트 성공...");
-				}else {
-					logger.info("전체 진행률 업데이트 실패...");
-				}
-			}
-			int total = done*100/goal;
-			/////////////////
-			session.setAttribute("totalProgress", total);
-			logger.info("세션에 전체진행률 추가완료... progress : " + total + "%");
-			}
-			
-//			int cFilterCount = 0;
-//			ArrayList<Cpost> clistFilter = new ArrayList<Cpost>();
-			ArrayList<Cpost> clist = redService.selectCpost(pnum);
-//			for(Cpost cpost : clist) {
-//				if(!cpost.getCopen().equals("N")) {
-//					clistFilter.add(cpost);
-//				}else {
-//					cFilterCount++;
-//				}
-//			}
-//			if (clist != null) {
-//				logger.info("cpost list 가져오기 성공... 비공개 된 cpost게시물 : " + cFilterCount + "개");
-//				mv.addObject("clist", clist);
-//			}
-			
-			int allListFilterCount = 0;
-			ArrayList<PostPlus> allListFilter = new ArrayList<PostPlus>();
-			ArrayList<PostPlus> allList = redService.selectAllPost(pnum);
-			for(PostPlus post : allList) {
-				if(!((post.getSopen() !=null && post.getSopen().equals("n")) || 
-				(post.getBopen() !=null && post.getBopen().equals("n")) || 
-				(post.getCopen() !=null && post.getCopen().equals("N")))) {
-					if(post.getFirstword().equals("c")) {
-						for(Cpost cpost : clist) {
-							if(post.getNo().equals(cpost.getCno())) {
-								post.setAddonuse(cpost.getAddonuse());
-							}
-						}
-						allListFilter.add(post);
-					}else {
-						allListFilter.add(post);
-					}
-				}else {
-					allListFilterCount++;
-				}
-			}
-			if (allListFilter != null) {
-				logger.info("post list 가져오기 성공... 비공개 된 전체 게시물 : " + allListFilterCount + "개");
-				logger.info("전체 게시물 : " + allListFilter);
-				mv.addObject("list", allListFilter);
-			}
-			
-			////kyu////
-//			ArrayList<Bpost> list = bpostService.selectList();
-//			if (list != null) {
-//				logger.info("bpost list" + list);
-//				mv.addObject("list", list);
-//			}else {
-//				logger.info("bpost list 불러오기 실패? 어째서... ㅠ");
-//			}
-			////kyu end////
-
-			////abc//////////
-			
-//			String startday = spost.getSstartday().toString();
-//			String endday = spost.getSendday().toString();
-//
-//			SimpleDateFormat recvSimpleFormat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-//
-//			SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-//			SimpleDateFormat format2 = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
-//
-//			try {
-//				java.util.Date startdate = recvSimpleFormat.parse(startday);
-//				java.util.Date enddate = recvSimpleFormat.parse(endday);
-//
-//				startday = format1.format(startdate) + "T" + format2.format(startdate);
-//				endday = format1.format(enddate) + "T" + format2.format(enddate);
-//
-//			} catch (ParseException e) {
-//				e.printStackTrace();
-//			}
-			//mv.addObject("startday", startday);
-			//mv.addObject("endday", endday);
-			////abc end///////
-			
-			return mv;
-	}
-	
 //========== 페이지 이동 ==================================================	
 	@RequestMapping("posttest.do")
 	public String selectPostTest(Model m, PjMember pmember) {
@@ -271,7 +94,6 @@ public class abcController {
 		return "abc/updateSpost";
 	}
 
-	
 //========== Spost (일정) 관련 메소드 ==================================================	
 
 	// 일정 selectOne 메소드
@@ -309,7 +131,7 @@ public class abcController {
 	public ModelAndView insertSpost(Spost spost, ModelAndView mav, @RequestParam("beforesstartday") String start,
 			@RequestParam("beforesendday") String end) {
 
-		logger.info(spost.getSpnum()+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		logger.info(spost.getSpnum() + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		String Sstart = start.replace("T", " ");
 		String Send = end.replace("T", " ");
 
@@ -341,7 +163,6 @@ public class abcController {
 		return mav;
 	}
 
-	
 	// 일정 수정 메소드
 	@RequestMapping(value = "supdate.do", method = RequestMethod.POST)
 	public String updateSpost(Spost spost, Model m, HttpServletResponse response,
@@ -409,28 +230,46 @@ public class abcController {
 		}
 	}
 
-
 //========== Bpost 조회 업무모아보기페이지 관련 메소드 ==================================================	
-	
-	//원하는 업무글 유형만 보기 메소드
-	@RequestMapping(value="chooseBpost.do", method = RequestMethod.POST)
-	public ArrayList<Bpost> chooseBpostMethod(@RequestParam(value="types[]") List<String> types, 
-															@RequestParam(value="ucode") String ucode, @RequestParam(value="pnum") String pnum) {
+
+	// 원하는 업무글 유형만 보기 메소드
+	@RequestMapping(value = "chooseBpost.do", method = RequestMethod.POST)
+	public JSONArray chooseBpostMethod(@RequestParam(value = "ucode") String ucode,
+			@RequestParam(value = "pnum") String pnum, @RequestParam(value = "types[]") List<String> types, Model m)
+			throws UnsupportedEncodingException {
 		logger.info(types.toString());
 		logger.info("@@@@@@@@@@@@@@@@@@@ chooseBpost 들어옴 @@@@@@@@@@@@@@@@ ");
-		Bpostchk chk = new B
-		
-		ArrayList<Bpost> list = spostService.chooseBpost(types);
-		
-		if(list != null) {
-			logger.info("유형 골라보기 성공");
-		}else {
-			logger.info("유형 골라보기 실패");
+		Bpostchk chk = new Bpostchk(ucode, pnum, types);
+
+		ArrayList<Bpost> list = spostService.chooseBpost(chk);
+
+		// 전송용 json 객체 준비
+		JSONObject sendJson = new JSONObject();
+
+		// json 배열 객체 생성
+		JSONArray jarr = new JSONArray();
+
+		// list 를 jarr 로 옮겨담기 (일종의 복사)
+		for (Bpost bpost : list) { // user 객체 저장용 json 객체
+			JSONObject job = new JSONObject();
+
+			job.put("bkind", URLEncoder.encode(bpost.getBkind(), "utf-8"));
+			job.put("btitle", URLEncoder.encode(bpost.getBtitle(), "utf-8"));
+
+			if (bpost.getBcontent() != null) {
+				job.put("bcontent", URLEncoder.encode(bpost.getBcontent(), "utf-8"));
+			} else {
+				job.put("bcontent", URLEncoder.encode(" ", "utf-8"));
+			}
+			job.put("benrolldate", bpost.getBenrolldate().toString());
+
+			// jarr에 json 객체 저장
+			jarr.add(job);
 		}
-		return list;
+		return jarr;
+
 	}
-	
-	
+
 	// 업무 모아보기 페이지 조회용
 	@RequestMapping("mybpost.do")
 	public String selectMyBPOST(Model model, PjMember pmember) {
@@ -446,14 +285,14 @@ public class abcController {
 		}
 		return "abc/myBPOST";
 	}
-	
+
 	// 업무 게시글 상세보기용 메소드
 	@RequestMapping("bpostOne.do")
-	public String selectOneBpost(Model model,@RequestParam("bno") String bno, PjMember pmember) {
+	public String selectOneBpost(Model model, @RequestParam("bno") String bno, PjMember pmember) {
 
 		Bpost bpost = spostService.selectOneBpost(bno);
 		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
-		
+
 		if (bpost != null) {
 			model.addAttribute("post", bpost);
 			model.addAttribute("list", list);
@@ -465,17 +304,18 @@ public class abcController {
 		}
 
 	}
+
 	// 업무 게시글 수정페이지로 이동용 메소드
 	@RequestMapping("moveBpostUpdate.do")
 	public String moveBpostUpdatePage(@RequestParam("bno") String bno, Model m, PjMember pmember) {
 		Bpost bpost = bpostService.selectBpost(bno);
 		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
-		
+
 		m.addAttribute("post", bpost);
 		m.addAttribute("list", list);
 		return "post/bpostUpdatepage";
 	}
-	
+
 	// 업무 게시글 수정용 메소드
 	@RequestMapping(value = "bpostup.do")
 	public String updatebpost(Bpost bpost, HttpServletRequest request,
@@ -509,11 +349,12 @@ public class abcController {
 						bpost.setBrenamefile(null);
 					} else {
 						logger.info("파일 삭제 실패 131!");
-					}			
+					}
 					bpost.setBoriginfile(file.getOriginalFilename());
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); // java.text.SimpleDateFormat
-					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); 
-					renameFileName += "."+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1); 								
+					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()));
+					renameFileName += "."
+							+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
 					bpost.setBrenamefile(renameFileName);
 					try {
 						file.transferTo(new File(savePath + "\\" + renameFileName));
@@ -522,9 +363,10 @@ public class abcController {
 					}
 				} else {
 					bpost.setBoriginfile(file.getOriginalFilename());
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
-					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); 
-					renameFileName += "."+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()));
+					renameFileName += "."
+							+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
 					bpost.setBrenamefile(renameFileName);
 					try {
 						file.transferTo(new File(savePath + "\\" + renameFileName));
@@ -535,16 +377,17 @@ public class abcController {
 			}
 		}
 		if (bpostService.updateBpost(bpost) > 0) {
-			//성공하면 bno가지고 selectOne 한번 실행
-			request.setAttribute("bno", bpost.getBno() );
-			return "redirect:/bpostOne.do?bno="+bpost.getBno()+"&ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
+			// 성공하면 bno가지고 selectOne 한번 실행
+			request.setAttribute("bno", bpost.getBno());
+			return "redirect:/bpostOne.do?bno=" + bpost.getBno() + "&ucode=" + pmember.getUcode() + "&pnum="
+					+ pmember.getPnum();
 		} else {
-			//수정실패하면 list로 
-			request.setAttribute("message", "업무 게시글 수정에 실패하였습니다." );
-			return "redirect:/mybpost.do?ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
+			// 수정실패하면 list로
+			request.setAttribute("message", "업무 게시글 수정에 실패하였습니다.");
+			return "redirect:/mybpost.do?ucode=" + pmember.getUcode() + "&pnum=" + pmember.getPnum();
 		}
 	}
-	
+
 	// 업무 삭제용 메소드
 	@RequestMapping(value = "bpostdel.do")
 	public String bpostDelete(Bpost bpost, Model model, HttpServletRequest request, PjMember pmember) {
@@ -557,23 +400,22 @@ public class abcController {
 				String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
 				new File(savePath + "\\" + brenamefilename).delete();
 			}
-			return "redirect:/mybpost.do?ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
+			return "redirect:/mybpost.do?ucode=" + pmember.getUcode() + "&pnum=" + pmember.getPnum();
 		} else {
 			model.addAttribute("message", "업무 게시글 삭제에 실패하였습니다.");
-			return "redirect:/mybpost.do?ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
+			return "redirect:/mybpost.do?ucode=" + pmember.getUcode() + "&pnum=" + pmember.getPnum();
 		}
 	}
-
 
 //========== 나의 화보, 너의 화보 Post 관련 메소드 ==================================================	
 
 	// 나의 화보. 나와 관련된 게시글 목록 조회용
 	@RequestMapping("myhwabo.do")
 	public String myHWABO(Model m, PjMember pmember) {
-		
+
 		// 매개변수랑, where 절에 session에서 받아온 ucode랑 pnum 추가 해야한다.
 		// Pjmember 에 ucode랑 pnum 필드 있어서 그걸로 이용해서 2개 값 담아서 이동 !
-		
+
 		ArrayList<Post> list = spostService.selectMyPost(pmember);
 		if (list != null) {
 			m.addAttribute("list", list);
@@ -587,7 +429,7 @@ public class abcController {
 	@RequestMapping("yourhwabo.do")
 	public String yourHWABO(Model m, PjMember pmember) {
 		// 팀원과 관련된 게시글을 전부 긁어와야함.
-		
+
 		ArrayList<Post> list = spostService.selectMyPost(pmember);
 		if (list != null) {
 			m.addAttribute("list", list);
@@ -596,17 +438,17 @@ public class abcController {
 		}
 		return "abc/yourhwabo";
 	}
-	
+
 //3 게시글 관련 상세보기, 수정, 삭제 메소드	
 
-	//1. bpost
+	// 1. bpost
 	// 업무 게시글 상세보기용 메소드
 	@RequestMapping("HBOne.do")
-	public String hwaboselectBpost(Model model,@RequestParam("bno") String bno, PjMember pmember) {
+	public String hwaboselectBpost(Model model, @RequestParam("bno") String bno, PjMember pmember) {
 
 		Bpost bpost = spostService.selectOneBpost(bno);
 		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
-		
+
 		if (bpost != null) {
 			model.addAttribute("post", bpost);
 			model.addAttribute("list", list);
@@ -618,17 +460,18 @@ public class abcController {
 		}
 
 	}
+
 	// 업무 게시글 수정페이지로 이동용 메소드
 	@RequestMapping("moveHBUpdate.do")
 	public String hwabomoveBpostUpdatePage(@RequestParam("bno") String bno, Model m, PjMember pmember) {
 		Bpost bpost = bpostService.selectBpost(bno);
 		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
-		
+
 		m.addAttribute("post", bpost);
 		m.addAttribute("list", list);
 		return "post/bpostUpdatepage";
 	}
-	
+
 	// 업무 게시글 수정용 메소드
 	@RequestMapping(value = "HBupdate.do")
 	public String hwaboupdatebpost(Bpost bpost, HttpServletRequest request,
@@ -662,11 +505,12 @@ public class abcController {
 						bpost.setBrenamefile(null);
 					} else {
 						logger.info("파일 삭제 실패 131!");
-					}			
+					}
 					bpost.setBoriginfile(file.getOriginalFilename());
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); // java.text.SimpleDateFormat
-					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); 
-					renameFileName += "."+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1); 								
+					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()));
+					renameFileName += "."
+							+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
 					bpost.setBrenamefile(renameFileName);
 					try {
 						file.transferTo(new File(savePath + "\\" + renameFileName));
@@ -675,9 +519,10 @@ public class abcController {
 					}
 				} else {
 					bpost.setBoriginfile(file.getOriginalFilename());
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
-					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); 
-					renameFileName += "."+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()));
+					renameFileName += "."
+							+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
 					bpost.setBrenamefile(renameFileName);
 					try {
 						file.transferTo(new File(savePath + "\\" + renameFileName));
@@ -688,16 +533,17 @@ public class abcController {
 			}
 		}
 		if (bpostService.updateBpost(bpost) > 0) {
-			//성공하면 bno가지고 selectOne 한번 실행
-			request.setAttribute("bno", bpost.getBno() );
-			return "redirect:/bpostOne.do?bno="+bpost.getBno()+"&ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
+			// 성공하면 bno가지고 selectOne 한번 실행
+			request.setAttribute("bno", bpost.getBno());
+			return "redirect:/bpostOne.do?bno=" + bpost.getBno() + "&ucode=" + pmember.getUcode() + "&pnum="
+					+ pmember.getPnum();
 		} else {
-			//수정실패하면 list로 
-			request.setAttribute("message", "업무 게시글 수정에 실패하였습니다." );
-			return "redirect:/mybpost.do?ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
+			// 수정실패하면 list로
+			request.setAttribute("message", "업무 게시글 수정에 실패하였습니다.");
+			return "redirect:/mybpost.do?ucode=" + pmember.getUcode() + "&pnum=" + pmember.getPnum();
 		}
 	}
-	
+
 	// 업무 삭제용 메소드
 	@RequestMapping(value = "HBdelete.do")
 	public String hwabobpostDelete(Bpost bpost, Model model, HttpServletRequest request, PjMember pmember) {
@@ -710,17 +556,14 @@ public class abcController {
 				String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
 				new File(savePath + "\\" + brenamefilename).delete();
 			}
-			return "redirect:/mybpost.do?ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
+			return "redirect:/mybpost.do?ucode=" + pmember.getUcode() + "&pnum=" + pmember.getPnum();
 		} else {
 			model.addAttribute("message", "업무 게시글 삭제에 실패하였습니다.");
-			return "redirect:/mybpost.do?ucode="+pmember.getUcode()+"&pnum="+pmember.getPnum();
+			return "redirect:/mybpost.do?ucode=" + pmember.getUcode() + "&pnum=" + pmember.getPnum();
 		}
 	}
 
-
-	
-	
-	//2. spost
+	// 2. spost
 	// 일정 selectOne 메소드
 	@RequestMapping("HSOne.do")
 	public String hwaboselectSpost(Model m, String sno) {
@@ -751,7 +594,6 @@ public class abcController {
 		return "abc/selectSpost";
 	}
 
-	
 	// 일정 수정 메소드
 	@RequestMapping(value = "HSupdate.do", method = RequestMethod.POST)
 	public String hwaboupdateSpost(Spost spost, Model m, HttpServletResponse response,
@@ -813,10 +655,9 @@ public class abcController {
 			out.close();
 			return "redirect:/myhwabo.do";
 		}
-	}	
-	
-	
-	//3. cpost
+	}
+
+	// 3. cpost
 	// 글 상세보기용 메소드
 	@RequestMapping("HCOne.do")
 	public ModelAndView selectCpOne(HttpServletRequest request, ModelAndView mv) {
@@ -833,20 +674,18 @@ public class abcController {
 		}
 		return mv;
 	}
-	
+
 	@RequestMapping("moveHCUpdate.do")
 	public String moveUpdateCpost(Cpost cpost, Model model) {
 		model.addAttribute("cpost", cpost);
 		return "suugit/cpostUpdateForm";
-		
+
 	}
-	
+
 	@RequestMapping("HCupdate.do")
-	public void updateCpost(Cpost cpost, AddOn addon,MultipartHttpServletRequest request, ModelAndView mav) {
-		//다중파일이라 완성되면 옮겨오기
-		
-		
-		
+	public void updateCpost(Cpost cpost, AddOn addon, MultipartHttpServletRequest request, ModelAndView mav) {
+		// 다중파일이라 완성되면 옮겨오기
+
 	}
 
 	@RequestMapping("HCdelete.do")
@@ -869,9 +708,9 @@ public class abcController {
 		}
 
 	}
-	
+
 //========== 좋아요 관련 메소드 ==================================================	
-	
+
 	// 좋아요 카운트 조회
 	@RequestMapping("slovecount.do")
 	public String selectCountLove(String no, Model m) {
@@ -904,17 +743,14 @@ public class abcController {
 		return "redirect:/myhwabo.do";
 	}
 
-
 	// 일정 좋아요 취소
 	@RequestMapping("sunlove.do")
 	public String deleteSpostLove() {
 		return "";
 	}
 
-	
-	
 //========== 좋아요 관련 메소드 ==================================================	
-	
+
 	// 게시글에 댓글 조회
 	@RequestMapping("ssereply.do")
 	public String selectPostReply() {
@@ -940,6 +776,5 @@ public class abcController {
 	public String deletePostReply() {
 		return "";
 	}
-
 
 }
