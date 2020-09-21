@@ -185,9 +185,9 @@ console.log(map1_${ status.index });
                <button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle${status.index }" name="like" onclick="sendInsert(${status.index});">
            	   <span>보관</span> <i class="far fa-bookmark"></i></button>
            	   <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
-			   <input type="hidden" id="no_${status.index }" value="${b.bno }">
+			   <input type="text" id="no_${status.index }" value="${b.bno }">
 			   <input type="hidden" id="pnum_${status.index }" value="${b.bpnum }" >
-			   <input type="text" id="open_${status.index }" value="${b.bopen }" >
+			   
 			 <div id="d5"></div>
 		  		<c:if test="${sessionScope.ucode eq b.bucode }">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -307,7 +307,7 @@ console.log(map1_${ status.index });
 			<table><tr>
 				 <td width="20%"><span style="float: left;">
 				 	<i class="far fa-calendar-alt"> 시작일 : &nbsp;${b.bstartday }</i></span>
-				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+				 	&nbsp;&nbsp;&nbsp;&nbsp;  
 	             </td>
 				 <td width="20%"><span style="float: center;">
 				 	<i class="far fa-calendar-alt"> 마감일 : &nbsp;${b.bendday }</i></span>
@@ -328,21 +328,42 @@ console.log(map1_${ status.index });
 				 <c:if test="${! empty b.boriginfile }">
 					<tr>
 					   <td>
-						 <div id="showfile" style="overflow:hidden;"> 
-					     <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 220px;height : 150px;">
-					     <br>
-					     <a href="${ubf }"><i class="far fa-file"></i> :  ${b.boriginfile}</a>
+					     <c:url var="ubf" value="bfdown.do">
+						  	<c:param name="ofile" value="${b.boriginfile}"/>
+						  	<c:param name="rfile" value="${b.brenamefile}"/>
+						  </c:url> 
+						     <div id="showfile" style="overflow:hidden;"> 
+							   <c:forTokens var="ext" items="${b.brenamefile}" delims="." varStatus="status">
+							
+							    <c:if test="${status.last}">
+							        <c:choose>
+							            <c:when test="${ext eq 'jpg' or ext eq 'gif'}">
+							               <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 220px;height : 150px;">
+							            </c:when>
+							             <c:when test="${ext eq 'txt'}">
+							                <img src="resources/img/filemoon.png" style="width:40px; height :40px" >
+							            </c:when>
+							             <c:when test="${ext eq 'pdf'}">
+							                <img src="resources/img/pppptttt.png" style="width:40px; height :40px" >
+							            </c:when>
+							            <c:when test="${ext != 'jpg' and ext != 'txt' and ext != 'pdf'}">
+							                <img src="resources/img/eettcc.png" style="width:40px; height :40px" >
+							            </c:when>
+							       		
+							        </c:choose>
+							    </c:if>
+							</c:forTokens> 
+						  
+					       <br>
+					       <a href="${ubf }"><i class="far fa-file"></i> :  ${b.boriginfile}</a>
 						 </div> 
 					   </td>
-					 <c:url var="ubf" value="bfdown.do">
-					  <c:param name="ofile" value="${b.boriginfile}"/>
-					  <c:param name="rfile" value="${b.brenamefile}"/>
-					 </c:url> 
+					 
 					</tr>
 			    </c:if>
-					<c:if test="${empty b.boriginfile}">
+				<c:if test="${empty b.boriginfile}">
 					&nbsp;
-					</c:if>
+				</c:if>
 			 </table><hr>
 			 <table style="width: 100%;">
 				<tr>
@@ -365,6 +386,7 @@ console.log(map1_${ status.index });
 	</div><!-- card shadow mb-4 -->
 </c:if>
 <!-- bpost끝 -->
+
 <!-- cpost 시작 -->
 <c:if test="${ main.firstword eq 'c' }">
 <c:set var="c" value="${ main }"></c:set>
