@@ -44,7 +44,7 @@
 	<select id="selectLogin" parameterType="Member"
 		resultType="Member">
 		select * from member
-		where uemail = #{uemail} and signtype= 'h'
+		where uemail = #{uemail} and signtype= #{signtype}
 	</select>
 	
 	<select id="selectEmailCheck" parameterType="string" resultType="_int">

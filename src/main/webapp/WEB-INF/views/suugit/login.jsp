@@ -63,12 +63,12 @@
                     <input type="submit" class="btn btn-primary btn-user btn-block" value="로그인">
                     <hr>
                     <div id = "naver_id_login"></div>
-                    <a class="btn btn-google btn-user btn-block" data-onsuccess="onSignIn">
+                    <!-- <a class="btn btn-google btn-user btn-block" data-onsuccess="onSignIn">
                       <i class="fab fa-google fa-fw"></i> Google로 로그인
                     </a>
                     <a href="index.html" class="btn btn-naver btn-user btn-block">
                       <span class="font-weight-bolder" style="font-weight-bolder;font-size:1em">N&nbsp;</span>Naver로 로그인
-                    </a>
+                    </a> -->
                     <div id="naver_id_login" style="text-align:center"><a href="${url}">
 					<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
 					<br>
@@ -132,15 +132,7 @@ if (name !== null){
   }
   
   
-var naver_id_login = new naver_id_login("G3PRvkIGwkhdkqV8S5N7", "http://localhost:8282//hwabo/mvsign.do");    // Client ID, CallBack URL 삽입
-// 단 'localhost'가 포함된 CallBack URL
-var state = naver_id_login.getUniqState();
 
-naver_id_login.setButton("white", 4, 40);
-naver_id_login.setDomain("http://localhost:8282/hwabo/login.do");    //  URL
-naver_id_login.setState(state);
-naver_id_login.setPopup();
-naver_id_login.init_naver_id_login(); 
 </script>
 </body>
 

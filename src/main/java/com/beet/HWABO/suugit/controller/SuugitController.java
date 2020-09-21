@@ -138,6 +138,11 @@ public class SuugitController {
 //		
 //		
 //	}
+	
+	@GetMapping("/terms.do")
+	public String TermsPage() {
+		return "suugit/hwaboTerms";
+	}
 
 	@GetMapping("/signConfirm.do")
 	public ModelAndView signUpConfirm(HttpServletRequest request, ModelAndView mv, Member member) {
@@ -191,6 +196,7 @@ public class SuugitController {
 	public String selectLogin(@Valid Member member, BindingResult theBindingResult, Model model,
 			HttpServletRequest request, SessionStatus status) {
 		logger.info("로그인");
+		member.setSigntype("h");
 		Member loginUser = mservice.selectLogin(member);
 
 		String returnPage = null;
@@ -277,24 +283,24 @@ public class SuugitController {
 			session.setAttribute("uname", member.getUname());
 			session.setAttribute("uimg", member.getUimg());
 			session.setAttribute("signtype", member.getSigntype());
-			return "suugit/loginResult";
+			return "redirect:/cards.do";
 	}
 
 //로그아웃
 	@RequestMapping("logout.do")
-	public String logout(HttpServletRequest request, Model model) {
-		logger.info("로그아웃하는  회원 정보 : " + request.getAttribute("uname"));
-		HttpSession session = request.getSession(false);
+	public String logout(HttpSession session, HttpServletRequest request, Model model) {
+		logger.info("로그아웃하는  회원 정보 : " + session.getAttribute("uname"));
+		String returnPage = "";
+		
 		if (session != null) {
 			session.invalidate();
-			if(session.getAttribute("signtype") == "n") {
-				return "http://nid.naver.com/nidlogin.logout"; 
-			}
-			return "welcome";
-		} else {
+			returnPage = "welcome";
+		}else {
 			model.addAttribute("message", "로그인 정보가 존재하지 않습니다!");
-			return "common/error";
+			returnPage = "common/error";
 		}
+
+		return returnPage;
 	}
 
 //비번찾기
@@ -811,7 +817,7 @@ public class SuugitController {
 				}
 		}
 		cservice.deleteCpost(cno);
-		return "suugit/tables";
+		return "redirect:/ftables2.do?ucode="+request.getSession().getAttribute("ucode")+"&pnum="+request.getSession().getAttribute("pnum");
 
 	}
 }

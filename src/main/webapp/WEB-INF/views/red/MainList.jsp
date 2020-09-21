@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <!DOCTYPE html>
 <body>
 <c:forEach var="main" items="${ requestScope.list }" varStatus="status">  
@@ -361,21 +362,28 @@ geocoder1.addressSearch(spostplace1, function(result, status) {
 	</div><!-- card shadow mb-4 -->
 </c:if>
 <!-- bpost끝 -->
+<!-- cpost 시작 -->
 <c:if test="${ main.firstword eq 'c' }">
 <c:set var="c" value="${ main }"></c:set>
 <div class="card shadow mb-4">
 		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary">
 				<i class="fas fa-user-circle"></i> 
-				<input type="text" value="${c.cucode}">
 				${c.cwriter}<br> 
 				${c.cenrolldate}
 			</h6>
+
 			<div class="dropdown no-arrow">
+
 				<!-- 보관함 담기여부 -->
-				<button id="cabinetshow" class="btn btn-custom btn-sm liketoggle" name="like">
-					<span>보관</span> <i class="far fa-bookmark"></i>
-				</button>
+				
+				<button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle${status.index }" name="like" onclick="sendInsert(${status.index});">
+           	   <span>보관</span> <i class="far fa-bookmark"></i></button>
+           	   <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
+			   <input type="hidden" id="no_${status.index }" value="${c.cno }">
+			   <input type="hidden" id="pnum_${status.index }" value="${c.cpnum }" >
+			   <input type="hidden" id="open_${status.index }" value="${c.copen }" >
+				
 				<!-- 드롭다운 -->
 				<a class="dropdown-toggle" href="#" role="button"
 					id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
@@ -386,15 +394,20 @@ geocoder1.addressSearch(spostplace1, function(result, status) {
 					class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
 					<div class="dropdown-header">메뉴:</div>
 					<a name="mine" class="dropdown-item" onclick="toEdit()" >수정</a> 
-					<a name="mine" class="dropdown-item" href="#">삭제</a>
+					<c:url var="delcp" value="delcp.do">
+                      	<c:param name="cno" value="${c.cno }"/>
+                     </c:url> 
+                     <a name="mine" class="dropdown-item" href="${delcp }">삭제</a>
 				</div>
+
 			</div>
 			<!-- 드롭다운 끝 -->
+
 		</div>
-		<div id="cpView">
 		<div id="cpEdit" style="display:none"> 
 		 <c:import url="/WEB-INF/views/suugit/edit.jsp"></c:import>
 		</div>
+		<div id="cpView">
 		<div class="card-body">
 			<!-- 게시글안쪽 -->
 			<h6>${c.ctitle}<h6>
@@ -402,30 +415,60 @@ geocoder1.addressSearch(spostplace1, function(result, status) {
 			<table>
 				<tr>
 					<td>${c.ccontent}</td>
+					
 				</tr>
 				<tr>
-				<td>
-				</td>
+				
+				<td><br><hr></td>
 				</tr>
-			</table>
-				<ul class="cfstyle row-group" style="display:flex; list-style-type:none;-webkit-padding-start:0px;">
+				<tr id="preview">
+				
 				<c:if test="${!empty c.ofile1 }">
-					<li class="col-sm-3 border border-secondary rounded m-2" style="flex:auto;">
-					<img src="resources/cupfiles/${c.rfile1}" style="max-width:150px">
-					<label>${c.ofile1}</label>
+					<td class="rounded" style="width:33%">
+					<c:set var="fileName" value="${fn:split(c.ofile1, '.')}" />
+					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
+						<c:if test="${fn:contains(fileType,'jpg') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">	
+								<img src="resources/bupfile/${c.rfile1}" style="max-width:150px">
+						</c:if>
+						<c:if test="${not fn:contains(fileType,'jpg') && not fn:contains(fileType,'png') && not fn:contains(fileType,'svg') && not fn:contains(fileType,'gif')}">	
+								<img src="resources/maincss/img/suugit/file_altimg.svg" style="max-width:150px">
+							</c:if>
+							<br>
+					<label class="ml-4 text-center">${c.ofile1} </label>
+					</td>
 				</c:if>
 				<c:if test="${!empty c.ofile2 }">
-					<li class="col-sm-3 border border-secondary rounded m-2" style="flex:auto;">
-					<img src="resources/cupfiles/${c.rfile2}" style="max-width:150px">
-					<label>${c.ofile2}</label>
+					<td class="rounded" style="width:33%">
+					<c:set var="fileName" value="${fn:split(c.ofile2, '.')}" />
+					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
+						<c:if test="${fn:contains(fileType,'jpg') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">	
+								<img src="resources/bupfile/${c.rfile2}" style="max-width:150px">
+						</c:if>
+						<c:if test="${not fn:contains(fileType,'jpg') && not fn:contains(fileType,'png') && not fn:contains(fileType,'svg') && not fn:contains(fileType,'gif')}">	
+								<img src="resources/maincss/img/suugit/file_altimg.svg" style="max-width:150px">
+							</c:if>
+							<br>
+					<label class="ml-4 text-center">${c.ofile2} </label>
+					</td>
 				</c:if>
 				<c:if test="${!empty c.ofile3 }">
-					<li class="col-sm-3 border border-secondary rounded m-2" style="flex:auto;">
-					<img src="resources/cupfiles/${c.rfile3}" style="max-width:150px">
-					<label>${c.ofile3}</label>
+					<td class="rounded" style="width:33%">
+					<c:set var="fileName" value="${fn:split(c.ofile3, '.')}" />
+					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
+						<c:if test="${fn:contains(fileType,'jpg') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">	
+								<img src="resources/bupfile/${c.rfile3}" style="max-width:150px">
+						</c:if>
+						<c:if test="${not fn:contains(fileType,'jpg') && not fn:contains(fileType,'png') && not fn:contains(fileType,'svg') && not fn:contains(fileType,'gif')}">	
+								<img src="resources/maincss/img/suugit/file_altimg.svg" style="max-width:150px">
+							</c:if>
+							<br>
+					<label class="ml-4 text-center">${c.ofile3} </label>
+					</td>
 				</c:if>
-					</li>
-				</ul>
+				</tr>
+			</table>
+
+
 			<hr>
 			<table style="width: 100%;">
 				<tr>
