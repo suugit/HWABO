@@ -11,8 +11,6 @@ public interface CabinetService {
 
 	int deleteCabinet(Cabinet cabinet);
 
-	
-	/* ArrayList<Cabinet> selectUser(String ucode, String pnum); */
 
 	ArrayList<Cabinet> selectUser(Cabinet cabinet);
 	

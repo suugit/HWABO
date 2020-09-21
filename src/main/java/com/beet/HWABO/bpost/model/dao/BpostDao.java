@@ -59,9 +59,5 @@ public class BpostDao {
 		return (ArrayList<Bpost>)list;
 	}
 
-	public int updateOpen(String bno) {
-		
-		return session.update("bpostMapper.updateOpen", bno);
-	}
 
 }

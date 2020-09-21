@@ -51,52 +51,73 @@ div#showfile imag{
 
 
 
-function bkindshow(){
-$("#'${b.bkind}'").button('toggle')
-
-}
-
-var names = "";
-function addbcharge(){
-	var name = $(event.target).text();
-	names += name + " ";
+/* 리스트 들어올 시 보관된 정보 불러오기 */
+$(document).ready(function(){
+	console.log("cabinet list function get in");
 	
-	 $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>');
-	 //$('#bform').val(name); 
-	 
-	 $('#bform').val(names);
-	 alert($("#bform").val()); 
 	
-}
-
-function unSelected(){
+	$.ajax({
+		
+		url: "cabinetList.do",
+		data: {ucode: "${sessionScope.ucode }", pnum: "${sessionScope.pnum }" },
+		type: "post",
+		dataType: "json",
+		success: function(obj){
+			
+			var str = JSON.stringify(obj);
+			var json = JSON.parse(str);
+			console.log("success : " + str);
+			
+			
+			for(var i in json.list){
+				console.log(json.list[i].no); 
+				
+			
+			
+			for(var a = 0; a <= ${fn:length(requestScope.list)}; a++ ){
+				var val = $("#no_"+a).val();
+				
+				
+				
+				if(val == json.list[i].no){
+					console.log("비교값"+val);
+				
+					console.log("됨");
+					   $(".liketoggle"+a).find("i").toggleClass("fas far");
+					   $(".liketoggle"+a).find("span").text(function(i, v) {
+					     return v === '보관' ? '보관됨' : '보관'
+				   });
+					
+				}
+				
+			}
+			}
+			
+			
+		},
+		error: function(jqXHR, textstatus, errorthrown){
+			console.log("error : " +jqXHR+", "+textstatus+", "+errorthrown);
+		}
+		
+		
+	});
 	
-	$(event.target).parent().remove();
 
- 
-}
-
+	
+});
 
 
 
-function validate(){
-	//날짜에 빈 공백이 들어오니까 공백일때 널로 바꿔라 라는 내용을 추가한다
-	return true;
-}
 
 
-</script>
-
-<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript">
 function sendInsert(index){
 	
 	
-	console.log("sendInsert : " + index);
+	console.log("sendCabinet : " + index);
 	console.log($("#no_"+ index).val());
 	
-	if($("#open_"+index).val() == 'y'){
 	
+	if ($(".liketoggle"+index).find("span").text() == '보관') {
 		$.ajax({	      
 		      url: "insertcabinet.do",
 		      data: {no: $("#no_"+ index).val(), ucode: $("#ucode_" + index).val(), pnum: $("#pnum_" + index).val()},     
@@ -104,7 +125,7 @@ function sendInsert(index){
 		      success: function(result){
 
 		         if(result == "ok"){
-		            $("#open_"+index).val('n');
+		           /*  $("#open_"+index).val('n'); */
    					alert("보관 성공");
 		            console.log("보관함 보내기 성공 !");
 		         }else{
@@ -119,7 +140,7 @@ function sendInsert(index){
 		      
 		      }); //에이작스
 	      
-	}else{  //이미 보관된 게시물이라면 n -> y 로 (현재 보관을 n 보관 안함을 y 로 설정해놀음 이유는 내가 청개구리라서)
+	}else{  //이미 보관된 게시물이라면 삭제하기
 		
 		$.ajax({	      
 		      url: "deletecabinet.do",
@@ -127,7 +148,7 @@ function sendInsert(index){
 		      type: "post",
 		      success: function(result){
 		         if(result == "ok"){
-		        	  $("#open_"+index).val('y');
+		        	 /*  $("#open_"+index).val('y'); */
 		          	alert("보관 취소 성공");
 		            console.log("보관함 삭제 성공 !");
 		         }else{
@@ -153,72 +174,6 @@ function sendInsert(index){
 }
 
 
-
-
-/* 리스트 들어올 시 보관된 정보 불러오기 */
-$(document).ready(function(){
-	console.log("cabinet list function get in");
-	
-	
-	$.ajax({
-		
-		url: "cabinetList.do",
-		data: {ucode: "${sessionScope.ucode }", pnum: "${sessionScope.pnum }" },
-		type: "post",
-		dataType: "json",
-		success: function(obj){
-			
-			var str = JSON.stringify(obj);
-			var json = JSON.parse(str);
-			console.log("success : " + str);
-			
-			var output;
-			for(var i in json.list){
-				console.log(json.list[i].no); 
-				
-			
-			
-			for(var a = 0; a <= ${fn:length(requestScope.list)}; a++ ){
-				
-				if($("#no_"+a).val() == 'json.list[i].no'){
-					console.log("#open_"+a);
-					   $(".liketoggle"+a).find("i").toggleClass("fas far");
-					   $(".liketoggle"+a).find("span").text(function(i, v) {
-					     return v === '보관' ? '보관됨' : '보관'
-				   });
-					
-				}
-				
-			}
-			}
-			
-			
-		},
-		error: function(jqXHR, textstatus, errorthrown){
-			console.log("error : " +jqXHR+", "+textstatus+", "+errorthrown);
-		}
-		
-		
-	});
-	
-	
-	
-	
-	
-/* 	for(var a = 0; a <= ${fn:length(requestScope.list)}; a++ ){
-	
-		if($("#open_"+a).val() == 'n'){
-			console.log("#open_"+a);
-			   $(".liketoggle"+a).find("i").toggleClass("fas far");
-			   $(".liketoggle"+a).find("span").text(function(i, v) {
-			     return v === '보관' ? '보관됨' : '보관'
-		   });
-			
-		}
-		
-	} */
-	
-});
 
 
 </script>
@@ -290,19 +245,13 @@ $(document).ready(function(){
 				<!-- 수정삭제 드롭다운 -->	
              <div class="dropdown no-arrow">
                   
-                <!-- 보관함 담기여부 -->  
-				 <!--   <button id="cabinetshow" class="btn btn-custom btn-sm ">
-			   <i class="far fa-bookmark"></i></button>
-           		 -->
-           		 
-               <!-- <form action="insertcabinet.do" method="post"> -->
-              
+                <!-- 보관함 담기기능 -->  
                <button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle${status.index }" name="like" onclick="sendInsert(${status.index});">
            	   <span>보관</span> <i class="far fa-bookmark"></i></button>
            	   <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
-			   <input type="hidden" id="no_${status.index }" value="${b.bno }">
+			   <input type="text" id="no_${status.index }" value="${b.bno }">
 			   <input type="hidden" id="pnum_${status.index }" value="${b.bpnum }" >
-			   <input type="text" id="open_${status.index }" value="${b.bopen }" >
+			   
              
 
 			 <div id="d5"></div>

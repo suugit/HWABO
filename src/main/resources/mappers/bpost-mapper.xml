@@ -145,7 +145,7 @@
 <!-- 보관함 관련!!! -->
 
 
-<update id="updateOpen" parameterType="string">
+<!-- <update id="updateOpen" parameterType="string">
 
 
 update bpost
@@ -157,7 +157,7 @@ end
 where bno = #{bno}
 
 
-</update>
+</update> -->
 
 
 </mapper>
