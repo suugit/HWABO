@@ -36,6 +36,7 @@ import com.beet.HWABO.cpost.model.vo.AddOn;
 import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.spost.model.service.SpostService;
+import com.beet.HWABO.spost.model.vo.Bpostchk;
 import com.beet.HWABO.spost.model.vo.Post;
 import com.beet.HWABO.spost.model.vo.Spost;
 
@@ -233,6 +234,8 @@ public class abcController {
 															@RequestParam(value="ucode") String ucode, @RequestParam(value="pnum") String pnum) {
 		logger.info(types.toString());
 		logger.info("@@@@@@@@@@@@@@@@@@@ chooseBpost 들어옴 @@@@@@@@@@@@@@@@ ");
+		Bpostchk chk = new B
+		
 		ArrayList<Bpost> list = spostService.chooseBpost(types);
 		
 		if(list != null) {
