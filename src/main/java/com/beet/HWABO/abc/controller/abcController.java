@@ -24,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -234,11 +235,15 @@ public class abcController {
 
 	// 원하는 업무글 유형만 보기 메소드
 	@RequestMapping(value = "chooseBpost.do", method = RequestMethod.POST)
-	public JSONArray chooseBpostMethod(@RequestParam(value = "ucode") String ucode,
-			@RequestParam(value = "pnum") String pnum, @RequestParam(value = "types[]") List<String> types, Model m)
+	@ResponseBody
+	public String chooseBpostMethod(HttpServletResponse response, @RequestParam("ucode") String ucode,
+			@RequestParam("pnum") String pnum, @RequestParam("types") List<String> types, Model m)
 			throws UnsupportedEncodingException {
 		logger.info(types.toString());
 		logger.info("@@@@@@@@@@@@@@@@@@@ chooseBpost 들어옴 @@@@@@@@@@@@@@@@ ");
+		logger.info(ucode.toString());
+		
+		response.setContentType("test/html; charset=utf-8");
 		Bpostchk chk = new Bpostchk(ucode, pnum, types);
 
 		ArrayList<Bpost> list = spostService.chooseBpost(chk);
@@ -266,7 +271,8 @@ public class abcController {
 			// jarr에 json 객체 저장
 			jarr.add(job);
 		}
-		return jarr;
+		logger.info(jarr.toString());
+		return jarr.toJSONString();
 
 	}
 

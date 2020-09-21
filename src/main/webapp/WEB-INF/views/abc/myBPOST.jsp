@@ -50,26 +50,30 @@ $(document).ready(function() {
 		});	
 		alert(types+"types");
 		
-		var ucodeval = '${ucode}';
-		var pnumval = '${pnum}';
-		var allData ={'ucode': ucodeval , 'pnum': pnumval, 'types': types};
+		var ucodeval = "${ucode}";
+		var pnumval = "${pnum}";
+		alert("ucodeval : " + ucodeval +", pnumval : " + pnumval);
+		var allData ={"ucode" : ucodeval , "pnum": pnumval, "types": types};
+
 		$.ajax({
 			url: "chooseBpost.do",
-			type: "post",
+			type: "POST",
 			data: allData, 
-			dataType: "json",
+			dataType: "Json",
+			traditional: true,
 			success: function(obj){
-				alert(obj);
+				alert('tkd');
 				// 리턴된 객체를 문자열로 변환 처리
 				var objStr = JSON.stringify(obj);
 				// 객체 문자열을 다시 json 객체로 바꿈
-				var jsonObj = JSON.parse(objStr);
+				//var jsonObj = JSON.parse(objStr);
 				//출력용 문자열 만들기 (for in 문을 사용해보자)
-			//	$("#bpost_tbody").empty();
-				
-			//	$.each(res, function(r){
-			//	       $("#trclick").append("<td>"+decodeURIComponent(jsonObj.list[i].bkind.replace(/\+/gi," "))+"</td><td>"+decodeURIComponent(jsonObj.list[i].btitle.replace(/\+/gi," "))+"</td><td>"+decodeURIComponent(jsonObj.list[i].bcontent.replace(/\+/gi," "))+"</td><td>"+jsonObj.list[i].benrolldate+"</td>");
-			//	    });
+				$("#bpost_tbody").empty();
+				//$("#bpost_tbody").html(decodeURIComponent(obj[0].bkind));
+
+				$.each(obj, function(r){
+			       $("#trclick").append("<td>"+decodeURIComponent(obj.bkind)+"</td><td>"+decodeURIComponent(obj.btitle)+"</td><td>"+decodeURIComponent(obj.bcontent)+"</td><td>"+obj.benrolldate+"</td>");
+			    });
 				
 				
 				//for(var i in jsonObj.list){
