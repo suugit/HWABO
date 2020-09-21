@@ -198,7 +198,7 @@ console.log(map1_${ status.index });
                       	<c:param name="bno" value="${b.bno }"/>
                       </c:url> 
                      <a class="dropdown-item" href="${bup }">수정</a>
-                       <c:url var="bdel" value="deletebpost.do">
+                       <c:url var="bdel" value="deletebpostMain.do">
                       	<c:param name="bno" value="${b.bno }"/>
                     	<c:param name="brenamefile" value="${b.brenamefile }"/>
                       </c:url>

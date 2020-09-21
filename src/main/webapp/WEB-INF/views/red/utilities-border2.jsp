@@ -34,7 +34,7 @@
 <body id="page-top">
 <!-- 1.topbar추가 -->
 <!-- Topbar2 -->
-        <c:import url="/WEB-INF/views/red/topbar.jsp"></c:import>
+        <c:import url="/WEB-INF/views/suugit/topbar.jsp"></c:import>
 <!-- End of Topbar -->
 
 <!-- 2.바로아래div추가 및 임포트 추가  -->

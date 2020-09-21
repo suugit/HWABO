@@ -6,6 +6,10 @@
 <!DOCTYPE html>
 <!-- 재료시작 -->
 <style type="text/css">
+
+#counter:focus {outline:none;}
+#counter{margin: 0;}
+
 div#showfile imag{
 	width : 10%;
 	height : 10%;
