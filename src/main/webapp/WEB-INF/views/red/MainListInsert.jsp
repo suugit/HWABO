@@ -190,7 +190,7 @@ function fileCheck() {
 <% if(request.getParameter("choicethat") != null){ %>
 	<b style="color:red;position:relative;z-index:10;">&nbsp;&nbsp; 담당자 지정은 필수 입니다.</b>
 <% } %>			                   
-<!-- @@@  -->                                                                                                <!-- @@@  -->
+<!-- @@@  -->                                                                                                       <!-- @@@  -->
 <!-- @@@@끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
                       <div><input type="hidden" id="selected"></div>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2" >

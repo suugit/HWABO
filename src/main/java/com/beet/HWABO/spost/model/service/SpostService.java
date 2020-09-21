@@ -7,6 +7,7 @@ import com.beet.HWABO.abc.model.vo.Love;
 import com.beet.HWABO.abc.model.vo.Postreply;
 import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.member.model.vo.PjMember;
+import com.beet.HWABO.spost.model.vo.Bpostchk;
 import com.beet.HWABO.spost.model.vo.Post;
 import com.beet.HWABO.spost.model.vo.Spost;
 
@@ -22,7 +23,7 @@ public interface SpostService {
 	//Bpost
 	ArrayList<Bpost> selectMyBPOST(PjMember pmember);
 	Bpost selectOneBpost(String bno);
-	ArrayList<Bpost> chooseBpost(List<String> types);
+	ArrayList<Bpost> chooseBpost(Bpostchk chk);
 	
 	//all Post
 	ArrayList<Post> selectMyPost(PjMember pmember);

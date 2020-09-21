@@ -78,7 +78,7 @@
 			bpnum=#{pnum}
 			and
 			bkind in 
-			<foreach item="item" index="index" collection="list"
+			<foreach item="item" index="index" collection="types"
       			open="(" separator="," close=")">
 			        #{item}
 			  </foreach>

@@ -40,7 +40,7 @@
 <!-- 삭제버튼 css 끝 -->
 
 <script>
-var speed = 3000;
+var speed = ${ sessionScope.cspeed };
 $(function(){
 	$("#enter_chat").on("click", function(){
 		enterChat();

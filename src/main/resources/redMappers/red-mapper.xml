@@ -237,6 +237,10 @@
 		order by cenrolldate desc
 </select>
 
+<select id="selectChatSpeed" parameterType="com.beet.HWABO.red.model.vo.ChatSpeed" resultType="com.beet.HWABO.red.model.vo.ChatSpeed">
+		select * from chat_speed where fk = #{ fk }
+</select>
+
 <insert id="insertProject" parameterType="com.beet.HWABO.red.model.vo.UserProject">
 		insert into project VALUES (#{project_num},#{name},#{explain},default,default,default,default,100000,1,#{right},(select max(TO_NUMBER(order_by))+1 from project))
 </insert>
@@ -280,6 +284,10 @@
 
 <update id="updateProjectProgress" parameterType="com.beet.HWABO.red.model.vo.MemberProject">
 		update project set goal = #{ goal }, done = #{ done } where project_num = #{ project_num }
+</update>
+
+<update id="updateChatSpeed" parameterType="com.beet.HWABO.red.model.vo.ChatSpeed">
+		update chat_speed set speed = #{ speed } where fk = #{ fk }
 </update>
 
 </mapper>
