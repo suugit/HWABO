@@ -5,8 +5,36 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <!DOCTYPE html>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
+
+<script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#spostupdate").css("display", "none" );
+		$("#changeselect").css("display", "none" );
+	});	//document.ready;
+	
+	function changeform1(){
+		$("#spostview").css("display", "none" );
+		$("#spostupdate").css("display", "block" );
+		$("#changeupdate").css("display", "none" );
+		$("#changeselect").css("display", "block" );
+	};
+
+	function changeform2(){
+		$("#spostview").css("display", "block" );
+		$("#spostupdate").css("display", "none" );
+		$("#changeupdate").css("display", "block" );
+		$("#changeselect").css("display", "none" );
+	};
+	
+	function mapchange (index){
+		alert("ddddd" + index);
+	}
+	
+</script>
 <body>
-<c:forEach var="main" items="${ requestScope.list }" varStatus="status">  
+<c:forEach var="main" items="${ requestScope.list }"  varStatus="status">  
+
 <%-- ${ status.count } --%>
 <c:if test="${ main.firstword eq 's' }">
 <c:set var="post" value="${ main }"></c:set>

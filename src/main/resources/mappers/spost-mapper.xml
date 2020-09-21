@@ -6,9 +6,9 @@
 
 <!-- spost insert -->
 	<insert id="insertSpost" parameterType="Spost" >
-		insert into spost(sno, stitle, sucode, swriter, sstartday, sendday, splace, scontent, senrolldate, sopen)
+		insert into spost(sno, stitle, sucode, swriter, sstartday, sendday, splace, scontent, senrolldate, sopen, spnum)
 		values ( (select concat('s', (select nvl(max(to_number(substr(sno,2))),0)+1 from spost))from dual)  , #{stitle}, #{sucode}, #{swriter}, #{sstartday}, #{sendday}, #{splace}, 
-				   #{scontent}, sysdate, #{sopen} )
+				   #{scontent}, sysdate, #{sopen}, #{spnum} )
 	</insert>
 
 <!-- spost 전체 조회 -->

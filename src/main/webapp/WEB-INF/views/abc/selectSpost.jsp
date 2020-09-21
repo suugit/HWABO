@@ -29,8 +29,6 @@
 		$("#changeupdate").css("display", "block" );
 		$("#changeselect").css("display", "none" );
 	};
-	
-
 </script>
 
 <body>

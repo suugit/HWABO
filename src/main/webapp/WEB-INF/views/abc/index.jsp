@@ -31,6 +31,7 @@
     <button onclick="javascript:location.href='myhwabo.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">나의 화보</button>
     <button onclick="javascript:location.href='yourhwabo.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">팀원의 화보</button>
     <button onclick="javascript:location.href='insertspost.do'">일정게시글 입력폼</button>
+    <button onclick="javascript:location.href='testhwabo.do'?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">피드 테스트</button>
     <button onclick="javascript:location.href='selectonespost.do'">일정게시글 1개 조회 > 수정</button>
     <button onclick="javascript:location.href='alarm.do'">알림테스트</button>
     <button onclick="javascript:location.href='tables.do'">card import test</button>

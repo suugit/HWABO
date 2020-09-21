@@ -49,6 +49,7 @@ $(document).ready(function() {
 		$("input[name=type]:checked").each(function(){
 			types.push($(this).val());
 		});	
+		
 		var allData ={'ucode': ${sessionScope.ucode}, 'pnum':${sessionScope.pnum}, 'types': types};
 		
 		$.ajax({
