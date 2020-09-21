@@ -15,8 +15,6 @@ public class Cabinet implements java.io.Serializable{
 		super();
 	}
 
-	
-
 	public Cabinet(String ucode, String no, String pnum, Date enrolldate) {
 		super();
 		this.ucode = ucode;
@@ -24,8 +22,6 @@ public class Cabinet implements java.io.Serializable{
 		this.pnum = pnum;
 		this.enrolldate = enrolldate;
 	}
-
-
 
 	public String getUcode() {
 		return ucode;
@@ -43,6 +39,14 @@ public class Cabinet implements java.io.Serializable{
 		this.no = no;
 	}
 
+	public String getPnum() {
+		return pnum;
+	}
+
+	public void setPnum(String pnum) {
+		this.pnum = pnum;
+	}
+
 	public Date getEnrolldate() {
 		return enrolldate;
 	}
@@ -50,28 +54,13 @@ public class Cabinet implements java.io.Serializable{
 	public void setEnrolldate(Date enrolldate) {
 		this.enrolldate = enrolldate;
 	}
-	
-	
-
-	public String getPnum() {
-		return pnum;
-	}
-
-
-
-	public void setPnum(String pnum) {
-		this.pnum = pnum;
-	}
-
-
 
 	@Override
 	public String toString() {
 		return "Cabinet [ucode=" + ucode + ", no=" + no + ", pnum=" + pnum + ", enrolldate=" + enrolldate + "]";
 	}
 
-
-
+	
 	
 	
 	

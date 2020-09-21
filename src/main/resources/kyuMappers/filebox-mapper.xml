@@ -26,7 +26,8 @@ where not boriginfile is null and bpnum = #{pnum} and substr(boriginfile, instr(
 													or substr(boriginfile, instr(boriginfile,'.',-1)+1) = 'bmp'
 													or substr(boriginfile, instr(boriginfile,'.',-1)+1) = 'png'
 													or substr(boriginfile, instr(boriginfile,'.',-1)+1) = 'tiff'
-													or substr(boriginfile, instr(boriginfile,'.',-1)+1) = 'raw')
+													or substr(boriginfile, instr(boriginfile,'.',-1)+1) = 'raw'
+													or substr(boriginfile, instr(boriginfile,'.',-1)+1) = 'gif')
 													
 union all
 (select  cno as no, ctitle as title, cwriter as writer, cenrolldate as enroll, o ,r, cpnum as pnum 
@@ -35,7 +36,8 @@ where not o is null and cpnum = #{pnum} and substr(o, instr(o,'.',-1)+1) = 'jpg'
 										or substr(o, instr(o,'.',-1)+1) = 'bmp'
 										or substr(o, instr(o,'.',-1)+1) = 'png'
 										or substr(o, instr(o,'.',-1)+1) = 'tiff'
-										or substr(o, instr(o,'.',-1)+1) = 'raw')
+										or substr(o, instr(o,'.',-1)+1) = 'raw'
+										or substr(o, instr(o,'.',-1)+1) = 'gif')
 order by enroll desc
 
 

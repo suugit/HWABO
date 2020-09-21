@@ -1,19 +1,29 @@
 package com.beet.HWABO.cabinet.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.beet.HWABO.bpost.model.service.BpostService;
 import com.beet.HWABO.cabinet.model.service.CabinetService;
 import com.beet.HWABO.cabinet.model.vo.Cabinet;
+
+import com.beet.HWABO.cabinet.model.vo.CabinetKK;
 import com.beet.HWABO.cpost.model.service.CpostService;
 import com.beet.HWABO.spost.model.service.SpostService;
 
@@ -170,6 +180,71 @@ public class CabinetController {
       out.close();
    
    }
+   
+   
+   @RequestMapping(value="cabinetList.do", method = RequestMethod.POST)
+   @ResponseBody 
+   public String cabinetList(Cabinet cabinet, HttpServletResponse response) throws IOException{
+	 
+		logger.info("cabinetk : "+ cabinet);
+	  
+	   ArrayList<Cabinet> list = cabinetService.selectUser(cabinet);
+	
+	   JSONObject sendJson = new JSONObject();
+
+		JSONArray jarr = new JSONArray();
+		
+		
+		for(Cabinet c : list) {
+			JSONObject job = new JSONObject();
+			job.put("no", URLEncoder.encode(c.getNo(), "utf-8"));
+			
+			jarr.add(job);
+			
+		}
+		sendJson.put("list", jarr);
+		return sendJson.toString();
+   }
+   
+   
+   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

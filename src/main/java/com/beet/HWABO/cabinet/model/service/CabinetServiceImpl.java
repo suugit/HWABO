@@ -1,5 +1,7 @@
 package com.beet.HWABO.cabinet.model.service;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.beet.HWABO.cabinet.model.dao.CabinetDao;
 import com.beet.HWABO.cabinet.model.vo.Cabinet;
+import com.beet.HWABO.cabinet.model.vo.CabinetKK;
+
 
 @Service("cabinetService")
 public class CabinetServiceImpl implements CabinetService{
@@ -31,5 +35,16 @@ public class CabinetServiceImpl implements CabinetService{
 		return cabinetDao.deleteCabinet(cabinet);
 	}
 
+	@Override
+	public ArrayList<Cabinet> selectUser(Cabinet cabinet) {
+		logger.info("service 옴 ucode, pnum :" + cabinet);
+		return cabinetDao.selectUser(cabinet);
+	}
+
+	/*
+	 * @Override public ArrayList<Cabinet> selectUser(String ucode, String pnum) {
+	 * logger.info("service 옴 ucode, pnum :" + ucode+", " + pnum); return
+	 * cabinetDao.selectUser(ucode, pnum); }
+	 */
 	
 }

@@ -155,14 +155,15 @@ function sendInsert(index){
 
 
 
-
+/* 리스트 들어올 시 보관된 정보 불러오기 */
 $(document).ready(function(){
-	console.log("0");
+	console.log("cabinet list function get in");
 	
 	
 	$.ajax({
 		
-		url: "openList.do?ucode=${sessionScope.ucode }, pnum=${sessionScope.pnum }",    
+		url: "cabinetList.do",
+		data: {ucode: "${sessionScope.ucode }", pnum: "${sessionScope.pnum }" },
 		type: "post",
 		dataType: "json",
 		success: function(obj){
@@ -171,7 +172,25 @@ $(document).ready(function(){
 			var json = JSON.parse(str);
 			console.log("success : " + str);
 			
-			var values = "";
+			var output;
+			for(var i in json.list){
+				console.log(json.list[i].no); 
+				
+			
+			
+			for(var a = 0; a <= ${fn:length(requestScope.list)}; a++ ){
+				
+				if($("#no_"+a).val() == 'json.list[i].no'){
+					console.log("#open_"+a);
+					   $(".liketoggle"+a).find("i").toggleClass("fas far");
+					   $(".liketoggle"+a).find("span").text(function(i, v) {
+					     return v === '보관' ? '보관됨' : '보관'
+				   });
+					
+				}
+				
+			}
+			}
 			
 			
 		},
@@ -186,7 +205,7 @@ $(document).ready(function(){
 	
 	
 	
-	for(var a = 0; a <= ${fn:length(requestScope.list)}; a++ ){
+/* 	for(var a = 0; a <= ${fn:length(requestScope.list)}; a++ ){
 	
 		if($("#open_"+a).val() == 'n'){
 			console.log("#open_"+a);
@@ -197,7 +216,7 @@ $(document).ready(function(){
 			
 		}
 		
-	}
+	} */
 	
 });
 
@@ -433,7 +452,7 @@ $(document).ready(function(){
 				<tr>
 				 <td width="20%"><span style="float: left;">
 				 	<i class="far fa-calendar-alt"> 시작일 : &nbsp;${b.bstartday }</i></span>
-				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
 	             </td>
 				 <td width="20%"><span style="float: center;">
 				 	<i class="far fa-calendar-alt"> 마감일 : &nbsp;${b.bendday }</i></span>
@@ -469,13 +488,19 @@ $(document).ready(function(){
 						
 						    <c:if test="${status.last}">
 						        <c:choose>
-						            <c:when test="${ext eq 'jpg'}">
+						            <c:when test="${ext eq 'jpg' or ext eq 'gif'}">
 						               <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 220px;height : 150px;">
 						            </c:when>
-						            <c:when test="${ext != 'jpg'}">
+						             <c:when test="${ext eq 'txt'}">
+						                <img src="resources/img/filemoon.png" style="width:40px; height :40px" >
+						            </c:when>
+						             <c:when test="${ext eq 'pdf'}">
+						                <img src="resources/img/pppptttt.png" style="width:40px; height :40px" >
+						            </c:when>
+						            <c:when test="${ext != 'jpg' and ext != 'txt' and ext != 'pdf'}">
 						                <img src="resources/img/eettcc.png" style="width:40px; height :40px" >
 						            </c:when>
-						       
+						       		
 						        </c:choose>
 						    </c:if>
 						</c:forTokens> 

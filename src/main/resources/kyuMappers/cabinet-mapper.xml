@@ -5,6 +5,12 @@
 <mapper namespace="cabinetMapper">
 
 
+<resultMap type="Cabinet" id="resultno">
+	<result column="no" property="no" />
+
+</resultMap>
+
+
 <insert id="insertCabinet" parameterType="Cabinet">
 
 	insert into cabinet
@@ -20,6 +26,12 @@
 
 </delete>
 
+<select id="selectUser" parameterType="cabinet" resultType="cabinet">
 
+	select (no)
+	from cabinet
+	where ucode = #{ucode} and pnum = #{pnum}
+
+</select>
 
 </mapper>
