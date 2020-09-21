@@ -79,14 +79,7 @@
              		</button>
               	</td>
               </tr>
-			<tr>
-			<td> 		
-			<c:url var="calln" value="selcpone.do">
-				<c:param name="cno" value="c5" />
-			</c:url>
-		<button><a href="${calln}">상세보기 테스트</a></button> 
-			</td>
-			</tr>
+			
 		
    <script src="resources/js/jquery-3.5.1.min.js"></script>
    <script src="resources/js/cpost.js"></script>

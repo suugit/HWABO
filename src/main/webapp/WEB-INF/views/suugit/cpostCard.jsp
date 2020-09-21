@@ -159,7 +159,6 @@
 	
    <script src="resources/js/jquery-3.5.1.min.js"></script>
    <script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-   <script src="resources/js/cpost.js"></script>
    <script>
 
    $(document).ready(function (e){

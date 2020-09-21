@@ -58,7 +58,12 @@
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	
 	<interceptors>
- 	
+ 	<!-- logger -->
+ 	<interceptor>
+			<mapping path="/**" />
+			<exclude-mapping path="/riseChat.do" /> 
+			<beans:bean id="loggerInterceptor" class="com.beet.HWABO.common.interceptor.LoggerInterceptor" />
+		</interceptor>
 	<!-- 세션체크 -->
 		<interceptor>
 		  <mapping path="/**" /> 

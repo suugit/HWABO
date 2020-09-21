@@ -54,7 +54,7 @@
               			<input type="file" name="ofile" style="display:none" id="atchm_img" accept=".jpg,.png,.svg" multiple>
               			<i class="fa fa fa-image ">&nbsp;사진</i>
               		</label> 
-              		<label class="btn btn-light small" >
+              		<label class="btn btn-light small testfile" >
               			<input type="file" name="hashtag" style="display:none">
               			<i class="fa fa-hashtag ">&nbsp;</i>
               		</label>
@@ -80,18 +80,32 @@
              		</button>
               	</td>
               </tr>
-			<tr>
+			<%-- <tr>
 			<td> 		
 			<c:url var="calln" value="selcpone.do">
-				<c:param name="cno" value="c132" />
+				<c:param name="cno" value="c187" />
 			</c:url>
 		<button><a href="${calln}">상세보기 테스트</a></button> 
 			</td>
-			</tr>
+			</tr> --%>
 		
    <script src="resources/js/jquery-3.5.1.min.js"></script>
    <script src="resources/js/cpost.js"></script>
+   <script>
+   $("input[type='file']").on('change',function(e){
+	   alert('hhr');
+		var fileArea = $('#InsertTable [id=preview]');
+   //div 내용 비워주기
+	//var fileArea = $('#InsertTable [id=preview]');
+	fileArea.empty();
+	
+   var files = e.target.files;
+   var arr =Array.prototype.slice.call(files);
+
+   preview(fileArea, arr);
    
+ });
+   </script>
    
 </body>
 </html>

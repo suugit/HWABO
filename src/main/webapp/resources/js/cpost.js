@@ -12,44 +12,10 @@
 	    var dropFile = function(event) {
 	    	   event.preventDefault();
 	    	}
-	    
-
-$(document).ready(function (e){
-	$("input[id='file']").on('change',function(e){
-		var fileArea = $('#InsertTable [id=preview]');
-    //div 내용 비워주기
-	//var fileArea = $('#InsertTable [id=preview]');
-	fileArea.empty();
-	
-    var files = e.target.files;
-    var arr =Array.prototype.slice.call(files);
-
-    preview(fileArea, arr);
-    
-  });
 
 
-	//파일수정
-
-		$('#updatecPost').find("input[type='file']").on('change',function(e){
-			alert('h');
-			event.preventDefault();
-			var fileArea = $('#CpostUpTable [id=preview]');
-			//alert(fileArea.cells.length());
-			//fileArea.empty();
-			if(fileArea.children('td').length >= 3){
-				alert('첨부파일은 최대 3개까지 가능합니다');
-				return false;
-			}
-				var file = e.target.file;
-				var arr =Array.prototype.slice.call(file);
-				preview(fileArea, arr);
-			
-		    
-		  });
-});		
-		
   function preview(fileArea, arr){
+	  alert('hh');
     arr.forEach(function(f){
     	
     	var fileName = f.name;

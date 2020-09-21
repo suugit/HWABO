@@ -75,7 +75,7 @@
 
 	<update id="updateCpost" parameterType="AddOn">
 		update cpost
-		set ctitle = #{ctitle}, ccontent=#{ccontent}, cenrolldate= sysdate
+		set ctitle = #{ctitle}, ccontent=#{ccontent}, cenrolldate = sysdate
 		where cno = #{cno}
 	</update>
 
