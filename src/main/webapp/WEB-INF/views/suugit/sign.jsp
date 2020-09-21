@@ -93,7 +93,7 @@
 								<input class="form-check-input" type="checkbox" value=""
 									id="toschk"> <label class="form-check-label text-sm"
 									for="toschk"> <small>위의<a
-										href="javascript:window.open('${CONTEXT_PATH}/WEB-INF/views/suugit/hwaboTerms.jsp','', 'popup');">이용약관
+										href="javascript:window.open('${CONTEXT_PATH}/terms.do','', 'popup');">이용약관
 											및 개인정보 수집 및 이용</a>에 대한 안내에 동의합니다.
 								</small>
 								</label>
@@ -105,13 +105,14 @@
 						</div>
 
 						<hr>
-						<div class="col-md-9 mt-1 mb-4 mx-auto">
-							<a href="index.html" class="btn btn-google btn-user btn-block">
+						<div class="col-md-9 mt-1 mb-4 mx-auto text-center">
+							<a href="javascript:location.href='welcome.do'" ><span class="btn btn-outline-secondary">시작 페이지로 돌아가기</span> </a>
+							<!-- <a href="index.html" class="btn btn-google btn-user btn-block">
 								<i class="fab fa-google fa-fw"></i> Google로 가입하기
 							</a> <a href="index.html" class="btn btn-naver btn-user btn-block">
 								<span class="font-weight-bolder" style="font-size: 1em">N&nbsp;</span>Naver로
 								가입하기
-							</a>
+							</a> -->
 						</div>
 					</div>
 				</div>

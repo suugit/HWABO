@@ -59,8 +59,12 @@ public class SpostDao {
 	public Bpost selectOneBpost(String bno) {
 		return session.selectOne("postMapper.selectOneBpost", bno);
 	}
+			
+	public ArrayList<Bpost> chooseBpost(List<String> types) {
+		List<Bpost> list = session.selectList("postMapper.chooseBpost", types);
+		return (ArrayList<Bpost>) list;
+	}
 	
-		
 // -------- Post ----------------------------------------------------------------------------------------------------
 	
 	public ArrayList<Post> selectMyPost(PjMember pmember) {
@@ -97,6 +101,8 @@ public class SpostDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
 
 
 

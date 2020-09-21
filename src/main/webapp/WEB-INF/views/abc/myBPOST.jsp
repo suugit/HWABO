@@ -34,27 +34,42 @@
 	href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
 
-<script type="text/javascript" src="resources/js/scripts.js"></script>
+<script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('#dataTable').dataTable( {
 	  "lengthChange": false
 	});
 
-	var message = ${requestScope.message}
-	if(message != null){
-		alert(message);
-	}
+
 	
- 
+	
+	$('.type').change(function(){
+		var types = [];
+		$("input[name=type]:checked").each(function(){
+			types.push($(this).val());
+		});	
+		
+		var allData ={'ucode': ${sessionScope.ucode}, 'pnum':${sessionScope.pnum}, 'types': types};
+		
+		$.ajax({
+			type: 'POST',
+			url: "chooseBpost.do",
+			data: allData,
+			success: function(){
+				alert("원하는 유형글만 보기 성공 ~");
+			},
+			error: function(){
+				alert("원하는 유형글만 보기 실패 !!");
+			}
+			
+		});
+		
+		
+	});
 });
 
 
-$("#").on('click', function(e){
-
-	return false;
-
-	});
 </script>
 
 </head>
@@ -101,11 +116,11 @@ $("#").on('click', function(e){
 								<div class="card-body" style="overflow: auto;">
 								<div class="checks" align="right" style="margin-left: 1%; font-size: 17px; font-weight: bold; " >
 						<form action="#">
-							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox1" name="type" type="checkbox" checked="checked">&nbsp;요 청&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox2" name="type" type="checkbox" checked="checked">&nbsp;진 행&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox3" name="type" type="checkbox" checked="checked">&nbsp;피드백&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox4" name="type" type="checkbox" checked="checked">&nbsp;완 료&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox5" name="type" type="checkbox" checked="checked">&nbsp;보 류&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox1" class="type" name="type" type="checkbox"  value="요청" checked="checked">&nbsp;요 청&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox2" class="type" name="type" type="checkbox"  value="진행" checked="checked">&nbsp;진 행&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox3" class="type" name="type" type="checkbox"  value="피드백" checked="checked">&nbsp;피드백&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox4" class="type" name="type" type="checkbox"  value="완료" checked="checked">&nbsp;완 료&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox5" class="type" name="type" type="checkbox" value="보류" checked="checked">&nbsp;보 류&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
 						</form>
 					</div>
 									<div class="table-responsive">

@@ -70,7 +70,21 @@
 	order by enrolldate desc
 </select>
 
+<select id="chooseBpost" resultType="Bpost">
+	select BNO, BTITLE, BUCODE, BWRITER, BSTARTDAY, BENDDAY, BKIND, BCHARGE, BCONTENT, BENROLLDATE, BOPEN, BRENAMEFILE, BORIGINFILE, BPNUM, BCHARGENAME
+	from bpost
+	where bucode=#{ucode}
+			and
+			bpnum=#{pnum}
+			and
+			bkind in 
+			<foreach item="item" index="index" collection="list"
+      			open="(" separator="," close=")">
+			        #{item}
+			  </foreach>
+    order by benrolldate desc
 
+</select>
 
 
 

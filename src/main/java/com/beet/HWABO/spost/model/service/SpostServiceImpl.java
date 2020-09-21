@@ -1,6 +1,7 @@
 package com.beet.HWABO.spost.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,6 +66,10 @@ public class SpostServiceImpl implements SpostService{
 		return spostDao.selectOneBpost(bno);
 	}
 	
+	@Override
+	public ArrayList<Bpost> chooseBpost(List<String> types) {
+		return spostDao.chooseBpost(types);
+	}
 	
 	
 //-------- Post -------------------------------------------------------------------------------------------------	
@@ -110,6 +115,9 @@ public class SpostServiceImpl implements SpostService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+
 
 
 

@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<c:set var="currentUcode" value="${sessionScope.ucode }"/>
+<c:set var="bpostUcode" value="${post.bucode }"/>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -112,7 +113,7 @@ div#showfile imag {
 				<span>보관</span>
 			</button>
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		<c:if test="${post.bucode eq ${sessionScope.ucode}">
+		<c:if test="${bpostUcode == currentUcode}">
 			<span >
 				<c:url var="bup" value="moveBpostUpdate.do">
 							<c:param name="bno" value="${post.bno }" />
