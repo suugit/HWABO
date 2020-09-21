@@ -26,6 +26,11 @@
 
 </delete>
 
+<delete id="deleteWithCabinet" parameterType="string">
+	delete from cabinet
+	where no = #{no}
+</delete>
+
 <select id="selectUser" parameterType="cabinet" resultType="cabinet">
 
 	select (no)
@@ -34,4 +39,33 @@
 
 </select>
 
+<select id="selectCabinetList" parameterType="com.beet.HWABO.cabinet.model.vo.realpost" resultType="com.beet.HWABO.cabinet.model.vo.realpost">
+
+	select *
+	from
+	(select no, enrolldate ss
+	from cabinet
+	where ucode = #{ucode} and pnum = #{pnum} ) a left join realpost b using (no)
+	order by a.ss
+	
+
+
+</select>
+
+
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

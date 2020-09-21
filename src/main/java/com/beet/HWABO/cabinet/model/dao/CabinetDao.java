@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.beet.HWABO.cabinet.model.vo.Cabinet;
-import com.beet.HWABO.cabinet.model.vo.CabinetKK;
+import com.beet.HWABO.cabinet.model.vo.realpost;
 
 
 @Repository("cabinetDao")
@@ -39,12 +39,15 @@ public class CabinetDao {
 		return (ArrayList<Cabinet>)list;
 	}
 
-	/*
-	 * public ArrayList<Cabinet> selectUser(String ucode, String pnum) {
-	 * logger.info("cabinet dao :"+ ucode +", "+pnum); List<Cabinet> list =
-	 * session.selectList("cabinetMapper.selectUser", ucode, pnum); return
-	 * (ArrayList<Cabinet>)list; }
-	 */
+	public int deleteWithCabinet(String no) {
+		logger.info("cabinet dao no :"+ no);
+		return session.delete("cabinetMapper.deleteWithCabinet", no);
+	}
+
+	public ArrayList<realpost> selectCabinetList(realpost realpost) {
+		List<realpost> list = session.selectList("cabinetMapper.selectCabinetList", realpost);
+		return (ArrayList<realpost>)list;
+	}
 
 
 }

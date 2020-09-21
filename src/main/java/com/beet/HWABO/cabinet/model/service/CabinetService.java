@@ -3,7 +3,8 @@ package com.beet.HWABO.cabinet.model.service;
 import java.util.ArrayList;
 
 import com.beet.HWABO.cabinet.model.vo.Cabinet;
-import com.beet.HWABO.cabinet.model.vo.CabinetKK;
+
+import com.beet.HWABO.cabinet.model.vo.realpost;
 
 public interface CabinetService {
 
@@ -13,5 +14,9 @@ public interface CabinetService {
 
 
 	ArrayList<Cabinet> selectUser(Cabinet cabinet);
+
+	int delWithCabinet(String no);
+
+	ArrayList<realpost> selectCabinetList(realpost realpost);
 	
 }

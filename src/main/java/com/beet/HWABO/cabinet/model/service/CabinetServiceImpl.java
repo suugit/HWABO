@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.beet.HWABO.cabinet.model.dao.CabinetDao;
 import com.beet.HWABO.cabinet.model.vo.Cabinet;
-import com.beet.HWABO.cabinet.model.vo.CabinetKK;
+
+import com.beet.HWABO.cabinet.model.vo.realpost;
 
 
 @Service("cabinetService")
@@ -39,6 +40,18 @@ public class CabinetServiceImpl implements CabinetService{
 	public ArrayList<Cabinet> selectUser(Cabinet cabinet) {
 		logger.info("service 옴 ucode, pnum :" + cabinet);
 		return cabinetDao.selectUser(cabinet);
+	}
+
+	@Override
+	public int delWithCabinet(String no) {
+		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!service 옴 no :" + no);
+		return cabinetDao.deleteWithCabinet(no);
+	}
+
+	@Override
+	public ArrayList<realpost> selectCabinetList(realpost realpost) {
+		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!service 옴 cabinetKK :" + realpost);
+		return cabinetDao.selectCabinetList(realpost);
 	}
 
 	/*

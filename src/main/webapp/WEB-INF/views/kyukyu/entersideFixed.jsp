@@ -47,10 +47,16 @@
                <i class="fas fa-book-reader"></i>
                <span>노트</span>
             </a> 
-            <a class="nav-link collapsed" href="mycabinet.do" data-target="#collapsePages" aria-expanded="true"
+            
+             <c:url var="cm" value="cabinetList.do">
+				  <c:param name="pnum" value="${sessionScope.pnum }"/>
+				  <c:param name="ucode" value="${sessionScope.ucode }"/>
+			   </c:url> 
+            
+            <a class="nav-link collapsed" href="${cm}" data-target="#collapsePages" aria-expanded="true"
                aria-controls="collapsePages"> 
                <i class="fas fa-box-open"></i> 
-               
+              
                <span>보관함</span>
             </a> 
             <a class="nav-link collapsed" href="Fileboxlist.do?pnum=${sessionScope.pnum }" data-target="#collapsePages"

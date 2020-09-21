@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,14 +13,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 import com.beet.HWABO.cabinet.model.service.CabinetService;
 import com.beet.HWABO.cabinet.model.vo.Cabinet;
+
+import com.beet.HWABO.cabinet.model.vo.realpost;
 
 
 
@@ -35,7 +36,40 @@ public class CabinetController {
    
 
    
-   @RequestMapping(value="deletecabinet.do", method=RequestMethod.POST)
+   @RequestMapping("cabinetList.do")
+//   @RequestParam("pnum") String pnum, @RequestParam("ucode") String ucode,
+   public String cabinetListselect(realpost realpost, Model model) {
+	   
+	   logger.info("cabinetKK 객체" + realpost);
+	   ArrayList<realpost> list = cabinetService.selectCabinetList(realpost);
+	   
+	   if(list != null) {
+			logger.info("캐비넷 리스트 성공");
+			logger.info("캐비넷 list" + list);
+		
+			
+			model.addAttribute("list", list);
+			return "kyukyu/cabinetpage";	   
+		   
+	   }else {
+		   model.addAttribute("message", "업무게시글 리스트 실패");
+			return "comm/error"; 
+	   }
+	   
+	   
+   }
+   
+   
+   
+   
+   
+
+
+
+
+
+
+@RequestMapping(value="deletecabinet.do", method=RequestMethod.POST)
    public void deletecabinet(Cabinet cabinet, HttpServletResponse response)throws Exception {
 	   logger.info("deletecabinet.do run...");
 	      logger.info("cabinet : " + cabinet);
@@ -52,7 +86,7 @@ public class CabinetController {
 	   
 	       
 	   }else {
-	        logger.info("cabinet 인서트 실패");
+	        logger.info("cabinet 삭제 실패");
 	        out.append("fail");
 	        out.flush();
 	        }

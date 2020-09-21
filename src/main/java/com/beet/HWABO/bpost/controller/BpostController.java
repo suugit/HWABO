@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.bpost.model.service.BpostService;
 import com.beet.HWABO.bpost.model.vo.Bpost;
+import com.beet.HWABO.cabinet.model.service.CabinetService;
 import com.beet.HWABO.filebox.model.vo.Filebox;
 
 @Controller
@@ -34,6 +35,9 @@ public class BpostController {
 
 	@Autowired
 	private BpostService bpostService;
+	
+	@Autowired
+	private CabinetService cabinetService;
 
 	@RequestMapping(value = "insertbpost.do", method = RequestMethod.POST)
 	public String insertBpost(Bpost bpost, Filebox filebox, HttpServletRequest request,
@@ -143,7 +147,7 @@ public class BpostController {
 
 	
 	@RequestMapping(value = "deletebpost.do")
-	public String bpostDelete(Bpost bpost, Model model, HttpServletRequest request) {
+	public String bpostDelete(Bpost bpost,  @RequestParam("bno") String no, Model model, HttpServletRequest request) {
 		if (bpostService.deleteBpost(bpost) > 0) {
 			String brenamefilename = bpost.getBrenamefile();
 			logger.info("controller brenamefilename : " + brenamefilename);
@@ -152,7 +156,18 @@ public class BpostController {
 
 				String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
 				new File(savePath + "\\" + brenamefilename).delete();
+				
+				if(cabinetService.delWithCabinet(no) > 0) {
+					logger.info("게시글 삭제와 함께 보관함 삭제 성공!");
+				}else {
+					logger.info("게시글 삭제와 함께 보관함 삭제 실패!!!!");
+				}
+				
+				
 			}
+			
+		
+			
 			return "redirect:/bpostlist.do";
 		} else {
 			model.addAttribute("message", bpost.getBno() + "번글 삭제 실패");
