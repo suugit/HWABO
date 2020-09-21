@@ -27,6 +27,7 @@
 				<c:if test="${!empty c.ofile1 }">
 					<td class="rounded" style="width:33%">
 					<input type="hidden" name="rfile1" value="${c.rfile1}">
+					<input type="hidden" name="ofile1" value="${c.ofile1}">
 					<c:set var="fileName" value="${fn:split(c.ofile1, '.')}" />
 					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
 						<c:if test="${fn:contains(fileType,'jpg') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">	
@@ -44,6 +45,7 @@
 				<c:if test="${!empty c.ofile2 }">
 					<td class="rounded" style="width:33%">
 					<input type="hidden" name="rfile2" value="${c.rfile2}">
+					<input type="hidden" name="ofile2" value="${c.ofile2}">
 					<c:set var="fileName" value="${fn:split(c.ofile2, '.')}" />
 					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
 						<c:if test="${fn:contains(fileType,'jpg') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">	
@@ -61,6 +63,7 @@
 				<c:if test="${!empty c.ofile3 }">
 					<td class="rounded" style="width:33%">
 					<input type="hidden" name="rfile3" value="${c.rfile3}">
+					<input type="hidden" name="ofile3" value="${c.ofile3}">
 					<c:set var="fileName" value="${fn:split(c.ofile3, '.')}" />
 					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
 						<c:if test="${fn:contains(fileType,'jpg') ||  fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">	
@@ -136,10 +139,14 @@
 $('#btn1-save').on('click',function(event){
 	event.preventDefault();
 	event.stopPropagation();
+	
 	var formData = new FormData($('#updatecPost')[0]);
-	  $.ajax({
+	formData.append("cflist", tmplist);
+	alert(formData.cflist);
+	$.ajax({
 		url: "upcp.do",
 		type: "post",
+		enctype: 'multipart/form-data',
 		data: formData,
 		contentType:false,
 		processData:false,

@@ -102,10 +102,10 @@
 <!-- 채팅위치조정테이블하단 시작 -->
 <table style="height:100%;width:100%;">
 <tr><td style="height:90px;"></td></tr>
-<tr>
+<!-- <tr>
 <td style="height:30%;">사용자 정보 </td>
 <td style="height:30%;">프로젝트 관리 </td>
-</tr>
+</tr> -->
 <tr><td style="height:70%;"></td></tr>
 </table>
 <!-- 채팅위치조정테이블하단 끝 -->

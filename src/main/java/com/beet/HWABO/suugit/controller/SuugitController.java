@@ -55,6 +55,8 @@ import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.NaverLoginUtil;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
+import sun.misc.FormattedFloatingDecimal.Form;
+
 @Controller
 public class SuugitController {
 
@@ -584,8 +586,39 @@ public class SuugitController {
 		return jarr;
 	}
 
+	@PostMapping("/pmlist.do")
+	@ResponseBody
+	public JSONArray selectpmlist(HttpSession session, ModelAndView mav) {
+		String pnum = (String) session.getAttribute("pnum");
+		System.out.println(pnum);
+		ArrayList<Member> nmlist = mservice.selectPMember(pnum);
+			
+		JSONObject obj = new JSONObject();
+
+		JSONArray jarr = new JSONArray();
+
+		try {
+
+			for (int i = 0; i < nmlist.size(); i++) {
+				System.out.println(nmlist.get(i));
+				JSONObject job = new JSONObject();
+				job.put("ucode", nmlist.get(i).getUcode());
+				job.put("uname", nmlist.get(i).getUname());
+				job.put("ugroup", nmlist.get(i).getUgroup());
+				job.put("urole", nmlist.get(i).getUrole());
+				job.put("uimg", nmlist.get(i).getUimg());
+
+				jarr.add(job);
+			}
+			mav.addObject("nmlist", jarr);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return jarr;
+	}
 //초대관리페이지
-	@RequestMapping("/admin/invtadmin.do")
+	@RequestMapping("/invtadmin.do")
 	public String InviteManage() {
 
 		return "suugit/invtmanage";
@@ -648,11 +681,11 @@ public class SuugitController {
 					} else if (i == 1) {
 						addon.setOfile2(oFileName);
 						addon.setRfile2(rfileName);
-						System.out.println("2번째" + oFileName + rfileName);
+						System.out.println("두번쨰" + oFileName + rfileName);
 					} else if (i == 2) {
 						addon.setOfile3(oFileName);
 						addon.setRfile3(rfileName);
-						System.out.println("3번쨰" + oFileName + rfileName);
+						System.out.println("세번쨰" + oFileName + rfileName);
 					} else {
 						mv.addObject("message", "파일개수초과");
 						mv.setViewName("suugit/tables");
@@ -729,21 +762,81 @@ public class SuugitController {
 	@PostMapping("upcp.do")
 	public void updateCpost(Cpost cpost, AddOn addon, ModelAndView mav, MultipartHttpServletRequest request) {
 		logger.info("게시글 수정");
+
+		String cno = addon.getCno();
 		
-		System.out.println(request.getAttribute("formData"));
-		System.out.println(request.getAttribute("ctitle"));
+		logger.info(addon.getRfile1());
+		logger.info(addon.getRfile2());
+		logger.info(addon.getRfile3());
+		String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
+		  
+		List<MultipartFile> fileList = request.getFiles("file");
+			
+	
+		String oFileName = "";
 		
+		for (MultipartFile filePart : fileList) {
+			
+		int i = 0;		
+		while(!filePart.isEmpty()) {
+			System.out.println("시작");
+			String rfileName = cno + sdf.format(new java.sql.Date(System.currentTimeMillis()));
+			oFileName = filePart.getOriginalFilename();
+			rfileName += i + "." + oFileName.substring(oFileName.lastIndexOf(".") + 1);
 		
-		/*
-		 * Iterator<String> files = request.getFileNames(); MultipartFile mpf =
-		 * request.getFile(files.next());
-		 * 
-		 * if (mpf.getSize() > 0) { String savePath =
-		 * request.getSession().getServletContext().getRealPath("resources/bupfile");
-		 * String oFileName = ""; SimpleDateFormat sdf = new
-		 * SimpleDateFormat("yyyyMMddHHmmss"); System.out.println(mpf); }
-		 */
-	}
+			logger.info("파일 이름 " + oFileName);
+			logger.info("바꾼 이름" + rfileName);
+			
+			if (!oFileName.equals("")) {
+				try {
+					FileOutputStream fs = new FileOutputStream(savePath + "\\" + rfileName);
+					fs.write(filePart.getBytes());
+					fs.close();
+					System.out.println("글쓰는중");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+			if(addon.getRfile1() == null) {
+				addon.setOfile1(oFileName);
+				addon.setRfile1(rfileName);
+				logger.info("첫번째 추가 ");
+				System.out.println("첫번쨰" + oFileName + rfileName);
+				break;
+			}else if(addon.getRfile2() == null) {
+				addon.setOfile2(oFileName);
+				addon.setRfile2(rfileName);
+				logger.info("두번째 추가");
+				System.out.println("e번쨰" + oFileName + rfileName);
+				break;
+			}else if (addon.getRfile3() == null) {
+				addon.setOfile3(oFileName);
+				addon.setRfile3(rfileName);
+				System.out.println("3번쨰" + oFileName + rfileName);
+				logger.info("세번째 추가");
+				break;
+			}
+
+			
+		}
+		}
+		int r = cservice.updateCpost(cpost);
+		int result1 = cservice.updateCfile(addon);
+		
+		if (result1 > 0) {
+			mav.setViewName("suugit/tables");
+		} else {
+			mav.addObject("message", "첨부파일등록실패");
+			mav.setViewName("common/error");
+		}
+			
+		 
+				
+	
+}
+
 
 	@RequestMapping("delcp.do")
 	public String deleteCpost(@RequestParam("cno") String cno, AddOn addon, Model model, HttpServletRequest request) {

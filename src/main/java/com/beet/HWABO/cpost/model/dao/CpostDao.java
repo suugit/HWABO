@@ -49,6 +49,10 @@ public class CpostDao {
 		return session.update("cpostMapper.deleteCpost", cno);
 	}
 
+	public int updateCfileAll(AddOn addon) {
+		return session.update("cpostMapper.updateCfileAll", addon);
+	}
+
 
 
 }

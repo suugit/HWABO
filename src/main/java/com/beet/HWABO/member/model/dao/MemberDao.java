@@ -72,7 +72,6 @@ public class MemberDao {
 
 
 	public ArrayList<Member> selectNotMember(String pnum) {
-		System.out.println(pnum);
 		List<Member> nmlist = session.selectList("memberMapper.selectNotMember", pnum);
 		return (ArrayList<Member>)nmlist;
 	}
@@ -84,11 +83,13 @@ public class MemberDao {
 
 
 	public int insertSnsUser(Member member) {
-		System.out.println(member.getUemail());
-		System.out.println(member.getUname());
-		System.out.println(member.getUimg());
-		System.out.println(member.getSigntype());
 		return session.insert("memberMapper.insertSnsUser", member);
+	}
+
+
+	public ArrayList<Member> selectPMember(String pnum) {
+		List<Member> pmlist = session.selectList("memberMapper.selectPMember", pnum);
+		return (ArrayList<Member>)pmlist;
 	}
 	
 	

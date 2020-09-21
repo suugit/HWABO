@@ -105,6 +105,12 @@
 		where ucode not in (
 		(select ucode from pjmember where pnum = #{pnum}))
 		</select>
+		
+	<select id="selectPMember" parameterType="string" resultMap="resultMember"> 
+		select * from pjmember
+		left join member using (ucode)
+		where pnum = #{pnum}
+		</select>
 	
 	<insert id="insertSnsUser" parameterType="member">
 		merge into member using dual on (uemail = #{uemail} and signtype =#{signtype})

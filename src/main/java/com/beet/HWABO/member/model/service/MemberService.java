@@ -34,5 +34,7 @@ public interface MemberService {
 	int updateTmpPwd(Member member);
 
 	int insertSnsUser(Member member);
+
+	ArrayList<Member> selectPMember(String pnum);
 	
 }

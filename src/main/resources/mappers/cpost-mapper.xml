@@ -39,26 +39,37 @@
 		merge into addon using dual on (cno = #{cno})
 		when matched then
 		update set
-		<if test="ofile1 != null and ofile2 == null"> ofile1 = #{ofile1}, rfile1 = #{rfile1}
+		<if test="rfile1 != null and rfile2 == null"> ofile1 = #{ofile1, jdbcType=VARCHAR}, rfile1 = #{rfile1, jdbcType=VARCHAR}
 			when not matched then
 			insert (cno, ofile1, rfile1)
-			values (#{cno}, #{ofile1}, #{rfile1})
+			values (#{cno}, #{ofile1, jdbcType=VARCHAR}, #{rfile1, jdbcType=VARCHAR})
 		</if>
-		<if test="ofile2 != null and ofile3 == null ">
-			ofile1 = #{ofile1}, rfile1 = #{rfile1}, ofile2 = #{ofile2}, rfile2 =
-			#{rfile2}
+		<if test="rfile2 != null and rfile3 == null ">
+			ofile1 = #{ofile1, jdbcType=VARCHAR}, rfile1 = #{rfile1, jdbcType=VARCHAR}, ofile2 = #{ofile2, jdbcType=VARCHAR}, rfile2 =
+			#{rfile2, jdbcType=VARCHAR}
 			when not matched then
 			insert (cno, ofile1, rfile1, ofile2, rfile2)
-			values (#{cno}, #{ofile1}, #{rfile1}, #{ofile2}, #{rfile2})
+			values (#{cno}, #{ofile1, jdbcType=VARCHAR}, #{rfile1, jdbcType=VARCHAR}, #{ofile2, jdbcType=VARCHAR}, #{rfile2, jdbcType=VARCHAR})
 		</if>
-		<if test="ofile3 !=null"> ofile1 = #{ofile1}, rfile1 = #{rfile1}, ofile2 =
-			#{ofile2}, rfile2 = #{rfile2}, ofile3 = #{ofile3}, rfile3 = #{rfile3}
+		<if test="rfile3 !=null"> ofile1 = #{ofile1, jdbcType=VARCHAR}, rfile1 = #{rfile1, jdbcType=VARCHAR}, ofile2 =
+			#{ofile2, jdbcType=VARCHAR}, rfile2 = #{rfile2, jdbcType=VARCHAR}, ofile3 = #{ofile3, jdbcType=VARCHAR}, rfile3 = #{rfile3, jdbcType=VARCHAR}
 			when not matched then
 			insert (cno, ofile1, rfile1, ofile2, rfile2, ofile3, rfile3)
-			values (#{cno}, #{ofile1}, #{rfile1}, #{ofile2}, #{rfile2}, #{ofile3},
+			values (#{cno}, #{ofile1, jdbcType=VARCHAR}, #{rfile1, jdbcType=VARCHAR}, #{ofile2, jdbcType=VARCHAR}, #{rfile2, jdbcType=VARCHAR}, #{ofile3, jdbcType=VARCHAR},
 			#{rfile3})
 		</if>
 	</update>
+	<update id="updateCfileAll" parameterType="AddOn">
+	merge into addon using dual on (cno = #{cno})
+	when matched then
+	update set 
+	ofile1 = #{ofile1, jdbcType=VARCHAR}, rfile1 = #{rfile1, jdbcType=VARCHAR}, ofile2 = #{ofile2, jdbcType=VARCHAR}, rfile2 = #{rfile2, jdbcType=VARCHAR}, ofile3 = #{ofile3, jdbcType=VARCHAR}, rfile3 = #{rfile3, jdbcType=VARCHAR}
+	when not matched then
+	insert (cno, ofile1, rfile1, ofile2, rfile2, ofile3, rfile3)
+	values (#{cno}, #{ofile1, jdbcType=VARCHAR}, #{rfile1, jdbcType=VARCHAR}, #{ofile2, jdbcType=VARCHAR}, #{rfile2, jdbcType=VARCHAR}, #{ofile3, jdbcType=VARCHAR}, #{rfile3, jdbcType=VARCHAR})
+	
+	</update>
+	
 
 	<select id="selectCpList" resultMap="rsltCpost">
 		select * from cpost
