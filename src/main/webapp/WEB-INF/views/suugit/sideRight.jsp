@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HWABO</title>
 </head>
 <body>
 
@@ -14,10 +14,6 @@
 <div class="card shadow mb-4">
             <div class="card-header py-3">
              <div class="text-center">
-				<a href="" class="btn my-3" data-toggle="modal" data-target="#inviteModal">
-				<i class="fa fa-plus-square mr-1"></i>
-				프로젝트 초대하기
-				</a>
 			</div>
             </div>
             <div class="card-body">

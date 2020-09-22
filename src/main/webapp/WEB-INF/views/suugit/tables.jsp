@@ -111,7 +111,7 @@
             </div>
           </div>
           
-<c:import url="/WEB-INF/views/suugit/modal.jsp"/>           
+   
           <!-- 새 글작성끝 -->
 
 	          

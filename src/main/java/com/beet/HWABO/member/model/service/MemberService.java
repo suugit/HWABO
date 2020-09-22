@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.beet.HWABO.invite.model.vo.Invite;
 import com.beet.HWABO.member.model.vo.Member;
+import com.beet.HWABO.member.model.vo.PjMember;
 
 public interface MemberService {
 	int insertUser(Member member);
@@ -36,5 +37,11 @@ public interface MemberService {
 	int insertSnsUser(Member member);
 
 	ArrayList<Member> selectPMember(String pnum);
+
+	Invite selectInvtChk(String invtkey);
+
+	int insertPjMember(PjMember pjmember);
+
+	Member selectEmailMember(String uemail);
 	
 }

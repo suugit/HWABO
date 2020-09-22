@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.beet.HWABO.invite.model.vo.Invite;
 import com.beet.HWABO.member.model.vo.Member;
+import com.beet.HWABO.member.model.vo.PjMember;
 
 @Repository("memberDao")
 public class MemberDao {
@@ -90,6 +91,21 @@ public class MemberDao {
 	public ArrayList<Member> selectPMember(String pnum) {
 		List<Member> pmlist = session.selectList("memberMapper.selectPMember", pnum);
 		return (ArrayList<Member>)pmlist;
+	}
+
+
+	public Invite selectInvtChk(String invtkey) {
+		return session.selectOne("memberMapper.selectInvtChk", invtkey);
+	}
+
+
+	public int insertPjMember(PjMember pjmember) {
+		return session.insert("memberMapper.insertPjMember", pjmember);
+	}
+
+
+	public Member selectEmailMember(String uemail) {
+		return session.selectOne("memberMapper.selectEmailMember", uemail);
 	}
 	
 	

@@ -56,8 +56,7 @@
 					
 					
 					<div class="text-center">
-						<a class="small" href="javascript:location.href='login.do';">로그인으로 돌아가기</a>
-						<a class="small" href="javascript:location.href='mvchnpwd.do';">비밀번호 변경페이지(임시)</a>
+						<a class="small" href="javascript:location.href='mvlogin.do';">로그인으로 돌아가기</a>
 					</div>
 
 				</div>
