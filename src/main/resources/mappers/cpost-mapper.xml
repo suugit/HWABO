@@ -1,4 +1,4 @@
-  <!DOCTYPE mapper PUBLIC
+<!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cpostMapper">
@@ -24,11 +24,11 @@
 	</resultMap>
 
 	<insert id="insertCpost" parameterType="Cpost">
-		insert into cpost (cno, cpnum, cucode, ctitle, cwriter, ccontent, cenrolldate,
+		insert into cpost (cno, cpnum, cucode, ctitle, cwriter, ccontent,
 		copen)
 		values ('c' || cpost_seq.nextval, #{cpnum}, #{cucode, jdbcType=VARCHAR},
 		#{ctitle, jdbcType=VARCHAR}, #{cwriter, jdbcType=VARCHAR},
-		#{ccontent}, sysdate, #{copen})
+		#{ccontent}, #{copen})
 	</insert>
 
 	<select id="selectCno" resultType="string">
@@ -67,10 +67,8 @@
 	when not matched then
 	insert (cno, ofile1, rfile1, ofile2, rfile2, ofile3, rfile3)
 	values (#{cno}, #{ofile1, jdbcType=VARCHAR}, #{rfile1, jdbcType=VARCHAR}, #{ofile2, jdbcType=VARCHAR}, #{rfile2, jdbcType=VARCHAR}, #{ofile3, jdbcType=VARCHAR}, #{rfile3, jdbcType=VARCHAR})
-	
 	</update>
 	
-
 	<select id="selectCpList" resultMap="rsltCpost">
 		select * from cpost
 		left join addon using (cno)

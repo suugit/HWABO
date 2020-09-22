@@ -373,7 +373,7 @@ function upcharge(){
 		
                               </td>
                            </tr>
-                        </table>
+                 </table>
                    
  
  

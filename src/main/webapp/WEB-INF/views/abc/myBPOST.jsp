@@ -62,29 +62,47 @@ $(document).ready(function() {
 			dataType: "Json",
 			traditional: true,
 			success: function(obj){
-				alert('tkd');
-				// 리턴된 객체를 문자열로 변환 처리
-				var objStr = JSON.stringify(obj);
-				// 객체 문자열을 다시 json 객체로 바꿈
-				//var jsonObj = JSON.parse(objStr);
+				alert(obj[0].bkind);
+				
+				var values = "";
+				
+				$("#dataTable tbody").empty();
 				//출력용 문자열 만들기 (for in 문을 사용해보자)
-				$("#bpost_tbody").empty();
-				//$("#bpost_tbody").html(decodeURIComponent(obj[0].bkind));
+				
+			 for(var i in obj){
+				alert(obj[i].bno);
+				 values += '<tr id="trclick" onclick="javascript:location.href='+"'"
+	               +'bpostOne.do?bno='+obj[i].bno+'&ucode=${sessionScope.ucode }&pnum=${sessionScope.pnum }'+"'"
+        		   +'" style="cursor:hand;">';
+        		  alert(values); 
+        		   
+				 if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="요청"){
+            		 values +=   '<td><strong style='+'"font-size:12pt; color: #047AAC; margin-top:30px; vertical-align: middle; "'+'>요 청</strong></td>'
+            	 }
+            	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="진행"){
+            		values +=   '<td><strong style='+'"font-size:12pt; color: #173192;; margin-top:30px; vertical-align: middle; "'+'>진 행</strong></td>'
+            	 }
+            	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "피드백"){
+            		values +=   '<td><strong style='+'"font-size:12pt; color: #f4b30d; margin-top:30px; vertical-align: middle; "'+'>피드백</strong></td>'
+            	 }
+            	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "완료"){
+            		values +=   '<td><strong style='+'"font-size:12pt; color: #0C860F; margin-top:30px; vertical-align: middle; "'+'>완 료</strong></td>'
+            	 }
+            	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="보류"){
+            		values +=   '<td><strong style='+'"font-size:12pt; color: #6b6d7d; margin-top:30px; vertical-align: middle; "'+'>보 류</strong></td>'
+            	 }
+		            	 
+		            	values  +="<td>" + decodeURIComponent(obj[i].btitle).replace(/\+/gi, "  ") + "</td>"
+		                 
+		                      +"<td>" + decodeURIComponent(obj[i].bcontent).replace(/\+/gi, "  ") + "</td>"
+		                
+		                      +"<td>"+decodeURIComponent(obj[i].benrolldate).replace(/\+/gi, "  ")+"</td>"
+		                + "</tr>"
+		       } //for in
 
-				$.each(obj, function(r){
-			       $("#trclick").append("<td>"+decodeURIComponent(obj.bkind)+"</td><td>"+decodeURIComponent(obj.btitle)+"</td><td>"+decodeURIComponent(obj.bcontent)+"</td><td>"+obj.benrolldate+"</td>");
-			    });
-				
-				
-				//for(var i in jsonObj.list){
-			//		 val tablerow = "<tr><td>decodeURIComponent(jsonObj.list[i].bkind.replace(/\+/gi," "))</td><td>decodeURIComponent(jsonObj.list[i].btitle.replace(/\+/gi," "))</td><td>decodeURIComponent(jsonObj.list[i].bcontent.replace(/\+/gi," "))</td><td>jsonObj.list[i].benrolldate</td></tr>";
-				// val tablerow = "<tr><td>"+decodeURIComponent(jsonObj.list[i].bkind.replace(/\+/gi," "))+"</td><td>"+decodeURIComponent(jsonObj.list[i].btitle.replace(/\+/gi," "))+"</td><td>"+decodeURIComponent(jsonObj.list[i].bcontent.replace(/\+/gi," "))+"</td><td>"+jsonObj.list[i].benrolldate+"</td></tr>";
-				//	 
-				//	 $("#bkind").html(decodeURIComponent(jsonObj.list[i].bkind.replace(/\+/gi," ")));
-				//	$("#btitle").html(decodeURIComponent(jsonObj.list[i].btitle.replace(/\+/gi," ")));
-				//	$("#bcontent").html(decodeURIComponent(jsonObj.list[i].bcontent.replace(/\+/gi," ")));
-				//	$("#benrolldate").html(jsonObj.list[i].benrolldate); }	
-			}, 
+		   		 $('#dataTable > tbody').html(values); 
+		       
+			}, 				
 			error: function(request, status, errorData){ //에러는 위에서 복붙
 				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
 			}

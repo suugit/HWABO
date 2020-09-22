@@ -650,10 +650,15 @@ public class SuugitController {
 	@RequestMapping("/incp.do")
 	public ModelAndView insertCpost(Cpost cpost, AddOn addon, ModelAndView mv, MultipartHttpServletRequest request) {
 		logger.info("incp.do run....");
-
+		
+		System.out.println(cpost.getCpnum());
+		System.out.println(cpost.getCwriter());
+		System.out.println(cpost.getCucode());
+		System.out.println(cpost.getCcontent());
+		System.out.println(cpost.getCtitle());
 		int result2 = cservice.insertCpost(cpost);
 		if (result2 > 0) {
-			mv.setViewName("suugit/tables");
+			mv.setViewName("redirect:/ftables.do?project_num=" + cpost.getCpnum());
 		} else {
 			mv.addObject("message", "게시글등록실패");
 			mv.setViewName("common/error");
@@ -725,7 +730,7 @@ public class SuugitController {
 			int result1 = cservice.updateCfile(addon);
 
 			if (result1 > 0) {
-				mv.setViewName("suugit/tables");
+				mv.setViewName("redirect:/ftables.do?project_num=" + cpost.getCpnum());
 			} else {
 				mv.addObject("message", "첨부파일등록실패");
 				mv.setViewName("common/error");
@@ -778,7 +783,7 @@ public class SuugitController {
 		logger.info("게시글 수정");
 
 		String cno = addon.getCno();
-		
+		logger.info(request.getParameter("cflist"));
 		logger.info(addon.getRfile1());
 		logger.info(addon.getRfile2());
 		logger.info(addon.getRfile3());
@@ -845,8 +850,7 @@ public class SuugitController {
 			mav.addObject("message", "첨부파일등록실패");
 			mav.setViewName("common/error");
 		}
-			
-		 
+	 
 				
 	
 }

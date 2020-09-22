@@ -17,10 +17,10 @@
 
 <script type="text/javascript">
 
-	if("${ who }" == "Guest"){
+ 	if("${ who }" == "Guest"){
 		location.href='mvlogin.do';
 	}else{
-		location.href='ftables2.do?ucode=${ who }&pnum=${ pnum }';
+		location.href='ftables2.do?ucode=${ who }&pnum=${ pnum }'; 
 	}
 
 </script>

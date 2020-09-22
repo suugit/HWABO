@@ -171,9 +171,7 @@ public class abcController {
 			throws IOException, UnsupportedEncodingException {
 		// 업데이트하면 에이작스로 이것만 보내서 표시한다.
 		logger.info("supdate.do 들어옴");
-		response.setContentType("application/json;charset=utf-8"); // 어플리케이션이 나갈건데 json이라는 의미
 
-		JSONObject job = new JSONObject();
 
 		// where sno = #{sno}로 처리
 		// 제목, 시작날짜, 끝날짜, 장소, 알람, 컨텐츠, 공개여부 변경
@@ -257,7 +255,7 @@ public class abcController {
 		// list 를 jarr 로 옮겨담기 (일종의 복사)
 		for (Bpost bpost : list) { // user 객체 저장용 json 객체
 			JSONObject job = new JSONObject();
-
+			job.put("bno",bpost.getBno());
 			job.put("bkind", URLEncoder.encode(bpost.getBkind(), "utf-8"));
 			job.put("btitle", URLEncoder.encode(bpost.getBtitle(), "utf-8"));
 
@@ -448,36 +446,6 @@ public class abcController {
 //3 게시글 관련 상세보기, 수정, 삭제 메소드	
 
 	// 1. bpost
-	// 업무 게시글 상세보기용 메소드
-	@RequestMapping("HBOne.do")
-	public String hwaboselectBpost(Model model, @RequestParam("bno") String bno, PjMember pmember) {
-
-		Bpost bpost = spostService.selectOneBpost(bno);
-		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
-
-		if (bpost != null) {
-			model.addAttribute("post", bpost);
-			model.addAttribute("list", list);
-			return "post/bpostOneview";
-		} else {
-			model.addAttribute("message", "업무 게시글 상세보기에 실패하였습니다.");
-			model.addAttribute("list", list);
-			return "redirect:/mybpost.do";
-		}
-
-	}
-
-	// 업무 게시글 수정페이지로 이동용 메소드
-	@RequestMapping("moveHBUpdate.do")
-	public String hwabomoveBpostUpdatePage(@RequestParam("bno") String bno, Model m, PjMember pmember) {
-		Bpost bpost = bpostService.selectBpost(bno);
-		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
-
-		m.addAttribute("post", bpost);
-		m.addAttribute("list", list);
-		return "post/bpostUpdatepage";
-	}
-
 	// 업무 게시글 수정용 메소드
 	@RequestMapping(value = "HBupdate.do")
 	public String hwaboupdatebpost(Bpost bpost, HttpServletRequest request,
