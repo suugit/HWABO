@@ -84,7 +84,13 @@
 	
 	<hr class="sidebar-divider">
 	
-	<li class="nav-item"><a class="nav-link collapsed" href="mycabinet.do"
+	 <c:url var="cm" value="cabinetList.do">
+		 <c:param name="pnum" value="${sessionScope.pnum }"/>
+		  <c:param name="ucode" value="${sessionScope.ucode }"/>
+	 </c:url> 
+            
+          
+	<li class="nav-item"><a class="nav-link collapsed" href="${cm}"
 	data-target="#collapsePages" aria-expanded="true"
 	aria-controls="collapsePages" ><i class="fas fa-box-open"></i>
 	<span>보관함</span></a> 

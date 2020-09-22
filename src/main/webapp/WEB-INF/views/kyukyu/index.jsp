@@ -49,6 +49,33 @@ div#showfile imag{
 <script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 
+function enterkey(index) {
+	console.log("enterkey function get in");
+	
+    if (window.event.keyCode == 13) {
+    	console.log("enterkey 들어옴1");
+    	var bno = '${b.bno}';
+    	var insertData = $("#content"+ index).val(); //commentInsertForm의 내용을 가져옴
+  		console.log(bno +"data " + insertData);
+    	/* commentInsert(insertData); //Insert 함수호출(아래)    */
+    }
+}
+
+function commentInsert(insertData){
+	console.log("insert 들어옴1");
+	
+    $.ajax({
+        url : '/comment/insert',
+        type : 'post',
+        data : insertData,
+        success : function(data){
+            if(data == 1) {
+                commentList(); //댓글 작성 후 댓글 목록 reload
+                $('[name=content]').val('');
+            }
+        }
+    });
+}
 
 
 /* 리스트 들어올 시 보관된 정보 불러오기 */
@@ -483,9 +510,16 @@ function sendInsert(index){
 			</table>
 		 </div>
 		 <div class="px-3 py-5 bg-gradient-light text-white" style="height: 10px;">
+	
+	
+	 <form name="commentInsertForm">
+  
 	<input type="hidden" name="no" value="${b.bno }" >	
-	<input type="text" class="form-control" id="content" name="content" placeholder="답글을 입력하세요">
-	 <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+	<!-- <input type="text" class="form-control" id="content" name="content" placeholder="답글을 입력하세요"> -->
+	<input onKeyPress="enterkey(${status.index});" type="text" class="form-control" id="content_${status.index }" name="content_${status.index }"  placeholder="enter = 등록" />
+</form>
+
+
 </div>
 	
 	 </div><!-- 게시글안쪽  -->			
