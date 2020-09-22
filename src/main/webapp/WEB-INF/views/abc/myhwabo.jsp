@@ -75,71 +75,6 @@
 
 
 
-						<!-- 즐겨찾기 시작 -->
-					
-							<div class="card mb-4 py-3 border-left-info">
-								<div style="margin-top: 0px;">
-									<h1>&nbsp;&nbsp;즐 겨 찾 기</h1>
-									<hr>
-								</div>
-								<!-- 게시글안쪽 -->
-
-								<div class="card-body" style="height: 400px; overflow: auto;">
-									<div class="table-responsive">
-										<table class="table table-bordered" id="dataTable"
-											style="width: 100%; cellspacing: 0;">
-											<colgroup>
-											    <col style="width:15%" >
-											    <col style="width:25%">
-											    <col style="width:40%">
-											    <col style="width:20%">
-											  </colgroup> 
-											<thead>
-												<tr>
-													<th>유형</th>
-													<th>제목</th>
-													<th>내용</th>													
-													<th>등록일</th>
-												</tr>
-											</thead>
-											<tbody>
-									<%if(list != null){ %>
-										<% for(Post post : list){ %>
-											<% if( post.getFirstword().equals("s") ){ %>
-													<tr>
-														<td><div style='margin-top:22px; margin-left:20px; min-height: 43px; max-height:43px; overflow: hidden;' >일정</div></td>
-														<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getStitle()%></div></td>
-														<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getScontent()%></div></td>
-														<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getSenrolldate()%></div></td>
-													</tr>
-											<% } %>
-											<% if( post.getFirstword().equals("c") ){ %>
-													<tr>	
-														<td><div style='margin-top:22px; margin-left:28px; min-height: 43px; max-height:43px; overflow: hidden;' >글</div></td>
-														<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getCtitle()%></div></td>
-														<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getCcontent()%></div></td>
-														<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getCenrolldate()%></div></td>
-													</tr>
-											<% } %>
-											<% if( post.getFirstword().equals("b") ){ %>
-													<tr>	
-														<td><div style='margin-top:22px; margin-left:20px; min-height: 43px; max-height:43px; overflow: hidden;' >업무</div></td>
-														<td><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBtitle()%></div></td>
-														<td><div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBcontent()%></div></td>
-														<td><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= post.getBenrolldate()%></div></td>
-													</tr>
-											<% } %>
-										
-										<% } %>
-									<% } %>								
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						
-						<!-- 즐겨찾기 끝 -->
-					
 
 					<br>
 					<div class="checks" align="left"
@@ -150,87 +85,21 @@
 							<span style="color: #42BBBA;"><label><input	name="s" type="radio">&nbsp;일 정&nbsp;&nbsp;&nbsp;&nbsp; </label></span> 
 						</form>
 					</div>
+<c:if test="${!empty list }">
+	<c:import url="/WEB-INF/views/abc/hwabofeed.jsp"></c:import>
+</c:if>
+<c:if test="${!empty list }">
+	작성하신 글이 없네요 ~
+</c:if>
 
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
 
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-					
-	<c:if test="${!empty list }">
-			 	<c:forEach var="post" items="${list }">
-			 		<c:if test="${post.firstword eq 's'}">
-			 		<div class="card shadow mb-4">
-			 			<c:import url="/WEB-INF/views/post/spostview.jsp"></c:import>
-			 			</div>
-			 		</c:if>
-			 		<c:if test="${post.firstword eq 'c'}">
-			 		<div class="card shadow mb-4">
-			 			<c:import url="/WEB-INF/views/post/cpostview.jsp"></c:import>
-			 			</div>
-			 		</c:if>
-			 		<c:if test="${post.firstword eq 'b'}">
-			 		<div class="card shadow mb-4">
-			 			<c:import url="/WEB-INF/views/post/bpostview.jsp"></c:import>
-			 			</div>
-			 		</c:if>	
-			 	</c:forEach>
-	</c:if> 
 	
-<%-- 	<%if(list != null){ %>
-				<% for(Post post : list){ %>
-					<% if( post.getFirstword().equals("s") ){ %>
-						 <div class="card shadow mb-4">      
-							
-							 <%@include file="../post/spostview.jsp" %>
-							 
-							 </div>
-		 
-					<% } %>
-					<% if( post.getFirstword().equals("c") ){ %>
-							 <div class="card shadow mb-4">      
-							
-							 <%@include file="../post/cpostview.jsp" %>
-							 
-							 </div>
-					<% } %>
-					<% if( post.getFirstword().equals("b") ){ %>
-							 <div class="card shadow mb-4">      
-							
-							 <%@include file="../post/bpostview.jsp" %>
-							 
-							 </div>
-					<% } %>
-				
-				<% } %>
-			<% } %>	 --%>	
+	        </div>
+        <!-- /.container-fluid -->
+
+     </div>
+      <!-- End of Main Content -->
+	
 
 
 				<!-- Footer -->
@@ -254,29 +123,6 @@
 			class="fas fa-angle-up"></i>
 		</a>
 
-		<!-- Logout Modal-->
-		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Ready to
-							Leave?</h5>
-						<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">Ã</span>
-						</button>
-					</div>
-					<div class="modal-body">Select "Logout" below if you are
-						ready to end your current session.</div>
-					<div class="modal-footer">
-						<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">Cancel</button>
-						<a class="btn btn-primary" href="login.jsp">Logout</a>
-					</div>
-				</div>
-			</div>
-		</div>
 		
 		<!-- Bootstrap core JavaScript-->
 		<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>

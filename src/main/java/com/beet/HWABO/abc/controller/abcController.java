@@ -257,7 +257,7 @@ public class abcController {
 		// list 를 jarr 로 옮겨담기 (일종의 복사)
 		for (Bpost bpost : list) { // user 객체 저장용 json 객체
 			JSONObject job = new JSONObject();
-
+			job.put("bno",bpost.getBno());
 			job.put("bkind", URLEncoder.encode(bpost.getBkind(), "utf-8"));
 			job.put("btitle", URLEncoder.encode(bpost.getBtitle(), "utf-8"));
 

@@ -17,7 +17,7 @@
 		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary">
 				<i class="fas fa-user-circle"></i> 
-				${post.swriter}<br> ${ status.count }
+				${post.swriter}<br>
 				<fmt:formatDate value="${post.senrolldate}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>
 			</h6>
 			<div class="dropdown no-arrow">
