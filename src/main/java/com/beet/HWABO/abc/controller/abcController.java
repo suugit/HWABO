@@ -30,7 +30,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.abc.model.service.LoveService;
-
+import com.beet.HWABO.abc.model.service.PostreplyService;
 import com.beet.HWABO.abc.model.vo.Love;
 import com.beet.HWABO.bpost.model.service.BpostService;
 import com.beet.HWABO.bpost.model.vo.Bpost;
@@ -62,7 +62,8 @@ public class abcController {
 	@Autowired
 	private LoveService loveService;
 
-
+	@Autowired
+	private PostreplyService postreplyService;
 
 	private static final Logger logger = LoggerFactory.getLogger(abcController.class);
 
