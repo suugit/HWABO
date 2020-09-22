@@ -5,7 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <!DOCTYPE html>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -47,21 +46,18 @@
 				</button>
 				<!-- 드롭다운 -->
 				
-				<c:if test="${post.sucode eq sessionScope.ucode }">
-					<a class="dropdown-toggle" href="#" role="button"
-						id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> <i
-						class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-					</a>
-					<div
-						class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-						aria-labelledby="dropdownMenuLink">
-						<div class="dropdown-header">메뉴:</div>
-						<button id="${post.sno}"   onclick="moveupdateform(this.id);">수정</button>
-						<button  >삭제</button>
-					</div>
-				</c:if>
-				
+				<a class="dropdown-toggle" href="#" role="button"
+					id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <i
+					class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+				</a>
+				<div
+					class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+					aria-labelledby="dropdownMenuLink">
+					<div class="dropdown-header">메뉴:</div>
+					<button id="${post.sno}"   onclick="moveupdateform(this.id);">수정</button>
+					<button>삭제</button>
+				</div>
 			</div>
 			<!-- 드롭다운 끝 -->
 		</div>
@@ -256,32 +252,6 @@ $(function(){
 			return true;
 		}
 	}
-	
-	function spostupdate(){
-		var param = $("#uspostform").serialize();
-		$.ajax({
-			url: "HSupdate.do",
-			data: param,
-			/* data: { sno: $("#sno").val(), stitle:$("#stitle").val(), beforesstartday:$("#beforesstartday").val(), beforesendday: $("#beforesendday").val(), 
-					 splace:$("#splace").val(), salarm:$("#salarm").val, scontent: $("#scontent").val() },	 */
-			type: "post", 
-			success: function(Data){	// 받는다고 했으니까 매개변수 있어야함
-				// json 한개를 받았을 때는 바로 출력 처리할 수 있음
-				if(Data != null){
-					alert("수정에 성공하였습니다");
-					
-				}else{
-					alert("수정에 실패하였습니다");
-				}	
-				/* $("#d2").html("번호 : "+jsonData.no+"<br>제목 : "+jsonData.title+"<br>작성자 : "+decodeURIComponent(jsonData.writer)+
-						"<br>내용 : "+decodeURIComponent(jsonData.content.replace(/\+/gi," "))+"<br><br>");
-				 */
-			},
-			error: function(request, status, errorData){ //에러는 위에서 복붙
-				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
-			}
-		}); //ajax
-}; 
 
 	
 </script>
@@ -290,7 +260,7 @@ $(function(){
 	<div id="up${post.sno }" class="card shadow mb-4">
 		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 		
-		<input type="hidden" id="sno" name=sno value="${post.sno }">
+		
 			<h6 class="m-0 font-weight-bold text-primary">
 				수정페이지
 			</h6>
@@ -313,18 +283,12 @@ $(function(){
 					<th>제 목</th>
 				</tr>
 				<tr>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
 					<td colspan="2"><input type="text" id="stitle" name="stitle" class="form-control" value="${post.stitle }">
 			</td>
 				</tr>
 				<tr>
 					<th>시 작 날 짜</th><th>끝 날 짜</th>
 				</tr>
-				
-				<c:set var="startday1" value="" />
-
 				<tr>
 					<td width="50%">
 					<input type="datetime-local" class="form-control" name="beforesstartday" id="beforesstartday" 
@@ -349,17 +313,15 @@ $(function(){
 						
 					</c:if>	
 					<c:if test="${ !empty post.splace }">
-					<input type="text" id="sample_address3" placeholder=" ${post.splace }" class="form-control" id ="splace" name="splace"  value="${post.splace }">
+					<input type="text" id="sample_address3_${status.index}" placeholder=" ${post.splace }" class="form-control" id ="splace" name="splace"  value="${post.splace }">
 						
 					</c:if>
 						<input type="button" onclick="sample5_execDaumPostcode2();" value="장소검색"  class="form-control"><br>
-						<div id="map3_${status.index}"  style="width:100%;height:150px;margin-top:10px; background-color: blue;"></div>
+						<div id="map3_${status.index}"  class="map" style="width:100%;height:150px;margin-top:10px;display:none"></div>
 
-
-
-
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-    var mapContainer3_${status.index} = document.getElementById('map3_${status.index}'), // 지도를 표시할 div
+    var mapContainer3_${status.index} = document.getElementById('map3'+'_${status.index}'), // 지도를 표시할 div
         mapOption3_${status.index} = {
             center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
             level: 4 // 지도의 확대 레벨
@@ -383,7 +345,7 @@ $(function(){
                 var addr3_${status.index} = data.address; // 최종 주소 변수
 
                 // 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("sample_address3").value = addr3_${status.index};
+                document.getElementById("sample_address3_${status.index}").value = addr3_${status.index};
                 // 주소로 상세 정보를 검색
                 geocoder3_${status.index}.addressSearch(data.address, function(results, status) {
                     // 정상적으로 검색이 완료됐으면
@@ -400,7 +362,6 @@ $(function(){
                         map3_${status.index}.setCenter(coords3_${status.index});
                         // 마커를 결과값으로 받은 위치로 옮긴다.
                         marker3_${status.index}.setPosition(coords3_${status.index})
-                        
                     }
                 });
             }
@@ -435,12 +396,9 @@ $(function(){
 </c:if><!-- spost끝 -->
 
 
-
-
-
 <c:if test="${ main.firstword eq 'b' }">
 <c:set var="b" value="${ main }"></c:set>
-           	<div id="se${b.bno }" class="card shadow mb-4">
+           	<div class="card shadow mb-4">
 			 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 				<h6 class="m-0 font-weight-bold text-primary">
 				<i class="fas fa-user-circle"></i>
@@ -452,15 +410,22 @@ $(function(){
            	   <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
 			   <input type="hidden" id="no_${status.index }" value="${b.bno }">
 			   <input type="hidden" id="pnum_${status.index }" value="${b.bpnum }" >
-			   <input type="hidden" id="open_${status.index }" value="${b.bopen }" >
+			   <input type="text" id="open_${status.index }" value="${b.bopen }" >
 			 <div id="d5"></div>
 		  		<c:if test="${sessionScope.ucode eq b.bucode }">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-						<button id="${b.bno}"   onclick="moveupdateform(this.id); return false;">수정</button>
-						<button  >삭제</button>
+                      <c:url var="bup" value="buppage.do">
+                      	<c:param name="bno" value="${b.bno }"/>
+                      </c:url> 
+                     <a class="dropdown-item" href="${bup }">수정</a>
+                       <c:url var="bdel" value="deletebpost.do">
+                      	<c:param name="bno" value="${b.bno }"/>
+                    	<c:param name="brenamefile" value="${b.brenamefile }"/>
+                      </c:url>
+                      <a class="dropdown-item" href="${bdel }">삭제</a>
                     </div>
                     </c:if>
                   </div> <!-- 드롭다운 끝 -->
@@ -608,255 +573,7 @@ $(function(){
 	  	 </div>
 	 </div><!-- 게시글안쪽  -->			
 	</div><!-- card shadow mb-4 -->
-	
-	
-	
-	 <div id="up${b.bno }" class="card shadow mb-4">
-    		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-		
-		
-			<h6 class="m-0 font-weight-bold text-primary">
-				수정페이지
-			</h6>
-
-			<div class="dropdown no-arrow">
-
-				<button class="btn btn-custom btn-sm"  id="uspost" type="submit" onclick="spostupdate(); return false;">수정하기</button> 
-				<button class="btn btn-custom btn-sm"  id="dspost" type="submit" onclick="spostdelete(); return false;">삭제하기</button>
-				<button id="${b.bno }" class="btn btn-custom btn-sm"  onclick="moveselectfeed(this.id); return false;" >수정취소</button>
-				
-
-			</div>
-			<!-- 드롭다운 끝 -->
-
-		</div>
-        <div class="card-body">
-                     <!-- 게시글안쪽 -->
-                  <form action="updatebpost.do" method="post" id="bupdate" enctype="multipart/form-data">
-            
-            
-            		<input type ="hidden" name="bno" value="${b.bno }">
-                     <input type="hidden" name="bucode" value="${sessionScope.ucode }">
-                     <input type="hidden" name="bwriter" value="${sessionScope.uname }">
-                     <input type="hidden" name="bpnum" value="${sessionScope.pnum }">
-                   	 <input type="hidden" id="bform" name="bcharge">
-                   	 <input type="hidden" name="boriginfile" value="${b.boriginfile }">
-                   	 <input type="hidden" name="brenamefile" value="${b.brenamefile }">
-                   	 <input type="hidden" name="bopen" value="${b.bopen }">
-                  
-                               <table  style="text-align: center; width: 100%;">
-	                        <tr>
-	                           <th style="width: 18%;vertical-align:middle; text-align: center;">제목</th>
-	                           <td><input type="text" name="btitle" class="form-control" placeholder="일정 제목을 입력하세요" required="required" value="${b.btitle }"></td>
-	                       	</tr>
-                       
-                           <tr>
-                           <th style="width: 18%;vertical-align:middle;  text-align: center;">유형</th>
-                              <td>
-                              
-                              <c:if test="${b.bkind eq '요청' }">
-                               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option1" value="요청" checked="checked">요청
-                                </label>
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option2" value="진행">진행
-                                </label>
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="피드백">피드백
-                                </label>
-                                 <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="완료">완료
-                                </label>
-                                 <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="보류">보류
-                                </label>
-                              </div>
-                              </c:if>
-                              <c:if test="${b.bkind eq '진행' }">
-                               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option1" value="요청">요청
-                                </label>
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option2" value="진행" checked="checked">진행
-                                </label>
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="피드백">피드백
-                                </label>
-                                 <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="완료">완료
-                                </label>
-                                 <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="보류">보류
-                                </label>
-                              </div>
-                              </c:if>
-                              <c:if test="${b.bkind eq '피드백' }">
-                               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option1" value="요청">요청
-                                </label>
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option2" value="진행">진행
-                                </label>
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="피드백" checked="checked">피드백
-                                </label>
-                                 <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="완료">완료
-                                </label>
-                                 <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="보류">보류
-                                </label>
-                              </div>
-                              </c:if>
-                              <c:if test="${b.bkind eq '완료' }">
-                               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option1" value="요청">요청
-                                </label>
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option2" value="진행">진행
-                                </label>
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="피드백">피드백
-                                </label>
-                                 <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="완료" checked="checked">완료
-                                </label>
-                                 <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="보류">보류
-                                </label>
-                              </div>
-                              </c:if>
-                              <c:if test="${b.bkind eq '보류' }">
-                               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option1" value="요청">요청
-                                </label>
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option2" value="진행">진행
-                                </label>
-                                <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="피드백">피드백
-                                </label>
-                                 <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="완료">완료
-                                </label>
-                                 <label class="btn btn-secondary">
-                                  <input type="radio" name="bkind" id="option3" value="보류" checked="checked">보류
-                                </label>
-                              </div>
-                              </c:if>
-                              
-                              
-                              </td>
-                           </tr>
-                     
-                           <tr>
-                         	  <th style="width: 18%;vertical-align:middle; text-align: center;" >담당자</th>
-                         	  <td style="vertical-align:middle; text-align: left;">
-                         	  	기존 담당자  : &nbsp; ${ b.bchargename }
-                         	  	<br>
-                         	  	<div style="padding-top: 10px; padding-bottom: 0px; margin-bottom: 0px;">
-										<nav class="navbar navbar-expand navbar-light bg-light mb-4">
-
-
-
-											<div class="dropdown">
-												<button class="btn btn-secondary dropdown-toggle"
-													type="button" id="dropdownMenu2" data-toggle="dropdown"
-													aria-haspopup="true" aria-expanded="false">담당자 수정
-												</button>
-											<div id="selected"></div>
-
-
-												<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-
-													<c:forEach var="pm" items="${sessionScope.pmlist}"
-														varStatus="status">
-														<button class="dropdown-item" type="button"
-															onclick="addbcharge${status.index}();"
-															value="${pm.ucode }">${pm.uname }</button>
-														<input type="checkbox" id="user${status.index }"
-															name="bcharge" style="display: none">
-														<input type="checkbox" id="name${status.index }"
-															name="bchargename" style="display: none">
-													</c:forEach>
-												</div>
-											</div>
-									
-										</nav>
-									</div>
-                         	  </td>
-                         	</tr>
-  
-                           
-                           <tr>
-                           <th style="width: 18%;vertical-align:middle; text-align: center;" >시작날짜</th>
-                              <td><input type="date" class="form-control" name="bstartday" value="${b.bstartday }"></td>
-
-                           </tr>
-                           <tr>
-                            <th style="width: 18%;vertical-align:middle; text-align: center;" >끝날짜</th>
-                              <td><input type="date" class="form-control" name="bendday" value="${b.bendday }"></td>
-                           
-                           </tr>
-
-                           <tr>
-                           <th style="width: 18%;vertical-align:middle; text-align: center;" >내용</th>
-                              <td>
-                              <textarea cols="50" rows="6" class="w-100 form-control" name="bcontent">${b.bcontent }</textarea>
-                              </td>
-                           </tr>
-
-                           <tr>
-                           <th style="width: 18%;vertical-align:middle; text-align: center;" >파일</th>
-                              <td style="vertical-align:middle; text-align: left;">
-                               <c:if test="${!empty b.boriginfile }">
-                             	${b.boriginfile }
-                             	&nbsp;&nbsp;&nbsp;
-                             	<input type="checkbox" name="deleteFlag" value="yes">삭제
-                             	<br><br>
-                             	<input type="file" name="upfile">
-                          	  </c:if>
-                          	  <c:if test="${empty b.boriginfile }">                             	
-                             	<input  type="file" name="upfile">
-                          	  </c:if>
-                          	
-                             </td>
-                           </tr>
-
-                            <tr>
-                              <td colspan="2">
-                                    <button type="submit" class="btn btn-sm btn-info" value="수정완료 ">수정완료</button>
-    									&nbsp;&nbsp;
-                                    <button type="reset" class="btn btn-sm btn-danger" value="">원래대로</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<c:url var="bpostone" value="bpostOne.do">
-					<c:param name="bno" value="${b.bno }" />
-					<c:param name="ucode" value="${sessionScope.ucode }" />
-					<c:param name="pnum" value="${sessionScope.pnum }" />
-				</c:url>
-				<a class="btn  btn-sm  btn-light" href="${bpostone }">수정취소</a>
-		
-                              </td>
-                           </tr>
-                 </table>
-                     </form>
-
-                  </div>
-               </div>
-	
-	
-	
-	
-	
 </c:if><!-- bpost끝 -->
-
-
-<!--  -->
 
 
 <!-- cpost 시작 -->
