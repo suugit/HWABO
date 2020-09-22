@@ -56,7 +56,7 @@
 					aria-labelledby="dropdownMenuLink">
 					<div class="dropdown-header">메뉴:</div>
 					<button id="${post.sno}"   onclick="moveupdateform(this.id);">수정</button>
-					<button  >삭제</button>
+					<button>삭제</button>
 				</div>
 			</div>
 			<!-- 드롭다운 끝 -->
