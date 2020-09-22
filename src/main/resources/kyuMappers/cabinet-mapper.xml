@@ -46,7 +46,7 @@
 	(select no, enrolldate ss
 	from cabinet
 	where ucode = #{ucode} and pnum = #{pnum} ) a left join realpost b using (no)
-	order by a.ss
+	order by a.ss desc
 	
 
 

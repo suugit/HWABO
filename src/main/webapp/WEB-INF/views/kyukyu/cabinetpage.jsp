@@ -1,7 +1,10 @@
+<%@ page import="java.util.ArrayList, com.beet.HWABO.red.model.vo.MemberProject"%>
 <%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${ sessionScope.totalProgress < 4 }"><c:set var="tp" value="4" /></c:if>
+<c:if test="${ sessionScope.totalProgress >= 4 }"><c:set var="tp" value="${ sessionScope.totalProgress }" /></c:if>
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -24,99 +27,64 @@
 
   <!-- Custom styles for this page -->
   <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<!-- 스크립트 모으기 시작 -->
+<c:import url="/WEB-INF/views/red/metaKyu.jsp"></c:import>
 
+<!-- 스크립트 모으기 끝 -->
 </head>
-
 <body id="page-top">
-
-<c:import url="/WEB-INF/views/kyukyu/topbar.jsp"></c:import>
- 
+<!-- 11111111111111111 -->
+<c:import url="/WEB-INF/views/suugit/topbar.jsp"></c:import>
  <div style="width:100%;display:flex;justify-content:center;align-item:center;">
 <!-- Sidebar2right -->
-       <c:import url="/WEB-INF/views/kyukyu/entersideFixed.jsp"></c:import>
+     <c:import url="/WEB-INF/views/red/sideFixed.jsp"></c:import>
 <!-- End of Sidebar2right -->
-<!-- dd -->
- 
- 
+<!-- 111111111111111111 -->
   <!-- Page Wrapper -->
   <div id="wrapper" style="width:1300px;">
-
     <!-- Sidebar -->
     <div style="width:17%"></div>
     <!-- End of Sidebar -->
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column bg-white" style="width:62%;">
-
       <!-- Main Content -->
      <div id="content">
-
         <!-- Topbar -->
         <br><br><br><br>
         <!-- End of Topbar -->
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
+<!-- 진행률 시작 -->
+<%-- <div class="card mb-4">
+                <div class="card-body">
+                  <div class="mb-1 small">프로젝트 진행률 ${ sessionScope.totalProgress }%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar" role="progressbar" style="width: ${ tp }%" aria-valuenow="${ tp }" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+             
+              </div> --%>
+<!-- 진행률끝 -->
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">보관함</h1>
+          <h1 class="h3 mb-2 text-gray-800"></h1>
           <p class="mb-4"></p>
+<!-- 글작성 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<%-- <c:import url="/WEB-INF/views/red/MainListInsert.jsp"></c:import> --%>
+<!-- 글작성 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
-	
-          
-        <div class="checks" align="left" style="margin-left: 1%; font-size: 23px; " >
-			<form action="#">
-				<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;글 &nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-				<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;업 무 &nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-				<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;일 정&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-				<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;할 일&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-				<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;투 표&nbsp;&nbsp;&nbsp;&nbsp;</label></span>
-			</form>
-		</div>
+<!-- 피드 모아보기 시작 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->   
 
+<c:import url="/WEB-INF/views/kyukyu/cabinetList.jsp"></c:import>
 
-
-        
-<% for(int i = 0; i < 7; i++){ %>
-<!-- 게시글시작 -->
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
-              <!-- 게시글안쪽 -->
-<h1>게시글 제목</h1>
-<hr>
-가<br>
-나다<br>
-라마바<br>
-사아자차<br>
-<br>
-<br>
-<hr>
-<table style="width:100%;">
-<tr><td style="width:20%;">
-<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">좋아요 0</span>
-                  </a>
-</td><td style="width:20%;"></td><td style="width:20%;"></td>
-<td style="width:20%;"></td><td style="width:20%;float:right;">
-</td>
-</tr>
-</table>
-            </div>
-<div class="px-3 py-5 bg-gradient-light text-white" style="height:10px;">
-<input type="text" class="form-control" placeholder="답글을 입력하세요">
-</div>
-          </div>
-<!-- 게시글끝 -->
-<% } %>
-
-
-
-
+<!-- 피드 모아보기 끝 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->   
+    
+<!-- 글작성 샘플 시작 -->
+<%-- <c:import url="/WEB-INF/views/red/sampleFormMainInsert.jsp"></c:import> --%>
+<!-- 글작성 샘플 끝 -->
+     
+<!-- 샘플폼 시작 -->
+<%-- <c:import url="/WEB-INF/views/red/sampleFormMain.jsp"></c:import> --%>
+<!-- 샘플폼 끝 -->
 
         </div>
         <!-- /.container-fluid -->
