@@ -1,81 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%-- <%= session.getAttribute("pnum") %> --%>
 <!DOCTYPE html>
 <html lang="kr">
 
 <head>
-  <link rel="icon" type="image/x-icon" href="/hwabo/resources/assets/img/favicon.png" />
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<link rel="icon" type="image/x-icon"
+	href="/hwabo/resources/assets/img/favicon.png" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-  <title>HWABO</title>
+<title>HWABO</title>
 
-  <!-- Custom fonts for this template -->
-  <link href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<!-- Custom fonts for this template -->
+<link
+	href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="/hwabo/resources/maincss/css/sb-admin-2.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="/hwabo/resources/maincss/css/sb-admin-2.css"
+	rel="stylesheet">
 
-  <!-- Custom styles for this page -->
-  <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<!-- Custom styles for this page -->
+<link
+	href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet">
 
 </head>
 
 
 <style type="text/css">
-
-div#showfile imag{
-
-
-	width : 10%;
-	height : 10%;
-	
-	}
-
-
+div#showfile imag {
+	width: 10%;
+	height: 10%;
+}
 </style>
 
 
 
 
-<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 
-function enterkey(index) {
-	console.log("enterkey function get in");
-	
-    if (window.event.keyCode == 13) {
-    	console.log("enterkey 들어옴1");
-    	var bno = '${b.bno}';
-    	var insertData = $("#content"+ index).val(); //commentInsertForm의 내용을 가져옴
-  		console.log(bno +"data " + insertData);
-    	/* commentInsert(insertData); //Insert 함수호출(아래)    */
-    }
-}
-
-function commentInsert(insertData){
-	console.log("insert 들어옴1");
-	
-    $.ajax({
-        url : '/comment/insert',
-        type : 'post',
-        data : insertData,
-        success : function(data){
-            if(data == 1) {
-                commentList(); //댓글 작성 후 댓글 목록 reload
-                $('[name=content]').val('');
-            }
-        }
-    });
-}
 
 
 /* 리스트 들어올 시 보관된 정보 불러오기 */
@@ -201,6 +178,86 @@ function sendInsert(index){
 }
 
 
+/* 댓글기능 */
+ 
+
+ 
+ 
+ 
+function enterkey(index) {
+	console.log("enterkey function get in");
+	
+	   $.ajax({
+	        url : 'insertreply.do',
+	        type : 'post',
+	        data : {no : $("#reply_no_"+ index).val(), content : $("#reply_content_"+ index).val(),
+	        		ucode: "${sessionScope.ucode }", uname : "${sessionScope.uname }"
+	        },
+	        success : function(data){
+	        	console.log("댓글 insert 성공");
+	            if(data == "ok") {
+	            	 replytList(index);  //댓글 작성 후 댓글 목록 reload
+	            	$("#reply_content_"+ index).val('');
+	            }else{
+	            	alert("댓글 등록 실패! 재시도 하시오")
+	            }
+	        }
+	    });
+}
+
+
+function replytList(index){
+	console.log("reply 인써트 후 리스트 보여주기 function get in");
+	
+	
+	
+    $.ajax({
+        url : 'selectOneReply.do',
+        type : 'post',
+        data : {no : $("#reply_no_"+ index).val()},
+		
+        success : function(data){
+        	
+        	
+       /*  	repludate.format('yyyy-MM-dd(KS) HH:mm:ss' */
+        	
+        	
+        	console.log("댓글 list 성공");
+            var re =""; 
+            $.each(data, function(key, value){ 
+            	
+            	re += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+            	re += '<div class="commentInfo'+value.replyno+'">'+' 작성자 : '+value.uname +' '+ value.enrolldate;
+            	re += '<div class="commentContent'+value.replyno+'"> <p> 내용 : '+value.content +'</p>';
+            	re += '<a onclick="commentUpdate('+value.replyno+',\''+value.content+'\');"> 수정 </a>';
+            	re += '<a onclick="commentDelete('+value.replyno+');"> 삭제 </a> </div>';
+            	re += '</div></div>';
+            });
+            
+            $(".commentList_"+index).html(re);
+        }
+    });
+}
+
+
+	
+/* 	
+	
+    if (window.event.keyCode == 13) {
+    	console.log("enterkey 들어옴1");
+    	var bno = '${b.bno}';
+    	var insertData = $("#content"+ index).val(); //commentInsertForm의 내용을 가져옴 
+  		console.log(bno +"data " + insertData);
+    	 commentInsert(insertData); //Insert 함수호출(아래)   
+    	 
+    	 
+    	  */
+    	 
+    	 
+  
+
+
+
 
 
 </script>
@@ -208,400 +265,449 @@ function sendInsert(index){
 
 <body id="page-top">
 
-<c:import url="/WEB-INF/views/kyukyu/topbar.jsp"></c:import>
+	<c:import url="/WEB-INF/views/kyukyu/topbar.jsp"></c:import>
 
-<div style="width:100%; display:flex; justify-content:center; align-item:center;">
-<!-- Sidebar2right -->
-     <c:import url="/WEB-INF/views/kyukyu/entersideFixed.jsp"></c:import>
-<!-- End of Sidebar2right -->
-
-
-	<!-- Page Wrapper -->
-	<div id="wrapper" style="width:1300px;">
-
-		<!-- Sidebar -->
-	   <div style="width:17%"></div>
-		<!-- End of Sidebar -->
-
-		
-
-	<!-- Content Wrapper -->
-	  <div id="content-wrapper" class="d-flex flex-column bg-white"  style="width:62%;">
-
-		<!-- Main Content -->
-		<div id="content">
-
-			<!-- Topbar -->
-			<br><br><br><br>
-			<!-- End of Topbar -->
-
- <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-             
-
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">업무 게시글</h1>
-          <p class="mb-4"></p>
+	<div
+		style="width: 100%; display: flex; justify-content: center; align-item: center;">
+		<!-- Sidebar2right -->
+		<c:import url="/WEB-INF/views/kyukyu/entersideFixed.jsp"></c:import>
+		<!-- End of Sidebar2right -->
 
 
- <!-- Content Row -->
-          <div class="row">
+		<!-- Page Wrapper -->
+		<div id="wrapper" style="width: 1300px;">
 
-            <!-- 게시글 크기 넓이 지정부분!!! -->
-            <div class="col-lg-11">
+			<!-- Sidebar -->
+			<div style="width: 17%"></div>
+			<!-- End of Sidebar -->
 
 
 
-           
-           	<c:forEach var="b" items="${requestScope.list }" varStatus="status">
-           	<div class="card shadow mb-4">
-           
-           	
-           
-           
-			 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-				<h6 class="m-0 font-weight-bold text-primary">
-				
-				<i class="fas fa-user-circle"></i>
-				${b.bwriter}<br>${b.benrolldate }</h6>
-			<!-- 	<button type="submit" class="btn btn-custom btn-sm liketoggle" name="like"><span>보관</span> <i class="far fa-bookmark"></i></button>
+			<!-- Content Wrapper -->
+			<div id="content-wrapper" class="d-flex flex-column bg-white"
+				style="width: 62%;">
+
+				<!-- Main Content -->
+				<div id="content">
+
+					<!-- Topbar -->
+					<br>
+					<br>
+					<br>
+					<br>
+					<!-- End of Topbar -->
+
+					<!-- Begin Page Content -->
+					<div class="container-fluid">
+
+
+
+						<!-- Page Heading -->
+						<h1 class="h3 mb-2 text-gray-800">업무 게시글</h1>
+						<p class="mb-4"></p>
+
+
+						<!-- Content Row -->
+						<div class="row">
+
+							<!-- 게시글 크기 넓이 지정부분!!! -->
+							<div class="col-lg-11">
+
+
+
+
+								<c:forEach var="b" items="${requestScope.list }"
+									varStatus="status">
+									<div class="card shadow mb-4">
+
+
+
+
+										<div
+											class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+											<h6 class="m-0 font-weight-bold text-primary">
+
+												<i class="fas fa-user-circle"></i> ${b.bwriter}<br>${b.benrolldate }</h6>
+											<!-- 	<button type="submit" class="btn btn-custom btn-sm liketoggle" name="like"><span>보관</span> <i class="far fa-bookmark"></i></button>
 					 -->
-					
-					
-				<!-- 수정삭제 드롭다운 -->	
-             <div class="dropdown no-arrow">
-                  
-                <!-- 보관함 담기기능 -->  
-               <button id="cavinetin_${status.index }" class="btn btn-custom btn-sm liketoggle${status.index }" name="like" onclick="sendInsert(${status.index});">
-           	   <span>보관</span> <i class="far fa-bookmark"></i></button>
-           	   <input type="hidden" id="ucode_${status.index }" value="${sessionScope.ucode }" >
-			   <input type="text" id="no_${status.index }" value="${b.bno }">
-			   <input type="hidden" id="pnum_${status.index }" value="${b.bpnum }" >
-			   
-             
 
-			 <div id="d5"></div>
-		  		<c:if test="${sessionScope.ucode eq b.bucode }">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                     
-                      <c:url var="bup" value="buppage.do">
-                      	<c:param name="bno" value="${b.bno }"/>
-                    
-                      </c:url> 
-                     <a class="dropdown-item" href="${bup }">수정</a>
-                     	
-                       <c:url var="bdel" value="deletebpost.do">
-                      	<c:param name="bno" value="${b.bno }"/>
-                    	<c:param name="brenamefile" value="${b.brenamefile }"/>
-                      </c:url>
-                      <a class="dropdown-item" href="${bdel }">삭제</a>
-                 		
-                    </div>
-                    </c:if>
-                  </div> <!-- 드롭다운 끝 -->
-					
-				</div><!-- card-header py-3 d-flex flex-row align-items-center justify-content-between -->
-				
-			<!-- 게시글안쪽 -->	
-			<div class="card-body">
-							
-			   <b>제목 : ${b.btitle}</b>
-			   <hr>
-				
-							
-			<div class="btn-group btn-group-toggle"  >
-			  <c:if test="${b.bkind eq '요청' }">
-				
-				
-				 <label class="btn btn-info">
-				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
-				  </label> 
-				  <label class="btn btn-secondary">
-				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
-				  </label>
-				  <label class="btn btn-secondary">
-				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
-				  </label>
-				   <label class="btn btn-secondary">
-				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
-				  </label>
-				   <label class="btn btn-secondary">
-				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
-				  </label>
-				
-				
-			  </c:if>
-			  
-			  
-			  <c:if test="${b.bkind eq '진행' }">
-					
-					
-				 <label class="btn btn-secondary">
-				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
-				  </label> 
-				  <label class="btn btn-info">
-				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
-				  </label>
-				  <label class="btn btn-secondary">
-				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
-				  </label>
-				   <label class="btn btn-secondary">
-				    <input type="radio" name="완료" id="완료" value="완료"readonly>완료
-				  </label>
-				   <label class="btn btn-secondary">
-				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
-				  </label>			
-			  </c:if>
-			 
-			  <c:if test="${b.bkind eq '피드백' }">
-					
-				 <label class="btn btn-secondary">
-				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
-				  </label> 
-				  <label class="btn btn-secondary">
-				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
-				  </label>
-				  <label class="btn btn-info">
-				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
-				  </label>
-				   <label class="btn btn-secondary">
-				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
-				  </label>
-				   <label class="btn btn-secondary">
-				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
-				  </label>				
-			  </c:if>
-			  
-			   <c:if test="${b.bkind eq '완료' }">
-						
-				 <label class="btn btn-secondary">
-				    <input type="radio" name="진행" id="요청" value="요청" readonly>요청
-				  </label> 
-				  <label class="btn btn-secondary">
-				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
-				  </label>
-				  <label class="btn btn-secondary">
-				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
-				  </label>
-				   <label class="btn btn-info">
-				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
-				  </label>
-				   <label class="btn btn-secondary">
-				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
-				  </label>			
-			  </c:if>
-			  
-			  
-			   <c:if test="${b.bkind eq '보류' }">
-						
-				 <label class="btn btn-secondary">
-				    <input type="radio" name="진행" id="요청" value="요청" readonly >요청
-				  </label> 
-				  <label class="btn btn-secondary">
-				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
-				  </label>
-				  <label class="btn btn-secondary">
-				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
-				  </label>
-				   <label class="btn btn-secondary">
-				    <input type="radio" name="완료" id="완료" value="완료" readonly>완료
-				  </label>
-				   <label class="btn btn-info">
-				    <input type="radio" name="보류" id="보류" value="보류" readonly>보류
-				  </label>			
-			  </c:if>
 
+											<!-- 수정삭제 드롭다운 -->
+											<div class="dropdown no-arrow">
+
+												<!-- 보관함 담기기능 -->
+												<button id="cavinetin_${status.index }"
+													class="btn btn-custom btn-sm liketoggle${status.index }"
+													name="like" onclick="sendInsert(${status.index});">
+													<span>보관</span> <i class="far fa-bookmark"></i>
+												</button>
+												<input type="hidden" id="ucode_${status.index }"
+													value="${sessionScope.ucode }"> <input type="text"
+													id="no_${status.index }" value="${b.bno }"> <input
+													type="hidden" id="pnum_${status.index }"
+													value="${b.bpnum }">
+
+
+
+												<div id="d5"></div>
+												<c:if test="${sessionScope.ucode eq b.bucode }">
+													<a class="dropdown-toggle" href="#" role="button"
+														id="dropdownMenuLink" data-toggle="dropdown"
+														aria-haspopup="true" aria-expanded="false"> <i
+														class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+													</a>
+													<div
+														class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+														aria-labelledby="dropdownMenuLink">
+
+														<c:url var="bup" value="buppage.do">
+															<c:param name="bno" value="${b.bno }" />
+
+														</c:url>
+														<a class="dropdown-item" href="${bup }">수정</a>
+
+														<c:url var="bdel" value="deletebpost.do">
+															<c:param name="bno" value="${b.bno }" />
+															<c:param name="brenamefile" value="${b.brenamefile }" />
+														</c:url>
+														<a class="dropdown-item" href="${bdel }">삭제</a>
+
+													</div>
+												</c:if>
+											</div>
+											<!-- 드롭다운 끝 -->
+
+										</div>
+										<!-- card-header py-3 d-flex flex-row align-items-center justify-content-between -->
+
+										<!-- 게시글안쪽 -->
+										<div class="card-body">
+
+											<b>제목 : ${b.btitle}</b>
+											<hr>
+
+
+											<div class="btn-group btn-group-toggle">
+												<c:if test="${b.bkind eq '요청' }">
+
+
+													<label class="btn btn-info"> <input type="radio"
+														name="진행" id="요청" value="요청" readonly>요청
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="진행" id="진행" value="진행" readonly>진행
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="완료" id="완료" value="완료" readonly>완료
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="보류" id="보류" value="보류" readonly>보류
+													</label>
+
+
+												</c:if>
+
+
+												<c:if test="${b.bkind eq '진행' }">
+
+
+													<label class="btn btn-secondary"> <input
+														type="radio" name="진행" id="요청" value="요청" readonly>요청
+													</label>
+													<label class="btn btn-info"> <input type="radio"
+														name="진행" id="진행" value="진행" readonly>진행
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="완료" id="완료" value="완료" readonly>완료
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="보류" id="보류" value="보류" readonly>보류
+													</label>
+												</c:if>
+
+												<c:if test="${b.bkind eq '피드백' }">
+
+													<label class="btn btn-secondary"> <input
+														type="radio" name="진행" id="요청" value="요청" readonly>요청
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="진행" id="진행" value="진행" readonly>진행
+													</label>
+													<label class="btn btn-info"> <input type="radio"
+														name="피드백" id="피드백" value="피드백" readonly>피드백
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="완료" id="완료" value="완료" readonly>완료
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="보류" id="보류" value="보류" readonly>보류
+													</label>
+												</c:if>
+
+												<c:if test="${b.bkind eq '완료' }">
+
+													<label class="btn btn-secondary"> <input
+														type="radio" name="진행" id="요청" value="요청" readonly>요청
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="진행" id="진행" value="진행" readonly>진행
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+													</label>
+													<label class="btn btn-info"> <input type="radio"
+														name="완료" id="완료" value="완료" readonly>완료
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="보류" id="보류" value="보류" readonly>보류
+													</label>
+												</c:if>
+
+
+												<c:if test="${b.bkind eq '보류' }">
+
+													<label class="btn btn-secondary"> <input
+														type="radio" name="진행" id="요청" value="요청" readonly>요청
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="진행" id="진행" value="진행" readonly>진행
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
+													</label>
+													<label class="btn btn-secondary"> <input
+														type="radio" name="완료" id="완료" value="완료" readonly>완료
+													</label>
+													<label class="btn btn-info"> <input type="radio"
+														name="보류" id="보류" value="보류" readonly>보류
+													</label>
+												</c:if>
+
+											</div>
+											<br>
+											<br>
+
+
+
+											<div>
+												<i class="fas fa-user-friends"></i> 담당자 : ${b.bchargename }
+											</div>
+											<hr>
+											<div>
+												<tr>
+													<td width="20%"><span style="float: left;"> <i
+															class="far fa-calendar-alt"> 시작일 :
+																&nbsp;${b.bstartday }</i></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+													<td width="20%"><span style="float: center;"> <i
+															class="far fa-calendar-alt"> 마감일 : &nbsp;${b.bendday }</i></span>
+													</td>
+												</tr>
+											</div>
+
+											<hr>
+
+											<div>
+												<table>
+													<c:if test="${! empty b.bcontent }">
+
+														<tr>
+															<td><b>${b.bcontent}</b></td>
+														</tr>
+													</c:if>
+												</table>
+												<br>
+												<table>
+													<c:if test="${! empty b.boriginfile }">
+
+														<tr>
+															<td><c:url var="ubf" value="bfdown.do">
+																	<c:param name="ofile" value="${b.boriginfile}" />
+																	<c:param name="rfile" value="${b.brenamefile}" />
+																</c:url>
+
+
+															<div id="showfile" style="overflow: hidden;">
+																	<c:forTokens var="ext" items="${b.brenamefile}"
+																		delims="." varStatus="status1">
+
+																		<c:if test="${status1.last}">
+																			<c:choose>
+																				<c:when test="${ext eq 'jpg' or ext eq 'gif'}">
+																					<img src="resources/bupfile/${b.brenamefile}"
+																						class="rounded"
+																						style="width: 220px; height: 150px;">
+																				</c:when>
+																				<c:when test="${ext eq 'txt'}">
+																					<img src="resources/img/filemoon.png"
+																						style="width: 40px; height: 40px">
+																				</c:when>
+																				<c:when test="${ext eq 'pdf'}">
+																					<img src="resources/img/pppptttt.png"
+																						style="width: 40px; height: 40px">
+																				</c:when>
+																				<c:when
+																					test="${ext != 'jpg' and ext != 'txt' and ext != 'pdf'}">
+																					<img src="resources/img/eettcc.png"
+																						style="width: 40px; height: 40px">
+																				</c:when>
+
+																			</c:choose>
+																		</c:if>
+																	</c:forTokens>
+																	<br> <a href="${ubf }"><i class="far fa-file"></i>
+																		: ${b.boriginfile}</a>
+
+																</div></td>
+
+														</tr>
+
+													</c:if>
+													<c:if test="${empty b.boriginfile}">
+													&nbsp;
+													</c:if>
+													
+													
+									
+													
+												</table>
+												<hr>
+												<table style="width: 100%;">
+													<tr>
+
+
+														<td style="width: 20%;"><a href="#"
+															class="btn btn-primary btn-icon-split btn-sm"> <span
+																class="icon text-white-50"> <i
+																	class="far fa-heart"></i>
+															</span> <span class="text">좋아요 </span>
+														</a></td>
+													
+														<td style="width: 20%;"></td>
+														<td style="width: 20%;"></td>
+														<td style="width: 20%;"></td>
+														<td style="width: 20%; float: right;"></td>
+													</tr>
+												</table>
+											</div>
+										
+
+										</div>
+											<div style="background-color:#fcfcfe" id="replyy"><br>
+											<div class="container" style="color: black">
+													<div class="commentList_${status.index }"></div>
+												</div>
+												
+											
+											</div>
+											<div class="px-3 py-5 bg-gradient-light text-white"
+												style="height: 10px;" >
+
+
+												
+												
+												<input type="hidden" id="reply_no_${status.index }" name="no"value="${b.bno }"> 
+												<input type="text" class="form-control" id="reply_content_${status.index }" name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
+													onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
+											</div>
+										<!-- 게시글안쪽  -->
+									</div>
+									<!-- card shadow mb-4 -->
+								</c:forEach>
+
+
+
+							</div>
+							<!-- class="col-lg-11" -->
+
+
+
+						</div>
+						<!-- /.container-fluid -->
+
+					</div>
+					<!-- End of Main Content -->
+
+
+
+
+					<!-- Footer -->
+					<footer class="sticky-footer bg-white">
+						<div class="container my-auto">
+							<div class="copyright text-center my-auto">
+								<span>Copyright &copy; Your Website 2020</span>
+							</div>
+						</div>
+					</footer>
+					<!-- End of Footer -->
+
+				</div>
 			</div>
-			<br><br>
-			
-			
-			
-			<div>
-			   <i class="fas fa-user-friends"></i> 담당자 :  ${b.bchargename }
+
+			<div style="width: 25%"></div>
+			<!-- End of Content Wrapper -->
+
+		</div>
+
+	</div>
+	<!-- 꼭대기 디브 닫기  div flex-->
+	<!-- End of Page Wrapper -->
+
+
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">Ã</span>
+					</button>
+				</div>
+				<div class="modal-body">Select "Logout" below if you are ready
+					to end your current session.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					<a class="btn btn-primary" href="login.jsp">Logout</a>
+				</div>
 			</div>
-			<hr>
-			<div>
-				<tr>
-				 <td width="20%"><span style="float: left;">
-				 	<i class="far fa-calendar-alt"> 시작일 : &nbsp;${b.bstartday }</i></span>
-				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-	             </td>
-				 <td width="20%"><span style="float: center;">
-				 	<i class="far fa-calendar-alt"> 마감일 : &nbsp;${b.bendday }</i></span>
-	           	 </td>
-	           	</tr>
-			</div>
-		
-			<hr>
-			
-			<div>
-			  <table>
-			   <c:if test="${! empty b.bcontent }">
-		
-				 <tr>
-				 <td><b>${b.bcontent}</b></td>
-				 </tr>
-				</c:if>
-		      </table>
-			<br>	
-			  <table>
-				 <c:if test="${! empty b.boriginfile }">
-			
-					<tr>
-					   <td>
-					  	 <c:url var="ubf" value="bfdown.do">
-						  <c:param name="ofile" value="${b.boriginfile}"/>
-						  <c:param name="rfile" value="${b.brenamefile}"/>
-						 </c:url> 
-				   
-								   
-			 		 <div id="showfile" style="overflow:hidden;"> 
-					<c:forTokens var="ext" items="${b.brenamefile}" delims="." varStatus="status">
-						
-						    <c:if test="${status.last}">
-						        <c:choose>
-						            <c:when test="${ext eq 'jpg' or ext eq 'gif'}">
-						               <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 220px;height : 150px;">
-						            </c:when>
-						             <c:when test="${ext eq 'txt'}">
-						                <img src="resources/img/filemoon.png" style="width:40px; height :40px" >
-						            </c:when>
-						             <c:when test="${ext eq 'pdf'}">
-						                <img src="resources/img/pppptttt.png" style="width:40px; height :40px" >
-						            </c:when>
-						            <c:when test="${ext != 'jpg' and ext != 'txt' and ext != 'pdf'}">
-						                <img src="resources/img/eettcc.png" style="width:40px; height :40px" >
-						            </c:when>
-						       		
-						        </c:choose>
-						    </c:if>
-						</c:forTokens> 
-					     <br>
-					     <a href="${ubf }"><i class="far fa-file"></i> :  ${b.boriginfile}</a>
-			
-					</div> 
-				</td>
-			
-				</tr>
-				
-			    </c:if>
-					<c:if test="${empty b.boriginfile}">
-					&nbsp;
-					</c:if>
-			 </table><hr>
-			 <table style="width: 100%;">
-				<tr>
-								
-								
-					<td style="width: 20%;"><a href="#" class="btn btn-primary btn-icon-split btn-sm"> 
-					<span class="icon text-white-50"> <i class="far fa-heart"></i>
-					</span> <span class="text">좋아요 </span>
-					</a>
-				 </td>
-				 <td style="width: 20%;"></td>
-				 <td style="width: 20%;"></td>
-				 <td style="width: 20%;"></td>
-				 <td style="width: 20%; float: right;"></td>
-				</tr>
-			</table>
-		 </div>
-		 <div class="px-3 py-5 bg-gradient-light text-white" style="height: 10px;">
-	
-	
-	 <form name="commentInsertForm">
-  
-	<input type="hidden" name="no" value="${b.bno }" >	
-	<!-- <input type="text" class="form-control" id="content" name="content" placeholder="답글을 입력하세요"> -->
-	<input onKeyPress="enterkey(${status.index});" type="text" class="form-control" id="content_${status.index }" name="content_${status.index }"  placeholder="enter = 등록" />
-</form>
+		</div>
+	</div>
 
 
-</div>
-	
-	 </div><!-- 게시글안쪽  -->			
-	</div><!-- card shadow mb-4 -->
-	</c:forEach>
-	
-            
+	<!-- Bootstrap core JavaScript-->
+	<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    </div><!-- class="col-lg-11" -->
+	<!-- Core plugin JavaScript-->
+	<script
+		src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-		
-      
-    </div><!-- /.container-fluid -->    
-  		
-   </div><!-- End of Main Content -->
+	<!-- Custom scripts for all pages-->
+	<script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
 
+	<!-- Page level plugins -->
+	<script
+		src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
-   </div>
-    </div>
-    
-    <div style="width:25%"></div>
-    <!-- End of Content Wrapper -->
-
-   </div> 
-   
-    </div> <!-- 꼭대기 디브 닫기  div flex-->
-  <!-- End of Page Wrapper -->
-
- 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">Ã</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.jsp">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
-  <script src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
+	<!-- Page level custom scripts -->
+	<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
 
 </body>
 
