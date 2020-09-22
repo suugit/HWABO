@@ -152,17 +152,30 @@ jQuery('.suugitMain').click(function () {
               <!-- 게시글안쪽 -->
               <div class="clearfix d-flex ">
               	</div><table id="InsertTable" style="text-align:center;width:100%;">
-              <tbody><tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
-              <span>글작성</span>
+              <tbody>
+              
+  <tr class="m-0 font-weight-bold text-primary"><td style="width:20%;">
               </td><td style="width:20%;">
-              <span>업무</span>
               </td><td style="width:20%;">
-              <span>일정</span>
               </td><td style="width:20%;">
-              <span>할일</span>
               </td><td style="width:20%;">
-              <span>투표</span>
               </td></tr>
+<!-- @@@@시작@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@  -->                                                                                                        <!-- @@@  -->
+			  <tr class="m-0 font-weight-bold text-primary"><td style="width:100%;" colspan="5"><table style="width:100%;">
+			  <tr class="m-0 font-weight-bold text-primary" style="width:100%;">
+			  <td style="width:33%;height:100%;" class="suugitMain hovercheck">          
+              <span>글작성</span>
+              </td><td style="width:33%;height:100%;" class="kyuMain hovercheck">
+              <span>업무</span>
+              </td><td style="width:33%;height:100%;" class="abcMain hovercheck">
+              <span>일정</span>
+              </td></tr>
+              </table></td></tr>
+<!-- @@@  -->                                                                                                        <!-- @@@  -->
+<!-- @@@@끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->              
+
+              
               <!-- 구분선 -->
               <tr><td colspan="5">
               <hr>
@@ -328,7 +341,7 @@ jQuery('.suugitMain').click(function () {
                            </tr>
                            <tr>
                               <td colspan="5"><span style="float: left;"><i class="fa fa-pen"></i>&nbsp;제 목</span>                                 
-                              <input type="text" name="btitle" class="form-control" placeholder="일정 제목을 입력하세요" required="required"></td>
+                              <input type="text" name="btitle" class="form-control" placeholder="업무 제목을 입력하세요" required="required"></td>
                            </tr>
                            <tr>
                               <td colspan="5">&nbsp;</td>
