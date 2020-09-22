@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -44,6 +45,7 @@ import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
 import com.beet.HWABO.spost.model.service.SpostService;
+import com.beet.HWABO.spost.model.vo.Spost;
 
 @Controller
 public class RedController {
@@ -554,7 +556,7 @@ public class RedController {
 					int speed = Integer.parseInt(chat.getContent().substring(8,chat.getContent().length()));
 					cs.setSpeed(speed);
 				} catch (Exception e) {
-					logger.info("숫자만 인식 가능....");
+					logger.info("BEET는 말이야.. 숫자만 인식 가능하다구....");
 				}
 				r = redService.updateChatSpeed(cs);
 				HttpSession session = request.getSession();
@@ -658,6 +660,32 @@ public class RedController {
 			model.addAttribute("message", bpost.getBno() + "번글 삭제 실패");
 			return "common/error";
 		}
+	}
+	@RequestMapping("sinsertMain.do")
+	public ModelAndView insertSpostMain(Spost spost, ModelAndView mav, @RequestParam("beforesstartday") String start,
+			@RequestParam("beforesendday") String end) {
+		String Sstart = start.replace("T", " ");
+		String Send = end.replace("T", " ");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		try {
+			java.util.Date startdate = transFormat.parse(Sstart);
+			java.util.Date enddate = transFormat.parse(Send);
+			spost.setSstartday(startdate);
+			spost.setSendday(enddate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		spost.setStitle(spost.getStitle().replace(" ", "&nbsp;"));
+		spost.setScontent(spost.getScontent().replace("\r\n", "<br>"));
+		spost.setScontent(spost.getScontent().replace(" ", "&nbsp;"));
+		if (spostService.insertSpost(spost) > 0) {
+			mav.addObject("spost", spost);
+			mav.setViewName("redirect:/ftables.do?project_num=" + spost.getSpnum());
+		} else {
+			mav.addObject("spost", spost);
+			mav.setViewName("redirect:/ftables.do?project_num=" + spost.getSpnum());
+		}
+		return mav;
 	}
 ////views start//////////////////////////////
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)
