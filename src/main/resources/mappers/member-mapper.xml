@@ -30,8 +30,6 @@
 		<result property="invtuse" column="invtuse" />
 		<result property="exprtdate" column="exprtdate" />
 	</resultMap>
-	
-
 
 	<insert id="insertUser" parameterType="Member">
 		insert into member (ucode,
@@ -51,6 +49,12 @@
 		select count(*) from member
 		where uemail = #{uemail}
 	</select>
+	
+	<select id="selectEmailMember" parameterType="string" resultMap="resultMember">
+		select * from member
+		where uemail = #{uemail}
+	</select>
+		
 	<update id="updateUst" parameterType="Member">
 		update member
 		set ust='Y'
@@ -96,15 +100,41 @@
 	</delete>
 
 	<insert id="insertInvtNew" parameterType="Invite">
-		insert into invite
-		values(#{invtkey}, #{ucode}, #{pnum}, #{invtemail}, default, default)
+		merge into invite using dual on (invtemail = #{invtemail} and pnum =#{pnum})
+		when matched then
+		update set 
+        invtkey = #{invtkey}, exprtdate = sysdate+2
+        when not matched then 
+		insert 
+		values (#{invtkey}, #{ucode},#{pnum},#{invtemail}, default, default)
 	</insert>
-
+	
+	<select id="selectInvtChk" resultMap="resultInvite">
+		select * from invite
+		where invtkey = #{invtkey}
+	</select>
+<!-- 초대회원관리 -->	
+	<select id="selectInvtList" parameterType="string">
+		select * from invite
+		where pnum = #{pnum}
+	</select>
+	
+	<insert id="insertPjMember" parameterType="PjMember">
+		insert into pjmember
+		values (#{pnum}, #{ucode}, 'N')
+	</insert>
+	
 	<select id="selectNotMember" parameterType="string" resultMap="resultMember"> 
 			select * from member
 		where ucode not in (
 		(select ucode from pjmember where pnum = #{pnum}))
-		</select>
+	</select>
+	
+	<update id="updatepjadmin" parameterType="PjMember">
+	update pjmember
+	set pjadmin= #{pjadmin}
+	where pnum=#{pnum} and ucode = #{ucode};
+	</update>
 		
 	<select id="selectPMember" parameterType="string" resultMap="resultMember"> 
 		select * from pjmember

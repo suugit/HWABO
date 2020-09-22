@@ -246,7 +246,7 @@
 </insert>
 
 <insert id="insertProject2" parameterType="com.beet.HWABO.red.model.vo.UserProject">
-		insert into pjmember VALUES (#{project_num},#{ucode},'Y')
+		insert into pjmember VALUES (#{project_num},#{ucode},'1')
 </insert>
 
 <insert id="insertProjectStar" parameterType="com.beet.HWABO.red.model.vo.Star">

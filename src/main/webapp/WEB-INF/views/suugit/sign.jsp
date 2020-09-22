@@ -45,7 +45,7 @@
 					<div class="col-md-7">
 						<center>
 							<h1 class="m-4">회원가입</h1>
-							<div id="msgBox" class="alert alert-danger d-none" role="alert">${message }</div>
+							<div id="msgBox" class="alert alert-danger d-none" role="alert">${message}</div>
 						</center>
 						<div>
 							<span id="chkmsg"></span>
@@ -57,7 +57,7 @@
 									주소</label>
 								<div class="col-sm-9">
 									<input type="email" class="form-control" name="uemail"
-										placeholder="Email" required>
+										placeholder="Email" value="${uemail }" required>
 									<form:input path="uemail" />
 									<form:errors path="uemail" />
 								</div>
@@ -106,8 +106,11 @@
 
 						<hr>
 						<div class="col-md-9 mt-1 mb-4 mx-auto text-center">
-							<a href="javascript:location.href='welcome.do'" ><span class="btn btn-outline-secondary">시작 페이지로 돌아가기</span> </a>
-							<!-- <a href="index.html" class="btn btn-google btn-user btn-block">
+						<a class="small" href="javascript:history.go(-1)">이전 페이지로 돌아가기</a>
+						<br>
+						<a class="small" href="javascript:location.href='${pageContext.servletContext.contextPath}/mvlogin.do';">이미 회원이신가요? 로그인하러가기</a>
+						<!--	<a href="javascript:location.href='welcome.do'" ><span class="btn btn-outline-secondary">시작 페이지로 돌아가기</span> </a>
+							 <a href="index.html" class="btn btn-google btn-user btn-block">
 								<i class="fab fa-google fa-fw"></i> Google로 가입하기
 							</a> <a href="index.html" class="btn btn-naver btn-user btn-block">
 								<span class="font-weight-bolder" style="font-size: 1em">N&nbsp;</span>Naver로

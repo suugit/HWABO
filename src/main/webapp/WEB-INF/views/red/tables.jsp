@@ -27,10 +27,18 @@
 
   <!-- Custom styles for this page -->
   <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-<!-- 스크립트 모으기 시작 -->
-<c:import url="/WEB-INF/views/red/metaKyu.jsp"></c:import>
 
-<!-- 스크립트 모으기 끝 -->
+<style type="text/css">
+.hovercheck:hover{
+background-color:#dff9fb;
+border-radius:15%;
+}
+</style>
+<!-- 스크립트 모으기 시작 ################################### -->
+<c:import url="/WEB-INF/views/red/metaKyu.jsp"></c:import>
+<c:import url="/WEB-INF/views/red/metaAbc.jsp"></c:import>
+<c:import url="/WEB-INF/views/red/metaSuugit.jsp"></c:import>
+<!-- 스크립트 모으기 끝 ##################################### -->
 </head>
 <body id="page-top">
 <!-- 11111111111111111 -->

@@ -60,9 +60,9 @@
 </head>
 
 <body>
-	<div class="container mt-5">
+<!-- 	<div class="container mt-5">
 		<div class="row justify-content-center">
-			<!-- 버튼 -->
+			버튼
 			<div class="text-center">
 				<a href="" class="btn my-3" data-toggle="modal"
 					data-target="#inviteModal"> <i class="fa fa-plus-square mr-1"></i>
@@ -71,7 +71,7 @@
 			</div>
 
 		</div>
-	</div>
+	</div> -->
 	<!-- --------------------------------------------------------------------------- -->
 
 
@@ -181,7 +181,7 @@
 										<th>직책</th>
 										<th>초대여부</th>
 									</thead>
-									<tbody id="nmlistBox">
+									<tbody id="nmlist">
 									<%-- <c:forEach var="nm" items="nmlist">>
 										<tr style="height: 80px">
 											<td colspan="2" class="thumbnail circle"
@@ -266,7 +266,7 @@
 		}
 		
 		$.ajax({
-			url:"invtexist.do",
+			url:"invtnew.do",
 			type:"post",
 			data:JSON.stringify(fileData),
 			dataType:"json",
@@ -292,9 +292,9 @@
 			dataType:"Json",
 			success: function(data){
 				alert('성공');
-				var values = $("#nmlistBox").html();
+				var values = $("#nmlist").html();
 				
-				var values = $("#nmlistBox").html("");
+				var values = $("#nmlist").html("");
 				for(var i in data){
 					values += 
 					'<tr style="width:80px height: 80px">'
@@ -309,7 +309,7 @@
 			
 				}
 				
-				$('#nmlistBox').html(values);
+				$('#nmlist').html(values);
 			},
 			error: function(request, status, errorData){
 				alert('h');

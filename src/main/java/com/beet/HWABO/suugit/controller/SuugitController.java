@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -53,9 +54,8 @@ import com.beet.HWABO.member.model.service.MemberService;
 import com.beet.HWABO.member.model.vo.MailUtils;
 import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.NaverLoginUtil;
+import com.beet.HWABO.member.model.vo.PjMember;
 import com.github.scribejava.core.model.OAuth2AccessToken;
-
-import sun.misc.FormattedFloatingDecimal.Form;
 
 @Controller
 public class SuugitController {
@@ -200,31 +200,39 @@ public class SuugitController {
 		logger.info("로그인");
 		member.setSigntype("h");
 		Member loginUser = mservice.selectLogin(member);
-
-		String returnPage = null;
-
+		
+		String returnPage = "suugit/login";
+		
+		
 		if (loginUser != null) {
+			
 			if (bcryptPwdEncoder.matches(member.getUpwd(), loginUser.getUpwd())) {
-				logger.info("로그인한 회원의 코드 : " + loginUser.getUcode());
+				System.out.println(loginUser.getUst());
+				if(loginUser.getUst().equals("Y")) {
+					logger.info("로그인한 회원의 코드 : " + loginUser.getUcode());
 
-				HttpSession session = request.getSession();
-				session.setAttribute("uimg", loginUser.getUimg());
-				session.setAttribute("ucode", loginUser.getUcode());
-				session.setAttribute("uname", loginUser.getUname());
-				session.setAttribute("signtype", loginUser.getSigntype());
-				request.setAttribute("uname", loginUser.getUname());
+					HttpSession session = request.getSession();
+					session.setAttribute("uimg", loginUser.getUimg());
+					session.setAttribute("ucode", loginUser.getUcode());
+					session.setAttribute("uname", loginUser.getUname());
+					session.setAttribute("signtype", loginUser.getSigntype());
+					request.setAttribute("uname", loginUser.getUname());
+					status.setComplete(); // 요청성공, 200 전송
+					returnPage = "redirect:/cards.do";
+				}else {
+					model.addAttribute("message","인증되지 않은 사용자입니다.<br>이메일을 확인해주세요");
+					returnPage = "suugit/login";
+					return returnPage;
+				}
 				
-
-				status.setComplete(); // 요청성공, 200 전송
-				return "redirect:/cards.do";
 			} else {
 				model.addAttribute("message", "암호가 일치하지 않습니다.");
-				returnPage = "common/error";
 			}
 		} else {
 			model.addAttribute("message", "회원정보가 존재하지 않습니다");
-			returnPage = "common/error";
+			
 		}
+		
 		return returnPage;
 	}
 
@@ -472,8 +480,8 @@ public class SuugitController {
 		return "suugit/topbar";
 	}
 
-//프로젝트 초대하기 ( 기존유저) 
-	@RequestMapping("/invtexist.do")
+//프로젝트 초대하기 ( 신규유저) 
+	@RequestMapping("/invtnew.do")
 	public ResponseEntity<String> invtNew(HttpSession session, @RequestBody String param, Invite invt)
 			throws ParseException {
 		logger.info("신규 초대!");
@@ -492,7 +500,8 @@ public class SuugitController {
 				sendMail.setText(new StringBuffer().append("<h1>[HWABO 이메일 인증]</h1>")
 						.append("<p>아래 링크를 클릭하시면 프로젝트에 가입할 수 있습니다.</p>")
 						.append("<a href='http://localhost:8282/hwabo/invtConfirm.do?uemail=")
-						.append(invt.getInvtemail()).append("&pnum=").append(invt.getPnum()).append("&accesstoken=")
+						.append(invt.getInvtemail()).append("&pnum=")
+						.append(invt.getPnum()).append("&invtkey=")
 						.append(invt.getInvtkey()).append("' target='_blenk'>초대장 인증 확인</a>").toString());
 				sendMail.setFrom("hwabo49@gmail.com", "HWABO");
 				sendMail.setTo(invt.getInvtemail());
@@ -510,50 +519,47 @@ public class SuugitController {
 	}
 
 	@GetMapping("/invtConfirm.do")
-	public void invtConfirm(HttpServletRequest request, ModelAndView mv, Member member, Invite invt) {
+	public ModelAndView invtConfirm(HttpServletRequest request, ModelAndView mv, Member member, Invite invt, PjMember pjmember) {
 
 		String uemail = request.getParameter("uemail");
+		String pnum = request.getParameter("pnum");
+		invt = mservice.selectInvtChk(request.getParameter("invtkey"));
+		Date today = new Date();
 
-		// int result = mservice.selectMember(uemail);
-//		  
-//			member.setUemail(request.getParameter("uemail"));
-//			member.setAccesstoken(request.getParameter("accesstoken"));
-//			
-//			request.getParameter("accesstoken");
-//			int result = mservice.updateUst(member);
-//
-//			if (result > 0) {
-//				mv.addObject("member", member);
-//				mv.setViewName("suugit/cards");
-//			} else {
-//				mv.addObject("message", "메일인증이 유효하지 않습니다!");
-//				mv.setViewName("common/error");
-//			}
-//
-//			return mv;
+		if(invt == null) {
+			mv.addObject("message", "인증되지 않은 초대장 입니다");
+			mv.setViewName("common/error");
+		}else {
+			if(invt.getExprtdate().compareTo(today) < 0){
+				logger.info("1");
+				mv.addObject("message", "초대 유효기간이 지났습니다!");
+			}
+			if(invt.getInvtuse().equals("Y")) {
+				logger.info("2");
+				mv.addObject("message", "이미 초대가 완료되었습니다");
+			}
+		}
+		member = mservice.selectEmailMember(uemail);
+		if(member != null) {
+			pjmember.setUcode(member.getUcode());
+			pjmember.setPnum(request.getParameter("pnum"));
+			if(mservice.insertPjMember(pjmember) > 0 ) {
+				mv.addObject("ucode",member.getUcode());
+				mv.addObject("pnum",request.getParameter("pnum"));
+				mv.setViewName("redirect:/ftables2.do");
+			}else {
+				mv.addObject("message", "프로젝트 가입에 실패했습니다");
+				mv.setViewName("redirect:/cards.do");
+			}
+		}else {
+			mv.addObject("message", "회원가입 후 이용할 수 있습니다");
+			mv.addObject("uemail", uemail);
+			mv.setViewName("suugit/sign");
+		}
+		return mv;
+		
 	}
 
-//	            MailUtils sendMail = new MailUtils(mailSender);
-//	            sendMail.setSubject("회원가입 이메일 인증");
-//	            sendMail.setText(new StringBuffer().append("<h1>[HWABO 이메일 인증]</h1>")
-//	            .append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-//	            .append("<a href='http://localhost:8282/hwabo/signConfirm.do?uemail=")
-//	            .append(uemail)
-//	            .append("&accesstoken=")
-//	            .append(authKey)
-//	            .append("' target='_blenk'>이메일 인증 확인</a>")
-//	            .toString());
-//	            sendMail.setFrom("hwabo49@gmail.com", "HWABO");
-//	            sendMail.setTo(uemail);
-//	            sendMail.send();
-//	        } catch (MessagingException e) {
-//	            e.printStackTrace();
-//	        } catch (UnsupportedEncodingException e) {
-//	            e.printStackTrace();
-//	        }
-//
-//	          return authKey;
-//	    }	  
 
 	@PostMapping("/invtee.do")
 	@ResponseBody
@@ -604,6 +610,8 @@ public class SuugitController {
 				JSONObject job = new JSONObject();
 				job.put("ucode", nmlist.get(i).getUcode());
 				job.put("uname", nmlist.get(i).getUname());
+				job.put("uemail", nmlist.get(i).getUemail());
+				job.put("uphone", nmlist.get(i).getUphone());
 				job.put("ugroup", nmlist.get(i).getUgroup());
 				job.put("urole", nmlist.get(i).getUrole());
 				job.put("uimg", nmlist.get(i).getUimg());
@@ -623,7 +631,13 @@ public class SuugitController {
 
 		return "suugit/invtmanage";
 	}
-
+	
+	/*
+	 * @RequestMapping("/uppjrole.do") public String updatepjadmin(PjMember pjm) {
+	 * int result = mserivce.updatepjadmin(pjm); }
+	 */
+	
+	
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================

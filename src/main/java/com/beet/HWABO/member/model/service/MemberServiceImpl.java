@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import com.beet.HWABO.invite.model.vo.Invite;
 import com.beet.HWABO.member.model.dao.MemberDao;
 import com.beet.HWABO.member.model.vo.Member;
+import com.beet.HWABO.member.model.vo.PjMember;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
+	
 	@Autowired
 	private MemberDao memberDao;
 	
@@ -87,6 +89,21 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public ArrayList<Member> selectPMember(String pnum) {
 		return memberDao.selectPMember(pnum);
+	}
+
+	@Override
+	public Invite selectInvtChk(String invtkey) {
+		return memberDao.selectInvtChk(invtkey);
+	}
+
+	@Override
+	public int insertPjMember(PjMember pjmember) {
+		return memberDao.insertPjMember(pjmember);
+	}
+
+	@Override
+	public Member selectEmailMember(String uemail) {
+		return memberDao.selectEmailMember(uemail);
 	}
 
 	
