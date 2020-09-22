@@ -483,8 +483,10 @@ function sendInsert(index){
 			</table>
 		 </div>
 		 <div class="px-3 py-5 bg-gradient-light text-white" style="height: 10px;">
-			<input type="text" class="form-control" placeholder="답글을 입력하세요">
-	  	 </div>
+	<input type="hidden" name="no" value="${b.bno }" >	
+	<input type="text" class="form-control" id="content" name="content" placeholder="답글을 입력하세요">
+	 <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+</div>
 	
 	 </div><!-- 게시글안쪽  -->			
 	</div><!-- card shadow mb-4 -->

@@ -11,11 +11,12 @@
 		<typeAlias type="com.beet.HWABO.spost.model.vo.Post" alias="Post" />
 		<typeAlias type="com.beet.HWABO.spost.model.vo.Bpostchk" alias="Bpostchk" />
 		<typeAlias type="com.beet.HWABO.abc.model.vo.Love" alias="Love" />
+		<typeAlias type="com.beet.HWABO.abc.model.vo.Postreply" alias="Postreply" />
 		
 		
 		<!-- 댓글 -->
-		<typeAlias type="com.beet.HWABO.postreply.model.vo.Postreply" alias="Postreply" />
-		
+		<typeAlias type="com.beet.HWABO.reply.model.vo.Reply" alias="Reply" />
+		 
 		
 		<typeAlias type="com.beet.HWABO.bpost.model.vo.Bpost" alias="Bpost"/>
 		<typeAlias type="com.beet.HWABO.vpost.model.vo.VPost" alias="VPost"/>
@@ -55,6 +56,7 @@
 		
 		
 		<mapper resource="mappers/postreply-mapper.xml" />
+		<mapper resource="mappers/reply-mapper.xml" />
 		
 		
 		<mapper resource="mappers/bpost-mapper.xml" />
