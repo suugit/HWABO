@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 
 <body>
-
+   <script src="resources/js/cpost.js"></script>
 <script type="text/javascript">
 function addbcharge0(){
      var name = $(event.target).text();
@@ -130,7 +130,19 @@ jQuery('.suugitMain').click(function () {
 });//$function
 ///                                ///
 ////dont touch////////////////////////
+  $("input[type='file']").on('change',function(e){
+	   alert('hhr');
+		var fileArea = $('#InsertTable [id=preview]');
+   //div 내용 비워주기
+	//var fileArea = $('#InsertTable [id=preview]');
+	fileArea.empty();
+	
+   var files = e.target.files;
+   var arr =Array.prototype.slice.call(files);
 
+   preview(fileArea, arr);
+   
+ });
 </script>
 <!-- CPOST start -->
 <div class="card shadow mb-4" style="display:block;" id="suugitsuugitMain">
@@ -157,10 +169,10 @@ jQuery('.suugitMain').click(function () {
               </td></tr>
               <!-- 글작성 본문 -->
 <!-- 글작성 본문 -->
-             <form action="incp.do" id="InsertCpost" method="post" enctype="multipart/form-data"></form>
+              <form action="incp.do" id="InsertCpost" method="post" enctype="multipart/form-data">
              
-              <tr><td colspan="5"> <input name="ctitle" type="text" class="form-control mb-1" placeholder="제목" required=""></td></tr>
-              <tr><td colspan="5"><textarea id="ccontent" name="ccontent" rows="6" class="w-100 form-control " placeholder="내용을 입력해주세요" required=""></textarea></td></tr>
+              <tr><td colspan="5"> <input name="ctitle" type="text" class="form-control mb-1" placeholder="제목" required></td></tr>
+              <tr><td colspan="5"><textarea id="ccontent" name="ccontent" rows="6" class="w-100 form-control "  placeholder="내용을 입력해주세요"  required></textarea></td></tr>
               <tr id="preview"></tr>
               <tr id="file_list">
        				<input type="hidden" name="cwriter" value="${sessionScope.uname }">
@@ -168,10 +180,10 @@ jQuery('.suugitMain').click(function () {
        				<input type="hidden" name="cpnum" value="${sessionScope.pnum}">
        				
               	<td>
-              		<img src="">
+              		<img src="" />
               		<a class="del_img" style="position:relative;bottom:80%;left:20%"><i class="fa fa-times-circle"></i></a>
-              		
-              		
+              		</div>
+              		</div>
               	</td>
               	<td>
               		<div class="select_img rounded float-left">
@@ -180,33 +192,34 @@ jQuery('.suugitMain').click(function () {
               	</td>
               	<td>
               		<div class="select_img rounded float-left">
-              		<img src="">
+              		<img src="" />
               		<a class="del_img" style="position:relative;bottom:80%;left:20%"><i class="fa fa-times-circle"></i></a>
               		</div>
               	</td>
               	<td>
               	<div class="imgs_wrap">
-              		<img id="img">
+              		<img id="img" />
                	</div>
               	</td>
               
               </tr>
               <tr>
               <!-- 옵션메뉴 --> 
+              	<div class="clearfix d-flex ">
               	<td colspan="2" class="flex-grow-5 ">
-              		<label class="btn btn-light small" onclick="fileUpload">
-              			 <input type="file" name="file" id="file" style="display:none" multiple="">
+              		<label class="btn btn-light small" onclick="fileUpload" >
+              			 <input type="file" name="file" id="file" style="display:none" multiple>
               			<i class="fa fa-link ">&nbsp;파일</i>
               		</label>
               		 <label class="btn btn-light small">
-              			<input type="file" name="ofile" style="display:none" id="atchm_img" accept=".jpg,.png,.svg" multiple="">
+              			<input type="file" name="ofile" style="display:none" id="atchm_img" accept=".jpg,.png,.svg" multiple>
               			<i class="fa fa fa-image ">&nbsp;사진</i>
               		</label> 
-              		<label class="btn btn-light small testfile">
+              		<label class="btn btn-light small testfile" >
               			<input type="file" name="hashtag" style="display:none">
               			<i class="fa fa-hashtag ">&nbsp;</i>
               		</label>
-              		<label class="btn btn-light small">
+              		<label class="btn btn-light small" >
               			<input type="file" name="mention" style="display:none">
               			<i class="fa fa-at">&nbsp;</i>
               		</label>
@@ -214,12 +227,13 @@ jQuery('.suugitMain').click(function () {
               	<td></td>
               	<td>
               	<select name="copen" class="form-control form-control-small selectpicker">
-  					<option value="Y" selected="">전체공개</option>
+  					<option value="Y" selected>전체공개</option>
   					<option value="N">비공개</option>
 				</select>
 				
               	</td>
-				
+				</form>
+		
               	 <!-- 버튼 -->
               	 <td colspan="2" style="width:5%"> 
              	 	<button type="submit" id="btn-save" class="btn btn-success p-1" form="InsertCpost">등록</button>
@@ -567,3 +581,4 @@ jQuery('.suugitMain').click(function () {
 </div>
 <!-- abc end -->
 </body>
+
