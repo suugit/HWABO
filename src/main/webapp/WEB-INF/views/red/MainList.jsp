@@ -573,7 +573,7 @@ console.log(map1_${ status.index });
 					<label class="ml-4 text-center">${c.ofile1} </label>
 					</td>
 				</c:if>
-				<c:if test="${!empty c.ofile2}">
+				<c:if test="${!empty c.ofile2 }">
 					<td class="rounded" style="width:33%">
 					<c:set var="fileName" value="${fn:split(c.ofile2, '.')}" />
 					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
@@ -692,10 +692,7 @@ function cpSave(){
  		error: function(){
  			alert('실패');
  			$(".cpEdit"+cno).css("display", "none" );
- 			$(table).find('tr.preview')
  			$(".cpView"+cno).css("display", "block" );
- 			
- 			
  		}
  		
  	});   
