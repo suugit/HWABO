@@ -631,7 +631,7 @@ public class SuugitController {
 
 		return "suugit/invtmanage";
 	}
-
+	
 	/*
 	 * @RequestMapping("/uppjrole.do") public String updatepjadmin(PjMember pjm) {
 	 * int result = mserivce.updatepjadmin(pjm); }

@@ -130,11 +130,11 @@
 		(select ucode from pjmember where pnum = #{pnum}))
 	</select>
 	
-	<udpate id="updatepjadmin" parameterType="PjMember" resultType="_int">
+	<update id="updatepjadmin" parameterType="PjMember">
 	update pjmember
 	set pjadmin= #{pjadmin}
 	where pnum=#{pnum} and ucode = #{ucode};
-	</udpate>
+	</update>
 		
 	<select id="selectPMember" parameterType="string" resultMap="resultMember"> 
 		select * from pjmember
