@@ -9,28 +9,22 @@
 <script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$("#spostupdate").css("display", "none" );
-		$("#changeselect").css("display", "none" );
+		$("[id^=up]").css("display", "none" );
+		
 	});	//document.ready;
 	
-	function changeform1(){
-		$("#spostview").css("display", "none" );
-		$("#spostupdate").css("display", "block" );
-		$("#changeupdate").css("display", "none" );
-		$("#changeselect").css("display", "block" );
-	};
-
-	function changeform2(){
-		$("#spostview").css("display", "block" );
-		$("#spostupdate").css("display", "none" );
-		$("#changeupdate").css("display", "block" );
-		$("#changeselect").css("display", "none" );
-	};
-	
-	function mapchange (index){
-		alert("ddddd" + index);
+	function moveupdateform(click) {
+		alert(click);
+		$("#up"+click).css("display", "block" );
+		$("#se"+click).css("display", "none" );
 	}
 	
+	function moveselectfeed(click) {
+		alert(click);
+		$("#up"+click).css("display", "none" );
+		$("#se"+click).css("display", "block" );
+	}
+
 </script>
 <body>
 <c:forEach var="main" items="${ requestScope.list }"  varStatus="status">  
@@ -38,14 +32,11 @@
 <%-- ${ status.count } --%>
 <c:if test="${ main.firstword eq 's' }">
 <c:set var="post" value="${ main }"></c:set>
-<button id="changeupdate" onclick="javascript: changeform1();">수 &nbsp;정</button>
-<button id="changeselect" onclick="javascript: changeform2();">수 정 취 소</button>
-
-	<div class="card shadow mb-4">
+	<div id="se${post.sno }" class="card shadow mb-4">
 		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary">
 				<i class="fas fa-user-circle"></i> 
-				${post.swriter}<br> ${ status.count }
+				${post.swriter}<br>
 				<fmt:formatDate value="${post.senrolldate}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>
 			</h6>
 			<div class="dropdown no-arrow">
@@ -54,6 +45,7 @@
 					<span>보관</span> <i class="far fa-bookmark"></i>
 				</button>
 				<!-- 드롭다운 -->
+				
 				<a class="dropdown-toggle" href="#" role="button"
 					id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> <i
@@ -63,15 +55,15 @@
 					class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
 					aria-labelledby="dropdownMenuLink">
 					<div class="dropdown-header">메뉴:</div>
-					<a class="dropdown-item" href="#">수정</a> <a class="dropdown-item"
-						href="#">삭제</a>
+					<button id="${post.sno}"   onclick="moveupdateform(this.id);">수정</button>
+					<button  >삭제</button>
 				</div>
 			</div>
 			<!-- 드롭다운 끝 -->
 		</div>
 		<div class="card-body" style="margin: 0px;">
 			<!-- 게시글안쪽 -->
-			<h6>${post.stitle }</h6>
+			<h6>제목 : ${post.stitle }</h6>
 			<hr>
 			<table style="width: 100%;">
 				<tr>
@@ -150,25 +142,6 @@ console.log(map1_${ status.index });
 				</tr>
 		
 			</table>
-
-
-			<hr>
-			<table style="width: 100%;">
-				<tr>
-					<td style="width: 20%;">
-					<a href="#" class="btn btn-primary btn-icon-split btn-sm"> 
-						<span class="icon text-white-50"> <i class="far fa-heart"></i></span>
-						<button onclick="javascript: location.href='#'">
-						<span class="text">좋아요</span>
-						</button> 
-					</a>
-					</td>
-					<td style="width: 20%;"></td>
-					<td style="width: 20%;"></td>
-					<td style="width: 20%;"></td>
-					<td style="width: 20%; float: right;"></td>
-				</tr>
-			</table>
 		</div>
 		<div class="px-3 py-5 bg-gradient-light text-white"
 			style="height: 10px;">
@@ -177,30 +150,252 @@ console.log(map1_${ status.index });
 			</form>
 		</div>
 	</div>
+	
 
-<!-- spost수정 폼시작 -->
-<div id="spostupdate"><c:import url="/WEB-INF/views/abc/updateSpost.jsp"></c:import></div>
-<!-- spost수정 폼끝 -->
+<!-- spost 수정폼 -->
 <script type="text/javascript">
-	$(function(){
-		$("#spostupdate").css("display", "none" );
-		$("#changeselect").css("display", "none" );
-	});	//document.ready;
-	function changeform1(){
-		$("#spostview").css("display", "none" );
-		$("#spostupdate").css("display", "block" );
-		$("#changeupdate").css("display", "none" );
-		$("#changeselect").css("display", "block" );
-	};
-	function changeform2(){
-		$("#spostview").css("display", "block" );
-		$("#spostupdate").css("display", "none" );
-		$("#changeupdate").css("display", "block" );
-		$("#changeselect").css("display", "none" );
-	};
+
+function spostupdate(){
+		var param = $("#uspostform").serialize();
+		$.ajax({
+			url: "supdate.do",
+			data: param,
+			/* data: { sno: $("#sno").val(), stitle:$("#stitle").val(), beforesstartday:$("#beforesstartday").val(), beforesendday: $("#beforesendday").val(), 
+					 splace:$("#splace").val(), salarm:$("#salarm").val, scontent: $("#scontent").val() },	 */
+			type: "post", 
+			success: function(Data){	// 받는다고 했으니까 매개변수 있어야함
+				// json 한개를 받았을 때는 바로 출력 처리할 수 있음
+				if(Data != null){
+					alert("수정에 성공하였습니다");
+				}else{
+					alert("수정에 실패하였습니다");
+				}	
+				/* $("#d2").html("번호 : "+jsonData.no+"<br>제목 : "+jsonData.title+"<br>작성자 : "+decodeURIComponent(jsonData.writer)+
+						"<br>내용 : "+decodeURIComponent(jsonData.content.replace(/\+/gi," "))+"<br><br>");
+				 */
+			},
+			error: function(request, status, errorData){ //에러는 위에서 복붙
+				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+			}
+		}); //ajax
+}; 
+
+function spostdelete(){
+	$.ajax({
+		url: "sdelete.do",
+		data: { sno: $("#sno").val() },
+		/* data: { sno: $("#sno").val(), stitle:$("#stitle").val(), beforesstartday:$("#beforesstartday").val(), beforesendday: $("#beforesendday").val(), 
+				 splace:$("#splace").val(), salarm:$("#salarm").val, scontent: $("#scontent").val() },	 */
+		type: "post", 
+		success: function(Data){	// 받는다고 했으니까 매개변수 있어야함
+			// json 한개를 받았을 때는 바로 출력 처리할 수 있음
+			if(Data != null){
+				alert("삭제에 성공하였습니다");
+			}else{
+				alert("삭제에 실패하였습니다");
+			}	
+			/* $("#d2").html("번호 : "+jsonData.no+"<br>제목 : "+jsonData.title+"<br>작성자 : "+decodeURIComponent(jsonData.writer)+
+					"<br>내용 : "+decodeURIComponent(jsonData.content.replace(/\+/gi," "))+"<br><br>");
+			 */
+		},
+		error: function(request, status, errorData){ //에러는 위에서 복붙
+			console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+		}
+	}); //ajax
+}; 
+
+	
+$(function(){	
+	$('#scontent').on("propertychange change keyup paste input", function() {
+		var content = $(this).val();
+		$('#counter').val(200 - content.length);
+
+		if (content.length > 200) {
+			$(this).val(
+					$(this).val().substring(0, 200));
+		}
+	});
+
+	$("#sample5_address3").on("click", function(){
+	if($(this).val().length == 0 ){
+		sample5_execDaumPostcode2()
+	}
+});		
+	var content = $('#scontent').val();
+	$('#counter').val(215-content.length);
+	
+	var str = $('#scontent').val();
+
+	str = str.split('<br>').join("\r\n");
+
+	$('#scontent').val(str);
+	
+
+	
+});    //document.ready 끝
+
+
+	function daycheck() {
+
+		var startday = document.uspostform.beforesstartday.value.replace("T", " ");
+		var endday = document.uspostform.beforesendday.value.replace("T", " ");
+
+		var start = new Date(startday);
+		var end = new Date(endday);
+
+		if (start > end) {
+
+			$("#placespan").html("끝 날짜가 시작날짜보다 이전일 수 없습니다<br>다시 선택해주세요");
+			$("#beforesendday").focus();
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	
 </script>
-</c:if>
-<!-- spost끝 -->
+
+<form name="uspostform" id="uspostform" method="post" onsubmit="return daycheck();">
+	<div id="up${post.sno }" class="card shadow mb-4">
+		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+		
+		
+			<h6 class="m-0 font-weight-bold text-primary">
+				수정페이지
+			</h6>
+
+			<div class="dropdown no-arrow">
+
+				<button class="btn btn-custom btn-sm"  id="uspost" type="submit" onclick="spostupdate(); return false;">수정하기</button> 
+				<button class="btn btn-custom btn-sm"  id="dspost" type="submit" onclick="spostdelete(); return false;">삭제하기</button>
+				<button id="${post.sno }" class="btn btn-custom btn-sm"  onclick="moveselectfeed(this.id); return false;" >수정취소</button>
+				
+
+			</div>
+			<!-- 드롭다운 끝 -->
+
+		</div>
+		<div class="card-body">
+			<!-- 게시글안쪽 -->
+			<table>
+				<tr>
+					<th>제 목</th>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="text" id="stitle" name="stitle" class="form-control" value="${post.stitle }">
+			</td>
+				</tr>
+				<tr>
+					<th>시 작 날 짜</th><th>끝 날 짜</th>
+				</tr>
+				<tr>
+					<td width="50%">
+					<input type="datetime-local" class="form-control" name="beforesstartday" id="beforesstartday" 
+					required="required"  value="${requestScope.startday }"	></td>
+
+					<td width="50%">
+					<input type="datetime-local" class="form-control" name="beforesendday"  id="beforesendday" 
+					required="required"  value="${endday }"	></td>
+					<td><span style="color: blue;" id="placespan"></span></td>
+				</tr>
+			
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<th>장 소</th>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<c:if test="${ empty post.splace }">
+					<input type="text" id="sample_address3" placeholder=" 장소를 입력해주세요" class="form-control" id ="splace" name="splace" >
+						
+					</c:if>	
+					<c:if test="${ !empty post.splace }">
+					<input type="text" id="sample_address3_${status.index}" placeholder=" ${post.splace }" class="form-control" id ="splace" name="splace"  value="${post.splace }">
+						
+					</c:if>
+						<input type="button" onclick="sample5_execDaumPostcode2();" value="장소검색"  class="form-control"><br>
+						<div id="map3_${status.index}"  class="map" style="width:100%;height:150px;margin-top:10px;display:none"></div>
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    var mapContainer3_${status.index} = document.getElementById('map3'+'_${status.index}'), // 지도를 표시할 div
+        mapOption3_${status.index} = {
+            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+            level: 4 // 지도의 확대 레벨
+        };
+
+    
+    //지도를 미리 생성
+    var map3_${status.index} = new daum.maps.Map(mapContainer3_${status.index}, mapOption3_${status.index});
+    //주소-좌표 변환 객체를 생성
+    var geocoder3_${status.index} = new daum.maps.services.Geocoder();
+    //마커를 미리 생성
+    var marker3_${status.index} = new daum.maps.Marker({
+        position: new daum.maps.LatLng(37.537187, 127.005476),
+        map: map3_${status.index}
+    });
+
+
+    function sample5_execDaumPostcode2() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr3_${status.index} = data.address; // 최종 주소 변수
+
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("sample_address3_${status.index}").value = addr3_${status.index};
+                // 주소로 상세 정보를 검색
+                geocoder3_${status.index}.addressSearch(data.address, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+
+                        var result3_${status.index} = results[0]; //첫번째 결과의 값을 활용
+
+                        // 해당 주소에 대한 좌표를 받아서
+                        var coords3_${status.index} = new daum.maps.LatLng(result3_${status.index}.y, result3_${status.index}.x);
+                        // 지도를 보여준다.
+                        mapContainer3_${status.index}.style.display = "block";
+                        map3_${status.index}.relayout();
+                        // 지도 중심을 변경한다.
+                        map3_${status.index}.setCenter(coords3_${status.index});
+                        // 마커를 결과값으로 받은 위치로 옮긴다.
+                        marker3_${status.index}.setPosition(coords3_${status.index})
+                    }
+                });
+            }
+        }).open();
+    }
+</script>
+					
+					</td>
+				</tr>		
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+
+				<tr>
+					<td>메  모 <span>&nbsp;&nbsp;&nbsp;( 남은글자수 : <input size="2px;"  type="text"
+												readonly value="200" name="counter" id="counter"
+												style="border: none;">)</span></td>
+				</tr>
+				<tr>
+				<td colspan="2">
+<textarea name="scontent" id="scontent" cols="30" rows="10"	class="form-control"	onkeypress="onTestChange();" style="width: 100%; height: 200px; overflow: auto; resize: none;">${post.scontent }</textarea> </td>
+									</tr>
+		
+			</table>
+		</div>
+			</div>
+</form>
+	
+
+	
+	
+</c:if><!-- spost끝 -->
+
+
 <c:if test="${ main.firstword eq 'b' }">
 <c:set var="b" value="${ main }"></c:set>
            	<div class="card shadow mb-4">
@@ -264,7 +459,7 @@ console.log(map1_${ status.index });
 				  <label class="btn btn-info">
 				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
 				  </label>
-				  <label class="btn btn-secondary"">
+				  <label class="btn btn-secondary">
 				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
 				  </label>
 				   <label class="btn btn-secondary">
@@ -298,7 +493,7 @@ console.log(map1_${ status.index });
 				  <label class="btn btn-secondary">
 				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
 				  </label>
-				  <label class="btn btn-secondary"">
+				  <label class="btn btn-secondary">
 				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
 				  </label>
 				   <label class="btn btn-info">
@@ -315,7 +510,7 @@ console.log(map1_${ status.index });
 				  <label class="btn btn-secondary">
 				    <input type="radio" name="진행" id="진행" value="진행" readonly>진행
 				  </label>
-				  <label class="btn btn-secondary"">
+				  <label class="btn btn-secondary">
 				    <input type="radio" name="피드백" id="피드백" value="피드백" readonly>피드백
 				  </label>
 				   <label class="btn btn-secondary">
@@ -347,7 +542,7 @@ console.log(map1_${ status.index });
 			  <table>
 			   <c:if test="${! empty b.bcontent }">
 				 <tr>
-				 <td><b><big>${b.bcontent}</big></b></td>
+				 <td><b>${b.bcontent}</b></td>
 				 </tr>
 				</c:if>
 		      </table>
@@ -371,28 +566,16 @@ console.log(map1_${ status.index });
 					<c:if test="${empty b.boriginfile}">
 					&nbsp;
 					</c:if>
-			 </table><hr>
-			 <table style="width: 100%;">
-				<tr>
-					<td style="width: 20%;"><a href="#" class="btn btn-primary btn-icon-split btn-sm"> 
-					<span class="icon text-white-50"> <i class="far fa-heart"></i>
-					</span> <span class="text">좋아요 </span>
-					</a>
-				 </td>
-				 <td style="width: 20%;"></td>
-				 <td style="width: 20%;"></td>
-				 <td style="width: 20%;"></td>
-				 <td style="width: 20%; float: right;"></td>
-				</tr>
-			</table>
+			 </table>
 		 </div>
 		 <div class="px-3 py-5 bg-gradient-light text-white" style="height: 10px;">
 			<input type="text" class="form-control" placeholder="답글을 입력하세요">
 	  	 </div>
 	 </div><!-- 게시글안쪽  -->			
 	</div><!-- card shadow mb-4 -->
-</c:if>
-<!-- bpost끝 -->
+</c:if><!-- bpost끝 -->
+
+
 <!-- cpost 시작 -->
 <c:if test="${ main.firstword eq 'c' }">
 <c:set var="c" value="${ main }"></c:set>
@@ -499,22 +682,6 @@ console.log(map1_${ status.index });
 				</tr>
 			</table>
 
-
-			<hr>
-			<table style="width: 100%;">
-				<tr>
-					<td style="width: 20%;">
-					<a href="#" class="btn btn-primary btn-icon-split btn-sm"> 
-						<span class="icon text-white-50"> <i class="far fa-heart"></i></span> 
-						<span class="text">좋아요</span>
-					</a>
-					</td>
-					<td style="width: 20%;"></td>
-					<td style="width: 20%;"></td>
-					<td style="width: 20%;"></td>
-					<td style="width: 20%; float: right;"></td>
-				</tr>
-			</table>
 		</div>
 		<div class="px-3 py-5 bg-gradient-light text-white"
 			style="height: 10px;">
