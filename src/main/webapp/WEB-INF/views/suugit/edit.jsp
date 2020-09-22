@@ -153,7 +153,9 @@ $('#btn1-save').on('click',function(event){
 		dataType:"json",
 		success: function(result){
 			console.log(result);
-		}
+			   $("#cpView").hide();
+			   $("#cpEdit").show();
+		},
 	}); 
 	
 });

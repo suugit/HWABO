@@ -116,7 +116,6 @@ $(function(){
       <!-- Nav Item - Pages Collapse Menu -->
      <li class="nav-item" id="stars">
 
-     
       </li>
      
      <hr class="sidebar-divider my-0">
