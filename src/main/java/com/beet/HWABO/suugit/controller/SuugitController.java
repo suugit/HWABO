@@ -632,10 +632,10 @@ public class SuugitController {
 		return "suugit/invtmanage";
 	}
 
-@RequestMapping("/uppjrole.do")
-public String updatepjadmin(PjMember pjm) {
-	int result = mserivce.updatepjadmin(pjm);
-}
+	/*
+	 * @RequestMapping("/uppjrole.do") public String updatepjadmin(PjMember pjm) {
+	 * int result = mserivce.updatepjadmin(pjm); }
+	 */
 	
 	
 //게시글 관련 ====================================================================================================================================================================
