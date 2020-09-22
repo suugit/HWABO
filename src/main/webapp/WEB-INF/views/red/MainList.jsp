@@ -6,67 +6,7 @@
 <!DOCTYPE html>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
 <body>
-<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="resources/js/cpost.js"></script>
-   <script>
-   
-   function moveupdateform(click) {
-		alert(click);
-		$("#up"+click).css("display", "block" );
-		$("#se"+click).css("display", "none" );
-	}
-	
-	function moveselectfeed(click) {
-		alert(click);
-		$("#up"+click).css("display", "none" );
-		$("#se"+click).css("display", "block" );
-	}
-   
-   var tmplist = "";
-   
-   $('#updatecPost').find("input[type='file']").on('change',function(e){
- 		var fileArea = $('#CpostUpTable [id=preview]');
- 		//alert(fileArea.cells.length());
- 		//fileArea.empty();
- 		if(fileArea.children('td').length >= 3){
- 			alert('첨부파일은 최대 3개까지 가능합니다');
- 			return false;
- 		}
- 		tmplist = Array.prototype.slice.call(fileArea.children('td'));
- 		
- 		var files = e.target.files;
- 		var arr = Array.prototype.slice.call(files);
 
- 		preview(fileArea, arr);
-
- 		tmplist.push(arr);
- 		
- 		});
-   
- $('#btn1-save').on('click',function(event){
- 	event.preventDefault();
- 	event.stopPropagation();
- 	
- 	var formData = new FormData($('#updatecPost')[0]);
- 	formData.append("cflist", tmplist);
- 	alert(formData.cflist);
- 	$.ajax({
- 		url: "upcp.do",
- 		type: "post",
- 		enctype: 'multipart/form-data',
- 		data: formData,
- 		contentType:false,
- 		processData:false,
- 		dataType:"json",
- 		success: function(result){
- 			console.log(result);
-
- 		},
- 	}); 
- 	
- });
-  
-   </script>
 <c:forEach var="main" items="${ requestScope.list }" varStatus="status">  
 <%-- ${ status.count } --%>
 <c:if test="${ main.firstword eq 's' }">
@@ -99,7 +39,7 @@
 					class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
 					aria-labelledby="dropdownMenuLink">
 					<div class="dropdown-header">메뉴:</div>
-					<a id=${c.cno } name="mine" class="dropdown-item" onclick="toEdit(this.id)" >수정</a> 
+					<a id="${c.cno}" name="mine" class="dropdown-item" onclick="toEdit(this.id)" >수정</a> 
 					<c:url var="delcp" value="delcp.do">
                       	<c:param name="cno" value="${c.cno }"/>
                      </c:url> 
@@ -131,7 +71,6 @@
 					<td colspan="2">
 					${post.splace }
 					<div id="map1_${status.index }"  style="width:400px; height:200px; margin-top:5px;" ></div> <br>
-<script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script>
 var index = ${status.index}
 var mapContainer1_${ status.index } = document.getElementById('map1_'+'${ status.index }'), // 지도를 표시할 div 
@@ -504,25 +443,24 @@ console.log(map1_${ status.index });
 
 		</div>
 		<div class="cpEdit${c.cno}" style="display:none"> 
-		 <div class="card-body">
+		 <div class="updatecPost" class="card-body">
 			<!-- 게시글안쪽 -->
-			<form id="updatecPost" method="post" enctype="multipart/form-data">
+			<form id="updatecForm${c.cno}" method="post" enctype="multipart/form-data">
 			<h6><input name="ctitle" type="text" class="form-control mb-1" value="${c.ctitle}" required></h6>
-			<input type="hidden" name="cno" value="${c.cno }">
-			<input type="text" id="cflist" value="">
+			<input type="hidden" name="cno" value="${c.cno}">
 			<hr>
-			<table class="w-100" id="CpostUpTable">
+			<table class="w-100" id="CpostUpTable${c.cno}">
 				<tr class="mb-1">
 					<td colspan="3">
 					<textarea id="ccontent" name="ccontent" rows="6" class="w-100 form-control" required>${c.ccontent }</textarea>
 					</td>
 				</tr>
 				<br>
-				<tr id="preview">
-				<c:if test="${!empty c.ofile1 }">
+				<tr class="preview">
+				<c:if test="${!empty c.ofile1}">
 					<td class="rounded" style="width:33%">
-					<input type="hidden" name="rfile1" value="${c.rfile1}">
 					<input type="hidden" name="ofile1" value="${c.ofile1}">
+					<input type="hidden" name="rfile1" value="${c.rfile1}">
 					<c:set var="fileName" value="${fn:split(c.ofile1, '.')}" />
 					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
 						<c:if test="${fn:contains(fileType,'jpg') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">	
@@ -552,7 +490,6 @@ console.log(map1_${ status.index });
 							<br>
 					<label class="ml-4 text-center">${c.ofile2} </label>
 					<i class="border btn-danger fa fa-times mt-2 p-1" onclick="removefile()"> 삭제</i>
-				
 					</td>
 				</c:if>
 				<c:if test="${!empty c.ofile3 }">
@@ -596,7 +533,7 @@ console.log(map1_${ status.index });
              		<button type="reset" class="btn btn-danger p-1" style="width:40%;float:right;">
                     <span class="text">취소</span>
              		</button>
-             	 	<button id="btn1-save" class="btn btn-success p-1 mr-2" style="width:40%;float:right;">등록</button>
+             	 	<button id="btn1-save${c.cno}" class="btn1-save btn btn-success p-1 mr-2" style="width:40%;float:right;" onclick="cpSave()">등록</button>
               	</td>
 				</tr>				
 			</table>
@@ -636,7 +573,7 @@ console.log(map1_${ status.index });
 					<label class="ml-4 text-center">${c.ofile1} </label>
 					</td>
 				</c:if>
-				<c:if test="${!empty c.ofile2 }">
+				<c:if test="${!empty c.ofile2}">
 					<td class="rounded" style="width:33%">
 					<c:set var="fileName" value="${fn:split(c.ofile2, '.')}" />
 					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
@@ -693,4 +630,76 @@ console.log(map1_${ status.index });
 	
 </c:if>
 </c:forEach>   
+<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="resources/js/jquery-3.5.1.min.js"></script>
+<script src="resources/js/cpost.js"></script>
+<script>
+   var cno = "" ;
+   var table="";
+   var cpost = "";
+  
+   function toEdit(click) {
+
+		$(".cpEdit"+click).css("display", "block" );
+		$(".cpView"+click).css("display", "none" );
+		cno = click;
+		cpost = "#updatecForm" + cno;
+		table = "#CpostUpTable" + cno;
+	}
+	
+	function moveselectfeed(click) {
+		alert(click);
+		$("#up"+click).css("display", "none" );
+		$("#se"+click).css("display", "block" );
+	}
+   
+   var tmplist = "";
+   
+   $('.updatecPost').find("input[type='file']").on('change',function(e){
+ 		var fileArea = $(table).find('tr.preview');
+ 		//fileArea.empty();
+ 		if(fileArea.children('td').length >= 3){
+ 			alert('첨부파일은 최대 3개까지 가능합니다');
+ 			return false;
+ 		}
+ 		tmplist = Array.prototype.slice.call(fileArea.children('td'));
+ 		
+ 		var files = e.target.files;
+ 		var arr = Array.prototype.slice.call(files);
+
+ 		preview(fileArea, arr);
+
+ 		tmplist.push(arr);
+ 		
+ 		});
+
+function cpSave(){
+	event.preventDefault();
+ 	 var formData = new FormData($(cpost)[0]);
+ 	formData.append("cflist", tmplist);
+	alert(formData.cflist);
+ 	 $.ajax({
+ 		url: "upcp.do",
+ 		type: "post",
+ 		enctype: 'multipart/form-data',
+ 		data: formData,
+ 		contentType:false,
+ 		processData:false,
+ 		dataType:"json",
+ 		success: function(){
+ 			alert('성공');
+ 		},
+ 		error: function(){
+ 			alert('실패');
+ 			$(".cpEdit"+cno).css("display", "none" );
+ 			$(table).find('tr.preview')
+ 			$(".cpView"+cno).css("display", "block" );
+ 			
+ 			
+ 		}
+ 		
+ 	});   
+ }
+  
+   </script>
 </body>

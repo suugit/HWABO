@@ -783,7 +783,7 @@ public class SuugitController {
 		logger.info("게시글 수정");
 
 		String cno = addon.getCno();
-		
+		logger.info(request.getParameter("cflist"));
 		logger.info(addon.getRfile1());
 		logger.info(addon.getRfile2());
 		logger.info(addon.getRfile3());
@@ -850,9 +850,8 @@ public class SuugitController {
 			mav.addObject("message", "첨부파일등록실패");
 			mav.setViewName("common/error");
 		}
-			
-		 
-				
+	 
+		
 	
 }
 
