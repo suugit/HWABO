@@ -176,9 +176,7 @@ function replyList(){
 				var re = "";
 				
 				for(var i  in jsonObj.list){ //전체 댓글 리스트
-					
-					
-					
+				
 					console.log("2번 포문");
 					console.log("jsonObj.list[i].no"+jsonObj.list[i].no);
 					console.log("$('#commentList_'+a).val()"+ document.getElementById('commentList_'+a).getAttribute('name'));
@@ -202,9 +200,7 @@ function replyList(){
 	            	}
 	            	re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'"> <p> 내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ") +'</p>';
 	            	re += '</div></div>';
-	            
-	            	
-        	
+	   
 				}
 				
 			
@@ -220,9 +216,7 @@ function replyList(){
 		}
 		
 	});
-	
-	
-	
+
 }
 
 
@@ -314,12 +308,6 @@ function replytList(index){
         }
     });
 }
-
-
-
-    	 
-  
-
 
 
 
