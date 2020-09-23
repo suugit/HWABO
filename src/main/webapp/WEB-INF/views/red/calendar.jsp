@@ -9,7 +9,7 @@
 <link href='/hwabo/resources/calendar/main.css' rel='stylesheet' />
 <script src='/hwabo/resources/calendar/main.js'></script>
 <script>
-
+function showCalendar(){
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
@@ -25,13 +25,35 @@
       selectMirror: true,
       select: function(arg) {
         var title = prompt('Event Title:');
-        alert(arg.start * 2);
+        //ajax insert 시작////////////////////////
+        $(function(){
+        	$.ajax({
+        		url:"sendCalendar.do",
+        		data:{
+        			
+        		},
+        		type: "post",
+        		success: function(result){
+        			if(result == "ok"){
+    					console.log("달력 일정 등록 완료...");
+    					
+    				}else{
+    					console.log("달력 일정 등록 실패...");
+    				}
+        		},
+        		error: function(request,status,errorDate){
+        			console.log("error code : " + request.status + "\nMessage :" + request.responseText + "\nError :" + errorData);
+        		}
+        	})
+        });
+        //ajax insert 끝////////////////////////
+        alert(arg.end.toString());
         if (title) {
           calendar.addEvent({
-            title: "rirou",
+            title: title,
             start: arg.start,
-            end: arg.end  * 2,
-            allDay: arg.allDay
+            end: arg.end,
+            allDay: arg.allDay//true false (return boolean)
           })
         }
         calendar.unselect()
@@ -103,27 +125,43 @@
 
     calendar.render();
   });
-
+}
+showCalendar();
 </script>
 <style>
 
-  body {
-    margin: 40px 10px;
+#calendar_body{
+    margin: 0;
     padding: 0;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
-  }
+}
 
-  #calendar {
+#calendar {
     max-width: 1100px;
     margin: 0 auto;
-  }
+}
 
 </style>
 </head>
 <body>
-
+<div id="calendar_body">
   <div id='calendar'></div>
+</div>
+<script type="text/javascript">
+/*<div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner"><div class="fc-daygrid-day-top"><a class="fc-daygrid-day-number" data-navlink="{&quot;date&quot;:&quot;2020-09-12&quot;,&quot;type&quot;:&quot;day&quot;}" tabindex="0">12</a></div><div class="fc-daygrid-day-events"><div class="fc-daygrid-event-harness fc-daygrid-event-harness-abs" style="visibility: hidden;"><a class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"><div class="fc-daygrid-event-dot"></div><div class="fc-event-time">10:30a</div><div class="fc-event-title">Meeting</div></a></div><div class="fc-daygrid-event-harness fc-daygrid-event-harness-abs" style="visibility: hidden;"><a class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"><div class="fc-daygrid-event-dot"></div><div class="fc-event-time">12p</div><div class="fc-event-title">Lunch</div></a></div><div class="fc-daygrid-event-harness fc-daygrid-event-harness-abs" style="visibility: hidden;"><a class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"><div class="fc-daygrid-event-dot"></div><div class="fc-event-time">2:30p</div><div class="fc-event-title">Meeting</div></a></div><div class="fc-daygrid-event-harness fc-daygrid-event-harness-abs" style="visibility: hidden;"><a class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"><div class="fc-daygrid-event-dot"></div><div class="fc-event-time">5:30p</div><div class="fc-event-title">Happy Hour</div></a></div><div class="fc-daygrid-event-harness fc-daygrid-event-harness-abs" style="visibility: hidden;"><a class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"><div class="fc-daygrid-event-dot"></div><div class="fc-event-time">8p</div><div class="fc-event-title">Dinner</div></a></div><div class="fc-daygrid-day-bottom" style="margin-top: 22px;"><a class="fc-daygrid-more-link">+5 more</a></div></div><div class="fc-daygrid-day-bg"></div></div>// "fc-daygrid-day fc-day fc-day-sat fc-day-past" */ 
 
+$(function(){
+ $(".fc-scrollgrid-sync-inner").on("click",function(){
+	 
+ });
+});
+
+$(function(){
+	if(!($(".fc-today-button").is(":disabled"))){
+		$(".fc-today-button").hide();
+	}
+});
+</script>
 </body>
 </html>

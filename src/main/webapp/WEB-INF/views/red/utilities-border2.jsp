@@ -31,7 +31,7 @@
 <!-- 달력css끝 -->
 </head>
 
-<body id="page-top">
+<body>
 <!-- 1.topbar추가 -->
 <!-- Topbar2 -->
         <c:import url="/WEB-INF/views/suugit/topbar.jsp"></c:import>
@@ -68,12 +68,14 @@
         <div class="container-fluid" style="height:100%;">
 
 <!-- 진행률시작 -->
+<div class="card mb-4">
 <div class="card-body">
-                  <div class="mb-1 small">프로젝트 진행률 ${ sessionScope.totalProgress }%</div>
-                  <div class="progress progress-sm mb-2">
-                    <div class="progress-bar" role="progressbar" style="width: ${ tp }%" aria-valuenow="${ tp }" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
+     <div class="mb-1 small">프로젝트 진행률 ${ sessionScope.totalProgress }%</div>
+         <div class="progress progress-sm mb-2">
+              <div class="progress-bar" role="progressbar" style="width: ${ tp }%" aria-valuenow="${ tp }" aria-valuemin="0" aria-valuemax="100"></div>
+         </div>
+     </div>
+</div>                
 <!-- 진행률끝 -->
          <!-- 달력시작  -->
          

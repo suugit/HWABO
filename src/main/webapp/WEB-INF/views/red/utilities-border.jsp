@@ -6,7 +6,6 @@
 <c:if test="${ sessionScope.totalProgress >= 4 }"><c:set var="tp" value="${ sessionScope.totalProgress }" /></c:if>
 <!DOCTYPE html>
 <html lang="kr">
-
 <head>
   <link rel="icon" type="image/x-icon" href="/hwabo/resources/assets/img/favicon.png" />
   <meta charset="utf-8">
@@ -28,8 +27,7 @@
 
 <!-- 달력css끝 -->
 </head>
-
-<body id="page-top">
+<body>
 <!-- 1.topbar추가 -->
 <!-- Topbar2 -->
      <c:import url="/WEB-INF/views/suugit/topbar.jsp"></c:import>
@@ -59,7 +57,7 @@
 
 <!-- 6. 탑바<br>4개  -->
         <!-- Topbar -->
-        <br><br><br><br>
+        <br><br><br>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->

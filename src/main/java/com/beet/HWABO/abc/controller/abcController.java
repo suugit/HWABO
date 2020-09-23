@@ -89,8 +89,7 @@ public class abcController {
 	@RequestMapping("moveMyBpost.do")
 	public String moveMyBpost(PjMember pmember, Model m) {
 		
-		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
-		m.addAttribute("list", list);
+		
 		
 		return "abc/myBPOST";
 	}
@@ -361,6 +360,8 @@ public class abcController {
 		model.addAttribute("post", bpost);
 		return "post/bpostOneview";
 	}
+	
+	
 
 	// 업무 게시글 상세보기용 메소드
 	@RequestMapping(value="detailview.do", method=RequestMethod.POST)
@@ -380,44 +381,30 @@ public class abcController {
 
 		if (bpost.getBstartday() != null) {
 			job.put("bstartday", bpost.getBstartday().toString());
-		} else {
-			job.put("bstartday", URLEncoder.encode(" ", "utf-8"));
 		}
 		
 		if (bpost.getBendday() != null) {
 			job.put("bendday", bpost.getBendday().toString());
-		} else {
-			job.put("bendday", URLEncoder.encode(" ", "utf-8"));
 		}
 		
 		if (bpost.getBcontent() != null) {
 			job.put("bcontent", URLEncoder.encode(bpost.getBcontent(), "utf-8"));
-		} else {
-			job.put("bcontent", URLEncoder.encode(" ", "utf-8"));
 		}
 		
 		if (bpost.getBchargename() != null) {
 			job.put("bchargename", URLEncoder.encode(bpost.getBchargename(), "utf-8"));
-		} else {
-			job.put("bchargename", URLEncoder.encode(" ", "utf-8"));
 		}
 		
 		if (bpost.getBrenamefile() != null) {
 			job.put("brenamefile", URLEncoder.encode(bpost.getBrenamefile(), "utf-8"));
-		} else {
-			job.put("brenamefile", URLEncoder.encode(" ", "utf-8"));
 		}
 		
 		if (bpost.getBoriginfile() != null) {
 			job.put("boriginfile", URLEncoder.encode(bpost.getBoriginfile(), "utf-8"));
-		} else {
-			job.put("boriginfile", URLEncoder.encode(" ", "utf-8"));
 		}
 
 		job.put("benrolldate", bpost.getBenrolldate().toString());
-		
-
-			  
+					  
 		return job.toJSONString(); //뷰 리졸버로 리턴함
 
 	}
