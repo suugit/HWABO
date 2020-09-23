@@ -9,7 +9,7 @@ public class MemberProject implements java.io.Serializable{
 	private String uemail; 
 	private String upwd; 
 	private String uname; 
-	private int uphone; 
+	private String uphone; 
 	private String ugroup; 
 	private String urole; 
 	private String ust; 
@@ -39,6 +39,40 @@ public class MemberProject implements java.io.Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
+	public MemberProject(String uemail, String upwd, String uname, String uphone, String ugroup, String urole,
+			String ust, String ucert, Date udate, String signtype, String accesstoken, String uimg, String uactive,
+			String ucode, String star, String project_num, String name, String pjadmin, String explain, Date startday,
+			Date endday, Date uploaddate, String open, int goal, int done, int right, String order_by) {
+		super();
+		this.uemail = uemail;
+		this.upwd = upwd;
+		this.uname = uname;
+		this.uphone = uphone;
+		this.ugroup = ugroup;
+		this.urole = urole;
+		this.ust = ust;
+		this.ucert = ucert;
+		this.udate = udate;
+		this.signtype = signtype;
+		this.accesstoken = accesstoken;
+		this.uimg = uimg;
+		this.uactive = uactive;
+		this.ucode = ucode;
+		this.star = star;
+		this.project_num = project_num;
+		this.name = name;
+		this.pjadmin = pjadmin;
+		this.explain = explain;
+		this.startday = startday;
+		this.endday = endday;
+		this.uploaddate = uploaddate;
+		this.open = open;
+		this.goal = goal;
+		this.done = done;
+		this.right = right;
+		this.order_by = order_by;
+	}
+
 	public String getUemail() {
 		return uemail;
 	}
@@ -63,11 +97,11 @@ public class MemberProject implements java.io.Serializable{
 		this.uname = uname;
 	}
 
-	public int getUphone() {
+	public String getUphone() {
 		return uphone;
 	}
 
-	public void setUphone(int uphone) {
+	public void setUphone(String uphone) {
 		this.uphone = uphone;
 	}
 
@@ -266,39 +300,6 @@ public class MemberProject implements java.io.Serializable{
 				+ right + ", order_by=" + order_by + "]";
 	}
 
-	public MemberProject(String uemail, String upwd, String uname, int uphone, String ugroup, String urole, String ust,
-			String ucert, Date udate, String signtype, String accesstoken, String uimg, String uactive, String ucode,
-			String star, String project_num, String name, String pjadmin, String explain, Date startday, Date endday,
-			Date uploaddate, String open, int goal, int done, int right, String order_by) {
-		super();
-		this.uemail = uemail;
-		this.upwd = upwd;
-		this.uname = uname;
-		this.uphone = uphone;
-		this.ugroup = ugroup;
-		this.urole = urole;
-		this.ust = ust;
-		this.ucert = ucert;
-		this.udate = udate;
-		this.signtype = signtype;
-		this.accesstoken = accesstoken;
-		this.uimg = uimg;
-		this.uactive = uactive;
-		this.ucode = ucode;
-		this.star = star;
-		this.project_num = project_num;
-		this.name = name;
-		this.pjadmin = pjadmin;
-		this.explain = explain;
-		this.startday = startday;
-		this.endday = endday;
-		this.uploaddate = uploaddate;
-		this.open = open;
-		this.goal = goal;
-		this.done = done;
-		this.right = right;
-		this.order_by = order_by;
-	}
-
+	
 	
 }

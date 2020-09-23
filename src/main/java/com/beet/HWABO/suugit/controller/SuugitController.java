@@ -912,4 +912,6 @@ public class SuugitController {
 		return "redirect:/ftables2.do?ucode="+request.getSession().getAttribute("ucode")+"&pnum="+request.getSession().getAttribute("pnum");
 
 	}
+	
+	
 }
