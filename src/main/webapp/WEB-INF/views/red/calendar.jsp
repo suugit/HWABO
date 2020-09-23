@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,13 +82,28 @@ function showCalendar(){
       dayMaxEvents: true, // allow "more" link when too many events
       events: [
     	  <c:forEach var="calIndex" items="${ requestScope.cal }" varStatus="status">
-    	  <c:if test="${ !status.first }">
+    	  
+    	  
+    	  
+      	  <c:if test="${ !status.first }">
           ,
           </c:if>
           {
             title: '${calIndex.title}',
-            start: '${calIndex.start_date}',
-            end: '${calIndex.end_date}'
+          
+          <c:if test="${calIndex.start_date == calIndex.end_date}">
+            start: '${fn:substring(calIndex.start_date,0,10)}',
+          </c:if>
+          <c:if test="${calIndex.start_date != calIndex.end_date}">
+          start: '${fn:substring(calIndex.start_date,0,10)}',
+          </c:if>
+          
+          <c:if test="${calIndex.end_date == calIndex.start_date}">
+            end: '${fn:substring(calIndex.end_date,0,10)}'
+          </c:if>
+          <c:if test="${calIndex.end_date != calIndex.start_date}">
+            end: '${fn:substring(calIndex.end_date,0,10)}'
+          </c:if>
           }
   			</c:forEach>
   			
