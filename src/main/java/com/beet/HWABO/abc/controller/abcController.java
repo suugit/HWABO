@@ -39,6 +39,7 @@ import com.beet.HWABO.cpost.model.vo.AddOn;
 import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.red.model.service.RedService;
+import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.spost.model.service.SpostService;
 import com.beet.HWABO.spost.model.vo.Bpostchk;
 import com.beet.HWABO.spost.model.vo.Post;
@@ -87,9 +88,7 @@ public class abcController {
 
 	
 	@RequestMapping("moveMyBpost.do")
-	public String moveMyBpost(PjMember pmember, Model m) {
-		
-		
+	public String moveMyBpost(Model m) {
 		
 		return "abc/myBPOST";
 	}
@@ -419,15 +418,19 @@ public class abcController {
 	}
 	
 	// 업무 게시글 수정페이지로 이동용 메소드
-	@RequestMapping("moveUpdateModel.do")
-	public String moveBpostUpdateAjax(HttpServletResponse response, @RequestParam("bno") String bno, Model m) throws UnsupportedEncodingException {
+	@RequestMapping("moveUpdateModal.do")
+	@ResponseBody
+	public String moveBpostUpdateAjax(HttpServletResponse response, @RequestParam("bno") String bno, @RequestParam("pnum") String pnum,Model m) throws UnsupportedEncodingException {
 
+		logger.info("!!!@@@@@@@@@@@@@@@@@@@@@!!!!!!!!!!!! 업데이트 모달 조회용");
 		Bpost bpost = spostService.selectOneBpost(bno);
+		ArrayList<MemberProject> projectMemberList = redService.selectMemberList(pnum);
+		
 		
 		response.setContentType("application/json;charset=utf-8"); //어플리케이션이 나갈건데  json이라는 의미
 		  
 		JSONObject job = new JSONObject();
-		  
+		
 		job.put("bno",bpost.getBno());
 		job.put("bucode",bpost.getBucode());
 		job.put("bkind", URLEncoder.encode(bpost.getBkind(), "utf-8"));
@@ -466,11 +469,14 @@ public class abcController {
 	
 
 	// 업무 게시글 수정용 메소드
-	@RequestMapping(value = "bpostup.do")
-	public String updatebpost(Bpost bpost, HttpServletRequest request,
+	@RequestMapping(value = "bpostup.do", method = RequestMethod.POST)
+	public String updatebpost(Bpost bpost, HttpServletRequest request,HttpServletResponse response,
 			@RequestParam(name = "upfile", required = false) MultipartFile file,
-			@RequestParam(name = "deleteFlag", required = false) String deleteFlag, PjMember pmember) {
+			@RequestParam(name = "deleteFlag", required = false) String deleteFlag, PjMember pmember) throws IOException {
+		response.setCharacterEncoding("UTF-8"); 
+		response.setContentType("text/html; charset=UTF-8");
 
+	
 		logger.info(bpost.getBkind());
 		String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
 		String returnView = null;
@@ -525,16 +531,10 @@ public class abcController {
 				}
 			}
 		}
-		if (bpostService.updateBpost(bpost) > 0) {
-			// 성공하면 bno가지고 selectOne 한번 실행
-			request.setAttribute("bno", bpost.getBno());
-			return "redirect:/bpostOne.do?bno=" + bpost.getBno() + "&ucode=" + pmember.getUcode() + "&pnum="
-					+ pmember.getPnum();
-		} else {
-			// 수정실패하면 list로
-			request.setAttribute("message", "업무 게시글 수정에 실패하였습니다.");
-			return "redirect:/mybpost.do?ucode=" + pmember.getUcode() + "&pnum=" + pmember.getPnum();
-		}
+
+		bpostService.updateBpost(bpost);
+		
+		return "redirect:/moveMyBpost.do";
 	}
 
 	// 업무 삭제용 메소드
@@ -759,6 +759,9 @@ public class abcController {
 	// 일정 삭제 메소드
 	@RequestMapping("HSdelete.do")
 	public String hwabodeleteSpost(HttpServletResponse response, String sno) throws IOException {
+		response.setCharacterEncoding("UTF-8"); response.setContentType("text/html; charset=UTF-8");
+
+		
 		PrintWriter out = response.getWriter();
 
 		if (spostService.deleteSpost(sno) > 0) {

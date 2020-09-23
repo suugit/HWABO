@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="java.util.ArrayList"%>
 <%@ page import="com.beet.HWABO.bpost.model.vo.Bpost" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +19,18 @@
 <title>HWABO</title>
 
 <style type="text/css">
+::-webkit-scrollbar { width: 6px; } /* 스크롤 바 */
+
+::-webkit-scrollbar-track { background-color:#fff; } /* 스크롤 바 밑의 배경 */
+
+::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; } /* 실질적 스크롤 바 */
+
+::-webkit-scrollbar-thumb:hover { background: #404040; } /* 실질적 스크롤 바 위에 마우스를 올려다 둘 때 */
+
+::-webkit-scrollbar-thumb:active { background: #808080; } /* 실질적 스크롤 바를 클릭할 때 */
+
+::-webkit-scrollbar-button { display: none; } /* 스크롤 바 상 하단 버튼 */
+
         /* The Modal (background) */
         .modal {
             display: none; /* Hidden by default */
@@ -249,9 +262,9 @@ $(document).ready(function() {
 		var bno = id.replace('upbutton', '');
 		
 		$.ajax({
-			url: "moveUpdateModel.do",
+			url: "moveUpdateModal.do",
 			type: "POST",
-			data: {'bno' : bno}, 
+			data: {'bno' : bno, 'pnum': '${sessionScope.pnum}'}, 
 			dataType: "Json",
 			traditional: true,
 			success: function(obj){
@@ -268,120 +281,89 @@ $(document).ready(function() {
 			//유형
 			values += '<tr><th style="width: 18%;vertical-align:middle;  text-align: center;">유형</th><td>';
 			
-			if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") =="요청"){
-				 values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary"><input type="radio" name="bkind" id="option1" value="요청" checked="checked">요청</label>';
+			if(decodeURIComponent(obj.bkind)=="요청"){
+				 values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary active"><input type="radio" name="bkind" id="option1" value="요청" checked="checked">요청</label>';
 				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option2" value="진행">진행</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="피드백">피드백</label>';
 				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="완료">완료</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="보류">보류</label></div>';
           	 }
-          	if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") =="진행"){
+          	if(decodeURIComponent(obj.bkind) =="진행"){
           		values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary"><input type="radio" name="bkind" id="option1" value="요청" >요청</label>';
-				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option2" value="진행" checked="checked" >진행</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="피드백">피드백</label>';
+				 values += '<label class="btn btn-secondary active"><input type="radio" name="bkind" id="option2" value="진행" checked="checked" >진행</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="피드백">피드백</label>';
 				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="완료">완료</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="보류">보류</label></div>';
           	 }
-          	if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") == "피드백"){
+          	if(decodeURIComponent(obj.bkind) == "피드백"){
           		values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary"><input type="radio" name="bkind" id="option1" value="요청">요청</label>';
-				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option2" value="진행">진행</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="피드백" checked="checked">피드백</label>';
+				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option2" value="진행">진행</label><label class="btn btn-secondary active"><input type="radio" name="bkind" id="option3" value="피드백" checked="checked">피드백</label>';
 				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="완료" >완료</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="보류">보류</label></div>';
           	 }
-          	if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") == "완료"){
+          	if(decodeURIComponent(obj.bkind) == "완료"){
           		values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary"><input type="radio" name="bkind" id="option1" value="요청">요청</label>';
 				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option2" value="진행">진행</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="피드백">피드백</label>';
-				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="완료" checked="checked">완료</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="보류">보류</label></div>';
+				 values += '<label class="btn btn-secondary active"><input type="radio" name="bkind" id="option3" value="완료" checked="checked">완료</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="보류">보류</label></div>';
           	 }
-          	if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") =="보류"){
+          	if(decodeURIComponent(obj.bkind) =="보류"){
           		values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary"><input type="radio" name="bkind" id="option1" value="요청">요청</label>';
 				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option2" value="진행">진행</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="피드백">피드백</label>';
-				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="완료">완료</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="보류" checked="checked">보류</label></div>';
+				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="완료">완료</label><label class="btn btn-secondary active"><input type="radio" name="bkind" id="option3" value="보류" checked="checked">보류</label></div>';
           	 }	
             values += '</td></tr>';
-			
+ 
             //담당자
             values += '<tr><th style="width: 18%;vertical-align:middle; text-align: center;" >담당자</th><td style="vertical-align:middle; text-align: left;">기존 담당자  : &nbsp; '+decodeURIComponent(obj.bchargename).replace(/\,/gi, ",  ")+'<br>';
             values += '<div style="padding-top: 10px; padding-bottom: 0px; margin-bottom: 0px;"><nav class="navbar navbar-expand navbar-light bg-light mb-4">';
             values += '<div class="dropdown"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">담당자 수정</button><div id="selected"></div><div class="dropdown-menu" aria-labelledby="dropdownMenu2">';
-            
-			var list = '${pmlist}';
-			for (var i = 0; i < list.length; i++)
-				values += '<button class="dropdown-item" type="button" onclick="addbcharge'+i+';" value="'+list[i].ucode+'">'+list[i].uname+'</button>';
-				values += '<input type="checkbox" id="user'+i+'" name="bcharge" style="display: none">';
-				values += '<input type="checkbox" id="name'+i+'" name="bchargename" style="display: none">';
-			}
+
+            <c:forEach var="i" items="${pmlist}" varStatus="status">
+				values += '<button class="dropdown-item" type="button" onclick="addbcharge${status.index}();" value="${i.ucode}">${i.uname}</button>';
+				values += '<input type="checkbox" id="user${status.index}" name="bcharge" style="display: none">';
+				values += '<input type="checkbox" id="name${status.index}" name="bchargename" style="display: none">';
+			</c:forEach>
 			values += '</div></div></nav></div></td></tr>';
-							
+            					
             //시작날짜 & 끝날짜
 			if(obj.bstartday != null){
            		values += '<tr><th style="width: 18%;vertical-align:middle; text-align: center;" >시작날짜</th><td><input type="date" class="form-control" name="bstartday" value="'+obj.bstartday+'"></td></tr>';
            		values += '<tr><th style="width: 18%;vertical-align:middle; text-align: center;" >끝날짜</th><td><input type="date" class="form-control" name="bendday" value="'+obj.bendday+'"></td></tr>';
-			}	 
+			}
 			
 			//내용
 			if(obj.bcontent != null){
         		values += '<tr><th style="width: 18%;vertical-align:middle; text-align: center;" >내용</th><td><textarea cols="50" rows="6" class="w-100 form-control" name="bcontent">'+decodeURIComponent(obj.bcontent).replace(/\+/gi, "  ")+'</textarea></td></tr>';
         	}
 			
-			
+			//파일 있을 때
 		   if(obj.boriginfile != null){
-        		
-        		values += '<tr><th style="width: 15%; text-align: center; vertical-align:middle;">파일</th>';
-        		values += '<td style="vertical-align:middle;align-items: center;">';
-        		values += '<div id="showfile" style=" text-align: center;  overflow: hidden; width: 200px;  height: 150px;"><img style="max-width: 100%; height: auto;" src="resources/bupfile/'+decodeURIComponent(obj.brenamefile).replace(/\+/gi, "  ")+'"></div><br>';
-        		values += '<a href="bfdown.do?ofile='+decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ")+'&rfile='+decodeURIComponent(obj.brenamefile).replace(/\+/gi, "  ")+'">'+decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ")+'</a></td></tr>';
+			   values += '<tr><th style="width: 18%;vertical-align:middle; text-align: center;" >파일</th><td style="vertical-align:middle; text-align: left;">'+decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ");
+			   values += '${post.boriginfile }&nbsp;&nbsp;&nbsp;<input type="checkbox" name="deleteFlag" value="yes">삭제<br><br><input type="file" name="upfile">';
+			   values += '</td></tr>';
         	}
-            
-			<tr>
-            <th style="width: 18%;vertical-align:middle; text-align: center;" >파일</th>
-               <td style="vertical-align:middle; text-align: left;">
-                <c:if test="${!empty post.boriginfile }">
-              	${post.boriginfile }
-              	&nbsp;&nbsp;&nbsp;
-              	<input type="checkbox" name="deleteFlag" value="yes">삭제
-              	<br><br>
-              	<input type="file" name="upfile">
-           	  </c:if>
-           	  <c:if test="${empty post.boriginfile }">                             	
-              	<input class="form-control" type="file" name="upfile">
-           	  </c:if>
-              </td>
-            </tr>
+			// 파일 없을 때
+		   if(obj.boriginfile == null){
+			   values += '<tr><th style="width: 18%;vertical-align:middle; text-align: center;" >파일</th><td style="vertical-align:middle; text-align: left;">';
+			   values += '<input class="form-control" type="file" name="upfile">';
+			   values += '</td></tr>';
+       		}
 			
+			//서브밋 버튼 
 			
-        	
+			values += '<tr><td colspan="2"><button type="submit" class="btn btn-sm btn-info" value="수정완료 ">수정완료</button>&nbsp;&nbsp;<button type="reset" class="btn btn-sm btn-danger" value="">원래대로</button></td></tr>';
 			
 			//테이블 닫고 폼 닫고
 			values += '</table></form>';
 			
 	   		 $('#update-content').html(values); 	       
-			}, 				
 			
-			error: function(request, status, errorData){ //에러는 위에서 복붙
+			
+			},
+			error: function(request, status, errorData){ 
 				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
 			}		
 		});	
-		
-		
+
 		$('#updateModal').show();
-		
-		
+
 	};
 	
-	function updateBpost(id){
-		var bno = id.replace('update', '');
-		
-		
-		
-		
-	};
-	
-	
-	
-	
-	function deleteBpost(id){
-		var bno = id.replace('delbutton', '');
-		
-		
-		
-		
-	};
 	
 	
 
@@ -389,7 +371,8 @@ $(document).ready(function() {
 	function close_pop(flag) {
 	     $('.modal').hide();
 	};
-//규림씨 업데이트 펑션들
+
+	
 	function bkindshow(){
 		$("#'${b.bkind}'").button('toggle')
 
@@ -499,6 +482,7 @@ $(document).ready(function() {
 		$('#upc').var(result);
 
 	}
+	
 </script>
 
 </head>
@@ -535,7 +519,7 @@ $(document).ready(function() {
 
 
 						<!-- 업무 모아보기 시작 -->
-						
+						 
 							<div id="tableview" class="card mb-4 py-3 ">
 								<div style="font-size:15pt; margin-top: 10px; margin-left: 15px;margin-bottom: 0px;">
 									<strong>&nbsp;&nbsp;${sessionScope.uname } </strong>님의 업무 모아보기								
@@ -591,7 +575,7 @@ $(document).ready(function() {
     <div id="detailModal" class="modal"  >
  
       <!-- Modal content -->
-      <div class="modal-content" style="width: 35%;">
+      <div class="modal-content" style="width: 40%; max-height: 90%; overflow: auto;">
       		<div id="detail-content" >
       		 	<table id="detail-table" class="table">
       		 	
@@ -616,7 +600,7 @@ $(document).ready(function() {
     <div id="updateModal" class="modal"  >
  
       <!-- Modal content -->
-      <div class="modal-content" style="width: 35%;">
+      <div class="modal-content" style="width: 40%; max-height: 90%; overflow: auto;">
       		<div id="update-content" >
       		 	<table id="update-table" class="table">
       		 	

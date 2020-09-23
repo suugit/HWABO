@@ -39,7 +39,6 @@ function bkindshow(){
 	$("#'${b.bkind}'").button('toggle')
 
 }
-
 function addbcharge0(){
      var name = $(event.target).text();
      var code = $(event.target).val();
@@ -359,13 +358,6 @@ function upcharge(){
                                     <button type="submit" class="btn btn-sm btn-info" value="수정완료 ">수정완료</button>
     									&nbsp;&nbsp;
                                     <button type="reset" class="btn btn-sm btn-danger" value="">원래대로</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<c:url var="bpostone" value="bpostOne.do">
-					<c:param name="bno" value="${post.bno }" />
-					<c:param name="ucode" value="${sessionScope.ucode }" />
-					<c:param name="pnum" value="${sessionScope.pnum }" />
-				</c:url>
-				<a class="btn  btn-sm  btn-light" href="${bpostone }">수정취소</a>
 		
                               </td>
                            </tr>

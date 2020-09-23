@@ -113,10 +113,13 @@
 	<if test="bchargename != null">
 	
 	set btitle = #{btitle}, bcharge = #{bcharge}, bstartday = #{bstartday}, bendday = #{bendday},
-		bcontent = #{bcontent}, bchargename = #{bchargename}, bkind = #{bkind},
+		 bchargename = #{bchargename}, bkind = #{bkind},
 		
 		<if test="boriginfile != null">
 		boriginfile = #{boriginfile}, brenamefile = #{brenamefile},
+		</if>
+		<if test="bcontent != null">
+		bcontent = #{bcontent},
 		</if>
 
 		<if test="boriginfile == null">
@@ -130,6 +133,9 @@
 		
 		<if test="boriginfile != null">
 		boriginfile = #{boriginfile}, brenamefile = #{brenamefile},
+		</if>
+		<if test="bcontent != null">
+		bcontent = #{bcontent},
 		</if>
 
 		<if test="boriginfile == null">
