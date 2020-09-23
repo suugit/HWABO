@@ -320,6 +320,13 @@ $(document).ready(function() {
         	}
 			
 			
+		   if(obj.boriginfile != null){
+        		
+        		values += '<tr><th style="width: 15%; text-align: center; vertical-align:middle;">파일</th>';
+        		values += '<td style="vertical-align:middle;align-items: center;">';
+        		values += '<div id="showfile" style=" text-align: center;  overflow: hidden; width: 200px;  height: 150px;"><img style="max-width: 100%; height: auto;" src="resources/bupfile/'+decodeURIComponent(obj.brenamefile).replace(/\+/gi, "  ")+'"></div><br>';
+        		values += '<a href="bfdown.do?ofile='+decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ")+'&rfile='+decodeURIComponent(obj.brenamefile).replace(/\+/gi, "  ")+'">'+decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ")+'</a></td></tr>';
+        	}
             
 			<tr>
             <th style="width: 18%;vertical-align:middle; text-align: center;" >파일</th>
@@ -339,16 +346,6 @@ $(document).ready(function() {
 			
 			
         	
-        	if(obj.boriginfile != null){
-        		
-        		values += '<tr><th style="width: 15%; text-align: center; vertical-align:middle;">파일</th>';
-        		values += '<td style="vertical-align:middle;align-items: center;">';
-        		values += '<div id="showfile" style=" text-align: center;  overflow: hidden; width: 200px;  height: 150px;"><img style="max-width: 100%; height: auto;" src="resources/bupfile/'+decodeURIComponent(obj.brenamefile).replace(/\+/gi, "  ")+'"></div><br>';
-        		values += '<a href="bfdown.do?ofile='+decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ")+'&rfile='+decodeURIComponent(obj.brenamefile).replace(/\+/gi, "  ")+'">'+decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ")+'</a></td></tr>';
-        	}
-			if(obj.bucode == '${ucode}'){
-				values += '<tr><td colspan="2" style="vertical-align:middle; text-align: right;"><button id="upbutton'+obj.bno+'" class="btn btn-sm btn-outline-info" onclick="moveUpdate(this.id);">수정</button>&nbsp;&nbsp;&nbsp;&nbsp;<button  id="delbutton'+obj.bno+'"  class="btn btn-sm btn-outline-danger" onclick="deleteBpost(this.id);">삭제</button>&nbsp;</td></tr>';
-			}
 			
 			//테이블 닫고 폼 닫고
 			values += '</table></form>';
