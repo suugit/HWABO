@@ -37,6 +37,7 @@ import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.filebox.model.vo.Filebox;
 import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.red.model.service.RedService;
+import com.beet.HWABO.red.model.vo.Calendar;
 import com.beet.HWABO.red.model.vo.ChatSpeed;
 import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
@@ -687,6 +688,54 @@ public class RedController {
 		}
 		return mav;
 	}
+	@RequestMapping(value="sendCalendar.do", method=RequestMethod.POST)
+	public void sendCalendarMain(Calendar calendar, HttpServletResponse response
+			,HttpServletRequest request, SessionStatus status) throws IOException {
+			logger.info("캘린더 넣는중~ : " + calendar);
+		response.setContentType("test/html; charset=utf-8"); //여기에 오타나면 파일 선택창이 뜬다
+			
+		PrintWriter out = response.getWriter();
+		if(redService.insertCalendar(calendar) > 0) {
+			out.append("ok");
+			out.flush();
+		}else {
+			out.append("fail");
+			out.flush();
+		}
+		out.close();
+	}
+	@RequestMapping(value = "fborder.do", method = RequestMethod.GET)
+	public String borderCheck() {
+		
+		return "red/CalendarSessionCheck";
+	}
+	@RequestMapping(value = "fborderMain.do", method = RequestMethod.GET)
+	public ModelAndView border(PjMember pj, ModelAndView model) {
+		
+		ArrayList<Calendar> calList = redService.selectCalendar(pj);
+		logger.info("calList : " + calList);
+		model.addObject("cal",calList);
+		
+		model.setViewName("red/utilities-border");
+		
+		return model;
+	}
+	@RequestMapping(value = "fborder2.do", method = RequestMethod.GET)
+	public String border2Check() {
+		
+		return "red/CalendarSessionCheck2";
+	}
+	@RequestMapping(value = "fborder2Main.do", method = RequestMethod.GET)
+	public ModelAndView border2(PjMember pj, ModelAndView model) {
+		
+		ArrayList<Calendar> calList = redService.selectCalendar(pj);
+		logger.info("calList : " + calList);
+		model.addObject("cal",calList);
+		
+		model.setViewName("red/utilities-border2");
+		
+		return model;
+	}
 ////views start//////////////////////////////
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)
 	public String suugitIndex(Model model) {
@@ -780,16 +829,6 @@ public class RedController {
 	public String animation(Model model) {
 		
 		return "sample/utilities-animation";
-	}
-	@RequestMapping(value = "fborder.do", method = RequestMethod.GET)
-	public String border(Model model) {
-		
-		return "red/utilities-border";
-	}
-	@RequestMapping(value = "fborder2.do", method = RequestMethod.GET)
-	public String border2(Model model) {
-		
-		return "red/utilities-border2";
 	}
 	@RequestMapping(value = "sfborder.do", method = RequestMethod.GET)
 	public String sborder(Model model) {

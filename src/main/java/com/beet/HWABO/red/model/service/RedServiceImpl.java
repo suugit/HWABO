@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.cpost.model.vo.Cpost;
+import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.red.model.dao.RedDao;
+import com.beet.HWABO.red.model.vo.Calendar;
 import com.beet.HWABO.red.model.vo.ChatSpeed;
 import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
@@ -141,6 +143,16 @@ public class RedServiceImpl implements RedService {
 	@Override
 	public int updateChatSpeed(ChatSpeed c) {
 		return redDao.updateChatSpeed(c);
+	}
+
+	@Override
+	public int insertCalendar(Calendar calendar) {
+		return redDao.insertCalendar(calendar);
+	}
+
+	@Override
+	public ArrayList<Calendar> selectCalendar(PjMember pj) {
+		return redDao.selectCalendar(pj);
 	}
 	
 }

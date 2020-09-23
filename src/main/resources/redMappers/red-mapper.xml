@@ -241,6 +241,10 @@
 		select * from chat_speed where fk = #{ fk }
 </select>
 
+<select id="selectCalendar" parameterType="PjMember" resultType="com.beet.HWABO.red.model.vo.Calendar">
+		select * from Calendar where ucode = #{ ucode } and pnum = #{ pnum }
+</select>
+
 <insert id="insertProject" parameterType="com.beet.HWABO.red.model.vo.UserProject">
 		insert into project VALUES (#{project_num},#{name},#{explain},default,default,default,default,100000,1,#{right},(select max(TO_NUMBER(order_by))+1 from project))
 </insert>
@@ -260,6 +264,11 @@
 <insert id="insertChat" parameterType="com.beet.HWABO.red.model.vo.Chatting">
 		insert into chatting( UCODE,PROJECT_NUM,PROJECT_NAME,UNAME,CONTENT,CHAT_TIME,ORIGNAL_FILE,RENAME_FILE ) 
 		values (#{ ucode },#{ project_num },#{ project_name },#{ uname },#{ content },SYSTIMESTAMP,null,null)
+</insert>
+
+<insert id="insertCalendar" parameterType="com.beet.HWABO.red.model.vo.Calendar">
+		insert into calendar(calno,pnum,ucode,uname,enrolldate,title,start_date,end_date,allday ) 
+		values ( (select concat('cal', (select nvl(max(to_number(substr(calno,4))),0) + 1 from calendar))from dual) ,#{ pnum },#{ ucode },#{ uname },default,#{ title },#{ start_date },#{ end_date },#{ allday })
 </insert>
 
 <delete id="deleteProject" parameterType="string">
