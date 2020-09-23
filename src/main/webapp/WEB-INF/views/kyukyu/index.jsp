@@ -697,8 +697,9 @@ function replytList(index){
 											</div>
 										
 
-										</div>
-											<div class="px-3 py-5 bg-gradient-light text-white" id="replyy">
+										</div><!-- 게시글안쪽  -->
+										
+											<div class="px-3 pb-5 border border-primary text-white" id="replyy">
 											
 											
 											<div class="container" style="color: black">
@@ -717,7 +718,7 @@ function replytList(index){
 												<input type="text" class="form-control" id="reply_content_${status.index }" name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
 													onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
 											</div>
-										<!-- 게시글안쪽  -->
+										
 										</div>
 									</div>
 									<!-- card shadow mb-4 -->

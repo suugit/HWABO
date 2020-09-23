@@ -7,6 +7,95 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
 <body>
 
+<script type="text/javascript">
+
+
+/* 댓글기능 */
+
+	
+replyList();	
+
+	
+function replyList(){
+	
+	
+	console.log("댓글 리스트 들어옴");
+	
+	$.ajax({
+		
+		url:"replyList.do",
+		type: "post",
+		dataType: "json",
+		success: function(obj){
+			
+			console.log(obj);
+			
+			var objStr = JSON.stringify(obj);
+			var jsonObj = JSON.parse(objStr);
+			var output = "";
+			
+			
+		
+			
+			
+			for(var a= 0; a < ${requestScope.list.size()}; a++){ //전체 게시글 리스트
+				console.log("1번 포문");
+				var re = "";
+				
+				for(var i  in jsonObj.list){ //전체 댓글 리스트
+					
+					
+					
+					console.log("2번 포문");
+					console.log("jsonObj.list[i].no"+jsonObj.list[i].no);
+					console.log("$('#commentList_'+a).val()"+ document.getElementById('commentList_'+a).getAttribute('name'));
+				
+				if(jsonObj.list[i].no == document.getElementById('commentList_'+a).getAttribute('name')){ //게시글과 댓글의 게시글 번호 비교
+					console.log("if 문");
+					console.log("${sessionScope.ucode}");
+					console.log( jsonObj.list[i].ucode);
+					re += '<div class="commentArea" style="font-size:14px; border-bottom:1px solid darkgray; margin-bottom: 10px; margin-top: 14px;">';
+	            	re += '<div class="commentInfo'+jsonObj.list[i].replyno+'">'+' 작성자 : '+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ");
+	            if(jsonObj.list[i].secondenroll == null){
+	            	re += '<small>'+ jsonObj.list[i].enrolldate+'</small>';
+	           		}else{
+	           		re += '<small> 수정일 '+ jsonObj.list[i].secondenroll+'</small>';
+	           		}
+	            if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
+	            	re += '<a onclick="commentUpdate('+jsonObj.list[i].replyno+',\''+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'\');"> 수정 </a>';
+		            re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제 </a>';
+	            	
+	            	
+	            	}
+	            	re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'"> <p> 내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ") +'</p>';
+	            	re += '</div></div>';
+	            
+	            	
+        	
+				}
+				
+			
+				$("#commentList_"+a).html(re);
+			
+				}
+		
+			}
+		
+		},
+		error: function(request, status, errorData){ 
+			console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+		}
+		
+	});
+	
+	
+	
+}
+
+</script>
+
+
+
 <c:forEach var="main" items="${ requestScope.list }" varStatus="status">  
 <%-- ${ status.count } --%>
 <c:if test="${ main.firstword eq 's' }">
@@ -149,13 +238,34 @@ console.log(map1_${ status.index });
 				</tr>
 			</table>
 		</div>
-		<div class="px-3 py-5 bg-gradient-light text-white"
+	
+	 	<!-- 댓글 -->
+	 	<div class="px-3 pb-5 text-white" id="replyy">
+											
+											
+			<div class="container" style="color: black">
+				<div class="commentList_${status.index }" id="commentList_${status.index }" name="${post.sno }">
+													
+				</div>
+											
+			</div>
+										
+			<div style="height: 2px;" >
+
+				<input type="hidden" id="reply_no_${status.index }" name="no" value="${post.sno }"> 
+				<input type="text" class="form-control" id="reply_content_${status.index }" name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
+					onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
+			</div>
+										
+		</div><!-- 댓글 끝 -->
+	</div>
+		<!-- <div class="px-3 py-5 bg-gradient-light text-white"
 			style="height: 10px;">
 			<form action="#" method="post">
 			<input type="text" class="form-control" placeholder="답글을 입력하세요">
 			</form>
-		</div>
-	</div>
+		</div> -->
+	
 
 <!-- spost수정 폼시작 -->
 <div id="spostupdate"><c:import url="/WEB-INF/views/abc/updateSpost.jsp"></c:import></div>
@@ -342,9 +452,9 @@ console.log(map1_${ status.index });
 						  	<c:param name="rfile" value="${b.brenamefile}"/>
 						  </c:url> 
 						     <div id="showfile" style="overflow:hidden;"> 
-							   <c:forTokens var="ext" items="${b.brenamefile}" delims="." varStatus="status">
+							   <c:forTokens var="ext" items="${b.brenamefile}" delims="." varStatus="status2">
 							
-							    <c:if test="${status.last}">
+							    <c:if test="${status2.last}">
 							        <c:choose>
 							            <c:when test="${ext eq 'jpg' or ext eq 'gif'}">
 							               <img src="resources/bupfile/${b.brenamefile}" class="rounded" style="width : 220px;height : 150px;">
@@ -391,10 +501,32 @@ console.log(map1_${ status.index });
 				</tr>
 			</table>
 		 </div>
-		 <div class="px-3 py-5 bg-gradient-light text-white" style="height: 10px;">
-			<input type="text" class="form-control" placeholder="답글을 입력하세요">
-	  	 </div>
-	 </div><!-- 게시글안쪽  -->			
+		 
+	 </div><!-- 게시글안쪽  -->	
+	 
+	 	<!-- 댓글 -->
+	 	<div class="px-3 pb-5 text-white" id="replyy">
+											
+											
+			<div class="container" style="color: black">
+				<div class="commentList_${status.index }" id="commentList_${status.index }" name="${b.bno }">
+													
+				</div>
+											
+			</div>
+										
+			<div style="height: 2px;" >
+
+				<input type="hidden" id="reply_no_${status.index }" name="no" value="${b.bno }"> 
+				<input type="text" class="form-control" id="reply_content_${status.index }" name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
+					onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
+			</div>
+										
+		</div><!-- 댓글 끝 -->
+	 
+	 
+	 
+	 		
 	</div><!-- card shadow mb-4 -->
 </c:if>
 <!-- bpost끝 -->
@@ -623,11 +755,34 @@ console.log(map1_${ status.index });
 				</tr>
 			</table>
 		</div>
-		<div class="px-3 py-5 bg-gradient-light text-white"
+		<!-- <div class="px-3 py-5 bg-gradient-light text-white"
 			style="height: 10px;">
 			<input type="text" class="form-control" placeholder="답글을 입력하세요">
-		</div>
+		</div> -->
 	</div>
+	
+		 	<!-- 댓글 -->
+	 	<div class="px-3 pb-5 text-white" id="replyy">
+											
+											
+			<div class="container" style="color: black">
+				<div class="commentList_${status.index }" id="commentList_${status.index }" name="${c.cno }">
+													
+				</div>
+											
+			</div>
+										
+			<div style="height: 2px;" >
+
+				<input type="hidden" id="reply_no_${status.index }" name="no" value="${c.cno }"> 
+				<input type="text" class="form-control" id="reply_content_${status.index }" name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
+					onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
+			</div>
+										
+		</div><!-- 댓글 끝 -->
+	
+	
+	
 	</div>
 	
 </c:if>

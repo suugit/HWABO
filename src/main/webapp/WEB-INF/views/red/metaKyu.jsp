@@ -142,14 +142,195 @@ function sendInsert(index){
 }
 
 
+/* 댓글기능 */
+
+$(document).ready(function(){
+	
+	replyList();	
+});
+	
+function replyList(){
+	
+	
+	console.log("댓글 리스트 들어옴");
+	
+	$.ajax({
+		
+		url:"replyList.do",
+		type: "post",
+		dataType: "json",
+		success: function(obj){
+			
+			console.log(obj);
+			
+			var objStr = JSON.stringify(obj);
+			var jsonObj = JSON.parse(objStr);
+			var output = "";
+			
+			
+		
+			
+			
+			for(var a= 0; a < ${requestScope.list.size()}; a++){ //전체 게시글 리스트
+				console.log("1번 포문");
+				var re = "";
+				
+				for(var i  in jsonObj.list){ //전체 댓글 리스트
+					
+					
+					
+					console.log("2번 포문");
+					console.log("jsonObj.list[i].no"+jsonObj.list[i].no);
+					console.log("$('#commentList_'+a).val()"+ document.getElementById('commentList_'+a).getAttribute('name'));
+				
+				if(jsonObj.list[i].no == document.getElementById('commentList_'+a).getAttribute('name')){ //게시글과 댓글의 게시글 번호 비교
+					console.log("if 문");
+					console.log("${sessionScope.ucode}");
+					console.log( jsonObj.list[i].ucode);
+					re += '<div class="commentArea" style="font-size:14px; border-bottom:1px solid darkgray; margin-bottom: 10px; margin-top: 14px;">';
+	            	re += '<div class="commentInfo'+jsonObj.list[i].replyno+'">'+' 작성자 : '+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ");
+	            if(jsonObj.list[i].secondenroll == null){
+	            	re += '<small>'+ jsonObj.list[i].enrolldate+'</small>';
+	           		}else{
+	           		re += '<small> 수정일 '+ jsonObj.list[i].secondenroll+'</small>';
+	           		}
+	            if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
+	            	re += '<a onclick="commentUpdate('+jsonObj.list[i].replyno+',\''+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'\');"> 수정 </a>';
+		            re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제 </a>';
+	            	
+	            	
+	            	}
+	            	re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'"> <p> 내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ") +'</p>';
+	            	re += '</div></div>';
+	            
+	            	
+        	
+				}
+				
+			
+				$("#commentList_"+a).html(re);
+			
+				}
+		
+			}
+		
+		},
+		error: function(request, status, errorData){ 
+			console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+		}
+		
+	});
+	
+	
+	
+}
+
+
+function commentUpdate(replyno, content){
+    var a ='';
+    
+    a += '<div class="input-group">';
+    a += '<input type="text" class="form-control" name="content_'+replyno+'" value="'+content+'"/>';
+    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+replyno+');">수정</button> </span>';
+    a += '</div>';
+    
+    $('.commentContent'+replyno).html(a);
+    
+}
+ 
+//댓글 수정
+function commentUpdateProc(replyno){
+    var updateContent = $('[name=content_'+replyno+']').val();
+    console.log("수정 들어옴")
+    $.ajax({
+        url : 'updatereply.do',
+        type : 'post',
+        data : {'content' : updateContent, 'replyno' : replyno},
+        success : function(data){
+            if(data == 1)
+           		replyList();
+        }
+    });
+}
+ 
+   
+//댓글 삭제 
+function commentDelete(replyno){
+	console.log("삭제 replyno : " + replyno)
+    $.ajax({
+        url : 'deletereply.do',
+        data : {'replyno' : replyno},
+        type : 'post',
+        success : function(data){
+            if(data == 1) 
+            	replyList();
+        }
+    });
+}
+ 
+ 
 
 
 
+ 
+function enterkey(index) {
+	console.log("enterkey function get in");
+	
+	   $.ajax({
+	        url : 'insertreply.do',
+	        type : 'post',
+	        data : {no : $("#reply_no_"+ index).val(), content : $("#reply_content_"+ index).val(),
+	        		ucode: "${sessionScope.ucode }", uname : "${sessionScope.uname }"
+	        },
+	        success : function(data){
+	        	console.log("댓글 insert 성공");
+	            if(data == "ok") {
+	            	 replytList(index);  //댓글 작성 후 댓글 목록 reload
+	            	$("#reply_content_"+ index).val('');
+	            }else{
+	            	alert("댓글 등록 실패! 재시도 하시오")
+	            }
+	        }
+	    });
+}
+
+
+function replytList(index){
+	console.log("reply 인써트 후 리스트 보여주기 function get in");
+	
+	
+	
+    $.ajax({
+        url : 'selectOneReply.do',
+        type : 'post',
+        data : {no : $("#reply_no_"+ index).val()},
+		
+        success : function(data){
+        	replyList();
+        	
+
+        	console.log("댓글 list 성공");
+   
+        }
+    });
+}
+
+
+
+    	 
+  
+
+
+
+
+/* 담당자 기능 */
 
 function bkindshow(){
 $("#'${b.bkind}'").button('toggle')
 }
 var names = "";
+
+
 function addbcharge(){
 	var name = $(event.target).text();
 	names += name + " ";
@@ -158,6 +339,8 @@ function addbcharge(){
 	 $('#bform').val(names);
 	 alert($("#bform").val()); 
 }
+
+
 function unSelected(){
 	$(event.target).parent().remove();
 }
