@@ -40,7 +40,6 @@ function bkindshow(){
 
 }
 
-
 function addbcharge0(){
      var name = $(event.target).text();
      var code = $(event.target).val();
@@ -51,12 +50,8 @@ function addbcharge0(){
        $('#name0').val(name);
        $('#user0').val(code);
        $("input:checkbox[id='user0']").prop("checked", true);
-       $("input:checkbox[id='name0']").prop("checked", true);
-       
-
-       
+       $("input:checkbox[id='name0']").prop("checked", true);  
    }
-
 
 function addbcharge1(){
    var name = $(event.target).text();
@@ -172,6 +167,7 @@ function upcharge(){
                    	 <input type="hidden" name="boriginfile" value="${post.boriginfile }">
                    	 <input type="hidden" name="brenamefile" value="${post.brenamefile }">
                    	 
+  
 				<div class="text-center">
                     <h3 class="h4 text-gray-900 mb-4">수정 페이지</h3>
                   </div>

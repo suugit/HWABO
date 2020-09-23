@@ -375,6 +375,7 @@ public class abcController {
 		JSONObject job = new JSONObject();
 		  
 		job.put("bno",bpost.getBno());
+		job.put("bucode",bpost.getBucode());
 		job.put("bkind", URLEncoder.encode(bpost.getBkind(), "utf-8"));
 		job.put("btitle", URLEncoder.encode(bpost.getBtitle(), "utf-8"));
 		job.put("bwriter", URLEncoder.encode(bpost.getBwriter(), "utf-8"));
@@ -411,14 +412,58 @@ public class abcController {
 
 	// 업무 게시글 수정페이지로 이동용 메소드
 	@RequestMapping("moveBpostUpdate.do")
-	public String moveBpostUpdatePage(@RequestParam("bno") String bno, Model m, PjMember pmember) {
+	public String moveBpostUpdatePage(@RequestParam("bno") String bno, Model m) {
 		Bpost bpost = bpostService.selectBpost(bno);
-		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
-
 		m.addAttribute("post", bpost);
-		m.addAttribute("list", list);
 		return "post/bpostUpdatepage";
 	}
+	
+	// 업무 게시글 수정페이지로 이동용 메소드
+	@RequestMapping("moveUpdateModel.do")
+	public String moveBpostUpdateAjax(HttpServletResponse response, @RequestParam("bno") String bno, Model m) throws UnsupportedEncodingException {
+
+		Bpost bpost = spostService.selectOneBpost(bno);
+		
+		response.setContentType("application/json;charset=utf-8"); //어플리케이션이 나갈건데  json이라는 의미
+		  
+		JSONObject job = new JSONObject();
+		  
+		job.put("bno",bpost.getBno());
+		job.put("bucode",bpost.getBucode());
+		job.put("bkind", URLEncoder.encode(bpost.getBkind(), "utf-8"));
+		job.put("btitle", URLEncoder.encode(bpost.getBtitle(), "utf-8"));
+		job.put("bwriter", URLEncoder.encode(bpost.getBwriter(), "utf-8"));
+
+		if (bpost.getBstartday() != null) {
+			job.put("bstartday", bpost.getBstartday().toString());
+		}
+		
+		if (bpost.getBendday() != null) {
+			job.put("bendday", bpost.getBendday().toString());
+		}
+		
+		if (bpost.getBcontent() != null) {
+			job.put("bcontent", URLEncoder.encode(bpost.getBcontent(), "utf-8"));
+		}
+		
+		if (bpost.getBchargename() != null) {
+			job.put("bchargename", URLEncoder.encode(bpost.getBchargename(), "utf-8"));
+		}
+		
+		if (bpost.getBrenamefile() != null) {
+			job.put("brenamefile", URLEncoder.encode(bpost.getBrenamefile(), "utf-8"));
+		}
+		
+		if (bpost.getBoriginfile() != null) {
+			job.put("boriginfile", URLEncoder.encode(bpost.getBoriginfile(), "utf-8"));
+		}
+
+		job.put("benrolldate", bpost.getBenrolldate().toString());
+					  
+		return job.toJSONString(); //뷰 리졸버로 리턴함
+	}
+	
+	
 
 	// 업무 게시글 수정용 메소드
 	@RequestMapping(value = "bpostup.do")
