@@ -96,13 +96,23 @@ public class ReplyController {
 	
 	
 	  @RequestMapping(value="updatereply.do", method = RequestMethod.POST) //댓글 수정  
-	    @ResponseBody
+	  @ResponseBody
 	    private int replyupdate(Reply reply) throws Exception{
 	    logger.info("reply controller reply :"+ reply);
 	        return replyService.updatereply(reply);
 	    }
 	
 
+	  @RequestMapping("deletereply.do") //댓글 삭제  
+	  @ResponseBody
+	  private int replydelete(Reply reply) throws Exception{
+		  logger.info("reply controller reply :"+ reply);
+	      return replyService.deletereply(reply);
+	    }
+	    
+	
+
+	  
 	@RequestMapping("selectOneReply.do")
     @ResponseBody
 	public List<Reply> selectOneReply(@RequestParam("no") String no, Model model) throws Exception{

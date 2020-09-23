@@ -47,4 +47,10 @@ public class ReplyDao {
 		return session.update("replyMapper.updatereply", reply);
 	}
 
+
+	public int deletereply(Reply reply) {
+		logger.info("dao repiy :" + reply);
+		return session.delete("replyMapper.deletereply", reply);
+	}
+
 }

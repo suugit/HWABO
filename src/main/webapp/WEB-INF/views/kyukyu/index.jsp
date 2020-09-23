@@ -223,7 +223,7 @@ function replyList(){
 					console.log("if 문");
 					console.log("${sessionScope.ucode}");
 					console.log( jsonObj.list[i].ucode);
-					re += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+					re += '<div class="commentArea" style="font-size:14px; border-bottom:1px solid darkgray; margin-bottom: 10px; margin-top: 14px;">';
 	            	re += '<div class="commentInfo'+jsonObj.list[i].replyno+'">'+' 작성자 : '+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ");
 	            if(jsonObj.list[i].secondenroll == null){
 	            	re += '<small>'+ jsonObj.list[i].enrolldate+'</small>';
@@ -289,10 +289,13 @@ function commentUpdateProc(replyno){
     });
 }
  
+   
 //댓글 삭제 
-function commentDelete(cno){
+function commentDelete(replyno){
+	console.log("삭제 replyno : " + replyno)
     $.ajax({
-        url : '/comment/delete/'+cno,
+        url : 'deletereply.do',
+        data : {'replyno' : replyno},
         type : 'post',
         success : function(data){
             if(data == 1) 
@@ -695,31 +698,27 @@ function replytList(index){
 										
 
 										</div>
-											<div style="background-color:#fcfcfe" id="replyy"><br>
+											<div class="px-3 py-5 bg-gradient-light text-white" id="replyy">
+											
+											
 											<div class="container" style="color: black">
 													<div class="commentList_${status.index }" id="commentList_${status.index }" name="${b.bno }">
 													
 													</div>
-													
-													
-										
-										
+									
 													
 											</div>
 												
 											
-											</div>
-											<div class="px-3 py-5 bg-gradient-light text-white"
-												style="height: 10px;" >
+											
+											<div style="height: 2px;" >
 
-
-												
-												
 												<input type="hidden" id="reply_no_${status.index }" name="no" value="${b.bno }"> 
 												<input type="text" class="form-control" id="reply_content_${status.index }" name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
 													onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
 											</div>
 										<!-- 게시글안쪽  -->
+										</div>
 									</div>
 									<!-- card shadow mb-4 -->
 								</c:forEach>

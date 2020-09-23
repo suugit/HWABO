@@ -38,6 +38,14 @@
 </update>
 
 
+<delete id="deletereply" parameterType="Reply">
+
+	delete from reply
+	where replyno = #{replyno}
+
+</delete>
+
+
 </mapper>
 
 
