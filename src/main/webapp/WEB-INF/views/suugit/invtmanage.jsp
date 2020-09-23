@@ -197,13 +197,10 @@
 										<th>휴대폰</th>
 										<th>부서</th>
 										<th>직책</th>
-										<th><select class="selectpicker show-tick ">
-										<option selected value="2" data-content="일반회원" />
-										<option value="1" data-content="관리자" />
-										<option value="3"data-content="이용중지" />
-										</select></th>
+										<th>권한</th>
 									</thead>
 									<tbody id="pmlistBox">
+									
 										<%-- <tr>
 											<td colspan="2" style="padding:0px;position:relative;left:5%"><img class="thumbnail circle" src="/hwabo/resources/maincss/img/suugit/face.jpg"> 
 											</td>
@@ -301,81 +298,10 @@
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="resources/js/jquery-3.5.1.min.js"></script>
+		<script src="/hwabo/resources/js/user.js"></script>
 	<script>
 
 	
-	$('#pmember-tab').on('click',function(){
-		 $.ajax({
-			url:"pmlist.do",
-			type:"post",
-			contentType:"application/json; charset=utf-8;",
-			dataType:"Json",
-			success: function(data){
-				var values = $("#pmlistBox").html();
-				
-				var values = $("#pmlistBox").html("");
-				for(var i in data){
-					values += 
-					'<tr>'
-					+ '<td colspan="2" style="padding:0px;left:5%">'
-					+ '<img class="thumbnail circle" src="'
-					+ data[i].uimg
-					+ '">' 
-					+ '</td> <td class="align-middle my-6 ">'
-					+ data[i].uname
-					+ '</td> <td class="align-middle">'
-					+ data[i].uemail
-					+ '</td> <td class="align-middle">'
-					+ data[i].uphone
-					+ '</td> <td class="align-middle">'
-					+ data[i].ugroup
-					+ '</td> <td class="align-middle">'
-					+ data[i].urole
-					+'</td><td class="align-middle"><input type="button" class="btn btn-sm btn-outline-primary" value="추가"'
-					+ 'onclick="addInvite()"></td></tr>'
-				}
-				
-				$('#pmlistBox').html(values);
-			},
-			error: function(request, status, errorData){
-			}
-		}); 
-	});
-	
-	$('#npmember-tab').on('click',function(){
-		 $.ajax({
-			url:"nmlist.do",
-			type:"post",
-			contentType:"application/json; charset=utf-8;",
-			dataType:"Json",
-			success: function(data){
-				alert('성공');
-				var values = $("#nmlistBox").html();
-				
-				var values = $("#nmlistBox").html("");
-				for(var i in data){
-					values += 
-					'<tr>'
-					+ '<td colspan="2" style="padding:0px;left:5%">'
-					+ '<img class="thumbnail circle" src="'
-					+ data[i].uimg
-					+ '">' 
-					+ '</td> <td class="align-middle my-6 ">'
-					+ data[i].uname
-					+ '</td> <td class="align-middle">'
-					+ data[i].ugroup
-					+ '</td> <td class="align-middle">'
-					+ data[i].urole
-					+'</td><td class="align-middle"><input type="button" class="btn btn-sm btn-outline-primary" value="추가"'
-					+ 'onclick="addInvite()"></td></tr>'
-				}
-				
-				$('#nmlistBox').html(values);
-			},
-			error: function(request, status, errorData){
-			}
-		}); 
-	});
 	</script>
 </body>
 

@@ -690,19 +690,17 @@ function cpSave(){
  		contentType:false,
  		processData:false,
  		dataType: "JSON",
- 		async: false,
  		success: function(c){
 			var aa = document.getElementById("cpView" + cno);
 			aa.querySelector('h6').innerText = c.ctitle;
 			aa.querySelector('.ccon').innerText = c.ccontent;
 			var c = aa.querySelector('#preview');
 			var d = aa.querySelector('#afterPreview');
-			ee = c.rfile3;
-			//d.innerHTML += '<td><img src="resources/bupfile/' + c.rfile3 + '"></td>';
+			d.innerText += c.rfile3
+			d.innerHTML += '<td><img src="resources/bupfile/' + c.rfile3 + '"></td>';
 			//$(c).css('display', 'none');			
  			$("#cpView"+cno).css("display", "block" );		
  			$("#cpEdit"+cno).css("display", "none" );
- 		
  		},
  		error: function(){ 
  			alert('업데이트 실패');

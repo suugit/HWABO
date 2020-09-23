@@ -291,7 +291,6 @@
 			contentType:"application/json; charset=utf-8;",
 			dataType:"Json",
 			success: function(data){
-				alert('성공');
 				var values = $("#nmlist").html();
 				
 				var values = $("#nmlist").html("");

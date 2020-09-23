@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -780,7 +781,7 @@ public class SuugitController {
 
 	@PostMapping("upcp.do")
 	@ResponseBody
-	public JSONObject updateCpost(Cpost cpost, AddOn addon, ModelAndView mav, MultipartHttpServletRequest request) {
+	public String updateCpost(Cpost cpost, AddOn addon, ModelAndView mav, MultipartHttpServletRequest request) throws UnsupportedEncodingException {
 		logger.info("게시글 수정");
 
 		String cno = addon.getCno();
@@ -854,9 +855,8 @@ public class SuugitController {
 		obj.put("ofile2", cpost.getOfile2());
 		obj.put("rfile2", cpost.getRfile2());
 		obj.put("ofile3", cpost.getOfile3());
-		obj.put("rfile3", cpost.getRfile3());
-		
-		return obj;
+		obj.put("rfile3", URLEncoder.encode(cpost.getRfile3(),"utf-8"));
+		return obj.toJSONString();
 }
 
 
