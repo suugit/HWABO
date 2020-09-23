@@ -12,6 +12,8 @@ public class Reply implements java.io.Serializable {
 	private String ucode;
 	private String uname;
 	private Date enrolldate;
+	private Date secondenroll;
+	
 	
 	public Reply() {
 		
@@ -19,7 +21,9 @@ public class Reply implements java.io.Serializable {
 		
 	}
 
-	public Reply(String replyno, String no, String content, String ucode, String uname, Date enrolldate) {
+
+	public Reply(String replyno, String no, String content, String ucode, String uname, Date enrolldate,
+			Date secondenroll) {
 		super();
 		this.replyno = replyno;
 		this.no = no;
@@ -27,7 +31,9 @@ public class Reply implements java.io.Serializable {
 		this.ucode = ucode;
 		this.uname = uname;
 		this.enrolldate = enrolldate;
+		this.secondenroll = secondenroll;
 	}
+
 
 	public String getReplyno() {
 		return replyno;
@@ -77,12 +83,26 @@ public class Reply implements java.io.Serializable {
 		this.enrolldate = enrolldate;
 	}
 
+	
+	
+	public Date getSecondenroll() {
+		return secondenroll;
+	}
+
+
+	public void setSecondenroll(Date secondenroll) {
+		this.secondenroll = secondenroll;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Reply [replyno=" + replyno + ", no=" + no + ", content=" + content + ", ucode=" + ucode + ", uname="
-				+ uname + ", enrolldate=" + enrolldate + "]";
+				+ uname + ", enrolldate=" + enrolldate + ", secondenroll=" + secondenroll + "]";
 	}
 
+
+	
 	
 	 
 	

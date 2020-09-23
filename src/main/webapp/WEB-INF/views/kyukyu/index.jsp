@@ -111,6 +111,7 @@ $(document).ready(function(){
 });
 
 
+ 
 
 
 
@@ -177,12 +178,71 @@ function sendInsert(index){
 	 });
 }
 
-
 /* 댓글기능 */
- 
 
- 
- 
+$(document).ready(function(){
+	console.log("댓글 리스트 들어옴");
+	
+	$.ajax({
+		
+		url:"replyList.do",
+		type: "post",
+		dataType: "json",
+		success: function(obj){
+			
+			console.log(obj);
+			
+			var objStr = JSON.stringify(obj);
+			var jsonObj = JSON.parse(objStr);
+			var output = "";
+			
+			
+		
+			
+			
+			for(var a= 0; a < ${requestScope.list.size()}; a++){
+				console.log("1번 포문");
+				var re = "";
+				for(var i  in jsonObj.list){
+				
+				
+					
+					console.log("2번 포문");
+					console.log("jsonObj.list[i].no"+jsonObj.list[i].no);
+					console.log("$('#commentList_'+a).val()"+ document.getElementById('commentList_'+a).getAttribute('name'));
+				
+				if(jsonObj.list[i].no == document.getElementById('commentList_'+a).getAttribute('name')){
+					console.log("if 문");
+					re += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+	            	re += '<div class="commentInfo'+jsonObj.list[i].replyno+'">'+' 작성자 : '+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ") +' <small>'+ jsonObj.list[i].enrolldate+'</small>'
+	            	re += '<div class="commentContent'+jsonObj.list[i].replyno+'"> <p> 내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ") +'</p></div>';
+	   			/*    	re += '<a onclick="commentUpdate('+value.replyno+',\''+value.content+'\');"> 수정 </a>';
+	            	re += '<a onclick="commentDelete('+value.replyno+');"> 삭제 </a> </div>';  */
+	            	re += '</div></div>';
+	            	
+	            	
+				}
+				
+				
+				$("#commentList_"+a).html(re);
+				}
+				
+				
+            	
+			}
+		
+		},
+		error: function(request, status, errorData){ 
+			console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+		}
+		
+	});
+	
+	
+	
+});
+
+
  
 function enterkey(index) {
 	console.log("enterkey function get in");
@@ -600,8 +660,36 @@ function replytList(index){
 										</div>
 											<div style="background-color:#fcfcfe" id="replyy"><br>
 											<div class="container" style="color: black">
-													<div class="commentList_${status.index }"></div>
-												</div>
+													<div class="commentList_${status.index }" id="commentList_${status.index }" name="${b.bno }">
+													
+													
+													<c:if test="${sessionScope.ucode eq n.ucode }">
+													<a class="dropdown-toggle" href="#" role="button"
+														id="dropdownMenuLink" data-toggle="dropdown"
+														aria-haspopup="true" aria-expanded="false"> <i
+														class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+													</a>
+													<div
+														class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+														aria-labelledby="dropdownMenuLink">
+
+														<c:url var="bup" value="buppage.do">
+															<c:param name="bno" value="${b.bno }" />
+
+														</c:url>
+														<a class="dropdown-item" href="${bup }">수정</a>
+
+														<c:url var="bdel" value="deletebpost.do">
+															<c:param name="bno" value="${b.bno }" />
+															<c:param name="brenamefile" value="${b.brenamefile }" />
+														</c:url>
+														<a class="dropdown-item" href="${bdel }">삭제</a>
+
+													</div>
+												</c:if>
+													
+													</div>
+											</div>
 												
 											
 											</div>
@@ -611,7 +699,7 @@ function replytList(index){
 
 												
 												
-												<input type="hidden" id="reply_no_${status.index }" name="no"value="${b.bno }"> 
+												<input type="hidden" id="reply_no_${status.index }" name="no" value="${b.bno }"> 
 												<input type="text" class="form-control" id="reply_content_${status.index }" name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
 													onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
 											</div>

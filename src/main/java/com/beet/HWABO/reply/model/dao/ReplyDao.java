@@ -1,5 +1,6 @@
 package com.beet.HWABO.reply.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -32,6 +33,12 @@ public class ReplyDao {
 	public List<Reply> selectOneList(String no) {
 		logger.info("replyDao 옴 no : " + no);
 		return session.selectList("replyMapper.selectOneList", no);
+	}
+
+
+	public ArrayList<Reply> selectList() {
+		List<Reply> list = session.selectList("replyMapper.selectList");
+		return (ArrayList<Reply>)list;
 	}
 
 }

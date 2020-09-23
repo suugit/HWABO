@@ -1,5 +1,6 @@
 package com.beet.HWABO.reply.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -30,6 +31,12 @@ public class ReplyServiceImpl implements ReplyService {
 	public List<Reply> selectOneList(String no) {
 		logger.info("replyService 옴  no :"+ no);
 		return replyDao.selectOneList(no);
+	}
+
+	@Override
+	public ArrayList<Reply> selectList() {
+	
+		return replyDao.selectList();
 	}
 
 }
