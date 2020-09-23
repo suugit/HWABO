@@ -106,5 +106,15 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectEmailMember(uemail);
 	}
 
+	@Override
+	public int updatepjadmin(PjMember pjm) {
+		return memberDao.updatepjadmin(pjm);
+	}
+
+	@Override
+	public ArrayList<Invite> selectInvtList(String pnum) {
+		return memberDao.selectInvtList(pnum);
+	}
+
 	
 }

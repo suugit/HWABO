@@ -114,7 +114,7 @@
 		where invtkey = #{invtkey}
 	</select>
 <!-- 초대회원관리 -->	
-	<select id="selectInvtList" parameterType="string">
+	<select id="selectInvtList" parameterType="string" resultMap="resultInvite">
 		select * from invite
 		where pnum = #{pnum}
 	</select>
@@ -133,7 +133,7 @@
 	<update id="updatepjadmin" parameterType="PjMember">
 	update pjmember
 	set pjadmin= #{pjadmin}
-	where pnum=#{pnum} and ucode = #{ucode};
+	where pnum=#{pnum} and ucode = #{ucode}
 	</update>
 		
 	<select id="selectPMember" parameterType="string" resultMap="resultMember"> 
@@ -151,5 +151,5 @@
 			insert (ucode, uemail, uname, uimg,signtype,ust) 
 			values ('n'||member_seq.nextval, #{uemail},#{uname},#{uimg}, #{signtype}, 'Y')
 	</insert>
-
+	
 </mapper>

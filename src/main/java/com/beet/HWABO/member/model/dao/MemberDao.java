@@ -107,6 +107,17 @@ public class MemberDao {
 	public Member selectEmailMember(String uemail) {
 		return session.selectOne("memberMapper.selectEmailMember", uemail);
 	}
+
+
+	public int updatepjadmin(PjMember pjm) {
+		return session.update("memberMapper.updatepjadmin", pjm);
+	}
+
+
+	public ArrayList<Invite> selectInvtList(String pnum) {
+		List<Invite> invtlist = session.selectList("memberMapper.selectInvtList", pnum);
+		return (ArrayList<Invite>)invtlist;
+	}
 	
 	
 

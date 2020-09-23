@@ -43,5 +43,9 @@ public interface MemberService {
 	int insertPjMember(PjMember pjmember);
 
 	Member selectEmailMember(String uemail);
+
+	int updatepjadmin(PjMember pjm);
+
+	ArrayList<Invite> selectInvtList(String pnum);
 	
 }

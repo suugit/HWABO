@@ -592,7 +592,8 @@ public class SuugitController {
 		}
 		return jarr;
 	}
-
+	
+	
 	@PostMapping("/pmlist.do")
 	@ResponseBody
 	public JSONArray selectpmlist(HttpSession session, ModelAndView mav) {
@@ -607,7 +608,6 @@ public class SuugitController {
 		try {
 
 			for (int i = 0; i < nmlist.size(); i++) {
-				System.out.println(nmlist.get(i));
 				JSONObject job = new JSONObject();
 				job.put("ucode", nmlist.get(i).getUcode());
 				job.put("uname", nmlist.get(i).getUname());
@@ -616,6 +616,7 @@ public class SuugitController {
 				job.put("ugroup", nmlist.get(i).getUgroup());
 				job.put("urole", nmlist.get(i).getUrole());
 				job.put("uimg", nmlist.get(i).getUimg());
+				job.put("pjadmin", nmlist.get(i).getPjadmin());
 
 				jarr.add(job);
 			}
@@ -626,6 +627,36 @@ public class SuugitController {
 		}
 		return jarr;
 	}
+//초대목록
+//	selectInvtList	
+	@PostMapping("ivntlist.do")
+	@ResponseBody
+	public JSONArray selectInvtList(HttpSession session, ModelAndView mav) {
+		ArrayList<Invite> invtlist = mservice.selectInvtList((String)session.getAttribute("pnum"));
+		JSONObject obj = new JSONObject();
+
+		JSONArray jarr = new JSONArray();
+
+		try {
+
+			for (int i = 0; i < invtlist.size(); i++) {
+				JSONObject job = new JSONObject();
+
+				job.put("invtemail", invtlist.get(i).getInvtemail());
+				job.put("invtuse", invtlist.get(i).getInvtuse());
+				job.put("exprtdate", invtlist.get(i).getExprtdate().toString());
+
+				jarr.add(job);
+			}
+			mav.addObject("invtlist", jarr);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return jarr;
+	}
+	
+	
 //초대관리페이지
 	@RequestMapping("/invtadmin.do")
 	public String InviteManage() {
@@ -638,7 +669,12 @@ public class SuugitController {
 	 * int result = mserivce.updatepjadmin(pjm); }
 	 */
 	
-	
+	@RequestMapping("/chnrole.do")
+	public void updateProle(PjMember pjm,HttpSession session) {
+		System.out.println(pjm);
+		pjm.setPnum((String)session.getAttribute("pnum"));
+		int r = mservice.updatepjadmin(pjm);
+	}
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================

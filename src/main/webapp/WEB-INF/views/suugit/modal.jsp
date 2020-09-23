@@ -60,7 +60,7 @@
 </head>
 
 <body>
-<!-- 	<div class="container mt-5">
+	<!-- 	<div class="container mt-5">
 		<div class="row justify-content-center">
 			버튼
 			<div class="text-center">
@@ -94,9 +94,10 @@
 								class="fas fa-user mr-1"></i> 이메일로 초대하기
 						</a></li>
 
-						<li class="nav-item" id="invtEBtn"><a class="nav-link" data-toggle="tab"
-							href="#existingE" role="tab" aria-controls="existingE"
-							aria-selected="false"> <i class="fas fa-user-plus mr-1"></i>기존회원 초대하기
+						<li class="nav-item" id="invtEBtn"><a class="nav-link"
+							data-toggle="tab" href="#existingE" role="tab"
+							aria-controls="existingE" aria-selected="false"> <i
+								class="fas fa-user-plus mr-1"></i>기존회원 초대하기
 						</a></li>
 
 						<li style="margin-left: 50px">
@@ -131,8 +132,9 @@
 											<td><i
 												class="form-control-static fa fa-2x fa-user-circle prefix"
 												style="min-height: auto; line-height: normal;"></i></td>
-											<td><input class="form-control newe" name="newinvt" type="email"
-												name="new" placeholder="초대할 이메일을 입력해주세요" required></td>
+											<td><input class="form-control newe" name="newinvt"
+												type="email" name="new" placeholder="초대할 이메일을 입력해주세요"
+												required></td>
 											<td></td>
 										</tr>
 									</tbody>
@@ -182,7 +184,7 @@
 										<th>초대여부</th>
 									</thead>
 									<tbody id="nmlist">
-									<%-- <c:forEach var="nm" items="nmlist">>
+										<%-- <c:forEach var="nm" items="nmlist">>
 										<tr style="height: 80px">
 											<td colspan="2" class="thumbnail circle"
 												style="background-image: url('/hwabo/resources/maincss/img/suugit/face.jpg')"></td>
@@ -205,119 +207,149 @@
 				</div>
 			</div>
 		</div>
-</div>
+	</div>
 
-		<!-- Bootstrap core JavaScript-->
-		<script src="vendor/jquery/jquery.min.js"></script>
-		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-		<!-- Core plugin JavaScript-->
-		<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-		<!-- Custom scripts for all pages-->
-		<script src="js/sb-admin-2.min.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin-2.min.js"></script>
 
-		<script>
-	function callFunction() {
+	<script>
+		function callFunction() {
 			$('.new_tr').first().clone().appendTo('#inviteTable');
 			$('.newe').last().val('');
-			$('#inviteTable').find('td:last').append('<i class="fa fa-times-circle mt-2" onclick="removetr()"></i>');
+			$('#inviteTable')
+					.find('td:last')
+					.append(
+							'<i class="fa fa-times-circle mt-2" onclick="removetr()"></i>');
 		}
 
-	function removetr() {
+		function removetr() {
 			$(event.target).closest('tr').remove();
-			
-		
+
 		}
-	
-	$(document).ready(function(){
-		  $('#myInput').on('keyup', function() {
-		    var value = $(this).val().toLowerCase();
-		    $('#myTable tr').filter(function() {
-		      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-		    });
-		  });
-		});
-	
-	function addInvite(){
-		var ele = $(event.target);
-		if(ele.val() ==  '초대하기'){
-			$(event.target).val("초대완료");
-			$(event.target).addClass('disable btn-outline-dark')
-			var name = $(event.target).parent().parent().children().eq(1).text();
-			$('#selected').append('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>')
-		}
-	}
-	
-	function unSelected(){
-		$(event.target).parent().remove();
-	}
-	
-	$('#invtBtn').on('click',function(){
-		
-		var n = $('input[name=newinvt]').length;
-		var fileData = new Array(n);
-		for(var i=0;i<n;i++){
-			fileData[i] = $('input[name=newinvt]')[i].value;
-			if(fileData[i] == ""){
-				alert('이메일을 입력해주세요')
-				return false;
+
+		$(document)
+				.ready(
+						function() {
+							$('#myInput')
+									.on(
+											'keyup',
+											function() {
+												var value = $(this).val()
+														.toLowerCase();
+												$('#myTable tr')
+														.filter(
+																function() {
+																	$(this)
+																			.toggle(
+																					$(
+																							this)
+																							.text()
+																							.toLowerCase()
+																							.indexOf(
+																									value) > -1)
+																});
+											});
+						});
+
+		function addInvite() {
+			var ele = $(event.target);
+			if (ele.val() == '초대하기') {
+				$(event.target).val("초대완료");
+				$(event.target).addClass('disable btn-outline-dark')
+				var name = $(event.target).parent().parent().children().eq(1)
+						.text();
+				$('#selected')
+						.append(
+								'<span>'
+										+ name
+										+ '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>')
 			}
 		}
-		
-		$.ajax({
-			url:"invtnew.do",
-			type:"post",
-			data:JSON.stringify(fileData),
-			dataType:"json",
-			contentType:"application/json; charset=utf-8;",
-			success: function(data){
-				alert("전송성공!")
-				
-				
-			},
-			error: function(request, status, errorData){
-				alert('올바른 이메일을 입력해주세요');
-			}
-		});
-		
-	});
-	
-	$('#invtEBtn').on('click',function(){
-		
-		 $.ajax({
-			url:"invtee.do",
-			type:"post",
-			contentType:"application/json; charset=utf-8;",
-			dataType:"Json",
-			success: function(data){
-				var values = $("#nmlist").html();
-				
-				var values = $("#nmlist").html("");
-				for(var i in data){
-					values += 
-					'<tr style="width:80px height: 80px">'
-					+ '<td colspan="2" class="thumbnail circle"'
-					+ 'style="background-image: url(\'' + data[i].uimg + '\')"></td>'
-					+ '<td class="my-6">' + data[i].uname + '</td>'
-					+ '<td>' + data[i].ugroup + '</td>'
-					+ '<td>' + data[i].urole + '</td>'
-					+ '<td><input type="button"'
-					+ 'class="btn btn-sm btn-outline-primary" value="초대하기"'
-					+ 'onclick="addInvite()"></td></tr>'
-			
+
+		function unSelected() {
+			$(event.target).parent().remove();
+		}
+
+		$('#invtBtn').on('click', function() {
+
+			var n = $('input[name=newinvt]').length;
+			var fileData = new Array(n);
+			for (var i = 0; i < n; i++) {
+				fileData[i] = $('input[name=newinvt]')[i].value;
+				if (fileData[i] == "") {
+					alert('이메일을 입력해주세요')
+					return false;
 				}
-				
-				$('#nmlist').html(values);
-			},
-			error: function(request, status, errorData){
-				alert('h');
 			}
-		}); 
-	});
-	
-	
-	
+
+			$.ajax({
+				url : "invtnew.do",
+				type : "post",
+				data : JSON.stringify(fileData),
+				dataType : "json",
+				contentType : "application/json; charset=utf-8;",
+				success : function(data) {
+					alert("전송성공!")
+
+				},
+				error : function(request, status, errorData) {
+					alert('올바른 이메일을 입력해주세요');
+				}
+			});
+
+		});
+
+		$('#invtEBtn')
+				.on(
+						'click',
+						function() {
+
+							$
+									.ajax({
+										url : "invtee.do",
+										type : "post",
+										contentType : "application/json; charset=utf-8;",
+										dataType : "Json",
+										success : function(data) {
+											var values = $("#nmlist").html();
+
+											var values = $("#nmlist").html("");
+											for ( var i in data) {
+												values += '<tr style="width:80px height: 80px">'
+														+ '<td colspan="2" class="thumbnail circle"'
+														+ 'style="background-image: url(\''
+														+ data[i].uimg
+														+ '\')"></td>'
+														+ '<td class="my-6">'
+														+ data[i].uname
+														+ '</td>'
+														+ '<td>'
+														+ data[i].ugroup
+														+ '</td>'
+														+ '<td>'
+														+ data[i].urole
+														+ '</td>'
+														+ '<td><input type="button"'
+														+ 'class="btn btn-sm btn-outline-primary" value="초대하기"'
+														+ 'onclick="addInvite()"></td></tr>'
+
+											}
+
+											$('#nmlist').html(values);
+										},
+										error : function(request, status,
+												errorData) {
+											alert('h');
+										}
+									});
+						});
 	</script>
 </body>
 

@@ -2,6 +2,8 @@ package com.beet.HWABO.invite.model.vo;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Invite implements java.io.Serializable{
 	private static final long serialVersionUId = 1155L;
 	
@@ -10,7 +12,9 @@ public class Invite implements java.io.Serializable{
 	private String pnum;
 	private String invtemail;
 	private String invtuse;
-	private java.sql.Date exprtdate;
+	
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private Date exprtdate;
 	
 	public Invite() {}
 

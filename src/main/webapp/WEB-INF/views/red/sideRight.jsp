@@ -14,7 +14,8 @@
 
 <div class="card shadow mb-4" style="height:100%;max-height:840px">
             <div class="card-header py-3">
-            </div>
+            
+            <a class="btn btn-primary d-flex justify-content-center" href="javascript:location.href='${pageContext.servletContext.contextPath}/invtadmin.do'">프로젝트 관리</a></div>
             <div class="card-body">
               <!-- 게시글안쪽 -->
               

@@ -167,7 +167,7 @@
 										<th>직책</th>
 										<th>초대여부</th>
 									</thead>
-									<tbody id="nmlistBox">
+									<tbody id="asd">
 										<%-- <tr>
 											<td colspan="2" style="padding:0px;position:relative;left:5%"><img class="thumbnail circle" src="/hwabo/resources/maincss/img/suugit/face.jpg"> 
 											</td>
@@ -221,10 +221,11 @@
 								class="dataTables_wrapper no-footer text-center">
 								<table class="table">
 									<thead>
-										<th colspan="2">초대이메일</th>
-										<th>초대승인여부</th>
-										<th>유효기간</th>
+										<th>초대이메일</th>
+										<th>??</th>
+										<th>만료일</th>
 										<th>재전송</th>
+										<th>초대취소</th>
 									</thead>
 									<tbody id="nmlistBox">
 										<%-- <tr>
