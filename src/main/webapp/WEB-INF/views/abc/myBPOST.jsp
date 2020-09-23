@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" import="java.util.ArrayList"%>
 <%@ page import="com.beet.HWABO.bpost.model.vo.Bpost" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% ArrayList<Bpost> list = (ArrayList<Bpost>)request.getAttribute("list"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +16,18 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>HWABO</title>
+
+<style type="text/css">
+
+div#detailview{
+	height: 50vh;
+	justify-content : center;
+	align-items: center;
+	border: solid 1px gray;
+}
+
+</style>
+
 
 <!-- Custom fonts for this template -->
 <link
@@ -40,19 +52,69 @@ $(document).ready(function() {
 	$('#dataTable').dataTable( {
 	  "lengthChange": false
 	});
-
 	
+	$.ajax({
+		url: "bpostload.do",
+		type: "POST",
+		data: { 'ucode':'${ucode}', 'pnum': '${pnum}'  },
+		dataType: "Json",
+		traditional: true,
+		success: function(obj){
+			
+			var values = '<thead><tr style="vertical-align: middle; text-align: center;"><th>유형</th><th>제목</th>	<th>내용</th><th>등록일</th></tr></thead>';
+			
+			$("#selectTable").empty();
+			//출력용 문자열 만들기 (for in 문을 사용해보자)
+			
+		 for(var i in obj){
+		
+			 values += '<tr id="trclick" onclick="detailviewload('+obj[i].bno+');" style="cursor:hand;">';
+
+       		   
+			 if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="요청"){
+           		 values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #047AAC; margin-top:30px; vertical-align: middle; "'+'>요 청</strong></td>'
+           	 }
+           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="진행"){
+           		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #173192; margin-top:30px; vertical-align: middle; "'+'>진 행</strong></td>'
+           	 }
+           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "피드백"){
+           		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #f4b30d; margin-top:30px; vertical-align: middle; "'+'>피드백</strong></td>'
+           	 }
+           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "완료"){
+           		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #0C860F; margin-top:30px; vertical-align: middle; "'+'>완 료</strong></td>'
+           	 }
+           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="보류"){
+           		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #6b6d7d; margin-top:30px; vertical-align: middle; "'+'>보 류</strong></td>'
+           	 }
+	            	 
+	            	values  +='<td  style="vertical-align: middle;">' + decodeURIComponent(obj[i].btitle).replace(/\+/gi, "  ") + "</td>"
+	                 
+	                      +'<td style="vertical-align: middle; ">' + decodeURIComponent(obj[i].bcontent).replace(/\+/gi, "  ") + "</td>"
+	                
+	                      +'<td style="vertical-align: middle; text-align: center;" >'+decodeURIComponent(obj[i].benrolldate).replace(/\+/gi, "  ")+"</td>"
+	                + "</tr>"
+	       } //for in
+
+	   		 $('#selectTable').html(values); 
+	       
+		}, 				
+		error: function(request, status, errorData){ //에러는 위에서 복붙
+			console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+		}
+		
+	});
+
+
 	$('.type').change(function(){
 		var types = [];
 		
 		$("input[name=type]:checked").each(function(){
 			types.push($(this).val());
-		});	
-		alert(types+"types");
+		});
 		
 		var ucodeval = "${ucode}";
 		var pnumval = "${pnum}";
-		alert("ucodeval : " + ucodeval +", pnumval : " + pnumval);
+
 		var allData ={"ucode" : ucodeval , "pnum": pnumval, "types": types};
 
 		$.ajax({
@@ -62,56 +124,56 @@ $(document).ready(function() {
 			dataType: "Json",
 			traditional: true,
 			success: function(obj){
-				alert(obj[0].bkind);
 				
-				var values = "";
+				var values = '<thead><tr style="vertical-align: middle; text-align: center;"><th>유형</th><th>제목</th>	<th>내용</th><th>등록일</th></tr></thead>';
 				
-				$("#dataTable tbody").empty();
+				$("#dataTable").empty();
 				//출력용 문자열 만들기 (for in 문을 사용해보자)
 				
 			 for(var i in obj){
-				alert(obj[i].bno);
+			
 				 values += '<tr id="trclick" onclick="javascript:location.href='+"'"
 	               +'bpostOne.do?bno='+obj[i].bno+'&ucode=${sessionScope.ucode }&pnum=${sessionScope.pnum }'+"'"
         		   +'" style="cursor:hand;">';
-        		  alert(values); 
+
         		   
 				 if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="요청"){
-            		 values +=   '<td><strong style='+'"font-size:12pt; color: #047AAC; margin-top:30px; vertical-align: middle; "'+'>요 청</strong></td>'
+            		 values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #047AAC; margin-top:30px; vertical-align: middle; "'+'>요 청</strong></td>'
             	 }
             	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="진행"){
-            		values +=   '<td><strong style='+'"font-size:12pt; color: #173192;; margin-top:30px; vertical-align: middle; "'+'>진 행</strong></td>'
+            		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #173192; margin-top:30px; vertical-align: middle; "'+'>진 행</strong></td>'
             	 }
             	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "피드백"){
-            		values +=   '<td><strong style='+'"font-size:12pt; color: #f4b30d; margin-top:30px; vertical-align: middle; "'+'>피드백</strong></td>'
+            		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #f4b30d; margin-top:30px; vertical-align: middle; "'+'>피드백</strong></td>'
             	 }
             	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "완료"){
-            		values +=   '<td><strong style='+'"font-size:12pt; color: #0C860F; margin-top:30px; vertical-align: middle; "'+'>완 료</strong></td>'
+            		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #0C860F; margin-top:30px; vertical-align: middle; "'+'>완 료</strong></td>'
             	 }
             	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="보류"){
-            		values +=   '<td><strong style='+'"font-size:12pt; color: #6b6d7d; margin-top:30px; vertical-align: middle; "'+'>보 류</strong></td>'
-            	 }
-		            	 
-		            	values  +="<td>" + decodeURIComponent(obj[i].btitle).replace(/\+/gi, "  ") + "</td>"
+            		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #6b6d7d; margin-top:30px; vertical-align: middle; "'+'>보 류</strong></td>'
+            	 }	            	 
+		            	values  +='<td  style="vertical-align: middle;">' + decodeURIComponent(obj[i].btitle).replace(/\+/gi, "  ") + "</td>"
 		                 
-		                      +"<td>" + decodeURIComponent(obj[i].bcontent).replace(/\+/gi, "  ") + "</td>"
+		                      +'<td style="vertical-align: middle; ">' + decodeURIComponent(obj[i].bcontent).replace(/\+/gi, "  ") + "</td>"
 		                
-		                      +"<td>"+decodeURIComponent(obj[i].benrolldate).replace(/\+/gi, "  ")+"</td>"
+		                      +'<td style="vertical-align: middle; text-align: center;" >'+decodeURIComponent(obj[i].benrolldate).replace(/\+/gi, "  ")+"</td>"
 		                + "</tr>"
 		       } //for in
-
-		   		 $('#dataTable > tbody').html(values); 
-		       
+		   		 $('#selectTable').html(values); 	       
 			}, 				
 			error: function(request, status, errorData){ //에러는 위에서 복붙
 				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
-			}
-			
-		});
-		
-		
-	});
-});
+			}		
+		});	
+	}); 
+	
+	function detailviewload(bno){
+			alert(bno+"detailview loading");
+			$("#detailview"+bno).css("display", "block" );
+
+	};
+	
+});//document.ready 끗
 
 
 </script>
@@ -151,7 +213,7 @@ $(document).ready(function() {
 
 						<!-- 업무 모아보기 시작 -->
 						
-							<div class="card mb-4 py-3 ">
+							<div id="tableview" class="card mb-4 py-3 ">
 								<div style="font-size:15pt; margin-top: 10px; margin-left: 15px;margin-bottom: 0px;">
 									<strong>&nbsp;&nbsp;${sessionScope.uname } </strong>님의 업무 모아보기								
 								</div>
@@ -170,7 +232,7 @@ $(document).ready(function() {
 									<div id ="bpost_table"  class="table-responsive">
 									
 									
-										<table class="table table-bordered table-hover" id="dataTable"
+										<table class="table table-hover" id="selectTable"
 											style="width: 100%; cellspacing: 0;">
 											<colgroup>
 											    <col style="width:15%" >
@@ -188,60 +250,116 @@ $(document).ready(function() {
 											</thead>
 											
 											<tbody id = "bpost_tbody">
-										<% if(!list.isEmpty()){ %>
-											<% for(Bpost bpost : list){ %>
-												
-													<tr id="trclick" onclick="javascript:location.href='bpostOne.do?bno=<%= bpost.getBno()%>&ucode=${sessionScope.ucode }&pnum=${sessionScope.pnum }'" style="cursor:hand;">	
-													
-														<td id="bkind" style="vertical-align: middle; text-align: center;">
-														
-																<%if(bpost.getBkind().equals("요청")){ %>
-																	<strong style="font-size:13pt; color: #047AAC; margin-top:30px; vertical-align: middle; ">요 청</strong>															
-																<% } %>
-																<%if(bpost.getBkind().equals("진행")){ %>
-																	<strong style="font-size:13pt; color: #173192; ; margin-top:20px; vertical-align: middle; ">진 행</strong>																
-																<% } %>
-																<%if(bpost.getBkind().equals("피드백")){ %>
-																	<strong style="font-size:13pt; color: #f4b30d; margin-top:20px; vertical-align: middle; ">피드백</strong>																
-																<% } %>
-																<%if(bpost.getBkind().equals("완료")){ %>
-																	<strong style="font-size:13pt; color: #0C860F; margin-top:20px; vertical-align: middle; ">완 료</strong>																
-																<% } %>
-																<%if(bpost.getBkind().equals("보류")){ %>
-																	<strong style="font-size:13pt; color: #6b6d7d; margin-top:20px; vertical-align: middle; ">보 류</strong>																
-																<% } %>
-															</td>
-														
-														<td id="btitle" style="vertical-align: middle; text-align: center;"><div style='margin-bottom:0px; padding:0px; margin-top:10px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBtitle()%></div></td>
-														<td id="bcontent" style="vertical-align: middle; text-align: center;">
-														<div style='margin-bottom:0px; padding:0px; margin-top:5px;  min-height: 43px; max-height:43px; overflow: hidden;' >
-															<%if(bpost.getBcontent() != null){%> 
-																<%= bpost.getBcontent()%> 
-															<% }else{ %>
-															&nbsp;
-															<% } %>
-															</div>
-														</td>
-														<td id="benrolldate" style="vertical-align: middle; text-align: center;"><div style='margin-top:22px; margin-left:7px; min-height: 43px; max-height:43px; overflow: hidden;' ><%= bpost.getBenrolldate()%></div></td>
-													</tr>	
-													
-											<% } %>
 											
-										<% }else{ %>
-											<tr>
-												<td colspan="4" style="vertical-align: middle; text-align: center;">
-													조회된 ${sessionScope.uname } 님의 업무가 없습니다
-												</td>
-											</tr>
-										<% } %>
 											</tbody>
+											
 										</table>
 							
 									</div>
 								</div>
 							</div>
+				
 						
-						<!-- 즐겨찾기 끝 -->
+<!-- 상세보기 페이지 -->
+<c:if test="${ !empty list }">
+<c:forEach var="post" items="${list}">
+
+	<div id="detailview${post.bno }">
+	
+	                 <div class="text-center">
+	                    <h3 class="h4 text-gray-900 mb-4">${post.btitle }</h3>
+	                  </div>
+	                  <div align="right" style="padding-bottom: 10px;">
+	                  			<button id="cabinetshow" class="btn btn-light"
+					name="like" onclick="sendInsert();">
+					<span>보관</span>
+				</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<c:if test="${bpostUcode == currentUcode}">
+				<span >
+					<c:url var="bup" value="moveBpostUpdate.do">
+								<c:param name="bno" value="${post.bno }" />
+								<c:param name="ucode" value="${sessionScope.ucode }" />
+								<c:param name="pnum" value="${sessionScope.pnum }" />
+					</c:url>
+					<a class="btn btn-light" href="${bup }">수정</a>
+				</span>
+				&nbsp;
+				<span>
+					<c:url var="bdel" value="bpostdel.do">
+						<c:param name="bno" value="${post.bno }" />
+						<c:param name="brenamefile" value="${post.brenamefile }" />
+					</c:url>
+					<a class="btn btn-light" href="${bdel }">삭제</a>
+				</span>
+			</c:if>
+				
+	                  </div>
+	                  
+	 	<table class="table">
+		<tr><th style="width: 13%; text-align: center; vertical-align:middle;">작성자</th><td>${post.bwriter }</td></tr>
+		<tr><th style="text-align: center;">유 형</th>
+			  <td>
+					<c:if test="${post.bkind eq '요청'}">
+						요청
+					</c:if>
+					<c:if test="${post.bkind eq '진행'}">
+						진행
+					</c:if>
+					<c:if test="${post.bkind eq '피드백'}">
+						피드백
+					</c:if>
+					<c:if test="${post.bkind eq '완료'}">
+						완료
+					</c:if>
+					<c:if test="${post.bkind eq '보류'}">
+						보류
+					</c:if>
+			  </td>
+		</tr>
+		<c:if test="${!empty post.bstartday and !empty post.bendday }">
+			<tr><th style="text-align: center;">날 짜</th><td style="text-align: left;">${post.bstartday }&nbsp; ~ &nbsp;${post.bendday }</td></tr>
+			
+		</c:if>
+		<tr><th style="text-align: center; vertical-align:middle;">담당자</th><td>${post.bchargename }</td></tr>
+		<tr><th style="text-align: center; vertical-align:middle;">내 용</th><td><c:if test="${post.bcontent != null }" > ${post.bcontent }</c:if><c:if test="${post.bcontent == null }" >&nbsp;</c:if></td></tr>
+		
+		<c:if test="${! empty post.boriginfile }">
+			<tr>
+				<th style="text-align: center; vertical-align:middle;">파 일</th>
+				<td><div id="showfile" style="overflow: hidden;">
+						<img src="resources/bupfile/${post.brenamefile}"
+							style="width: 40%; height: 10%;">
+					</div>
+					<br>
+					<c:url var="ubf" value="bfdown.do">
+						<c:param name="ofile" value="${post.boriginfile}" />
+						<c:param name="rfile" value="${post.brenamefile}" />
+					</c:url>
+					<a href="${ubf }"> ${post.boriginfile}</a>
+				</td>
+		</c:if>
+		<c:if test="${empty post.boriginfile}">
+		 <tr><td colspan="2">&nbsp;</td></tr>
+		</c:if>
+		</table>
+	</div>
+
+</c:forEach>
+</c:if>
+<!-- 수정페이지 -->
+<c:if test="${ !empty list }">
+<c:forEach var="post" items="${list}">
+	<div style="display: none;" id="updateview${list.bno}">
+	
+	
+	
+	</div>
+</c:forEach>
+</c:if>
+
+
+
 					
 
 		<br>

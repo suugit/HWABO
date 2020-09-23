@@ -36,7 +36,7 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			<li class="nav-item"><a class="nav-link collapsed" href="mybpost.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}"
+			<li class="nav-item"><a class="nav-link collapsed" href="moveMyBpost.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}"
 				data-target="#collapsePages" aria-expanded="true"
 				aria-controls="collapsePages"> <i class="far fa-list-alt"></i></i> <span>업무 모아보기</span>
 			</a> </li>

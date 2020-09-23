@@ -85,6 +85,16 @@ public class abcController {
 		return "abc/tables";
 	}
 
+	
+	@RequestMapping("moveMyBpost.do")
+	public String moveMyBpost(PjMember pmember, Model m) {
+		
+		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
+		m.addAttribute("list", list);
+		
+		return "abc/myBPOST";
+	}
+	
 	@RequestMapping("insertspost.do")
 	public String moveInsertSpostPage() {
 		return "abc/insertSpost";
@@ -241,7 +251,6 @@ public class abcController {
 		logger.info("@@@@@@@@@@@@@@@@@@@ chooseBpost 들어옴 @@@@@@@@@@@@@@@@ ");
 		logger.info(ucode.toString());
 		
-		response.setContentType("test/html; charset=utf-8");
 		Bpostchk chk = new Bpostchk(ucode, pnum, types);
 
 		ArrayList<Bpost> list = spostService.chooseBpost(chk);
@@ -273,6 +282,60 @@ public class abcController {
 		return jarr.toJSONString();
 
 	}
+	
+	//업무 모아보기 list load용 메소드
+	@RequestMapping(value = "bpostload.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String BpostPageLoad(HttpServletResponse response, PjMember pmember)	throws UnsupportedEncodingException {
+
+		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
+		
+		// 전송용 json 객체 준비
+		JSONObject sendJson = new JSONObject();
+
+		// json 배열 객체 생성
+		JSONArray jarr = new JSONArray();
+
+		// list 를 jarr 로 옮겨담기 (일종의 복사)
+		for (Bpost bpost : list) { // user 객체 저장용 json 객체
+			JSONObject job = new JSONObject();
+			job.put("bno",bpost.getBno());
+			job.put("bkind", URLEncoder.encode(bpost.getBkind(), "utf-8"));
+			job.put("btitle", URLEncoder.encode(bpost.getBtitle(), "utf-8"));
+
+			if (bpost.getBstartday() != null) {
+				job.put("bstartday", bpost.getBstartday().toString());
+			} else {
+				job.put("bstartday", URLEncoder.encode(" ", "utf-8"));
+			}
+			
+			if (bpost.getBendday() != null) {
+				job.put("bendday", bpost.getBendday().toString());
+			} else {
+				job.put("bendday", URLEncoder.encode(" ", "utf-8"));
+			}
+			
+			if (bpost.getBcontent() != null) {
+				job.put("bcontent", URLEncoder.encode(bpost.getBcontent(), "utf-8"));
+			} else {
+				job.put("bcontent", URLEncoder.encode(" ", "utf-8"));
+			}
+			
+			if (bpost.getBchargename() != null) {
+				job.put("bchargename", URLEncoder.encode(bpost.getBchargename(), "utf-8"));
+			} else {
+				job.put("bchargename", URLEncoder.encode(" ", "utf-8"));
+			}
+
+			job.put("benrolldate", bpost.getBenrolldate().toString());
+
+			// jarr에 json 객체 저장
+			jarr.add(job);
+		}
+		
+		return jarr.toJSONString();
+
+	}
 
 	// 업무 모아보기 페이지 조회용
 	@RequestMapping("mybpost.do")
@@ -289,23 +352,73 @@ public class abcController {
 		}
 		return "abc/myBPOST";
 	}
+	
+	// 업무 게시글 상세보기용 메소드
+	@RequestMapping(value="bpostOne.do", method= {RequestMethod.POST, RequestMethod.GET})
+	public String select1Bpost(HttpServletResponse response, Model model, @RequestParam("bno") String bno) throws UnsupportedEncodingException {
+		
+		Bpost bpost = spostService.selectOneBpost(bno);
+		model.addAttribute("post", bpost);
+		return "post/bpostOneview";
+	}
 
 	// 업무 게시글 상세보기용 메소드
-	@RequestMapping("bpostOne.do")
-	public String selectOneBpost(Model model, @RequestParam("bno") String bno, PjMember pmember) {
+	@RequestMapping(value="detailview.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String selectOneBpost(HttpServletResponse response, Model model, @RequestParam("bno") String bno) throws UnsupportedEncodingException {
 
 		Bpost bpost = spostService.selectOneBpost(bno);
-		ArrayList<Bpost> list = spostService.selectMyBPOST(pmember);
+		
+		response.setContentType("application/json;charset=utf-8"); //어플리케이션이 나갈건데  json이라는 의미
+		  
+		JSONObject job = new JSONObject();
+		  
+		job.put("bno",bpost.getBno());
+		job.put("bkind", URLEncoder.encode(bpost.getBkind(), "utf-8"));
+		job.put("btitle", URLEncoder.encode(bpost.getBtitle(), "utf-8"));
+		job.put("bwriter", URLEncoder.encode(bpost.getBwriter(), "utf-8"));
 
-		if (bpost != null) {
-			model.addAttribute("post", bpost);
-			model.addAttribute("list", list);
-			return "post/bpostOneview";
+		if (bpost.getBstartday() != null) {
+			job.put("bstartday", bpost.getBstartday().toString());
 		} else {
-			model.addAttribute("message", "업무 게시글 상세보기에 실패하였습니다.");
-			model.addAttribute("list", list);
-			return "redirect:/mybpost.do";
+			job.put("bstartday", URLEncoder.encode(" ", "utf-8"));
 		}
+		
+		if (bpost.getBendday() != null) {
+			job.put("bendday", bpost.getBendday().toString());
+		} else {
+			job.put("bendday", URLEncoder.encode(" ", "utf-8"));
+		}
+		
+		if (bpost.getBcontent() != null) {
+			job.put("bcontent", URLEncoder.encode(bpost.getBcontent(), "utf-8"));
+		} else {
+			job.put("bcontent", URLEncoder.encode(" ", "utf-8"));
+		}
+		
+		if (bpost.getBchargename() != null) {
+			job.put("bchargename", URLEncoder.encode(bpost.getBchargename(), "utf-8"));
+		} else {
+			job.put("bchargename", URLEncoder.encode(" ", "utf-8"));
+		}
+		
+		if (bpost.getBrenamefile() != null) {
+			job.put("brenamefile", URLEncoder.encode(bpost.getBrenamefile(), "utf-8"));
+		} else {
+			job.put("brenamefile", URLEncoder.encode(" ", "utf-8"));
+		}
+		
+		if (bpost.getBoriginfile() != null) {
+			job.put("boriginfile", URLEncoder.encode(bpost.getBoriginfile(), "utf-8"));
+		} else {
+			job.put("boriginfile", URLEncoder.encode(" ", "utf-8"));
+		}
+
+		job.put("benrolldate", bpost.getBenrolldate().toString());
+		
+
+			  
+		return job.toJSONString(); //뷰 리졸버로 리턴함
 
 	}
 
