@@ -69,17 +69,14 @@ public class abcController {
 	private static final Logger logger = LoggerFactory.getLogger(abcController.class);
 
 //========== 페이지 이동 ==================================================	
-	@RequestMapping("posttest.do")
-	public String selectPostTest(Model m, PjMember pmember) {
-		ArrayList<Post> list = spostService.selectMyPost(pmember);
-		if (list.isEmpty()) {
-			m.addAttribute("list", list);
-		} else {
-			m.addAttribute("message", "업무모아보기 페이지 조회에 실패하였습니다.");
-		}
-		return "abc/myhwabo";
+	@RequestMapping("tabtest.do")
+	public String selectPostTest() {
+		return "abc/invtmanage";
 	}
 
+	
+	
+	
 	// 입력, 출력, 수정 합친것
 	@RequestMapping("tables.do")
 	public String moveTables() {
