@@ -1,5 +1,4 @@
 
-
 	$('#pmember-tab').on('click',function(){
 		 $.ajax({
 			url:"pmlist.do",

@@ -128,7 +128,8 @@ body {
 											<label
 												class="control-label mypage text-center form-control-static">이메일</label>
 											<input
-												class="form-control col-md-8 pl-2 form-control-plaintext"
+												cla
+												ss="form-control col-md-8 pl-2 form-control-plaintext"
 												type="email" name="uemail" value="${member.uemail}" readonly>
 										</div>
 										<div class="form-group row">

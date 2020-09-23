@@ -3,7 +3,6 @@ package com.beet.HWABO.suugit.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
@@ -57,6 +56,7 @@ import com.beet.HWABO.member.model.vo.MailUtils;
 import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.NaverLoginUtil;
 import com.beet.HWABO.member.model.vo.PjMember;
+import com.beet.HWABO.red.model.vo.Project;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
@@ -914,6 +914,14 @@ public class SuugitController {
 		cservice.deleteCpost(cno);
 		return "redirect:/ftables2.do?ucode="+request.getSession().getAttribute("ucode")+"&pnum="+request.getSession().getAttribute("pnum");
 
+	}
+	
+	@RequestMapping("/pjdetail.do")
+	@ResponseBody
+	public Project selectPjdetail(HttpSession session) {
+		Project p = mservice.selectPjdetail((String)session.getAttribute("pnum"));
+	
+		return p;
 	}
 	
 	

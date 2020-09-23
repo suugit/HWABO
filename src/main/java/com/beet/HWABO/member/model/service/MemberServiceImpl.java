@@ -9,6 +9,7 @@ import com.beet.HWABO.invite.model.vo.Invite;
 import com.beet.HWABO.member.model.dao.MemberDao;
 import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.PjMember;
+import com.beet.HWABO.red.model.vo.Project;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -120,6 +121,13 @@ public class MemberServiceImpl implements MemberService{
 	public int deleteInvt(String invtkey) {
 		return memberDao.deleteInvt(invtkey);
 	}
+
+	@Override
+	public Project selectPjdetail(String pnum) {
+		return memberDao.selectPjdetail(pnum);
+	}
+
+	
 
 	
 }

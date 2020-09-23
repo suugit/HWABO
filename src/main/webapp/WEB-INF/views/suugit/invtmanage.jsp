@@ -164,18 +164,17 @@
 									</div>
 									<form action="upinfo.do" method="post" id="myInfoForm"
 										class="col-md-8">
-										<input type="hidden" name="ucode" value="${member.ucode}">
 										<div class="form-group row">
-											<label
-												class="control-label mypage text-center form-control-static col-md-3">프로젝트 이름</label>
-											<input
-												class="form-control col-md-6 pl-2 form-control-plaintext"
-												type="email" name="uemail" value="${member.uemail}" readonly>
+											<label class="control-label mypage text-center form-control-static col-md-3">프로젝트 이름${sessionScope.pmlist }</label>
+											
+											<input class="form-control col-md-6 pl-2 form-control-plaintext"
+												type="email" name="name" value="" readonly>
 										</div>
 										<div class="form-group row">
 											<label class="control-label mypage text-center col-md-3">프로젝트 소개</label> 
-											<input class="form-control col-md-6 pl-2 form-control-plaintext"
-												type="textarea" name="uname" value="${member.uname}" readonly>
+											<div class="form-control col-md-6 pl-2 form-control-plaintext">
+												<textarea class="form-control" name="explain" rows="4" cols="50" readonly></textarea>
+												</div>
 										</div>
 					          		</form>
 					          </div>
@@ -279,6 +278,22 @@
 	<script src="resources/js/jquery-3.5.1.min.js"></script>
 		<script src="/hwabo/resources/js/user.js"></script>
 	<script>
+	$(document).ready(function(){
+		alert('h');
+		$.ajax({
+			url: "pjdetail.do",
+			type: "post",
+			contentType : "application/json; charset=utf-8;",
+			success : function(data){
+				alert('성공');
+				
+			},
+			error : function(){
+				alert('실패');
+			}
+				
+		});
+	});
 
 	
 	</script>

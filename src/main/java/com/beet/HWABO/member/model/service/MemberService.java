@@ -6,6 +6,7 @@ import java.util.Map;
 import com.beet.HWABO.invite.model.vo.Invite;
 import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.PjMember;
+import com.beet.HWABO.red.model.vo.Project;
 
 public interface MemberService {
 	int insertUser(Member member);
@@ -49,5 +50,8 @@ public interface MemberService {
 	ArrayList<Invite> selectInvtList(String pnum);
 
 	int deleteInvt(String invtkey);
+
+	Project selectPjdetail(String pnum);
+
 	
 }

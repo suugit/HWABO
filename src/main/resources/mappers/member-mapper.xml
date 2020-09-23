@@ -30,6 +30,15 @@
 		<result property="invtuse" column="invtuse" />
 		<result property="exprtdate" column="exprtdate" />
 	</resultMap>
+	<resultMap id="resultProject" type="com.beet.HWABO.red.model.vo.Project">
+		<id property="project_num" column="project_num" />
+		<result property="name" column="name" />
+		<result property="explain" column="explain" />
+		<result property="open" column="open" />		
+		<result property="uploaddate" column="uploaddate" />
+	</resultMap>
+
+
 
 	<insert id="insertUser" parameterType="Member">
 		insert into member (ucode,
@@ -156,4 +165,9 @@
 		delete from invite
 		where invtkey = #{invtkey}
 	</delete>
+	
+	<select id="selectPjdetail" parameterType="string" resultMap="resultProject">
+		select * from project
+		where project_num = #{pnum}
+	</select>
 </mapper>

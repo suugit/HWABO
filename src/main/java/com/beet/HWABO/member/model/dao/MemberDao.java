@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.beet.HWABO.invite.model.vo.Invite;
 import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.PjMember;
+import com.beet.HWABO.red.model.vo.Project;
 
 @Repository("memberDao")
 public class MemberDao {
@@ -123,6 +124,14 @@ public class MemberDao {
 	public int deleteInvt(String invtkey) {
 		return session.delete("memberMapper.deleteInvt", invtkey);
 	}
+
+
+	public Project selectPjdetail(String pnum) {
+		return session.selectOne("memberMapper.selectPjdetail", pnum);
+	}
+	
+	
+	
 	
 	
 
