@@ -1,4 +1,4 @@
-4 
+4
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -42,8 +42,9 @@
 	rel="stylesheet">
 <style>
 body {
-background-color: #fff;
+	background-color: #fff;
 }
+
 .mypage {
 	width: 80px;
 	font-weight: bold;
@@ -112,9 +113,11 @@ background-color: #fff;
 										<img width=100% src="${member.uimg}"
 											style="max-width: 200px; max-height: 200px"></img>
 										<div class="text-center m-2">
-											<button class="btn btn-outline-secondary btn-sm text upimgbtn mb-2"
+											<button
+												class="btn btn-outline-secondary btn-sm text upimgbtn mb-2"
 												data-toggle="modal" data-target="#imgUpdateModal">파일업로드</button>
-											<button class="btn btn-outline-secondary btn-sm text upimgbtn"
+											<button
+												class="btn btn-outline-secondary btn-sm text upimgbtn"
 												data-toggle="modal" data-target="#pwdUpdateModal">비밀번호변경</button>
 										</div>
 									</div>
@@ -346,7 +349,7 @@ background-color: #fff;
 		function delUser() {
 			location.href = "deluser.do?ucode=${member.ucode}";
 		}
-		
+
 		$('#btn_pwd').on('click', function() {
 			$('#pwdUpdateModal').modal('show')
 		})
@@ -357,9 +360,6 @@ background-color: #fff;
 		    alert(responseMessage)
 		}
 		})  */
-		
-
-		
 	</script>
 </body>
 

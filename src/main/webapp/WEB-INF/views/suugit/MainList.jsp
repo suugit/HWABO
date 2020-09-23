@@ -442,7 +442,7 @@ console.log(map1_${ status.index });
 			<!-- 드롭다운 끝 -->
 
 		</div>
-		<div id="cpEdit${c.cno}" style="display:none"> 
+		<div class="cpEdit${c.cno}" style="display:none"> 
 		 <div class="updatecPost" class="card-body">
 			<!-- 게시글안쪽 -->
 			<form id="updatecForm${c.cno}" method="post" enctype="multipart/form-data">
@@ -543,14 +543,14 @@ console.log(map1_${ status.index });
 			<hr>
 		</div>
 		</div><!-- 수정폼 끝 -->
-		<div id="cpView${c.cno}">
+		<div class="cpView${c.cno}">
 		<div class="card-body">
 			<!-- 게시글안쪽 -->
-			<h6 class="ctt">${c.ctitle}<h6>
+			<h6>${c.ctitle}<h6>
 			<hr>
 			<table>
 				<tr>
-					<td class="ccon">${c.ccontent}</td>
+					<td>${c.ccontent}</td>
 					
 				</tr>
 				<tr>
@@ -564,7 +564,7 @@ console.log(map1_${ status.index });
 					<c:set var="fileName" value="${fn:split(c.ofile1, '.')}" />
 					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
 						<c:if test="${fn:contains(fileType,'jpg') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">	
-								<img class="cimg1" src="resources/bupfile/${c.rfile1}" style="max-width:150px">
+								<img src="resources/bupfile/${c.rfile1}" style="max-width:150px">
 						</c:if>
 						<c:if test="${not fn:contains(fileType,'jpg') && not fn:contains(fileType,'png') && not fn:contains(fileType,'svg') && not fn:contains(fileType,'gif')}">	
 								<img src="resources/maincss/img/suugit/file_altimg.svg" style="max-width:150px">
@@ -578,7 +578,7 @@ console.log(map1_${ status.index });
 					<c:set var="fileName" value="${fn:split(c.ofile2, '.')}" />
 					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
 						<c:if test="${fn:contains(fileType,'jpg') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">	
-								<img class="cimg2" src="resources/bupfile/${c.rfile2}" style="max-width:150px">
+								<img src="resources/bupfile/${c.rfile2}" style="max-width:150px">
 						</c:if>
 						<c:if test="${not fn:contains(fileType,'jpg') && not fn:contains(fileType,'png') && not fn:contains(fileType,'svg') && not fn:contains(fileType,'gif')}">	
 								<img src="resources/maincss/img/suugit/file_altimg.svg" style="max-width:150px">
@@ -592,7 +592,7 @@ console.log(map1_${ status.index });
 					<c:set var="fileName" value="${fn:split(c.ofile3, '.')}" />
 					<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} "/>
 						<c:if test="${fn:contains(fileType,'jpg') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">	
-								<img class="cimg3" src="resources/bupfile/${c.rfile3}" style="max-width:150px">
+								<img src="resources/bupfile/${c.rfile3}" style="max-width:150px">
 						</c:if>
 						<c:if test="${not fn:contains(fileType,'jpg') && not fn:contains(fileType,'png') && not fn:contains(fileType,'svg') && not fn:contains(fileType,'gif')}">	
 								<img src="resources/maincss/img/suugit/file_altimg.svg" style="max-width:150px">
@@ -601,8 +601,6 @@ console.log(map1_${ status.index });
 					<label class="ml-4 text-center">${c.ofile3} </label>
 					</td>
 				</c:if>
-				</tr>
-				<tr id="afterPreview">
 				</tr>
 			</table>
 
@@ -642,8 +640,8 @@ console.log(map1_${ status.index });
   
    function toEdit(click) {
 
-		$("#cpEdit"+click).css("display", "block" );
-		$("#cpView"+click).css("display", "none" );
+		$(".cpEdit"+click).css("display", "block" );
+		$(".cpView"+click).css("display", "none" );
 		cno = click;
 		cpost = "#updatecForm" + cno;
 		table = "#CpostUpTable" + cno;
@@ -678,8 +676,6 @@ console.log(map1_${ status.index });
 function cpSave(){
 	event.preventDefault();
  	 var formData = new FormData($(cpost)[0]);
- 	 var ee;
- 	 
  	formData.append("cflist", tmplist);
 	alert(formData.cflist);
  	 $.ajax({
@@ -689,24 +685,14 @@ function cpSave(){
  		data: formData,
  		contentType:false,
  		processData:false,
- 		dataType: "JSON",
- 		async: false,
- 		success: function(c){
-			var aa = document.getElementById("cpView" + cno);
-			aa.querySelector('h6').innerText = c.ctitle;
-			aa.querySelector('.ccon').innerText = c.ccontent;
-			var c = aa.querySelector('#preview');
-			var d = aa.querySelector('#afterPreview');
-			ee = c.rfile3;
-			//d.innerHTML += '<td><img src="resources/bupfile/' + c.rfile3 + '"></td>';
-			//$(c).css('display', 'none');			
- 			$("#cpView"+cno).css("display", "block" );		
- 			$("#cpEdit"+cno).css("display", "none" );
- 		
+ 		dataType:"json",
+ 		success: function(){
+ 			alert('성공');
  		},
- 		error: function(){ 
- 			alert('업데이트 실패');
- 		
+ 		error: function(){
+ 			alert('실패');
+ 			$(".cpEdit"+cno).css("display", "none" );
+ 			$(".cpView"+cno).css("display", "block" );
  		}
  		
  	});   

@@ -779,7 +779,8 @@ public class SuugitController {
 	}
 
 	@PostMapping("upcp.do")
-	public void updateCpost(Cpost cpost, AddOn addon, ModelAndView mav, MultipartHttpServletRequest request) {
+	@ResponseBody
+	public JSONObject updateCpost(Cpost cpost, AddOn addon, ModelAndView mav, MultipartHttpServletRequest request) {
 		logger.info("게시글 수정");
 
 		String cno = addon.getCno();
@@ -844,15 +845,18 @@ public class SuugitController {
 		int r = cservice.updateCpost(cpost);
 		int result1 = cservice.updateCfile(addon);
 		
-		if (result1 > 0) {
-			mav.setViewName("suugit/tables");
-		} else {
-			mav.addObject("message", "첨부파일등록실패");
-			mav.setViewName("common/error");
-		}
-	 
-				
-	
+		cpost = cservice.selectCpOne(request.getParameter("cno"));
+		JSONObject obj = new JSONObject();
+		obj.put("ctitle", cpost.getCtitle());
+		obj.put("ccontent", cpost.getCcontent());
+		obj.put("ofile1", cpost.getOfile1());
+		obj.put("rfile1", cpost.getRfile1());
+		obj.put("ofile2", cpost.getOfile2());
+		obj.put("rfile2", cpost.getRfile2());
+		obj.put("ofile3", cpost.getOfile3());
+		obj.put("rfile3", cpost.getRfile3());
+		
+		return obj;
 }
 
 
