@@ -21,7 +21,7 @@ public class Member implements java.io.Serializable{
 	@NotNull(message="이름을 입력해주세요")
 	private String uname;
 	
-	private int uphone;
+	private String uphone;
 	private String ugroup;
 	private String urole;
 	private String ust;
@@ -36,9 +36,10 @@ public class Member implements java.io.Serializable{
 	
 	public Member(){}
 
-	public Member(String ucode, String uemail, String upwd, String uname, int uphone, String ugroup, String urole,
-			String ust, String ucert, Date udate, String signtype, String accesstoken, String uimg, String uactive,
-			String pnum, String pjadmin) {
+	public Member(String ucode,
+			String uemail, String upwd, String uname, String uphone, String ugroup, String urole, String ust,
+			String ucert, Date udate, String signtype, String accesstoken, String uimg, String uactive, String pnum,
+			String pjadmin) {
 		super();
 		this.ucode = ucode;
 		this.uemail = uemail;
@@ -90,11 +91,11 @@ public class Member implements java.io.Serializable{
 		this.uname = uname;
 	}
 
-	public int getUphone() {
+	public String getUphone() {
 		return uphone;
 	}
 
-	public void setUphone(int uphone) {
+	public void setUphone(String uphone) {
 		this.uphone = uphone;
 	}
 
@@ -194,7 +195,6 @@ public class Member implements java.io.Serializable{
 				+ uactive + ", pnum=" + pnum + ", pjadmin=" + pjadmin + "]";
 	}
 
-	
 	
 
 	
