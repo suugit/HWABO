@@ -152,4 +152,8 @@
 			values ('n'||member_seq.nextval, #{uemail},#{uname},#{uimg}, #{signtype}, 'Y')
 	</insert>
 	
+	<delete id="deleteInvt" parameterType="string">
+		delete from invite
+		where invtkey = #{invtkey}
+	</delete>
 </mapper>

@@ -116,5 +116,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectInvtList(pnum);
 	}
 
+	@Override
+	public int deleteInvt(String invtkey) {
+		return memberDao.deleteInvt(invtkey);
+	}
+
 	
 }

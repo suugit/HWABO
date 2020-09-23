@@ -143,7 +143,7 @@
 							    <a class="nav-link " id="pmember-tab" data-toggle="tab" href="#pmember" role="tab" aria-controls="pmember" aria-selected="false">멤버 관리</a>
 							  </li>
 							  <li class="nav-item">
-							    <a class="nav-link" id="npmember-tab" data-toggle="tab" href="#npmember" role="tab" aria-controls="profile" aria-selected="false">초대 관리</a>
+							    <a class="nav-link" id="npmember-tab" data-toggle="tab" href="#npmember" role="tab" aria-controls="npmember" aria-selected="false">초대 관리</a>
 							  </li>
 							  <a href="" class="btn my-3 ml-auto" data-toggle="modal" data-target="#inviteModal">
 								<i class="fa fa-plus-square mr-1"></i>
@@ -157,30 +157,28 @@
 					           <div class="tab-content mt-3">
 					           <!-- 글 작성  -->
 					           <div class="tab-pane fade show active" id="project" role="tabpanel" aria-labelledby="nav-project-tab">
-							  <div id="dataTable_wrapper"
-								class="dataTables_wrapper no-footer text-center">
-								<table class="table">
-									<thead>
-										<th colspan="2">사진</th>
-										<th>이름</th>
-										<th>부서</th>
-										<th>직책</th>
-										<th>초대여부</th>
-									</thead>
-									<tbody id="asd">
-										<%-- <tr>
-											<td colspan="2" style="padding:0px;position:relative;left:5%"><img class="thumbnail circle" src="/hwabo/resources/maincss/img/suugit/face.jpg"> 
-											</td>
-											<td class="align-middle my-6 ">${nm.uname}이름</td>
-											<td class="align-middle">${um.ugroup }그룹</td>
-											<td class="align-middle">${um.urole }역할</td>
-											<td class="align-middle"><input type="button"
-												class="btn btn-sm btn-outline-primary" value="추가"
-												onclick="addInvite()"></td>
-										</tr> --%>
-									</tbody>
-								</table>
-							</div>
+								<div class="row">
+									<div class="col-sm-8 col-md-4">
+										<img width=100% src="${member.uimg}"
+											style="max-width: 200px; max-height: 200px"></img>
+									</div>
+									<form action="upinfo.do" method="post" id="myInfoForm"
+										class="col-md-8">
+										<input type="hidden" name="ucode" value="${member.ucode}">
+										<div class="form-group row">
+											<label
+												class="control-label mypage text-center form-control-static col-md-3">프로젝트 이름</label>
+											<input
+												class="form-control col-md-6 pl-2 form-control-plaintext"
+												type="email" name="uemail" value="${member.uemail}" readonly>
+										</div>
+										<div class="form-group row">
+											<label class="control-label mypage text-center col-md-3">프로젝트 소개</label> 
+											<input class="form-control col-md-6 pl-2 form-control-plaintext"
+												type="textarea" name="uname" value="${member.uname}" readonly>
+										</div>
+					          		</form>
+					          </div>
 					            
 					          </div>
 					          
@@ -200,17 +198,6 @@
 										<th>권한</th>
 									</thead>
 									<tbody id="pmlistBox">
-									
-										<%-- <tr>
-											<td colspan="2" style="padding:0px;position:relative;left:5%"><img class="thumbnail circle" src="/hwabo/resources/maincss/img/suugit/face.jpg"> 
-											</td>
-											<td class="align-middle my-6 ">${nm.uname}이름</td>
-											<td class="align-middle">${um.ugroup }그룹</td>
-											<td class="align-middle">${um.urole }역할</td>
-											<td class="align-middle"><input type="button"
-												class="btn btn-sm btn-outline-primary" value="추가"
-												onclick="addInvite()"></td>
-										</tr> --%>
 									</tbody>
 								</table>
 							</div>
@@ -228,16 +215,7 @@
 										<th>초대취소</th>
 									</thead>
 									<tbody id="nmlistBox">
-										<%-- <tr>
-											<td colspan="2" style="padding:0px;position:relative;left:5%"><img class="thumbnail circle" src="/hwabo/resources/maincss/img/suugit/face.jpg"> 
-											</td>
-											<td class="align-middle my-6 ">${nm.uname}이름</td>
-											<td class="align-middle">${um.ugroup }그룹</td>
-											<td class="align-middle">${um.urole }역할</td>
-											<td class="align-middle"><input type="button"
-												class="btn btn-sm btn-outline-primary" value="추가"
-												onclick="addInvite()"></td>
-										</tr> --%>
+									
 									</tbody>
 								</table>
 							</div>

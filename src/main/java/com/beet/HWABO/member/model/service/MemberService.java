@@ -47,5 +47,7 @@ public interface MemberService {
 	int updatepjadmin(PjMember pjm);
 
 	ArrayList<Invite> selectInvtList(String pnum);
+
+	int deleteInvt(String invtkey);
 	
 }
