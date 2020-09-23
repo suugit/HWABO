@@ -170,6 +170,8 @@ div#showfile imag {
 						style="width: 40%; height: 10%;">
 				</div>
 				<br>
+				<a href="bfdown.do?ofile=@@&rfile=@@"></a>
+				
 				<c:url var="ubf" value="bfdown.do">
 					<c:param name="ofile" value="${bbb.boriginfile}" />
 					<c:param name="rfile" value="${bbb.brenamefile}" />

@@ -18,14 +18,28 @@
 <title>HWABO</title>
 
 <style type="text/css">
-
-div#detailview{
-	height: 50vh;
-	justify-content : center;
-	align-items: center;
-	border: solid 1px gray;
-}
-
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%; /* Could be more or less, depending on screen size */                          
+        }
 </style>
 
 
@@ -49,10 +63,7 @@ div#detailview{
 <script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$('#dataTable').dataTable( {
-	  "lengthChange": false
-	});
-	
+		
 	$.ajax({
 		url: "bpostload.do",
 		type: "POST",
@@ -63,13 +74,11 @@ $(document).ready(function() {
 			
 			var values = '<thead><tr style="vertical-align: middle; text-align: center;"><th>유형</th><th>제목</th>	<th>내용</th><th>등록일</th></tr></thead>';
 			
-			$("#selectTable").empty();
-			//출력용 문자열 만들기 (for in 문을 사용해보자)
+			
 			
 		 for(var i in obj){
 		
-			 values += '<tr id="trclick" onclick="detailviewload('+obj[i].bno+');" style="cursor:hand;">';
-
+			 values += '<tr id="trclick'+obj[i].bno+'" onclick="detailviewload(this.id);" style="cursor:hand;">';
        		   
 			 if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="요청"){
            		 values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #047AAC; margin-top:30px; vertical-align: middle; "'+'>요 청</strong></td>'
@@ -127,7 +136,7 @@ $(document).ready(function() {
 				
 				var values = '<thead><tr style="vertical-align: middle; text-align: center;"><th>유형</th><th>제목</th>	<th>내용</th><th>등록일</th></tr></thead>';
 				
-				$("#dataTable").empty();
+				$("#selectTable").empty();
 				//출력용 문자열 만들기 (for in 문을 사용해보자)
 				
 			 for(var i in obj){
@@ -166,15 +175,80 @@ $(document).ready(function() {
 			}		
 		});	
 	}); 
-	
-	function detailviewload(bno){
-			alert(bno+"detailview loading");
-			$("#detailview"+bno).css("display", "block" );
 
-	};
-	
 });//document.ready 끗
 
+	function detailviewload(id){
+		var bno = id.replace('trclick', '');
+	
+		$.ajax({
+			url: "detailview.do",
+			type: "POST",
+			data: {'bno' : bno}, 
+			dataType: "Json",
+			traditional: true,
+			success: function(obj){
+				
+			var values = '';
+			$("#detail-table").empty();
+			
+			values += '<tr><th style="width: 13%; text-align: center; vertical-align:middle;">제목</th><td style="vertical-align:middle;">'+decodeURIComponent(obj.btitle).replace(/\+/gi, "  ")+'</td></tr>';
+			
+			values += '<tr><th style="width: 13%; text-align: center; vertical-align:middle;">작성자</th><td style="vertical-align:middle;">'+decodeURIComponent(obj.bwriter).replace(/\+/gi, "  ")+'</td></tr>';
+			
+			 if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") =="요청"){
+				 values += '<tr><th style="width: 13%; text-align: center; vertical-align:middle;">유형</th><td style="vertical-align:middle;">요청</td></tr>';
+           	 }
+           	if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") =="진행"){
+           		values += '<tr><th style="width: 13%; text-align: center; vertical-align:middle;">유형</th><td style="vertical-align:middle;">진행</td></tr>';
+           	 }
+           	if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") == "피드백"){
+           		values += '<tr><th style="width: 13%; text-align: center; vertical-align:middle;">유형</th><td style="vertical-align:middle;">피드백</td></tr>';
+           	 }
+           	if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") == "완료"){
+           		values += '<tr><th style="width: 13%; text-align: center; vertical-align:middle;">유형</th><td style="vertical-align:middle;">완료</td></tr>';
+           	 }
+           	if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") =="보류"){
+           		values += '<tr><th style="width: 13%; text-align: center; vertical-align:middle;">유형</th><td style="vertical-align:middle;">보류</td></tr>';
+           	 }	      
+           	
+        	if(obj.bstartday != null){
+           		values += '<tr><th style="width: 13%; text-align: center; vertical-align:middle;">날짜</th><td style="vertical-align:middle;">'+obj.bstartday+'&nbsp;&nbsp;~&nbsp;&nbsp;'+obj.bendday+'</td></tr>';
+           	 }	     
+           	
+        	values += '<tr><th style="width: 13%; text-align: center; vertical-align:middle;">담당자</th><td style="vertical-align:middle;">'+decodeURIComponent(obj.bchargename).replace(/\+/gi, "  ")+'</td></tr>';
+        	
+        	if(obj.bcontent != null){
+        		values += '<tr><th style="width: 13%; text-align: center; vertical-align:middle;">내용</th><td style="vertical-align:middle;">'+obj.bcontent+'</td></tr>';
+        	}
+        	
+        	if(obj.boriginfile != null){
+        		
+        		values += '<tr><th style="width: 13%; text-align: center; vertical-align:middle;">파일</th>';
+        		values += '<td style="vertical-align:middle;"><a href="bfdown.do?ofile='+decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ")+'&rfile='+decodeURIComponent(obj.brenamefile).replace(/\+/gi, "  ")+'">'+decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ")+'</a></td></tr>';
+        	
+        		
+        	}
+	                
+	   		 $('#detail-table').html(values); 	       
+			}, 				
+			error: function(request, status, errorData){ //에러는 위에서 복붙
+				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+			}		
+		});	
+		
+		
+		
+		$('#detailModal').show();
+
+	
+	};
+
+
+	//팝업 Close 기능
+	function close_pop(flag) {
+	     $('#detailModal').hide();
+	};
 
 </script>
 
@@ -261,102 +335,39 @@ $(document).ready(function() {
 				
 						
 <!-- 상세보기 페이지 -->
-<c:if test="${ !empty list }">
-<c:forEach var="post" items="${list}">
+
+    <!-- The Modal -->
+    <div id="detailModal" class="modal"  >
+ 
+      <!-- Modal content -->
+      <div class="modal-content" style="width: 50%;">
+      		<div id="detail-content" >
+      		 	<table id="detail-table" class="table">
+      		 	
+      		 	</table>
+                
+      		</div>
+               
+            <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
+                <span class="pop_bt" style="font-size: 13pt;" >
+                     닫기
+                </span>
+            </div>
+      </div>
+ 
+    </div>
+        <!--End Modal-->
 
 	<div id="detailview${post.bno }">
-	
-	                 <div class="text-center">
-	                    <h3 class="h4 text-gray-900 mb-4">${post.btitle }</h3>
-	                  </div>
-	                  <div align="right" style="padding-bottom: 10px;">
-	                  			<button id="cabinetshow" class="btn btn-light"
-					name="like" onclick="sendInsert();">
-					<span>보관</span>
-				</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<c:if test="${bpostUcode == currentUcode}">
-				<span >
-					<c:url var="bup" value="moveBpostUpdate.do">
-								<c:param name="bno" value="${post.bno }" />
-								<c:param name="ucode" value="${sessionScope.ucode }" />
-								<c:param name="pnum" value="${sessionScope.pnum }" />
-					</c:url>
-					<a class="btn btn-light" href="${bup }">수정</a>
-				</span>
-				&nbsp;
-				<span>
-					<c:url var="bdel" value="bpostdel.do">
-						<c:param name="bno" value="${post.bno }" />
-						<c:param name="brenamefile" value="${post.brenamefile }" />
-					</c:url>
-					<a class="btn btn-light" href="${bdel }">삭제</a>
-				</span>
-			</c:if>
-				
-	                  </div>
-	                  
-	 	<table class="table">
-		<tr><th style="width: 13%; text-align: center; vertical-align:middle;">작성자</th><td>${post.bwriter }</td></tr>
-		<tr><th style="text-align: center;">유 형</th>
-			  <td>
-					<c:if test="${post.bkind eq '요청'}">
-						요청
-					</c:if>
-					<c:if test="${post.bkind eq '진행'}">
-						진행
-					</c:if>
-					<c:if test="${post.bkind eq '피드백'}">
-						피드백
-					</c:if>
-					<c:if test="${post.bkind eq '완료'}">
-						완료
-					</c:if>
-					<c:if test="${post.bkind eq '보류'}">
-						보류
-					</c:if>
-			  </td>
-		</tr>
-		<c:if test="${!empty post.bstartday and !empty post.bendday }">
-			<tr><th style="text-align: center;">날 짜</th><td style="text-align: left;">${post.bstartday }&nbsp; ~ &nbsp;${post.bendday }</td></tr>
-			
-		</c:if>
-		<tr><th style="text-align: center; vertical-align:middle;">담당자</th><td>${post.bchargename }</td></tr>
-		<tr><th style="text-align: center; vertical-align:middle;">내 용</th><td><c:if test="${post.bcontent != null }" > ${post.bcontent }</c:if><c:if test="${post.bcontent == null }" >&nbsp;</c:if></td></tr>
-		
-		<c:if test="${! empty post.boriginfile }">
-			<tr>
-				<th style="text-align: center; vertical-align:middle;">파 일</th>
-				<td><div id="showfile" style="overflow: hidden;">
-						<img src="resources/bupfile/${post.brenamefile}"
-							style="width: 40%; height: 10%;">
-					</div>
-					<br>
-					<c:url var="ubf" value="bfdown.do">
-						<c:param name="ofile" value="${post.boriginfile}" />
-						<c:param name="rfile" value="${post.brenamefile}" />
-					</c:url>
-					<a href="${ubf }"> ${post.boriginfile}</a>
-				</td>
-		</c:if>
-		<c:if test="${empty post.boriginfile}">
-		 <tr><td colspan="2">&nbsp;</td></tr>
-		</c:if>
-		</table>
+
 	</div>
 
-</c:forEach>
-</c:if>
 <!-- 수정페이지 -->
-<c:if test="${ !empty list }">
-<c:forEach var="post" items="${list}">
+
 	<div style="display: none;" id="updateview${list.bno}">
 	
-	
-	
 	</div>
-</c:forEach>
-</c:if>
+
 
 
 
