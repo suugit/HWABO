@@ -29,6 +29,15 @@
 </select>
 
 
+<update id="updatereply" parameterType="Reply">
+	update reply
+	
+	set content = #{content}, secondenroll = sysdate
+	where replyno = #{replyno}
+
+</update>
+
+
 </mapper>
 
 

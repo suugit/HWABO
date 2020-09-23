@@ -39,4 +39,10 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyDao.selectList();
 	}
 
+	@Override
+	public int updatereply(Reply reply) {
+		logger.info("service reply : " + reply);
+		return replyDao.updatereply(reply);
+	}
+
 }

@@ -41,4 +41,10 @@ public class ReplyDao {
 		return (ArrayList<Reply>)list;
 	}
 
+
+	public int updatereply(Reply reply) {
+		logger.info("dao repiy :" + reply);
+		return session.update("replyMapper.updatereply", reply);
+	}
+
 }

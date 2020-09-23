@@ -1,6 +1,9 @@
 package com.beet.HWABO.reply.model.vo;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Reply implements java.io.Serializable {
 
@@ -15,6 +18,7 @@ public class Reply implements java.io.Serializable {
 	private Date secondenroll;
 	
 	
+	   
 	public Reply() {
 		
 		super();

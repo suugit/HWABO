@@ -13,4 +13,6 @@ public interface ReplyService {
 
 	ArrayList<Reply> selectList();
 
+	int updatereply(Reply reply);
+
 }

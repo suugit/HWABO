@@ -95,29 +95,18 @@ public class ReplyController {
 	}
 	
 	
+	  @RequestMapping(value="updatereply.do", method = RequestMethod.POST) //댓글 수정  
+	    @ResponseBody
+	    private int replyupdate(Reply reply) throws Exception{
+	    logger.info("reply controller reply :"+ reply);
+	        return replyService.updatereply(reply);
+	    }
 	
-	
-	
-	
-	
-	/*
-	 * @RequestMapping("/list") //댓글 리스트
-	 * 
-	 * @ResponseBody private List<CommentVO> mCommentServiceList(Model model) throws
-	 * Exception{
-	 * 
-	 * return mCommentService.commentListService(); }
-	 */
 
 	@RequestMapping("selectOneReply.do")
     @ResponseBody
 	public List<Reply> selectOneReply(@RequestParam("no") String no, Model model) throws Exception{
-		
-		/*
-		 * List<Reply> list = replyService.selectOneList(no);
-		 * 
-		 * for(Reply r : list) { r.setEnrolldate(r.getEnrolldate().toString()); }
-		 */
+
 		
 		return replyService.selectOneList(no);
 	}
@@ -125,24 +114,6 @@ public class ReplyController {
 	
 	
 }
-
-
-
-
-
-/*
- * @RequestMapping("/list") //댓글 리스트
- * 
- * @ResponseBody private List<CommentVO> mCommentServiceList(Model model) throws
- * Exception{
- * 
- * return mCommentService.commentListService(); }
- * 
- * 
- * 출처: https://private.tistory.com/65 [공부해서 남 주자]
- * 
- */
-
 
 
 

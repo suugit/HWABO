@@ -171,16 +171,23 @@ function sendInsert(index){
 		
 			}   
 	      
-	      $(".liketoggle"+index).find("i").toggleClass("fas far");
-		  $(".liketoggle"+index).find("span").text(function(i, v) {
-		     return v === '보관' ? '보관됨' : '보관'
-		    		 
+			  $(".liketoggle"+index).find("i").toggleClass("fas far");
+			  $(".liketoggle"+index).find("span").text(function(i, v) {
+			     return v === '보관' ? '보관됨' : '보관'
+				    		 
 	 });
 }
 
 /* 댓글기능 */
 
 $(document).ready(function(){
+	
+	replyList();	
+});
+	
+function replyList(){
+	
+	
 	console.log("댓글 리스트 들어옴");
 	
 	$.ajax({
@@ -200,35 +207,47 @@ $(document).ready(function(){
 		
 			
 			
-			for(var a= 0; a < ${requestScope.list.size()}; a++){
+			for(var a= 0; a < ${requestScope.list.size()}; a++){ //전체 게시글 리스트
 				console.log("1번 포문");
 				var re = "";
-				for(var i  in jsonObj.list){
 				
-				
+				for(var i  in jsonObj.list){ //전체 댓글 리스트
+					
+					
 					
 					console.log("2번 포문");
 					console.log("jsonObj.list[i].no"+jsonObj.list[i].no);
 					console.log("$('#commentList_'+a).val()"+ document.getElementById('commentList_'+a).getAttribute('name'));
 				
-				if(jsonObj.list[i].no == document.getElementById('commentList_'+a).getAttribute('name')){
+				if(jsonObj.list[i].no == document.getElementById('commentList_'+a).getAttribute('name')){ //게시글과 댓글의 게시글 번호 비교
 					console.log("if 문");
+					console.log("${sessionScope.ucode}");
+					console.log( jsonObj.list[i].ucode);
 					re += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-	            	re += '<div class="commentInfo'+jsonObj.list[i].replyno+'">'+' 작성자 : '+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ") +' <small>'+ jsonObj.list[i].enrolldate+'</small>'
-	            	re += '<div class="commentContent'+jsonObj.list[i].replyno+'"> <p> 내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ") +'</p></div>';
-	   			/*    	re += '<a onclick="commentUpdate('+value.replyno+',\''+value.content+'\');"> 수정 </a>';
-	            	re += '<a onclick="commentDelete('+value.replyno+');"> 삭제 </a> </div>';  */
+	            	re += '<div class="commentInfo'+jsonObj.list[i].replyno+'">'+' 작성자 : '+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ");
+	            if(jsonObj.list[i].secondenroll == null){
+	            	re += '<small>'+ jsonObj.list[i].enrolldate+'</small>';
+	           		}else{
+	           		re += '<small> 수정일 '+ jsonObj.list[i].secondenroll+'</small>';
+	           		}
+	            if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
+	            	re += '<a onclick="commentUpdate('+jsonObj.list[i].replyno+',\''+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'\');"> 수정 </a>';
+		            re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제 </a>';
+	            	
+	            	
+	            	}
+	            	re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'"> <p> 내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ") +'</p>';
 	            	re += '</div></div>';
+	            
 	            	
-	            	
+        	
 				}
 				
-				
+			
 				$("#commentList_"+a).html(re);
+			
 				}
-				
-				
-            	
+		
 			}
 		
 		},
@@ -240,7 +259,50 @@ $(document).ready(function(){
 	
 	
 	
-});
+}
+
+
+function commentUpdate(replyno, content){
+    var a ='';
+    
+    a += '<div class="input-group">';
+    a += '<input type="text" class="form-control" name="content_'+replyno+'" value="'+content+'"/>';
+    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+replyno+');">수정</button> </span>';
+    a += '</div>';
+    
+    $('.commentContent'+replyno).html(a);
+    
+}
+ 
+//댓글 수정
+function commentUpdateProc(replyno){
+    var updateContent = $('[name=content_'+replyno+']').val();
+    console.log("수정 들어옴")
+    $.ajax({
+        url : 'updatereply.do',
+        type : 'post',
+        data : {'content' : updateContent, 'replyno' : replyno},
+        success : function(data){
+            if(data == 1)
+           		replyList();
+        }
+    });
+}
+ 
+//댓글 삭제 
+function commentDelete(cno){
+    $.ajax({
+        url : '/comment/delete/'+cno,
+        type : 'post',
+        success : function(data){
+            if(data == 1) 
+            	replyList();
+        }
+    });
+}
+ 
+ 
+
 
 
  
@@ -277,42 +339,17 @@ function replytList(index){
         data : {no : $("#reply_no_"+ index).val()},
 		
         success : function(data){
+        	replyList();
         	
-        	
-       /*  	repludate.format('yyyy-MM-dd(KS) HH:mm:ss' */
-        	
-        	
+
         	console.log("댓글 list 성공");
-            var re =""; 
-            $.each(data, function(key, value){ 
-            	
-            	re += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-            	re += '<div class="commentInfo'+value.replyno+'">'+' 작성자 : '+value.uname +' '+ value.enrolldate;
-            	re += '<div class="commentContent'+value.replyno+'"> <p> 내용 : '+value.content +'</p>';
-            	re += '<a onclick="commentUpdate('+value.replyno+',\''+value.content+'\');"> 수정 </a>';
-            	re += '<a onclick="commentDelete('+value.replyno+');"> 삭제 </a> </div>';
-            	re += '</div></div>';
-            });
-            
-            $(".commentList_"+index).html(re);
+   
         }
     });
 }
 
 
-	
-/* 	
-	
-    if (window.event.keyCode == 13) {
-    	console.log("enterkey 들어옴1");
-    	var bno = '${b.bno}';
-    	var insertData = $("#content"+ index).val(); //commentInsertForm의 내용을 가져옴 
-  		console.log(bno +"data " + insertData);
-    	 commentInsert(insertData); //Insert 함수호출(아래)   
-    	 
-    	 
-    	  */
-    	 
+
     	 
   
 
@@ -421,7 +458,7 @@ function replytList(index){
 														aria-labelledby="dropdownMenuLink">
 
 														<c:url var="bup" value="buppage.do">
-															<c:param name="bno" value="${b.bno }" />
+															<c:param name="bno" value="${b.bno }" ></c:param>
 
 														</c:url>
 														<a class="dropdown-item" href="${bup }">수정</a>
@@ -662,33 +699,12 @@ function replytList(index){
 											<div class="container" style="color: black">
 													<div class="commentList_${status.index }" id="commentList_${status.index }" name="${b.bno }">
 													
-													
-													<c:if test="${sessionScope.ucode eq n.ucode }">
-													<a class="dropdown-toggle" href="#" role="button"
-														id="dropdownMenuLink" data-toggle="dropdown"
-														aria-haspopup="true" aria-expanded="false"> <i
-														class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-													</a>
-													<div
-														class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-														aria-labelledby="dropdownMenuLink">
-
-														<c:url var="bup" value="buppage.do">
-															<c:param name="bno" value="${b.bno }" />
-
-														</c:url>
-														<a class="dropdown-item" href="${bup }">수정</a>
-
-														<c:url var="bdel" value="deletebpost.do">
-															<c:param name="bno" value="${b.bno }" />
-															<c:param name="brenamefile" value="${b.brenamefile }" />
-														</c:url>
-														<a class="dropdown-item" href="${bdel }">삭제</a>
-
 													</div>
-												</c:if>
 													
-													</div>
+													
+										
+										
+													
 											</div>
 												
 											
