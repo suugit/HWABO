@@ -1,4 +1,4 @@
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -24,13 +24,28 @@ function showCalendar(){
       selectable: true,
       selectMirror: true,
       select: function(arg) {
-        var title = prompt('Event Title:');
-        //ajax insert 시작////////////////////////
-        $(function(){
+      var title = prompt('일정 메모');
+      //ajax insert 시작////////////////////////
+      var argAllDay = 1;
+      if(arg.allDay != true){
+        	argAllDay = 0;
+      }
+      console.log('arg.end.toISOString().slice(0, 19).replace(\'T\', \' \')' + arg.end.toISOString().slice(0, 19).replace('T', ' '));
+      console.log('arg.end.toISOString().slice(0, 19)' + arg.end.toISOString().slice(0, 19));
+      console.log('arg.end.toISOString()' + arg.end.toISOString());
+      console.log('arg.end' + arg.end);
+      
+      $(function(){//에이작스 시작
         	$.ajax({
         		url:"sendCalendar.do",
         		data:{
-        			
+        			pnum : $("#calpnum").val(), 
+        			ucode : $("#calucode").val(), 
+        			uname : $("#caluname").val(),
+        			title : title,
+        			start_date : arg.start.toISOString(),
+        			end_date : arg.end.toISOString(),
+        			allday : argAllDay
         		},
         		type: "post",
         		success: function(result){
@@ -41,18 +56,17 @@ function showCalendar(){
     					console.log("달력 일정 등록 실패...");
     				}
         		},
-        		error: function(request,status,errorDate){
+        		error: function(request,status,errorData){
         			console.log("error code : " + request.status + "\nMessage :" + request.responseText + "\nError :" + errorData);
         		}
         	})
-        });
-        //ajax insert 끝////////////////////////
-        alert(arg.end.toString());
+      });//에이작스 끝
+      //ajax insert 끝////////////////////////
         if (title) {
           calendar.addEvent({
             title: title,
-            start: arg.start,
-            end: arg.end,
+            start: arg.start.toISOString(),
+            end: arg.end.toISOString(),
             allDay: arg.allDay//true false (return boolean)
           })
         }
@@ -66,60 +80,23 @@ function showCalendar(){
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
       events: [
-        {
-          title: 'All Day Event',
-          start: '2020-09-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2020-09-07',
-          end: '2020-09-10'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-09-09T16:00:00'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-09-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2020-09-11',
-          end: '2020-09-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-09-12T10:30:00',
-          end: '2020-09-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2020-09-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-09-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2020-09-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2020-09-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2020-09-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2020-09-28'
-        }
+    	  <c:forEach var="calIndex" items="${ requestScope.cal }" varStatus="status">
+    	  <c:if test="${ !status.first }">
+          ,
+          </c:if>
+          {
+            title: '${calIndex.title}',
+            start: '${calIndex.start_date}',
+            end: '${calIndex.end_date}'
+          }
+  			</c:forEach>
+  			
+  		/* 	,{
+  	            title: 'tetete',
+  	            start: 'Sat Sep 12 2020 00:00:00 GMT+0900',
+  	            end: 'Sat Sep 12 2020 00:00:00 GMT+0900'
+  	          } */
+  			
       ]
     });
 
@@ -148,10 +125,21 @@ showCalendar();
 <div id="calendar_body">
   <div id='calendar'></div>
 </div>
+<input type="hidden" value="${ pnum }" id="calpnum">
+<input type="hidden" value="${ ucode }" id="calucode">
+<input type="hidden" value="${ uname }" id="caluname">
+--------<br>
+<c:forEach var="calIndex" items="${ requestScope.cal }" varStatus="status">
+        ${status.count }
+          title: '${calIndex.title}',
+          start: '${calIndex.start_date}',
+          end: '${calIndex.end_date}'
+          <hr>
+</c:forEach>
+<br>-----------
 <script type="text/javascript">
-/*<div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner"><div class="fc-daygrid-day-top"><a class="fc-daygrid-day-number" data-navlink="{&quot;date&quot;:&quot;2020-09-12&quot;,&quot;type&quot;:&quot;day&quot;}" tabindex="0">12</a></div><div class="fc-daygrid-day-events"><div class="fc-daygrid-event-harness fc-daygrid-event-harness-abs" style="visibility: hidden;"><a class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"><div class="fc-daygrid-event-dot"></div><div class="fc-event-time">10:30a</div><div class="fc-event-title">Meeting</div></a></div><div class="fc-daygrid-event-harness fc-daygrid-event-harness-abs" style="visibility: hidden;"><a class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"><div class="fc-daygrid-event-dot"></div><div class="fc-event-time">12p</div><div class="fc-event-title">Lunch</div></a></div><div class="fc-daygrid-event-harness fc-daygrid-event-harness-abs" style="visibility: hidden;"><a class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"><div class="fc-daygrid-event-dot"></div><div class="fc-event-time">2:30p</div><div class="fc-event-title">Meeting</div></a></div><div class="fc-daygrid-event-harness fc-daygrid-event-harness-abs" style="visibility: hidden;"><a class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"><div class="fc-daygrid-event-dot"></div><div class="fc-event-time">5:30p</div><div class="fc-event-title">Happy Hour</div></a></div><div class="fc-daygrid-event-harness fc-daygrid-event-harness-abs" style="visibility: hidden;"><a class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"><div class="fc-daygrid-event-dot"></div><div class="fc-event-time">8p</div><div class="fc-event-title">Dinner</div></a></div><div class="fc-daygrid-day-bottom" style="margin-top: 22px;"><a class="fc-daygrid-more-link">+5 more</a></div></div><div class="fc-daygrid-day-bg"></div></div>// "fc-daygrid-day fc-day fc-day-sat fc-day-past" */ 
 
-$(function(){
+/* $(function(){
  $(".fc-scrollgrid-sync-inner").on("click",function(){
 	 
  });
@@ -161,7 +149,7 @@ $(function(){
 	if(!($(".fc-today-button").is(":disabled"))){
 		$(".fc-today-button").hide();
 	}
-});
+}); */
 </script>
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.beet.HWABO.suugit.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
@@ -629,7 +630,7 @@ public class SuugitController {
 	}
 //초대목록
 //	selectInvtList	
-	@PostMapping("ivntlist.do")
+	@PostMapping("invtlist.do")
 	@ResponseBody
 	public JSONArray selectInvtList(HttpSession session, ModelAndView mav) {
 		ArrayList<Invite> invtlist = mservice.selectInvtList((String)session.getAttribute("pnum"));
@@ -642,6 +643,7 @@ public class SuugitController {
 			for (int i = 0; i < invtlist.size(); i++) {
 				JSONObject job = new JSONObject();
 
+				job.put("invtkey", invtlist.get(i).getInvtkey());
 				job.put("invtemail", invtlist.get(i).getInvtemail());
 				job.put("invtuse", invtlist.get(i).getInvtuse());
 				job.put("exprtdate", invtlist.get(i).getExprtdate().toString());
@@ -663,17 +665,18 @@ public class SuugitController {
 
 		return "suugit/invtmanage";
 	}
-	
-	/*
-	 * @RequestMapping("/uppjrole.do") public String updatepjadmin(PjMember pjm) {
-	 * int result = mserivce.updatepjadmin(pjm); }
-	 */
-	
-	@RequestMapping("/chnrole.do")
-	public void updateProle(PjMember pjm,HttpSession session) {
-		System.out.println(pjm);
+
+//멤버 권한 변경 
+	@PostMapping("/chnrole.do")
+	public void updateProle(PjMember pjm,HttpSession session, HttpServletResponse response) throws IOException {
 		pjm.setPnum((String)session.getAttribute("pnum"));
 		int r = mservice.updatepjadmin(pjm);
+		
+	}
+	
+	@RequestMapping("invtcancle.do")
+	public void deleteInvt(@RequestParam("invtkey") String invtkey) {
+		int r = mservice.deleteInvt(invtkey);
 	}
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================

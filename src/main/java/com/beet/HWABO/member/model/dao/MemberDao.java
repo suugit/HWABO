@@ -118,6 +118,11 @@ public class MemberDao {
 		List<Invite> invtlist = session.selectList("memberMapper.selectInvtList", pnum);
 		return (ArrayList<Invite>)invtlist;
 	}
+
+
+	public int deleteInvt(String invtkey) {
+		return session.delete("memberMapper.deleteInvt", invtkey);
+	}
 	
 	
 

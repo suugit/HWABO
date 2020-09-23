@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.cpost.model.vo.Cpost;
+import com.beet.HWABO.member.model.vo.PjMember;
+import com.beet.HWABO.red.model.vo.Calendar;
 import com.beet.HWABO.red.model.vo.ChatSpeed;
 import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
@@ -126,6 +128,15 @@ public class RedDao {
 
 	public int updateChatSpeed(ChatSpeed c) {
 		return session.update("redMapper.updateChatSpeed",c);
+	}
+
+	public int insertCalendar(Calendar calendar) {
+		return session.insert("redMapper.insertCalendar", calendar);
+	}
+
+	public ArrayList<Calendar> selectCalendar(PjMember pj) {
+		List<Calendar> list = session.selectList("redMapper.selectCalendar", pj);
+		return (ArrayList<Calendar>)list;
 	}
 	
 }
