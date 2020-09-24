@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.ArrayList"%>
-<%@ page import="com.beet.HWABO.bpost.model.vo.Bpost" %>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 
 <head>
 <link rel="icon" type="image/x-icon"
@@ -16,7 +17,6 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>HWABO</title>
 
 <style type="text/css">
 ::-webkit-scrollbar { width: 6px; } /* 스크롤 바 */
@@ -35,7 +35,7 @@
 .modalD {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
+            z-index: 999; /* Sit on top */
             left: 0;
             top: 0;
             width: 100%; /* Full width */
@@ -45,18 +45,36 @@
             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
     
-        /* Modal Content/Box */
-        .modalD-content {
-            background-color: #fefefe;
-            margin: 5% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 30%; /* Could be more or less, depending on screen size */                          
-        }
+/* Modal Content/Box */
+.modalD-content {
+    background-color: #fefefe;
+    margin: 7% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */                          
+}
+
+.modal-backdrop {
+	z-index: -1;
+}
+
+.modal {
+	z-index: 1050;
+}
+
+#selected span {
+	background-color: rgba(66, 182, 187, 0.5);
+	padding: 0px 5px;
+	margin: 0px 3px;
+}
 </style>
 
 
+<title>HWABO</title>
+
 <!-- Custom fonts for this template -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 <link
 	href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
@@ -72,11 +90,13 @@
 <link
 	href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
-
-<script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
+<link href="/hwabo/resources/maincss/css/github-markdown.css"
+	rel="stylesheet">
+</head>
+<script src="resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-		
+	
 	$.ajax({
 		url: "bpostload.do",
 		type: "POST",
@@ -84,42 +104,114 @@ $(document).ready(function() {
 		dataType: "Json",
 		traditional: true,
 		success: function(obj){
-				
-				var values = '<thead><tr style="vertical-align: middle; text-align: center;"><th>유형</th><th>제목</th>	<th>내용</th><th>등록일</th></tr></thead>';
-				
-				
-				
-			 for(var i in obj){
 			
-				 values += '<tr id="trclick'+obj[i].bno+'" onclick="detailviewload(this.id);" style="cursor:hand;">';
+			var values = '<thead><tr style="vertical-align: middle; text-align: center;"><th>유형</th><th>제목</th>	<th>내용</th><th>등록일</th></tr></thead>';
+			
+			
+//1. 사용자와 관련된 전체 업무 테이블에 뿌리기		
+		 for(var i in obj){
+		
+			 values += '<tr id="trclick'+obj[i].bno+'" onclick="detailviewload(this.id);" style="cursor:hand;">';
+       		   
+			 if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="요청"){
+           		 values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #047AAC; margin-top:30px; vertical-align: middle; "'+'>요 청</strong></td>'
+           	 }
+           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="진행"){
+           		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #173192; margin-top:30px; vertical-align: middle; "'+'>진 행</strong></td>'
+           	 }
+           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "피드백"){
+           		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #f4b30d; margin-top:30px; vertical-align: middle; "'+'>피드백</strong></td>'
+           	 }
+           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "완료"){
+           		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #0C860F; margin-top:30px; vertical-align: middle; "'+'>완 료</strong></td>'
+           	 }
+           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="보류"){
+           		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #6b6d7d; margin-top:30px; vertical-align: middle; "'+'>보 류</strong></td>'
+           	 }
+	            	 
+	            	values  +='<td  style="vertical-align: middle;">' + decodeURIComponent(obj[i].btitle).replace(/\+/gi, "  ") + "</td>";
+	        if(decodeURIComponent(obj[i].bcontent).replace(/\+/gi, "  ") != null){
+	        	values +=  '<td style="vertical-align: middle; ">' + decodeURIComponent(obj[i].bcontent).replace(/\+/gi, "  ") + "</td>";
+	        }else{
+	        	values +=  '<td style="vertical-align: middle; ">&nbsp;</td>';
+	        }
+	           
+	                values  +='<td style="vertical-align: middle; text-align: center;" >'+decodeURIComponent(obj[i].benrolldate).replace(/\+/gi, "  ")+"</td>"
+	                + "</tr>" ;
+	       } //for in문1 끗
+	   		 $('#selectTable').html(values); 
+	       
+	       
+//2. 요청한 업무 테이블에 뿌리기 (작성자는 로그인한 사용자)
+			values2 =  '<thead><tr style="vertical-align: middle; text-align: center;"><th>유형</th><th>제목</th>	<th>내용</th><th>등록일</th></tr></thead>';
+			
+	   		for(var i in obj){
+	   		 if(( obj.bucode == '${ucode}' ) && ( decodeURIComponent(obj[i].bkind) == '요청'  ) ){
+		    	   values2 += '<tr id="trclick'+obj[i].bno+'" onclick="detailviewload(this.id);" style="cursor:hand;">';
 	       		   
-				 if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="요청"){
-	           		 values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #047AAC; margin-top:30px; vertical-align: middle; "'+'>요 청</strong></td>'
-	           	 }
-	           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="진행"){
-	           		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #173192; margin-top:30px; vertical-align: middle; "'+'>진 행</strong></td>'
-	           	 }
-	           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "피드백"){
-	           		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #f4b30d; margin-top:30px; vertical-align: middle; "'+'>피드백</strong></td>'
-	           	 }
-	           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "완료"){
-	           		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #0C860F; margin-top:30px; vertical-align: middle; "'+'>완 료</strong></td>'
-	           	 }
-	           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="보류"){
-	           		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #6b6d7d; margin-top:30px; vertical-align: middle; "'+'>보 류</strong></td>'
-	           	 }
-		            	 
-		            	values  +='<td  style="vertical-align: middle;">' + decodeURIComponent(obj[i].btitle).replace(/\+/gi, "  ") + "</td>"
-		                 
-		                      +'<td style="vertical-align: middle; ">' + decodeURIComponent(obj[i].bcontent).replace(/\+/gi, "  ") + "</td>"
-		                
-		                      +'<td style="vertical-align: middle; text-align: center;" >'+decodeURIComponent(obj[i].benrolldate).replace(/\+/gi, "  ")+"</td>"
-		                + "</tr>"
-		       } //for in
-		       
-		       
-	
-		   		 $('#selectTable').html(values); 
+					 if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="요청"){
+		           		 values2 +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #047AAC; margin-top:30px; vertical-align: middle; "'+'>요 청</strong></td>'
+		           	 }
+		           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="진행"){
+		           		values2 +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #173192; margin-top:30px; vertical-align: middle; "'+'>진 행</strong></td>'
+		           	 }
+		           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "피드백"){
+		           		values2 +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #f4b30d; margin-top:30px; vertical-align: middle; "'+'>피드백</strong></td>'
+		           	 }
+		           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "완료"){
+		           		values2 +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #0C860F; margin-top:30px; vertical-align: middle; "'+'>완 료</strong></td>'
+		           	 }
+		           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="보류"){
+		           		values2 +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #6b6d7d; margin-top:30px; vertical-align: middle; "'+'>보 류</strong></td>'
+		           	 }
+			            	 
+			            	values2  +='<td  style="vertical-align: middle;">' + decodeURIComponent(obj[i].btitle).replace(/\+/gi, "  ") + "</td>"
+			                 
+			                      +'<td style="vertical-align: middle; ">' + decodeURIComponent(obj[i].bcontent).replace(/\+/gi, "  ") + "</td>"
+			                
+			                      +'<td style="vertical-align: middle; text-align: center;" >'+decodeURIComponent(obj[i].benrolldate).replace(/\+/gi, "  ")+"</td>"
+			                + "</tr>"
+			      $('#selectTable2').html(values2); 
+		       }// for in문2 끗 		
+	   		}
+	   		
+	   	 
+	   		
+	   		
+	   		
+//3. 요청받은 업무 테이블에 뿌리기 (작성자는 로그인한 사용자가 아니고 담당자는 사용자일때)
+		values3 =  '<thead><tr style="vertical-align: middle; text-align: center;"><th>유형</th><th>제목</th>	<th>내용</th><th>등록일</th></tr></thead>';
+		
+		for(var i in obj){
+			if(( obj.bucode != '${ucode}' ) && ( decodeURIComponent(obj[i].bkind) == '요청' ) && ( '{fn: contains('+decodeURIComponent(obj[i].bcharge)+', ${ucode} }') ) {	    	
+		    	   values3 += '<tr id="trclick'+obj[i].bno+'" onclick="detailviewload(this.id);" style="cursor:hand;">';
+	       		   
+					 if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="요청"){
+		           		 values3 +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #047AAC; margin-top:30px; vertical-align: middle; "'+'>요 청</strong></td>'
+		           	 }
+		           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="진행"){
+		           		values3 +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #173192; margin-top:30px; vertical-align: middle; "'+'>진 행</strong></td>'
+		           	 }
+		           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "피드백"){
+		           		values3 +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #f4b30d; margin-top:30px; vertical-align: middle; "'+'>피드백</strong></td>'
+		           	 }
+		           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "완료"){
+		           		values3 +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #0C860F; margin-top:30px; vertical-align: middle; "'+'>완 료</strong></td>'
+		           	 }
+		           	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="보류"){
+		           		values3 +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #6b6d7d; margin-top:30px; vertical-align: middle; "'+'>보 류</strong></td>'
+		           	 }
+			            	 
+			            	values3  +='<td  style="vertical-align: middle;">' + decodeURIComponent(obj[i].btitle).replace(/\+/gi, "  ") + "</td>"
+			                 
+			                      +'<td style="vertical-align: middle; ">' + decodeURIComponent(obj[i].bcontent).replace(/\+/gi, "  ") + "</td>"
+			                
+			                      +'<td style="vertical-align: middle; text-align: center;" >'+decodeURIComponent(obj[i].benrolldate).replace(/\+/gi, "  ")+"</td>"
+			                + "</tr>"
+			        $('#selectTable3').html(values3);
+		       }// for in문3 끗 
+	   		}
+	   		
 	       
 		}, 				
 		error: function(request, status, errorData){ //에러는 위에서 복붙
@@ -127,7 +219,7 @@ $(document).ready(function() {
 		}
 		
 	});
-
+	
 
 	$('.type').change(function(){
 		var types = [];
@@ -148,40 +240,42 @@ $(document).ready(function() {
 			dataType: "Json",
 			traditional: true,
 			success: function(obj){
+				if(obj[0].bno != null){
+					var values = '<thead><tr style="vertical-align: middle; text-align: center;"><th>유형</th><th>제목</th>	<th>내용</th><th>등록일</th></tr></thead>';
+					
+					$("#selectTable").empty();
+					//출력용 문자열 만들기 (for in 문을 사용해보자)
+					
+				 for(var i in obj){
 				
-				var values = '<thead><tr style="vertical-align: middle; text-align: center;"><th>유형</th><th>제목</th>	<th>내용</th><th>등록일</th></tr></thead>';
-				
-				$("#selectTable").empty();
-				//출력용 문자열 만들기 (for in 문을 사용해보자)
-				
-			 for(var i in obj){
-			
-				 values += '<tr id="trclick'+obj[i].bno+'" onclick="detailviewload(this.id);" style="cursor:hand;">';
-
-        		   
-				 if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="요청"){
-            		 values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #047AAC; margin-top:30px; vertical-align: middle; "'+'>요 청</strong></td>'
-            	 }
-            	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="진행"){
-            		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #173192; margin-top:30px; vertical-align: middle; "'+'>진 행</strong></td>'
-            	 }
-            	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "피드백"){
-            		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #f4b30d; margin-top:30px; vertical-align: middle; "'+'>피드백</strong></td>'
-            	 }
-            	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "완료"){
-            		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #0C860F; margin-top:30px; vertical-align: middle; "'+'>완 료</strong></td>'
-            	 }
-            	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="보류"){
-            		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #6b6d7d; margin-top:30px; vertical-align: middle; "'+'>보 류</strong></td>'
-            	 }	            	 
-		            	values  +='<td  style="vertical-align: middle;">' + decodeURIComponent(obj[i].btitle).replace(/\+/gi, "  ") + "</td>"
-		                 
-		                      +'<td style="vertical-align: middle; ">' + decodeURIComponent(obj[i].bcontent).replace(/\+/gi, "  ") + "</td>"
-		                
-		                      +'<td style="vertical-align: middle; text-align: center;" >'+decodeURIComponent(obj[i].benrolldate).replace(/\+/gi, "  ")+"</td>"
-		                + "</tr>"
-		       } //for in
-		   		 $('#selectTable').html(values); 	       
+					 values += '<tr id="trclick'+obj[i].bno+'" onclick="detailviewload(this.id);" style="cursor:hand;">';
+	
+	        		   
+					 if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="요청"){
+	            		 values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #047AAC; margin-top:30px; vertical-align: middle; "'+'>요 청</strong></td>'
+	            	 }
+	            	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="진행"){
+	            		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #173192; margin-top:30px; vertical-align: middle; "'+'>진 행</strong></td>'
+	            	 }
+	            	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "피드백"){
+	            		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #f4b30d; margin-top:30px; vertical-align: middle; "'+'>피드백</strong></td>'
+	            	 }
+	            	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") == "완료"){
+	            		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #0C860F; margin-top:30px; vertical-align: middle; "'+'>완 료</strong></td>'
+	            	 }
+	            	if(decodeURIComponent(obj[i].bkind).replace(/\+/gi, "  ") =="보류"){
+	            		values +=   '<td  style="vertical-align: middle; text-align: center;"><strong style='+'"font-size:12pt; color: #6b6d7d; margin-top:30px; vertical-align: middle; "'+'>보 류</strong></td>'
+	            	 }	            	 
+			            	values  +='<td  style="vertical-align: middle;">' + decodeURIComponent(obj[i].btitle).replace(/\+/gi, "  ") + "</td>"
+			                 
+			                      +'<td style="vertical-align: middle; ">' + decodeURIComponent(obj[i].bcontent).replace(/\+/gi, "  ") + "</td>"
+			                
+			                      +'<td style="vertical-align: middle; text-align: center;" >'+decodeURIComponent(obj[i].benrolldate).replace(/\+/gi, "  ")+"</td>"
+			                + "</tr>"
+			       } //for in
+			   		 $('#selectTable').html(values); 	  
+				}
+		       
 			}, 				
 			error: function(request, status, errorData){ //에러는 위에서 복붙
 				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
@@ -189,7 +283,16 @@ $(document).ready(function() {
 		});	
 	}); 
 
+			
+	
 });//document.ready 끗
+function test() {
+	
+	alert("들어옴");
+	var bkind = $("input[name=bkind]:checked").val();
+	alert(bkind);
+};		
+
 
 	function detailviewload(id){
 		var bno = id.replace('trclick', '');
@@ -203,27 +306,44 @@ $(document).ready(function() {
 			success: function(obj){
 			
 			var values = '';
-			$("#detail-table").empty();
-			
+			$("#detail-content").empty();
+			//테이블 열고
+			values += '<table class="table"  width: 100%;">';
 			values += '<tr><th style="width: 18%; text-align: center; vertical-align:middle;">제목</th><td style="vertical-align:middle;">'+decodeURIComponent(obj.btitle).replace(/\+/gi, "  ")+'</td></tr>';
 			
 			values += '<tr><th style="width: 15%; text-align: center; vertical-align:middle;">작성자</th><td style="vertical-align:middle;">'+decodeURIComponent(obj.bwriter).replace(/\+/gi, "  ")+'</td></tr>';
 			
-			 if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") =="요청"){
-				 values += '<tr><th style="width: 15%; text-align: center; vertical-align:middle;">유형</th><td style="vertical-align:middle;">요청</td></tr>';
-           	 }
-           	if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") =="진행"){
-           		values += '<tr><th style="width: 15%; text-align: center; vertical-align:middle;">유형</th><td style="vertical-align:middle;">진행</td></tr>';
-           	 }
-           	if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") == "피드백"){
-           		values += '<tr><th style="width: 15%; text-align: center; vertical-align:middle;">유형</th><td style="vertical-align:middle;">피드백</td></tr>';
-           	 }
-           	if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") == "완료"){
-           		values += '<tr><th style="width: 15%; text-align: center; vertical-align:middle;">유형</th><td style="vertical-align:middle;">완료</td></tr>';
-           	 }
-           	if(decodeURIComponent(obj.bkind).replace(/\+/gi, "  ") =="보류"){
-           		values += '<tr><th style="width: 15%; text-align: center; vertical-align:middle;">유형</th><td style="vertical-align:middle;">보류</td></tr>';
-           	 }	      
+			
+			//유형
+			values += '<tr><th style="width: 18%;vertical-align:middle;  text-align: center;">유형</th><td id="bkindtd">';
+			
+			if(decodeURIComponent(obj.bkind)=="요청"){
+				 values += '<div onclick="test();" class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary active"><input  class="bkind" type="radio" name="bkind" id="option1" value="요청" checked="checked">요청</label>';
+				 values += '<label class="btn btn-secondary"><input class="bkind" type="radio" name="bkind" class="bkind" id="option2" value="진행">진행</label><label class="btn btn-secondary"><input class="bkind" type="radio" name="bkind" id="option3" value="피드백">피드백</label>';
+				 values += '<label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind"  class="bkind" id="option3" value="완료">완료</label><label class="btn btn-secondary"><input  class="bkind" type="radio" name="bkind" id="option3" value="보류">보류</label></div>';
+          	 }
+          	if(decodeURIComponent(obj.bkind) =="진행"){
+          		values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind" id="option1" value="요청" >요청</label>';
+				 values += '<label class="btn btn-secondary active"><input  class="bkind" type="radio" name="bkind" id="option2" value="진행" checked="checked" >진행</label><label class="btn btn-secondary"><input  class="bkind" type="radio" name="bkind" id="option3" value="피드백">피드백</label>';
+				 values += '<label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind" id="option3" value="완료">완료</label><label class="btn btn-secondary"><input  class="bkind" type="radio" name="bkind" id="option3" value="보류">보류</label></div>';
+          	 }
+          	if(decodeURIComponent(obj.bkind) == "피드백"){
+          		values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary"><input  class="bkind" type="radio" name="bkind" id="option1" value="요청">요청</label>';
+				 values += '<label class="btn btn-secondary"><input  class="bkind" type="radio" name="bkind" id="option2" value="진행">진행</label><label class="btn btn-secondary active"><input class="bkind"  type="radio" name="bkind" id="option3" value="피드백" checked="checked">피드백</label>';
+				 values += '<label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind" id="option3" value="완료" >완료</label><label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind" id="option3" value="보류">보류</label></div>';
+          	 }
+          	if(decodeURIComponent(obj.bkind) == "완료"){
+          		values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind" id="option1" value="요청">요청</label>';
+				 values += '<label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind" id="option2" value="진행">진행</label><label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind" id="option3" value="피드백">피드백</label>';
+				 values += '<label class="btn btn-secondary active"><input class="bkind"  type="radio" name="bkind" id="option3" value="완료" checked="checked">완료</label><label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind" id="option3" value="보류">보류</label></div>';
+          	 }
+          	if(decodeURIComponent(obj.bkind) =="보류"){
+          		values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind" id="option1" value="요청">요청</label>';
+				 values += '<label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind" id="option2" value="진행">진행</label><label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind" id="option3" value="피드백">피드백</label>';
+				 values += '<label class="btn btn-secondary"><input  class="bkind" type="radio" name="bkind" id="option3" value="완료">완료</label><label class="btn btn-secondary active"><input class="bkind"  type="radio" name="bkind" id="option3" value="보류" checked="checked">보류</label></div>';
+          	 }	
+            values += '</td></tr>';
+			      
            	
            	if(obj.bchargename != null){
            		values += '<tr><th style="width: 15%; text-align: center; vertical-align:middle;">담당자</th><td style="vertical-align:middle;">'+decodeURIComponent(obj.bchargename).replace(/\,/gi, ",  ")+'</td></tr>';
@@ -245,9 +365,10 @@ $(document).ready(function() {
         		values += '<a href="bfdown.do?ofile='+decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ")+'&rfile='+decodeURIComponent(obj.brenamefile).replace(/\+/gi, "  ")+'">'+decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ")+'</a></td></tr>';
         	}
 			if(obj.bucode == '${ucode}'){
-				values += '<tr><td colspan="2" style="vertical-align:middle; text-align: right;"><button id="upbutton'+obj.bno+'" class="btn btn-sm btn-outline-info" onclick="moveUpdate(this.id);">수정</button>&nbsp;&nbsp;&nbsp;&nbsp;<button  id="delbutton'+obj.bno+'"  class="btn btn-sm btn-outline-danger" onclick="deleteBpost(this.id);">삭제</button>&nbsp;</td></tr>';
+				values += '<tr><td colspan="2" style="vertical-align:middle; text-align: right;"><button id="upbutton'+obj.bno+'" class="btn btn-sm btn-outline-info" onclick="moveUpdate(this.id); return false;">수정</button>&nbsp;&nbsp;&nbsp;&nbsp;<button  id="delbutton'+obj.bno+'"  class="btn btn-sm btn-outline-danger" onclick="deleteBpost(this.id); return false;">삭제</button>&nbsp;</td></tr>';
 			}
-	   		 $('#detail-table').html(values); 	       
+			values += '</table>';
+	   		 $('#detail-content').html(values); 	       
 			}, 				
 			error: function(request, status, errorData){ //에러는 위에서 복붙
 				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
@@ -285,7 +406,7 @@ $(document).ready(function() {
 				 values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary active"><input type="radio" name="bkind" id="option1" value="요청" checked="checked">요청</label>';
 				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option2" value="진행">진행</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="피드백">피드백</label>';
 				 values += '<label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="완료">완료</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="보류">보류</label></div>';
-          	 }
+          	}
           	if(decodeURIComponent(obj.bkind) =="진행"){
           		values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary"><input type="radio" name="bkind" id="option1" value="요청" >요청</label>';
 				 values += '<label class="btn btn-secondary active"><input type="radio" name="bkind" id="option2" value="진행" checked="checked" >진행</label><label class="btn btn-secondary"><input type="radio" name="bkind" id="option3" value="피드백">피드백</label>';
@@ -311,7 +432,7 @@ $(document).ready(function() {
             //담당자
             values += '<tr><th style="width: 18%;vertical-align:middle; text-align: center;" >담당자</th><td style="vertical-align:middle; text-align: left;">기존 담당자  : &nbsp; '+decodeURIComponent(obj.bchargename).replace(/\,/gi, ",  ")+'<br>';
             values += '<div style="padding-top: 10px; padding-bottom: 0px; margin-bottom: 0px;"><nav class="navbar navbar-expand navbar-light bg-light mb-4">';
-            values += '<div class="dropdown"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">담당자 수정</button><div id="selected"></div><div class="dropdown-menu" aria-labelledby="dropdownMenu2">';
+            values += '<div class="dropdown"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">담당자 수정</button><div id="selectedcc"></div><div class="dropdown-menu" aria-labelledby="dropdownMenu2">';
 
             <c:forEach var="i" items="${pmlist}" varStatus="status">
 				values += '<button class="dropdown-item" type="button" onclick="addbcharge${status.index}();" value="${i.ucode}">${i.uname}</button>';
@@ -382,7 +503,7 @@ $(document).ready(function() {
 	     var name = $(event.target).text();
 	     var code = $(event.target).val();
 	      
-	       $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
 	       //$('#bform').val(name); 
 	       
 	       $('#name0').val(name);
@@ -395,7 +516,7 @@ $(document).ready(function() {
 	   var name = $(event.target).text();
 	   var code = $(event.target).val();
 	   
-	    $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+	    $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
 	    //$('#bform').val(name); 
 	    
 	    $('#name1').val(name);
@@ -409,7 +530,7 @@ $(document).ready(function() {
 	function addbcharge2(){
 	      var name = $(event.target).text();
 	      var code = $(event.target).val();
-	       $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
 	       //$('#bform').val(name); 
 	       
 	      $('#name2').val(name);
@@ -422,7 +543,7 @@ $(document).ready(function() {
 	function addbcharge3(){
 	      var name = $(event.target).text();
 	      var code = $(event.target).val();
-	       $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
 	       //$('#bform').val(name); 
 	       
 	      $('#name3').val(name);
@@ -435,7 +556,7 @@ $(document).ready(function() {
 	function addbcharge4(){
 	      var name = $(event.target).text();
 	      var code = $(event.target).val();
-	       $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
 	       //$('#bform').val(name); 
 	       
 	      $('#name4').val(name);
@@ -448,7 +569,7 @@ $(document).ready(function() {
 	      var name = $(event.target).text();
 	      var code = $(event.target).val();
 	     
-	       $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
 	       //$('#bform').val(name); 
 	       
 	      $('#name5').val(name);
@@ -460,7 +581,7 @@ $(document).ready(function() {
 	function addbcharge6(){
 	      var name = $(event.target).text();
 	      var code = $(event.target).val();
-	       $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
 	       //$('#bform').val(name); 
 	       
 	      
@@ -481,93 +602,191 @@ $(document).ready(function() {
 		var result = "y";
 		$('#upc').var(result);
 	}
-	
+
 </script>
 
-</head>
-
 <body id="page-top">
-<!-- 1.탑바 임포트 -->
-	<c:import url="/WEB-INF/views/abc/topbar.jsp"></c:import>
+
+	<!-- 11111111111111111 -->
+	<c:import url="/WEB-INF/views/suugit/topbar.jsp"></c:import>
+
+	<div style="width: 100%; display: flex; justify-content: center; align-item: center;">
+		<!-- Sidebar2right -->
+		<c:import url="/WEB-INF/views/abc/entersideFixed.jsp"></c:import>
+		<!-- End of Sidebar2right -->
+		<!-- 111111111111111111 -->
+
+
+		<!-- Page Wrapper -->
+		<div id="wrapper" style="width: 1300px;">
+
+			<!-- Sidebar -->
+			<div style="width: 17%"></div>
+			<!-- End of Sidebar -->
+
+			<!-- Content Wrapper -->
+			<div id="content-wrapper" class="d-flex flex-column bg-white"
+				style="width: 62%;">
+
+				<!-- Main Content -->
+				<div id="content">
+
+					<!-- Topbar -->
+					<br> <br> <br> <br>
+					<!-- End of Topbar -->
+
+					<!-- Begin Page Content -->
+					<div class="container-fluid col-text-left float-left" style="min-width: fit-content; max-width: 97%;">
+
+					 <div class="card mb-4" style="border-style:none; ">
+					     
+					        
+					           <div class="card-body">
+					          <ul class="nav nav-tabs" style="margin-bottom: 0px; width: 100%;" id="myTab" role="tablist">
+							<li class="nav-item">
+							    <a class="nav-link active" id="allBpost-tab" data-toggle="tab" href="#project" role="tab" aria-controls="profile" aria-selected="true"><strong>전체업무</strong></a>
+							  </li>
+							  <li class="nav-item">
+							    <a class="nav-link " id="request-tab" data-toggle="tab" href="#pmember" role="tab" aria-controls="pmember" aria-selected="false"><strong>요청한 업무</strong></a>
+							  </li>
+							  <li class="nav-item">
+							    <a class="nav-link" id="requested-tab" data-toggle="tab" href="#npmember" role="tab" aria-controls="npmember" aria-selected="false"><strong>요청받은 업무</strong></a>
+							  </li>
+							  </ul>
+					        </div>
+					        
+					        
+		          
+ <div class="tab-content mt-3">
+ 
+<!--  업무 전체 모아보기 --> 
+ <div class="tab-pane fade show active" id="project" role="tabpanel" aria-labelledby="nav-allBpost-tab">
+
+<div id="tableview" style="border: none;" class="card mb-4 py-3 ">
+
+<div class="card-body" style="overflow: auto;">
+<div class="checks" align="right" style="margin-left: 1%; font-size: 17px; font-weight: bold; " >
+<form action="#">
+	<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox1" class="type" name="type" type="checkbox"  value="요청" checked="checked">&nbsp;요 청&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox2" class="type" name="type" type="checkbox"  value="진행" checked="checked">&nbsp;진 행&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox3" class="type" name="type" type="checkbox"  value="피드백" checked="checked">&nbsp;피드백&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox4" class="type" name="type" type="checkbox"  value="완료" checked="checked">&nbsp;완 료&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox5" class="type" name="type" type="checkbox" value="보류" checked="checked">&nbsp;보 류&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+	</form>
+</div>
+				<div id ="bpost_table"  class="table-responsive">
+				
+				
+					<table class="table table-hover" id="selectTable"
+						style="width: 100%; cellspacing: 0;">
+			<colgroup>
+			    <col style="width:15%" >
+			    <col style="width:25%">
+			    <col style="width:40%">
+			    <col style="width:20%">
+			  </colgroup> 
+				<thead>
+					<tr>
+						<th>유형</th>
+						<th>제목</th>
+						<th>내용</th>													
+						<th>등록일</th>
+					</tr>
+				</thead>
+				
+				<tbody id = "bpost_tbody">
+				<tr><td style="text-align: center; vertical-align: middle;" colspan="4">조회하신 유형의 게시글이 없습니다</td></tr>
+				</tbody>
+				
+			</table>
+
+		</div>
+	</div>
+</div>
+</div>
+					          
 	
-<!-- 2.바로아래div추가 및 임포트 추가  -->
-	<div style="width:100%;display:flex;justify-content:center;align-item:center;">
-<!-- Sidebar2right -->
-     <c:import url="/WEB-INF/views/abc/entersideFixed.jsp"></c:import>
-<!-- End of Sidebar2right -->
-
 	
-	<div id="wrapper"  style="width:1300px;">
+	
+					          
+<!-- 요청한 업무 -->
+<div class="tab-pane fade " id="pmember" role="tabpanel" aria-labelledby="nav-request-tab">
+    
+<div id="tableview2" style="border: none;" class="card mb-4 py-3 ">
+<div class="card-body" style="overflow: auto;">
 
-		<!-- Sidebar -->
-<div style="width:17%"></div>
-		<!-- End of Sidebar -->
-
-		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column bg-white"  style="width:62%;">
-
-			<!-- Main Content -->
-			<div id="content" style="width:100%;">
-
-				<!-- Topbar -->
-<br><br><br><br>
-				<!-- End of Topbar -->
-
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
-
-
-						<!-- 업무 모아보기 시작 -->
-						 
-							<div id="tableview" class="card mb-4 py-3 ">
-								<div style="font-size:15pt; margin-top: 10px; margin-left: 15px;margin-bottom: 0px;">
-									<strong>&nbsp;&nbsp;${sessionScope.uname } </strong>님의 업무 모아보기								
-								</div>
-								<!-- 게시글안쪽 -->
-
-								<div class="card-body" style="overflow: auto;">
-								<div class="checks" align="right" style="margin-left: 1%; font-size: 17px; font-weight: bold; " >
-						<form action="#">
-							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox1" class="type" name="type" type="checkbox"  value="요청" checked="checked">&nbsp;요 청&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox2" class="type" name="type" type="checkbox"  value="진행" checked="checked">&nbsp;진 행&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox3" class="type" name="type" type="checkbox"  value="피드백" checked="checked">&nbsp;피드백&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox4" class="type" name="type" type="checkbox"  value="완료" checked="checked">&nbsp;완 료&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label class="checkbox-inline"><input id="inlineCheckbox5" class="type" name="type" type="checkbox" value="보류" checked="checked">&nbsp;보 류&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-						</form>
-					</div>
-									<div id ="bpost_table"  class="table-responsive">
-									
-									
-										<table class="table table-hover" id="selectTable"
-											style="width: 100%; cellspacing: 0;">
-											<colgroup>
-											    <col style="width:15%" >
-											    <col style="width:25%">
-											    <col style="width:40%">
-											    <col style="width:20%">
-											  </colgroup> 
-											<thead>
-												<tr>
-													<th>유형</th>
-													<th>제목</th>
-													<th>내용</th>													
-													<th>등록일</th>
-												</tr>
-											</thead>
-											
-											<tbody id = "bpost_tbody">
-											
-											</tbody>
-											
-										</table>
-							
-									</div>
-								</div>
-							</div>
+				<div id ="bpost_table2"  class="table-responsive">
+		
+					<table class="table table-hover" id="selectTable2"
+						style="width: 100%; cellspacing: 0;">
+			<colgroup>
+			    <col style="width:15%" >
+			    <col style="width:25%">
+			    <col style="width:40%">
+			    <col style="width:20%">
+			  </colgroup> 
+				<thead>
+					<tr>
+						<th>유형</th>
+						<th>제목</th>
+						<th>내용</th>													
+						<th>등록일</th>
+					</tr>
+				</thead>
 				
+				<tr><td style="text-align: center; vertical-align: middle;" colspan="4">요청하신 업무가 없습니다</td></tr>
+				<tbody id = "bpost_tbody2">
 				
+				</tbody>
 				
-						
+			</table>
+
+		</div>
+	</div>
+</div>
+</div>
+					       
+			
+
+
+
+
+<!-- 요청받은 업무 -->		       
+<div class="tab-pane fade" id="npmember" role="tabpanel" aria-labelledby="nav-requested-tab">
+<div id="tableview3" style="border: none;" class="card mb-4 py-3 ">
+<div class="card-body" style="overflow: auto;">
+
+				<div id ="bpost_table3"  class="table-responsive">
+		
+					<table class="table table-hover" id="selectTable3"
+						style="width: 100%; cellspacing: 0;">
+			<colgroup>
+			    <col style="width:15%" >
+			    <col style="width:25%">
+			    <col style="width:40%">
+			    <col style="width:20%">
+			  </colgroup> 
+				<thead>
+					<tr>
+						<th>유형</th>
+						<th>제목</th>
+						<th>내용</th>													
+						<th>등록일</th>
+					</tr>
+				</thead>
+				
+				<tbody id = "bpost_tbody3">
+				<tr><td style="text-align: center; vertical-align: middle;" colspan="4">요청받은 업무가 없습니다</td></tr>
+				</tbody>
+				
+			</table>
+
+		</div>
+	</div>
+</div>
+
+</div>
+
 <!-- 상세보기 페이지 -->
 
     <!-- The Modal -->
@@ -617,26 +836,18 @@ $(document).ready(function() {
     </div>
         <!--End Modal-->
 
+			       
+</div><!-- tab-content mt-3 끝 -->
+					      
 
-
-
-
-
-
-
-
-					
-
-		<br>
+					</div>
+					<!-- /.container-fluid -->
 
 				</div>
-				<!-- /.container-fluid -->
-
-			</div>
 				<!-- End of Main Content -->
 
-								<!-- Footer -->
-				<footer class="sticky-footer bg-white">
+				<!-- Footer -->
+				<footer style="align-content: flex-end;" class="sticky-footer bg-white">
 					<div class="container my-auto">
 						<div class="copyright text-center my-auto">
 							<span>Copyright &copy; Your Website 2020</span>
@@ -645,37 +856,45 @@ $(document).ready(function() {
 				</footer>
 				<!-- End of Footer -->
 
-
 			</div>
 			<!-- End of Content Wrapper -->
-<div style="width:25%"></div>
+			<div style="width: 25%"></div>
 		</div>
 		<!-- End of Page Wrapper -->
-			
 	</div>
+	<!-- div flex -->
+	</div>
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
+	  
+	
+	<!-- Bootstrap core JavaScript-->
+	<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
+	<script src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-		<!-- Bootstrap core JavaScript-->
-		<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
-		<script
-			src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-		<!-- Core plugin JavaScript-->
-		<script
-			src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
 
-		<!-- Custom scripts for all pages-->
-		<script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
+	<!-- Page level plugins -->
+	<script
+		src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+	<!-- Page level custom scripts -->
+	<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
 
-		<!-- Page level plugins -->
-		<script
-			src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
-		<script
-			src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-		<!-- Page level custom scripts -->
-		<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
 
-						
+
+
+
 </body>
 
 </html>
