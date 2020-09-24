@@ -25,7 +25,7 @@ public interface RedService {
 	ArrayList<UserProject> selectStar(String ucode);
 	ArrayList<UserProject> selectCheckStar(Star star);
 	Project selectProject(String project_num) ;
-	int delStar(UserProject up);
+	int deleteStar(UserProject up);
 	int insertProject2(UserProject project);
 	ArrayList<MemberProject> selectMemberList(String pnum);
 	ArrayList<Bpost> selectBpost(String pnum);
@@ -35,12 +35,13 @@ public interface RedService {
 	ArrayList<Progress> selectProgressList(String pnum);
 	ArrayList<Chatting> selectChat(String pnum);
 	int insertChat(Chatting chat);
-	int delChat(Chatting chat);
-	int delChatAll(Chatting c);
+	int deleteChat(Chatting chat);
+	int deleteChatAll(Chatting c);
 	ArrayList<PostPlus> selectAllPost(String pnum);
 	ArrayList<Cpost> selectCpost(String pnum);
 	ChatSpeed selectChatSpeed(ChatSpeed c);
 	int updateChatSpeed(ChatSpeed c);
 	int insertCalendar(Calendar calendar);
 	ArrayList<Calendar> selectCalendar(PjMember pj);
+	int deleteCalendar(Calendar calendar);
 }

@@ -26,6 +26,8 @@ function showCalendar(){
       selectMirror: true,
       select: function(arg) {
       var title = prompt('일정 메모');
+      //arg.view.dateEnv.locale.codeArg = 'kr';
+      //arg.view.dateEnv.locale.codes = ['kr'];
       //ajax insert 시작////////////////////////
       var argAllDay = 1;
       if(arg.allDay != true){
@@ -53,8 +55,8 @@ function showCalendar(){
         			ucode : $("#calucode").val(), 
         			uname : $("#caluname").val(),
         			title : title,
-        			start_date : arg.start.getTime()/1000,
-        			end_date : arg.end.getTime()/1000,
+        			start_date : /*arg.start.toISOString(),*/arg.start.getTime(),
+        			end_date : /*arg.end.toISOString(),*/arg.end.getTime(),
         			allday : argAllDay
         		},
         		type: "post",
@@ -84,20 +86,16 @@ function showCalendar(){
         calendar.unselect()
       },
       eventClick: function(arg) {
-    	  console.log('--삭제 시작------------------------');
-          console.log(arg);
-          console.log('-- 삭제 끝---------------------------');
-    	  if (confirm('Are you sure you want to delete this event?')) {
-        	$(function(){// 삭제 에이작스 시작
+    	  console.log(arg.el.innerText.length)
+    	  console.log(arg.el.innerText)
+    	  if (confirm(arg.el.innerText +'일정을 모두 삭제 합니다.')) {
+    		  $(function(){// 삭제 에이작스 시작
             	$.ajax({
-            		url:"sendCalendar.do",
+            		url:"deleteCalendar.do",
             		data:{
             			pnum : $("#calpnum").val(), 
             			ucode : $("#calucode").val(), 
-            			title : title,
-            			start_date : arg.start.getTime()/1000,
-            			end_date : arg.end.getTime()/1000,
-            			allday : argAllDay
+            			title : arg.el.innerText.substring(4,arg.el.innerText.length),
             		},
             		type: "post",
             		success: function(result){
@@ -126,10 +124,9 @@ function showCalendar(){
           </c:if>
           {
             title: '${calIndex.title}',
-            start: new Date(${calIndex.start_date} * 1000),
-	        end: new Date(${calIndex.end_date} * 1000)
+         	start: new Date(${calIndex.start_date}),
+	        end: new Date(${calIndex.end_date})
           }
-  			
           </c:forEach>
   			
   		/* 	,{

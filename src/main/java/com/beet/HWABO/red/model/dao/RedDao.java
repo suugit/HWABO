@@ -138,5 +138,9 @@ public class RedDao {
 		List<Calendar> list = session.selectList("redMapper.selectCalendar", pj);
 		return (ArrayList<Calendar>)list;
 	}
+
+	public int deleteCalendar(Calendar calendar) {
+		return session.delete("redMapper.deleteCalendar", calendar);
+	}
 	
 }

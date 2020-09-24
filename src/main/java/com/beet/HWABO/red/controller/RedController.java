@@ -145,7 +145,7 @@ public class RedController {
 	@RequestMapping(value = "delStar.do", method = RequestMethod.GET)
 	public ModelAndView starDelete(UserProject up, ModelAndView mv) {
 		logger.info("[RedController]delStar.do 실행됨....");
-		if(redService.delStar(up) > 0) {
+		if(redService.deleteStar(up) > 0) {
 			mv.setViewName("redirect:/cards.do");
 		}else {
 			mv.addObject("message", "프로젝트 삭제 실패...");
@@ -524,7 +524,7 @@ public class RedController {
 			if(c.getContent() == null) {
 				c.setContent("비뜨");
 			}else if(c.getContent().equals("비트야 핵 사랑해")){
-				if(redService.delChatAll(c) > 0) {
+				if(redService.deleteChatAll(c) > 0) {
 					c.setContent("모든 데이터 삭제완료...");
 				}
 			}
@@ -589,7 +589,7 @@ public class RedController {
 		Timestamp t = Timestamp.valueOf(chat.getContent());
 		chat.setChat_time(t);
 		PrintWriter out = response.getWriter();
-		if(redService.delChat(chat) > 0) {
+		if(redService.deleteChat(chat) > 0) {
 			logger.info("선택한 채팅기록 삭제됨 ....");
 			out.append("ok");
 			out.flush();
@@ -736,6 +736,21 @@ public class RedController {
 		
 		return model;
 	}
+	@RequestMapping(value="deleteCalendar.do", method=RequestMethod.POST)
+	public void delCalendarMain(Calendar calendar, HttpServletResponse response) throws IOException {
+		logger.info("캘린더 일정삭제 중 ... : " + calendar);
+		response.setContentType("test/html; charset=utf-8"); //여기에 오타나면 파일 선택창이 뜬다
+			
+		PrintWriter out = response.getWriter();
+		if(redService.deleteCalendar(calendar) > 0) {
+			out.append("ok");
+			out.flush();
+		}else {
+			out.append("fail");
+			out.flush();
+		}
+		out.close();
+	}	
 ////views start//////////////////////////////
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)
 	public String suugitIndex(Model model) {

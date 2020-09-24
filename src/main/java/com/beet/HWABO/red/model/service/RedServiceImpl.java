@@ -66,7 +66,7 @@ public class RedServiceImpl implements RedService {
 	}
 
 	@Override
-	public int delStar(UserProject up) {
+	public int deleteStar(UserProject up) {
 		return redDao.delStar(up);
 	}
 
@@ -116,12 +116,12 @@ public class RedServiceImpl implements RedService {
 	}
 
 	@Override
-	public int delChat(Chatting chat) {
+	public int deleteChat(Chatting chat) {
 		return redDao.delChat(chat);
 	}
 
 	@Override
-	public int delChatAll(Chatting chat) {
+	public int deleteChatAll(Chatting chat) {
 		return redDao.delChatAll(chat);
 	}
 
@@ -153,6 +153,11 @@ public class RedServiceImpl implements RedService {
 	@Override
 	public ArrayList<Calendar> selectCalendar(PjMember pj) {
 		return redDao.selectCalendar(pj);
+	}
+
+	@Override
+	public int deleteCalendar(Calendar calendar) {
+		return redDao.deleteCalendar(calendar);
 	}
 	
 }

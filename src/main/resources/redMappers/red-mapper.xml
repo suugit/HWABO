@@ -291,6 +291,10 @@
 		delete from chatting where project_num = #{ project_num }
 </delete>
 
+<delete id="deleteCalendar" parameterType="com.beet.HWABO.red.model.vo.Calendar">
+		delete from calendar where title = #{ title } and ucode = #{ ucode } and pnum = #{ pnum }
+</delete>
+
 <update id="updateProjectProgress" parameterType="com.beet.HWABO.red.model.vo.MemberProject">
 		update project set goal = #{ goal }, done = #{ done } where project_num = #{ project_num }
 </update>
