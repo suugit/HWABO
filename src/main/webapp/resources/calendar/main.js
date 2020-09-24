@@ -5,7 +5,6 @@ Docs & License: https://fullcalendar.io/
 */
 var FullCalendar = (function (exports) {
     'use strict';
-
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
 
@@ -2300,6 +2299,7 @@ var FullCalendar = (function (exports) {
             var instance = eventStore.instances[instanceId];
             var def = eventStore.defs[instance.defId];
             var ui = eventUis[def.defId];
+console.log("1");
             var origRange = instance.range;
             var normalRange = (!def.allDay && nextDayThreshold) ?
                 computeVisibleDayRange(origRange, nextDayThreshold) :
@@ -2401,6 +2401,7 @@ var FullCalendar = (function (exports) {
     function buildSegCompareObj(seg) {
         var eventRange = seg.eventRange;
         var eventDef = eventRange.def;
+        console.log("2");
         var range = eventRange.instance ? eventRange.instance.range : eventRange.range;
         var start = range.start ? range.start.valueOf() : 0; // TODO: better support for open-range events
         var end = range.end ? range.end.valueOf() : 0; // "
@@ -2440,7 +2441,9 @@ var FullCalendar = (function (exports) {
         }
         if (displayEventTime && !eventDef.allDay && (seg.isStart || seg.isEnd)) {
             var segStart = startOverride || (seg.isStart ? eventInstance.range.start : (seg.start || seg.eventRange.range.start));
+            console.log("4");
             var segEnd = endOverride || (seg.isEnd ? eventInstance.range.end : (seg.end || seg.eventRange.range.end));
+            console.log("5");
             if (displayEventEnd && eventDef.hasEnd) {
                 return dateEnv.formatRange(segStart, segEnd, timeFormat, {
                     forcedStartTzo: startOverride ? null : eventInstance.forcedStartTzo,
@@ -3314,6 +3317,7 @@ var FullCalendar = (function (exports) {
             var start = dateEnv.createMarker(startInput);
             if (start && this._instance) { // TODO: warning if parsed bad
                 var instanceRange = this._instance.range;
+                console.log("6");
                 var startDelta = diffDates(instanceRange.start, start, dateEnv, options.granularity); // what if parsed bad!?
                 if (options.maintainDuration) {
                     this.mutate({ datesDelta: startDelta });
@@ -3336,6 +3340,7 @@ var FullCalendar = (function (exports) {
             if (this._instance) {
                 if (end) {
                     var endDelta = diffDates(this._instance.range.end, end, dateEnv, options.granularity);
+                    console.log("7");
                     this.mutate({ endDelta: endDelta });
                 }
                 else {
@@ -3360,6 +3365,7 @@ var FullCalendar = (function (exports) {
             }
             if (this._instance) {
                 var instanceRange = this._instance.range;
+                console.log("8");
                 // when computing the diff for an event being converted to all-day,
                 // compute diff off of the all-day values the way event-mutation does.
                 if (options.allDay === true) {
@@ -3416,12 +3422,14 @@ var FullCalendar = (function (exports) {
             var instance = this._instance;
             var formatter = createFormatter(formatInput);
             if (this._def.hasEnd) {
+            	console.log("9");
                 return dateEnv.formatRange(instance.range.start, instance.range.end, formatter, {
                     forcedStartTzo: instance.forcedStartTzo,
                     forcedEndTzo: instance.forcedEndTzo
                 });
             }
             else {
+            	console.log("10");
                 return dateEnv.format(instance.range.start, formatter, {
                     forcedTzo: instance.forcedStartTzo
                 });
@@ -3500,6 +3508,7 @@ var FullCalendar = (function (exports) {
         });
         Object.defineProperty(EventApi.prototype, "start", {
             get: function () {
+            	console.log("11");
                 return this._instance ?
                     this._context.dateEnv.toDate(this._instance.range.start) :
                     null;
@@ -3509,6 +3518,7 @@ var FullCalendar = (function (exports) {
         });
         Object.defineProperty(EventApi.prototype, "end", {
             get: function () {
+            	console.log("12");
                 return (this._instance && this._def.hasEnd) ?
                     this._context.dateEnv.toDate(this._instance.range.end) :
                     null;
@@ -3520,6 +3530,7 @@ var FullCalendar = (function (exports) {
             get: function () {
                 var instance = this._instance;
                 if (instance) {
+                	console.log("13");
                     return this._context.dateEnv.formatIso(instance.range.start, {
                         omitTime: this._def.allDay,
                         forcedTzo: instance.forcedStartTzo
@@ -3534,6 +3545,7 @@ var FullCalendar = (function (exports) {
             get: function () {
                 var instance = this._instance;
                 if (instance && this._def.hasEnd) {
+                	console.log("14");
                     return this._context.dateEnv.formatIso(instance.range.end, {
                         omitTime: this._def.allDay,
                         forcedTzo: instance.forcedEndTzo
@@ -4097,7 +4109,7 @@ var FullCalendar = (function (exports) {
     var globalLocales = [];
 
     var RAW_EN_LOCALE = {
-        code: 'kr',
+        code: 'en',
         week: {
             dow: 0,
             doy: 4 // 4 days need to be within the year to be considered the first week
@@ -4121,7 +4133,7 @@ var FullCalendar = (function (exports) {
         noEventsText: 'No events to display'
     };
     function organizeRawLocales(explicitRawLocales) {
-        var defaultCode = explicitRawLocales.length > 0 ? explicitRawLocales[0].code : 'kr';
+        var defaultCode = explicitRawLocales.length > 0 ? explicitRawLocales[0].code : 'en';
         var allRawLocales = globalLocales.concat(explicitRawLocales);
         var rawLocaleMap = {
             en: RAW_EN_LOCALE // necessary?
@@ -4204,7 +4216,7 @@ var FullCalendar = (function (exports) {
     }
     // TODO: more DRY and optimized
     function buildDateEnv(settings) {
-        var locale = buildLocale(settings.locale || 'kr', organizeRawLocales([]).map); // TODO: don't hardcode 'kr' everywhere
+        var locale = buildLocale(settings.locale || 'en', organizeRawLocales([]).map); // TODO: don't hardcode 'en' everywhere
         return new DateEnv(__assign(__assign({ timeZone: BASE_OPTION_DEFAULTS.timeZone, calendarSystem: 'gregory' }, settings), { locale: locale }));
     }
 
@@ -5195,6 +5207,7 @@ var FullCalendar = (function (exports) {
                 return instance; // isn't dependent on timezone
             }
             else {
+            	console.log("15");
                 return __assign(__assign({}, instance), { range: {
                         start: newDateEnv.createMarker(oldDateEnv.toDate(instance.range.start, instance.forcedStartTzo)),
                         end: newDateEnv.createMarker(oldDateEnv.toDate(instance.range.end, instance.forcedEndTzo))
@@ -5263,6 +5276,7 @@ var FullCalendar = (function (exports) {
         for (var subjectInstanceId in subjectInstances) {
             var subjectInstance = subjectInstances[subjectInstanceId];
             var subjectRange = subjectInstance.range;
+            console.log("16");
             var subjectConfig = subjectConfigs[subjectInstance.defId];
             var subjectDef = subjectDefs[subjectInstance.defId];
             // constraint
@@ -5276,6 +5290,7 @@ var FullCalendar = (function (exports) {
                 var otherInstance = otherInstances[otherInstanceId];
                 // intersect! evaluate
                 if (rangesIntersect(subjectRange, otherInstance.range)) {
+                	console.log("17");
                     var otherOverlap = otherConfigs[otherInstance.defId].overlap;
                     // consider the other event's overlap. only do this if the subject event is a "real" event
                     if (otherOverlap === false && interaction.isEvent) {
@@ -5296,6 +5311,7 @@ var FullCalendar = (function (exports) {
             for (var _i = 0, _a = subjectConfig.allows; _i < _a.length; _i++) {
                 var subjectAllow = _a[_i];
                 var subjectDateSpan = __assign(__assign({}, dateSpanMeta), { range: subjectInstance.range, allDay: subjectDef.allDay });
+                console.log("18");
                 var origDef = calendarEventStore.defs[subjectDef.defId];
                 var origInstance = calendarEventStore.instances[subjectInstanceId];
                 var eventApi = void 0;
@@ -5335,6 +5351,7 @@ var FullCalendar = (function (exports) {
             var relevantInstance = relevantInstances[relevantInstanceId];
             // intersect! evaluate
             if (rangesIntersect(selectionRange, relevantInstance.range)) {
+            	console.log("19");
                 if (selectionConfig.overlap === false) {
                     return false;
                 }
@@ -10863,6 +10880,7 @@ var FullCalendar = (function (exports) {
                     isEvent: true
                 };
                 if (hit) {
+                	console.log("20");
                     mutation = computeMutation(initialHit, hit, ev.subjectEl.classList.contains('fc-event-resizer-start'), eventInstance.range, context.pluginHooks.eventResizeJoinTransforms);
                 }
                 if (mutation) {
@@ -13781,9 +13799,11 @@ var FullCalendar = (function (exports) {
             else if (isMultiDayRange(seg.eventRange.range)) { // TODO: use (!isStart || !isEnd) instead?
                 if (seg.isStart) {
                     timeText = buildSegTimeText(seg, timeFormat, context, null, null, eventInstance.range.start, seg.end);
+                    console.log("21");
                 }
                 else if (seg.isEnd) {
                     timeText = buildSegTimeText(seg, timeFormat, context, null, null, seg.start, eventInstance.range.end);
+                    console.log("22");
                 }
                 else {
                     doAllDay = true;
@@ -14418,3 +14438,5 @@ var FullCalendar = (function (exports) {
     return exports;
 
 }({}));
+
+console.log("--------------");
