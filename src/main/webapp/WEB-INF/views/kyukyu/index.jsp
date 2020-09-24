@@ -434,7 +434,7 @@ function rereinsert(replyno, no){
         	  success : function(data){
   	        	console.log("댓글 insert 성공");
   	            if(data == "ok") {
-  	            	 replytList(replyno);  //댓글 작성 후 댓글 목록 reload
+  	            	replyList();  //댓글 작성 후 댓글 목록 reload
   	            	/* $("#reply_content_").val(''); */
   	            }else{
   	            	alert("댓글 등록 실패! 재시도 하시오")

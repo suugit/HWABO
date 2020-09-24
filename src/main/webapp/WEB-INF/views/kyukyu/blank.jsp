@@ -138,3 +138,119 @@
 					
 					}
 					
+					
+					
+					
+					
+<script type="text/javascript">
+
+/* 댓글기능 */
+
+$(document).ready(function(){
+   
+   replyList();   
+});
+   
+function replyList(){
+   
+   
+   console.log("댓글 리스트 들어옴");
+   
+   $.ajax({
+      
+      url:"replyList.do",
+      type: "post",
+      dataType: "json",
+      success: function(obj){
+         
+         console.log(obj);
+         
+         var objStr = JSON.stringify(obj);
+         var jsonObj = JSON.parse(objStr);
+         var output = "";
+         
+         
+      
+         
+         
+         for(var a= 0; a < ${requestScope.list.size()}; a++){ //전체 게시글 리스트
+            console.log("1번 포문");
+            var re = "";
+            
+            for(var i  in jsonObj.list){ //전체 댓글 리스트
+               
+               
+            
+               
+               console.log("2번 포문");
+               console.log("jsonObj.list[i].no"+jsonObj.list[i].no);
+               console.log("$('#commentList_'+a).val()"+ document.getElementById('commentList_'+a).getAttribute('name'));
+            
+            if(jsonObj.list[i].no == document.getElementById('commentList_'+a).getAttribute('name')){ //게시글과 댓글의 게시글 번호 비교
+               console.log("if 문");
+               console.log("${sessionScope.ucode}");
+               console.log( jsonObj.list[i].ucode);
+            
+               
+               
+               
+               
+            
+               if(jsonObj.list[i].kind == "0"){ //댓글일 때
+                  re += '<div role="alert" style="font-size:14px; padding: 0rem; border: 1px;">';
+                  re += '<br><div class="commentInfo'+jsonObj.list[i].replyno+'">'+' <div style="float:left;" name="작성자">&nbsp;'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</div>';
+                  if(jsonObj.list[i].secondenroll == null){
+                          re += '<small>&nbsp;&nbsp;'+ jsonObj.list[i].enrolldate+'</small>';
+                      }else{
+                          re += '<small>&nbsp;&nbsp; 수정일 '+ jsonObj.list[i].secondenroll+'</small>';
+                    }
+                    re += '<a onclick="commentRereply('+jsonObj.list[i].replyno+',\''+jsonObj.list[i].no+'\');"><div style="float:right;"> 답글 </a>';
+                    if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
+                       re += '<a onclick="commentUpdate('+jsonObj.list[i].replyno+',\''+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'\');"> 수정 </a>';
+                      re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제&nbsp;&nbsp; </a></div>';
+                      re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'"> &nbsp;내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " "); 
+                    }
+                  
+                  
+               }else{ //답글일 때
+                  re += '<div role="alert" style="font-size:14px; padding: 0rem; border: 1px; margin-left: 30px;">';
+                  re += '<div class="commentInfo'+jsonObj.list[i].replyno+'">'+' <div style="float:left;" name="작성자">&nbsp;'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</div> ';
+                  if(jsonObj.list[i].secondenroll == null){
+                          re += ' <small>&nbsp;&nbsp;'+ jsonObj.list[i].enrolldate+'</small>';
+                      }else{
+                          re += ' <small>&nbsp;&nbsp; 수정일 '+ jsonObj.list[i].secondenroll+'</small>';
+                    }
+                       /* re += '<a onclick="commentRereply('+jsonObj.list[i].replyno+',\''+jsonObj.list[i].no+'\');"> 답글 </a>'; */
+                   if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
+                      re += '<div style="float:right;"><a onclick="commentUpdate('+jsonObj.list[i].replyno+',\''+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'\');"> 수정 </a>';
+                     re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제&nbsp;&nbsp; </a></div>';
+                     re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'">&nbsp;답글내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ");
+                             
+                   }
+               
+               }
+               
+                  
+                  re += '<div class="Rere'+jsonObj.list[i].replyno+'"></div>';
+                  re += '</div></div>';
+           
+             }
+            
+         
+            $("#commentList_"+a).html(re);
+         
+            }
+      
+         }
+      
+      },
+      error: function(request, status, errorData){ 
+         console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+      }
+      
+   });
+   
+   
+   
+}
+</script>
