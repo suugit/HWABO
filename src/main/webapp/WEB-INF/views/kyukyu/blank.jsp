@@ -84,7 +84,9 @@
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a
 								sapien odio, sit amet
 
-							</div></li>
+							</div>
+							
+							</li>
 					</ul>
 					
 					
