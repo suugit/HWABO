@@ -71,7 +71,7 @@ public class abcController {
 //========== 페이지 이동 ==================================================	
 	@RequestMapping("tabtest.do")
 	public String selectPostTest() {
-		return "abc/invtmanage";
+		return "abc/myBPOST2";
 	}
 
 	
@@ -240,40 +240,39 @@ public class abcController {
 	@RequestMapping(value = "chooseBpost.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String chooseBpostMethod(HttpServletResponse response, @RequestParam("ucode") String ucode,
-			@RequestParam("pnum") String pnum, @RequestParam("types") List<String> types, Model m)
+			@RequestParam("pnum") String pnum, @RequestParam(name="types", required = false) List<String> types, Model m)
 			throws UnsupportedEncodingException {
-		logger.info(types.toString());
-		logger.info("@@@@@@@@@@@@@@@@@@@ chooseBpost 들어옴 @@@@@@@@@@@@@@@@ ");
-		logger.info(ucode.toString());
+
 		
-		Bpostchk chk = new Bpostchk(ucode, pnum, types);
-
-		ArrayList<Bpost> list = spostService.chooseBpost(chk);
-
 		// 전송용 json 객체 준비
 		JSONObject sendJson = new JSONObject();
 
 		// json 배열 객체 생성
 		JSONArray jarr = new JSONArray();
+		
+		if(types != null) {
+			Bpostchk chk = new Bpostchk(ucode, pnum, types);
 
-		// list 를 jarr 로 옮겨담기 (일종의 복사)
-		for (Bpost bpost : list) { // user 객체 저장용 json 객체
-			JSONObject job = new JSONObject();
-			job.put("bno",bpost.getBno());
-			job.put("bkind", URLEncoder.encode(bpost.getBkind(), "utf-8"));
-			job.put("btitle", URLEncoder.encode(bpost.getBtitle(), "utf-8"));
-
-			if (bpost.getBcontent() != null) {
-				job.put("bcontent", URLEncoder.encode(bpost.getBcontent(), "utf-8"));
-			} else {
-				job.put("bcontent", URLEncoder.encode(" ", "utf-8"));
+			ArrayList<Bpost> list = spostService.chooseBpost(chk);
+			// list 를 jarr 로 옮겨담기 (일종의 복사)
+			for (Bpost bpost : list) { // user 객체 저장용 json 객체
+				JSONObject job = new JSONObject();
+				job.put("bno",bpost.getBno());
+				job.put("bkind", URLEncoder.encode(bpost.getBkind(), "utf-8"));
+				job.put("btitle", URLEncoder.encode(bpost.getBtitle(), "utf-8"));
+	
+				if (bpost.getBcontent() != null) {
+					job.put("bcontent", URLEncoder.encode(bpost.getBcontent(), "utf-8"));
+				} else {
+					job.put("bcontent", URLEncoder.encode(" ", "utf-8"));
+				}
+				job.put("benrolldate", bpost.getBenrolldate().toString());
+	
+				// jarr에 json 객체 저장
+				jarr.add(job);
 			}
-			job.put("benrolldate", bpost.getBenrolldate().toString());
 
-			// jarr에 json 객체 저장
-			jarr.add(job);
 		}
-		logger.info(jarr.toString());
 		return jarr.toJSONString();
 
 	}
@@ -300,26 +299,21 @@ public class abcController {
 
 			if (bpost.getBstartday() != null) {
 				job.put("bstartday", bpost.getBstartday().toString());
-			} else {
-				job.put("bstartday", URLEncoder.encode(" ", "utf-8"));
 			}
 			
 			if (bpost.getBendday() != null) {
 				job.put("bendday", bpost.getBendday().toString());
-			} else {
-				job.put("bendday", URLEncoder.encode(" ", "utf-8"));
 			}
 			
 			if (bpost.getBcontent() != null) {
 				job.put("bcontent", URLEncoder.encode(bpost.getBcontent(), "utf-8"));
-			} else {
-				job.put("bcontent", URLEncoder.encode(" ", "utf-8"));
+			}else {
+				job.put("bcontent", URLEncoder.encode("", "utf-8"));
 			}
 			
 			if (bpost.getBchargename() != null) {
+				job.put("bcharge", URLEncoder.encode(bpost.getBcharge(), "utf-8"));
 				job.put("bchargename", URLEncoder.encode(bpost.getBchargename(), "utf-8"));
-			} else {
-				job.put("bchargename", URLEncoder.encode(" ", "utf-8"));
 			}
 
 			job.put("benrolldate", bpost.getBenrolldate().toString());
@@ -331,7 +325,7 @@ public class abcController {
 		return jarr.toJSONString();
 
 	}
-
+	
 	// 업무 모아보기 페이지 조회용
 	@RequestMapping("mybpost.do")
 	public String selectMyBPOST(Model model, PjMember pmember) {
