@@ -1,6 +1,8 @@
 package com.beet.HWABO.suugit.controller;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -13,6 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.mail.MessagingException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,8 +28,6 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -56,8 +57,8 @@ import com.beet.HWABO.member.model.vo.MailUtils;
 import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.NaverLoginUtil;
 import com.beet.HWABO.member.model.vo.PjMember;
-import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.red.model.vo.Project;
+import com.beet.HWABO.test.controller.FileDownloadView;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
@@ -852,6 +853,24 @@ public class SuugitController {
 		}
 		return mv;
 	}
+	
+
+	@RequestMapping("selcpnew.do")
+	public ModelAndView selectCpNew(HttpServletRequest request, ModelAndView mv) {
+
+		logger.info(request.getParameter("cno"));
+		Cpost cpost = cservice.selectCpOne(request.getParameter("cno"));
+
+		if (cpost != null) {
+			mv.addObject("c", cpost);
+			mv.setViewName("suugit/cpnew");
+		} else {
+			mv.addObject("message", "글을 조회할 수 없습니다!");
+			mv.setViewName("common/error");
+		}
+		return mv;
+	}
+	
 
 	@RequestMapping("mvupcp.do")
 	public String moveUpdateCpost(Cpost cpost, Model model) {
@@ -865,29 +884,43 @@ public class SuugitController {
 	public JSONObject updateCpost(Cpost cpost, AddOn addon, ModelAndView mav, MultipartHttpServletRequest request)
 			throws UnsupportedEncodingException {
 		
-		String cno = addon.getCno();
+		String cno = cpost.getCno();
 		logger.info(cno + "게시글 수정");
-		logger.info(request.getParameter("cflist"));
-
+		logger.info(request.getParameter("cflist").toString());
+		
 		int r = cservice.updateCpost(cpost);
 			
 		String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 
+		String cflist = request.getParameter("cflist");
 		List<MultipartFile> fileList = request.getFiles("file");
 		JSONObject obj = new JSONObject();
-		
-		if(request.getParameter("cflist") == null) {
-			addon.setRfile1(null);
-			addon.setRfile2(null);
-			addon.setRfile3(null);
-		}else {
+		System.out.println(cflist);
+		System.out.println(fileList);
+		if(request.getParameter("cflist").equals("")) {
+			obj.put("cno", cpost.getCno());
+			obj.put("ctitle", cpost.getCtitle());
+			obj.put("ccontent", cpost.getCcontent());
+			
+			cpost = cservice.selectCpOne(request.getParameter("cno"));
+			if(cpost.getOfile1() != null) {
+				cservice.deleteAddon(cno);
+				
+				}
+			}
+		else {
 			String oFileName = "";
 			
-			addon.setRfile1(addon.getRfile1());
-			addon.setRfile2(addon.getRfile2());
-			addon.setRfile3(addon.getRfile3());
+			AddOn addNew = new AddOn();
 			
+			cpost = cservice.selectCpOne(request.getParameter("cno"));
+			System.out.println(cpost.getOfile1());
+			System.out.println(cpost.getRfile1());
+			System.out.println(cpost.getOfile2());
+			System.out.println(cpost.getRfile2());
+			System.out.println(cpost.getOfile3());
+			System.out.println(cpost.getRfile3());
 			for (MultipartFile filePart : fileList) {
 
 				int i = 0;
@@ -911,31 +944,41 @@ public class SuugitController {
 						}
 
 					}
-					if (addon.getRfile1() == null) {
-						addon.setOfile1(oFileName);
-						addon.setRfile1(rfileName);
+					if (cpost.getRfile1() == null && addNew.getRfile1() == null) {
+						addNew.setOfile1(oFileName);
+						addNew.setRfile1(rfileName);
 					
 						logger.info("첫번째 추가 ");
 						System.out.println("첫번쨰" + oFileName + rfileName);
+						i++;
 						break;
-					} else if (addon.getRfile2() == null) {
-						addon.setOfile2(oFileName);
-						addon.setRfile2(rfileName);
+					} else if (cpost.getRfile2() == null && addNew.getRfile2() == null) {
+						addNew.setOfile2(oFileName);
+						addNew.setRfile2(rfileName);
 							
 						logger.info("두번째 추가");
 						System.out.println("e번쨰" + oFileName + rfileName);
+						i++;
 						break;
-					} else if (addon.getRfile3() == null) {
-						addon.setOfile3(oFileName);
-						addon.setRfile3(rfileName);
+					} else if (cpost.getRfile3() == null ) {
+						addNew.setOfile3(oFileName);
+						addNew.setRfile3(rfileName);
 						System.out.println("3번쨰" + oFileName + rfileName);
 						logger.info("세번째 추가");
+						i++;
 						break;
 					}
 
 				}
 			}
-			int result1 = cservice.updateCfile(addon);
+			addNew.setCno(cno);
+			System.out.println(addNew.getOfile1());
+			System.out.println(addNew.getRfile1());
+			System.out.println(addNew.getOfile2());
+			System.out.println(addNew.getRfile2());
+			System.out.println(addNew.getOfile1());
+			System.out.println(addNew.getRfile3());
+			int result1 = cservice.updateCfile(addNew);
 			
 			cpost = cservice.selectCpOne(request.getParameter("cno"));
 			obj.put("ofile1", cpost.getOfile1());
@@ -946,12 +989,61 @@ public class SuugitController {
 			obj.put("rfile3", cpost.getRfile3());
 			obj.put("ctitle", cpost.getCtitle());
 			obj.put("ccontent", cpost.getCcontent());
+			obj.put("cno", cpost.getCno());
 			
 		}
 		
 		return obj;
 	}
+	
+	@RequestMapping(value = "cfiledown.do")
+	public void cFileDown(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String oName = request.getParameter("ofile");
+		String rName = request.getParameter("rfile");
+		
+		BufferedInputStream buffer = null;
+		ServletOutputStream serout = null;
 
+		logger.info(oName+ " 파일다운로드 요청" );
+
+		String dir = request.getSession().getServletContext().getRealPath("resources/bupfile");
+		File savedFile = new File(dir + "/" + rName);
+		try {
+			FileInputStream fis = new FileInputStream(savedFile);
+			buffer = new BufferedInputStream(fis);
+			serout = response.getOutputStream();
+
+			String resFilename = "";
+			boolean isMSIE = request.getHeader("user-agent").indexOf("MSIE") != -1
+					|| request.getHeader("user-agent").indexOf("Trident") != -1;
+			if (isMSIE) {
+				resFilename = URLEncoder.encode(oName, "UTF-8");
+				resFilename = resFilename.replaceAll("\\+", "%20");
+			} else {
+				resFilename = new String(oName.getBytes("UTF-8"), "ISO-8859-1");
+
+			}
+			response.setContentType("application/octet-stream;charset=utf-8");
+			response.addHeader("Content-Disposition", "attachment;filename=\"" + resFilename + "\"");
+			response.setContentLength((int) savedFile.length());
+
+			int read = 0;
+			while ((read = buffer.read()) != -1) {
+				serout.write(read);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				serout.close();
+				buffer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+		
 	@RequestMapping("delcp.do")
 	public String deleteCpost(@RequestParam("cno") String cno, AddOn addon, Model model, HttpServletRequest request) {
 

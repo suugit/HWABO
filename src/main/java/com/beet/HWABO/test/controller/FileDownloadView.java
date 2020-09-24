@@ -20,17 +20,14 @@ import org.springframework.web.servlet.view.AbstractView;
 //일반 클래스 
 @Component("filedown") //stereotype component
 public class FileDownloadView extends AbstractView{
-
 	
 	private static final Logger logger = LoggerFactory.getLogger(FileDownloadView.class);
-	//extends 쓰고 import , unimple~~ 클릭
 	
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		//컨트롤러에서 뷰 리졸버로 리턴한 model 정보가 이쪽으로 자동 전달됨 
 		File downFile = (File)model.get("downFile");
-		
 		
 		logger.info("다운파일"+downFile.getName());
 		//한글파일명인코딩처리 파일명만추출

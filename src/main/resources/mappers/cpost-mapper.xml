@@ -96,7 +96,11 @@
 		delete from addon where cno = #{cno};
 		end;
 	</delete>
-
+	
+	<delete id="deleteAddon" parameterType="string">
+	delete from addOn
+	where cno = #{cno}
+	</delete>
 	<select id="notmb">
 	select * from member
 	left join pjmember using (ucode)

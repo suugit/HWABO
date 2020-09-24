@@ -67,4 +67,10 @@ public class CpostServiceImpl implements CpostService{
 	}
 
 
+	@Override
+	public int deleteAddon(String cno) {
+		return cpostDao.deleteAddon(cno);
+	}
+
+
 }

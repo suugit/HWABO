@@ -15,6 +15,7 @@ public interface CpostService {
 	int updateCpost(Cpost cpost);
 	int deleteCpost(String cno);
 	int updateCfileAll(AddOn addon);
+	int deleteAddon(String cno);
 
 	
 	

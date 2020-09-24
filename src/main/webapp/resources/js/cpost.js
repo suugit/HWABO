@@ -26,20 +26,21 @@
         
       //div에 이미지 추가
       var str = '<td>';
-      str += '<span class="text-nowrap" style="font-size:0.5em">'+fileName+'</span>';
-      str += '<i class="fa fa-times-circle mt-2" onclick="removetd()"></i><br>';
-      
       if(f.type.match('image.*')){
         var reader = new FileReader(); 
         reader.onload = function (e) { 
          // str += '<button type="button" class="btn btn-danger" value="'+f.name+'" >x</button><br>';
-          str += '<img src="'+e.target.result+'" title="'+f.name+'" width=100 height=100 />';
-          str += '</td>';
+        str += '<img class="rounded img-fluid" src="'+ e.target.result +'" style="max-height:100px;">'
+        str += '<i class="border btn-danger fa fa-times mt-2 p-1" onclick="removefile()"> 삭제</i>'
+        str += '<br><a class="ml-4 font-weight-bold">'+ f.name +'</a></td>'
           $(str).appendTo(fileArea);
+        alert('h22');
         } 
         reader.readAsDataURL(f);
       }else{
-        str += '<img src="resources/maincss/img/suugit/file_altimg.svg" title="'+f.name+'" width=100 height=100 />';
+        str += '<img class="rounded img-fluid " src="resources/maincss/img/suugit/file_altimg.svg" style="max-height:100px;">'
+        str	+= '<i class="border btn-danger fa fa-times mt-2 p-1" onclick="removefile()"> 삭제</i>'
+        str += '<br><a class="ml-4 font-weight-bold">'+ f.name +'</a></td>'
         $(str).appendTo(fileArea);
       }
     }); 
@@ -49,14 +50,16 @@
 
 
 function removeuptd() {
-	$(event.target).value = "";
-	$(event.target).closest('td').remove();
+	
 
 }
 
 function removefile(){
 	$(event.target).value = "";
 	$(event.target).closest('td').remove();
+	alert('삭제')
+	var fileArea = $(table).find('tr.preview');
+	tmplist =Array.prototype.slice.call(fileArea.children('td')).innerHTML;
 }
 function resize(img){
 
