@@ -53,4 +53,10 @@ public class ReplyDao {
 		return session.delete("replyMapper.deletereply", reply);
 	}
 
+
+	public int insertRereply(Reply reply) {
+		logger.info("replyDao 옴 : " + reply);
+		return session.insert("replyMapper.insertRereply", reply);
+	}
+
 }

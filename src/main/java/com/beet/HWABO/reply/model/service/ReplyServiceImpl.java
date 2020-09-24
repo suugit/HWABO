@@ -51,4 +51,10 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyDao.deletereply(reply);
 	}
 
+	@Override
+	public int insertRereply(Reply reply) {
+		logger.info("service reply : " + reply);
+		return replyDao.insertRereply(reply);
+	}
+
 }

@@ -8,10 +8,18 @@
 
 <insert id="insertReply" parameterType="Reply">
 
-	insert into reply(replyno, no, content, ucode, uname, enrolldate)
-	values (seq_re.nextval, #{no}, #{content}, #{ucode}, #{uname}, sysdate)
+	insert into reply(replyno, no, content, ucode, uname, enrolldate, kind, parent)
+	values (seq_re1.nextval, #{no}, #{content}, #{ucode}, #{uname}, sysdate, 0, seq_re1.nextval)
 
 </insert>
+
+
+<insert id="insertRereply">
+	insert into reply(replyno, no, content, ucode, uname, enrolldate, kind, parent)
+	values (seq_re1.nextval, #{no}, #{content}, #{ucode}, #{uname}, sysdate, 1, #{replyno})
+
+</insert>
+
 
 <select id="selectOneList" parameterType="string" resultType="Reply">
     select *
@@ -23,8 +31,11 @@
 
 
 <select id="selectList" resultType="Reply">
-	select * from reply
-	order by replyno desc
+
+  select *
+  from reply
+  order by 8 DESC, 6
+
 
 </select>
 

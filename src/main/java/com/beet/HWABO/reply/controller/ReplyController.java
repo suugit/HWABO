@@ -55,6 +55,36 @@ public class ReplyController {
 	     	
 	}
 	
+	
+	@RequestMapping(value= "insertRereply", method = RequestMethod.POST)
+	public void insertRerely(Reply reply, HttpServletResponse response) throws IOException {
+		 logger.info("답글.do run...");
+	     logger.info("Reply controller : " + reply);
+		
+	     response.setContentType("text/html; charset=utf-8");      
+	      PrintWriter out = response.getWriter();    
+	      
+	      if(replyService.insertRereply(reply) > 0) {
+	    	  logger.info("댓글 인써트 성공!!!!");
+	    	  out.append("ok");
+	          out.flush();
+	          
+
+	      }else {
+	          logger.info("cabinet 인서트 실패");
+	          out.append("fail");
+	          out.flush();
+	       }
+	       out.close();
+	    
+	     	
+		
+		
+		
+	}
+	
+	
+	
 	@RequestMapping(value = "replyList.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String selectListReply(HttpServletResponse response, Model m) throws UnsupportedEncodingException {
@@ -83,6 +113,8 @@ public class ReplyController {
 				if(n.getSecondenroll() != null) {
 				job.put("secondenroll", n.getSecondenroll().toString());
 				}
+				job.put("parent", n.getParent());
+				job.put("kind", n.getKind());
 				
 				jarr.add(job);
 			}

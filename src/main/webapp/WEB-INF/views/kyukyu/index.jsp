@@ -223,20 +223,26 @@ function replyList(){
 					console.log("if 문");
 					console.log("${sessionScope.ucode}");
 					console.log( jsonObj.list[i].ucode);
-					re += '<div class="commentArea" style="font-size:14px; border-bottom:1px solid darkgray; margin-bottom: 10px; margin-top: 14px;">';
+					re += '<div class="commentArea" style="font-size:14px; margin-bottom: 10px; margin-top: 14px;">';
 	            	re += '<div class="commentInfo'+jsonObj.list[i].replyno+'">'+' 작성자 : '+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ");
 	            if(jsonObj.list[i].secondenroll == null){
 	            	re += '<small>'+ jsonObj.list[i].enrolldate+'</small>';
 	           		}else{
 	           		re += '<small> 수정일 '+ jsonObj.list[i].secondenroll+'</small>';
 	           		}
+	            	re += '<a onclick="commentRereply('+jsonObj.list[i].replyno+',\''+jsonObj.list[i].no+'\');"> 답글 </a>';
 	            if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
 	            	re += '<a onclick="commentUpdate('+jsonObj.list[i].replyno+',\''+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'\');"> 수정 </a>';
 		            re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제 </a>';
-	            	
-	            	
+	            
 	            	}
-	            	re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'"> <p> 내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ") +'</p>';
+	            if(jsonObj.list[i].kind == "0"){
+	            	re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'"> <p>내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ") +'</p>';
+	            	
+	          		}else{
+	            	re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'"> <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 답글내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ") +'</p>';
+	           		}
+	            	re += '<div class="Rere'+jsonObj.list[i].replyno+'"></div>';
 	            	re += '</div></div>';
 	            
 	            	
@@ -261,18 +267,60 @@ function replyList(){
 	
 }
 
-
+//댓글 수정 폼
 function commentUpdate(replyno, content){
     var a ='';
-    
+   
     a += '<div class="input-group">';
     a += '<input type="text" class="form-control" name="content_'+replyno+'" value="'+content+'"/>';
-    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+replyno+');">수정</button> </span>';
+    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="javascript:commentUpdateProc('+replyno+');">수정</button> </span>';
+    a += '<span class="input-group-btn"><button class="btn btn-default" onclick="replyList()">취소</button></span>';
     a += '</div>';
     
     $('.commentContent'+replyno).html(a);
     
 }
+
+//답글 인써트 폼
+ function commentRereply(replyno, no){
+    var a ='';
+    console.log("replyno : " +replyno+ " no :" +no );
+   
+    a += '<div class="input-group">';
+    a += '<input type="text" class="form-control" name="content_'+replyno+'" />';
+    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="javascript:rereinsert(\''+ replyno +'\',\''+ no +'\');">답글달기</button> </span>';
+    a += '<span class="input-group-btn"><button class="btn btn-default" onclick="replyList()">취소</button></span>';
+    a += '</div>';
+   
+    $('.Rere'+replyno).html(a);
+    
+}
+
+
+
+//댓글 답글 에이작스
+function rereinsert(replyno, no){
+	
+    var Content = $('[name=content_'+replyno+']').val();
+    console.log("답글 들어옴")
+    $.ajax({
+        url : 'insertRereply.do',
+        type : 'post',
+        data : {'content' : Content, 'no' : no, 'replyno' : replyno, 
+        	ucode: "${sessionScope.ucode }", uname : "${sessionScope.uname }"},
+        	  success : function(data){
+  	        	console.log("댓글 insert 성공");
+  	            if(data == "ok") {
+  	            	 replytList(replyno);  //댓글 작성 후 댓글 목록 reload
+  	            	/* $("#reply_content_").val(''); */
+  	            }else{
+  	            	alert("댓글 등록 실패! 재시도 하시오")
+  	            }
+  	        }
+    });
+}
+ 
+
  
 //댓글 수정
 function commentUpdateProc(replyno){

@@ -16,18 +16,22 @@ public class Reply implements java.io.Serializable {
 	private String uname;
 	private Date enrolldate;
 	private Date secondenroll;
+	private String kind;
+	private String parent;
 	
-	
-	   
 	public Reply() {
 		
 		super();
 		
 	}
 
+	
+
+
+
 
 	public Reply(String replyno, String no, String content, String ucode, String uname, Date enrolldate,
-			Date secondenroll) {
+			Date secondenroll, String kind, String parent) {
 		super();
 		this.replyno = replyno;
 		this.no = no;
@@ -36,7 +40,13 @@ public class Reply implements java.io.Serializable {
 		this.uname = uname;
 		this.enrolldate = enrolldate;
 		this.secondenroll = secondenroll;
+		this.kind = kind;
+		this.parent = parent;
 	}
+
+
+
+
 
 
 	public String getReplyno() {
@@ -98,12 +108,56 @@ public class Reply implements java.io.Serializable {
 		this.secondenroll = secondenroll;
 	}
 
+	
+	
+
+
+
+	public String getKind() {
+		return kind;
+	}
+
+
+
+
+
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+
+
+
+
+
+	public String getParent() {
+		return parent;
+	}
+
+
+
+	public void setParent(String parent) {
+		this.parent = parent;
+	}
+
+
+
+
+
 
 	@Override
 	public String toString() {
 		return "Reply [replyno=" + replyno + ", no=" + no + ", content=" + content + ", ucode=" + ucode + ", uname="
-				+ uname + ", enrolldate=" + enrolldate + ", secondenroll=" + secondenroll + "]";
+				+ uname + ", enrolldate=" + enrolldate + ", secondenroll=" + secondenroll + ", kind=" + kind
+				+ ", parent=" + parent + "]";
 	}
+
+
+
+
+
+
 
 
 	
