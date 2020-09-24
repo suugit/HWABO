@@ -56,6 +56,7 @@ import com.beet.HWABO.member.model.vo.MailUtils;
 import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.NaverLoginUtil;
 import com.beet.HWABO.member.model.vo.PjMember;
+import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.red.model.vo.Project;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
@@ -110,6 +111,7 @@ public class SuugitController {
 			mav.setViewName("suugit/sign");
 			return mav;
 		}
+		member.setSigntype("h");
 		Member loginUser = mservice.selectLogin(member);
 		if (loginUser != null) {
 			mav.addObject("message", "이미 가입한 회원입니다");
@@ -133,7 +135,19 @@ public class SuugitController {
 		mav.setViewName("suugit/login");
 		return mav;
 	}
-//초대 신규유저
+	
+	
+	@RequestMapping("invtsign.do")
+	public ModelAndView inserInvtUser(ModelAndView mav) {
+	//편집
+		
+		
+		mav.setViewName("redirect:/ftables?do=" );
+		return mav;
+		
+		
+	}
+	//초대 신규유저
 //	@RequestMapping(value="/invtnew.do", method=RequestMethod.POST)
 //	public String inviteNew(@RequestBody ) {
 //		
@@ -142,7 +156,7 @@ public class SuugitController {
 //		
 //		
 //	}
-	
+
 	@GetMapping("/terms.do")
 	public String TermsPage() {
 		return "suugit/hwaboTerms";
@@ -151,6 +165,7 @@ public class SuugitController {
 	@GetMapping("/signConfirm.do")
 	public ModelAndView signUpConfirm(HttpServletRequest request, ModelAndView mv, Member member) {
 		// email, authKey 가 일치할경우 authStatus 업데이트
+		
 		member.setUemail(request.getParameter("uemail"));
 		member.setAccesstoken(request.getParameter("accesstoken"));
 		int result = mservice.updateUst(member);
@@ -165,10 +180,10 @@ public class SuugitController {
 
 		return mv;
 	}
-	
+
 	private NaverLoginUtil NaverLoginUtil;
 	private String apiResult = null;
-	
+
 //로그인관련 
 	@RequestMapping("/mvlogin.do")
 	public String moveLogin(Model model, HttpSession session) {
@@ -204,35 +219,36 @@ public class SuugitController {
 		Member loginUser = mservice.selectLogin(member);
 		
 		String returnPage = "suugit/login";
-		
-		
+
 		if (loginUser != null) {
-			
+
 			if (bcryptPwdEncoder.matches(member.getUpwd(), loginUser.getUpwd())) {
 				System.out.println(loginUser.getUst());
-				if(loginUser.getUst().equals("Y")) {
+				if (loginUser.getUst().equals("Y")) {
 					logger.info("로그인한 회원의 코드 : " + loginUser.getUcode());
 
 					HttpSession session = request.getSession();
+					session.setAttribute("uuser", loginUser);
 					session.setAttribute("uimg", loginUser.getUimg());
 					session.setAttribute("ucode", loginUser.getUcode());
 					session.setAttribute("uname", loginUser.getUname());
 					session.setAttribute("signtype", loginUser.getSigntype());
 					request.setAttribute("uname", loginUser.getUname());
 					status.setComplete(); // 요청성공, 200 전송
+					
 					returnPage = "redirect:/cards.do";
-				}else {
-					model.addAttribute("message","인증되지 않은 사용자입니다.<br>이메일을 확인해주세요");
+				} else {
+					model.addAttribute("message", "인증되지 않은 사용자입니다.<br>이메일을 확인해주세요");
 					returnPage = "suugit/login";
 					return returnPage;
 				}
-				
+
 			} else {
 				model.addAttribute("message", "암호가 일치하지 않습니다.");
 			}
 		} else {
 			model.addAttribute("message", "회원정보가 존재하지 않습니다");
-			
+
 		}
 		
 		return returnPage;
@@ -246,7 +262,6 @@ public class SuugitController {
 	}
 
 	/* NaverLoginUtil */
-
 
 	/*
 	 * //로그인 첫 화면 요청 메소드
@@ -263,7 +278,7 @@ public class SuugitController {
 	 * "suugit/login"; }
 	 */
 	// 네이버 로그인 성공시 callback호출 메소드
-	
+
 	@RequestMapping(value = "/snsloginrslt.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
 			throws IOException, ParseException {
@@ -277,25 +292,25 @@ public class SuugitController {
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(apiResult);
 		JSONObject jsonObj = (JSONObject) obj;
-		
+
 		// 3. 데이터 파싱
 		JSONObject response_obj = (JSONObject) jsonObj.get("response");
-		
+
 		Member member = new Member();
-		
+
 		member.setUemail((String) response_obj.get("email"));
 		member.setUname((String) response_obj.get("nickname"));
 		member.setUimg((String) response_obj.get("profile_image"));
 		member.setSigntype("n");
-		
+
 		int result1 = mservice.insertSnsUser(member);
-		
-			member = mservice.selectLogin(member);
-			session.setAttribute("ucode", member.getUcode());
-			session.setAttribute("uname", member.getUname());
-			session.setAttribute("uimg", member.getUimg());
-			session.setAttribute("signtype", member.getSigntype());
-			return "redirect:/cards.do";
+
+		member = mservice.selectLogin(member);
+		session.setAttribute("ucode", member.getUcode());
+		session.setAttribute("uname", member.getUname());
+		session.setAttribute("uimg", member.getUimg());
+		session.setAttribute("signtype", member.getSigntype());
+		return "redirect:/cards.do";
 	}
 
 //로그아웃
@@ -303,15 +318,14 @@ public class SuugitController {
 	public String logout(HttpSession session, HttpServletRequest request, Model model) {
 		logger.info("로그아웃하는  회원 정보 : " + session.getAttribute("uname"));
 		String returnPage = "";
-		
+
 		if (session != null) {
 			session.invalidate();
 			returnPage = "welcome";
-		}else {
+		} else {
 			model.addAttribute("message", "로그인 정보가 존재하지 않습니다!");
 			returnPage = "common/error";
 		}
-
 		return returnPage;
 	}
 
@@ -484,26 +498,44 @@ public class SuugitController {
 
 //프로젝트 초대하기 ( 신규유저) 
 	@RequestMapping("/invtnew.do")
-	public ResponseEntity<String> invtNew(HttpSession session, @RequestBody String param, Invite invt)
+	@ResponseBody
+	public JSONObject invtNew(HttpSession session, HttpServletRequest request, @RequestBody String param, Invite invt)
 			throws ParseException {
 		logger.info("신규 초대!");
 		JSONParser jparse = new JSONParser();
-
+		String pnum = (String) session.getAttribute("pnum");
 		JSONArray fileData = (JSONArray) jparse.parse(param);
 		invt.setUcode((String) session.getAttribute("ucode"));
-		invt.setPnum((String) session.getAttribute("pnum"));
+		invt.setPnum(pnum);
+
+		ArrayList<Member> pchklist = mservice.selectPMember(pnum);
+		String referer = request.getHeader("Referer");
+
+		JSONObject json = new JSONObject();
+
 		for (int i = 0; i < fileData.size(); i++) {
 			invt.setInvtkey("i" + Integer.toString((int) Math.floor(Math.random() * 100000 + 1)));
 			invt.setInvtemail((String) fileData.get(i));
+			System.out.println(pchklist);
+			for (Member m : pchklist) {
+				System.out.println(fileData.get(i) + "비교" + m.getUemail());
+
+				if (fileData.get(i).toString().trim().equals(m.getUemail())) {
+					json.put("message", (String) fileData.get(i) + "는 이미 가입된 회원입니다");
+					return json;
+				}
+			}
+
+			Project p = mservice.selectPjdetail(pnum);
 
 			try {
 				MailUtils sendMail = new MailUtils(mailSender);
 				sendMail.setSubject("HWABO로 초대합니다");
-				sendMail.setText(new StringBuffer().append("<h1>[HWABO 이메일 인증]</h1>")
-						.append("<p>아래 링크를 클릭하시면 프로젝트에 가입할 수 있습니다.</p>")
+				sendMail.setText(new StringBuffer().append("<h1>[HWABO 이메일 인증]</h1><h3>").append(p.getName()).append(
+						"</h3>에서 회원님을 초대했습니다!<div style='border:1px solid; padding:10px;width:50%;float:center;margin:30px;'>")
+						.append(p.getExplain()).append("</div><p>아래 링크를 클릭하여 프로젝트에 가입하세요.</p>")
 						.append("<a href='http://localhost:8282/hwabo/invtConfirm.do?uemail=")
-						.append(invt.getInvtemail()).append("&pnum=")
-						.append(invt.getPnum()).append("&invtkey=")
+						.append(invt.getInvtemail()).append("&pnum=").append(invt.getPnum()).append("&invtkey=")
 						.append(invt.getInvtkey()).append("' target='_blenk'>초대장 인증 확인</a>").toString());
 				sendMail.setFrom("hwabo49@gmail.com", "HWABO");
 				sendMail.setTo(invt.getInvtemail());
@@ -517,51 +549,61 @@ public class SuugitController {
 			int result = mservice.insertInvtNew(invt);
 		}
 
-		return new ResponseEntity<String>("success", HttpStatus.OK);
+		json.put("message", "메일이 전송되었습니다");
+		return json;
 	}
 
-	@GetMapping("/invtConfirm.do")
-	public ModelAndView invtConfirm(HttpServletRequest request, ModelAndView mv, Member member, Invite invt, PjMember pjmember) {
-
+	@RequestMapping("/invtConfirm.do")
+	public ModelAndView invtConfirm(HttpServletRequest request, ModelAndView mv, Member member, Invite invt,
+			PjMember pjmember) {
 		String uemail = request.getParameter("uemail");
 		String pnum = request.getParameter("pnum");
 		invt = mservice.selectInvtChk(request.getParameter("invtkey"));
 		Date today = new Date();
 
-		if(invt == null) {
+		if (invt == null) {
 			mv.addObject("message", "인증되지 않은 초대장 입니다");
-			mv.setViewName("common/error");
-		}else {
-			if(invt.getExprtdate().compareTo(today) < 0){
+			mv.setViewName("suugit/login");
+		} else if(invt.getExprtdate().compareTo(today) < 0){
 				logger.info("1");
 				mv.addObject("message", "초대 유효기간이 지났습니다!");
-			}
-			if(invt.getInvtuse().equals("Y")) {
+				mv.setViewName("suugit/login");
+		} else if(invt.getInvtuse().equals("Y")) {
 				logger.info("2");
 				mv.addObject("message", "이미 초대가 완료되었습니다");
-			}
+				mv.setViewName("suugit/login");
+		}else { //초대장 가입가능하면~
+ 		mv.addObject("member",member);
+		mv.addObject("invite", invt);
+		mv.setViewName("redirect:/invttopj.do");
 		}
-		member = mservice.selectEmailMember(uemail);
-		if(member != null) {
+		return mv; 
+	}
+	
+	@RequestMapping("invttopj.do")
+	public ModelAndView insertPjmember(HttpServletRequest request, ModelAndView mav, Member member, Invite invite, PjMember pjmember) {
+	//프로젝트 멤버로 넣어주기
+		member = mservice.selectEmailMember(member.getUemail());
+
+		if (member != null) {
+			logger.info(member.getUcode());
 			pjmember.setUcode(member.getUcode());
 			pjmember.setPnum(request.getParameter("pnum"));
-			if(mservice.insertPjMember(pjmember) > 0 ) {
-				mv.addObject("ucode",member.getUcode());
-				mv.addObject("pnum",request.getParameter("pnum"));
-				mv.setViewName("redirect:/ftables2.do");
-			}else {
-				mv.addObject("message", "프로젝트 가입에 실패했습니다");
-				mv.setViewName("redirect:/cards.do");
+			if (mservice.insertPjMember(pjmember) > 0) {
+				mav.addObject("ucode", member.getUcode());
+				mav.addObject("pnum", request.getParameter("pnum"));
+				mav.setViewName("redirect:/ftables2.do");
+			} else {
+				mav.addObject("message", "프로젝트 가입에 실패했습니다");
+				mav.setViewName("redirect:/cards.do");
 			}
-		}else {
-			mv.addObject("message", "회원가입 후 이용할 수 있습니다");
-			mv.addObject("uemail", uemail);
-			mv.setViewName("suugit/sign");
+		} else {
+			mav.addObject("message", "회원가입 후 이용할 수 있습니다");
+			mav.addObject("uemail", member.getUemail());
+			mav.setViewName("suugit/sign");
 		}
-		return mv;
-		
+		return mav;
 	}
-
 
 	@PostMapping("/invtee.do")
 	@ResponseBody
@@ -593,15 +635,14 @@ public class SuugitController {
 		}
 		return jarr;
 	}
-	
-	
+
 	@PostMapping("/pmlist.do")
 	@ResponseBody
 	public JSONArray selectpmlist(HttpSession session, ModelAndView mav) {
 		String pnum = (String) session.getAttribute("pnum");
 		System.out.println(pnum);
 		ArrayList<Member> nmlist = mservice.selectPMember(pnum);
-			
+
 		JSONObject obj = new JSONObject();
 
 		JSONArray jarr = new JSONArray();
@@ -628,12 +669,13 @@ public class SuugitController {
 		}
 		return jarr;
 	}
+
 //초대목록
 //	selectInvtList	
 	@PostMapping("invtlist.do")
 	@ResponseBody
 	public JSONArray selectInvtList(HttpSession session, ModelAndView mav) {
-		ArrayList<Invite> invtlist = mservice.selectInvtList((String)session.getAttribute("pnum"));
+		ArrayList<Invite> invtlist = mservice.selectInvtList((String) session.getAttribute("pnum"));
 		JSONObject obj = new JSONObject();
 
 		JSONArray jarr = new JSONArray();
@@ -657,8 +699,7 @@ public class SuugitController {
 		}
 		return jarr;
 	}
-	
-	
+
 //초대관리페이지
 	@RequestMapping("/invtadmin.do")
 	public String InviteManage() {
@@ -668,16 +709,17 @@ public class SuugitController {
 
 //멤버 권한 변경 
 	@PostMapping("/chnrole.do")
-	public void updateProle(PjMember pjm,HttpSession session, HttpServletResponse response) throws IOException {
-		pjm.setPnum((String)session.getAttribute("pnum"));
+	public void updateProle(PjMember pjm, HttpSession session, HttpServletResponse response) throws IOException {
+		pjm.setPnum((String) session.getAttribute("pnum"));
 		int r = mservice.updatepjadmin(pjm);
-		
+
 	}
-	
+
 	@RequestMapping("invtcancle.do")
 	public void deleteInvt(@RequestParam("invtkey") String invtkey) {
 		int r = mservice.deleteInvt(invtkey);
 	}
+
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================
 //게시글 관련 ====================================================================================================================================================================
@@ -690,7 +732,7 @@ public class SuugitController {
 	@RequestMapping("/incp.do")
 	public ModelAndView insertCpost(Cpost cpost, AddOn addon, ModelAndView mv, MultipartHttpServletRequest request) {
 		logger.info("incp.do run....");
-		
+
 		System.out.println(cpost.getCpnum());
 		System.out.println(cpost.getCwriter());
 		System.out.println(cpost.getCucode());
@@ -820,7 +862,8 @@ public class SuugitController {
 
 	@PostMapping("upcp.do")
 	@ResponseBody
-	public String updateCpost(Cpost cpost, AddOn addon, ModelAndView mav, MultipartHttpServletRequest request) throws UnsupportedEncodingException {
+	public String updateCpost(Cpost cpost, AddOn addon, ModelAndView mav, MultipartHttpServletRequest request)
+			throws UnsupportedEncodingException {
 		logger.info("게시글 수정");
 
 		String cno = addon.getCno();
@@ -829,62 +872,60 @@ public class SuugitController {
 		logger.info(addon.getRfile2());
 		logger.info(addon.getRfile3());
 		String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
-		  
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+
 		List<MultipartFile> fileList = request.getFiles("file");
-			
-	
+
 		String oFileName = "";
-		
+
 		for (MultipartFile filePart : fileList) {
-			
-		int i = 0;		
-		while(!filePart.isEmpty()) {
-			System.out.println("시작");
-			String rfileName = cno + sdf.format(new java.sql.Date(System.currentTimeMillis()));
-			oFileName = filePart.getOriginalFilename();
-			rfileName += i + "." + oFileName.substring(oFileName.lastIndexOf(".") + 1);
-		
-			logger.info("파일 이름 " + oFileName);
-			logger.info("바꾼 이름" + rfileName);
-			
-			if (!oFileName.equals("")) {
-				try {
-					FileOutputStream fs = new FileOutputStream(savePath + "\\" + rfileName);
-					fs.write(filePart.getBytes());
-					fs.close();
-					System.out.println("글쓰는중");
-				} catch (Exception e) {
-					e.printStackTrace();
+
+			int i = 0;
+			while (!filePart.isEmpty()) {
+				System.out.println("시작");
+				String rfileName = cno + sdf.format(new java.sql.Date(System.currentTimeMillis()));
+				oFileName = filePart.getOriginalFilename();
+				rfileName += i + "." + oFileName.substring(oFileName.lastIndexOf(".") + 1);
+
+				logger.info("파일 이름 " + oFileName);
+				logger.info("바꾼 이름" + rfileName);
+
+				if (!oFileName.equals("")) {
+					try {
+						FileOutputStream fs = new FileOutputStream(savePath + "\\" + rfileName);
+						fs.write(filePart.getBytes());
+						fs.close();
+						System.out.println("글쓰는중");
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+
+				}
+				if (addon.getRfile1() == null) {
+					addon.setOfile1(oFileName);
+					addon.setRfile1(rfileName);
+					logger.info("첫번째 추가 ");
+					System.out.println("첫번쨰" + oFileName + rfileName);
+					break;
+				} else if (addon.getRfile2() == null) {
+					addon.setOfile2(oFileName);
+					addon.setRfile2(rfileName);
+					logger.info("두번째 추가");
+					System.out.println("e번쨰" + oFileName + rfileName);
+					break;
+				} else if (addon.getRfile3() == null) {
+					addon.setOfile3(oFileName);
+					addon.setRfile3(rfileName);
+					System.out.println("3번쨰" + oFileName + rfileName);
+					logger.info("세번째 추가");
+					break;
 				}
 
 			}
-			if(addon.getRfile1() == null) {
-				addon.setOfile1(oFileName);
-				addon.setRfile1(rfileName);
-				logger.info("첫번째 추가 ");
-				System.out.println("첫번쨰" + oFileName + rfileName);
-				break;
-			}else if(addon.getRfile2() == null) {
-				addon.setOfile2(oFileName);
-				addon.setRfile2(rfileName);
-				logger.info("두번째 추가");
-				System.out.println("e번쨰" + oFileName + rfileName);
-				break;
-			}else if (addon.getRfile3() == null) {
-				addon.setOfile3(oFileName);
-				addon.setRfile3(rfileName);
-				System.out.println("3번쨰" + oFileName + rfileName);
-				logger.info("세번째 추가");
-				break;
-			}
-
-			
-		}
 		}
 		int r = cservice.updateCpost(cpost);
 		int result1 = cservice.updateCfile(addon);
-		
+
 		cpost = cservice.selectCpOne(request.getParameter("cno"));
 		JSONObject obj = new JSONObject();
 		obj.put("ctitle", cpost.getCtitle());
@@ -894,10 +935,9 @@ public class SuugitController {
 		obj.put("ofile2", cpost.getOfile2());
 		obj.put("rfile2", cpost.getRfile2());
 		obj.put("ofile3", cpost.getOfile3());
-		obj.put("rfile3", URLEncoder.encode(cpost.getRfile3(),"utf-8"));
+		obj.put("rfile3", URLEncoder.encode(cpost.getRfile3(), "utf-8"));
 		return obj.toJSONString();
-}
-
+	}
 
 	@RequestMapping("delcp.do")
 	public String deleteCpost(@RequestParam("cno") String cno, AddOn addon, Model model, HttpServletRequest request) {
@@ -912,17 +952,17 @@ public class SuugitController {
 				}
 		}
 		cservice.deleteCpost(cno);
-		return "redirect:/ftables2.do?ucode="+request.getSession().getAttribute("ucode")+"&pnum="+request.getSession().getAttribute("pnum");
+		return "redirect:/ftables2.do?ucode=" + request.getSession().getAttribute("ucode") + "&pnum="
+				+ request.getSession().getAttribute("pnum");
 
 	}
-	
+
 	@RequestMapping("/pjdetail.do")
 	@ResponseBody
 	public Project selectPjdetail(HttpSession session) {
-		Project p = mservice.selectPjdetail((String)session.getAttribute("pnum"));
-	
+		Project p = mservice.selectPjdetail((String) session.getAttribute("pnum"));
+
 		return p;
 	}
-	
-	
+
 }

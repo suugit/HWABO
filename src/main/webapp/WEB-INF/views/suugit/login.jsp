@@ -42,7 +42,7 @@
               </div>
               <div class="col-lg-6">
                 <div class="p-5">
-              <div class="alert-success">  ${message } </div>
+              <div class="alert-success">  ${message} </div>
               
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">화보로고</h1>
@@ -52,7 +52,7 @@
                       <input type="email" class="form-control form-control-user" name="uemail" aria-describedby="emailHelp" placeholder="이메일 주소" required>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" name="upwd" placeholder="비밀번호" required>
+                      <input type="password"  class="form-control form-control-user" name="upwd" placeholder="비밀번호" required>
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">

@@ -16,7 +16,7 @@ public class Member implements java.io.Serializable{
 	private String uemail;
 
 	@NotNull(message="비밀번호를 입력해주세요")
-	@Pattern(regexp="^[a-zA-Z0-9] {6,}", message="비밀번호는 영어대/소문자, 숫자로 6글자 이상 입력해야합니다")
+	@Pattern(regexp="^[a-zA-Z0-9]{6,}$", message="비밀번호는 영어소문자와 숫자를 이용하여 6글자 이상 입력해야합니다")
 	private String upwd;
 	@NotNull(message="이름을 입력해주세요")
 	private String uname;

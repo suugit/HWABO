@@ -1,5 +1,40 @@
+//회원가입 유효성 검사
+function validSignChk(){
+	alert('h');
+	 var regEmail = new RegExp('^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$');
+	 var regPwd = new RegExp('^[a-zA-Z0-9]{6,}$');
+	 
+	 if(!regEmail.test($('#uemail').val())){
+		alert("올바른 이메일을 입력해주세요"); 
+		$('#uemail').val('');
+		$('#uemail').focus();
+		 return;
+	 }else if($('#uname').val() == ""){
+		 alert("이름을 입력해주세요"); 
+		 $("#uname").focus(); 
+		 return; 
+	 }else if(!regPwd.test($('#upwd').val())){
+		alert("비밀번호는 영어대/소문자, 숫자를 이용하여 6글자 이상 입력해야합니다"); 
+		$('#upwd').val('');
+		$('#upwd').focus();
+		 return;
+	 }else if($('#upwd').val() != $('#pwdchk').val()) {
+         alert("비밀번호가 일치하지 않습니다");
+         $('#pwdchk').val("");
+         $('#pwdchk').focus();
+         return;
+	 }else if(($('#toschk').is(":checked"))==false){
+		 alert("이용약관동의 체크해주세요");
+		 return;
+	 }else{
+		 alert('h');
+		 $('#signForm').submit();
+	 }
+
+}
 
 	$('#pmember-tab').on('click',function(){
+		
 		 $.ajax({
 			url:"pmlist.do",
 			type:"post",
@@ -55,7 +90,7 @@
 			}
 		}); 
 	});
-	
+
 	$('#npmember-tab').on('click',function(){
 		 $.ajax({
 			url:"invtlist.do",

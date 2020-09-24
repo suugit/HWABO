@@ -27,7 +27,7 @@ public class PjMember implements java.io.Serializable{
 	}
 
 	public String getUcode() {
-		return ucode;
+		return ucode; 	
 	}
 
 	public void setUcode(String ucode) {

@@ -99,7 +99,7 @@
 							aria-controls="existingE" aria-selected="false"> <i
 								class="fas fa-user-plus mr-1"></i>기존회원 초대하기
 						</a></li>
-
+					
 						<li style="margin-left: 50px">
 							<button class="btn waves-effect btn-outline-secondary"
 								data-dismiss="modal">
@@ -115,6 +115,7 @@
 							role="tabpanel">
 
 							<ul class="list-unstyled text-center">
+							 <div class="alert-success">  ${message} </div>
 								<small>
 									<li>이메일을 입력하여 프로젝트에 초대해보세요!</li>
 									<li>초대받은 사용자는 이메일을 통해 바로 프로젝트에 참여할 수 있습니다</li>
@@ -276,33 +277,35 @@
 		function unSelected() {
 			$(event.target).parent().remove();
 		}
-
+		
+		
 		$('#invtBtn').on('click', function() {
-
+		
 			var n = $('input[name=newinvt]').length;
 			var fileData = new Array(n);
-			for (var i = 0; i < n; i++) {
+			 for (var i = 0; i < n; i++) {
 				fileData[i] = $('input[name=newinvt]')[i].value;
 				if (fileData[i] == "") {
 					alert('이메일을 입력해주세요')
 					return false;
 				}
-			}
-
-			$.ajax({
+			} 
+			
+				 $.ajax({
 				url : "invtnew.do",
 				type : "post",
 				data : JSON.stringify(fileData),
-				dataType : "json",
+				dataType : "JSON",
 				contentType : "application/json; charset=utf-8;",
 				success : function(data) {
-					alert("전송성공!")
+					alert(data.message);
 
 				},
 				error : function(request, status, errorData) {
-					alert('올바른 이메일을 입력해주세요');
+					alert(message);
 				}
 			});
+		
 
 		});
 
