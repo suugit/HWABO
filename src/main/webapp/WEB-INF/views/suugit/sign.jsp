@@ -45,30 +45,27 @@
 					<div class="col-md-7">
 						<center>
 							<h1 class="m-4">회원가입</h1>
-							<div id="msgBox" class="alert alert-danger d-none" role="alert">${message}</div>
+							 <div class="alert-danger rounded">  ${message} </div>
+							 <br>
 						</center>
 						<div>
 							<span id="chkmsg"></span>
 						</div>
 						<form action="sign.do" method="post" id="signForm"
-							onsubmit="return validate();">
+						>
 							<div class="form-group row">
 								<label for="email" class="col-sm-3 col-form-label ">이메일
 									주소</label>
 								<div class="col-sm-9">
-									<input type="email" class="form-control" name="uemail"
+									<input type="email" id="uemail" class="form-control" name="uemail"
 										placeholder="Email" value="${uemail }" required>
-									<form:input path="uemail" />
-									<form:errors path="uemail" />
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="email" class="col-sm-3 col-form-label ">이름</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" name="uname"
+									<input id="uname" type="text" class="form-control" name="uname"
 										placeholder="Name" required>
-									<form:input path="uname" />
-									<form:errors path="uname" />
 								</div>
 							</div>
 							<div class="form-group row">
@@ -92,7 +89,7 @@
 							<div class="form-check mb-4 text-center">
 								<input class="form-check-input" type="checkbox" value=""
 									id="toschk"> <label class="form-check-label text-sm"
-									for="toschk"> <small>위의<a
+									for="toschk"> <small>위의 <a
 										href="javascript:window.open('${CONTEXT_PATH}/terms.do','', 'popup');">이용약관
 											및 개인정보 수집 및 이용</a>에 대한 안내에 동의합니다.
 								</small>
@@ -100,8 +97,7 @@
 							</div>
 						</form>
 						<div class="col-md-9 m-auto">
-							<button type="submit" form="signForm"
-								class="btn btn-primary btn-user btn-block">가입하기</button>
+							<button class="btn btn-primary btn-user btn-block" onclick="validSignChk();">가입하기</button>
 						</div>
 
 						<hr>
@@ -139,24 +135,10 @@
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="/hwabo/resources/js/user.js"></script>
 	  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
-	<script>
-	function pwdChk(){
-		var upwd = document.getElementById('upwd')
-		var pwdchk = document.getElementById('pwdchk')
-		if(pwdchk.length > 0){
-			if(upwd != pwdchk){
-				 	alert('비밀번호가 일치하지 않습니다');
-				 	return false;
-			}
-		}
-	}
-	
-	 
+	<script src="resources/js/jquery-3.5.1.min.js"></script>
+	<script src="/hwabo/resources/js/user.js"></script>
 
-	
-	</script>
 </body>
 
 </html>

@@ -270,6 +270,7 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script src="http://code.jquery.com/jquery-1.6.3.min.js"></script>
+        
 <script>
 $(document).ready(function() {
 	$("#content1 div").hide(); // Initially hide all content

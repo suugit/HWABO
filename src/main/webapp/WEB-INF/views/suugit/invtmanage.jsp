@@ -145,7 +145,7 @@
 							  <li class="nav-item">
 							    <a class="nav-link" id="npmember-tab" data-toggle="tab" href="#npmember" role="tab" aria-controls="npmember" aria-selected="false">초대 관리</a>
 							  </li>
-							  <a href="" class="btn my-3 ml-auto" data-toggle="modal" data-target="#inviteModal">
+							  <a href="" class="btn ml-auto" data-toggle="modal" data-target="#inviteModal">
 								<i class="fa fa-plus-square mr-1"></i>
 								프로젝트 초대하기
 								</a>
@@ -178,12 +178,19 @@
 										</div>
 					          		</form>
 					          </div>
-					            
 					          </div>
-					          
 					          
 					          <!-- 멤버관리 -->
 					           <div class="tab-pane fade " id="pmember" role="tabpanel" aria-labelledby="nav-pmember-tab">
+					           <div class="d-flex">
+					           <span class="d-flex text-truncate justify-content-start w-100">전체 멤버 수 : </span>
+					           <form class="d-flex justify-content-end">
+								  <input class="form-control form-control-sm w-75" type="text" placeholder="이름검색"
+								    aria-label="Search">
+								  <i class="fas fa-search mx-2" aria-hidden="true"></i>
+								</form>
+								</div>
+					           <br>
 					           <div id="dataTable_wrapper"
 								class="dataTables_wrapper no-footer text-center">
 								<table class="table">
@@ -199,6 +206,27 @@
 									<tbody id="pmlistBox">
 									</tbody>
 								</table>
+								<nav aria-label="Page navigation ">
+									  <ul class="pagination justify-content-center">
+									    <li class="page-item">
+									      <a class="page-link" href="#" aria-label="Previous">
+									        <span aria-hidden="true">&laquo;</span>
+									        <span class="sr-only">Previous</span>
+									      </a>
+									    </li>
+									    <li class="page-item"><a class="page-link" href="#">1</a></li>
+									    <li class="page-item"><a class="page-link" href="#">2</a></li>
+									    <li class="page-item"><a class="page-link" href="#">3</a></li>
+									    <li class="page-item"><a class="page-link" href="#">4</a></li>
+									    <li class="page-item"><a class="page-link" href="#">5</a></li>
+									    <li class="page-item">
+									      <a class="page-link" href="#" aria-label="Next">
+									        <span aria-hidden="true">&raquo;</span>
+									        <span class="sr-only">Next</span>
+									      </a>
+									    </li>
+									  </ul>
+									</nav>
 							</div>
 					           
 					           </div>
@@ -279,13 +307,11 @@
 		<script src="/hwabo/resources/js/user.js"></script>
 	<script>
 	$(document).ready(function(){
-		alert('h');
 		$.ajax({
 			url: "pjdetail.do",
 			type: "post",
 			contentType : "application/json; charset=utf-8;",
 			success : function(data){
-				alert('성공');
 				
 			},
 			error : function(){
@@ -295,6 +321,7 @@
 		});
 	});
 
+	
 	
 	</script>
 </body>

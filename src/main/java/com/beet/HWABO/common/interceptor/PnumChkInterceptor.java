@@ -14,7 +14,6 @@ public class PnumChkInterceptor extends HandlerInterceptorAdapter{
 	private Logger logger = LoggerFactory.getLogger(PnumChkInterceptor.class);
 	
 	
-	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
