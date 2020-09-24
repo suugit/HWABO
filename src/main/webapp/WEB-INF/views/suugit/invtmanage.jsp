@@ -151,12 +151,12 @@
 								</a>
 					        </div>
 					        
-					        <div class="card-body ">
+					        <div class="card-body" >
 					         <!--  <h4 class="card-title">글 작성</h4> -->
 					          
-					           <div class="tab-content mt-3">
+					           <div class="tab-content mt-3" >
 					           <!-- 글 작성  -->
-					           <div class="tab-pane fade show active" id="project" role="tabpanel" aria-labelledby="nav-project-tab">
+					           <div class="tab-pane fade show active" id="project" role="tabpanel" aria-labelledby="nav-project-tab" style="height:300px">
 								<div class="row">
 									<div class="col-sm-8 col-md-4">
 										<img width=100% src="${member.uimg}"
@@ -165,7 +165,7 @@
 									<form action="upinfo.do" method="post" id="myInfoForm"
 										class="col-md-8">
 										<div class="form-group row">
-											<label class="control-label mypage text-center form-control-static col-md-3">프로젝트 이름${sessionScope.pmlist }</label>
+											<label class="control-label mypage text-center form-control-static col-md-3">프로젝트 이름</label>
 											
 											<input class="form-control col-md-6 pl-2 form-control-plaintext"
 												type="email" name="name" value="" readonly>
