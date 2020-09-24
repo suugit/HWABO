@@ -154,6 +154,8 @@ $(document).ready(function() {
 			                + "</tr>"
 			       } //for in
 			   		 $('#selectTable').html(values); 	  
+				}else{
+					$("#selectTable").empty();
 				}
 		       
 			}, 				
@@ -179,7 +181,9 @@ function loadList(){
 		dataType: "Json",
 		traditional: true,
 		success: function(obj){
-			
+			 $("#selectTable").empty();
+ 			$("#selectTable2").empty();
+ 			$("#selectTable3").empty();
 			var values = '<thead><tr style="vertical-align: middle; text-align: center;"><th style="width: 15%">유형</th><th>제목</th><th>내용</th><th>등록일</th></tr></thead>';
 			
 			
@@ -232,6 +236,7 @@ function loadList(){
 				                
 				                      +'<td style="vertical-align: middle; text-align: center;" >'+decodeURIComponent(obj[j].benrolldate).replace(/\+/gi, "  ")+"</td>"
 				                + "</tr>"
+				               
 				      $('#selectTable2').html(values2); 
 			       }// for in문2 끗 	
 			    
@@ -329,10 +334,11 @@ function bkindupdate(divbno) {
 			values += '<tr><th style="width: 18%;vertical-align:middle;  text-align: center;">유형</th><td id="bkindtd">';
 			
 			if(decodeURIComponent(obj.bkind)=="요청"){
-				 values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary active"><input  class="bkind" type="radio" name="bkind"  id="bkinddiv'+obj.bno+'" onclick="bkindupdate(this.id); return false;"  value="요청" checked="checked">요청</label>';
-				 values += '<label class="btn btn-secondary" for="option2"><input class="bkind" type="radio" name="bkind" class="bkind"  id="bkinddiv'+obj.bno+'" onclick="bkindupdate(this.id); return false;"  value="진행">진행</label><label class="btn btn-secondary"><input class="bkind" type="radio" name="bkind"  id="bkinddiv'+obj.bno+'" onclick="bkindupdate(this.id); return false;"  value="피드백">피드백</label>';
-				 values += '<label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind"  class="bkind"  id="bkinddiv'+obj.bno+'" onclick="bkindupdate(this.id); return false;"  value="완료">완료</label><label class="btn btn-secondary"><input  class="bkind" type="radio" name="bkind" id="bkinddiv'+obj.bno+'" onclick="bkindupdate(this.id); return false;"  value="보류">보류</label></div>';
-          	 }
+				 
+				 values += '<div  class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary active"><input class="bkind"  type="radio" name="bkind" id="bkinddiv'+obj.bno+'" onclick="bkindupdate(this.id); return false;" value="요청" checked="checked">요청</label>';
+				 values += '<label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind"  id="bkinddiv'+obj.bno+'" onclick="bkindupdate(this.id); return false;"  value="진행">진행</label><label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind"  id="bkinddiv'+obj.bno+'" onclick="bkindupdate(this.id); return false;"  value="피드백">피드백</label>';
+				 values += '<label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind"  id="bkinddiv'+obj.bno+'" onclick="bkindupdate(this.id); return false;"  value="완료" >완료</label><label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind"  id="bkinddiv'+obj.bno+'" onclick="bkindupdate(this.id); return false;" value="보류">보류</label></div>';
+			}
           	if(decodeURIComponent(obj.bkind) =="진행"){
           		values += '<div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary"><input class="bkind"  type="radio" name="bkind"  id="bkinddiv'+obj.bno+'" onclick="bkindupdate(this.id); return false;" value="요청" >요청</label>';
 				 values += '<label class="btn btn-secondary active"><input  class="bkind" type="radio" name="bkind" id="bkinddiv'+obj.bno+'" onclick="bkindupdate(this.id); return false;"  value="진행" checked="checked" >진행</label><label class="btn btn-secondary"><input  class="bkind" type="radio" name="bkind"  id="bkinddiv'+obj.bno+'" onclick="bkindupdate(this.id); return false;"  value="피드백">피드백</label>';
