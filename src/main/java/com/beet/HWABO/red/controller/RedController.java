@@ -693,7 +693,9 @@ public class RedController {
 			,HttpServletRequest request, SessionStatus status) throws IOException {
 			logger.info("캘린더 넣는중~ : " + calendar);
 		response.setContentType("test/html; charset=utf-8"); //여기에 오타나면 파일 선택창이 뜬다
-			
+		if(calendar.getTitle().contains("   ")) {
+			calendar.setTitle("프로필사진 비뜨로 바꾸기");
+		}
 		PrintWriter out = response.getWriter();
 		if(redService.insertCalendar(calendar) > 0) {
 			out.append("ok");
@@ -745,10 +747,24 @@ public class RedController {
 		if(redService.deleteCalendar(calendar) > 0) {
 			out.append("ok");
 			out.flush();
-		}else {
-			out.append("fail");
-			out.flush();
+		}else{
+			calendar.setTitle(calendar.getUname());
+			if(redService.deleteCalendar(calendar) > 0) {
+				out.append("ok");
+				out.flush();
+			}else {
+				calendar.setTitle("프로필사진 비뜨로 바꾸기");
+				if(redService.deleteCalendar(calendar) > 0) {
+					out.append("ok");
+					out.flush();
+				}else {
+					out.append("fail");
+					out.flush();
+				}
+			}
+			
 		}
+			
 		out.close();
 	}	
 ////views start//////////////////////////////

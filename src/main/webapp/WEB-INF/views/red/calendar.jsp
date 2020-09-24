@@ -46,7 +46,11 @@ function showCalendar(){
       console.log('-----------------------------');
       console.log(arg);
       console.log('-----------------------------');
-      if(title != ""){
+      console.log(title);
+      console.log('-----------------------------');
+      if(title != ""  && title != " "  && title != "  "  && title != "   "
+    	  && title != "    "  && title != "     "  && title != "      "
+      && title != null){
       $(function(){//등록 에이작스 시작
         	$.ajax({
         		url:"sendCalendar.do",
@@ -63,6 +67,15 @@ function showCalendar(){
         		success: function(result){
         			if(result == "ok"){
     					console.log("달력 일정 등록 완료...");
+    					if (title) {
+    				          calendar.addEvent({
+    				            title: title,
+    				            start: arg.start,
+    				            end: arg.end,
+    				            allDay: arg.allDay//true false (return boolean)
+    				          })
+    				        }
+    				        calendar.unselect()
     					
     				}else{
     					console.log("달력 일정 등록 실패...");
@@ -75,7 +88,7 @@ function showCalendar(){
       });//등록 에이작스 끝
       }
       //ajax insert 끝////////////////////////
-        if (title) {
+        /* if (title) {
           calendar.addEvent({
             title: title,
             start: arg.start,
@@ -83,11 +96,10 @@ function showCalendar(){
             allDay: arg.allDay//true false (return boolean)
           })
         }
-        calendar.unselect()
+        calendar.unselect() */
       },
       eventClick: function(arg) {
-    	  console.log(arg.el.innerText.length)
-    	  console.log(arg.el.innerText)
+    	  console.log("삭제 대상 " + arg)
     	  if (confirm(arg.el.innerText +'일정을 모두 삭제 합니다.')) {
     		  $(function(){// 삭제 에이작스 시작
             	$.ajax({
@@ -96,6 +108,7 @@ function showCalendar(){
             			pnum : $("#calpnum").val(), 
             			ucode : $("#calucode").val(), 
             			title : arg.el.innerText.substring(4,arg.el.innerText.length),
+            			uname : arg.el.innerText
             		},
             		type: "post",
             		success: function(result){
