@@ -46,7 +46,99 @@ div#showfile imag {
 }
 </style>
 
+<style type="text/css">
 
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #FFFFFF;
+}
+a {
+    color: #82b440;
+    text-decoration: none;
+}
+.blog-comment::before,
+.blog-comment::after,
+.blog-comment-form::before,
+.blog-comment-form::after{
+    content: "";
+	display: table;
+	clear: both;
+}
+
+/* .blog-comment{
+    padding-left: 10px;
+	padding-right: 15px;
+} 
+  */
+.blog-comment ul{
+	list-style-type: none;
+	padding: 0;
+}
+
+.blog-comment img{
+	opacity: 1;
+	filter: Alpha(opacity=100);
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	  	 -o-border-radius: 4px;
+			border-radius: 4px;
+}
+
+.blog-comment img.avatar {
+	position: relative;
+	float: left;
+	margin-left: 10px; 
+	margin-top: 0;
+	width: 40px;
+	height: 40px;
+}
+
+ .blog-comment .post-comments{
+	border: 1px solid #eee;
+    margin-bottom: 10px;
+    margin-left: 60px;  /* 상자 오른쪽 왼쪽 중요 */
+	margin-right: 10px;
+    padding: 5px 5px;
+    position: relative;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+       	 -o-border-radius: 4px;
+    		border-radius: 4px;
+	background: #fff;
+	color: #6b6e80;
+	position: relative;
+} 
+
+.blog-comment .meta {
+	font-size: 13px;
+	color: #aaaaaa;
+	padding-bottom: 8px;  /*  */
+	margin-bottom: 10px !important;
+	border-bottom: 1px solid #eee;
+}
+
+.blog-comment ul.comments ul{
+	list-style-type: none;
+	padding: 0;
+	margin-left: 50px; /*대댓글 위치 */
+}
+
+/* .blog-comment-form{
+	padding-left: 15%;
+	padding-right: 15%;
+	padding-top: 40px;
+} */
+
+/* .blog-comment h3,
+.blog-comment-form h3{
+	margin-bottom: 10px;
+	font-size: 14px;
+	line-height: 1px;
+	font-weight: 100;
+} */
+</style>
 
 
 <script type="text/javascript"
@@ -214,6 +306,7 @@ function replyList(){
 				for(var i  in jsonObj.list){ //전체 댓글 리스트
 					
 					
+				
 					
 					console.log("2번 포문");
 					console.log("jsonObj.list[i].no"+jsonObj.list[i].no);
@@ -223,31 +316,49 @@ function replyList(){
 					console.log("if 문");
 					console.log("${sessionScope.ucode}");
 					console.log( jsonObj.list[i].ucode);
-					re += '<div class="commentArea" style="font-size:14px; margin-bottom: 10px; margin-top: 14px;">';
-	            	re += '<div class="commentInfo'+jsonObj.list[i].replyno+'">'+' 작성자 : '+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ");
-	            if(jsonObj.list[i].secondenroll == null){
-	            	re += '<small>'+ jsonObj.list[i].enrolldate+'</small>';
-	           		}else{
-	           		re += '<small> 수정일 '+ jsonObj.list[i].secondenroll+'</small>';
-	           		}
-	            	re += '<a onclick="commentRereply('+jsonObj.list[i].replyno+',\''+jsonObj.list[i].no+'\');"> 답글 </a>';
-	            if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
-	            	re += '<a onclick="commentUpdate('+jsonObj.list[i].replyno+',\''+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'\');"> 수정 </a>';
-		            re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제 </a>';
-	            
-	            	}
-	            if(jsonObj.list[i].kind == "0"){
-	            	re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'"> <p>내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ") +'</p>';
+				
+					
+					
+				
+					if(jsonObj.list[i].kind == "0"){ //댓글일 때
+						re += '<div role="alert" style="font-size:14px; padding: 0rem; border: 1px;">';
+						re += '<br><div class="commentInfo'+jsonObj.list[i].replyno+'">'+' <div style="float:left;" name="작성자">&nbsp;'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</div>';
+						if(jsonObj.list[i].secondenroll == null){
+				           	re += '<small>&nbsp;&nbsp;'+ jsonObj.list[i].enrolldate+'</small>';
+				       	}else{
+				           	re += '<small>&nbsp;&nbsp; 수정일 '+ jsonObj.list[i].secondenroll+'</small>';
+				        }
+				        re += '<a onclick="commentRereply('+jsonObj.list[i].replyno+',\''+jsonObj.list[i].no+'\');"><div style="float:right;"> 답글 </a>';
+				        if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
+				           re += '<a onclick="commentUpdate('+jsonObj.list[i].replyno+',\''+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'\');"> 수정 </a>';
+					       re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제&nbsp;&nbsp; </a></div>';
+					       re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'"> &nbsp;내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " "); 
+				        }
+						
+						
+					}else{ //답글일 때
+						re += '<div role="alert" style="font-size:14px; padding: 0rem; border: 1px; margin-left: 30px;">';
+						re += '<div class="commentInfo'+jsonObj.list[i].replyno+'">'+' <div style="float:left;" name="작성자">&nbsp;'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</div> ';
+						if(jsonObj.list[i].secondenroll == null){
+				           	re += ' <small>&nbsp;&nbsp;'+ jsonObj.list[i].enrolldate+'</small>';
+				       	}else{
+				           	re += ' <small>&nbsp;&nbsp; 수정일 '+ jsonObj.list[i].secondenroll+'</small>';
+				        }
+					        /* re += '<a onclick="commentRereply('+jsonObj.list[i].replyno+',\''+jsonObj.list[i].no+'\');"> 답글 </a>'; */
+					    if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
+					       re += '<div style="float:right;"><a onclick="commentUpdate('+jsonObj.list[i].replyno+',\''+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'\');"> 수정 </a>';
+						   re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제&nbsp;&nbsp; </a></div>';
+						   re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'">&nbsp;답글내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ");
+				           		
+					    }
+					
+					}
+					
 	            	
-	          		}else{
-	            	re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'"> <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 답글내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ") +'</p>';
-	           		}
 	            	re += '<div class="Rere'+jsonObj.list[i].replyno+'"></div>';
 	            	re += '</div></div>';
-	            
-	            	
-        	
-				}
+	        
+				 }
 				
 			
 				$("#commentList_"+a).html(re);
@@ -448,6 +559,8 @@ function replytList(index){
 					<!-- Begin Page Content -->
 					<div class="container-fluid">
 
+
+												
 
 
 						<!-- Page Heading -->
@@ -747,21 +860,80 @@ function replytList(index){
 
 										</div><!-- 게시글안쪽  -->
 										
-											<div class="px-3 pb-5 border border-primary text-white" id="replyy">
+										
+										
+										
+											<div class="px-3 pb-5 pr-20 pl-20 text-white" id="replyy">
 											
-											
+											 <div class="row">
+												<div class="col-md-16">
+												    <div class="blog-comment">
+														
+										                <hr/>
+														<ul class="comments">
+														
+														<li class="clearfix">
+														  <img src="https://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
+														  <div class="post-comments">
+														      <div class="meta">날짜&nbsp;&nbsp;<a href="#">이름&nbsp;&nbsp;</a> <i class="pull-right"><a href="#"><small>Reply</small></a></i></div>
+														     
+														          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+														          Etiam a sapien odio, sit amet
+														      
+														  </div>
+														</li>
+														<li class="clearfix">
+														  <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+														  <div class="post-comments">
+														      <div class="meta">날짜&nbsp;&nbsp;<a href="#">이름&nbsp;&nbsp;</a><i class="pull-right"><a href="#"><small>Reply</small></a></i></div>
+														      
+														          Lorem ipsum dolor sit amet, consectetur adipiscing elit.Etiam a sapien odio, sit amet
+														      
+														  </div>
+														
+														</li>
+														
+														
+														  <ul class="comments">
+														      <li class="clearfix">
+														          <img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
+														          <div class="post-comments">
+														              <div class="meta">날짜&nbsp;&nbsp;<a href="#">이름&nbsp;&nbsp;</a><i class="pull-right"></i></div>
+														             
+														                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+														                  Etiam a sapien odio, sit amet
+														              
+														          </div>
+														      </li>
+														  </ul>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
 											<div class="container" style="color: black">
+											
+											
+											
+											
+											
+												<div class="container bootstrap snippets bootdey">
+
 													<div class="commentList_${status.index }" id="commentList_${status.index }" name="${b.bno }">
 													
 													</div>
 									
 													
 											</div>
-												
-											
+
+
 											
 											<div style="height: 2px;" >
-
+							
 												<input type="hidden" id="reply_no_${status.index }" name="no" value="${b.bno }"> 
 												<input type="text" class="form-control" id="reply_content_${status.index }" name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
 													onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
