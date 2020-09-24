@@ -107,6 +107,7 @@ function selectChat(){
 			console.log("success : " + jsonStr);
 			var values = "";
 			//시계 시작 ///////////////////
+			/* 
 			const date = new Date();
 			var h = date.getHours();
 			if(h < 10){
@@ -119,7 +120,8 @@ function selectChat(){
 			values +=
 				"<center><div style=\"width:70%;\"><div style=\"position:fixed;font-size:300%;\"><br>HWABO<br>" +
 				h +":"+ m + 
-				"</div></div></center>";
+				"</div></div></center>"; 
+			*/
 			//시계 끝 ////////////////////
 			for(var i in json.chatList){
 				var chat_ucode = decodeURIComponent(json.chatList[i].ucode).replace(/\+/gi, " ");
@@ -130,7 +132,7 @@ function selectChat(){
 				
 				if(chat_ucode == "${ sessionScope.ucode }"){
 					values += 
-					"<div class=\"outgoing_msg\" style=\"position:relative;z-index:2;\"><div class=\"sent_msg\"><p>" +
+					"<div class=\"outgoing_msg\" id=\"outgoing_msg\" style=\"position:relative;z-index:2;\"><div class=\"sent_msg\"><p>" +
 					chat_content +
 		            "</p><span class=\"time_date\">" +
 		            chat_time.substring(0, 16) +
@@ -141,7 +143,7 @@ function selectChat(){
 		            "</span> </div></div>";
 				}else{
 				values += 
-					"<div class=\"incoming_msg\">" +
+					"<div class=\"incoming_msg\"  style=\"position:relative;z-index:2;\">" +
 	              	"<div class=\"incoming_msg_img\"> <img src=\"https://ptetutorials.com/images/user-profile.png\" alt=\"sunil\"></div>" +
 	              	"<span style=\"font-size:9pt;\">" +
 	              	chat_uname +
@@ -167,6 +169,33 @@ setInterval(selectChat,speed);
 
 </script>
 <!-- 채팅기능 끝 -->
+
+<!-- 시계 시작 -->
+<script type="text/javascript">
+const date = new Date();
+var h = date.getHours();
+if(h < 10){
+	h = "0" + h; 
+}
+var m = date.getMinutes();
+if(m < 10){
+	m = "0" + m; 
+}
+var toke =
+	"<center><div style=\"width:70%;\"><div style=\"position:fixed;font-size:300%;\"><br>HWABO<br>" +
+	h +":"+ m + 
+	"</div></div></center>";
+	
+function showToke(){
+	const incoming = ($('.outgoing_msg').length == 0);
+	const outgoing = ($('.incoming_msg').length == 0);
+	if(incoming && outgoing){
+	$(function(){$("#chat").html(toke);});
+	}
+}
+setInterval(showToke,1000);
+</script>
+<!-- 시계 끝 -->
 
 </head>
 <body>

@@ -35,8 +35,17 @@ function showCalendar(){
       console.log('arg.end.toISOString().slice(0, 19)' + arg.end.toISOString().slice(0, 19));
       console.log('arg.end.toISOString()' + arg.end.toISOString());
       console.log('arg.end' + arg.end);
-      
-      $(function(){//에이작스 시작
+      console.log('-----------------------------');
+      console.log(arg.start.getTime()/1000);
+      console.log('-----------------------------');
+      console.log(new Date(arg.start.getTime()).toISOString());
+      console.log('-----------------------------');
+      console.log(new Date(arg.start.getTime()));
+      console.log('-----------------------------');
+      console.log(arg);
+      console.log('-----------------------------');
+      if(title != ""){
+      $(function(){//등록 에이작스 시작
         	$.ajax({
         		url:"sendCalendar.do",
         		data:{
@@ -44,8 +53,8 @@ function showCalendar(){
         			ucode : $("#calucode").val(), 
         			uname : $("#caluname").val(),
         			title : title,
-        			start_date : arg.start.toISOString(),
-        			end_date : arg.end.toISOString(),
+        			start_date : arg.start.getTime()/1000,
+        			end_date : arg.end.getTime()/1000,
         			allday : argAllDay
         		},
         		type: "post",
@@ -61,21 +70,50 @@ function showCalendar(){
         			console.log("error code : " + request.status + "\nMessage :" + request.responseText + "\nError :" + errorData);
         		}
         	})
-      });//에이작스 끝
+      });//등록 에이작스 끝
+      }
       //ajax insert 끝////////////////////////
         if (title) {
           calendar.addEvent({
             title: title,
-            start: arg.start.toISOString(),
-            end: arg.end.toISOString(),
+            start: arg.start,
+            end: arg.end,
             allDay: arg.allDay//true false (return boolean)
           })
         }
         calendar.unselect()
       },
       eventClick: function(arg) {
-        if (confirm('Are you sure you want to delete this event?')) {
-          arg.event.remove()
+    	  console.log('--삭제 시작------------------------');
+          console.log(arg);
+          console.log('-- 삭제 끝---------------------------');
+    	  if (confirm('Are you sure you want to delete this event?')) {
+        	$(function(){// 삭제 에이작스 시작
+            	$.ajax({
+            		url:"sendCalendar.do",
+            		data:{
+            			pnum : $("#calpnum").val(), 
+            			ucode : $("#calucode").val(), 
+            			title : title,
+            			start_date : arg.start.getTime()/1000,
+            			end_date : arg.end.getTime()/1000,
+            			allday : argAllDay
+            		},
+            		type: "post",
+            		success: function(result){
+            			if(result == "ok"){
+        					console.log("일정 삭제 완료...");
+        					arg.event.remove()
+        				}else{
+        					console.log("일정 삭제 실패...");
+        				}
+            		},
+            		error: function(request,status,errorData){
+            			console.log("error code : " + request.status + "\nMessage :" + request.responseText + "\nError :" + errorData);
+            		}
+            	})
+          });// 삭제 에이작스 끝
+        //arg.event.remove()
         }
       },
       editable: true,
@@ -83,29 +121,16 @@ function showCalendar(){
       events: [
     	  <c:forEach var="calIndex" items="${ requestScope.cal }" varStatus="status">
     	  
-    	  
-    	  
       	  <c:if test="${ !status.first }">
           ,
           </c:if>
           {
             title: '${calIndex.title}',
-          
-          <c:if test="${calIndex.start_date == calIndex.end_date}">
-            start: '${fn:substring(calIndex.start_date,0,10)}',
-          </c:if>
-          <c:if test="${calIndex.start_date != calIndex.end_date}">
-          start: '${fn:substring(calIndex.start_date,0,10)}',
-          </c:if>
-          
-          <c:if test="${calIndex.end_date == calIndex.start_date}">
-            end: '${fn:substring(calIndex.end_date,0,10)}'
-          </c:if>
-          <c:if test="${calIndex.end_date != calIndex.start_date}">
-            end: '${fn:substring(calIndex.end_date,0,10)}'
-          </c:if>
+            start: new Date(${calIndex.start_date} * 1000),
+	        end: new Date(${calIndex.end_date} * 1000)
           }
-  			</c:forEach>
+  			
+          </c:forEach>
   			
   		/* 	,{
   	            title: 'tetete',
