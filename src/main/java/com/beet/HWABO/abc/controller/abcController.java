@@ -31,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.beet.HWABO.abc.model.service.LoveService;
 import com.beet.HWABO.abc.model.service.PostreplyService;
+import com.beet.HWABO.abc.model.vo.Bkindup;
 import com.beet.HWABO.abc.model.vo.Love;
 import com.beet.HWABO.bpost.model.service.BpostService;
 import com.beet.HWABO.bpost.model.vo.Bpost;
@@ -296,6 +297,7 @@ public class abcController {
 			job.put("bno",bpost.getBno());
 			job.put("bkind", URLEncoder.encode(bpost.getBkind(), "utf-8"));
 			job.put("btitle", URLEncoder.encode(bpost.getBtitle(), "utf-8"));
+			job.put("bucode", bpost.getBucode());
 
 			if (bpost.getBstartday() != null) {
 				job.put("bstartday", bpost.getBstartday().toString());
@@ -325,6 +327,18 @@ public class abcController {
 		return jarr.toJSONString();
 
 	}
+	
+	@RequestMapping(value="bkindupdate.do", method= RequestMethod.POST)
+	public void bkindUpdate(Bkindup bk) {
+		logger.info(bk.toString());
+
+		if(spostService.bkindUpdate(bk) > 0) {
+			logger.info("상태 업데이트 성공 !!!!!!!!!!!!!!!!!!!!!!!");
+		}
+		
+	}
+	
+	
 	
 	// 업무 모아보기 페이지 조회용
 	@RequestMapping("mybpost.do")
@@ -533,18 +547,14 @@ public class abcController {
 	public String bpostDelete(Bpost bpost, Model model, HttpServletRequest request, PjMember pmember) {
 		if (bpostService.deleteBpost(bpost) > 0) {
 			String brenamefilename = bpost.getBrenamefile();
-			logger.info("controller brenamefilename : " + brenamefilename);
-
+			
 			if (brenamefilename != null && !brenamefilename.isEmpty()) {
 
 				String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
 				new File(savePath + "\\" + brenamefilename).delete();
 			}
-			return "redirect:/mybpost.do?ucode=" + pmember.getUcode() + "&pnum=" + pmember.getPnum();
-		} else {
-			model.addAttribute("message", "업무 게시글 삭제에 실패하였습니다.");
-			return "redirect:/mybpost.do?ucode=" + pmember.getUcode() + "&pnum=" + pmember.getPnum();
 		}
+		return "redirect:/moveMyBpost.do";
 	}
 
 //========== 나의 화보, 너의 화보 Post 관련 메소드 ==================================================	

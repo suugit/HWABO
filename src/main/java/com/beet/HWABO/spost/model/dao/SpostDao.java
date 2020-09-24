@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.beet.HWABO.abc.model.vo.Bkindup;
 import com.beet.HWABO.abc.model.vo.Love;
 import com.beet.HWABO.abc.model.vo.Postreply;
 import com.beet.HWABO.bpost.model.vo.Bpost;
@@ -101,6 +102,10 @@ public class SpostDao {
 	public int updatePostReply(String postno) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public int bkindUpdate(Bkindup bk) {
+		return session.update("bpostMapper.bkindupdate", bk);
 	}
 
 

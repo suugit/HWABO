@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.beet.HWABO.abc.model.vo.Bkindup;
 import com.beet.HWABO.abc.model.vo.Love;
 import com.beet.HWABO.abc.model.vo.Postreply;
 import com.beet.HWABO.bpost.model.vo.Bpost;
@@ -115,6 +116,12 @@ public class SpostServiceImpl implements SpostService{
 	public int updatePostReply(String postno) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+
+	@Override
+	public int bkindUpdate(Bkindup bk) {
+		return spostDao.bkindUpdate(bk);
 	}
 
 

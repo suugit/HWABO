@@ -10,6 +10,7 @@
 		<typeAlias type="com.beet.HWABO.spost.model.vo.Spost" alias="Spost" />
 		<typeAlias type="com.beet.HWABO.spost.model.vo.Post" alias="Post" />
 		<typeAlias type="com.beet.HWABO.spost.model.vo.Bpostchk" alias="Bpostchk" />
+		<typeAlias type="com.beet.HWABO.abc.model.vo.Bkindup" alias="Bkindup" />
 		<typeAlias type="com.beet.HWABO.abc.model.vo.Love" alias="Love" />
 		<typeAlias type="com.beet.HWABO.abc.model.vo.Postreply" alias="Postreply" />
 		

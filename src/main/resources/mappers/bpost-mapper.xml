@@ -148,6 +148,13 @@
 
 </update>
 
+
+<update id="bkindupdate" parameterType="Bkindup">
+	update bpost 
+	set bkind = #{bkind}
+	where bno = #{bno}
+</update>
+
 <!-- 보관함 관련!!! -->
 
 

@@ -3,6 +3,7 @@ package com.beet.HWABO.spost.model.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.beet.HWABO.abc.model.vo.Bkindup;
 import com.beet.HWABO.abc.model.vo.Love;
 import com.beet.HWABO.abc.model.vo.Postreply;
 import com.beet.HWABO.bpost.model.vo.Bpost;
@@ -36,6 +37,9 @@ public interface SpostService {
 	int insertPostReply(Postreply reply);
 	int updatePostReply(String postno);
 	int deletePostReply(String postno);
+	
+	
+	int bkindUpdate(Bkindup bk);
 	
 
 }
