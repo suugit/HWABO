@@ -1,6 +1,6 @@
 [].push.apply(FullCalendar.globalLocales, function () {
   'use strict';
-
+console.log("111");
   var l0 = {
     code: "af",
     week: {

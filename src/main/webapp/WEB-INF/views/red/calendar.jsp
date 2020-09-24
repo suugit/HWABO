@@ -99,7 +99,7 @@ function showCalendar(){
         calendar.unselect() */
       },
       eventClick: function(arg) {
-    	  console.log("삭제 대상 " + arg)
+    	  console.log(arg)
     	  if (confirm(arg.el.innerText +'일정을 모두 삭제 합니다.')) {
     		  $(function(){// 삭제 에이작스 시작
             	$.ajax({
