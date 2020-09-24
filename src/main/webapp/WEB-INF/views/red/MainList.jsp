@@ -711,6 +711,7 @@ console.log(map1_${ status.index });
 		$("#cpEdit"+click).css("display", "block" );
 		$("#cpView"+click).css("display", "none" );
 		cno = click;
+		alert(cno);
 		cpost = "#updatecForm" + cno;
 		table = "#CpostUpTable" + cno;
 	}
@@ -757,15 +758,27 @@ function cpSave(){
  		processData:false,
  		dataType: "JSON",
  		success: function(c){
+ 			alert('성공');
 			var aa = document.getElementById("cpView" + cno);
 			aa.querySelector('h6').innerText = c.ctitle;
 			aa.querySelector('.ccon').innerText = c.ccontent;
-			var c = aa.querySelector('#preview');
+			var e = aa.querySelector('#preview');
+			e.children().remove();
 			var d = aa.querySelector('#afterPreview');
-			d.innerText += c.rfile3
-			d.innerHTML += '<td><img src="resources/bupfile/' + c.rfile3 + '"></td>';
-			//$(c).css('display', 'none');			
- 			$("#cpView"+cno).css("display", "block" );		
+			
+			if(c.rfile1 != null){
+			
+				e.innerHTML += '<td><img src="resources/bupfile/' + c.rfile1 + '"></td>';
+			}
+			if(c.rfile2 != null){
+				e.innerHTML += '<td><img src="resources/bupfile/' + c.rfile2 + '"></td>';
+			}
+			if(c.rfile3 != null){
+				e.innerHTML += '<td><img src="resources/bupfile/' + c.rfile3 + '"></td>';
+			}
+			//$(e).css('display', 'none');			
+ 			alert('h')
+			$("#cpView"+cno).css("display", "block" );		
  			$("#cpEdit"+cno).css("display", "none" );
  		},
  		error: function(){ 
