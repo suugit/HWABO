@@ -753,13 +753,31 @@ public class RedController {
 				out.append("ok");
 				out.flush();
 			}else {
-				calendar.setTitle("프로필사진 비뜨로 바꾸기");
+				calendar.setTitle(calendar.getUname().substring(12));
 				if(redService.deleteCalendar(calendar) > 0) {
 					out.append("ok");
 					out.flush();
 				}else {
-					out.append("fail");
-					out.flush();
+					calendar.setTitle(calendar.getUname().substring(13));
+					if(redService.deleteCalendar(calendar) > 0) {
+						out.append("ok");
+						out.flush();
+					}else {
+						calendar.setTitle(calendar.getUname().substring(14));
+						if(redService.deleteCalendar(calendar) > 0) {
+							out.append("ok");
+							out.flush();
+						}else {
+							calendar.setTitle("프로필사진 비뜨로 바꾸기");
+							if(redService.deleteCalendar(calendar) > 0) {
+								out.append("ok");
+								out.flush();
+							}else {
+								out.append("fail");
+								out.flush();
+							}
+						}
+					}
 				}
 			}
 			
