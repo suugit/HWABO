@@ -167,7 +167,7 @@ jQuery('.suugitMain').click(function () {
 <!-- CPOST start -->
 <div class="card shadow mb-4" style="display:block;" id="suugitsuugitMain">
             
-               <div class="card-body">
+               <div class="card-body rounded" style="background-color:#F6F3FD;">
               <!-- 게시글안쪽 -->
               <div class="clearfix d-flex ">
               	</div><table id="InsertTable" style="text-align:center;width:100%;">
@@ -184,11 +184,11 @@ jQuery('.suugitMain').click(function () {
 			  <tr class="m-0 font-weight-bold text-primary"><td style="width:100%;" colspan="5"><table style="width:100%;">
 			  <tr class="m-0 font-weight-bold text-primary" style="width:100%;">
 			  <td style="width:33%;height:100%;" class="suugitMain hovercheck">          
-              <span>글작성</span>
+              <span><i class="fas fa-pencil-alt"></i>글작성</span>
               </td><td style="width:33%;height:100%;" class="kyuMain hovercheck">
-              <span>업무</span>
+              <span><i class="fas fa-business-time"></i>업무</span>
               </td><td style="width:33%;height:100%;" class="abcMain hovercheck">
-              <span>일정</span>
+              <span><i class="fas fa-map-marked-alt"></i>일정</span>
               </td></tr>
               </table></td></tr>
 <!-- @@@  -->                                                                                                        <!-- @@@  -->
@@ -307,7 +307,7 @@ jQuery('.suugitMain').click(function () {
 <!-- @@@@시작@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->               
 <!-- @@@  -->                                                          <!-- @@@  -->
 <!-- @@@@끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-                  <div class="card-body" style="border: 1px solid green">
+                 <div class="card-body rounded" style="background-color:#F6F3FD;">
                      <!-- 게시글안쪽 -->
                   <form action="insertbpostMain.do" name="b" method="post" id="bInsert" enctype="multipart/form-data">
                      <input type="hidden" name="bucode" value="${sessionScope.ucode }">
@@ -323,11 +323,11 @@ jQuery('.suugitMain').click(function () {
 			  <tr><td style="width:100%;" colspan="5"><table style="width:100%;">
 			  <tr class="m-0 font-weight-bold text-primary" style="width:100%;">
 			  <td style="width:33%;height:100%;" class="suugitMain hovercheck">          
-              <span>글작성</span>
+              <span><i class="fas fa-pencil-alt"></i>글작성</span>
               </td><td style="width:33%;height:100%;" class="kyuMain hovercheck">
-              <span>업무</span>
+              <span><i class="fas fa-business-time"></i>업무</span>
               </td><td style="width:33%;height:100%;" class="abcMain hovercheck">
-              <span>일정</span>
+              <span><i class="fas fa-map-marked-alt"></i>일정</span>
               </td></tr>
               <tr><td colspan="5">
               <hr>
@@ -455,7 +455,7 @@ jQuery('.suugitMain').click(function () {
 %>
 <div class="card shadow mb-4" style="display:none;" id="abcabcMain">
             
-            <div class="card-body">
+             <div class="card-body rounded" style="background-color:#F6F3FD;">
               <!-- 게시글안쪽 -->
         <form action="sinsertMain.do" id="spostInsert" name="spostInsert"	method="post" onsubmit="return daycheck();">
         <input type="hidden" name="swriter" value="${sessionScope.uname }">
@@ -470,11 +470,11 @@ jQuery('.suugitMain').click(function () {
 			  <tr><td style="width:100%;" colspan="5"><table style="width:100%;">
 			  <tr class="m-0 font-weight-bold text-primary" style="width:100%;">
 			  <td style="width:33%;height:100%;" class="suugitMain hovercheck">          
-              <span>글작성</span>
+              <span><i class="fas fa-pencil-alt"></i>글작성</span>
               </td><td style="width:33%;height:100%;" class="kyuMain hovercheck">
-              <span>업무</span>
+              <span><i class="fas fa-business-time"></i>업무</span>
               </td><td style="width:33%;height:100%;" class="abcMain hovercheck">
-              <span>일정</span>
+              <span><i class="fas fa-map-marked-alt"></i>일정</span>
               </td></tr>
               <tr><td colspan="5">
               <hr>
