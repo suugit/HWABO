@@ -25,6 +25,8 @@ public class Post implements Serializable{
 	private Date senrolldate;
 	private String sopen;
 	private String spnum;
+	private String stringstart;
+	private String stringend;
 	
 	//Bpost (15)
 	private String bno;
@@ -68,12 +70,12 @@ public class Post implements Serializable{
 
 	public Post(String firstword, String no, Date enrolldate, String pnum, String ucode, String sno, String stitle,
 			String sucode, String swriter, Date sstartday, Date sendday, String splace, String scontent,
-			Date senrolldate, String sopen, String spnum, String bno, String btitle, String bucode, String bwriter,
-			Date bstartday, Date bendday, String bkind, String bcharge, String bcontent, Date benrolldate, String bopen,
-			String brenamefile, String boriginfile, String bpnum, String bchargename, String cno, String cpnum,
-			String ctitle, String cucode, String cwriter, String ccontent, Date cenrolldate, String copen,
-			String hashtags, String mentions, String ofile1, String rfile1, String ofile2, String rfile2, String ofile3,
-			String rfile3) {
+			Date senrolldate, String sopen, String spnum, String stringstart, String stringend, String bno,
+			String btitle, String bucode, String bwriter, Date bstartday, Date bendday, String bkind, String bcharge,
+			String bcontent, Date benrolldate, String bopen, String brenamefile, String boriginfile, String bpnum,
+			String bchargename, String cno, String cpnum, String ctitle, String cucode, String cwriter, String ccontent,
+			Date cenrolldate, String copen, String hashtags, String mentions, String ofile1, String rfile1,
+			String ofile2, String rfile2, String ofile3, String rfile3) {
 		super();
 		this.firstword = firstword;
 		this.no = no;
@@ -91,6 +93,8 @@ public class Post implements Serializable{
 		this.senrolldate = senrolldate;
 		this.sopen = sopen;
 		this.spnum = spnum;
+		this.stringstart = stringstart;
+		this.stringend = stringend;
 		this.bno = bno;
 		this.btitle = btitle;
 		this.bucode = bucode;
@@ -122,6 +126,23 @@ public class Post implements Serializable{
 		this.rfile2 = rfile2;
 		this.ofile3 = ofile3;
 		this.rfile3 = rfile3;
+	}
+
+
+	public String getStringstart() {
+		return stringstart;
+	}
+
+	public void setStringstart(String stringstart) {
+		this.stringstart = stringstart;
+	}
+
+	public String getStringend() {
+		return stringend;
+	}
+
+	public void setStringend(String stringend) {
+		this.stringend = stringend;
 	}
 
 	public String getFirstword() {
@@ -505,16 +526,19 @@ public class Post implements Serializable{
 		return "Post [firstword=" + firstword + ", no=" + no + ", enrolldate=" + enrolldate + ", pnum=" + pnum
 				+ ", ucode=" + ucode + ", sno=" + sno + ", stitle=" + stitle + ", sucode=" + sucode + ", swriter="
 				+ swriter + ", sstartday=" + sstartday + ", sendday=" + sendday + ", splace=" + splace + ", scontent="
-				+ scontent + ", senrolldate=" + senrolldate + ", sopen=" + sopen + ", spnum=" + spnum + ", bno=" + bno
-				+ ", btitle=" + btitle + ", bucode=" + bucode + ", bwriter=" + bwriter + ", bstartday=" + bstartday
-				+ ", bendday=" + bendday + ", bkind=" + bkind + ", bcharge=" + bcharge + ", bcontent=" + bcontent
-				+ ", benrolldate=" + benrolldate + ", bopen=" + bopen + ", brenamefile=" + brenamefile
-				+ ", boriginfile=" + boriginfile + ", bpnum=" + bpnum + ", bchargename=" + bchargename + ", cno=" + cno
-				+ ", cpnum=" + cpnum + ", ctitle=" + ctitle + ", cucode=" + cucode + ", cwriter=" + cwriter
-				+ ", ccontent=" + ccontent + ", cenrolldate=" + cenrolldate + ", copen=" + copen + ", hashtags="
-				+ hashtags + ", mentions=" + mentions + ", ofile1=" + ofile1 + ", rfile1=" + rfile1 + ", ofile2="
-				+ ofile2 + ", rfile2=" + rfile2 + ", ofile3=" + ofile3 + ", rfile3=" + rfile3 + "]";
+				+ scontent + ", senrolldate=" + senrolldate + ", sopen=" + sopen + ", spnum=" + spnum + ", stringstart="
+				+ stringstart + ", stringend=" + stringend + ", bno=" + bno + ", btitle=" + btitle + ", bucode="
+				+ bucode + ", bwriter=" + bwriter + ", bstartday=" + bstartday + ", bendday=" + bendday + ", bkind="
+				+ bkind + ", bcharge=" + bcharge + ", bcontent=" + bcontent + ", benrolldate=" + benrolldate
+				+ ", bopen=" + bopen + ", brenamefile=" + brenamefile + ", boriginfile=" + boriginfile + ", bpnum="
+				+ bpnum + ", bchargename=" + bchargename + ", cno=" + cno + ", cpnum=" + cpnum + ", ctitle=" + ctitle
+				+ ", cucode=" + cucode + ", cwriter=" + cwriter + ", ccontent=" + ccontent + ", cenrolldate="
+				+ cenrolldate + ", copen=" + copen + ", hashtags=" + hashtags + ", mentions=" + mentions + ", ofile1="
+				+ ofile1 + ", rfile1=" + rfile1 + ", ofile2=" + ofile2 + ", rfile2=" + rfile2 + ", ofile3=" + ofile3
+				+ ", rfile3=" + rfile3 + "]";
 	}
+
+
 
 
 }

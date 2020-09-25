@@ -64,7 +64,9 @@
 	
 <!-- 나의 화보, 팀원의 화보 조회용  -->	
 <select id="selectPost" parameterType="PjMember" resultType="Post">
-	select * from realpost 
+	select FIRSTWORD, NO, ENROLLDATE, PNUM, UCODE, SNO, STITLE, SUCODE, SWRITER, SSTARTDAY, SENDDAY, SPLACE, SCONTENT, SENROLLDATE, SOPEN, SPNUM, CNO, CPNUM, CTITLE, CUCODE, CWRITER, CCONTENT, CENROLLDATE, COPEN, HASHTAGS, MENTIONS, OFILE1, RFILE1, OFILE2, RFILE2, OFILE3, RFILE3, BNO, BTITLE, BUCODE, BWRITER, BSTARTDAY, BENDDAY, BKIND, BCHARGE, BCONTENT, BENROLLDATE, BOPEN, BRENAMEFILE, BORIGINFILE, BPNUM, BCHARGENAME,
+	concat(concat(to_char(sstartday, 'yyyy-mm-dd'), 'T'),to_char(sstartday, 'hh24:mi') )as stringstart, concat(concat(to_char(sendday, 'yyyy-mm-dd'), 'T'),to_char(sendday, 'hh24:mi') )as stringend 
+	 from realpost 
 	where ( ucode = #{ucode}  or  bcharge like '%'||#{ucode}||'%' )
 	and	( pnum = #{pnum} )
 	order by enrolldate desc
