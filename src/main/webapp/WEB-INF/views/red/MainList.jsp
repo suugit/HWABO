@@ -547,9 +547,11 @@ console.log(map1_${ status.index });
 								<br>
 								<tr class="preview" style="max-height:100px;">
 								<c:if test="${!empty c.ofile1 }">
-											<td class="rounded align-bottom" style="width: 33%"><c:set
-													var="fileName" value="${fn:split(c.ofile1, '.')}" /> <c:set
-													var="fileType" value="${fileName[fn:length(fileName)-1]} " />
+									<input type="hidden" name="ofile1" value="${c.ofile1 }">
+									<input type="hidden" name="rfile1" value="${c.rfile1 }">
+											<td class="rounded align-bottom" style="width: 33%">
+											<c:set var="fileName" value="${fn:split(c.ofile1, '.')}" /> 
+											<c:set var="fileType" value="${fileName[fn:length(fileName)-1]} " />
 												<c:choose>
 													<c:when test="${fn:contains(fileType,'jp') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">
 													<img class="rounded img-fluid " src="resources/bupfile/${c.rfile1}" style="max-height:100px;">
@@ -563,6 +565,8 @@ console.log(map1_${ status.index });
 												<br><a href="javascript:location.href='cfiledown.do?ofile=${c.ofile1}&rfile=${c.rfile1}'" class="ml-4 font-weight-bold" style="margin-top:12px">${c.ofile1}</a></td>
 										</c:if>
 										<c:if test="${!empty c.ofile2 }">
+											<input type="hidden" name="ofile2" value="${c.ofile2}">
+											<input type="hidden" name="rfile2" value="${c.rfile2}">
 											<td class="rounded align-bottom" style="width: 33%"><c:set
 													var="fileName" value="${fn:split(c.ofile2, '.')}" /> <c:set
 													var="fileType" value="${fileName[fn:length(fileName)-1]} " />
@@ -579,6 +583,8 @@ console.log(map1_${ status.index });
 												<br><a href="javascript:location.href='cfiledown.do?ofile=${c.ofile2}&rfile=${c.rfile2}'" class="ml-4 font-weight-bold ">${c.ofile2}</a></td>
 										</c:if>
 										<c:if test="${!empty c.ofile3 }">
+											<input type="hidden" name="ofile3" value="${c.ofile3}">
+											<input type="hidden" name="rfile3" value="${c.rfile3}">
 											<td class="rounded align-bottom" style="width: 33%"><c:set
 													var="fileName" value="${fn:split(c.ofile3, '.')}" /> <c:set
 													var="fileType" value="${fileName[fn:length(fileName)-1]} " />
@@ -747,79 +753,14 @@ console.log(map1_${ status.index });
 	<script src="resources/js/jquery-3.5.1.min.js"></script>
 	<script src="resources/js/cpost.js"></script>
 	<script>
-   var cno = "" ;
-   var table="";
-   var cpost = "";
-  
-   function toEdit(click) {
 
-		$("#cpEdit"+click).css("display", "block" );
-		$("#cpView"+click).css("display", "none" );
-		cno = click;
-		alert(cno);
-		cpost = "#updatecForm" + cno;
-		table = "#CpostUpTable" + cno;
-	}
-	
 	function moveselectfeed(click) {
 		alert(click);
 		$("#up"+click).css("display", "none" );
 		$("#se"+click).css("display", "block" );
 	}
    
-   var tmplist = "";
-   
-   $('.updatecPost').find("input[type='file']").on('change',function(e){
- 		var fileArea = $(table).find('tr.preview');
- 		//fileArea.empty();
- 		if(fileArea.children('td').length >= 3){
- 			alert('첨부파일은 최대 3개까지 가능합니다');
- 			return false;
- 		}
- 		
- 		tmp = Array.prototype.slice.call(fileArea.children('td'));
- 		tmplist = Array.prototype.slice.call(fileArea.children('td')).innerHTML;
- 		var files = e.target.files;
- 		var arr = Array.prototype.slice.call(files);
- 		tmp.push(arr);
- 		alert(tmp);
- 		preview(fileArea, arr);
 
- 		
- 		});
-
-function cpSave(){
-	alert(tmplist);
-	event.preventDefault();
- 	 var formData = new FormData($(cpost)[0]);
- 	 var ee;
- 	 
- 	formData.append("cflist", tmplist);
-	alert(formData.cflist);
- 	 $.ajax({
- 		url: "upcp.do",
- 		type: "post",
- 		enctype: 'multipart/form-data',
- 		data: formData,
- 		contentType:false,
- 		processData:false,
- 		dataType: "JSON",
- 		success: function(c){
- 			alert('성공');
- 			$("#cpView"+cno).load("selcpnew.do",c,function() {
- 				$("#cpView"+cno).css("display", "block" );
- 				$("#cpEdit"+cno).css("display", "none" );
- 			    alert("글 수정 성공");
- 			});
- 			
- 		},
- 		error: function(){ 
- 			alert('업데이트 실패');
- 		
- 		}
- 		
- 	});   
-  }
   
    </script>
 </body>

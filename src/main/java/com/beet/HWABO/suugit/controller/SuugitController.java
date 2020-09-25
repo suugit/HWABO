@@ -881,8 +881,7 @@ public class SuugitController {
 
 	@PostMapping("upcp.do")
 	@ResponseBody
-	public JSONObject updateCpost(Cpost cpost, AddOn addon, ModelAndView mav, MultipartHttpServletRequest request)
-			throws UnsupportedEncodingException {
+	public JSONObject updateCpost(Cpost cpost, AddOn addon, ModelAndView mav, MultipartHttpServletRequest request) throws UnsupportedEncodingException {
 		
 		String cno = cpost.getCno();
 		logger.info(cno + "게시글 수정");
