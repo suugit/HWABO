@@ -9,24 +9,106 @@
 
 <script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-	$(function(){
-		$("[id^=up]").css("display", "none" );
-		
-	});	//document.ready;
+$(function(){
+	//수정폼 가리기
+	$("[id^=up]").css("display", "none" );
 	
+	//수정폼안에 입력가능글자수 변경
+	$('#scontent').on("propertychange change keyup paste input", function() {
+		var content = $(this).val();
+		$('#counter').val(200 - content.length);
+
+		if (content.length > 200) {
+			$(this).val(
+					$(this).val().substring(0, 200));
+		}
+	});
+
+	//수정폼 입력부분 빈칸이면 주소입력창띄우기
+	$("#sample5_address3").on("click", function(){
+		if($(this).val().length == 0 ){
+			sample5_execDaumPostcode2()
+		}
+	});	
+	
+	//수정폼에 spost내용값 읽어와서 (200 - 입력된 값)를 글자수에 적용
+	var content = $('#scontent').val();
+	$('#counter').val(200-content.length);
+	var str = $('#scontent').val();
+	str = str.split('<br>').join("\r\n");
+	$('#scontent').val(str);
+	
+	
+});	//document.ready;
+
+	//날짜 유효성 체크
+	function daycheck() {
+		var startday = document.uspostform.beforesstartday.value.replace("T", " ");
+		var endday = document.uspostform.beforesendday.value.replace("T", " ");
+		var start = new Date(startday);
+		var end = new Date(endday);
+		if (start > end) {
+			$("#placespan").html("끝 날짜가 시작날짜보다 이전일 수 없습니다<br>다시 선택해주세요");
+			$("#beforesendday").focus();
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	//수정폼 띄우기
 	function moveupdateform(click) {
 		alert(click);
 		$("#up"+click).css("display", "block" );
 		$("#se"+click).css("display", "none" );
 	}
 	
+	//출력폼 띄우기
 	function moveselectfeed(click) {
 		alert(click);
 		$("#up"+click).css("display", "none" );
 		$("#se"+click).css("display", "block" );
 	}
-
-</script>
+	
+	//수정완료 버튼 누르면 실행되는 펑션
+	function spostupdate(){
+		var param = $("#uspostform").serialize();
+		$.ajax({
+			url: "supdate.do",
+			data: param,
+			type: "post", 
+			success: function(Data){
+				if(Data != null){
+					alert("수정에 성공하였습니다");
+				}else{
+					alert("수정에 실패하였습니다");
+				}	
+			},
+			error: function(request, status, errorData){
+				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+			}
+		}); //ajax
+}; 
+	//삭제 메소드
+	function spostdelete(){
+		$.ajax({
+			url: "sdelete.do",
+			data: { sno: $("#sno").val() },
+			type: "post", 
+			success: function(Data){
+				if(Data != null){
+					alert("삭제에 성공하였습니다");
+				}else{
+					alert("삭제에 실패하였습니다");
+				}	
+			},
+			error: function(request, status, errorData){ //에러는 위에서 복붙
+				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+			}
+		}); //ajax
+	}; 
+	//spost function 끗
+</script> 
 <body>
 <c:forEach var="main" items="${ requestScope.list }"  varStatus="status">  
 
@@ -42,24 +124,24 @@
 			</h6>
 			<div class="dropdown no-arrow">
 				<!-- 보관함 담기여부 -->
-				<button id="cabinetshow" class="btn btn-custom btn-sm liketoggle" name="like">
-					<span>보관</span> <i class="far fa-bookmark"></i>
-				</button>
-				<!-- 드롭다운 -->
-				
+				<button id="cavinetin_${status.index }"
+							class="btn btn-custom btn-sm liketoggle${status.index }"
+							name="like" onclick="sendInsert(${status.index});">
+							<span>보관</span> <i class="far fa-bookmark"></i>
+						</button>
+						<input type="hidden" id="ucode_${status.index }"	value="${sessionScope.ucode }"> 
+						<input type="hidden"id="no_${status.index }" value="${post.sno }"> <input	type="hidden" id="pnum_${status.index }" value="${post.spnum }">
 
+				<!-- 드롭다운 -->
 				<c:if test="${post.sucode eq sessionScope.ucode }">
 					<a class="dropdown-toggle" href="#" role="button"
-						id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> <i
-						class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+						id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"	aria-expanded="false"> 
+						<i 	class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
 					</a>
-					<div
-						class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-						aria-labelledby="dropdownMenuLink">
+					<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"	aria-labelledby="dropdownMenuLink">
 						<div class="dropdown-header">메뉴:</div>
-						<button id="${post.sno}"   onclick="moveupdateform(this.id);">수정</button>
-						<button  >삭제</button>
+						<button class="dropdown-item" id="${post.sno}"   onclick="moveupdateform(this.id);">수정</button>
+						<button class="dropdown-item"  id="dspost" type="submit" onclick="spostdelete(); return false;">삭제하기</button>
 					</div>
 				</c:if>
 				
@@ -131,7 +213,6 @@ geocoder1_${ status.index }.addressSearch(spostplace1_${ status.index }, functio
     } 
 });    
 
-console.log(map1_${ status.index });
 </script>
 					</td>
 				</tr>
@@ -159,134 +240,6 @@ console.log(map1_${ status.index });
 	
 
 <!-- spost 수정폼 -->
-<script type="text/javascript">
-
-function spostupdate(){
-		var param = $("#uspostform").serialize();
-		$.ajax({
-			url: "supdate.do",
-			data: param,
-			/* data: { sno: $("#sno").val(), stitle:$("#stitle").val(), beforesstartday:$("#beforesstartday").val(), beforesendday: $("#beforesendday").val(), 
-					 splace:$("#splace").val(), salarm:$("#salarm").val, scontent: $("#scontent").val() },	 */
-			type: "post", 
-			success: function(Data){	// 받는다고 했으니까 매개변수 있어야함
-				// json 한개를 받았을 때는 바로 출력 처리할 수 있음
-				if(Data != null){
-					alert("수정에 성공하였습니다");
-				}else{
-					alert("수정에 실패하였습니다");
-				}	
-				/* $("#d2").html("번호 : "+jsonData.no+"<br>제목 : "+jsonData.title+"<br>작성자 : "+decodeURIComponent(jsonData.writer)+
-						"<br>내용 : "+decodeURIComponent(jsonData.content.replace(/\+/gi," "))+"<br><br>");
-				 */
-			},
-			error: function(request, status, errorData){ //에러는 위에서 복붙
-				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
-			}
-		}); //ajax
-}; 
-
-function spostdelete(){
-	$.ajax({
-		url: "sdelete.do",
-		data: { sno: $("#sno").val() },
-		/* data: { sno: $("#sno").val(), stitle:$("#stitle").val(), beforesstartday:$("#beforesstartday").val(), beforesendday: $("#beforesendday").val(), 
-				 splace:$("#splace").val(), salarm:$("#salarm").val, scontent: $("#scontent").val() },	 */
-		type: "post", 
-		success: function(Data){	// 받는다고 했으니까 매개변수 있어야함
-			// json 한개를 받았을 때는 바로 출력 처리할 수 있음
-			if(Data != null){
-				alert("삭제에 성공하였습니다");
-			}else{
-				alert("삭제에 실패하였습니다");
-			}	
-			/* $("#d2").html("번호 : "+jsonData.no+"<br>제목 : "+jsonData.title+"<br>작성자 : "+decodeURIComponent(jsonData.writer)+
-					"<br>내용 : "+decodeURIComponent(jsonData.content.replace(/\+/gi," "))+"<br><br>");
-			 */
-		},
-		error: function(request, status, errorData){ //에러는 위에서 복붙
-			console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
-		}
-	}); //ajax
-}; 
-
-	
-$(function(){	
-	$('#scontent').on("propertychange change keyup paste input", function() {
-		var content = $(this).val();
-		$('#counter').val(200 - content.length);
-
-		if (content.length > 200) {
-			$(this).val(
-					$(this).val().substring(0, 200));
-		}
-	});
-
-	$("#sample5_address3").on("click", function(){
-	if($(this).val().length == 0 ){
-		sample5_execDaumPostcode2()
-	}
-});		
-	var content = $('#scontent').val();
-	$('#counter').val(215-content.length);
-	
-	var str = $('#scontent').val();
-
-	str = str.split('<br>').join("\r\n");
-
-	$('#scontent').val(str);
-	
-
-	
-});    //document.ready 끝
-
-
-	function daycheck() {
-
-		var startday = document.uspostform.beforesstartday.value.replace("T", " ");
-		var endday = document.uspostform.beforesendday.value.replace("T", " ");
-
-		var start = new Date(startday);
-		var end = new Date(endday);
-
-		if (start > end) {
-
-			$("#placespan").html("끝 날짜가 시작날짜보다 이전일 수 없습니다<br>다시 선택해주세요");
-			$("#beforesendday").focus();
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
-	function spostupdate(){
-		var param = $("#uspostform").serialize();
-		$.ajax({
-			url: "HSupdate.do",
-			data: param,
-			/* data: { sno: $("#sno").val(), stitle:$("#stitle").val(), beforesstartday:$("#beforesstartday").val(), beforesendday: $("#beforesendday").val(), 
-					 splace:$("#splace").val(), salarm:$("#salarm").val, scontent: $("#scontent").val() },	 */
-			type: "post", 
-			success: function(Data){	// 받는다고 했으니까 매개변수 있어야함
-				// json 한개를 받았을 때는 바로 출력 처리할 수 있음
-				if(Data != null){
-					alert("수정에 성공하였습니다");
-					
-				}else{
-					alert("수정에 실패하였습니다");
-				}	
-				/* $("#d2").html("번호 : "+jsonData.no+"<br>제목 : "+jsonData.title+"<br>작성자 : "+decodeURIComponent(jsonData.writer)+
-						"<br>내용 : "+decodeURIComponent(jsonData.content.replace(/\+/gi," "))+"<br><br>");
-				 */
-			},
-			error: function(request, status, errorData){ //에러는 위에서 복붙
-				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
-			}
-		}); //ajax
-}; 
-
-	
-</script>
 
 <form name="uspostform" id="uspostform" method="post" onsubmit="return daycheck();">
 	<div id="up${post.sno }" class="card shadow mb-4">

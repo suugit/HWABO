@@ -6,6 +6,26 @@
 <!DOCTYPE html>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
+	
+<script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("[id^=up]").css("display", "none" );
+		
+	});	//document.ready;
+	
+	function moveupdateform(click) {
+		alert(click);
+		$("#up"+click).css("display", "block" );
+		$("#se"+click).css("display", "none" );
+	}
+	
+	function moveselectfeed(click) {
+		alert(click);
+		$("#up"+click).css("display", "none" );
+		$("#se"+click).css("display", "block" );
+	}
+</script>
 <body>
 
 	<c:forEach var="main" items="${ requestScope.list }" varStatus="status">
@@ -32,10 +52,8 @@
 							name="like" onclick="sendInsert(${status.index});">
 							<span>보관</span> <i class="far fa-bookmark"></i>
 						</button>
-						<input type="hidden" id="ucode_${status.index }"
-							value="${sessionScope.ucode }"> <input type="hidden"
-							id="no_${status.index }" value="${post.sno }"> <input
-							type="hidden" id="pnum_${status.index }" value="${post.spnum }">
+						<input type="hidden" id="ucode_${status.index }"	value="${sessionScope.ucode }"> 
+						<input type="hidden"id="no_${status.index }" value="${post.sno }"> <input	type="hidden" id="pnum_${status.index }" value="${post.spnum }">
 
 						<!-- 드롭다운 -->
 						<a class="dropdown-toggle" href="#" role="button"
@@ -47,7 +65,7 @@
 							class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
 							aria-labelledby="dropdownMenuLink">
 							<div class="dropdown-header">메뉴:</div>
-							<a id="${c.cno}" name="mine" class="dropdown-item"
+							<a id="${post.sno}" name="mine" class="dropdown-item"
 								onclick="toEdit(this.id)">수정</a>
 							<c:url var="delcp" value="delcp.do">
 								<c:param name="cno" value="${c.cno }" />
@@ -214,8 +232,9 @@ console.log(map1_${ status.index });
 		$("#changeselect").css("display", "none" );
 	};
 </script>
-		</c:if>
-		<!-- spost끝 -->
+</c:if><!-- spost끝 -->
+		
+<!-- bpost 시작 -->		
 		<c:if test="${ main.firstword eq 'b' }">
 			<c:set var="b" value="${ main }"></c:set>
 			<div class="card shadow mb-4">

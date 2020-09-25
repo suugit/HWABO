@@ -107,6 +107,7 @@ public class abcController {
 	@RequestMapping("selectonespost.do")
 	public String moveSelectOneSpostPage(Model m, String sno) {
 		// 수정하기 버튼 클릭시 sno 가지고 온다. 쿼리스트링이랑 매개변수에 추가해야한다.
+		sno = "s2";
 		Spost spost = spostService.selectOneSpost(sno);
 		String startday = spost.getSstartday().toString();
 		String endday = spost.getSendday().toString();
@@ -123,6 +124,7 @@ public class abcController {
 			startday = format1.format(startdate) + "T" + format2.format(startdate);
 			endday = format1.format(enddate) + "T" + format2.format(enddate);
 
+			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -137,8 +139,9 @@ public class abcController {
 	@RequestMapping("sinsert.do")
 	public ModelAndView insertSpost(Spost spost, ModelAndView mav, @RequestParam("beforesstartday") String start,
 			@RequestParam("beforesendday") String end) {
-
-		logger.info(spost.getSpnum() + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
+		logger.info("insert spost start1 : " +start);
+		
 		String Sstart = start.replace("T", " ");
 		String Send = end.replace("T", " ");
 
@@ -148,6 +151,9 @@ public class abcController {
 			java.util.Date startdate = transFormat.parse(Sstart);
 			java.util.Date enddate = transFormat.parse(Send);
 
+			
+			logger.info("insert spost start2 : " +startdate);
+			
 			spost.setSstartday(startdate);
 			spost.setSendday(enddate);
 		} catch (ParseException e) {
@@ -220,19 +226,10 @@ public class abcController {
 	public String deleteSpost(HttpServletResponse response, String sno) throws IOException {
 		PrintWriter out = response.getWriter();
 
-		if (spostService.deleteSpost(sno) > 0) {
-			out.println("<script>alert('일정 게시글 삭제가 완료되었습니다.');</script>");
+		spostService.deleteSpost(sno);
 
-			out.flush();
-			out.close();
-			return "redirect:/myhwabo.do";
-		} else {
-			out.println("<script>alert('일정 게시글 삭제에 실패하였습니다.');</script>");
-
-			out.flush();
-			out.close();
-			return "redirect:/myhwabo.do";
-		}
+		return sno;
+		
 	}
 
 //========== Bpost 조회 업무모아보기페이지 관련 메소드 ==================================================	
