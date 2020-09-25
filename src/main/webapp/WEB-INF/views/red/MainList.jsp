@@ -151,7 +151,7 @@ $(function(){
 					<th width="50%">시 작 날 짜</th><th width="50%">끝 날 짜</th>
 				</tr>
 				<tr>
-					<td><fmt:formatDate value="${post.sstartday}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>	</td>
+					<td>${post.sstartday }<fmt:formatDate value="${post.sstartday}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>	</td>
 					<td><fmt:formatDate value="${post.sendday}" pattern="yyyy-MM-dd HH시 mm분 E요일"/></td>
 				</tr>
 				<c:if test="${ !empty post.splace }">
