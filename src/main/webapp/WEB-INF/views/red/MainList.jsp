@@ -4,6 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
+<style>
+ .img-fluid {
+      max-width: 200px;
+      height: auto;
+    }
+</style>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
 	
@@ -941,7 +947,6 @@ $(function(){
 											rows="6" class="w-100 form-control" required>${c.ccontent }</textarea>
 									</td>
 								</tr>
-								<br>
 								<tr class="preview" style="max-height:100px;">
 								<c:if test="${!empty c.ofile1 }">
 									<input type="hidden" name="ofile1" value="${c.ofile1 }">
@@ -1075,7 +1080,7 @@ $(function(){
 													var="fileType" value="${fileName[fn:length(fileName)-1]} " />
 												<c:choose>
 													<c:when test="${fn:contains(fileType,'jp') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">
-													<img class="rounded img-fluid" src="resources/bupfile/${c.rfile2}">
+													<img class="rounded img-fluid " src="resources/bupfile/${c.rfile2}">
 													</c:when>	
 													<c:otherwise>
 													<img class="rounded img-fluid " src="resources/maincss/img/suugit/file_altimg.svg">
