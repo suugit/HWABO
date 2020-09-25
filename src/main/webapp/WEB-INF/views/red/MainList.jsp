@@ -83,6 +83,7 @@ $(function(){
 }; 
 	//삭제 메소드
 	function spostdelete(){
+		
 		if(confirm("정말로 삭제하시겠어요?")){
 			$.ajax({
 				url: "sdelete.do",
@@ -101,6 +102,30 @@ $(function(){
 		}//확인
 	}; 
 	//spost function 끗
+	
+	
+	//삭제 메소드
+	function bpostdelete(){
+		if(confirm("정말로 삭제하시겠어요?")){
+			
+			var bbb = $("#bno").val();
+			$.ajax({
+				url: "deletebpostMain.do",
+				data: { bno: $("#bno").val() },
+				type: "post", 
+				dataType: "text",
+				success: function(){
+						alert("삭제에 성공하였습니다");
+						$("#up"+bbb).css("display", "none" );
+						$("#se"+bbb).css("display", "none" );
+				},
+				error: function(request, status, errorData){ //에러는 위에서 복붙
+					console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+				}
+			}); //ajax
+		}//확인
+	}; 
+	
 </script> 
 <body>
 
@@ -123,7 +148,8 @@ $(function(){
 							<span>보관</span> <i class="far fa-bookmark"></i>
 						</button>
 						<input type="hidden" id="ucode_${status.index }"	value="${sessionScope.ucode }"> 
-						<input type="hidden"id="no_${status.index }" value="${post.sno }"> <input	type="hidden" id="pnum_${status.index }" value="${post.spnum }">
+						<input type="hidden"id="no_${status.index }" value="${post.sno }"> 
+						<input	type="hidden" id="pnum_${status.index }" value="${post.spnum }">
 
 				<!-- 드롭다운 -->
 				<c:if test="${post.sucode eq sessionScope.ucode }">
@@ -134,7 +160,9 @@ $(function(){
 					<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"	aria-labelledby="dropdownMenuLink">
 						<div class="dropdown-header">메뉴:</div>
 						<button class="dropdown-item" id="${post.sno}"   onclick="moveupdateform(this.id);">수정</button>
+						
 						<button class="dropdown-item"  id="dspost" type="submit" onclick="spostdelete(); return false;">삭제</button>
+						
 					</div>
 				</c:if>
 				
@@ -352,7 +380,7 @@ $(function(){
 <!-- bpost 시작 -->		
 		<c:if test="${ main.firstword eq 'b' }">
 			<c:set var="b" value="${ main }"></c:set>
-			<div class="card shadow mb-4">
+			<div id="se${b.bno }" class="card shadow mb-4">
 				<div
 					class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-0 font-weight-bold text-primary">
@@ -366,10 +394,9 @@ $(function(){
 							name="like" onclick="sendInsert(${status.index});">
 							<span>보관</span> <i class="far fa-bookmark"></i>
 						</button>
-						<input type="hidden" id="ucode_${status.index }"
-							value="${sessionScope.ucode }"> <input type="hidden"
-							id="no_${status.index }" value="${b.bno }"> <input
-							type="hidden" id="pnum_${status.index }" value="${b.bpnum }">
+						<input type="hidden" id="ucode_${status.index }"	value="${sessionScope.ucode }"> 
+						<input type="hidden"id="no_${status.index }" value="${b.bno }"> 
+						<input	type="hidden" id="pnum_${status.index }" value="${b.bpnum }">
 
 
 						<c:if test="${sessionScope.ucode eq b.bucode }">
@@ -378,22 +405,17 @@ $(function(){
 								aria-haspopup="true" aria-expanded="false"> <i
 								class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
 							</a>
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-								aria-labelledby="dropdownMenuLink">
-								<c:url var="bup" value="buppage.do">
-									<c:param name="bno" value="${b.bno }" />
-								</c:url>
-								<a class="dropdown-item" href="${bup }">수정</a>
-								<c:url var="bdel" value="deletebpostMain.do">
-									<c:param name="bno" value="${b.bno }" />
-									<c:param name="brenamefile" value="${b.brenamefile }" />
-								</c:url>
-								<a class="dropdown-item" href="${bdel }">삭제</a>
+							<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"	aria-labelledby="dropdownMenuLink">
+							<input	type="hidden" id="bno" value="${b.bno }">
+								<button class="dropdown-item" id="${b.bno}"   onclick="moveupdateform(this.id);">수정</button>
+							<button class="dropdown-item"  id="dspost" type="submit" onclick="bpostdelete(); return false;">삭제</button>
 							</div>
 						</c:if>
 					</div>
 					<!-- 드롭다운 끝 -->
+					
+					
+					
 				</div>
 				<!-- card-header py-3 d-flex flex-row align-items-center justify-content-between -->
 				<!-- 게시글안쪽 -->
@@ -596,6 +618,259 @@ $(function(){
 
 			</div>
 			<!-- card shadow mb-4 -->
+			<!-- bpost 수정폼 -->
+ <div id="up${b.bno }" class="card shadow mb-4">
+              
+
+                  <div class="card-body">
+                     <!-- 게시글안쪽 -->
+                  <form action="updatebpost.do" method="post" id="bupdate" enctype="multipart/form-data">
+            
+            
+            		<input type ="hidden" id="${b.bno }"name="bno" value="${b.bno }">
+                     <input type="hidden" name="bucode" value="${sessionScope.ucode }">
+                     <input type="hidden" name="bwriter" value="${sessionScope.uname }">
+                     <input type="hidden" name="bpnum" value="${sessionScope.pnum }">
+                   	 <input type="hidden" id="bform" name="bcharge">
+                   	 <input type="hidden" name="boriginfile" value="${b.boriginfile }">
+                   	 <input type="hidden" name="brenamefile" value="${b.brenamefile }">
+                   	 <input type="hidden" name="bopen" value="${b.bopen }">
+                  
+                        <table style="text-align: center; width: 100%;">
+                           <tr>
+                              <td colspan="5">
+                                 <hr>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td colspan="5"><span style="float: left;"><i class="fa fa-pen"></i>&nbsp;제 목</span>                                 
+                              <input type="text" name="btitle" class="form-control" placeholder="일정 제목을 입력하세요" required="required" value="${b.btitle }"></td>
+                           </tr>
+                           <tr>
+                              <td colspan="5">&nbsp;</td>
+                           </tr>
+                        
+                           <tr>
+    							<td>
+                              	<div class="btn-group btn-group-toggle"  data-toggle="buttons" >
+								  <c:if test="${b.bkind eq '요청' }">
+									
+									
+									 <label class="btn btn-info">
+									    <input type="radio" name="bkind" id="요청" value="요청" checked>요청
+									  </label> 
+									  <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="진행" value="진행">진행
+									  </label>
+									  <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="피드백" value="피드백">피드백
+									  </label>
+									   <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="완료" value="완료">완료
+									  </label>
+									   <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="보류" value="보류">보류
+									  </label>
+									
+									
+								  </c:if>
+								  
+								  
+								  <c:if test="${b.bkind eq '진행' }">
+										
+										
+									 <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="요청" value="요청">요청
+									  </label> 
+									  <label class="btn btn-info">
+									    <input type="radio" name="bkind" id="진행" value="진행" checked>진행
+									  </label>
+									  <label class="btn btn-secondary"">
+									    <input type="radio" name="bkind" id="피드백" value="피드백">피드백
+									  </label>
+									   <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="완료" value="완료">완료
+									  </label>
+									   <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="보류" value="보류">보류
+									  </label>			
+								  </c:if>
+								 
+								  <c:if test="${b.bkind eq '피드백' }">
+										
+									 <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="요청" value="요청">요청
+									  </label> 
+									  <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="진행" value="진행">진행
+									  </label>
+									  <label class="btn btn-info">
+									    <input type="radio" name="bkind" id="피드백" value="피드백" checked>피드백
+									  </label>
+									   <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="완료" value="완료">완료
+									  </label>
+									   <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="보류" value="보류">보류
+									  </label>				
+								  </c:if>
+								  
+								   <c:if test="${b.bkind eq '완료' }">
+											
+									 <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="요청" value="요청">요청
+									  </label> 
+									  <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="진행" value="진행">진행
+									  </label>
+									  <label class="btn btn-secondary"">
+									    <input type="radio" name="bkind" id="피드백" value="피드백">피드백
+									  </label>
+									   <label class="btn btn-info">
+									    <input type="radio" name="bkind" id="완료" value="완료" checked>완료
+									  </label>
+									   <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="보류" value="보류">보류
+									  </label>			
+								  </c:if>
+								  
+								  
+								   <c:if test="${b.bkind eq '보류' }">
+											
+									 <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="요청" value="요청" >요청
+									  </label> 
+									  <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="진행" value="진행">진행
+									  </label>
+									  <label class="btn btn-secondary"">
+									    <input type="radio" name="bkind" id="피드백" value="피드백">피드백
+									  </label>
+									   <label class="btn btn-secondary">
+									    <input type="radio" name="bkind" id="완료" value="완료">완료
+									  </label>
+									   <label class="btn btn-info">
+									    <input type="radio" name="bkind" id="보류" value="보류" checked>보류
+									  </label>			
+								  </c:if>
+					
+								</div>
+					 
+                   			 </td>
+                             
+                           </tr>
+                           <tr>
+                              <td>기존 담당자 : ${ b.bchargename }</td>
+                               
+                           </tr>
+                     
+                           <tr>
+                           <td colspan="5">
+                           	<div>   
+                       		 <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                    
+                    
+			                
+			               <div class="dropdown"> 
+			                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+			                     	 담당자 수정
+			                    </button>
+			                      <div id="selected"></div>
+			                     
+			                  
+			                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+			                  	
+			                     <c:forEach var="pm" items="${sessionScope.pmlist}" varStatus="status">
+			                     <button class="dropdown-item" type="button" onclick="addbcharge${status.index}();" value="${pm.ucode }">${pm.uname }</button>
+			                     <input type="checkbox" id="user${status.index }" name="bcharge" style="display:none">
+			                     <input type="checkbox" id="name${status.index }" name="bchargename" style="display:none">
+			                     </c:forEach>
+			                    </div>
+			            	</div> 
+			      
+			     
+			                        
+			          <a class="navbar-brand" href="#"></a>
+	               <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+			      </li>
+               	</ul>
+			    </nav>
+		 	  </div>
+                     </td>
+                     </tr>      
+                           
+                           <tr>
+                              <td width="20%"><span style="float: left;"><i
+                                    class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span><input
+                                 type="date" class="form-control" name="bstartday" id="beforesstartday" value="${b.bstartday }"></td>
+
+                              <td width="20%"><span style="float: left;"><i
+                                    class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span><input
+                                 type="date" class="form-control" name="bendday" id="beforesendday" value="${b.bendday }"></td>
+                              <td colspan="3"></td>
+                           </tr>
+                           <tr>
+                              <td colspan="3" style="text-align: left;"><span style="color: blue;" id="placespan"></span></td>
+                              <td colspan="2">&nbsp;</td>
+                           </tr>
+                        
+                        
+                           <tr>
+                              <td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;메 모</span>
+                              <textarea cols="50" rows="6" class="w-100 form-control" name="bcontent">${b.bcontent }</textarea>
+                              </td>
+                           </tr>
+                           
+                           <tr>
+                              <td colspan="5">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td>
+                               <c:if test="${!empty b.boriginfile }">
+                             	${b.boriginfile }
+                             
+                             	<input type="checkbox" name="deleteFlag" value="yes">삭제
+                          	  </c:if>
+                             </td>
+                           </tr>
+                           <tr>
+                             <td>
+                               <input type="file" name="upfile">
+                             </td>
+                            </tr>
+                            <tr>
+                             
+<%--                               <td>
+                              <select name="bopen" class="form-control" value="${b.bopen }" style="display:none">
+                             
+                              </select>
+                              </td> --%>
+                              <td colspan="3">
+                              <!-- <a class="btn btn-success btn-icon-split"   href="javascript: spostInsert.submit();"  style="width: 90%;">
+                                    <span class="text">등록</span> </a> -->
+                                    <input type="submit" class="btn btn-sm btn-info" value="등 록 ">
+                                 <!--    <button type="submit" class="btn btn-sm btn-info" >&nbsp;등 &nbsp;록&nbsp;</button> -->
+                           
+                              <!-- <a href="javascript:spostInsert.reset();"   class="btn btn-danger btn-icon-split" style="width: 90%;">
+                                    <span class="text">취소</span> </a> -->
+                                    <input type="reset" class="btn btn-sm btn-danger" alue="취 소">
+                                    <!-- <button type="reset" class="btn btn-sm btn-danger" >&nbsp;취 &nbsp;소&nbsp;</button> -->
+                              </td>
+                           </tr>
+                        </table>
+                     </form>
+
+                     
+                  </div>
+               </div>
+			
+			
+			
+			
+			
+			
+			
 		</c:if>
 		<!-- bpost끝 -->
 

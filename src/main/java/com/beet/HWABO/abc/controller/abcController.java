@@ -225,12 +225,12 @@ public class abcController {
 
 	// 일정 수정 메소드
 	@RequestMapping(value = "supdate.do", method = RequestMethod.POST)
+	@ResponseBody
 	public String updateSpostAjax(Spost spost, Model m, HttpServletResponse response,
 			@RequestParam("beforesstartday") String start, @RequestParam("beforesendday") String end)
 			throws IOException, UnsupportedEncodingException {
 		// 업데이트하면 에이작스로 이것만 보내서 표시한다.
 		logger.info("supdate.do 들어옴");
-
 
 		// where sno = #{sno}로 처리
 		// 제목, 시작날짜, 끝날짜, 장소, 알람, 컨텐츠, 공개여부 변경
@@ -255,17 +255,29 @@ public class abcController {
 		spost.setScontent(spost.getScontent().replace(" ", "&nbsp;"));
 		;
 
-		if (spostService.updateSpost(spost) > 0) {
-			return "redirect:/selectonespost.do?sno=" + spost.getSno();
-
-			// 좋아요랑 댓글 셀렉트 다시해오기 ?
-
-		} else {
-
-			// 실패해도 spost의 값 가지고 가고, alert창 띄우기
-			return "redirect:/selectonespost.do?sno=" + spost.getSno();
+		int result = spostService.updateSpost(spost);
+		Spost returnSpost = null;
+		if (result > 0) {
+			returnSpost = spostService.selectOneSpost(spost.getSno());
 		}
-
+		
+		JSONObject j = new JSONObject();
+		job.put("btitle", URLEncoder.encode(bpost.getBtitle(), "utf-8"));
+		
+		j.put("sno", returnSpost.getSno());
+		j.put("stitle", URLEncoder.encode(returnSpost.getStitle(), "utf-8"));
+		j.put("sucode", returnSpost.getSucode());
+		j.put("swriter", URLEncoder.encode(returnSpost.getSwriter(), "utf-8"));
+		j.put("sstartday", returnSpost.getSstartday().toString());
+		j.put("sendday", returnSpost.getSendday().toString());
+		j.put("splace", URLEncoder.encode(returnSpost.getSplace(), "utf-8"));
+		j.put("scontent", URLEncoder.encode(returnSpost.getScontent(), "utf-8"));
+		j.put("senrolldate", returnSpost.getSenrolldate().toString());
+		
+		SPNUM
+		Stirngstart
+		stringend
+		return j.toJSONString();
 	}
 	
 	// 일정 삭제 메소드

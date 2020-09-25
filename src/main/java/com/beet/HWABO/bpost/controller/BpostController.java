@@ -147,7 +147,7 @@ public class BpostController {
 
 	
 	@RequestMapping(value = "deletebpost.do")
-	public String bpostDelete(Bpost bpost,  @RequestParam("bno") String no, Model model, HttpServletRequest request) {
+	public String bpostDelete(Bpost bpost,  @RequestParam(value="bno", required = false) String no, Model model, HttpServletRequest request) {
 		if (bpostService.deleteBpost(bpost) > 0) {
 			String brenamefilename = bpost.getBrenamefile();
 			logger.info("controller brenamefilename : " + brenamefilename);
@@ -161,18 +161,11 @@ public class BpostController {
 					logger.info("게시글 삭제와 함께 보관함 삭제 성공!");
 				}else {
 					logger.info("게시글 삭제와 함께 보관함 삭제 실패!!!!");
-				}
-				
-				
+				}	
 			}
 			
-		
-			
-			return "redirect:/bpostlist.do";
-		} else {
-			model.addAttribute("message", bpost.getBno() + "번글 삭제 실패");
-			return "common/error";
 		}
+		return bpost.getBno();
 	}
 
 	@RequestMapping("buppage.do")
