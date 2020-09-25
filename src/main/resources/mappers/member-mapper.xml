@@ -20,6 +20,8 @@
 		<result property="uactive" column="uactive" />
 		<result property="pnum" column="pnum" />
 		<result property="pjadmin" column="pjadmin" />
+		<result property="invtkey" column="invtkey" />
+		<result property="invtuse" column="invtuse" />
 	</resultMap>
 
 	<resultMap id="resultInvite" type="Invite">
@@ -30,6 +32,8 @@
 		<result property="invtuse" column="invtuse" />
 		<result property="exprtdate" column="exprtdate" />
 	</resultMap>
+
+	
 	<resultMap id="resultProject" type="com.beet.HWABO.red.model.vo.Project">
 		<id property="project_num" column="project_num" />
 		<result property="name" column="name" />
@@ -37,8 +41,6 @@
 		<result property="open" column="open" />		
 		<result property="uploaddate" column="uploaddate" />
 	</resultMap>
-
-
 
 	<insert id="insertUser" parameterType="Member">
 		insert into member (ucode,
@@ -59,7 +61,7 @@
 		where uemail = #{uemail}
 	</select>
 	
-	<select id="selectEmailMember" parameterType="string" resultMap="resultMember">
+	<select id="selectEmailMember" parameterType="string" resultType="Member">
 		select * from member
 		where uemail = #{uemail}
 	</select>
@@ -122,6 +124,11 @@
 		select * from invite
 		where invtkey = #{invtkey}
 	</select>
+	<select id="selectInvted" parameterType="string" resultMap="resultMember">
+		select * From invite 
+		left join member on(invtemail = uemail)
+		where uemail = #{uemail} and invtuse = 'Y'
+	</select>
 <!-- 초대회원관리 -->	
 	<select id="selectInvtList" parameterType="string" resultMap="resultInvite">
 		select * from invite
@@ -130,7 +137,7 @@
 	
 	<insert id="insertPjMember" parameterType="PjMember">
 		insert into pjmember
-		values (#{pnum}, #{ucode}, 'N')
+		values (#{pnum}, #{ucode}, '2')
 	</insert>
 	
 	<select id="selectNotMember" parameterType="string" resultMap="resultMember"> 

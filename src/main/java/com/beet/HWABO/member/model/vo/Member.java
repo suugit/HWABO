@@ -33,13 +33,17 @@ public class Member implements java.io.Serializable{
 	private String uactive;
 	private String pnum;
 	private String pjadmin;
+	private String invtkey;
+	private String invtuse;
 	
 	public Member(){}
 
 	public Member(String ucode,
-			String uemail, String upwd, String uname, String uphone, String ugroup, String urole, String ust,
+			@NotNull(message = "이메일을 입력해주세요") @Pattern(regexp = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$", message = "올바른 이메일을 입력해주세요") String uemail,
+			@NotNull(message = "비밀번호를 입력해주세요") @Pattern(regexp = "^[a-zA-Z0-9]{6,}$", message = "비밀번호는 영어소문자와 숫자를 이용하여 6글자 이상 입력해야합니다") String upwd,
+			@NotNull(message = "이름을 입력해주세요") String uname, String uphone, String ugroup, String urole, String ust,
 			String ucert, Date udate, String signtype, String accesstoken, String uimg, String uactive, String pnum,
-			String pjadmin) {
+			String pjadmin, String invtkey, String invtuse) {
 		super();
 		this.ucode = ucode;
 		this.uemail = uemail;
@@ -57,6 +61,8 @@ public class Member implements java.io.Serializable{
 		this.uactive = uactive;
 		this.pnum = pnum;
 		this.pjadmin = pjadmin;
+		this.invtkey = invtkey;
+		this.invtuse = invtuse;
 	}
 
 	public String getUcode() {
@@ -187,14 +193,33 @@ public class Member implements java.io.Serializable{
 		this.pjadmin = pjadmin;
 	}
 
+	public String getInvtkey() {
+		return invtkey;
+	}
+
+	public void setInvtkey(String invtkey) {
+		this.invtkey = invtkey;
+	}
+
+	public String getInvtuse() {
+		return invtuse;
+	}
+
+	public void setInvtuse(String invtuse) {
+		this.invtuse = invtuse;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [ucode=" + ucode + ", uemail=" + uemail + ", upwd=" + upwd + ", uname=" + uname + ", uphone="
 				+ uphone + ", ugroup=" + ugroup + ", urole=" + urole + ", ust=" + ust + ", ucert=" + ucert + ", udate="
 				+ udate + ", signtype=" + signtype + ", accesstoken=" + accesstoken + ", uimg=" + uimg + ", uactive="
-				+ uactive + ", pnum=" + pnum + ", pjadmin=" + pjadmin + "]";
+				+ uactive + ", pnum=" + pnum + ", pjadmin=" + pjadmin + ", invtkey=" + invtkey + ", invtuse=" + invtuse
+				+ "]";
 	}
 
+	
+	
 	
 
 	

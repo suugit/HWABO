@@ -53,5 +53,7 @@ public interface MemberService {
 
 	Project selectPjdetail(String pnum);
 
+	Member selectInvted(String uemail);
+
 	
 }

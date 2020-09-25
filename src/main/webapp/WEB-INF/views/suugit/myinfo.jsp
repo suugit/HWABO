@@ -1,5 +1,3 @@
-4
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -127,9 +125,7 @@ body {
 										<div class="form-group row">
 											<label
 												class="control-label mypage text-center form-control-static">이메일</label>
-											<input
-												cla
-												ss="form-control col-md-8 pl-2 form-control-plaintext"
+											<input class="form-control col-md-8 pl-2 form-control-plaintext"
 												type="email" name="uemail" value="${member.uemail}" readonly>
 										</div>
 										<div class="form-group row">
@@ -148,7 +144,6 @@ body {
 												class="form-control col-md-8 form-control-plaintext pl-2 "
 												type="text" name="uphone" readonly value="${member.uphone}">
 										</div>
-
 										<hr>
 
 										<div class="form-group row">

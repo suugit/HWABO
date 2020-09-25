@@ -129,6 +129,11 @@ public class MemberDao {
 	public Project selectPjdetail(String pnum) {
 		return session.selectOne("memberMapper.selectPjdetail", pnum);
 	}
+
+
+	public Member selectInvted(String uemail) {
+		return session.selectOne("memberMapper.selectInvted", uemail);
+	}
 	
 	
 	

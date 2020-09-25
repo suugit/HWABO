@@ -127,6 +127,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectPjdetail(pnum);
 	}
 
+	@Override
+	public Member selectInvted(String uemail) {
+		return memberDao.selectInvted(uemail);
+	}
+
 	
 
 	

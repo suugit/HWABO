@@ -58,7 +58,7 @@
 									주소</label>
 								<div class="col-sm-9">
 									<input type="email" id="uemail" class="form-control" name="uemail"
-										placeholder="Email" value="${uemail }" required>
+										placeholder="Email" value="${uemail}" required>
 								</div>
 							</div>
 							<div class="form-group row">

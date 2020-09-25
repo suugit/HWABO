@@ -1,0 +1,59 @@
+var post = {};
+var Cnt = 10;
+
+member.pList = {
+		init : function(curNo, cnt){
+			var page = 1;
+			member.pList.param.pageNum = Number(page);
+			member.pList.param.curNo = curNo;
+			member.pList.param.pageSize = cnt;
+			member.pList.param.data();
+		},
+		data : function(){
+			 $.ajax({
+					url:"pmlist.do",
+					type:"post",
+					contentType:"application/json; charset=utf-8;",
+					dataType:"Json",
+					success: function(data){
+						var pList = data.pList;
+						if(pList.length != 0){
+							member.pList.param.totalCnt = pList[0].totalCnt;
+						};
+						displayPagnation(cnt);
+						var markup = "";
+						$('#pmlistBox').html(markup);
+						}, 
+						error: function(){
+							alert("멤버 목록 조회 중 요류가 발생했습니다");
+						}
+			 });
+		},
+		
+		param : {
+			pageNum = 1,
+			pageSize = cnt
+		},
+		totalCnt : 0 
+}; 
+
+
+function displayPagnation(cnt){
+	$('#pmlistBox').pagination({
+		items:member.pList.totalCnt,
+		currentPage : board.boardList.param.pageNum,
+		itemOnpage : cnt,
+		displayedPages : cnt,
+		selectonClick : false,
+		onPageClick : function(currentPage){
+			searchBoardListPaging(currentPage);
+		}
+	});
+}
+
+function searchBoardListPaging(page){
+	board.boardList.param.pageNum = Number(page);
+	board.boardList.data();
+	displayPagnation(cnt);
+}
+

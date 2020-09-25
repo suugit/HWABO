@@ -5,17 +5,17 @@
    var table="";
    var cpost = "";
    var tmplist = "";
+   var dellist = "";
 
-   function toEdit(click) {
-
-		$("#cpEdit"+click).css("display", "block" );
-		$("#cpView"+click).css("display", "none" );
-		cno = click;
-		alert(cno);
-		cpost = "#updatecForm" + cno;
+   function toEdit(cc) {
+		$("#cpEdit"+cc).css("display", "block" );
+		$("#cpView"+cc).css("display", "none" );
+		cno = cc;
+		alert(cc);
+		alert('123');
+		cpost = "#1updatecForm" + cno;
 		table = "#CpostUpTable" + cno;
 	}
-	
    
 function cpSave(){
 	alert(tmplist);
@@ -50,9 +50,6 @@ function cpSave(){
  	});   
   }
 
-
-
-
 	    $(document).ready(function(){
 	        $('.del_img').click(function(){
 	            $(this).parent().hide();
@@ -74,10 +71,10 @@ function cpSave(){
 	 		}
 	 		
 	 		tmp = Array.prototype.slice.call(fileArea.children('td'));
-	 		tmplist = Array.prototype.slice.call(fileArea.children('td')).innerHTML;
+	 		tmplist = Array.prototype.slice.call(fileArea.children('td'));
 	 		var files = e.target.files;
 	 		var arr = Array.prototype.slice.call(files);
-	 		tmp.push(arr);
+	 		tmplist.push(arr);
 	 		alert(tmp);
 	 		preview(fileArea, arr);
 	 		
@@ -117,9 +114,10 @@ function cpSave(){
 
 function removefile(){
 	$(event.target).value = "";
-	$(event.target).closest('td').remove();
-	alert('삭제')
 	var fileArea = $(table).find('tr.preview');
+	$(event.target).closest('td').remove();
+	alert('삭제');
+	alert(dellist);
 	tmplist =Array.prototype.slice.call(fileArea.children('td'));
 }
 function resize(img){
