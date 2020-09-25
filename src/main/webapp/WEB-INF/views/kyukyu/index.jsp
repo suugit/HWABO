@@ -67,7 +67,7 @@ a {
 	clear: both;
 }
 
-/* .blog-comment{
+/*  .blog-comment{
     padding-left: 10px;
 	padding-right: 15px;
 } 
@@ -90,13 +90,21 @@ a {
 	position: relative;
 	float: left;
 	margin-left: 10px; 
-	margin-top: 0;
 	width: 40px;
 	height: 40px;
 }
+ ul {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+hr {
+border: 1px solid #eee;
+}
+
 
  .blog-comment .post-comments{
-	border: 1px solid #eee;
+	border: 2px solid #eee;
     margin-bottom: 10px;
     margin-left: 60px;  /* 상자 오른쪽 왼쪽 중요 */
 	margin-right: 10px;
@@ -114,13 +122,14 @@ a {
 .blog-comment .meta {
 	font-size: 13px;
 	color: #aaaaaa;
-	padding-bottom: 8px;  /*  */
+	padding-bottom: 1px;  /*  */
 	margin-bottom: 10px !important;
 	border-bottom: 1px solid #eee;
 }
 
 .blog-comment ul.comments ul{
 	list-style-type: none;
+	
 	padding: 0;
 	margin-left: 50px; /*대댓글 위치 */
 }
@@ -131,13 +140,13 @@ a {
 	padding-top: 40px;
 } */
 
-/* .blog-comment h3,
+/*  .blog-comment h3,
 .blog-comment-form h3{
 	margin-bottom: 10px;
-	font-size: 14px;
+	font-size: 10px;
 	line-height: 1px;
 	font-weight: 100;
-} */
+}  */
 </style>
 
 
@@ -319,20 +328,22 @@ function replyList(){
 				
 					
 /* 					re += '<div class="px-3 pb-5 pr-1 pl-1 text-white" id="replyy">'; */
-					re += '<div class="row"><div class="col-md-12"><div class="blog-comment"><hr /><ul class="comments">';
+					re += '<div class="blog-comment"><ul class="comments">';
 					
-					
+				
 				
 					if(jsonObj.list[i].kind == "0"){ //댓글일 때
 						
 						re += '<li class="clearfix">';
 						re += '<img src="https://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">';
 						if(jsonObj.list[i].secondenroll == null){
-						re += '<div class="post-comments"><div class="meta">'+ jsonObj.list[i].enrolldate;
+						re += '<div class="post-comments"><div class="meta"><a href="#">'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</a>&nbsp;&nbsp;&nbsp;';
+						re += jsonObj.list[i].enrolldate;
 							}else{
-							re += '<div class="post-comments"><div class="meta"><small>&nbsp;&nbsp; 수정일 '+ jsonObj.list[i].secondenroll+'</small>';	
+							re += '<div class="post-comments"><div class="meta"><a href="#">'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</a>&nbsp;&nbsp;&nbsp;';
+							re += '<small>&nbsp;&nbsp; 수정일 '+ jsonObj.list[i].secondenroll+'</small>';	
 							}
-						re += '<a href="#">&nbsp;&nbsp;'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</a>';
+						
 						re += '<i class="pull-right"><a onclick="commentRereply('+jsonObj.list[i].replyno+',\''+jsonObj.list[i].no+'\');"> 답글 </a>';
 						
 						if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
@@ -340,7 +351,7 @@ function replyList(){
 						     re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제&nbsp;&nbsp; </a></div></i>';
 						    
 						}
-						 re += '<div class="commentContent'+jsonObj.list[i].replyno+'"> &nbsp;내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'</div></div></li>'; 
+						 re += '<div class="commentContent'+jsonObj.list[i].replyno+'"> &nbsp;'+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'</div></div></li>'; 
 						  
 						
 					}else{ //답글일 때
@@ -348,18 +359,19 @@ function replyList(){
 						re += '<ul class="comments"><li class="clearfix">';
 						re += '<img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">';
 						if(jsonObj.list[i].secondenroll == null){
-						re += '<div class="post-comments"><div class="meta">'+ jsonObj.list[i].enrolldate;
-							}else{
-							re += '<div class="post-comments"><div class="meta"><small>&nbsp;&nbsp; 수정일 '+ jsonObj.list[i].secondenroll+'</small>';	
-							}
-						re += '<a href="#">&nbsp;&nbsp;'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</a><i class="pull-right">';
+							re += '<div class="post-comments"><div class="meta"><a href="#">'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</a>&nbsp;&nbsp;&nbsp;';
+							re += jsonObj.list[i].enrolldate;
+								}else{
+								re += '<div class="post-comments"><div class="meta"><a href="#">'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</a>&nbsp;&nbsp;&nbsp;';
+								re += '<small>&nbsp;&nbsp; 수정일 '+ jsonObj.list[i].secondenroll+'</small>';	
+								}
 						
 						if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
 							 re += '<a onclick="commentUpdate('+jsonObj.list[i].replyno+',\''+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'\');"> 수정 </a>';
 						     re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제&nbsp;&nbsp; </a></div></i>';
 						    
 						}
-						 re += '<div class="commentContent'+jsonObj.list[i].replyno+'"> &nbsp;내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'</div></div></li></ul>'; 
+						 re += '<div class="commentContent'+jsonObj.list[i].replyno+'"> &nbsp;'+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'</div></div></li></ul>'; 
 						  	
 					}
 						
@@ -368,7 +380,7 @@ function replyList(){
 			
 	            	
 	            	re += '<div class="Rere'+jsonObj.list[i].replyno+'"></div>';
-	            	re += '</ul></div></div></div>';
+	            	re += '</ul></div>';
 	        
 				 }
 				
@@ -844,142 +856,48 @@ function replytList(index){
 													<c:if test="${empty b.boriginfile}">
 													&nbsp;
 													</c:if>
-													
-													
-									
-													
+												
 												</table>
-												<hr>
-												<table style="width: 100%;">
-													<tr>
-
-
-														<td style="width: 20%;"><a href="#"
-															class="btn btn-primary btn-icon-split btn-sm"> <span
-																class="icon text-white-50"> <i
-																	class="far fa-heart"></i>
-															</span> <span class="text">좋아요 </span>
-														</a></td>
-													
-														<td style="width: 20%;"></td>
-														<td style="width: 20%;"></td>
-														<td style="width: 20%;"></td>
-														<td style="width: 20%; float: right;"></td>
-													</tr>
-												</table>
+											
 											</div>
-										
-
+						
 										</div><!-- 게시글안쪽  -->
+										<hr>
 										
 										
 										
+										   
+						
 										
-											<div class="container" style="color: black">
-											
-											
-											
-											
-											
-												<div class="container bootstrap snippets bootdey">
-
-
-
-
-
-
-<div class="px-3 pb-5 pr-20 pl-20 text-white" id="replyy">
-
-	<div class="row">
-		<div class="col-md-16">
-			<div class="blog-comment">
-
-				<hr />
-				<ul class="comments">
-
-
-			<!-- 	ëê¸ í¼ -->
-
-
-					<li class="clearfix">
-						<img src="https://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
-						<div class="post-comments">
-							<div class="meta">
-								날짜&nbsp;&nbsp;<a href="#">이름&nbsp;&nbsp;</a> 
-								<i class="pull-right"><a href="#"><small>Reply</small></a></i>
-							</div>
-
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a
-							sapien odio, sit amet
-
-						</div>
-					</li>
-					
-					
-					
-					
-					<li class="clearfix">
-					<img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
-						<div class="post-comments">
-							<div class="meta">
-								날짜&nbsp;&nbsp;<a href="#">이름&nbsp;&nbsp;</a>
-								<i class="pull-right"><a href="#"><small>Reply</small></a></i>
-							</div>
-
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.Etiam a
-							sapien odio, sit amet
-
-						</div>
-					</li>
-
-
-
-
-		<!-- 	ëëê¸!!!!!!!!!!!!!!!!!!!!! -->
-					<ul class="comments">
-						<li class="clearfix"><img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
-							<div class="post-comments">
-								<div class="meta">
-									날짜&nbsp;&nbsp;<a href="#">이름&nbsp;&nbsp;</a><i
-										class="pull-right"></i>
-								</div>
-
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a
-								sapien odio, sit amet
-
-							</div></li>
-					</ul>
-					
-					
-					
-					
-					
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
-
-													<div class="commentList_${status.index }" id="commentList_${status.index }" name="${b.bno }">
-													
-													</div>
-									
-													
-											</div>
-
-
-											
-											<div style="height: 2px;" >
+										
+												<!-- 댓글 -->
+										<div class="px-3 pb-5 text-white" id="replyy">
 							
-												<input type="hidden" id="reply_no_${status.index }" name="no" value="${b.bno }"> 
-												<input type="text" class="form-control" id="reply_content_${status.index }" name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
-													onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
+											<a class="btn btn-outline-success btn-sm" data-toggle="collapse" href="#collapseExample${status.index }" aria-expanded="false" aria-controls="collapseExample">
+											  댓글
+											</a>
+									
+											<div class="collapse" id="collapseExample${status.index }">
+											  <div class="well">
+													<br>
+														<div class="commentList_${status.index }" id="commentList_${status.index }" name="${b.bno }"></div>
+								
+													<div style="height: 2px;">
+								
+														<input type="hidden" id="reply_no_${status.index }" name="no"
+															value="${b.bno }"> <input type="text"
+															class="form-control" id="reply_content_${status.index }"
+															name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
+															onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
+													</div>
+								
+												</div>
+											<!-- 댓글 끝 -->
 											</div>
-										
 										</div>
+															
+										
+							
 									</div>
 									<!-- card shadow mb-4 -->
 								</c:forEach>
