@@ -236,7 +236,6 @@
 								<table class="table">
 									<thead>
 										<th>초대이메일</th>
-										<th>??</th>
 										<th>만료일</th>
 										<th>재전송</th>
 										<th>초대취소</th>
