@@ -185,18 +185,6 @@
 										<th>초대여부</th>
 									</thead>
 									<tbody id="nmlist">
-										<%-- <c:forEach var="nm" items="nmlist">>
-										<tr style="height: 80px">
-											<td colspan="2" class="thumbnail circle"
-												style="background-image: url('/hwabo/resources/maincss/img/suugit/face.jpg')"></td>
-											<td class="my-6">${nm.uname}</td>
-											<td>${um.ugroup }</td>
-											<td>${um.urole }</td>
-											<td><input type="button"
-												class="btn btn-sm btn-outline-primary" value="추가"
-												onclick="addInvite()"></td>
-										</tr>
-										</c:forEach> --%>
 									</tbody>
 								</table>
 							</div>
@@ -235,42 +223,24 @@
 
 		}
 
-		$(document)
-				.ready(
-						function() {
-							$('#myInput')
-									.on(
-											'keyup',
-											function() {
-												var value = $(this).val()
-														.toLowerCase();
-												$('#myTable tr')
-														.filter(
-																function() {
-																	$(this)
-																			.toggle(
-																					$(
-																							this)
-																							.text()
-																							.toLowerCase()
-																							.indexOf(
-																									value) > -1)
-																});
-											});
+		$(document).ready(function() {
+			$('#myInput').on('keyup',function() {
+				var value = $(this).val().toLowerCase();
+				$('#myTable tr').filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 						});
+					});
+			});
 
 		function addInvite() {
 			var ele = $(event.target);
 			if (ele.val() == '초대하기') {
 				$(event.target).val("초대완료");
 				$(event.target).addClass('disable btn-outline-dark')
-				var name = $(event.target).parent().parent().children().eq(1)
-						.text();
-				$('#selected')
-						.append(
-								'<span>'
-										+ name
-										+ '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>')
+				var name = $(event.target).parent().parent().children().eq(1).text();
+				alert(name);
+				$('#selected').append(
+					'<span>' + name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>')
 			}
 		}
 
@@ -329,8 +299,9 @@
 														+ '<td colspan="2" class="thumbnail circle"'
 														+ 'style="background-image: url(\''
 														+ data[i].uimg
-														+ '\')"></td>'
-														+ '<td class="my-6">'
+														+ '\')"></td><td style="display:none">'
+														+ data[i].uemail
+														+ '</td><td class="my-6">'
 														+ data[i].uname
 														+ '</td>'
 														+ '<td>'
@@ -349,7 +320,6 @@
 										},
 										error : function(request, status,
 												errorData) {
-											alert('h');
 										}
 									});
 						});

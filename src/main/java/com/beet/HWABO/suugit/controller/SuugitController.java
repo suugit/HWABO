@@ -612,6 +612,7 @@ public class SuugitController {
 			for (int i = 0; i < nmlist.size(); i++) {
 				System.out.println(nmlist.get(i));
 				JSONObject job = new JSONObject();
+				job.put("uemail",nmlist.get(i).getUemail());
 				job.put("ucode", nmlist.get(i).getUcode());
 				job.put("uname", nmlist.get(i).getUname());
 				job.put("ugroup", nmlist.get(i).getUgroup());

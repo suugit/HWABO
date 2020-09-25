@@ -142,7 +142,7 @@
 							  <li class="nav-item">
 							    <a class="nav-link " id="pmember-tab" data-toggle="tab" href="#pmember" role="tab" aria-controls="pmember" aria-selected="false">멤버 관리</a>
 							  </li>
-							  <li class="nav-item">
+							  <li class="nav-item" onclick="invtlist()">
 							    <a class="nav-link" id="npmember-tab" data-toggle="tab" href="#npmember" role="tab" aria-controls="npmember" aria-selected="false">초대 관리</a>
 							  </li>
 							  <a href="" class="btn ml-auto" data-toggle="modal" data-target="#inviteModal">

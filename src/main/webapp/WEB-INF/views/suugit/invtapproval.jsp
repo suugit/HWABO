@@ -155,6 +155,25 @@
 			$(event.target).addClass('disable btn-outline-dark')
 			var name = $(event.target).parent().parent().children().eq(1).text();
 			$('#selected').append('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>')
+			
+			var fileData[0] = name;
+
+			 $.ajax({
+			url : "invtnew.do",
+			type : "post",
+			data : JSON.stringify(fileData),
+			dataType : "JSON",
+			contentType : "application/json; charset=utf-8;",
+			success : function(data) {
+				alert(data.message);
+
+			},
+			error : function(request, status, errorData) {
+				alert(message);
+			}
+		});
+			
+		
 		}
 	}
 	
@@ -196,7 +215,6 @@
 			contentType:"application/json; charset=utf-8;",
 			dataType:"Json",
 			success: function(data){
-				alert('성공');
 				var values = $("#nmlistBox").html();
 				
 				var values = $("#nmlistBox").html("");
@@ -217,7 +235,6 @@
 				$('#nmlistBox').html(values);
 			},
 			error: function(request, status, errorData){
-				alert('h');
 			}
 		}); 
 	});
