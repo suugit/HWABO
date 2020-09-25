@@ -84,7 +84,7 @@ function cpSave(){
 	 		});
 
   function preview(fileArea, arr){
-	  alert('hh');
+	alert('hh');
     arr.forEach(function(f){
     	
     	var fileName = f.name;
@@ -115,20 +115,12 @@ function cpSave(){
     }); 
   }
 
-
-
-
-function removeuptd() {
-	
-
-}
-
 function removefile(){
 	$(event.target).value = "";
 	$(event.target).closest('td').remove();
 	alert('삭제')
 	var fileArea = $(table).find('tr.preview');
-	tmplist =Array.prototype.slice.call(fileArea.children('td')).innerHTML;
+	tmplist =Array.prototype.slice.call(fileArea.children('td'));
 }
 function resize(img){
 

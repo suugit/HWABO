@@ -882,13 +882,21 @@ public class SuugitController {
 	@PostMapping("upcp.do")
 	@ResponseBody
 	public JSONObject updateCpost(Cpost cpost, AddOn addon, ModelAndView mav, MultipartHttpServletRequest request) throws UnsupportedEncodingException {
-		
+	
 		String cno = cpost.getCno();
 		logger.info(cno + "게시글 수정");
 		logger.info(request.getParameter("cflist").toString());
+		AddOn addNew = new AddOn();
 		
+		if(addon.getRfile1() == null) {addNew.setOfile1(null); addNew.setRfile1(null);}
+		if(addon.getRfile2() == null) {addNew.setOfile2(null); addNew.setRfile2(null);}
+		if(addon.getRfile3() == null) {addNew.setOfile3(null); addNew.setRfile3(null);}
+	
 		int r = cservice.updateCpost(cpost);
-			
+		
+		System.out.println("결과1" + addon.getRfile1());
+		System.out.println("결과2" + addon.getRfile2());
+		System.out.println("결과3" + addon.getRfile3());
 		String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 
@@ -903,26 +911,19 @@ public class SuugitController {
 			obj.put("ccontent", cpost.getCcontent());
 			
 			cpost = cservice.selectCpOne(request.getParameter("cno"));
+			
 			if(cpost.getOfile1() != null) {
 				cservice.deleteAddon(cno);
-				
+				return obj;
 				}
 			}
 		else {
 			String oFileName = "";
 			
-			AddOn addNew = new AddOn();
+			int i = 0;
 			
-			cpost = cservice.selectCpOne(request.getParameter("cno"));
-			System.out.println(cpost.getOfile1());
-			System.out.println(cpost.getRfile1());
-			System.out.println(cpost.getOfile2());
-			System.out.println(cpost.getRfile2());
-			System.out.println(cpost.getOfile3());
-			System.out.println(cpost.getRfile3());
 			for (MultipartFile filePart : fileList) {
-
-				int i = 0;
+					
 				while (!filePart.isEmpty()) {
 					System.out.println("시작");
 					String rfileName = cno + sdf.format(new java.sql.Date(System.currentTimeMillis()));
@@ -943,40 +944,33 @@ public class SuugitController {
 						}
 
 					}
-					if (cpost.getRfile1() == null && addNew.getRfile1() == null) {
-						addNew.setOfile1(oFileName);
-						addNew.setRfile1(rfileName);
+					if (addon.getRfile1() == null) {
+						addon.setOfile1(oFileName);
+						addon.setRfile1(rfileName);
 					
 						logger.info("첫번째 추가 ");
 						System.out.println("첫번쨰" + oFileName + rfileName);
-						i++;
 						break;
-					} else if (cpost.getRfile2() == null && addNew.getRfile2() == null) {
-						addNew.setOfile2(oFileName);
-						addNew.setRfile2(rfileName);
+					} else if (addon.getRfile2() == null) {
+						addon.setOfile2(oFileName);
+						addon.setRfile2(rfileName);
 							
 						logger.info("두번째 추가");
 						System.out.println("e번쨰" + oFileName + rfileName);
-						i++;
 						break;
-					} else if (cpost.getRfile3() == null ) {
-						addNew.setOfile3(oFileName);
-						addNew.setRfile3(rfileName);
+					} else if (addon.getRfile3() == null) {
+						addon.setOfile3(oFileName);
+						addon.setRfile3(rfileName);
 						System.out.println("3번쨰" + oFileName + rfileName);
 						logger.info("세번째 추가");
-						i++;
 						break;
 					}
+
 
 				}
 			}
 			addNew.setCno(cno);
-			System.out.println(addNew.getOfile1());
-			System.out.println(addNew.getRfile1());
-			System.out.println(addNew.getOfile2());
-			System.out.println(addNew.getRfile2());
-			System.out.println(addNew.getOfile1());
-			System.out.println(addNew.getRfile3());
+			
 			int result1 = cservice.updateCfile(addNew);
 			
 			cpost = cservice.selectCpOne(request.getParameter("cno"));

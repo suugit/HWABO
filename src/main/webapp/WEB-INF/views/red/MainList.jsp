@@ -567,6 +567,8 @@ console.log(map1_${ status.index });
 								<tr class="preview" style="max-height:100px;">
 								<c:if test="${!empty c.ofile1 }">
 									<input type="hidden" name="ofile1" value="${c.ofile1 }">
+									<input type="hidden" name="cf1" value="0">
+									<input type="hidden" name="cindex" value="0">
 									<input type="hidden" name="rfile1" value="${c.rfile1 }">
 											<td class="rounded align-bottom" style="width: 33%">
 											<c:set var="fileName" value="${fn:split(c.ofile1, '.')}" /> 
@@ -585,6 +587,8 @@ console.log(map1_${ status.index });
 										</c:if>
 										<c:if test="${!empty c.ofile2 }">
 											<input type="hidden" name="ofile2" value="${c.ofile2}">
+									<input type="hidden" name="cindex" value="1">
+									<input type="hidden" name="cf1" value="1">
 											<input type="hidden" name="rfile2" value="${c.rfile2}">
 											<td class="rounded align-bottom" style="width: 33%"><c:set
 													var="fileName" value="${fn:split(c.ofile2, '.')}" /> <c:set
@@ -603,6 +607,8 @@ console.log(map1_${ status.index });
 										</c:if>
 										<c:if test="${!empty c.ofile3 }">
 											<input type="hidden" name="ofile3" value="${c.ofile3}">
+									<input type="hidden" name="cf3" value="2">
+									<input type="hidden" name="cindex" value="2">
 											<input type="hidden" name="rfile3" value="${c.rfile3}">
 											<td class="rounded align-bottom" style="width: 33%"><c:set
 													var="fileName" value="${fn:split(c.ofile3, '.')}" /> <c:set
