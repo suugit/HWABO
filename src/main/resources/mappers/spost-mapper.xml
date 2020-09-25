@@ -13,12 +13,16 @@
 
 <!-- spost 전체 조회 -->
 	<select id="selectSpost" resultType="Spost">
-		select * from spost
+		select SNO, STITLE, SUCODE, SWRITER, SSTARTDAY, SENDDAY, SPLACE, SCONTENT, SENROLLDATE, SOPEN, SPNUM, 
+		concat(concat(to_char(sstartday, 'yyyy-mm-dd'), 'T'),to_char(sstartday, 'hh24:mi') )as stringstart, concat(concat(to_char(sendday, 'yyyy-mm-dd'), 'T'),to_char(sendday, 'hh24:mi') )as stringend 
+		from spost
 	</select>
 
 <!-- spost 1개 조회 -->
 	<select id="selectOneSpost" resultType="Spost" parameterType="string">
-		select * from spost where sno = #{sno}
+		select SNO, STITLE, SUCODE, SWRITER, SSTARTDAY, SENDDAY, SPLACE, SCONTENT, SENROLLDATE, SOPEN, SPNUM, 
+		concat(concat(to_char(sstartday, 'yyyy-mm-dd'), 'T'),to_char(sstartday, 'hh24:mi') )as stringstart, concat(concat(to_char(sendday, 'yyyy-mm-dd'), 'T'),to_char(sendday, 'hh24:mi') )as stringend 
+		from spost where sno = #{sno}
 	</select>
 
 	

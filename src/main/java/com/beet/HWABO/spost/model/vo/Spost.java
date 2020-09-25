@@ -17,13 +17,15 @@ public class Spost implements Serializable{
 	private Date senrolldate;
 	private String sopen;
 	private String spnum;
+	private String stringstart;
+	private String stringend;
 	
 	public Spost() {
 		super();
 	}
 
 	public Spost(String sno, String stitle, String sucode, String swriter, Date sstartday, Date sendday, String splace,
-			String scontent, Date senrolldate, String sopen, String spnum) {
+			String scontent, Date senrolldate, String sopen, String spnum, String stringstart, String stringend) {
 		super();
 		this.sno = sno;
 		this.stitle = stitle;
@@ -36,9 +38,29 @@ public class Spost implements Serializable{
 		this.senrolldate = senrolldate;
 		this.sopen = sopen;
 		this.spnum = spnum;
+		this.stringstart = stringstart;
+		this.stringend = stringend;
 	}
 
 
+
+
+
+	public String getStringstart() {
+		return stringstart;
+	}
+
+	public void setStringstart(String stringstart) {
+		this.stringstart = stringstart;
+	}
+
+	public String getStringend() {
+		return stringend;
+	}
+
+	public void setStringend(String stringend) {
+		this.stringend = stringend;
+	}
 
 	public String getSno() {
 		return sno;
@@ -132,16 +154,12 @@ public class Spost implements Serializable{
 	@Override
 	public String toString() {
 		return "Spost [sno=" + sno + ", stitle=" + stitle + ", sucode=" + sucode + ", swriter=" + swriter
-				+ ", sstartday=" + sstartday + ", sendday=" + sendday + ", splace=" + splace 
-				+ ", scontent=" + scontent + ", senrolldate=" + senrolldate + ", sopen=" + sopen + ", spnum=" + spnum
-				+ "]";
+				+ ", sstartday=" + sstartday + ", sendday=" + sendday + ", splace=" + splace + ", scontent=" + scontent
+				+ ", senrolldate=" + senrolldate + ", sopen=" + sopen + ", spnum=" + spnum + ", stringstart="
+				+ stringstart + ", stringend=" + stringend + "]";
 	}
 
-	
-	
-	
 
-	
 	
 }
 
