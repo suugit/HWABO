@@ -262,7 +262,7 @@ public class abcController {
 		}
 		
 		JSONObject j = new JSONObject();
-		job.put("btitle", URLEncoder.encode(bpost.getBtitle(), "utf-8"));
+		
 		
 		j.put("sno", returnSpost.getSno());
 		j.put("stitle", URLEncoder.encode(returnSpost.getStitle(), "utf-8"));
@@ -270,15 +270,17 @@ public class abcController {
 		j.put("swriter", URLEncoder.encode(returnSpost.getSwriter(), "utf-8"));
 		j.put("sstartday", returnSpost.getSstartday().toString());
 		j.put("sendday", returnSpost.getSendday().toString());
+		if(returnSpost.getSplace() != null) {
 		j.put("splace", URLEncoder.encode(returnSpost.getSplace(), "utf-8"));
+		}
+		if(returnSpost.getScontent() != null) {
 		j.put("scontent", URLEncoder.encode(returnSpost.getScontent(), "utf-8"));
+		}
 		j.put("senrolldate", returnSpost.getSenrolldate().toString());
-		j.put("spnum", returnSpost.getSenrolldate().toString());
-		SENROLLDATE
-		SOPEN
-		SPNUM
-		Stirngstart
-		stringend
+		j.put("spnum", returnSpost.getSpnum().toString());
+		j.put("stringstart", returnSpost.getStringstart().toString());
+		j.put("stringend", returnSpost.getStringend().toString());
+
 		return j.toJSONString();
 	}
 	
