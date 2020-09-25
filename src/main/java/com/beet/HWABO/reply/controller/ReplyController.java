@@ -102,8 +102,7 @@ public class ReplyController {
 		if (!list.isEmpty()) {
 			for (Reply n : list) {
 				JSONObject job = new JSONObject();
-				
-			
+		
 				job.put("replyno", n.getReplyno());
 				job.put("no", n.getNo());
 				job.put("content",URLEncoder.encode(n.getContent(), "utf-8"));

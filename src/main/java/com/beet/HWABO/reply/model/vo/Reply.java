@@ -1,7 +1,6 @@
 package com.beet.HWABO.reply.model.vo;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -14,8 +13,8 @@ public class Reply implements java.io.Serializable {
 	private String content;
 	private String ucode;
 	private String uname;
-	private Date enrolldate;
-	private Date secondenroll;
+	private java.sql.Timestamp enrolldate;
+	private java.sql.Timestamp secondenroll;
 	private String kind;
 	private String parent;
 	
@@ -28,10 +27,8 @@ public class Reply implements java.io.Serializable {
 	
 
 
-
-
-	public Reply(String replyno, String no, String content, String ucode, String uname, Date enrolldate,
-			Date secondenroll, String kind, String parent) {
+	public Reply(String replyno, String no, String content, String ucode, String uname, Timestamp enrolldate,
+			Timestamp secondenroll, String kind, String parent) {
 		super();
 		this.replyno = replyno;
 		this.no = no;
@@ -43,7 +40,6 @@ public class Reply implements java.io.Serializable {
 		this.kind = kind;
 		this.parent = parent;
 	}
-
 
 
 
@@ -89,27 +85,35 @@ public class Reply implements java.io.Serializable {
 		this.uname = uname;
 	}
 
-	public Date getEnrolldate() {
+
+
+
+
+	public java.sql.Timestamp getEnrolldate() {
 		return enrolldate;
 	}
 
-	public void setEnrolldate(Date enrolldate) {
+
+
+
+	public void setEnrolldate(java.sql.Timestamp enrolldate) {
 		this.enrolldate = enrolldate;
 	}
 
-	
-	
-	public Date getSecondenroll() {
+
+
+
+	public java.sql.Timestamp getSecondenroll() {
 		return secondenroll;
 	}
 
 
-	public void setSecondenroll(Date secondenroll) {
+
+
+	public void setSecondenroll(java.sql.Timestamp secondenroll) {
 		this.secondenroll = secondenroll;
 	}
 
-	
-	
 
 
 
@@ -144,14 +148,15 @@ public class Reply implements java.io.Serializable {
 
 
 
-
-
 	@Override
 	public String toString() {
 		return "Reply [replyno=" + replyno + ", no=" + no + ", content=" + content + ", ucode=" + ucode + ", uname="
 				+ uname + ", enrolldate=" + enrolldate + ", secondenroll=" + secondenroll + ", kind=" + kind
 				+ ", parent=" + parent + "]";
 	}
+
+
+
 
 
 

@@ -326,52 +326,59 @@ function replyList(){
 					console.log("${sessionScope.ucode}");
 					console.log( jsonObj.list[i].ucode);
 				
+					var replyno = jsonObj.list[i].replyno;
+					var no = jsonObj.list[i].no;
+					var ucode = jsonObj.list[i].ucode;
+					var uname = decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ");
+					var content = decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ");
+					var secondenroll = jsonObj.list[i].secondenroll;
+					var enrolldate = jsonObj.list[i].enrolldate.substring(0, 16);
+					var kind = jsonObj.list[i].kind;
 					
-/* 					re += '<div class="px-3 pb-5 pr-1 pl-1 text-white" id="replyy">'; */
 					re += '<div class="blog-comment"><ul class="comments">';
 					
 				
 				
-					if(jsonObj.list[i].kind == "0"){ //댓글일 때
+					if(kind == "0"){ //댓글일 때
 						
 						re += '<li class="clearfix">';
 						re += '<img src="https://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">';
-						if(jsonObj.list[i].secondenroll == null){
-						re += '<div class="post-comments"><div class="meta"><a href="#">'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</a>&nbsp;&nbsp;&nbsp;';
-						re += jsonObj.list[i].enrolldate;
+						if(secondenroll == null){
+						re += '<div class="post-comments"><div class="meta"><a href="#">'+uname+'</a>&nbsp;&nbsp;&nbsp;';
+						re += enrolldate;
 							}else{
-							re += '<div class="post-comments"><div class="meta"><a href="#">'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</a>&nbsp;&nbsp;&nbsp;';
-							re += '<small>&nbsp;&nbsp; 수정일 '+ jsonObj.list[i].secondenroll+'</small>';	
+							re += '<div class="post-comments"><div class="meta"><a href="#">'+uname+'</a>&nbsp;&nbsp;&nbsp;';
+							re += '<small>&nbsp;&nbsp; 수정일 '+secondenroll.substring(0, 16)+'</small>';	
 							}
 						
-						re += '<i class="pull-right"><a onclick="commentRereply('+jsonObj.list[i].replyno+',\''+jsonObj.list[i].no+'\');"> 답글 </a>';
+						re += '<i class="pull-right"><a onclick="commentRereply('+replyno+',\''+no+'\');"> 답글 </a>';
 						
-						if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
-							 re += '<a onclick="commentUpdate('+jsonObj.list[i].replyno+',\''+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'\');"> 수정 </a>';
-						     re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제&nbsp;&nbsp; </a></div></i>';
+						if(ucode == "${ sessionScope.ucode }"){
+							 re += '<a onclick="commentUpdate('+replyno+',\''+content+'\');"> 수정 </a>';
+						     re += '<a onclick="commentDelete('+replyno+');"> 삭제&nbsp;&nbsp; </a></div></i>';
 						    
 						}
-						 re += '<div class="commentContent'+jsonObj.list[i].replyno+'"> &nbsp;'+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'</div></div></li>'; 
+						 re += '<div class="commentContent'+replyno+'"> &nbsp;'+content+'</div></div></li>'; 
 						  
 						
 					}else{ //답글일 때
 						
 						re += '<ul class="comments"><li class="clearfix">';
 						re += '<img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">';
-						if(jsonObj.list[i].secondenroll == null){
-							re += '<div class="post-comments"><div class="meta"><a href="#">'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</a>&nbsp;&nbsp;&nbsp;';
-							re += jsonObj.list[i].enrolldate;
+						if(secondenroll == null){
+							re += '<div class="post-comments"><div class="meta"><a href="#">'+uname+'</a>&nbsp;&nbsp;&nbsp;';
+							re += enrolldate;
 								}else{
-								re += '<div class="post-comments"><div class="meta"><a href="#">'+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ")+'</a>&nbsp;&nbsp;&nbsp;';
-								re += '<small>&nbsp;&nbsp; 수정일 '+ jsonObj.list[i].secondenroll+'</small>';	
+								re += '<div class="post-comments"><div class="meta"><a href="#">'+uname+'</a>&nbsp;&nbsp;&nbsp;';
+								re += '<small>&nbsp;&nbsp; 수정일 '+secondenroll.substring(0, 16)+'</small>';	
 								}
 						
-						if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
-							 re += '<a onclick="commentUpdate('+jsonObj.list[i].replyno+',\''+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'\');"> 수정 </a>';
-						     re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제&nbsp;&nbsp; </a></div></i>';
+						if(ucode == "${ sessionScope.ucode }"){
+							 re += '<a onclick="commentUpdate('+replyno+',\''+content+'\');"> 수정 </a>';
+						     re += '<a onclick="commentDelete('+replyno+');"> 삭제&nbsp;&nbsp; </a></div></i>';
 						    
 						}
-						 re += '<div class="commentContent'+jsonObj.list[i].replyno+'"> &nbsp;'+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'</div></div></li></ul>'; 
+						 re += '<div class="commentContent'+replyno+'"> &nbsp;'+content+'</div></div></li></ul>'; 
 						  	
 					}
 						
@@ -379,7 +386,7 @@ function replyList(){
 						
 			
 	            	
-	            	re += '<div class="Rere'+jsonObj.list[i].replyno+'"></div>';
+	            	re += '<div class="Rere'+replyno+'"></div>';
 	            	re += '</ul></div>';
 	        
 				 }
@@ -423,9 +430,9 @@ function commentUpdate(replyno, content){
    
     a += '<div class="input-group">';
     a += '<input type="text" class="form-control" name="content_'+replyno+'" />';
-    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="javascript:rereinsert(\''+ replyno +'\',\''+ no +'\');">답글달기</button> </span>';
-    a += '<span class="input-group-btn"><button class="btn btn-default" onclick="replyList()">취소</button></span>';
-    a += '</div>';
+    a += '<span class="input-group-btn"><button class="btn btn-outline-secondary" type="button" onclick="javascript:rereinsert(\''+ replyno +'\',\''+ no +'\');">답글달기</button></span>';
+    a += '<span class="input-group-btn"><button class="btn btn-outline-secondary" onclick="replyList()">취소</button></span>';
+    a += '</div><br>';
    
     $('.Rere'+replyno).html(a);
     
