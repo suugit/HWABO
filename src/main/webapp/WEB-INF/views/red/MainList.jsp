@@ -291,11 +291,11 @@ $(function(){
 					<fmt:formatDate var="sstartday2" value="${post.sstartday}" pattern="HH:mm:ss" />
 					
 					<input type="datetime-local" class="form-control" name="beforesstartday" id="beforesstartday" 
-					required="required"  value=""	></td>
+					required="required"  value="${post.stringstart }"	></td>
 
 					<td width="50%">
 					<input type="datetime-local" class="form-control" name="beforesendday"  id="beforesendday" 
-					required="required"  value=""	></td>
+					required="required"  value="${post.stringend }"	></td>
 					<td><span style="color: blue;" id="placespan"></span></td>
 				</tr>
 			

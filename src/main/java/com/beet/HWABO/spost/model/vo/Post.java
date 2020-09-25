@@ -13,7 +13,7 @@ public class Post implements Serializable{
 	private String pnum;
 	private String ucode;
 	
-	//spost (11)
+	//spost (13)
 	private String sno;
 	private String stitle;
 	private String sucode;
