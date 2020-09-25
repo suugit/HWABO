@@ -14,6 +14,7 @@ import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
+import com.beet.HWABO.spost.model.vo.Spost;
 
 
 public interface RedService {
@@ -44,4 +45,7 @@ public interface RedService {
 	int insertCalendar(Calendar calendar);
 	ArrayList<Calendar> selectCalendar(PjMember pj);
 	int deleteCalendar(Calendar calendar);
+	int deleteCalendarAll(PjMember pj);
+	int insertCalendarSpostAll(Spost spost);
+	ArrayList<Spost> selectAllSpost(PjMember pj);
 }

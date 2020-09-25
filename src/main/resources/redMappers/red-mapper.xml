@@ -247,6 +247,10 @@
 		select * from Calendar where ucode = #{ ucode } and pnum = #{ pnum }
 </select>
 
+<select id="selectAllSpost" parameterType="PjMember" resultType="Spost">
+		select * from spost where sucode = #{ ucode } and spnum = #{ pnum }
+</select>
+
 <insert id="insertProject" parameterType="com.beet.HWABO.red.model.vo.UserProject">
 		insert into project VALUES (#{project_num},#{name},#{explain},default,default,default,null,100000,1,#{right},(select max(TO_NUMBER(order_by))+1 from project))
 </insert>
@@ -270,7 +274,13 @@
 
 <insert id="insertCalendar" parameterType="com.beet.HWABO.red.model.vo.Calendar">
 		insert into calendar(calno,pnum,ucode,uname,enrolldate,title,start_date,end_date,allday ) 
-		values ( (select concat('cal', (select nvl(max(to_number(substr(calno,4))),0) + 1 from calendar))from dual) ,#{ pnum },#{ ucode },#{ uname },default,#{ title },#{ start_date },#{ end_date },#{ allday })
+		values ( (select concat('cal', (select nvl(max(to_number(substr(calno,4))),0) + 1 from calendar))from dual) ,#{ pnum },#{ ucode },#{ uname },default,#{ title },#{ start_date },#{ end_date },null)
+</insert>
+
+<insert id="insertCalendarSpostAll" parameterType="Spost">
+		insert into calendar(calno,pnum,ucode,uname,enrolldate,title,start_date,end_date,allday ) 
+		values ( #{ sno },#{ spnum },#{ sucode },#{ swriter },#{ senrolldate },#{ stitle },#{ sstartday },#{ sendday },#{ sopen })
+		<!-- (select concat('cal', (select nvl(max(to_number(substr(calno,4))),0) + 1 from calendar))from dual) -->
 </insert>
 
 <delete id="deleteProject" parameterType="string">
@@ -291,6 +301,10 @@
 
 <delete id="delChatAll" parameterType="com.beet.HWABO.red.model.vo.Chatting">
 		delete from chatting where project_num = #{ project_num }
+</delete>
+
+<delete id="deleteCalendarAll" parameterType="PjMember">
+		delete from calendar where pnum = #{ pnum } and ucode = #{ ucode }
 </delete>
 
 <delete id="deleteCalendar" parameterType="com.beet.HWABO.red.model.vo.Calendar">

@@ -19,6 +19,7 @@ import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
+import com.beet.HWABO.spost.model.vo.Spost;
 
 @Repository("redDao")
 public class RedDao {
@@ -141,6 +142,19 @@ public class RedDao {
 
 	public int deleteCalendar(Calendar calendar) {
 		return session.delete("redMapper.deleteCalendar", calendar);
+	}
+
+	public int deleteCalendarAll(PjMember pj) {
+		return session.delete("redMapper.deleteCalendarAll", pj);
+	}
+
+	public int insertCalendarSpostAll(Spost spost) {
+		return session.insert("redMapper.insertCalendarSpostAll", spost);
+	}
+
+	public ArrayList<Spost> selectAllSpost(PjMember pj) {
+		List<Spost> list = session.selectList("redMapper.selectAllSpost", pj);
+		return (ArrayList<Spost>)list;
 	}
 	
 }

@@ -18,6 +18,7 @@ import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Project;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
+import com.beet.HWABO.spost.model.vo.Spost;
 
 
 @Service("redService")
@@ -158,6 +159,21 @@ public class RedServiceImpl implements RedService {
 	@Override
 	public int deleteCalendar(Calendar calendar) {
 		return redDao.deleteCalendar(calendar);
+	}
+
+	@Override
+	public int deleteCalendarAll(PjMember pj) {
+		return redDao.deleteCalendarAll(pj);
+	}
+
+	@Override
+	public int insertCalendarSpostAll(Spost spost) {
+		return redDao.insertCalendarSpostAll(spost);
+	}
+
+	@Override
+	public ArrayList<Spost> selectAllSpost(PjMember pj) {
+		return redDao.selectAllSpost(pj);
 	}
 	
 }

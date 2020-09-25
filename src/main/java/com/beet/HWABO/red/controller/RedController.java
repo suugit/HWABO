@@ -715,6 +715,13 @@ public class RedController {
 	@RequestMapping(value = "fborderMain.do", method = RequestMethod.GET)
 	public ModelAndView border(PjMember pj, ModelAndView model) {
 		
+		redService.deleteCalendarAll(pj);
+		ArrayList<Spost> list = redService.selectAllSpost(pj);
+		for(Spost spost : list) {
+			spost.setStitle(spost.getStitle() + "beetCheckSystem"  + spost.getSno());
+			redService.insertCalendarSpostAll(spost);
+		}
+		
 		ArrayList<Calendar> calList = redService.selectCalendar(pj);
 		logger.info("calList : " + calList);
 		model.addObject("cal",calList);
@@ -732,9 +739,11 @@ public class RedController {
 	@RequestMapping(value = "fborder2Main.do", method = RequestMethod.GET)
 	public ModelAndView border2(PjMember pj, ModelAndView model) {
 		
-		if(redService.deleteCalendarAll(pj) == 1 && redService.insertCalendarSpostAll(spost)) {
-			ArrayList<Spost> list = spostService.selectAllSpost();
-			
+		redService.deleteCalendarAll(pj);
+		ArrayList<Spost> list = redService.selectAllSpost(pj);
+		for(Spost spost : list) {
+			spost.setStitle(spost.getStitle() + "beetCheckSystem"  + spost.getSno());
+			redService.insertCalendarSpostAll(spost);
 		}
 		
 		ArrayList<Calendar> calList = redService.selectCalendar(pj);

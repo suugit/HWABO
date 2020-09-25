@@ -11,7 +11,7 @@ public class Calendar {
 	private String title; 
 	private String start_date; 
 	private String end_date; 
-	private int allday;
+	private String allday;
 	public String getCalno() {
 		return calno;
 	}
@@ -60,10 +60,10 @@ public class Calendar {
 	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
 	}
-	public int getAllday() {
+	public String getAllday() {
 		return allday;
 	}
-	public void setAllday(int allday) {
+	public void setAllday(String allday) {
 		this.allday = allday;
 	}
 	@Override
@@ -73,7 +73,7 @@ public class Calendar {
 				+ ", allday=" + allday + "]";
 	}
 	public Calendar(String calno, String pnum, String ucode, String uname, Date enrolldate, String title,
-			String start_date, String end_date, int allday) {
+			String start_date, String end_date, String allday) {
 		super();
 		this.calno = calno;
 		this.pnum = pnum;
