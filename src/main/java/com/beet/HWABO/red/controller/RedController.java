@@ -693,9 +693,9 @@ public class RedController {
 			,HttpServletRequest request, SessionStatus status) throws IOException {
 			logger.info("캘린더 넣는중~ : " + calendar);
 		response.setContentType("test/html; charset=utf-8"); //여기에 오타나면 파일 선택창이 뜬다
-		if(calendar.getTitle().contains("   ")) {
-			calendar.setTitle("프로필사진 비뜨로 바꾸기");
-		}
+//		if(calendar.getTitle().contains("   ")) {
+//			calendar.setTitle("프로필사진 비뜨로 바꾸기");
+//		}
 		PrintWriter out = response.getWriter();
 		if(redService.insertCalendar(calendar) > 0) {
 			out.append("ok");
@@ -711,6 +711,7 @@ public class RedController {
 		
 		return "red/CalendarSessionCheck";
 	}
+	//달력1
 	@RequestMapping(value = "fborderMain.do", method = RequestMethod.GET)
 	public ModelAndView border(PjMember pj, ModelAndView model) {
 		
@@ -727,8 +728,14 @@ public class RedController {
 		
 		return "red/CalendarSessionCheck2";
 	}
+	//달력2
 	@RequestMapping(value = "fborder2Main.do", method = RequestMethod.GET)
 	public ModelAndView border2(PjMember pj, ModelAndView model) {
+		
+		if(redService.deleteCalendarAll(pj) == 1 && redService.insertCalendarSpostAll(spost)) {
+			ArrayList<Spost> list = spostService.selectAllSpost();
+			
+		}
 		
 		ArrayList<Calendar> calList = redService.selectCalendar(pj);
 		logger.info("calList : " + calList);

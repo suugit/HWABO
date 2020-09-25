@@ -7,8 +7,8 @@
 <html>
 <head>
 <meta charset='utf-8' />
-<link href='/hwabo/resources/calendar/main.css' rel='stylesheet' />
-<script src='/hwabo/resources/calendar/main.js'></script>
+<link href='/hwabo/resources/calendar/lib/main.css' rel='stylesheet' />
+<script src='/hwabo/resources/calendar/lib/main.js'></script>
 <script>
 function showCalendar(){
   document.addEventListener('DOMContentLoaded', function() {
@@ -26,8 +26,8 @@ function showCalendar(){
       selectMirror: true,
       select: function(arg) {
       var title = prompt('일정 메모');
-      //arg.view.dateEnv.locale.codeArg = 'kr';
-      //arg.view.dateEnv.locale.codes = ['kr'];
+      arg.view.dateEnv.locale.codeArg = 'kr';
+      arg.view.dateEnv.locale.codes = ['kr'];
       //ajax insert 시작////////////////////////
       var argAllDay = 1;
       if(arg.allDay != true){
@@ -44,6 +44,10 @@ function showCalendar(){
       console.log('-----------------------------');
       console.log(new Date(arg.start.getTime()));
       console.log('-----------------------------');
+      console.log(new Date(arg.end.getTime() - (arg.end.getTimezoneOffset() * 60000)).toISOString().slice(0, 10));
+      console.log('-----------------------------');
+      console.log(new Date(arg.start.getTime() - (arg.start.getTimezoneOffset() * 60000)).toISOString().slice(0, 10));
+      console.log('-----------------------------');
       console.log(arg);
       console.log('-----------------------------');
       console.log(title);
@@ -59,8 +63,8 @@ function showCalendar(){
         			ucode : $("#calucode").val(), 
         			uname : $("#caluname").val(),
         			title : title,
-        			start_date : /*arg.start.toISOString(),*/arg.start.getTime(),
-        			end_date : /*arg.end.toISOString(),*/arg.end.getTime(),
+        			start_date : /*arg.start.toISOString(),*/new Date(arg.start.getTime() - (arg.start.getTimezoneOffset() * 60000)).toISOString().slice(0, 10),
+        			end_date : /*arg.end.toISOString(),*/new Date(arg.end.getTime() + (arg.end.getTimezoneOffset() * 60000)).toISOString().slice(0, 10),
         			allday : argAllDay
         		},
         		type: "post",
@@ -137,8 +141,8 @@ function showCalendar(){
           </c:if>
           {
             title: '${calIndex.title}',
-         	start: new Date(${calIndex.start_date}),
-	        end: new Date(${calIndex.end_date})
+         	start: '${fn:substring(calIndex.start_date,0,10)}',
+	        end:  new Date('${fn:substring(calIndex.end_date,0,10)}')//new Date('${fn:substring(calIndex.end_date,0,10)}').setDate(new Date('${fn:substring(calIndex.end_date,0,10)}').getDate() + 1)
           }
           </c:forEach>
   			

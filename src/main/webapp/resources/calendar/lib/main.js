@@ -4109,7 +4109,7 @@ console.log("1");
     var globalLocales = [];
 
     var RAW_EN_LOCALE = {
-        code: 'en',
+        code: 'ko',
         week: {
             dow: 0,
             doy: 4 // 4 days need to be within the year to be considered the first week
@@ -4133,7 +4133,7 @@ console.log("1");
         noEventsText: 'No events to display'
     };
     function organizeRawLocales(explicitRawLocales) {
-        var defaultCode = explicitRawLocales.length > 0 ? explicitRawLocales[0].code : 'en';
+        var defaultCode = explicitRawLocales.length > 0 ? explicitRawLocales[0].code : 'ko';
         var allRawLocales = globalLocales.concat(explicitRawLocales);
         var rawLocaleMap = {
             en: RAW_EN_LOCALE // necessary?
@@ -4216,7 +4216,7 @@ console.log("1");
     }
     // TODO: more DRY and optimized
     function buildDateEnv(settings) {
-        var locale = buildLocale(settings.locale || 'en', organizeRawLocales([]).map); // TODO: don't hardcode 'en' everywhere
+        var locale = buildLocale(settings.locale || 'ko', organizeRawLocales([]).map); // TODO: don't hardcode 'ko' everywhere
         return new DateEnv(__assign(__assign({ timeZone: BASE_OPTION_DEFAULTS.timeZone, calendarSystem: 'gregory' }, settings), { locale: locale }));
     }
 
