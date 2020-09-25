@@ -143,11 +143,30 @@ jQuery('.suugitMain').click(function () {
    preview(fileArea, arr);
    
  });
+ 
+  function daycheck() {
+
+		var startday = document.spostInsert.beforesstartday.value.replace(
+				"T", " ");
+		var endday = document.spostInsert.beforesendday.value.replace("T",
+				" ");
+
+		var start = new Date(startday);
+		var end = new Date(endday);
+
+		if (start > end) {
+
+			$("#placespan").html("끝 날짜가 시작날짜보다 이전일 수 없습니다<br>다시 선택해주세요");
+			$("#beforesendday").focus();
+			return false;
+		} else {
+			return true;
+		}
+	}
 </script>
 <!-- CPOST start -->
 <div class="card shadow mb-4" style="display:block;" id="suugitsuugitMain">
-            <div class="card-header py-3">
-            </div>
+            
                <div class="card-body">
               <!-- 게시글안쪽 -->
               <div class="clearfix d-flex ">
@@ -184,7 +203,7 @@ jQuery('.suugitMain').click(function () {
 <!-- 글작성 본문 -->
               <form action="incp.do" id="InsertCpost" method="post" enctype="multipart/form-data">
              
-              <tr><td colspan="5"> <input name="ctitle" type="text" class="form-control mb-1" placeholder="제목" required></td></tr>
+              <tr><td colspan="5"> <input name="ctitle" type="text" class="form-control mb-1" placeholder="제목을 입력하세요" required></td></tr>
               <tr><td colspan="5"><textarea id="ccontent" name="ccontent" rows="6" class="w-100 form-control "  placeholder="내용을 입력해주세요"  required></textarea></td></tr>
               <tr id="preview"></tr>
               <tr id="file_list">
@@ -237,24 +256,24 @@ jQuery('.suugitMain').click(function () {
               			<i class="fa fa-at">&nbsp;</i>
               		</label>
               	</td>
-              	<td></td>
+              	
               	<td>
-              	<select name="copen" class="form-control form-control-small selectpicker">
+              	<select name="copen" class="form-control form-control-small selectpicker" style="display: none;">
   					<option value="Y" selected>전체공개</option>
   					<option value="N">비공개</option>
 				</select>
 				
               	</td>
-				</form>
+				
 		
               	 <!-- 버튼 -->
-              	 <td colspan="2" style="width:5%"> 
-             	 	<button type="submit" id="btn-save" class="btn btn-success p-1" form="InsertCpost">등록</button>
-             		<button type="reset" class="btn btn-danger p-1" style="width:40%;float:right;">
-                    <span class="text">취소</span>
+              	 <td colspan="3"  style="text-align:right; vertical-align: middle;  width: 30%;"> 
+             	 	<button type="submit" id="btn-save" class="btn btn-outline-info btn-sm px-4" form="InsertCpost">등록</button>
+             		<button type="reset" class="btn btn-outline-danger btn-sm px-4">취소
              		</button>
               	</td>
               </tr>
+           </form>
 	<tr>
 			<td> 		
 			
@@ -286,9 +305,9 @@ jQuery('.suugitMain').click(function () {
 <!-- BPOST start -->
                <div class="card shadow mb-4" style="display:none;" id="kyukyuMain">
 <!-- @@@@시작@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->               
-<!-- @@@  -->      <div class="card-header py-3"></div>                                                              <!-- @@@  -->
+<!-- @@@  -->                                                          <!-- @@@  -->
 <!-- @@@@끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-                  <div class="card-body">
+                  <div class="card-body" style="border: 1px solid green">
                      <!-- 게시글안쪽 -->
                   <form action="insertbpostMain.do" name="b" method="post" id="bInsert" enctype="multipart/form-data">
                      <input type="hidden" name="bucode" value="${sessionScope.ucode }">
@@ -340,8 +359,8 @@ jQuery('.suugitMain').click(function () {
                               <td colspan="5">&nbsp;</td>
                            </tr>
                            <tr>
-                              <td colspan="5"><span style="float: left;"><i class="fa fa-pen"></i>&nbsp;제 목</span>                                 
-                              <input type="text" name="btitle" class="form-control" placeholder="업무 제목을 입력하세요" required="required"></td>
+                              <td colspan="5">                       
+                              <input type="text" name="btitle" class="form-control" placeholder="제목을 입력하세요" required="required"></td>
                            </tr>
                            <tr>
                               <td colspan="5">&nbsp;</td>
@@ -362,7 +381,7 @@ jQuery('.suugitMain').click(function () {
 <% } %>			                   
 <!-- @@@  -->                                                                                                       <!-- @@@  -->
 <!-- @@@@끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-                      <div><input type="hidden" id="selected"></div>
+                      <div id="selected"></div>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2" >
                      <c:forEach var="pm" items="${sessionScope.pmlist}" varStatus="status">
                      <button class="dropdown-item" type="button" onclick="addbcharge${status.index}();" value="${pm.ucode }">${pm.uname }</button>
@@ -381,11 +400,11 @@ jQuery('.suugitMain').click(function () {
                      </td>
                      </tr>      
                            <tr>
-                              <td width="20%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span>
+                              <td width="50%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span>
                               <input type="date" class="form-control" name="bstartday" id="beforesstartday" required></td>
-                              <td width="20%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span>
+                              <td width="50%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span>
                               <input type="date" class="form-control" name="bendday" id="beforesendday" required></td>
-                              <td colspan="3"></td>
+                             
                            </tr>
                            <tr>
                               <td colspan="3" style="text-align: left;"><span style="color: blue;" id="placespan"></span></td>
@@ -402,16 +421,19 @@ jQuery('.suugitMain').click(function () {
                            <tr>
                               <td><input type="file" name="ofile" id="fileInput" onchange='fileCheck()'></td>
                               <!--  #f8f9fc   -->
-                              <td>
+                              
                               <select name="bopen" class="form-control" style="display:none">
                                  <option value="y" selected>전체공개</option>
                                  <option value="n">나만보기</option>
                               </select>
+                              
+                              <td colspan="3" style="width:30px; text-align: right;">
+                                    <input type="submit" class="btn btn-sm btn-outline-info px-4" value=" 등  록 ">
+                                    <input type="reset" class="btn btn-sm btn-outline-danger px-4" value=" 취  소 ">
                               </td>
-                              <td colspan="3">
-                                    <input type="submit" class="btn btn-sm btn-info" value=" 등  록 ">
-                                    <input type="reset" class="btn btn-sm btn-danger" value=" 취  소 ">
-                              </td>
+                              
+                   
+                              
                            </tr>
                         </table>
                      </form>
@@ -432,8 +454,7 @@ jQuery('.suugitMain').click(function () {
 	String now = sf1.format(nowTime1).toString() + "T" + sf2.format(nowTime2).toString();
 %>
 <div class="card shadow mb-4" style="display:none;" id="abcabcMain">
-            <div class="card-header py-3">
-            </div>
+            
             <div class="card-body">
               <!-- 게시글안쪽 -->
         <form action="sinsertMain.do" id="spostInsert" name="spostInsert"	method="post" onsubmit="return daycheck();">
@@ -461,20 +482,19 @@ jQuery('.suugitMain').click(function () {
 <!-- @@@  -->                                                                                                        <!-- @@@  -->
 <!-- @@@@끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 		<tr>
-			<td colspan="3"><span style="float: left;"><i
-					class="fa fa-pen"></i>&nbsp;제 목</span> <input type="text" name="stitle"
+			<td colspan="3"><input type="text" name="stitle"
 				class="form-control" placeholder="일정 제목을 입력하세요" required="required"></td>
 		</tr>
 		<tr>
 			<td colspan="3">&nbsp;</td>
 		</tr>
 		<tr>
-			<td width="20%"><span style="float: left;"><i
+			<td width="50%"><span style="float: left;"><i
 					class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span><input
 				type="datetime-local" class="form-control" name="beforesstartday"
 				id="beforesstartday" required="required" value="<%=now%>"></td>
 			<td>&nbsp;</td>
-			<td><span style="float: left;"><i
+			<td width="50%"><span style="float: left;"><i
 					class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span><input
 				type="datetime-local" class="form-control" name="beforesendday"
 				id="beforesendday" required="required" value="<%=now%>"></td>
@@ -567,24 +587,21 @@ jQuery('.suugitMain').click(function () {
 			<td colspan="3"><span style="float: left;"><i
 					class="far fa-keyboard"></i>&nbsp;메 모</span> <span style="float: left;">&nbsp;&nbsp;&nbsp;(
 					남은글자수 : <input size="2px;" type="text" readonly value="200"
-					name="counter" id="counter" style="border: none;">)
+					name="counter" id="counter" style="border: none; height: 13px;">)
 			</span> <textarea name="scontent" id="contentText" cols="30" rows="10"
 					class="form-control" onkeypress="onTestChange();"
-					style="width: 100%; height: 200px; overflow: auto; resize: none;"></textarea>
+					style="width: 100%; height: 100px; overflow: auto; resize: none;"></textarea>
 			</td>
 		</tr>
 
 		<tr>
-			<td colspan="3">&nbsp;</td>
+			<td colspan="2">&nbsp;</td>
 		</tr>
 		<tr>
-			<td colspan="2"></td>
-			<td >
-				<!-- <a class="btn btn-success btn-icon-split"	href="javascript: spostInsert.submit();"  style="width: 90%;">
-												<span class="text">등록</span> </a> --> <input type="submit"
-				class="btn btn-sm btn-info" value=" 등  록 "> <!-- <a href="javascript:spostInsert.reset();"	class="btn btn-danger btn-icon-split" style="width: 90%;">
-												<span class="text">취소</span> </a> --> <input type="reset"
-				class="btn btn-sm btn-danger" value=" 취  소 ">
+		
+			<td  colspan="3" style="text-align: right; width: 30%;">
+			 <input type="submit"class="btn btn-sm btn-outline-info px-4 " value=" 등  록 "> 
+			 <input type="reset"	class="btn btn-sm btn-outline-danger px-4" value=" 취  소 ">
 
 			</td>
 		</tr>

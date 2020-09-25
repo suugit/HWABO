@@ -273,7 +273,9 @@ public class abcController {
 		j.put("splace", URLEncoder.encode(returnSpost.getSplace(), "utf-8"));
 		j.put("scontent", URLEncoder.encode(returnSpost.getScontent(), "utf-8"));
 		j.put("senrolldate", returnSpost.getSenrolldate().toString());
-		
+		j.put("spnum", returnSpost.getSenrolldate().toString());
+		SENROLLDATE
+		SOPEN
 		SPNUM
 		Stirngstart
 		stringend
