@@ -137,6 +137,16 @@ public class abcController {
 		return "abc/selectSpost";
 	}
 
+	// 일정 selectOne 메소드
+		@RequestMapping("onespost.do")
+		public Model SelectOneSpost(Model m, String sno) {
+			logger.info(sno+"onespost.do 들어옴 #$#@$#@@#$@#$@#@$@#@#$@#$@#");
+			Spost spost = spostService.selectOneSpost(sno);
+			m.addAttribute("post", spost );
+			return m;
+		}
+		
+	
 	// 일정 등록 메소드
 	@RequestMapping("sinsert.do")
 	public ModelAndView insertSpost(Spost spost, ModelAndView mav, @RequestParam("beforesstartday") String start,

@@ -253,7 +253,7 @@ $(function(){
 										<span style="float: left;">&nbsp;&nbsp;&nbsp;( 남은글자수 : <input size="2px;"  type="text"
 												readonly value="200" name="counter" id="counter"
 												style="border: none;">)</span>
-<textarea name="scontent" id="scontent" cols="30" rows="10"	class="form-control"	onkeypress="onTestChange();" style="width: 100%; height: 200px; overflow: auto; resize: none;">${post.scontent }</textarea> </td>
+<textarea name="scontent" id="scontent" cols="30" rows="10"	class="form-control"	 style="width: 100%; height: 100px; overflow: auto; resize: none;">${post.scontent }</textarea> </td>
 									</tr>
 		
 			</table>

@@ -18,17 +18,6 @@
 $(function(){
 	//수정폼 가리기
 	$("[id^=up]").css("display", "none" );
-	
-	//수정폼안에 입력가능글자수 변경
-	$('#scontent').on("propertychange change keyup paste input", function() {
-		var content = $(this).val();
-		$('#counter').val(200 - content.length);
-
-		if (content.length > 200) {
-			$(this).val(
-					$(this).val().substring(0, 200));
-		}
-	});
 
 	//수정폼 입력부분 빈칸이면 주소입력창띄우기
 	$("#sample5_address3").on("click", function(){
@@ -75,12 +64,14 @@ $(function(){
 			url: "supdate.do",
 			data: param,
 			type: "post", 
-			success: function(Data){
-				if(Data != null){
-					alert("수정에 성공하였습니다");
-				}else{
-					alert("수정에 실패하였습니다");
-				}	
+			dataType: "json",
+			success: function(post){
+				alert("update성공 !");
+				
+				$("#se"+post.sno).load("onespost.do",post, function(){});
+				$("#up"+post.sno).load("onespost.do",post, function(){});
+				$("#up"+post.sno).css("display", "none" );
+				$("#se"+post.sno).css("display", "block" );
 			},
 			error: function(request, status, errorData){
 				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
@@ -110,7 +101,7 @@ $(function(){
 	//spost function 끗
 	
 	
-	//삭제 메소드
+	//bpost 삭제 메소드
 	function bpostdelete(){
 		if(confirm("정말로 삭제하시겠어요?")){
 			
@@ -120,7 +111,7 @@ $(function(){
 				data: { bno: $("#bno").val() },
 				type: "post", 
 				dataType: "text",
-				success: function(){
+				success: function(bbb){
 						alert("삭제에 성공하였습니다");
 						$("#up"+bbb).css("display", "none" );
 						$("#se"+bbb).css("display", "none" );
@@ -144,7 +135,7 @@ $(function(){
 			<h6 class="m-0 font-weight-bold text-primary">
 				<i class="fas fa-user-circle"></i> 
 				${post.swriter}<br>
-				<fmt:formatDate value="${post.senrolldate}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>
+				<fmt:formatDate value="${post.senrolldate}" pattern="yyyy-MM-dd"/>
 			</h6>
 			<div class="dropdown no-arrow">
 				<!-- 보관함 담기여부 -->
@@ -185,8 +176,12 @@ $(function(){
 					<th width="50%">시 작 날 짜</th><th width="50%">끝 날 짜</th>
 				</tr>
 				<tr>
-					<td>${post.sstartday }<fmt:formatDate value="${post.sstartday}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>	</td>
-					<td><fmt:formatDate value="${post.sendday}" pattern="yyyy-MM-dd HH시 mm분 E요일"/></td>
+				<c:set var="start1" value="${post.stringstart }"/>
+				<c:set var="start2" value="${fn:replace(start1, 'T', '  ')}" />
+				<c:set var="end1" value="${post.stringend }"/>
+				<c:set var="end2" value="${fn:replace(end1, 'T', '  ')}" />
+					<td><c:out value="${ start2}" /></td>
+					<td><c:out value="${ end2}" /></td>
 				</tr>
 				<c:if test="${ !empty post.splace }">
 					<tr>
@@ -252,8 +247,10 @@ $(function(){
 </script>
 				</td>
 			</tr>
+			
 			</c:if>
-			<c:if test="${ !empty post.scontent }">			
+			<c:if test="${ !empty post.scontent }">	
+			<tr><td colspan="2">&nbsp;</td></tr>		
 					<tr><th colspan="2">메  모</th></tr>
 					<tr><td colspan="2">${post.scontent }</td></tr>
 			</c:if>
@@ -321,8 +318,7 @@ $(function(){
 				<tr>
 					<td width="50%">
 					
-					<fmt:formatDate var="sstartday1" value="${post.sstartday}" pattern="yyyy-MM-dd" />
-					<fmt:formatDate var="sstartday2" value="${post.sstartday}" pattern="HH:mm:ss" />
+					
 					
 					<input type="datetime-local" class="form-control" name="beforesstartday" id="beforesstartday" 
 					required="required"  value="${post.stringstart }"	></td>
@@ -349,6 +345,14 @@ $(function(){
 					</c:if>
 						<input type="button" onclick="sample5_execDaumPostcode2${status.index }();" value="장소검색"  class="form-control"><br>
 <script>
+$(function(){
+	$("#sample5_address3"+${status.index }).on("click", function(){
+		if($(this).val().length == 0 ){
+			sample5_execDaumPostcode2+"${status.index }"();
+		}
+	});	
+});
+
     function sample5_execDaumPostcode2${status.index }() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -367,13 +371,11 @@ $(function(){
 				</tr>
 
 				<tr>
-					<td>메  모 <span>&nbsp;&nbsp;&nbsp;( 남은글자수 : <input size="2px;"  type="text"
-												readonly value="200" name="counter" id="counter_${status.index }"
-												style="border: none; margin: 0px; padding: 0px; height: 13px;">)</span></td>
+					<td>메  모</td>
 				</tr>
 				<tr>
 				<td colspan="2">
-<textarea name="scontent" id="scontent_${status.index }" cols="30" rows="10"	class="form-control"	onkeypress="onTestChange(this.id);" style="width: 100%; height: 200px; overflow: auto; resize: none;">${post.scontent }</textarea> </td>
+<textarea name="scontent" id="scontent_${status.index }" cols="30" rows="10"	class="form-control" maxlength=""	 style="width: 100%; height: 200px; overflow: auto; resize: none;">${post.scontent }</textarea> </td>
 									</tr>
 		
 			</table>
