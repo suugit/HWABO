@@ -1,6 +1,58 @@
 //$('#btn-save').click( function() {
 //		 alert('hi');
 //		} );
+   var cno = "" ;
+   var table="";
+   var cpost = "";
+   var tmplist = "";
+
+   function toEdit(click) {
+
+		$("#cpEdit"+click).css("display", "block" );
+		$("#cpView"+click).css("display", "none" );
+		cno = click;
+		alert(cno);
+		cpost = "#updatecForm" + cno;
+		table = "#CpostUpTable" + cno;
+	}
+	
+   
+function cpSave(){
+	alert(tmplist);
+	event.preventDefault();
+ 	 var formData = new FormData($(cpost)[0]);
+ 	 var ee;
+ 	 
+ 	formData.append("cflist", tmplist);
+	alert(formData.cflist);
+ 	 $.ajax({
+ 		url: "upcp.do",
+ 		type: "post",
+ 		enctype: 'multipart/form-data',
+ 		data: formData,
+ 		contentType:false,
+ 		processData:false,
+ 		dataType: "JSON",
+ 		success: function(c){
+ 			alert('성공');
+ 			$("#cpView"+cno).load("selcpnew.do",c,function() {
+ 				$("#cpView"+cno).css("display", "block" );
+ 				$("#cpEdit"+cno).css("display", "none" );
+ 			    alert("글 수정 성공");
+ 			});
+ 			
+ 		},
+ 		error: function(){ 
+ 			alert('업데이트 실패');
+ 		
+ 		}
+ 		
+ 	});   
+  }
+
+
+
+
 	    $(document).ready(function(){
 	        $('.del_img').click(function(){
 	            $(this).parent().hide();
@@ -12,10 +64,27 @@
 	    var dropFile = function(event) {
 	    	   event.preventDefault();
 	    	}
-
+	    
+	    $('.updatecPost').find("input[type='file']").on('change',function(e){
+	 		var fileArea = $(table).find('tr.preview');
+	 		//fileArea.empty();
+	 		if(fileArea.children('td').length >= 3){
+	 			alert('첨부파일은 최대 3개까지 가능합니다');
+	 			return false;
+	 		}
+	 		
+	 		tmp = Array.prototype.slice.call(fileArea.children('td'));
+	 		tmplist = Array.prototype.slice.call(fileArea.children('td')).innerHTML;
+	 		var files = e.target.files;
+	 		var arr = Array.prototype.slice.call(files);
+	 		tmp.push(arr);
+	 		alert(tmp);
+	 		preview(fileArea, arr);
+	 		
+	 		});
 
   function preview(fileArea, arr){
-	  alert('hh');
+	alert('hh');
     arr.forEach(function(f){
     	
     	var fileName = f.name;
@@ -46,20 +115,12 @@
     }); 
   }
 
-
-
-
-function removeuptd() {
-	
-
-}
-
 function removefile(){
 	$(event.target).value = "";
 	$(event.target).closest('td').remove();
 	alert('삭제')
 	var fileArea = $(table).find('tr.preview');
-	tmplist =Array.prototype.slice.call(fileArea.children('td')).innerHTML;
+	tmplist =Array.prototype.slice.call(fileArea.children('td'));
 }
 function resize(img){
 
