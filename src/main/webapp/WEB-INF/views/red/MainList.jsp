@@ -9,45 +9,115 @@
 	
 <script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-	$(function(){
-		$("[id^=up]").css("display", "none" );
-		
-	});	//document.ready;
+$(function(){
+	//수정폼 가리기
+	$("[id^=up]").css("display", "none" );
 	
+	//수정폼안에 입력가능글자수 변경
+	$('#scontent').on("propertychange change keyup paste input", function() {
+		var content = $(this).val();
+		$('#counter').val(200 - content.length);
+
+		if (content.length > 200) {
+			$(this).val(
+					$(this).val().substring(0, 200));
+		}
+	});
+
+	//수정폼 입력부분 빈칸이면 주소입력창띄우기
+	$("#sample5_address3").on("click", function(){
+		if($(this).val().length == 0 ){
+			sample5_execDaumPostcode2()
+		}
+	});	
+	
+});	//document.ready;
+
+	//일정게시글 등록시 날짜 유효성 체크
+	function daycheck() {
+		var startday = document.uspostform.beforesstartday.value.replace("T", " ");
+		var endday = document.uspostform.beforesendday.value.replace("T", " ");
+		var start = new Date(startday);
+		var end = new Date(endday);
+		if (start > end) {
+			$("#placespan").html("끝 날짜가 시작날짜보다 이전일 수 없습니다<br>다시 선택해주세요");
+			$("#beforesendday").focus();
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	//수정폼 띄우기
 	function moveupdateform(click) {
-		alert(click);
+		
 		$("#up"+click).css("display", "block" );
 		$("#se"+click).css("display", "none" );
 	}
 	
+	//출력폼 띄우기
 	function moveselectfeed(click) {
-		alert(click);
+		
 		$("#up"+click).css("display", "none" );
 		$("#se"+click).css("display", "block" );
 	}
-</script>
+	
+	//수정완료 버튼 누르면 실행되는 펑션
+	function spostupdate(){
+		var param = $("#uspostform").serialize();
+		$.ajax({
+			url: "supdate.do",
+			data: param,
+			type: "post", 
+			success: function(Data){
+				if(Data != null){
+					alert("수정에 성공하였습니다");
+				}else{
+					alert("수정에 실패하였습니다");
+				}	
+			},
+			error: function(request, status, errorData){
+				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+			}
+		}); //ajax
+}; 
+	//삭제 메소드
+	function spostdelete(){
+		if(confirm("정말로 삭제하시겠어요?")){
+			$.ajax({
+				url: "sdelete.do",
+				data: { sno: $("#sno").val() },
+				type: "post", 
+				dataType: "text",
+				success: function(sno){
+						alert("삭제에 성공하였습니다");
+						$("#up"+sno).css("display", "none" );
+						$("#se"+sno).css("display", "none" );
+				},
+				error: function(request, status, errorData){ //에러는 위에서 복붙
+					console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+				}
+			}); //ajax
+		}//확인
+	}; 
+	//spost function 끗
+</script> 
 <body>
 
 	<c:forEach var="main" items="${ requestScope.list }" varStatus="status">
 		<%-- ${ status.count } --%>
 		<c:if test="${ main.firstword eq 's' }">
-			<c:set var="post" value="${ main }"></c:set>
-			<button id="changeupdate" onclick="javascript: changeform1();">수
-				&nbsp;정</button>
-			<button id="changeselect" onclick="javascript: changeform2();">수
-				정 취 소</button>
-
-			<div class="card shadow mb-4">
-				<div
-					class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-0 font-weight-bold text-primary">
-						<i class="fas fa-user-circle"></i> ${post.swriter}<br>
-						<fmt:formatDate value="${post.senrolldate}"
-							pattern="yyyy-MM-dd HH시 mm분 E요일" />
-					</h6>
-					<div class="dropdown no-arrow">
-						<!-- 보관함 담기여부 -->
-						<button id="cavinetin_${status.index }"
+<c:set var="post" value="${ main }"></c:set>
+	<div id="se${post.sno }" class="card shadow mb-4">
+		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+			<h6 class="m-0 font-weight-bold text-primary">
+				<i class="fas fa-user-circle"></i> 
+				${post.swriter}<br>
+				<fmt:formatDate value="${post.senrolldate}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>
+			</h6>
+			<div class="dropdown no-arrow">
+				<!-- 보관함 담기여부 -->
+				<button id="cavinetin_${status.index }"
 							class="btn btn-custom btn-sm liketoggle${status.index }"
 							name="like" onclick="sendInsert(${status.index});">
 							<span>보관</span> <i class="far fa-bookmark"></i>
@@ -55,53 +125,47 @@
 						<input type="hidden" id="ucode_${status.index }"	value="${sessionScope.ucode }"> 
 						<input type="hidden"id="no_${status.index }" value="${post.sno }"> <input	type="hidden" id="pnum_${status.index }" value="${post.spnum }">
 
-						<!-- 드롭다운 -->
-						<a class="dropdown-toggle" href="#" role="button"
-							id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i
-							class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-						</a>
-						<div
-							class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-							aria-labelledby="dropdownMenuLink">
-							<div class="dropdown-header">메뉴:</div>
-							<a id="${post.sno}" name="mine" class="dropdown-item"
-								onclick="toEdit(this.id)">수정</a>
-							<c:url var="delcp" value="delcp.do">
-								<c:param name="cno" value="${c.cno }" />
-							</c:url>
-							<a name="mine" class="dropdown-item" href="${delcp }">삭제</a>
-						</div>
+				<!-- 드롭다운 -->
+				<c:if test="${post.sucode eq sessionScope.ucode }">
+					<a class="dropdown-toggle" href="#" role="button"
+						id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"	aria-expanded="false"> 
+						<i 	class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"	aria-labelledby="dropdownMenuLink">
+						<div class="dropdown-header">메뉴:</div>
+						<button class="dropdown-item" id="${post.sno}"   onclick="moveupdateform(this.id);">수정</button>
+						<button class="dropdown-item"  id="dspost" type="submit" onclick="spostdelete(); return false;">삭제</button>
 					</div>
-					<!-- 드롭다운 끝 -->
-				</div>
-				<div class="card-body" style="margin: 0px;">
-					<!-- 게시글안쪽 -->
-					<h6>${post.stitle }</h6>
-					<hr>
-					<table style="width: 100%;">
-						<tr>
-							<td width="50%">시 작 날 짜</td>
-							<td width="50%">끝 날 짜</td>
-						</tr>
-						<tr>
-							<td><fmt:formatDate value="${post.sstartday}"
-									pattern="yyyy-MM-dd HH시 mm분 E요일" /></td>
-							<td><fmt:formatDate value="${post.sendday}"
-									pattern="yyyy-MM-dd HH시 mm분 E요일" /></td>
-						</tr>
-						<c:if test="${ !empty post.splace }">
-							<tr>
-								<td colspan="2">&nbsp;</td>
-							</tr>
-							<tr>
-								<td colspan="2">장 소</td>
-							</tr>
-							<tr>
-								<td colspan="2">${post.splace }
-									<div id="map1_${status.index }"
-										style="width: 400px; height: 200px; margin-top: 5px;"></div>
-									<br> <script>
+				</c:if>
+				
+
+			</div>
+			<!-- 드롭다운 끝 -->
+		</div>
+		<div class="card-body" style="margin: 0px;">
+			<!-- 게시글안쪽 -->
+			<h6><strong>제목</strong> : ${post.stitle }</h6>
+			<hr>
+			<table style="width: 100%;">
+				<tr>
+					<th width="50%">시 작 날 짜</th><th width="50%">끝 날 짜</th>
+				</tr>
+				<tr>
+					<td><fmt:formatDate value="${post.sstartday}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>	</td>
+					<td><fmt:formatDate value="${post.sendday}" pattern="yyyy-MM-dd HH시 mm분 E요일"/></td>
+				</tr>
+				<c:if test="${ !empty post.splace }">
+					<tr>
+						<td colspan="2">&nbsp;</td>
+					</tr>
+				<tr>
+					<th colspan="2">장 소</th>
+				</tr>
+				<tr>
+					<td colspan="2">
+					${post.splace }
+					<div id="map1_${status.index }"  style="width:400px; height:200px; margin-top:5px;" ></div> <br>
+<script>
 var index = ${status.index}
 var mapContainer1_${ status.index } = document.getElementById('map1_'+'${ status.index }'), // 지도를 표시할 div 
     mapOption1_${ status.index } = {
@@ -141,97 +205,148 @@ geocoder1_${ status.index }.addressSearch(spostplace1_${ status.index }, functio
     } 
 });    
 
-console.log(map1_${ status.index });
+$(function(){
+	//수정폼에 spost내용값 읽어와서 (200 - 입력된 값)를 글자수에 적용
+	var content = $('#scontent_${status.index}').val();
+	$('#counter_${status.index}').val(200-content.length);
+	var str = $('#scontent_${status.index}').val();
+	str = str.split('<br>').join("\r\n");
+	$('#scontent_${status.index}').val(str);
+	
+});
 
 </script>
-								</td>
-							</tr>
-						</c:if>
-
-						<tr>
-							<td colspan="2">&nbsp;</td>
-						</tr>
-						<tr>
-							<td colspan="2">메 모</td>
-						</tr>
-						<tr>
-							<td colspan="2">${post.scontent }</td>
-						</tr>
-
-					</table>
-
-
-					<hr>
-					<table style="width: 100%;">
-						<tr>
-							<td style="width: 20%;"><a href="#"
-								class="btn btn-primary btn-icon-split btn-sm"> <span
-									class="icon text-white-50"> <i class="far fa-heart"></i></span>
-									<button onclick="javascript: location.href='#'">
-										<span class="text">좋아요</span>
-									</button>
-							</a></td>
-							<td style="width: 20%;"></td>
-							<td style="width: 20%;"></td>
-							<td style="width: 20%;"></td>
-							<td style="width: 20%; float: right;"></td>
-						</tr>
-					</table>
+				</td>
+			</tr>
+			</c:if>
+			<c:if test="${ !empty post.scontent }">			
+					<tr><th colspan="2">메  모</th></tr>
+					<tr><td colspan="2">${post.scontent }</td></tr>
+			</c:if>
+		</table>
+		<hr>
+	</div>
+					<!-- 댓글 -->
+			<div class="px-3 pb-5 text-white" id="replyy">
+				<div class="container" style="color: black">
+					<div class="commentList_${status.index }"	id="commentList_${status.index }" name="${post.sno }"></div>
 				</div>
 
-				<!-- 댓글 -->
-				<div class="px-3 pb-5 text-white" id="replyy">
-
-
-					<div class="container" style="color: black">
-						<div class="commentList_${status.index }"
-							id="commentList_${status.index }" name="${post.sno }"></div>
-
-					</div>
-
-					<div style="height: 2px;">
-
-						<input type="hidden" id="reply_no_${status.index }" name="no"
-							value="${post.sno }"> <input type="text"
-							class="form-control" id="reply_content_${status.index }"
-							name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
-							onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
-					</div>
-
+				<div style="height: 2px;">
+					<input type="hidden" id="reply_no_${status.index }" name="no"
+						value="${post.sno }"> <input type="text"
+						class="form-control" id="reply_content_${status.index }"
+						name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
+						onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
 				</div>
-				<!-- 댓글 끝 -->
 			</div>
-			<!-- <div class="px-3 py-5 bg-gradient-light text-white"
-			style="height: 10px;">
-			<form action="#" method="post">
-			<input type="text" class="form-control" placeholder="답글을 입력하세요">
-			</form>
-		</div> -->
+			<!-- 댓글 끝 -->
+	</div>
+	
 
+<!-- spost 수정폼 -->
 
-			<!-- spost수정 폼시작 -->
-			<div id="spostupdate">
-				<c:import url="/WEB-INF/views/abc/updateSpost.jsp"></c:import>
+<form name="uspostform" id="uspostform" method="post" onsubmit="return daycheck();">
+	<div id="up${post.sno }" class="card shadow mb-4">
+		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+		
+		<input type="hidden" id="sno" name=sno value="${post.sno }">
+			<h6 class="m-0 font-weight-bold text-primary">
+				수정페이지
+			</h6>
+
+			<div class="dropdown no-arrow">
+
+				<button class="btn btn-custom btn-sm"  id="uspost" type="submit" onclick="spostupdate(); return false;">수정하기</button> 
+				<button class="btn btn-custom btn-sm"  id="dspost" type="submit" onclick="spostdelete(); return false;">삭제하기</button>
+				<button id="${post.sno }" class="btn btn-custom btn-sm"  onclick="moveselectfeed(this.id); return false;" >수정취소</button>				
 			</div>
-			<!-- spost수정 폼끝 -->
-			<script type="text/javascript">
-	$(function(){
-		$("#spostupdate").css("display", "none" );
-		$("#changeselect").css("display", "none" );
-	});	//document.ready;
-	function changeform1(){
-		$("#spostview").css("display", "none" );
-		$("#spostupdate").css("display", "block" );
-		$("#changeupdate").css("display", "none" );
-		$("#changeselect").css("display", "block" );
-	};
-	function changeform2(){
-		$("#spostview").css("display", "block" );
-		$("#spostupdate").css("display", "none" );
-		$("#changeupdate").css("display", "block" );
-		$("#changeselect").css("display", "none" );
-	};
-</script>
+			<!-- 드롭다운 끝 -->
+
+		</div>
+		<div class="card-body">
+			<!-- 게시글안쪽 -->
+			<table>
+				<tr>
+					<th>제 목</th>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="text" id="stitle" name="stitle" class="form-control" required="required" value="${post.stitle }">
+			</td>
+			</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+
+				<tr>
+					<th>시 작 날 짜</th><th>끝 날 짜</th>
+				</tr>
+				
+				<c:set var="startday1" value="" />
+
+				<tr>
+					<td width="50%">
+					
+					<fmt:formatDate var="sstartday1" value="${post.sstartday}" pattern="yyyy-MM-dd" />
+					<fmt:formatDate var="sstartday2" value="${post.sstartday}" pattern="HH:mm:ss" />
+					
+					<input type="datetime-local" class="form-control" name="beforesstartday" id="beforesstartday" 
+					required="required"  value=""	></td>
+
+					<td width="50%">
+					<input type="datetime-local" class="form-control" name="beforesendday"  id="beforesendday" 
+					required="required"  value=""	></td>
+					<td><span style="color: blue;" id="placespan"></span></td>
+				</tr>
+			
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<th>장 소</th>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<c:if test="${ empty post.splace }">
+						<input type="text" id="sample_address3${status.index }" placeholder=" 장소를 입력해주세요" class="form-control" id ="splace" name="splace" >
+					</c:if>	
+					<c:if test="${ !empty post.splace }">
+						<input type="text" id="sample_address3${status.index }" placeholder=" ${post.splace }" class="form-control" id ="splace" name="splace"  value="${post.splace }">
+					</c:if>
+						<input type="button" onclick="sample5_execDaumPostcode2${status.index }();" value="장소검색"  class="form-control"><br>
+<script>
+    function sample5_execDaumPostcode2${status.index }() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr3_${status.index} = data.address; // 최종 주소 변수
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("sample_address3${status.index }").value = addr3_${status.index};
+            }
+        }).open();
+    }
+    
+</script>	
+					</td>
+				</tr>		
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+
+				<tr>
+					<td>메  모 <span>&nbsp;&nbsp;&nbsp;( 남은글자수 : <input size="2px;"  type="text"
+												readonly value="200" name="counter" id="counter_${status.index }"
+												style="border: none; margin: 0px; padding: 0px; height: 13px;">)</span></td>
+				</tr>
+				<tr>
+				<td colspan="2">
+<textarea name="scontent" id="scontent_${status.index }" cols="30" rows="10"	class="form-control"	onkeypress="onTestChange(this.id);" style="width: 100%; height: 200px; overflow: auto; resize: none;">${post.scontent }</textarea> </td>
+									</tr>
+		
+			</table>
+		</div>
+			</div>
+</form>
+
 </c:if><!-- spost끝 -->
 		
 <!-- bpost 시작 -->		
@@ -448,19 +563,7 @@ console.log(map1_${ status.index });
 				</c:if>
 						</table>
 						<hr>
-						<table style="width: 100%;">
-							<tr>
-								<td style="width: 20%;"><a href="#"
-									class="btn btn-primary btn-icon-split btn-sm"> <span
-										class="icon text-white-50"> <i class="far fa-heart"></i>
-									</span> <span class="text">좋아요 </span>
-								</a></td>
-								<td style="width: 20%;"></td>
-								<td style="width: 20%;"></td>
-								<td style="width: 20%;"></td>
-								<td style="width: 20%; float: right;"></td>
-							</tr>
-						</table>
+
 					</div>
 
 				</div>
@@ -549,7 +652,7 @@ console.log(map1_${ status.index });
 				<div id="cpEdit${c.cno}" style="display: none">
 					<div class="updatecPost" class="card-body">
 						<!-- 게시글안쪽 -->
-						<form id="updatecForm${c.cno}" method="post"
+						<form id="1updatecForm${c.cno}" method="post"
 							enctype="multipart/form-data">
 							<h6>
 								<input name="ctitle" type="text" class="form-control mb-1"
@@ -725,19 +828,7 @@ console.log(map1_${ status.index });
 
 
 								<hr>
-								<table style="width: 100%;">
-									<tr>
-										<td style="width: 20%;"><a href="#"
-											class="btn btn-primary btn-icon-split btn-sm"> <span
-												class="icon text-white-50"> <i class="far fa-heart"></i></span>
-												<span class="text">좋아요</span>
-										</a></td>
-										<td style="width: 20%;"></td>
-										<td style="width: 20%;"></td>
-										<td style="width: 20%;"></td>
-										<td style="width: 20%; float: right;"></td>
-									</tr>
-								</table>
+
 					</div>
 					<!-- <div class="px-3 py-5 bg-gradient-light text-white"
 			style="height: 10px;">
@@ -777,15 +868,4 @@ console.log(map1_${ status.index });
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="resources/js/jquery-3.5.1.min.js"></script>
 	<script src="resources/js/cpost.js"></script>
-	<script>
-
-	function moveselectfeed(click) {
-		alert(click);
-		$("#up"+click).css("display", "none" );
-		$("#se"+click).css("display", "block" );
-	}
-   
-
-  
-   </script>
 </body>

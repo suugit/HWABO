@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,6 +46,7 @@ import com.beet.HWABO.spost.model.service.SpostService;
 import com.beet.HWABO.spost.model.vo.Bpostchk;
 import com.beet.HWABO.spost.model.vo.Post;
 import com.beet.HWABO.spost.model.vo.Spost;
+import com.fasterxml.jackson.annotation.JsonAlias;
 
 @Controller
 public class abcController {
@@ -177,8 +179,8 @@ public class abcController {
 	}
 
 	// 일정 수정 메소드
-	@RequestMapping(value = "supdate.do", method = RequestMethod.POST)
-	public String updateSpost(Spost spost, Model m, HttpServletResponse response,
+	@RequestMapping(value = "supdate.do1", method = RequestMethod.POST)
+	public String updateSpost1(Spost spost, Model m, HttpServletResponse response,
 			@RequestParam("beforesstartday") String start, @RequestParam("beforesendday") String end)
 			throws IOException, UnsupportedEncodingException {
 		// 업데이트하면 에이작스로 이것만 보내서 표시한다.
@@ -221,13 +223,61 @@ public class abcController {
 
 	}
 
+	// 일정 수정 메소드
+	@RequestMapping(value = "supdate.do", method = RequestMethod.POST)
+	public String updateSpostAjax(Spost spost, Model m, HttpServletResponse response,
+			@RequestParam("beforesstartday") String start, @RequestParam("beforesendday") String end)
+			throws IOException, UnsupportedEncodingException {
+		// 업데이트하면 에이작스로 이것만 보내서 표시한다.
+		logger.info("supdate.do 들어옴");
+
+
+		// where sno = #{sno}로 처리
+		// 제목, 시작날짜, 끝날짜, 장소, 알람, 컨텐츠, 공개여부 변경
+		String Sstart = start.replace("T", " ");
+		String Send = end.replace("T", " ");
+
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+		try {
+			java.util.Date startdate = transFormat.parse(Sstart);
+			java.util.Date enddate = transFormat.parse(Send);
+
+			spost.setSstartday(startdate);
+			spost.setSendday(enddate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		spost.setStitle(spost.getStitle().replace(" ", "&nbsp;"));
+		spost.setScontent(spost.getScontent().replace("\r\n", "<br>"));
+		;
+		spost.setScontent(spost.getScontent().replace(" ", "&nbsp;"));
+		;
+
+		if (spostService.updateSpost(spost) > 0) {
+			return "redirect:/selectonespost.do?sno=" + spost.getSno();
+
+			// 좋아요랑 댓글 셀렉트 다시해오기 ?
+
+		} else {
+
+			// 실패해도 spost의 값 가지고 가고, alert창 띄우기
+			return "redirect:/selectonespost.do?sno=" + spost.getSno();
+		}
+
+	}
+	
 	// 일정 삭제 메소드
-	@RequestMapping("sdelete.do")
-	public String deleteSpost(HttpServletResponse response, String sno) throws IOException {
-		PrintWriter out = response.getWriter();
+	@RequestMapping(value="sdelete.do", method = RequestMethod.POST )
+	@ResponseBody
+	public String deleteSpost(HttpServletResponse response, String sno) {
 
 		spostService.deleteSpost(sno);
 
+		//JSONObject json = new JSONObject();
+		//json.put("sno",sno);
+		//return json.toJSONString();
 		return sno;
 		
 	}

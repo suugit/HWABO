@@ -161,6 +161,7 @@ $(function(){
 					<td>시 작 날 짜</td><td>끝 날 짜</td>
 				</tr>
 				<tr>
+				<c:out value="${post.sstartday }"></c:out>
 					<td width="20%">
 					<input type="datetime-local" class="form-control" name="beforesstartday" id="beforesstartday" 
 					required="required"  value="${requestScope.startday }"	></td>
