@@ -697,7 +697,9 @@ public class RedController {
 //			calendar.setTitle("프로필사진 비뜨로 바꾸기");
 //		}
 		PrintWriter out = response.getWriter();
-		if(redService.insertCalendar(calendar) > 0) {
+		//if(redService.insertCalendar(calendar) > 0) {
+		캘린더에서 spost로 변경해야 됨
+		if(spostService.insertSpost(spost) > 0) {
 			out.append("ok");
 			out.flush();
 		}else {
