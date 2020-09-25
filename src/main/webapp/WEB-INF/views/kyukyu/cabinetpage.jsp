@@ -27,10 +27,13 @@
 
   <!-- Custom styles for this page -->
   <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-<!-- 스크립트 모으기 시작 -->
-<c:import url="/WEB-INF/views/red/metaKyu.jsp"></c:import>
 
-<!-- 스크립트 모으기 끝 -->
+<!-- 스크립트 모으기 시작 ################################### -->
+<c:import url="/WEB-INF/views/red/metaKyu.jsp"></c:import>
+<c:import url="/WEB-INF/views/red/metaAbc.jsp"></c:import>
+<c:import url="/WEB-INF/views/red/metaSuugit.jsp"></c:import>
+<!-- 스크립트 모으기 끝 ##################################### -->
+
 </head>
 <body id="page-top">
 <!-- 11111111111111111 -->
@@ -54,37 +57,19 @@
         <!-- End of Topbar -->
         <!-- Begin Page Content -->
         <div class="container-fluid">
-<!-- 진행률 시작 -->
-<%-- <div class="card mb-4">
-                <div class="card-body">
-                  <div class="mb-1 small">프로젝트 진행률 ${ sessionScope.totalProgress }%</div>
-                  <div class="progress progress-sm mb-2">
-                    <div class="progress-bar" role="progressbar" style="width: ${ tp }%" aria-valuenow="${ tp }" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-             
-              </div> --%>
-<!-- 진행률끝 -->
+
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800"></h1>
           <p class="mb-4"></p>
-<!-- 글작성 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<%-- <c:import url="/WEB-INF/views/red/MainListInsert.jsp"></c:import> --%>
-<!-- 글작성 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 <!-- 피드 모아보기 시작 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->   
 
-<c:import url="/WEB-INF/views/kyukyu/cabinetList.jsp"></c:import>
+ <c:import url="/WEB-INF/views/kyukyu/cabinetList.jsp"></c:import>
 
+
+
+<%-- <c:import url="/WEB-INF/views/red/MainList.jsp"></c:import> --%>
 <!-- 피드 모아보기 끝 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->   
-    
-<!-- 글작성 샘플 시작 -->
-<%-- <c:import url="/WEB-INF/views/red/sampleFormMainInsert.jsp"></c:import> --%>
-<!-- 글작성 샘플 끝 -->
-     
-<!-- 샘플폼 시작 -->
-<%-- <c:import url="/WEB-INF/views/red/sampleFormMain.jsp"></c:import> --%>
-<!-- 샘플폼 끝 -->
 
         </div>
         <!-- /.container-fluid -->
