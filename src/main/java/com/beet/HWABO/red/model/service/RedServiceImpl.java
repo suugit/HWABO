@@ -181,5 +181,10 @@ public class RedServiceImpl implements RedService {
 	public int insertSpost(SpostFixed spost) {
 		return redDao.insertSpost(spost);
 	}
+
+	@Override
+	public int deleteSpost(Calendar calendar) {
+		return redDao.deleteSpost(calendar);
+	}
 	
 }

@@ -50,4 +50,5 @@ public interface RedService {
 	int insertCalendarSpostAll(Spost spost);
 	ArrayList<Spost> selectAllSpost(PjMember pj);
 	int insertSpost(SpostFixed spost);
+	int deleteSpost(Calendar calendar);
 }

@@ -161,5 +161,10 @@ public class RedDao {
 	public int insertSpost(SpostFixed spost) {
 		return session.insert("redMapper.insertSpost", spost);
 	}
+
+	public int deleteSpost(Calendar calendar) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

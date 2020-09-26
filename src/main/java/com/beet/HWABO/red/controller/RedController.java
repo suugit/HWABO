@@ -786,59 +786,75 @@ public class RedController {
 		response.setContentType("test/html; charset=utf-8"); //여기에 오타나면 파일 선택창이 뜬다
 			
 		PrintWriter out = response.getWriter();
-		if(redService.deleteCalendar(calendar) > 0) {
+		if(redService.deleteSpost(calendar) > 0) {
 			out.append("ok");
 			out.flush();
 		}else{
-			calendar.setTitle(calendar.getUname());
-			if(redService.deleteCalendar(calendar) > 0) {
-				out.append("ok");
-				out.flush();
-			}else {
-				calendar.setTitle(calendar.getUname().substring(5));
-				if(redService.deleteCalendar(calendar) > 0) {
-					out.append("ok");
-					out.flush();
-				}else {
-					calendar.setTitle(calendar.getUname().substring(6));
-					if(redService.deleteCalendar(calendar) > 0) {
-						out.append("ok");
-						out.flush();
-					}else {
-						calendar.setTitle(calendar.getUname().substring(12));
-						if(redService.deleteCalendar(calendar) > 0) {
-							out.append("ok");
-							out.flush();
-						}else {
-							calendar.setTitle(calendar.getUname().substring(13));
-							if(redService.deleteCalendar(calendar) > 0) {
-								out.append("ok");
-								out.flush();
-							}else {
-								calendar.setTitle(calendar.getUname().substring(14));
-								if(redService.deleteCalendar(calendar) > 0) {
-									out.append("ok");
-									out.flush();
-								}else {
-									calendar.setTitle("프로필사진 비뜨로 바꾸기");
-									if(redService.deleteCalendar(calendar) > 0) {
-										out.append("ok");
-										out.flush();
-									}else {
-										out.append("fail");
-										out.flush();
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-			
+			out.append("fail");
+			out.flush();
 		}
 			
 		out.close();
 	}	
+//	@RequestMapping(value="deleteCalendar.do", method=RequestMethod.POST)
+//	public void delCalendarMain(Calendar calendar, HttpServletResponse response) throws IOException {
+//		logger.info("캘린더 일정삭제 중 ... : " + calendar);
+//		response.setContentType("test/html; charset=utf-8"); //여기에 오타나면 파일 선택창이 뜬다
+//			
+//		PrintWriter out = response.getWriter();
+//		if(redService.deleteCalendar(calendar) > 0) {
+//			out.append("ok");
+//			out.flush();
+//		}else{
+//			calendar.setTitle(calendar.getUname());
+//			if(redService.deleteCalendar(calendar) > 0) {
+//				out.append("ok");
+//				out.flush();
+//			}else {
+//				calendar.setTitle(calendar.getUname().substring(5));
+//				if(redService.deleteCalendar(calendar) > 0) {
+//					out.append("ok");
+//					out.flush();
+//				}else {
+//					calendar.setTitle(calendar.getUname().substring(6));
+//					if(redService.deleteCalendar(calendar) > 0) {
+//						out.append("ok");
+//						out.flush();
+//					}else {
+//						calendar.setTitle(calendar.getUname().substring(12));
+//						if(redService.deleteCalendar(calendar) > 0) {
+//							out.append("ok");
+//							out.flush();
+//						}else {
+//							calendar.setTitle(calendar.getUname().substring(13));
+//							if(redService.deleteCalendar(calendar) > 0) {
+//								out.append("ok");
+//								out.flush();
+//							}else {
+//								calendar.setTitle(calendar.getUname().substring(14));
+//								if(redService.deleteCalendar(calendar) > 0) {
+//									out.append("ok");
+//									out.flush();
+//								}else {
+//									calendar.setTitle("프로필사진 비뜨로 바꾸기");
+//									if(redService.deleteCalendar(calendar) > 0) {
+//										out.append("ok");
+//										out.flush();
+//									}else {
+//										out.append("fail");
+//										out.flush();
+//									}
+//								}
+//							}
+//						}
+//					}
+//				}
+//			}
+//			
+//		}
+//			
+//		out.close();
+//	}	
 ////views start//////////////////////////////
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)
 	public String suugitIndex(Model model) {
