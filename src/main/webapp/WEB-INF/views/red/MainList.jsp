@@ -10,6 +10,91 @@
       height: auto;
     }
 </style>
+
+<style type="text/css">
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #FFFFFF;
+}
+a {
+    color: #82b440;
+    text-decoration: none;
+}
+.blog-comment::before,
+.blog-comment::after,
+.blog-comment-form::before,
+.blog-comment-form::after{
+    content: "";
+	display: table;
+	clear: both;
+}
+
+.blog-comment ul{
+	list-style-type: none;
+	padding: 0;
+}
+
+.blog-comment img{
+	opacity: 1;
+	filter: Alpha(opacity=100);
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	  	 -o-border-radius: 4px;
+			border-radius: 4px;
+}
+
+.blog-comment img.avatar {
+	position: relative;
+	float: left;
+	margin-left: 10px; 
+	width: 40px;
+	height: 40px;
+}
+ ul {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+hr {
+border: 1px solid #eee;
+}
+
+
+ .blog-comment .post-comments{
+	border: 2px solid #eee;
+    margin-bottom: 10px;
+    margin-left: 60px;  /* 상자 오른쪽 왼쪽 중요 */
+	margin-right: 10px;
+    padding: 5px 5px;
+    position: relative;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+       	 -o-border-radius: 4px;
+    		border-radius: 4px;
+	background: #fff;
+	color: #6b6e80;
+	position: relative;
+} 
+
+.blog-comment .meta {
+	font-size: 13px;
+	color: #aaaaaa;
+	padding-bottom: 1px;  /*  */
+	margin-bottom: 10px !important;
+	border-bottom: 1px solid #eee;
+}
+
+.blog-comment ul.comments ul{
+	list-style-type: none;
+	
+	padding: 0;
+	margin-left: 50px; /*대댓글 위치 */
+}
+
+</style>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
 	
@@ -258,19 +343,29 @@ $(function(){
 		<hr>
 	</div>
 					<!-- 댓글 -->
-			<div class="px-3 pb-5 text-white" id="replyy">
-				<div class="container" style="color: black">
-					<div class="commentList_${status.index }"	id="commentList_${status.index }" name="${post.sno }"></div>
-				</div>
-
-				<div style="height: 2px;">
-					<input type="hidden" id="reply_no_${status.index }" name="no"
-						value="${post.sno }"> <input type="text"
-						class="form-control" id="reply_content_${status.index }"
-						name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
-						onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
-				</div>
-			</div>
+						<div class="px-3 pb-5 text-white" id="replyy">
+							
+											<a class="btn btn-outline-success btn-sm" data-toggle="collapse" href="#collapseExample${status.index }" aria-expanded="false" aria-controls="collapseExample">
+											  댓글
+											</a>
+									
+											<div class="collapse" id="collapseExample${status.index }">
+											  <div class="well">
+													<br>
+														<div class="commentList_${status.index }" id="commentList_${status.index }" name="${post.sno }"></div>
+								
+													<div style="height: 2px;">
+								
+														<input type="hidden" id="reply_no_${status.index }" name="no" value="${post.sno }"> 
+														<input type="text" class="form-control" id="reply_content_${status.index }"
+															name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
+															onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
+													</div>
+								
+												</div>
+										
+											</div>
+										</div>
 			<!-- 댓글 끝 -->
 	</div>
 	
@@ -600,25 +695,30 @@ $(function(){
 				<!-- 게시글안쪽  -->
 
 				<!-- 댓글 -->
-				<div class="px-3 pb-5 text-white" id="replyy">
-
-
-					<div class="container" style="color: black">
-						<div class="commentList_${status.index }"
-							id="commentList_${status.index }" name="${b.bno }"></div>
-
-					</div>
-
-					<div style="height: 2px;">
-
-						<input type="hidden" id="reply_no_${status.index }" name="no"
-							value="${b.bno }"> <input type="text"
-							class="form-control" id="reply_content_${status.index }"
-							name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
-							onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
-					</div>
-
-				</div>
+							<div class="px-3 pb-5 text-white" id="replyy">
+							
+											<a class="btn btn-outline-success btn-sm" data-toggle="collapse" href="#collapseExample${status.index }" aria-expanded="false" aria-controls="collapseExample">
+											  댓글
+											</a>
+									
+											<div class="collapse" id="collapseExample${status.index }">
+											  <div class="well">
+													<br>
+														<div class="commentList_${status.index }" id="commentList_${status.index }" name="${b.bno }"></div>
+								
+													<div style="height: 2px;">
+								
+														<input type="hidden" id="reply_no_${status.index }" name="no"
+															value="${b.bno }"> <input type="text"
+															class="form-control" id="reply_content_${status.index }"
+															name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
+															onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
+													</div>
+								
+												</div>
+										
+											</div>
+										</div>
 				<!-- 댓글 끝 -->
 
 
@@ -1119,25 +1219,30 @@ $(function(){
 				</div>
 
 				<!-- 댓글 -->
-				<div class="px-3 pb-5 text-white" id="replyy">
-
-
-					<div class="container" style="color: black">
-						<div class="commentList_${status.index }"
-							id="commentList_${status.index }" name="${c.cno }"></div>
-
-					</div>
-
-					<div style="height: 2px;">
-
-						<input type="hidden" id="reply_no_${status.index }" name="no"
-							value="${c.cno }"> <input type="text"
-							class="form-control" id="reply_content_${status.index }"
-							name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
-							onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
-					</div>
-
-				</div>
+							<div class="px-3 pb-5 text-white" id="replyy">
+							
+											<a class="btn btn-outline-success btn-sm" data-toggle="collapse" href="#collapseExample${status.index }" aria-expanded="false" aria-controls="collapseExample">
+											  댓글
+											</a>
+									
+											<div class="collapse" id="collapseExample${status.index }">
+											  <div class="well">
+													<br>
+														<div class="commentList_${status.index }" id="commentList_${status.index }" name="${c.cno }"></div>
+								
+													<div style="height: 2px;">
+								
+														<input type="hidden" id="reply_no_${status.index }" name="no"
+															value="${c.cno }"> <input type="text"
+															class="form-control" id="reply_content_${status.index }"
+															name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
+															onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
+													</div>
+								
+												</div>
+										
+											</div>
+										</div>
 				<!-- 댓글 끝 -->
 
 

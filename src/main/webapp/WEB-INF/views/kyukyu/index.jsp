@@ -67,11 +67,6 @@ a {
 	clear: both;
 }
 
-/*  .blog-comment{
-    padding-left: 10px;
-	padding-right: 15px;
-} 
-  */
 .blog-comment ul{
 	list-style-type: none;
 	padding: 0;
@@ -134,19 +129,6 @@ border: 1px solid #eee;
 	margin-left: 50px; /*대댓글 위치 */
 }
 
-/* .blog-comment-form{
-	padding-left: 15%;
-	padding-right: 15%;
-	padding-top: 40px;
-} */
-
-/*  .blog-comment h3,
-.blog-comment-form h3{
-	margin-bottom: 10px;
-	font-size: 10px;
-	line-height: 1px;
-	font-weight: 100;
-}  */
 </style>
 
 
@@ -314,8 +296,6 @@ function replyList(){
 				
 				for(var i  in jsonObj.list){ //전체 댓글 리스트
 					
-					
-				
 					
 					console.log("2번 포문");
 					console.log("jsonObj.list[i].no"+jsonObj.list[i].no);
@@ -899,7 +879,7 @@ function replytList(index){
 													</div>
 								
 												</div>
-											<!-- 댓글 끝 -->
+										
 											</div>
 										</div>
 															

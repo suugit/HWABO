@@ -1,7 +1,7 @@
 <%@ page import="java.util.ArrayList, com.beet.HWABO.red.model.vo.MemberProject"%>
 <%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8" %>
+	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${ sessionScope.totalProgress < 4 }"><c:set var="tp" value="4" /></c:if>
 <c:if test="${ sessionScope.totalProgress >= 4 }"><c:set var="tp" value="${ sessionScope.totalProgress }" /></c:if>
@@ -28,14 +28,20 @@
   <!-- Custom styles for this page -->
   <link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+<style type="text/css">
+.hovercheck:hover{
+background-color:#dff9fb;
+border-radius:15%;
+}
+</style>
 <!-- 스크립트 모으기 시작 ################################### -->
 <c:import url="/WEB-INF/views/red/metaKyu.jsp"></c:import>
 <c:import url="/WEB-INF/views/red/metaAbc.jsp"></c:import>
 <c:import url="/WEB-INF/views/red/metaSuugit.jsp"></c:import>
 <!-- 스크립트 모으기 끝 ##################################### -->
-
 </head>
 <body id="page-top">
+
 <!-- 11111111111111111 -->
 <c:import url="/WEB-INF/views/suugit/topbar.jsp"></c:import>
  <div style="width:100%;display:flex;justify-content:center;align-item:center;">
@@ -64,11 +70,11 @@
 
 <!-- 피드 모아보기 시작 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->   
 
- <c:import url="/WEB-INF/views/kyukyu/cabinetList.jsp"></c:import>
+<%-- <c:import url="/WEB-INF/views/kyukyu/cabinetList.jsp"></c:import> --%>
 
 
 
-<%-- <c:import url="/WEB-INF/views/red/MainList.jsp"></c:import> --%>
+ <c:import url="/WEB-INF/views/red/MainList.jsp"></c:import>  
 <!-- 피드 모아보기 끝 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->   
 
         </div>

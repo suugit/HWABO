@@ -14,14 +14,12 @@
 <%-- ${ status.count } --%>
 <c:if test="${ main.firstword eq 's' }">
 <c:set var="post" value="${ main }"></c:set>
-<button id="changeupdate" onclick="javascript: changeform1();">수 &nbsp;정</button>
-<button id="changeselect" onclick="javascript: changeform2();">수 정 취 소</button>
 
    <div class="card shadow mb-4">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
          <h6 class="m-0 font-weight-bold text-primary">
             <i class="fas fa-user-circle"></i> 
-            ${post.swriter}<br> ${ status.count }
+            ${post.swriter}<br> 
             <fmt:formatDate value="${post.senrolldate}" pattern="yyyy-MM-dd HH시 mm분 E요일"/>
          </h6>
          <div class="dropdown no-arrow">
@@ -40,24 +38,25 @@
             <input type="hidden" id="pnum_${status.index }" value="${post.spnum }" >
             
             <!-- 드롭다운 -->
-            <a class="dropdown-toggle" href="#" role="button"
-               id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-               aria-expanded="false"> <i
-               class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-            </a>
-            <div
-               class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-               aria-labelledby="dropdownMenuLink">
-               <div class="dropdown-header">메뉴:</div>
-               <a class="dropdown-item" href="#">수정</a> <a class="dropdown-item"
-                  href="#">삭제</a>
-            </div>
+     		  <c:if test="${post.sucode eq sessionScope.ucode }">
+					<a class="dropdown-toggle" href="#" role="button"
+						id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"	aria-expanded="false"> 
+						<i 	class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"	aria-labelledby="dropdownMenuLink">
+						<div class="dropdown-header">메뉴:</div>
+						<button class="dropdown-item" id="${post.sno}"   onclick="moveupdateform(this.id);">수정</button>
+						
+						<button class="dropdown-item"  id="dspost" type="submit" onclick="spostdelete(); return false;">삭제</button>
+						
+					</div>
+				</c:if>
          </div>
          <!-- 드롭다운 끝 -->
       </div>
       <div class="card-body" style="margin: 0px;">
          <!-- 게시글안쪽 -->
-         <h6>${post.stitle }</h6>
+        <h6><strong>제목</strong> : ${post.stitle }</h6>
          <hr>
          <table style="width: 100%;">
             <tr>
@@ -125,44 +124,33 @@ console.log(map1_${ status.index });
             </tr>
             </c:if>
          
-            <tr>
-               <td colspan="2">&nbsp;</td>
-            </tr>
-            <tr>
-               <td colspan="2">메  모</td>
-            </tr>
-            <tr>
-               <td colspan="2">${post.scontent }</td>
-            </tr>
+         	<c:if test="${ !empty post.scontent }">	
+			<tr><td colspan="2">&nbsp;</td></tr>		
+					<tr><th colspan="2">메  모</th></tr>
+					<tr><td colspan="2">${post.scontent }</td></tr>
+			</c:if>
       
          </table>
-
-
          <hr>
-         <table style="width: 100%;">
-            <tr>
-               <td style="width: 20%;">
-               <a href="#" class="btn btn-primary btn-icon-split btn-sm"> 
-                  <span class="icon text-white-50"> <i class="far fa-heart"></i></span>
-                  <button onclick="javascript: location.href='#'">
-                  <span class="text">좋아요</span>
-                  </button> 
-               </a>
-               </td>
-               <td style="width: 20%;"></td>
-               <td style="width: 20%;"></td>
-               <td style="width: 20%;"></td>
-               <td style="width: 20%; float: right;"></td>
-            </tr>
-         </table>
-      </div>
-      <div class="px-3 py-5 bg-gradient-light text-white"
-         style="height: 10px;">
-         <form action="#" method="post">
-         <input type="text" class="form-control" placeholder="답글을 입력하세요">
-         </form>
-      </div>
-   </div>
+         </div>
+         
+         
+	<!-- 댓글 -->
+			<div class="px-3 pb-5 text-white" id="replyy">
+				<div class="container" style="color: black">
+					<div class="commentList_${status.index }"	id="commentList_${status.index }" name="${post.sno }"></div>
+				</div>
+
+				<div style="height: 2px;">
+					<input type="hidden" id="reply_no_${status.index }" name="no"
+						value="${post.sno }"> <input type="text"
+						class="form-control" id="reply_content_${status.index }"
+						name="content" placeholder="enter를 누르면 댓글이 등록됩니다"
+						onKeypress="javascript:if(event.keyCode == 13) {enterkey(${status.index});}" />
+				</div>
+			</div>
+			<!-- 댓글 끝 -->
+	</div>
 
 <!-- spost수정 폼시작 -->
 <%-- <div id="spostupdate"><c:import url="/WEB-INF/views/abc/updateSpost.jsp"></c:import></div> --%>

@@ -176,7 +176,8 @@ function replyList(){
 				var re = "";
 				
 				for(var i  in jsonObj.list){ //전체 댓글 리스트
-				
+					
+					
 					console.log("2번 포문");
 					console.log("jsonObj.list[i].no"+jsonObj.list[i].no);
 					console.log("$('#commentList_'+a).val()"+ document.getElementById('commentList_'+a).getAttribute('name'));
@@ -185,23 +186,71 @@ function replyList(){
 					console.log("if 문");
 					console.log("${sessionScope.ucode}");
 					console.log( jsonObj.list[i].ucode);
-					re += '<div class="commentArea" style="font-size:14px; border-bottom:1px solid darkgray; margin-bottom: 10px; margin-top: 14px;">';
-	            	re += '<div class="commentInfo'+jsonObj.list[i].replyno+'">'+' 작성자 : '+decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ");
-	            if(jsonObj.list[i].secondenroll == null){
-	            	re += '<small>'+ jsonObj.list[i].enrolldate+'</small>';
-	           		}else{
-	           		re += '<small> 수정일 '+ jsonObj.list[i].secondenroll+'</small>';
-	           		}
-	            if(jsonObj.list[i].ucode == "${ sessionScope.ucode }"){
-	            	re += '<a onclick="commentUpdate('+jsonObj.list[i].replyno+',\''+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ")+'\');"> 수정 </a>';
-		            re += '<a onclick="commentDelete('+jsonObj.list[i].replyno+');"> 삭제 </a>';
+				
+					var replyno = jsonObj.list[i].replyno;
+					var no = jsonObj.list[i].no;
+					var ucode = jsonObj.list[i].ucode;
+					var uname = decodeURIComponent(jsonObj.list[i].uname).replace(/\+/gi, " ");
+					var content = decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ");
+					var secondenroll = jsonObj.list[i].secondenroll;
+					var enrolldate = jsonObj.list[i].enrolldate.substring(0, 16);
+					var kind = jsonObj.list[i].kind;
+					
+					re += '<div class="blog-comment"><ul class="comments">';
+					
+				
+				
+					if(kind == "0"){ //댓글일 때
+						
+						re += '<li class="clearfix">';
+						re += '<img src="https://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">';
+						if(secondenroll == null){
+						re += '<div class="post-comments"><div class="meta"><a href="#">'+uname+'</a>&nbsp;&nbsp;&nbsp;';
+						re += enrolldate;
+							}else{
+							re += '<div class="post-comments"><div class="meta"><a href="#">'+uname+'</a>&nbsp;&nbsp;&nbsp;';
+							re += '<small>&nbsp;&nbsp; 수정일 '+secondenroll.substring(0, 16)+'</small>';	
+							}
+						
+						re += '<i class="pull-right"><a onclick="commentRereply('+replyno+',\''+no+'\');"> 답글 </a>';
+						
+						if(ucode == "${ sessionScope.ucode }"){
+							 re += '<a onclick="commentUpdate('+replyno+',\''+content+'\');"> 수정 </a>';
+						     re += '<a onclick="commentDelete('+replyno+');"> 삭제&nbsp;&nbsp; </a></div></i>';
+						    
+						}
+						 re += '<div class="commentContent'+replyno+'"> &nbsp;'+content+'</div></div></li>'; 
+						  
+						
+					}else{ //답글일 때
+						
+						re += '<ul class="comments"><li class="clearfix">';
+						re += '<img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">';
+						if(secondenroll == null){
+							re += '<div class="post-comments"><div class="meta"><a href="#">'+uname+'</a>&nbsp;&nbsp;&nbsp;';
+							re += enrolldate;
+								}else{
+								re += '<div class="post-comments"><div class="meta"><a href="#">'+uname+'</a>&nbsp;&nbsp;&nbsp;';
+								re += '<small>&nbsp;&nbsp; 수정일 '+secondenroll.substring(0, 16)+'</small>';	
+								}
+						
+						if(ucode == "${ sessionScope.ucode }"){
+							 re += '<a onclick="commentUpdate('+replyno+',\''+content+'\');"> 수정 </a>';
+						     re += '<a onclick="commentDelete('+replyno+');"> 삭제&nbsp;&nbsp; </a></div></i>';
+						    
+						}
+						 re += '<div class="commentContent'+replyno+'"> &nbsp;'+content+'</div></div></li></ul>'; 
+						  	
+					}
+						
+						
+						
+			
 	            	
-	            	
-	            	}
-	            	re += '</div><div class="commentContent'+jsonObj.list[i].replyno+'"> <p> 내용 : '+decodeURIComponent(jsonObj.list[i].content).replace(/\+/gi, " ") +'</p>';
-	            	re += '</div></div>';
-	   
-				}
+	            	re += '<div class="Rere'+replyno+'"></div>';
+	            	re += '</ul></div>';
+	        
+				 }
 				
 			
 				$("#commentList_"+a).html(re);
@@ -216,57 +265,100 @@ function replyList(){
 		}
 		
 	});
+	
 
 }
 
-
+//댓글 수정 폼
 function commentUpdate(replyno, content){
-    var a ='';
-    
-    a += '<div class="input-group">';
-    a += '<input type="text" class="form-control" name="content_'+replyno+'" value="'+content+'"/>';
-    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+replyno+');">수정</button> </span>';
-    a += '</div>';
-    
-    $('.commentContent'+replyno).html(a);
-    
-}
+  var a ='';
  
+  a += '<div class="input-group">';
+  a += '<input type="text" class="form-control" name="content_'+replyno+'" value="'+content+'"/>';
+  a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="javascript:commentUpdateProc('+replyno+');">수정</button> </span>';
+  a += '<span class="input-group-btn"><button class="btn btn-default" onclick="replyList()">취소</button></span>';
+  a += '</div>';
+  
+  $('.commentContent'+replyno).html(a);
+  
+}
+
+//답글 인써트 폼
+function commentRereply(replyno, no){
+  var a ='';
+  console.log("replyno : " +replyno+ " no :" +no );
+ 
+  a += '<div class="input-group">';
+  a += '<input type="text" class="form-control" name="content_'+replyno+'" />';
+  a += '<span class="input-group-btn"><button class="btn btn-outline-secondary" type="button" onclick="javascript:rereinsert(\''+ replyno +'\',\''+ no +'\');">답글달기</button></span>';
+  a += '<span class="input-group-btn"><button class="btn btn-outline-secondary" onclick="replyList()">취소</button></span>';
+  a += '</div><br>';
+ 
+  $('.Rere'+replyno).html(a);
+  
+}
+
+
+
+//댓글 답글 에이작스
+function rereinsert(replyno, no){
+	
+  var Content = $('[name=content_'+replyno+']').val();
+  console.log("답글 들어옴")
+  $.ajax({
+      url : 'insertRereply.do',
+      type : 'post',
+      data : {'content' : Content, 'no' : no, 'replyno' : replyno, 
+      	ucode: "${sessionScope.ucode }", uname : "${sessionScope.uname }"},
+      	  success : function(data){
+	        	console.log("댓글 insert 성공");
+	            if(data == "ok") {
+	            	replyList();  //댓글 작성 후 댓글 목록 reload
+	            	/* $("#reply_content_").val(''); */
+	            }else{
+	            	alert("댓글 등록 실패! 재시도 하시오")
+	            }
+	        }
+  });
+}
+
+
+
 //댓글 수정
 function commentUpdateProc(replyno){
-    var updateContent = $('[name=content_'+replyno+']').val();
-    console.log("수정 들어옴")
-    $.ajax({
-        url : 'updatereply.do',
-        type : 'post',
-        data : {'content' : updateContent, 'replyno' : replyno},
-        success : function(data){
-            if(data == 1)
-           		replyList();
-        }
-    });
+  var updateContent = $('[name=content_'+replyno+']').val();
+  console.log("수정 들어옴")
+  $.ajax({
+      url : 'updatereply.do',
+      type : 'post',
+      data : {'content' : updateContent, 'replyno' : replyno},
+      success : function(data){
+          if(data == 1)
+         		replyList();
+      }
+  });
 }
+
  
-   
 //댓글 삭제 
 function commentDelete(replyno){
 	console.log("삭제 replyno : " + replyno)
-    $.ajax({
-        url : 'deletereply.do',
-        data : {'replyno' : replyno},
-        type : 'post',
-        success : function(data){
-            if(data == 1) 
-            	replyList();
-        }
-    });
+  $.ajax({
+      url : 'deletereply.do',
+      data : {'replyno' : replyno},
+      type : 'post',
+      success : function(data){
+          if(data == 1) 
+          	replyList();
+      }
+  });
 }
- 
- 
 
 
 
- 
+
+
+
 function enterkey(index) {
 	console.log("enterkey function get in");
 	
@@ -294,19 +386,19 @@ function replytList(index){
 	
 	
 	
-    $.ajax({
-        url : 'selectOneReply.do',
-        type : 'post',
-        data : {no : $("#reply_no_"+ index).val()},
+  $.ajax({
+      url : 'selectOneReply.do',
+      type : 'post',
+      data : {no : $("#reply_no_"+ index).val()},
 		
-        success : function(data){
-        	replyList();
-        	
+      success : function(data){
+      	replyList();
+      	
 
-        	console.log("댓글 list 성공");
-   
-        }
-    });
+      	console.log("댓글 list 성공");
+ 
+      }
+  });
 }
 
 
