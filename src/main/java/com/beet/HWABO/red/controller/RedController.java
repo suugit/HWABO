@@ -742,7 +742,6 @@ public class RedController {
 			cal.setTitle(cut[0].replace("&nbsp;", " ")); 
 			calListFilter.add(cal); 
 		}
-		
 		logger.info("calListFilter : " + calListFilter);
 		model.addObject("cal",calListFilter);
 		
