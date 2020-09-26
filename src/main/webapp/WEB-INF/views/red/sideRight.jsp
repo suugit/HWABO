@@ -30,7 +30,7 @@
 
 <!-- 접속자 명단시작 -->
 <hr>
-<div style="font-size:50%;color:pink;" onclick="javascript:console.log('꾸쭈')">MEMBER</div>
+<!-- <div style="font-size:50%;color:pink;" onclick="javascript:console.log('꾸쭈')">MEMBER</div>
 <i class="fas fa-circle text-success"></i>
 suggit
 <hr>
@@ -45,7 +45,7 @@ khc
 <hr>
 <i class="fas fa-circle text-dark"></i>
 daun
-<hr>
+<hr> -->
 <!-- 접속자 명단끝 -->
 </div>
 </div>

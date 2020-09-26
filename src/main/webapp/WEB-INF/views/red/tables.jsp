@@ -125,7 +125,17 @@ border-radius:15%;
   <!-- 8.로그아웃모달 -->
         <c:import url="/WEB-INF/views/red/logoutModal.jsp"></c:import>
   <!-- 8끝 -->
-
+  
+<% if(request.getParameter("choicethat") != null){ %>
+<script type="text/javascript">
+$(function(){
+    jQuery('#kyukyuMain').css("display", "block");  
+    jQuery('#suugitsuugitMain').css("display", "none");
+    jQuery('#abcabcMain').css("display", "none");	
+});
+</script>
+<% } %>
+	
   <!-- Bootstrap core JavaScript-->
   <script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
   <script src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
