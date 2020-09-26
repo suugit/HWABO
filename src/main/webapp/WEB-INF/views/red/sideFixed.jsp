@@ -43,23 +43,34 @@
         Main
       </div>
 
-      <li class="nav-item">
-        <a class="nav-link" href="fborder.do?project_num=${ sessionScope.pnum }">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>캘린더</span></a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="fborder2.do?project_num=${ sessionScope.pnum }">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>캘린더2</span></a>
-      </li>
+<!-- 메인목록 시작 -->
+<li class="nav-item">
+<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo" onclick="javascript: return false;"> 
+<i class="fas fa-chalkboard-teacher"></i> 
+<span>메인</span>
+</a>
+<div id="collapsetwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+<div class="bg-white py-2 collapse-inner rounded" style="overflow: auto; max-height: 250px;">
+<h6 class="collapse-header">MAIN</h6>
+						
+<a class="collapse-item" href="javascript: location.href='fborder2.do?project_num=${ sessionScope.pnum }'">
+<span>
+<label>캘린더</label>
+</span>
+</a>
 
-      <li class="nav-item">
-        <a class="nav-link" href="ftables.do?project_num=${ sessionScope.pnum }">
-          <i class="fas fa-fw fa-table"></i>
-          <span>리스트</span></a>
-      </li>
+<a class="collapse-item" href="javascript: location.href='fborder.do?project_num=${ sessionScope.pnum }'">
+<span><label>캘린더(대) 목록 삭제예정</label></span>
+</a>
+
+<a class="collapse-item" href="javascript: location.href='ftables.do?project_num=${ sessionScope.pnum }'">
+<span><label>피드</label></span>
+</a>
+
+</div>
+</div>
+</li>
+<!-- 메인목록 끝 -->
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
