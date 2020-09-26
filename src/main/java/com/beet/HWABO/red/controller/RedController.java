@@ -796,65 +796,35 @@ public class RedController {
 			
 		out.close();
 	}	
-//	@RequestMapping(value="deleteCalendar.do", method=RequestMethod.POST)
-//	public void delCalendarMain(Calendar calendar, HttpServletResponse response) throws IOException {
-//		logger.info("캘린더 일정삭제 중 ... : " + calendar);
-//		response.setContentType("test/html; charset=utf-8"); //여기에 오타나면 파일 선택창이 뜬다
-//			
-//		PrintWriter out = response.getWriter();
-//		if(redService.deleteCalendar(calendar) > 0) {
-//			out.append("ok");
-//			out.flush();
-//		}else{
-//			calendar.setTitle(calendar.getUname());
-//			if(redService.deleteCalendar(calendar) > 0) {
-//				out.append("ok");
-//				out.flush();
-//			}else {
-//				calendar.setTitle(calendar.getUname().substring(5));
-//				if(redService.deleteCalendar(calendar) > 0) {
-//					out.append("ok");
-//					out.flush();
-//				}else {
-//					calendar.setTitle(calendar.getUname().substring(6));
-//					if(redService.deleteCalendar(calendar) > 0) {
-//						out.append("ok");
-//						out.flush();
-//					}else {
-//						calendar.setTitle(calendar.getUname().substring(12));
-//						if(redService.deleteCalendar(calendar) > 0) {
-//							out.append("ok");
-//							out.flush();
-//						}else {
-//							calendar.setTitle(calendar.getUname().substring(13));
-//							if(redService.deleteCalendar(calendar) > 0) {
-//								out.append("ok");
-//								out.flush();
-//							}else {
-//								calendar.setTitle(calendar.getUname().substring(14));
-//								if(redService.deleteCalendar(calendar) > 0) {
-//									out.append("ok");
-//									out.flush();
-//								}else {
-//									calendar.setTitle("프로필사진 비뜨로 바꾸기");
-//									if(redService.deleteCalendar(calendar) > 0) {
-//										out.append("ok");
-//										out.flush();
-//									}else {
-//										out.append("fail");
-//										out.flush();
-//									}
-//								}
-//							}
-//						}
-//					}
-//				}
-//			}
-//			
-//		}
-//			
-//		out.close();
-//	}	
+	@RequestMapping(value="updateCalendar.do", method=RequestMethod.POST)
+	public void updateCalendarMain(Calendar calendar, HttpServletResponse response
+			,HttpServletRequest request, SessionStatus status) throws IOException {
+		logger.info("캘린더 업데이트 중~ : " + calendar);
+		response.setContentType("test/html; charset=utf-8"); //여기에 오타나면 파일 선택창이 뜬다
+		PrintWriter out = response.getWriter();
+		SpostFixed spost = new SpostFixed();
+		
+		spost.setSno(calendar.getCalno());
+		spost.setStitle(calendar.getTitle());
+		spost.setSucode(calendar.getUcode());
+		spost.setSwriter(calendar.getUname());
+		spost.setSstartday(java.sql.Date.valueOf(calendar.getStart_date()));
+		spost.setSendday(java.sql.Date.valueOf(calendar.getEnd_date()));
+		//spost.setSplace(null);
+		//spost.setScontent(null);
+		//spost.setSenrolldate(null);
+		//spost.setSopen(null);
+		spost.setSpnum(calendar.getPnum());
+		logger.info("spost 업데이트 된 캘린더 넣는중~ : " + spost);
+		if(redService.updateSpost(spost) > 0) {
+			out.append("ok");
+			out.flush();
+		}else {
+			out.append("fail");
+			out.flush();
+		}
+		out.close();
+	}
 ////views start//////////////////////////////
 	@RequestMapping(value = "suugit.do", method = RequestMethod.GET)
 	public String suugitIndex(Model model) {

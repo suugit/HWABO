@@ -51,4 +51,5 @@ public interface RedService {
 	ArrayList<Spost> selectAllSpost(PjMember pj);
 	int insertSpost(SpostFixed spost);
 	int deleteSpost(Calendar calendar);
+	int updateSpost(SpostFixed spost);
 }

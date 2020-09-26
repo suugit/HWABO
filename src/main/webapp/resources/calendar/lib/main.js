@@ -3,6 +3,7 @@ FullCalendar v5.3.2
 Docs & License: https://fullcalendar.io/
 (c) 2020 Adam Shaw
 */
+console.log("aaa")
 var FullCalendar = (function (exports) {
     'use strict';
     /*! *****************************************************************************
@@ -2405,6 +2406,34 @@ console.log("1");
         var range = eventRange.instance ? eventRange.instance.range : eventRange.range;
         var start = range.start ? range.start.valueOf() : 0; // TODO: better support for open-range events
         var end = range.end ? range.end.valueOf() : 0; // "
+        
+///////////업데이트 시작///////////////////////////////////////
+console.log(seg);
+/*
+$(function(){
+  	$.ajax({
+  		url:"updateCalendar.do",
+  		data:{
+  			calno : seg.eventRange.def.publicId,
+  			title : seg.eventRange.def.title,
+  			start_date : new Date(new Date(start).getTime() - (new Date(start).getTimezoneOffset() * 60000)).toISOString().slice(0, 10),
+  			end_date : new Date(new Date(end).getTime() + (new Date(end).getTimezoneOffset() * 60000)).toISOString().slice(0, 10),
+  		},
+  		type: "post",
+  		success: function(result){
+  			if(result == "ok"){
+					console.log("달력 일정 업데이트 완료...");    					
+				}else{
+					console.log("달력 일정 업데이트 실패...");
+				}
+  		},
+  		error: function(request,status,errorData){
+  			console.log("error code : " + request.status + "\nMessage :" + request.responseText + "\nError :" + errorData);
+  		}
+  	})
+});*/
+///////////업데이트 끝///////////////////////////////////////
+
         return __assign(__assign(__assign({}, eventDef.extendedProps), eventDef), { id: eventDef.publicId, start: start,
             end: end, duration: end - start, allDay: Number(eventDef.allDay), _seg: seg // for later retrieval
          });

@@ -104,11 +104,12 @@ function showCalendar(){
       },
       eventClick: function(arg) {
     	  console.log(arg)
-    	  if (confirm(arg.el.innerText +'일정을 모두 삭제 합니다.')) {
+    	  if (confirm(arg.el.innerText +'일정을 삭제 하시겠습니까?')) {
     		  $(function(){// 삭제 에이작스 시작
             	$.ajax({
             		url:"deleteCalendar.do",
             		data:{
+            			calno : arg.event._def.publicId,
             			pnum : $("#calpnum").val(), 
             			ucode : $("#calucode").val(), 
             			title : arg.el.innerText,
@@ -140,17 +141,19 @@ function showCalendar(){
           ,
           </c:if>
           {
+        	id:'${calIndex.calno}',
             title: '${calIndex.title}',
          	start: '${fn:substring(calIndex.start_date,0,10)}',
 	        end:  '${fn:substring(calIndex.end_date,0,10)}'//new Date('${fn:substring(calIndex.end_date,0,10)}').setDate(new Date('${fn:substring(calIndex.end_date,0,10)}').getDate() + 1)
           }
           </c:forEach>
   			
-  		/* 	,{
+  		 	/* ,{
+  		 		id:'s11111s',
   	            title: 'tetete',
-  	            start: 'Sat Sep 12 2020 00:00:00 GMT+0900',
-  	            end: 'Sat Sep 12 2020 00:00:00 GMT+0900'
-  	          } */
+  	            start: '2020-09-01',
+  	            end: '2020-09-01'
+  	          }  */
   			
       ]
     });

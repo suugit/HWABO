@@ -165,5 +165,9 @@ public class RedDao {
 	public int deleteSpost(Calendar calendar) {
 		return session.delete("redMapper.deleteSpost", calendar);
 	}
+
+	public int updateSpost(SpostFixed spost) {
+		return session.update("redMapper.updateSpost",spost);
+	}
 	
 }
