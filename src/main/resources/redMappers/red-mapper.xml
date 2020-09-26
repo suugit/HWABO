@@ -288,6 +288,12 @@
 		<!-- (select concat('cal', (select nvl(max(to_number(substr(calno,4))),0) + 1 from calendar))from dual) -->
 </insert>
 
+<insert id="insertSpost" parameterType="com.beet.HWABO.red.model.vo.SpostFixed" >
+		insert into spost(sno, stitle, sucode, swriter, sstartday, sendday, splace, scontent, senrolldate, sopen, spnum)
+		values ( (select concat('s', (select nvl(max(to_number(substr(sno,2))),0)+1 from spost))from dual)  , #{stitle}, #{sucode}, #{swriter}, #{sstartday}, #{sendday}, null, 
+				   #{scontent}, sysdate, #{sopen}, #{spnum} )
+</insert>
+
 <delete id="deleteProject" parameterType="string">
 		delete from project where PROJECT_NUM = #{ projectNumber }
 </delete>

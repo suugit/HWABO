@@ -16,6 +16,7 @@ import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.red.model.vo.PostPlus;
 import com.beet.HWABO.red.model.vo.Progress;
 import com.beet.HWABO.red.model.vo.Project;
+import com.beet.HWABO.red.model.vo.SpostFixed;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
 import com.beet.HWABO.spost.model.vo.Spost;
@@ -174,6 +175,11 @@ public class RedServiceImpl implements RedService {
 	@Override
 	public ArrayList<Spost> selectAllSpost(PjMember pj) {
 		return redDao.selectAllSpost(pj);
+	}
+
+	@Override
+	public int insertSpost(SpostFixed spost) {
+		return redDao.insertSpost(spost);
 	}
 	
 }

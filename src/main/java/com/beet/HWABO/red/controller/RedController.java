@@ -43,6 +43,7 @@ import com.beet.HWABO.red.model.vo.Chatting;
 import com.beet.HWABO.red.model.vo.MemberProject;
 import com.beet.HWABO.red.model.vo.PostPlus;
 import com.beet.HWABO.red.model.vo.Progress;
+import com.beet.HWABO.red.model.vo.SpostFixed;
 import com.beet.HWABO.red.model.vo.Star;
 import com.beet.HWABO.red.model.vo.UserProject;
 import com.beet.HWABO.spost.model.service.SpostService;
@@ -698,20 +699,20 @@ public class RedController {
 //		}
 		PrintWriter out = response.getWriter();
 		//if(redService.insertCalendar(calendar) > 0) {
-		Spost spost = new Spost();
+		SpostFixed spost = new SpostFixed();
 
 		spost.setStitle(calendar.getTitle());
 		spost.setSucode(calendar.getUcode());
 		spost.setSwriter(calendar.getUname());
 		spost.setSstartday(java.sql.Date.valueOf(calendar.getStart_date()));
 		spost.setSendday(java.sql.Date.valueOf(calendar.getEnd_date()));
-		//spost.setSplace();
+		spost.setSplace(null);
 		spost.setScontent(calendar.getTitle());
 		//spost.setSenrolldate();
-		spost.setSopen("n");
+		spost.setSopen("y");
 		spost.setSpnum(calendar.getPnum());
-		
-		if(spostService.insertSpost(spost) > 0) {
+		logger.info("spost캘린더 넣는중~ : " + spost);
+		if(redService.insertSpost(spost) > 0) {
 			out.append("ok");
 			out.flush();
 		}else {
