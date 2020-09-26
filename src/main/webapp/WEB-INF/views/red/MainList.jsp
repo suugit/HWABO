@@ -979,7 +979,7 @@ $(function(){
 		<!-- cpost 시작 -->
 		<c:if test="${ main.firstword eq 'c' }">
 			<c:set var="c" value="${ main }"></c:set>
-			<div class="card shadow mb-4">
+			<div class="card shadow mb-4" id="cbody${c.cno}">
 				<div
 					class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-0 font-weight-bold text-primary">
@@ -1016,10 +1016,7 @@ $(function(){
 								<div class="dropdown-header">메뉴:</div>
 								<a id="${c.cno}" name="mine" class="dropdown-item"
 									onclick="toEdit(this.id)">수정</a>
-								<c:url var="delcp" value="delcp.do">
-									<c:param name="cno" value="${c.cno }" />
-								</c:url>
-								<a name="mine" class="dropdown-item" href="${delcp }">삭제</a>
+								<a id="y${c.cno}" name="mine" class="dropdown-item" onclick="cpDelete(this.id)">삭제</a>
 							</div>
 						</c:if>
 					</div>
@@ -1045,9 +1042,8 @@ $(function(){
 								</tr>
 								<tr class="preview" style="max-height:100px;">
 								<c:if test="${!empty c.ofile1 }">
-									<input type="hidden" name="ofile1" value="${c.ofile1 }">
-									<input type="hidden" name="cf1" value="0">
 									<input type="hidden" name="cindex" value="0">
+									<input type="hidden" name="ofile1" value="${c.ofile1 }">
 									<input type="hidden" name="rfile1" value="${c.rfile1 }">
 											<td class="rounded align-bottom" style="width: 33%">
 											<c:set var="fileName" value="${fn:split(c.ofile1, '.')}" /> 
@@ -1055,19 +1051,18 @@ $(function(){
 												<c:choose>
 													<c:when test="${fn:contains(fileType,'jp') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">
 													<img class="rounded img-fluid " src="resources/bupfile/${c.rfile1}" style="max-height:100px;">
-													<i class="border btn-danger fa fa-times mt-2 p-1" onclick="removefile()"> 삭제</i>
+													<i class="border btn-danger fa fa-times mt-2 p-1" name="0" onclick="removefile()"> 삭제</i>
 													</c:when>	
 													<c:otherwise>
 													<img class="rounded img-fluid " src="resources/maincss/img/suugit/file_altimg.svg" style="max-height:100px;">
-													<i class="border btn-danger fa fa-times mt-2 p-1" onclick="removefile()"> 삭제</i>
+													<i class="border btn-danger fa fa-times mt-2 p-1" name="0" onclick="removefile()"> 삭제</i>
 													</c:otherwise>
 												</c:choose>
 												<br><a href="javascript:location.href='cfiledown.do?ofile=${c.ofile1}&rfile=${c.rfile1}'" class="ml-4 font-weight-bold" style="margin-top:12px">${c.ofile1}</a></td>
 										</c:if>
 										<c:if test="${!empty c.ofile2 }">
+											<input type="hidden" name="cindex" value="1">
 											<input type="hidden" name="ofile2" value="${c.ofile2}">
-									<input type="hidden" name="cindex" value="1">
-									<input type="hidden" name="cf1" value="1">
 											<input type="hidden" name="rfile2" value="${c.rfile2}">
 											<td class="rounded align-bottom" style="width: 33%"><c:set
 													var="fileName" value="${fn:split(c.ofile2, '.')}" /> <c:set
@@ -1075,19 +1070,18 @@ $(function(){
 												<c:choose>
 													<c:when test="${fn:contains(fileType,'jp') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">
 													<img class="rounded img-fluid" src="resources/bupfile/${c.rfile2}" style="max-height:100px;">
-													<i class="border btn-danger fa fa-times mt-2 p-1" onclick="removefile()"> 삭제</i>
+													<i class="border btn-danger fa fa-times mt-2 p-1" name="1" onclick="removefile()"> 삭제</i>
 													</c:when>	
 													<c:otherwise>
 													<img class="rounded img-fluid " src="resources/maincss/img/suugit/file_altimg.svg" style="max-height:100px;">
-													<i class="border btn-danger fa fa-times mt-2 p-1" onclick="removefile()"> 삭제</i>
+													<i class="border btn-danger fa fa-times mt-2 p-1" name="1" onclick="removefile()"> 삭제</i>
 													</c:otherwise>
 												</c:choose>
 												<br><a href="javascript:location.href='cfiledown.do?ofile=${c.ofile2}&rfile=${c.rfile2}'" class="ml-4 font-weight-bold ">${c.ofile2}</a></td>
 										</c:if>
 										<c:if test="${!empty c.ofile3 }">
+											<input type="hidden" name="cindex" value="2">
 											<input type="hidden" name="ofile3" value="${c.ofile3}">
-									<input type="hidden" name="cf3" value="2">
-									<input type="hidden" name="cindex" value="2">
 											<input type="hidden" name="rfile3" value="${c.rfile3}">
 											<td class="rounded align-bottom" style="width: 33%"><c:set
 													var="fileName" value="${fn:split(c.ofile3, '.')}" /> <c:set
@@ -1095,11 +1089,11 @@ $(function(){
 												<c:choose>
 													<c:when test="${fn:contains(fileType,'jp') || fn:contains(fileType,'png') || fn:contains(fileType,'svg') || fn:contains(fileType,'gif')}">
 													<img class="rounded img-fluid " src="resources/bupfile/${c.rfile3}" style="max-height:100px;">
-													<i class="border btn-danger fa fa-times mt-2 p-1" onclick="removefile()"> 삭제</i>
+													<i class="border btn-danger fa fa-times mt-2 p-1" name="2" onclick="removefile()"> 삭제</i>
 													</c:when>	
 													<c:otherwise>
 													<img class="rounded img-fluid" src="resources/maincss/img/suugit/file_altimg.svg" style="max-height:100px;">
-													<i class="border btn-danger fa fa-times mt-2 p-1" onclick="removefile()"> 삭제</i>
+													<i class="border btn-danger fa fa-times mt-2 p-1" name="2" onclick="removefile()"> 삭제</i>
 													</c:otherwise>
 												</c:choose>
 												<br><a href="javascript:location.href='cfiledown.do?ofile=${c.ofile3}&rfile=${c.rfile3}'" class="ml-4 font-weight-bold ">${c.ofile3}</a></td>
@@ -1118,13 +1112,13 @@ $(function(){
 											name="file" style="display: none" id="atchm_img"
 											accept=".jpg,.png,.svg" multiple> <i
 											class="fa fa fa-image ">&nbsp;사진</i>
-									</label> <label class="btn btn-light small testfile"> <input
+									</label> <!-- <label class="btn btn-light small testfile"> <input
 											type="file" name="hashtag" style="display: none"> <i
 											class="fa fa-hashtag ">&nbsp;</i>
-									</label></td>
+									</label> --></td>
 									<td colspan="2">
-										<button type="reset" class="btn btn-danger p-1"
-											style="width: 40%; float: right;">
+										<button class="btn btn-danger p-1"
+											style="width: 40%; float: right;" onclick="toReset()"; return false;>
 											<span class="text">취소</span>
 										</button>
 										<button id="btn1-save${c.cno}"
@@ -1168,7 +1162,9 @@ $(function(){
 													<img class="rounded img-fluid " src="resources/maincss/img/suugit/file_altimg.svg">
 													</c:otherwise>
 												</c:choose>
-												<br><a href="javascript:location.href='cfiledown.do?ofile=${c.ofile1}&rfile=${c.rfile1}'" class="ml-4 font-weight-bold" style="margin-top:12px">${c.ofile1}</a></td>
+												<p class="my-2" />
+												<a href="javascript:location.href='cfiledown.do?ofile=${c.ofile1}&rfile=${c.rfile1}'" class="ml-4 font-weight-bold" style="margin-top:12px">
+												<i class="far fa-file"></i> :  ${c.ofile1}</a></td>
 										</c:if>
 										<c:if test="${!empty c.ofile2 }">
 											<td class="rounded align-bottom" style="width: 33%"><c:set
@@ -1182,7 +1178,9 @@ $(function(){
 													<img class="rounded img-fluid " src="resources/maincss/img/suugit/file_altimg.svg">
 													</c:otherwise>
 												</c:choose>
-												<br><a href="javascript:location.href='cfiledown.do?ofile=${c.ofile2}&rfile=${c.rfile2}'" class="ml-4 font-weight-bold ">${c.ofile2}</a></td>
+												<p class="my-2" />
+												<a href="javascript:location.href='cfiledown.do?ofile=${c.ofile2}&rfile=${c.rfile2}'" class="ml-4 font-weight-bold" style="margin-top:12px">
+												<i class="far fa-file"></i> :  ${c.ofile2}</a></td>
 										</c:if>
 										<c:if test="${!empty c.ofile3 }">
 											<td class="rounded align-bottom" style="width: 33%"><c:set
@@ -1196,7 +1194,9 @@ $(function(){
 													<img class="rounded img-fluid" src="resources/maincss/img/suugit/file_altimg.svg" >
 													</c:otherwise>
 												</c:choose>
-												<br><a href="javascript:location.href='cfiledown.do?ofile=${c.ofile3}&rfile=${c.rfile3}'" class="ml-4 font-weight-bold ">${c.ofile3}</a></td>
+												<p class="my-2" />
+												<a href="javascript:location.href='cfiledown.do?ofile=${c.ofile3}&rfile=${c.rfile3}'" class="ml-4 font-weight-bold" style="margin-top:12px">
+												<i class="far fa-file"></i> :  ${c.ofile3}</a></td>
 										</c:if>
 									</tr>
 									
@@ -1206,10 +1206,6 @@ $(function(){
 								<hr>
 
 					</div>
-					<!-- <div class="px-3 py-5 bg-gradient-light text-white"
-			style="height: 10px;">
-			<input type="text" class="form-control" placeholder="답글을 입력하세요">
-		</div> -->
 				</div>
 
 				<!-- 댓글 -->
@@ -1245,8 +1241,7 @@ $(function(){
 
 		</c:if>
 	</c:forEach>
-	<script type="text/javascript"
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="resources/js/jquery-3.5.1.min.js"></script>
 	<script src="resources/js/cpost.js"></script>
 </body>

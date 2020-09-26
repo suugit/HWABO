@@ -64,7 +64,6 @@ function cpSave(){
 	    	}
 	    
 	    $('.updatecPost').find("input[type='file']").on('change',function(e){
-	    	alert('h');
 
 	 		var fileArea = $(table).find('tr.preview');
 	 		//fileArea.empty();
@@ -75,7 +74,6 @@ function cpSave(){
 	 		tmp = Array.prototype.slice.call(fileArea.children('td'));
 	 		tmplist = Array.prototype.slice.call(fileArea.children('td'));
 	 		var files = e.target.files;
-	 		alert(files);
 	 		var arr = Array.prototype.slice.call(files);
 	 		tmplist.push(arr);
 	 		preview(fileArea, arr);
@@ -123,7 +121,6 @@ function removefile(){
 	var fileArea = $(table).find('tr.preview');
 	$(event.target).closest('td').remove();
 	tmplist =Array.prototype.slice.call(fileArea.children('td'));
-	alert(dellist);
 }
 
 function cpDelete(org){
