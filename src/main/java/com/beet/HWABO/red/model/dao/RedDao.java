@@ -163,8 +163,7 @@ public class RedDao {
 	}
 
 	public int deleteSpost(Calendar calendar) {
-		// TODO Auto-generated method stub
-		return 0;
+		return session.delete("redMapper.deleteSpost", calendar);
 	}
 	
 }

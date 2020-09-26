@@ -111,8 +111,8 @@ function showCalendar(){
             		data:{
             			pnum : $("#calpnum").val(), 
             			ucode : $("#calucode").val(), 
-            			title : arg.el.innerText.substring(4,arg.el.innerText.length),
-            			uname : arg.el.innerText
+            			title : arg.el.innerText,
+            			uname : arg.el.innerText.substring(4,arg.el.innerText.length)
             		},
             		type: "post",
             		success: function(result){

@@ -322,6 +322,10 @@
 		delete from calendar where title = #{ title } and ucode = #{ ucode } and pnum = #{ pnum }
 </delete>
 
+<delete id="deleteSpost" parameterType="com.beet.HWABO.red.model.vo.Calendar">
+		delete from spost where stitle = #{ title } and sucode = #{ ucode } and spnum = #{ pnum }
+</delete>
+
 <update id="updateProjectProgress" parameterType="com.beet.HWABO.red.model.vo.MemberProject">
 		update project set goal = #{ goal }, done = #{ done } where project_num = #{ project_num }
 </update>
