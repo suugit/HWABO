@@ -167,7 +167,7 @@ jQuery('.suugitMain').click(function () {
 <!-- CPOST start -->
 <div class="card shadow mb-4" style="display:block;" id="suugitsuugitMain">
             
-               <div class="card-body rounded" style="background-color:#F6F3FD;">
+               <div class="card-body rounded" style="background-color:#FAFDF9; border: 6px double #DAF8ED;">
               <!-- 게시글안쪽 -->
               <div class="clearfix d-flex ">
               	</div><table id="InsertTable" style="text-align:center;width:100%;">
@@ -203,8 +203,8 @@ jQuery('.suugitMain').click(function () {
 <!-- 글작성 본문 -->
               <form action="incp.do" id="InsertCpost" method="post" enctype="multipart/form-data">
              
-              <tr><td colspan="5"> <input name="ctitle" type="text" class="form-control mb-1" placeholder="제목을 입력하세요" required></td></tr>
-              <tr><td colspan="5"><textarea id="ccontent" name="ccontent" rows="6" class="w-100 form-control "  placeholder="내용을 입력해주세요"  required></textarea></td></tr>
+              <tr><td colspan="5"> <input name="ctitle" type="text" class="form-control mb-1" placeholder="제목을 입력하세요" required style="background-color:#FAFAFA;" ></td></tr>
+              <tr><td colspan="5"><textarea id="ccontent" name="ccontent" rows="6" class="w-100 form-control "  placeholder="내용을 입력해주세요"  required style="background-color:#FAFAFA;"></textarea></td></tr>
               <tr id="preview"></tr>
               <tr id="file_list">
        				<input type="hidden" name="cwriter" value="${sessionScope.uname }">
@@ -307,7 +307,7 @@ jQuery('.suugitMain').click(function () {
 <!-- @@@@시작@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->               
 <!-- @@@  -->                                                          <!-- @@@  -->
 <!-- @@@@끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-                 <div class="card-body rounded" style="background-color:#F6F3FD;">
+                 <div class="card-body rounded" style="background-color:#FAFDF9; border: 6px double #DAF8ED;">
                      <!-- 게시글안쪽 -->
                   <form action="insertbpostMain.do" name="b" method="post" id="bInsert" enctype="multipart/form-data">
                      <input type="hidden" name="bucode" value="${sessionScope.ucode }">
@@ -360,7 +360,7 @@ jQuery('.suugitMain').click(function () {
                            </tr>
                            <tr>
                               <td colspan="5">                       
-                              <input type="text" name="btitle" class="form-control" placeholder="제목을 입력하세요" required="required"></td>
+                              <input type="text" name="btitle" class="form-control" placeholder="제목을 입력하세요" required="required" style="background-color:#FAFAFA;"></td>
                            </tr>
                            <tr>
                               <td colspan="5">&nbsp;</td>
@@ -401,9 +401,9 @@ jQuery('.suugitMain').click(function () {
                      </tr>      
                            <tr>
                               <td width="50%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span>
-                              <input type="date" class="form-control" name="bstartday" id="beforesstartday" required></td>
+                              <input type="date" class="form-control" name="bstartday" id="beforesstartday" required style="background-color:#FAFAFA;"></td>
                               <td width="50%"><span style="float: left;"><i class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span>
-                              <input type="date" class="form-control" name="bendday" id="beforesendday" required></td>
+                              <input type="date" class="form-control" name="bendday" id="beforesendday" required style="background-color:#FAFAFA;"x></td>
                              
                            </tr>
                            <tr>
@@ -412,7 +412,7 @@ jQuery('.suugitMain').click(function () {
                            </tr>
                            <tr>
                               <td colspan="5"><span style="float: left;"><i class="far fa-keyboard"></i>&nbsp;글쓰기</span>
-                              <textarea cols="50" rows="6" class="w-100 form-control" name="bcontent"></textarea>
+                              <textarea cols="50" rows="6" class="w-100 form-control" name="bcontent" style="background-color:#FAFAFA;"></textarea>
                               </td>
                            </tr>
                            <tr>
@@ -455,7 +455,7 @@ jQuery('.suugitMain').click(function () {
 %>
 <div class="card shadow mb-4" style="display:none;" id="abcabcMain">
             
-             <div class="card-body rounded" style="background-color:#F6F3FD;">
+             <div class="card-body rounded" style="background-color:#FAFDF9; border: 6px double #DAF8ED;">
               <!-- 게시글안쪽 -->
         <form action="sinsertMain.do" id="spostInsert" name="spostInsert"	method="post" onsubmit="return daycheck();">
         <input type="hidden" name="swriter" value="${sessionScope.uname }">
@@ -483,7 +483,7 @@ jQuery('.suugitMain').click(function () {
 <!-- @@@@끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 		<tr>
 			<td colspan="3"><input type="text" name="stitle"
-				class="form-control" placeholder="일정 제목을 입력하세요" required="required"></td>
+				class="form-control" placeholder="일정 제목을 입력하세요" required="required" style="background-color:#FAFAFA;"></td>
 		</tr>
 		<tr>
 			<td colspan="3">&nbsp;</td>
@@ -492,12 +492,12 @@ jQuery('.suugitMain').click(function () {
 			<td width="50%"><span style="float: left;"><i
 					class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span><input
 				type="datetime-local" class="form-control" name="beforesstartday"
-				id="beforesstartday" required="required" value="<%=now%>"></td>
+				id="beforesstartday" required="required" value="<%=now%>" style="background-color:#FAFAFA;"></td>
 			<td>&nbsp;</td>
 			<td width="50%"><span style="float: left;"><i
 					class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span><input
 				type="datetime-local" class="form-control" name="beforesendday"
-				id="beforesendday" required="required" value="<%=now%>"></td>
+				id="beforesendday" required="required" value="<%=now%>" style="background-color:#FAFAFA;"></td>
 			<td colspan="3"></td>
 		</tr>
 		<tr>
@@ -511,9 +511,9 @@ jQuery('.suugitMain').click(function () {
 			<td colspan="3"><span style="float: left;"><i
 					class="fas fa-map-marker-alt"></i>&nbsp;장 소</span> <input type="text"
 				id="sample5_address1" placeholder="장소를 입력하세요" class="form-control"
-				name="splace"> <input type="button"
+				name="splace" style="background-color:#FAFAFA;"> <input type="button"
 				onclick="sample5_execDaumPostcode()" value="주소 검색"
-				class="form-control"><br>
+				class="form-control" style="background-color:#FAFAFA;"><br>
 				<div id="map2" class="map"
 					style="width: 100%; height: 150px; margin-top: 10px; display: none"></div>
 
@@ -590,7 +590,7 @@ jQuery('.suugitMain').click(function () {
 					name="counter" id="counter" style="border: none; height: 13px;">)
 			</span> <textarea name="scontent" id="contentText" cols="30" rows="10"
 					class="form-control" onkeypress="onTestChange();"
-					style="width: 100%; height: 100px; overflow: auto; resize: none;"></textarea>
+					style="width: 100%; height: 100px; overflow: auto; resize: none;" style="background-color:#FAFAFA;"></textarea>
 			</td>
 		</tr>
 
