@@ -276,7 +276,9 @@ public class BpostController {
 		}
 		if (bpostService.updateBpost(bpost) > 0) {
 			logger.info("3");
-			return "redirect:bpostlist.do";
+		    String referer = request.getHeader("Referer");
+		    return "redirect:"+ referer;
+			
 		} else {
 			return "common/error";
 		}

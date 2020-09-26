@@ -726,8 +726,11 @@ $(function(){
 
 			</div>
 			<!-- card shadow mb-4 -->
+			
+			
+			
 			<!-- bpost 수정폼 -->
- <div id="up${b.bno }" class="card shadow mb-4">
+ 			<div id="up${b.bno }" class="card shadow mb-4">
               
 
                   <div class="card-body">
@@ -949,21 +952,12 @@ $(function(){
                             </tr>
                             <tr>
                              
-<%--                               <td>
-                              <select name="bopen" class="form-control" value="${b.bopen }" style="display:none">
-                             
-                              </select>
-                              </td> --%>
                               <td colspan="3">
-                              <!-- <a class="btn btn-success btn-icon-split"   href="javascript: spostInsert.submit();"  style="width: 90%;">
-                                    <span class="text">등록</span> </a> -->
+                             
                                     <input type="submit" class="btn btn-sm btn-info" value="등 록 ">
-                                 <!--    <button type="submit" class="btn btn-sm btn-info" >&nbsp;등 &nbsp;록&nbsp;</button> -->
-                           
-                              <!-- <a href="javascript:spostInsert.reset();"   class="btn btn-danger btn-icon-split" style="width: 90%;">
-                                    <span class="text">취소</span> </a> -->
+                                
                                     <input type="reset" class="btn btn-sm btn-danger" alue="취 소">
-                                    <!-- <button type="reset" class="btn btn-sm btn-danger" >&nbsp;취 &nbsp;소&nbsp;</button> -->
+                                   
                               </td>
                            </tr>
                         </table>
