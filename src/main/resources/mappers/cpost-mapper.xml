@@ -9,7 +9,6 @@
 		<result column="cwriter" property="cwriter" />
 		<result column="ccontent" property="ccontent" />
 		<result column="cenrolldate" property="cenrolldate" />
-		<result column="copen" property="copen" />
 		<result column="cpnum" property="cpnum" />
 	</resultMap>
 
@@ -24,11 +23,10 @@
 	</resultMap>
 
 	<insert id="insertCpost" parameterType="Cpost">
-		insert into cpost (cno, cpnum, cucode, ctitle, cwriter, ccontent,
-		copen)
+		insert into cpost (cno, cpnum, cucode, ctitle, cwriter, ccontent)
 		values ('c' || cpost_seq.nextval, #{cpnum}, #{cucode, jdbcType=VARCHAR},
 		#{ctitle, jdbcType=VARCHAR}, #{cwriter, jdbcType=VARCHAR},
-		#{ccontent}, #{copen})
+		#{ccontent})
 	</insert>
 
 	<select id="selectCno" resultType="string">

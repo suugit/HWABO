@@ -1,30 +1,32 @@
-//$('#btn-save').click( function() {
-//		 alert('hi');
-//		} );
+$('#btn-save').click( function() {
+		e.preventDefault();
+		 $('#InsertCpost').submit();
+		} );
    var cno = "" ;
    var table="";
    var cpost = "";
    var tmplist = "";
-   var dellist = "";
+   var dellist = new Array;
 
    function toEdit(cc) {
 		$("#cpEdit"+cc).css("display", "block" );
 		$("#cpView"+cc).css("display", "none" );
 		cno = cc;
-		alert(cc);
-		alert('123');
 		cpost = "#1updatecForm" + cno;
 		table = "#CpostUpTable" + cno;
 	}
+
+   function toReset(){
+	   event.preventDefault();
+	   $("#cpEdit"+cno).css("display", "none" );
+	   $("#cpView"+cno).css("display", "block" );
+	   cno = "";
+   }
    
 function cpSave(){
-	alert(tmplist);
 	event.preventDefault();
  	 var formData = new FormData($(cpost)[0]);
- 	 var ee;
- 	 
- 	formData.append("cflist", tmplist);
-	alert(formData.cflist);
+ 	formData.append('dellist', dellist);
  	 $.ajax({
  		url: "upcp.do",
  		type: "post",
@@ -34,16 +36,15 @@ function cpSave(){
  		processData:false,
  		dataType: "JSON",
  		success: function(c){
- 			alert('성공');
  			$("#cpView"+cno).load("selcpnew.do",c,function() {
  				$("#cpView"+cno).css("display", "block" );
  				$("#cpEdit"+cno).css("display", "none" );
- 			    alert("글 수정 성공");
+ 				dellist = [];
  			});
  			
  		},
  		error: function(){ 
- 			alert('업데이트 실패');
+ 			alert('글 수정에 실패했습니다.');
  		
  		}
  		
@@ -56,32 +57,34 @@ function cpSave(){
 	         
 	            return false;
 	        });
-	    });
+	   
 	    
 	    var dropFile = function(event) {
 	    	   event.preventDefault();
 	    	}
 	    
 	    $('.updatecPost').find("input[type='file']").on('change',function(e){
+	    	alert('h');
+
 	 		var fileArea = $(table).find('tr.preview');
 	 		//fileArea.empty();
 	 		if(fileArea.children('td').length >= 3){
 	 			alert('첨부파일은 최대 3개까지 가능합니다');
 	 			return false;
 	 		}
-	 		
 	 		tmp = Array.prototype.slice.call(fileArea.children('td'));
 	 		tmplist = Array.prototype.slice.call(fileArea.children('td'));
 	 		var files = e.target.files;
+	 		alert(files);
 	 		var arr = Array.prototype.slice.call(files);
 	 		tmplist.push(arr);
-	 		alert(tmp);
 	 		preview(fileArea, arr);
-	 		
-	 		});
-
+	 		});	    
+	    });
+	   
+	    
   function preview(fileArea, arr){
-	alert('hh');
+
     arr.forEach(function(f){
     	
     	var fileName = f.name;
@@ -100,7 +103,6 @@ function cpSave(){
         str += '<i class="border btn-danger fa fa-times mt-2 p-1" onclick="removefile()"> 삭제</i>'
         str += '<br><a class="ml-4 font-weight-bold">'+ f.name +'</a></td>'
           $(str).appendTo(fileArea);
-        alert('h22');
         } 
         reader.readAsDataURL(f);
       }else{
@@ -109,21 +111,40 @@ function cpSave(){
         str += '<br><a class="ml-4 font-weight-bold">'+ f.name +'</a></td>'
         $(str).appendTo(fileArea);
       }
+
     }); 
+  	e.preventDefault();
   }
+  
 
 function removefile(){
+	dellist.push($(event.target).attr('name'));
 	$(event.target).value = "";
 	var fileArea = $(table).find('tr.preview');
 	$(event.target).closest('td').remove();
-	alert('삭제');
-	alert(dellist);
 	tmplist =Array.prototype.slice.call(fileArea.children('td'));
+	alert(dellist);
 }
+
+function cpDelete(org){
+	var cno = org.replace("y","");
+	if(confirm('정말로 삭제하시겠어요?')){
+		$.ajax({
+			url: "delcp.do",
+			type: "POST", 
+			data: {cno : cno},
+			success: function(msg){
+					alert('게시글을 삭제했습니다');
+					$('#cbod'+org).css("display", "none" );
+			},
+			error: function(){ 
+				alert('게시글 삭제를 실패했습니다. 다시 시도해주세요');
+			}
+		}); 
+	}
+}
+
 function resize(img){
-
- 
-
    // 원본 이미지 사이즈 저장
    var width = img.width;
    var height = img.height;

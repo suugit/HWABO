@@ -17,16 +17,10 @@
 								<hr>
 								<table>
 									<tr>
-										<td class="ccon">${c.ccontent}</td>
-
+										<td class="ccon pb-3">${c.ccontent}</td>
 									</tr>
-									<tr>
-
-										<td><br>
-										<hr></td>
-									</tr>
+																			
 									<tr id="preview">
-
 										<c:if test="${!empty c.ofile1 }">
 											<td class="rounded align-bottom" style="width: 33%"><c:set
 													var="fileName" value="${fn:split(c.ofile1, '.')}" /> <c:set
@@ -39,7 +33,9 @@
 													<img class="rounded img-fluid " src="resources/maincss/img/suugit/file_altimg.svg">
 													</c:otherwise>
 												</c:choose>
-												<br><a href="javascript:location.href='cfiledown.do?ofile=${c.ofile1}&rfile=${c.rfile1}'" class="ml-4 font-weight-bold" style="margin-top:12px">${c.ofile1}</a></td>
+												<p class="my-2" />
+												<a href="javascript:location.href='cfiledown.do?ofile=${c.ofile1}&rfile=${c.rfile1}'" class="ml-4 font-weight-bold" style="margin-top:12px">
+												<i class="far fa-file"></i> :  ${c.ofile1}</a></td>
 										</c:if>
 										<c:if test="${!empty c.ofile2 }">
 											<td class="rounded align-bottom" style="width: 33%"><c:set
@@ -53,7 +49,9 @@
 													<img class="rounded img-fluid " src="resources/maincss/img/suugit/file_altimg.svg">
 													</c:otherwise>
 												</c:choose>
-												<br><a href="javascript:location.href='cfiledown.do?ofile=${c.ofile2}&rfile=${c.rfile2}'" class="ml-4 font-weight-bold ">${c.ofile2}</a></td>
+												<p class="my-2" />
+												<a href="javascript:location.href='cfiledown.do?ofile=${c.ofile2}&rfile=${c.rfile2}'" class="ml-4 font-weight-bold" style="margin-top:12px">
+												<i class="far fa-file"></i> :  ${c.ofile2}</a></td>
 										</c:if>
 										<c:if test="${!empty c.ofile3 }">
 											<td class="rounded align-bottom" style="width: 33%"><c:set
@@ -67,10 +65,12 @@
 													<img class="rounded img-fluid" src="resources/maincss/img/suugit/file_altimg.svg" >
 													</c:otherwise>
 												</c:choose>
-												<br><a href="javascript:location.href='cfiledown.do?ofile=${c.ofile3}&rfile=${c.rfile3}'" class="ml-4 font-weight-bold ">${c.ofile3}</a></td>
+												<p class="my-2" />
+												<a href="javascript:location.href='cfiledown.do?ofile=${c.ofile3}&rfile=${c.rfile3}'" class="ml-4 font-weight-bold" style="margin-top:12px">
+												<i class="far fa-file"></i> :  ${c.ofile3}</a></td>
 										</c:if>
 									</tr>
-									
+								
 								</table>
 
 

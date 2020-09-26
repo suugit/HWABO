@@ -28,6 +28,8 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -58,7 +60,6 @@ import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.NaverLoginUtil;
 import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.red.model.vo.Project;
-import com.beet.HWABO.test.controller.FileDownloadView;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
@@ -805,6 +806,7 @@ public class SuugitController {
 			int result1 = cservice.updateCfile(addon);
 
 			if (result1 > 0) {
+				
 				mv.setViewName("redirect:/ftables.do?project_num=" + cpost.getCpnum());
 			} else {
 				mv.addObject("message", "첨부파일등록실패");
@@ -873,50 +875,54 @@ public class SuugitController {
 
 	@PostMapping("upcp.do")
 	@ResponseBody
-	public JSONObject updateCpost(Cpost cpost, AddOn addon, ModelAndView mav, MultipartHttpServletRequest request) throws UnsupportedEncodingException {
-	
+	public JSONObject updateCpost(Cpost cpost, AddOn addon, ModelAndView mav, 
+			MultipartHttpServletRequest request,@RequestParam(value="dellist") List<String> dellist) throws UnsupportedEncodingException {
 		String cno = cpost.getCno();
 		logger.info(cno + "게시글 수정");
-		logger.info(request.getParameter("cflist").toString());
-		AddOn addNew = new AddOn();
-		
-		
-		String[] cindex = request.getParameterValues("cindex");
 
-		int r = cservice.updateCpost(cpost);
-		
-		System.out.println("결과1" + addon.getRfile1());
-		System.out.println("결과2" + addon.getRfile2());
-		System.out.println("결과3" + addon.getRfile3());
 		String savePath = request.getSession().getServletContext().getRealPath("resources/bupfile");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-
-		String cflist = request.getParameter("cflist");
+		ArrayList<String> darr = (ArrayList<String>)dellist;
 		List<MultipartFile> fileList = request.getFiles("file");
 		JSONObject obj = new JSONObject();
-		System.out.println(cflist);
-		System.out.println(fileList);
-		if(request.getParameter("cflist").equals("")) {
+		//글수정
+		if(cservice.updateCpost(cpost) > 0) {
 			obj.put("cno", cpost.getCno());
 			obj.put("ctitle", cpost.getCtitle());
 			obj.put("ccontent", cpost.getCcontent());
-			
-			cpost = cservice.selectCpOne(request.getParameter("cno"));
-			
-			if(cpost.getOfile1() != null) {
-				//cservice.deleteAddon(cno);
-				return obj;
+		}else {
+			obj.put("message","글 내용수정 실패");	
+		}
+		
+		System.out.println(cpost);
+		System.out.println(addon);
+		//기존파일처리
+		if(dellist.size() > 0) {
+			for(String k : dellist) {
+				System.out.println("기존삭제" + k);
+				switch(k){
+				case "0" : System.out.println("1지움");addon.setOfile1(null); addon.setRfile1(null); break;
+				case "1" : System.out.println("2지움");addon.setOfile2(null); addon.setRfile2(null); break;
+				case "2" : System.out.println("3지움");addon.setOfile3(null); addon.setRfile3(null); break;
 				}
+				cservice.updateCfileAll(addon);
 			}
-		else {
+		}
+		
+		//파일업데이트 
 			String oFileName = "";
-			logger.info("파일있음!");
 			int i = 0;
-			
+			if(fileList.size()==0) {
+				System.out.println("파일없음");
+				return obj;
+			}
 			for (MultipartFile filePart : fileList) {
-					
-				while (!filePart.isEmpty()) {
+				System.out.println(filePart);
+				System.out.println(filePart.isEmpty());
+				
+				while(!filePart.isEmpty()) {
 					System.out.println("시작");
+					
 					String rfileName = cno + sdf.format(new java.sql.Date(System.currentTimeMillis()));
 					oFileName = filePart.getOriginalFilename();
 					rfileName += i + "." + oFileName.substring(oFileName.lastIndexOf(".") + 1);
@@ -943,14 +949,16 @@ public class SuugitController {
 						System.out.println("첫번쨰" + oFileName + rfileName);
 						i++;
 						break;
-					} else if (addon.getRfile2() == null) {
+					}
+					if (addon.getRfile2() == null) {
 						addon.setOfile2(oFileName);
 						addon.setRfile2(rfileName);
 							
 						logger.info("두번째 추가");
 						System.out.println("e번쨰" + oFileName + rfileName);
 						break;
-					} else if (addon.getRfile3() == null) {
+					} 
+					if (addon.getRfile3() == null) {
 						addon.setOfile3(oFileName);
 						addon.setRfile3(rfileName);
 						System.out.println("3번쨰" + oFileName + rfileName);
@@ -961,9 +969,7 @@ public class SuugitController {
 
 				}
 			}
-			addon.setCno(cno);
-			
-			int result1 = cservice.updateCfile(addon);
+			int result1 = cservice.updateCfileAll(addon);
 			
 			cpost = cservice.selectCpOne(request.getParameter("cno"));
 			obj.put("ofile1", cpost.getOfile1());
@@ -972,11 +978,6 @@ public class SuugitController {
 			obj.put("rfile2", cpost.getRfile2());
 			obj.put("ofile3", cpost.getOfile3());
 			obj.put("rfile3", cpost.getRfile3());
-			obj.put("ctitle", cpost.getCtitle());
-			obj.put("ccontent", cpost.getCcontent());
-			obj.put("cno", cpost.getCno());
-			
-		}
 		
 		return obj;
 	}
@@ -1030,8 +1031,8 @@ public class SuugitController {
 	
 		
 	@RequestMapping("delcp.do")
-	public String deleteCpost(@RequestParam("cno") String cno, AddOn addon, Model model, HttpServletRequest request) {
-
+	public ResponseEntity<String>  deleteCpost(@RequestParam("cno") String cno, AddOn addon, Model model, HttpServletRequest request) {
+		logger.info("게시글을 삭제...");
 		File f = new File(request.getSession().getServletContext().getRealPath("resources/bupfile"));
 		if (f.isDirectory()) {
 			File[] fList = f.listFiles();
@@ -1042,9 +1043,10 @@ public class SuugitController {
 				}
 		}
 		cservice.deleteCpost(cno);
-		return "redirect:/ftables2.do?ucode=" + request.getSession().getAttribute("ucode") + "&pnum="
-				+ request.getSession().getAttribute("pnum");
-
+		
+		return new ResponseEntity<String>("success", HttpStatus.OK);
+//		return "redirect:/ftables2.do?ucode=" + request.getSession().getAttribute("ucode") + "&pnum="
+//				+ request.getSession().getAttribute("pnum");
 	}
 
 	@RequestMapping("/pjdetail.do")
