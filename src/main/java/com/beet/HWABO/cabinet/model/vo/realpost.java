@@ -11,7 +11,7 @@ public class realpost  implements java.io.Serializable {
 	private String pnum;
 	private String ucode;
 	
-	//spost (11)
+	//spost (13)
 	private String sno;
 	private String stitle;
 	private String sucode;
@@ -23,6 +23,8 @@ public class realpost  implements java.io.Serializable {
 	private Date senrolldate;
 	private String sopen;
 	private String spnum;
+	private String stringstart;
+	private String stringend;
 	
 	//Bpost (15)
 	private String bno;
