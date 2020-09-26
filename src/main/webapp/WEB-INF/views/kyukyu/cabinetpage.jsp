@@ -70,11 +70,11 @@ border-radius:15%;
 
 <!-- 피드 모아보기 시작 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->   
 
-<%-- <c:import url="/WEB-INF/views/kyukyu/cabinetList.jsp"></c:import> --%>
+ <c:import url="/WEB-INF/views/kyukyu/cabinetList.jsp"></c:import> 
 
 
 
- <c:import url="/WEB-INF/views/red/MainList.jsp"></c:import>  
+<%--  <c:import url="/WEB-INF/views/red/MainList.jsp"></c:import>    --%>
 <!-- 피드 모아보기 끝 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->   
 
         </div>
