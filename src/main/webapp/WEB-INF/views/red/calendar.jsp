@@ -142,7 +142,7 @@ function showCalendar(){
           {
             title: '${calIndex.title}',
          	start: '${fn:substring(calIndex.start_date,0,10)}',
-	        end:  new Date('${fn:substring(calIndex.end_date,0,10)}')//new Date('${fn:substring(calIndex.end_date,0,10)}').setDate(new Date('${fn:substring(calIndex.end_date,0,10)}').getDate() + 1)
+	        end:  '${fn:substring(calIndex.end_date,0,10)}'//new Date('${fn:substring(calIndex.end_date,0,10)}').setDate(new Date('${fn:substring(calIndex.end_date,0,10)}').getDate() + 1)
           }
           </c:forEach>
   			

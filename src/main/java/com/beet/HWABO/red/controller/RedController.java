@@ -698,7 +698,19 @@ public class RedController {
 //		}
 		PrintWriter out = response.getWriter();
 		//if(redService.insertCalendar(calendar) > 0) {
-		캘린더에서 spost로 변경해야 됨
+		Spost spost = new Spost();
+
+		spost.setStitle(calendar.getTitle());
+		spost.setSucode(calendar.getUcode());
+		spost.setSwriter(calendar.getUname());
+		spost.setSstartday(java.sql.Date.valueOf(calendar.getStart_date()));
+		spost.setSendday(java.sql.Date.valueOf(calendar.getEnd_date()));
+		//spost.setSplace();
+		spost.setScontent(calendar.getTitle());
+		//spost.setSenrolldate();
+		spost.setSopen("n");
+		spost.setSpnum(calendar.getPnum());
+		
 		if(spostService.insertSpost(spost) > 0) {
 			out.append("ok");
 			out.flush();
@@ -723,10 +735,16 @@ public class RedController {
 			spost.setStitle(spost.getStitle() + "beetCheckSystem"  + spost.getSno());
 			redService.insertCalendarSpostAll(spost);
 		}
-		
+		ArrayList<Calendar> calListFilter = new ArrayList<Calendar>();
 		ArrayList<Calendar> calList = redService.selectCalendar(pj);
-		logger.info("calList : " + calList);
-		model.addObject("cal",calList);
+		for(Calendar cal :calList) { 
+			String[] cut = cal.getTitle().split("beetCheckSystem");
+			cal.setTitle(cut[0].replace("&nbsp;", " ")); 
+			calListFilter.add(cal); 
+		}
+		
+		logger.info("calListFilter : " + calListFilter);
+		model.addObject("cal",calListFilter);
 		
 		model.setViewName("red/utilities-border");
 		
@@ -747,10 +765,16 @@ public class RedController {
 			spost.setStitle(spost.getStitle() + "beetCheckSystem"  + spost.getSno());
 			redService.insertCalendarSpostAll(spost);
 		}
-		
+		ArrayList<Calendar> calListFilter = new ArrayList<Calendar>();
 		ArrayList<Calendar> calList = redService.selectCalendar(pj);
-		logger.info("calList : " + calList);
-		model.addObject("cal",calList);
+		for(Calendar cal :calList) { 
+			String[] cut = cal.getTitle().split("beetCheckSystem");
+			cal.setTitle(cut[0].replace("&nbsp;", " ")); 
+			calListFilter.add(cal); 
+		}
+		
+		logger.info("calListFilter : " + calListFilter);
+		model.addObject("cal",calListFilter);
 		
 		model.setViewName("red/utilities-border2");
 		
