@@ -113,22 +113,27 @@ $(function(){
 	
 });	//document.ready;
 
-	//일정게시글 수정시 날짜 유효성 체크
-	function daycheckUp() {
-		alert("날짜체크 up");
-		
-		var startday = $(this).children('#beforesstartday').value.replace("T", " ");
-		var endday = $(this).children('#beforesendday').value.replace("T", " ");
-		var start = new Date(startday);
-		var end = new Date(endday);
-		if (start > end) {
-			$(this).children('#placespan').html("끝 날짜가 시작날짜보다 이전일 수 없습니다");
-			$(this).children('#beforesendday').focus();
-			return false;
-		} else {
-			return true;
-		}
+//일정게시글 수정시 날짜 유효성 체크
+function daycheckUp(id) {
+	alert("날짜체크 수정용");
+	var i = id.replace("uspost", "");
+	var beforestart = $('#beforesstartdayuu'+i).val().replace("T", " ");
+	var beforeend = $('#beforesenddayuu'+i).val().replace("T", " ");
+	
+	var start2 = new Date(beforestart);
+	var end2 = new Date(beforeend);
+	if(start2>end2){	
+		$("#dayspan"+i).html("끝 날짜가 시작날짜보다 이전일 수 없습니다");
+		$("#beforesenddayuu"+i).focus();
+	}else{
+		alert(beforestart+"------" +beforeend);
+		alert("유효성검사완료");
+		spostupdate(i);
 	}
+	
+
+}
+	
 	
 	//일정게시글 등록시 날짜 유효성 체크
 	function daycheck() {
@@ -163,18 +168,17 @@ $(function(){
 	}
 	
 	//수정완료 버튼 누르면 실행되는 펑션
-	function spostupdate(){
-		
-		var param = $("#uspostform").serialize();
-		if(daycheckUp()){
+	function spostupdate(i){
+
+		var param = $("#uspostform"+i).serialize();
+
 			$.ajax({
 				url: "supdate.do",
 				data: param,
 				type: "post", 
 				dataType: "json",
 				success: function(post){
-					alert(post.sno);
-					alert("update성공 !");
+					
 					$("#se"+post.sno).load(window.location.reload("#se"+post.sno));
 					$("#up"+post.sno).css("display", "none" );
 					$("#se"+post.sno).css("display", "block" );
@@ -183,9 +187,8 @@ $(function(){
 				error: function(request, status, errorData){
 					console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
 				}
-			}); //ajax
-			
-		}
+			}); //ajax	
+
 
 }; 
 	//삭제 메소드
@@ -397,7 +400,7 @@ $(function(){
 
 <!-- spost 수정폼 -->
 
-<form name="uspostform" id="uspostform" method="post" onsubmit="return daycheckUp();">
+<form name="uspostform" id="uspostform${status.index }" method="post">
 	<div id="up${post.sno }" class="card shadow mb-4">
 		<div id="${status.index }" class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 		
@@ -408,7 +411,7 @@ $(function(){
 
 			<div class="dropdown no-arrow">
 
-				<button class="btn btn-custom btn-sm"  id="uspost" type="submit" onclick="spostupdate(); return false;">수정하기</button> 
+				<button class="btn btn-custom btn-sm"  id="uspost${status.index }" type="submit" onclick="daycheckUp(this.id); return false;">수정하기</button> 
 				<button class="btn btn-custom btn-sm"  id="dspost" type="submit" onclick="spostdelete(); return false;">삭제하기</button>
 				<button id="${post.sno }" class="btn btn-custom btn-sm"  onclick="moveselectfeed(this.id); return false;" >수정취소</button>				
 			</div>
@@ -440,15 +443,15 @@ $(function(){
 					
 					
 					
-					<input type="datetime-local" class="form-control" name="beforesstartday" id="beforesstartday" 
+					<input type="datetime-local" class="form-control" name="beforesstartday" id="beforesstartdayuu${status.index }" 
 					required="required"  value="${post.stringstart }"	></td>
 
 					<td width="50%">
-					<input type="datetime-local" class="form-control" name="beforesendday"  id="beforesendday" 
+					<input type="datetime-local" class="form-control" name="beforesendday"  id="beforesenddayuu${status.index }" 
 					required="required"  value="${post.stringend }"	></td>
-					<td><span style="color: blue;" id="placespan"></span></td>
+					
 				</tr>
-			
+				<tr><td style="text-align: center;" colspan="3"><span style="color: blue;" id="dayspan${status.index }"></span></td></tr>
 				<tr>
 					<td>&nbsp;</td>
 				</tr>
@@ -461,7 +464,7 @@ $(function(){
 						<input type="text" id="sample_address3${status.index }" placeholder=" 장소를 입력해주세요" class="form-control" id ="splace" name="splace" >
 					</c:if>	
 					<c:if test="${ !empty post.splace }">
-						<input type="text" id="sample_address3${status.index }" placeholder=" ${post.splace }" class="form-control" id ="splace" name="splace"  value="${post.splace }">
+						<input type="text" id="sample_address3${status.index }"  class="form-control" id ="splace" name="splace"  value="${post.splace }">
 					</c:if>
 						<input type="button" onclick="sample5_execDaumPostcode2${status.index }();" value="장소검색"  class="form-control"><br>
 <script>
