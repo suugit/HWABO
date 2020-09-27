@@ -53,14 +53,10 @@
 <div class="bg-white py-2 collapse-inner rounded" style="overflow: auto; max-height: 250px;">
 <h6 class="collapse-header">MAIN</h6>
 						
-<a class="collapse-item" href="javascript: location.href='fborder2.do?project_num=${ sessionScope.pnum }'">
+<a class="collapse-item" href="javascript: location.href='fborder.do?project_num=${ sessionScope.pnum }'">
 <span>
 <label>캘린더</label>
 </span>
-</a>
-
-<a class="collapse-item" href="javascript: location.href='fborder.do?project_num=${ sessionScope.pnum }'">
-<span><label>캘린더(대) 목록 삭제예정</label></span>
 </a>
 
 <a class="collapse-item" href="javascript: location.href='ftables.do?project_num=${ sessionScope.pnum }'">

@@ -3,7 +3,6 @@ FullCalendar v5.3.2
 Docs & License: https://fullcalendar.io/
 (c) 2020 Adam Shaw
 */
-console.log("aaa")
 var FullCalendar = (function (exports) {
     'use strict';
     /*! *****************************************************************************
@@ -2300,7 +2299,6 @@ var FullCalendar = (function (exports) {
             var instance = eventStore.instances[instanceId];
             var def = eventStore.defs[instance.defId];
             var ui = eventUis[def.defId];
-console.log("1");
             var origRange = instance.range;
             var normalRange = (!def.allDay && nextDayThreshold) ?
                 computeVisibleDayRange(origRange, nextDayThreshold) :
@@ -2402,38 +2400,9 @@ console.log("1");
     function buildSegCompareObj(seg) {
         var eventRange = seg.eventRange;
         var eventDef = eventRange.def;
-        console.log("2");
         var range = eventRange.instance ? eventRange.instance.range : eventRange.range;
         var start = range.start ? range.start.valueOf() : 0; // TODO: better support for open-range events
         var end = range.end ? range.end.valueOf() : 0; // "
-        
-///////////업데이트 시작///////////////////////////////////////
-console.log(seg);
-/*
-$(function(){
-  	$.ajax({
-  		url:"updateCalendar.do",
-  		data:{
-  			calno : seg.eventRange.def.publicId,
-  			title : seg.eventRange.def.title,
-  			start_date : new Date(new Date(start).getTime() - (new Date(start).getTimezoneOffset() * 60000)).toISOString().slice(0, 10),
-  			end_date : new Date(new Date(end).getTime() + (new Date(end).getTimezoneOffset() * 60000)).toISOString().slice(0, 10),
-  		},
-  		type: "post",
-  		success: function(result){
-  			if(result == "ok"){
-					console.log("달력 일정 업데이트 완료...");    					
-				}else{
-					console.log("달력 일정 업데이트 실패...");
-				}
-  		},
-  		error: function(request,status,errorData){
-  			console.log("error code : " + request.status + "\nMessage :" + request.responseText + "\nError :" + errorData);
-  		}
-  	})
-});*/
-///////////업데이트 끝///////////////////////////////////////
-
         return __assign(__assign(__assign({}, eventDef.extendedProps), eventDef), { id: eventDef.publicId, start: start,
             end: end, duration: end - start, allDay: Number(eventDef.allDay), _seg: seg // for later retrieval
          });
@@ -2470,9 +2439,7 @@ $(function(){
         }
         if (displayEventTime && !eventDef.allDay && (seg.isStart || seg.isEnd)) {
             var segStart = startOverride || (seg.isStart ? eventInstance.range.start : (seg.start || seg.eventRange.range.start));
-            console.log("4");
             var segEnd = endOverride || (seg.isEnd ? eventInstance.range.end : (seg.end || seg.eventRange.range.end));
-            console.log("5");
             if (displayEventEnd && eventDef.hasEnd) {
                 return dateEnv.formatRange(segStart, segEnd, timeFormat, {
                     forcedStartTzo: startOverride ? null : eventInstance.forcedStartTzo,
@@ -3346,7 +3313,6 @@ $(function(){
             var start = dateEnv.createMarker(startInput);
             if (start && this._instance) { // TODO: warning if parsed bad
                 var instanceRange = this._instance.range;
-                console.log("6");
                 var startDelta = diffDates(instanceRange.start, start, dateEnv, options.granularity); // what if parsed bad!?
                 if (options.maintainDuration) {
                     this.mutate({ datesDelta: startDelta });
@@ -3369,7 +3335,6 @@ $(function(){
             if (this._instance) {
                 if (end) {
                     var endDelta = diffDates(this._instance.range.end, end, dateEnv, options.granularity);
-                    console.log("7");
                     this.mutate({ endDelta: endDelta });
                 }
                 else {
@@ -3394,7 +3359,6 @@ $(function(){
             }
             if (this._instance) {
                 var instanceRange = this._instance.range;
-                console.log("8");
                 // when computing the diff for an event being converted to all-day,
                 // compute diff off of the all-day values the way event-mutation does.
                 if (options.allDay === true) {
@@ -3451,14 +3415,12 @@ $(function(){
             var instance = this._instance;
             var formatter = createFormatter(formatInput);
             if (this._def.hasEnd) {
-            	console.log("9");
                 return dateEnv.formatRange(instance.range.start, instance.range.end, formatter, {
                     forcedStartTzo: instance.forcedStartTzo,
                     forcedEndTzo: instance.forcedEndTzo
                 });
             }
             else {
-            	console.log("10");
                 return dateEnv.format(instance.range.start, formatter, {
                     forcedTzo: instance.forcedStartTzo
                 });
@@ -3537,7 +3499,6 @@ $(function(){
         });
         Object.defineProperty(EventApi.prototype, "start", {
             get: function () {
-            	console.log("11");
                 return this._instance ?
                     this._context.dateEnv.toDate(this._instance.range.start) :
                     null;
@@ -3547,7 +3508,6 @@ $(function(){
         });
         Object.defineProperty(EventApi.prototype, "end", {
             get: function () {
-            	console.log("12");
                 return (this._instance && this._def.hasEnd) ?
                     this._context.dateEnv.toDate(this._instance.range.end) :
                     null;
@@ -3559,7 +3519,6 @@ $(function(){
             get: function () {
                 var instance = this._instance;
                 if (instance) {
-                	console.log("13");
                     return this._context.dateEnv.formatIso(instance.range.start, {
                         omitTime: this._def.allDay,
                         forcedTzo: instance.forcedStartTzo
@@ -3574,7 +3533,6 @@ $(function(){
             get: function () {
                 var instance = this._instance;
                 if (instance && this._def.hasEnd) {
-                	console.log("14");
                     return this._context.dateEnv.formatIso(instance.range.end, {
                         omitTime: this._def.allDay,
                         forcedTzo: instance.forcedEndTzo
@@ -5236,7 +5194,6 @@ $(function(){
                 return instance; // isn't dependent on timezone
             }
             else {
-            	console.log("15");
                 return __assign(__assign({}, instance), { range: {
                         start: newDateEnv.createMarker(oldDateEnv.toDate(instance.range.start, instance.forcedStartTzo)),
                         end: newDateEnv.createMarker(oldDateEnv.toDate(instance.range.end, instance.forcedEndTzo))
@@ -5302,10 +5259,10 @@ $(function(){
         var otherDefs = otherEventStore.defs;
         var otherInstances = otherEventStore.instances;
         var otherConfigs = compileEventUis(otherDefs, state.eventUiBases);
+     
         for (var subjectInstanceId in subjectInstances) {
             var subjectInstance = subjectInstances[subjectInstanceId];
             var subjectRange = subjectInstance.range;
-            console.log("16");
             var subjectConfig = subjectConfigs[subjectInstance.defId];
             var subjectDef = subjectDefs[subjectInstance.defId];
             // constraint
@@ -5319,7 +5276,6 @@ $(function(){
                 var otherInstance = otherInstances[otherInstanceId];
                 // intersect! evaluate
                 if (rangesIntersect(subjectRange, otherInstance.range)) {
-                	console.log("17");
                     var otherOverlap = otherConfigs[otherInstance.defId].overlap;
                     // consider the other event's overlap. only do this if the subject event is a "real" event
                     if (otherOverlap === false && interaction.isEvent) {
@@ -5340,7 +5296,6 @@ $(function(){
             for (var _i = 0, _a = subjectConfig.allows; _i < _a.length; _i++) {
                 var subjectAllow = _a[_i];
                 var subjectDateSpan = __assign(__assign({}, dateSpanMeta), { range: subjectInstance.range, allDay: subjectDef.allDay });
-                console.log("18");
                 var origDef = calendarEventStore.defs[subjectDef.defId];
                 var origInstance = calendarEventStore.instances[subjectInstanceId];
                 var eventApi = void 0;
@@ -5355,6 +5310,37 @@ $(function(){
                 }
             }
         }
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@        
+//console.log("#################");
+//console.log(state);
+//console.log(subjectInstances);
+//console.log(subjectDefs);
+//console.log((Object.values(subjectDefs))[0].publicId);
+//console.log((Object.values(subjectInstances))[0].range.start);
+//console.log((Object.values(subjectInstances))[0].range.end);
+jQuery(function(){
+  	jQuery.ajax({
+  		url:"updateCalendar.do",
+  		data:{
+  			calno : (Object.values(subjectDefs))[0].publicId,
+  			title : (Object.values(subjectDefs))[0].title,
+  			start_date : new Date(new Date((Object.values(subjectInstances))[0].range.start).getTime() - (new Date((Object.values(subjectInstances))[0].range.start).getTimezoneOffset() * 60000)).toISOString().slice(0, 10),
+  			end_date : new Date(new Date((Object.values(subjectInstances))[0].range.end).getTime() - (new Date((Object.values(subjectInstances))[0].range.end).getTimezoneOffset() * 60000)).toISOString().slice(0, 10),
+  		},
+  		type: "post",
+  		success: function(result){
+  			if(result == "ok"){
+					console.log("달력 일정 업데이트 완료...");    					
+				}else{
+					console.log("달력 일정 업데이트 실패...");
+				}
+  		},
+  		error: function(request,status,errorData){
+  			console.log("error code : " + request.status + "\nMessage :" + request.responseText + "\nError :" + errorData);
+  		}
+  	})
+});        
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                   
         return true;
     }
     // Date Selection Validation
@@ -5380,7 +5366,6 @@ $(function(){
             var relevantInstance = relevantInstances[relevantInstanceId];
             // intersect! evaluate
             if (rangesIntersect(selectionRange, relevantInstance.range)) {
-            	console.log("19");
                 if (selectionConfig.overlap === false) {
                     return false;
                 }
@@ -10909,7 +10894,6 @@ $(function(){
                     isEvent: true
                 };
                 if (hit) {
-                	console.log("20");
                     mutation = computeMutation(initialHit, hit, ev.subjectEl.classList.contains('fc-event-resizer-start'), eventInstance.range, context.pluginHooks.eventResizeJoinTransforms);
                 }
                 if (mutation) {
@@ -13828,11 +13812,9 @@ $(function(){
             else if (isMultiDayRange(seg.eventRange.range)) { // TODO: use (!isStart || !isEnd) instead?
                 if (seg.isStart) {
                     timeText = buildSegTimeText(seg, timeFormat, context, null, null, eventInstance.range.start, seg.end);
-                    console.log("21");
                 }
                 else if (seg.isEnd) {
                     timeText = buildSegTimeText(seg, timeFormat, context, null, null, seg.start, eventInstance.range.end);
-                    console.log("22");
                 }
                 else {
                     doAllDay = true;
@@ -14465,7 +14447,6 @@ $(function(){
     exports.wholeDivideDurations = wholeDivideDurations;
 
     return exports;
-
 }({}));
 
-console.log("--------------");
+

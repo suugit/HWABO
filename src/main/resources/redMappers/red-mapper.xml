@@ -341,11 +341,11 @@
 
 <update id="updateSpost" parameterType="com.beet.HWABO.red.model.vo.SpostFixed">
 	update spost set sstartday=#{sstartday}, sendday=#{sendday}
-	<if test="calno == null || calno =='' ">
-	where stitle=#{stitle}
-	</if>
-	<if test="calno != null and calno !=''">
+	<if test="sno != null and sno !=''">
 	where sno=#{sno}
+	</if>
+	<if test="sno == null || sno =='' ">
+	where stitle=#{stitle}
 	</if>
 </update>
 

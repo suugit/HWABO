@@ -33,7 +33,7 @@ function showCalendar(){
       if(arg.allDay != true){
         	argAllDay = 0;
       }
-      console.log('arg.end.toISOString().slice(0, 19).replace(\'T\', \' \')' + arg.end.toISOString().slice(0, 19).replace('T', ' '));
+/*       console.log('arg.end.toISOString().slice(0, 19).replace(\'T\', \' \')' + arg.end.toISOString().slice(0, 19).replace('T', ' '));
       console.log('arg.end.toISOString().slice(0, 19)' + arg.end.toISOString().slice(0, 19));
       console.log('arg.end.toISOString()' + arg.end.toISOString());
       console.log('arg.end' + arg.end);
@@ -51,7 +51,7 @@ function showCalendar(){
       console.log(arg);
       console.log('-----------------------------');
       console.log(title);
-      console.log('-----------------------------');
+      console.log('-----------------------------'); */
       if(title != ""  && title != " "  && title != "  "  && title != "   "
     	  && title != "    "  && title != "     "  && title != "      "
       && title != null){
@@ -91,16 +91,7 @@ function showCalendar(){
         	})
       });//등록 에이작스 끝
       }
-      //ajax insert 끝////////////////////////
-        /* if (title) {
-          calendar.addEvent({
-            title: title,
-            start: arg.start,
-            end: arg.end,
-            allDay: arg.allDay//true false (return boolean)
-          })
-        }
-        calendar.unselect() */
+
       },
       eventClick: function(arg) {
     	  console.log(arg)
@@ -186,28 +177,22 @@ showCalendar();
 <input type="hidden" value="${ pnum }" id="calpnum">
 <input type="hidden" value="${ ucode }" id="calucode">
 <input type="hidden" value="${ uname }" id="caluname">
---------<br>
-<c:forEach var="calIndex" items="${ requestScope.cal }" varStatus="status">
-        ${status.count }
-          title: '${calIndex.title}',
-          start: '${calIndex.start_date}',
-          end: '${calIndex.end_date}'
-          <hr>
-</c:forEach>
-<br>-----------
+
 <script type="text/javascript">
-
-/* $(function(){
- $(".fc-scrollgrid-sync-inner").on("click",function(){
-	 
- });
-});
-
 $(function(){
-	if(!($(".fc-today-button").is(":disabled"))){
-		$(".fc-today-button").hide();
-	}
-}); */
+	$(".fc-dayGridMonth-button").html("작게 보기");
+	$(".fc-dayGridMonth-button").on("click",function(){
+		location.href='/hwabo/fborder2.do';
+	});
+	$(".fc-timeGridWeek-button").html("크게 보기");
+	$(".fc-timeGridWeek-button").on("click",function(){
+		location.href='/hwabo/fborder.do';
+	});
+	//$(".fc-dayGridMonth-button").hide();
+	//$(".fc-timeGridWeek-button").hide();
+	$(".fc-timeGridDay-button").hide();
+	$(".fc-today-button").html("이번달");
+});
 </script>
 </body>
 </html>
