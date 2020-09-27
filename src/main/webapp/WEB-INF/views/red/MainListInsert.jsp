@@ -144,25 +144,6 @@ jQuery('.suugitMain').click(function () {
    
  });
  
-  function daycheck() {
-
-		var startday = document.spostInsert.beforesstartday.value.replace(
-				"T", " ");
-		var endday = document.spostInsert.beforesendday.value.replace("T",
-				" ");
-
-		var start = new Date(startday);
-		var end = new Date(endday);
-
-		if (start > end) {
-
-			$("#placespan").html("끝 날짜가 시작날짜보다 이전일 수 없습니다<br>다시 선택해주세요");
-			$("#beforesendday").focus();
-			return false;
-		} else {
-			return true;
-		}
-	}
 </script>
 <!-- CPOST start -->
 <div class="card shadow mb-4" style="display:block;" id="suugitsuugitMain">
@@ -492,17 +473,17 @@ jQuery('.suugitMain').click(function () {
 			<td width="50%"><span style="float: left;"><i
 					class="far fa-calendar-alt"></i>&nbsp;시 작 날 짜</span><input
 				type="datetime-local" class="form-control" name="beforesstartday"
-				id="beforesstartday" required="required" value="<%=now%>" style="background-color:#FAFAFA;"></td>
+				id="beforesstartdayi" required="required" value="<%=now%>" style="background-color:#FAFAFA;"></td>
 			<td>&nbsp;</td>
 			<td width="50%"><span style="float: left;"><i
 					class="far fa-calendar-alt"></i>&nbsp;끝 날 짜</span><input
 				type="datetime-local" class="form-control" name="beforesendday"
-				id="beforesendday" required="required" value="<%=now%>" style="background-color:#FAFAFA;"></td>
+				id="beforesenddayi" required="required" value="<%=now%>" style="background-color:#FAFAFA;"></td>
 			<td colspan="3"></td>
 		</tr>
 		<tr>
-			<td colspan="3" style="text-align: left;"><span
-				style="color: blue;" id="placespan"></span></td>
+			<td colspan="5" style="text-align: center;"><span
+				style="color: blue;" id="placespani"></span></td>
 		</tr>
 		<tr>
 			<td colspan="3">&nbsp;</td>

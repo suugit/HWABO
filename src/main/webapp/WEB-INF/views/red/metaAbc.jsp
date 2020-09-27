@@ -8,6 +8,7 @@
 		$(function() {
 			$('#contentText').on("propertychange change keyup paste input",
 					function() {
+			
 						var content = $(this).val();
 						$('#counter').val(200 - content.length);
 
@@ -23,25 +24,7 @@
 			});
 		});//document.ready 끝
 
-		function daycheck() {
-
-			var startday = document.spostInsert.beforesstartday.value.replace(
-					"T", " ");
-			var endday = document.spostInsert.beforesendday.value.replace("T",
-					" ");
-
-			var start = new Date(startday);
-			var end = new Date(endday);
-
-			if (start > end) {
-
-				$("#placespan").html("끝 날짜가 시작날짜보다 이전일 수 없습니다<br>다시 선택해주세요");
-				$("#beforesendday").focus();
-				return false;
-			} else {
-				return true;
-			}
-		}
+		
 	</script>
 
 </head>

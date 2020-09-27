@@ -113,15 +113,35 @@ $(function(){
 	
 });	//document.ready;
 
-	//일정게시글 등록시 날짜 유효성 체크
-	function daycheck() {
-		var startday = document.uspostform.beforesstartday.value.replace("T", " ");
-		var endday = document.uspostform.beforesendday.value.replace("T", " ");
+	//일정게시글 수정시 날짜 유효성 체크
+	function daycheckUp() {
+		alert("날짜체크 up");
+		
+		var startday = $(this).children('#beforesstartday').value.replace("T", " ");
+		var endday = $(this).children('#beforesendday').value.replace("T", " ");
 		var start = new Date(startday);
 		var end = new Date(endday);
 		if (start > end) {
-			$("#placespan").html("끝 날짜가 시작날짜보다 이전일 수 없습니다<br>다시 선택해주세요");
-			$("#beforesendday").focus();
+			$(this).children('#placespan').html("끝 날짜가 시작날짜보다 이전일 수 없습니다");
+			$(this).children('#beforesendday').focus();
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	//일정게시글 등록시 날짜 유효성 체크
+	function daycheck() {
+		alert("날짜체크");
+		var startday = document.spostInsert.beforesstartdayi.value.replace("T", " ");
+		var endday = document.spostInsert.beforesenddayi.value.replace("T"," ");
+
+		var start = new Date(startday);
+		var end = new Date(endday);
+
+		if (start > end) {
+			$("#placespani").html("끝 날짜가 시작날짜보다 이전일 수 없습니다");
+			$("#beforesenddayi").focus();
 			return false;
 		} else {
 			return true;
@@ -144,24 +164,29 @@ $(function(){
 	
 	//수정완료 버튼 누르면 실행되는 펑션
 	function spostupdate(){
+		
 		var param = $("#uspostform").serialize();
-		$.ajax({
-			url: "supdate.do",
-			data: param,
-			type: "post", 
-			dataType: "json",
-			success: function(post){
-				alert("update성공 !");
-				
-				$("#se"+post.sno).load("onespost.do",post, function(){});
-				$("#up"+post.sno).load("onespost.do",post, function(){});
-				$("#up"+post.sno).css("display", "none" );
-				$("#se"+post.sno).css("display", "block" );
-			},
-			error: function(request, status, errorData){
-				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
-			}
-		}); //ajax
+		if(daycheckUp()){
+			$.ajax({
+				url: "supdate.do",
+				data: param,
+				type: "post", 
+				dataType: "json",
+				success: function(post){
+					alert(post.sno);
+					alert("update성공 !");
+					$("#se"+post.sno).load(window.location.reload("#se"+post.sno));
+					$("#up"+post.sno).css("display", "none" );
+					$("#se"+post.sno).css("display", "block" );
+					
+				},
+				error: function(request, status, errorData){
+					console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+				}
+			}); //ajax
+			
+		}
+
 }; 
 	//삭제 메소드
 	function spostdelete(){
@@ -216,7 +241,7 @@ $(function(){
 		<c:if test="${ main.firstword eq 's' }">
 <c:set var="post" value="${ main }"></c:set>
 	<div id="se${post.sno }" class="card shadow mb-4">
-		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+		<div id="${status.index }"  class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary">
 				<i class="fas fa-user-circle"></i> 
 				${post.swriter}<br>
@@ -372,9 +397,9 @@ $(function(){
 
 <!-- spost 수정폼 -->
 
-<form name="uspostform" id="uspostform" method="post" onsubmit="return daycheck();">
+<form name="uspostform" id="uspostform" method="post" onsubmit="return daycheckUp();">
 	<div id="up${post.sno }" class="card shadow mb-4">
-		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+		<div id="${status.index }" class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 		
 		<input type="hidden" id="sno" name=sno value="${post.sno }">
 			<h6 class="m-0 font-weight-bold text-primary">

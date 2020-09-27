@@ -138,12 +138,23 @@ public class abcController {
 	}
 
 	// 일정 selectOne 메소드
-		@RequestMapping("onespost.do")
-		public Model SelectOneSpost(Model m, String sno) {
-			logger.info(sno+"onespost.do 들어옴 #$#@$#@@#$@#$@#@$@#@#$@#$@#");
+		@RequestMapping("onespostup.do")
+		public ModelAndView SelectOneSpost1(ModelAndView mv, String sno) {
+			
 			Spost spost = spostService.selectOneSpost(sno);
-			m.addAttribute("post", spost );
-			return m;
+			mv.setViewName("abc/mainNewup");
+			mv.addObject("post", spost);
+			return mv;
+		}
+		
+		// 일정 selectOne 메소드
+		@RequestMapping("onespostse.do")
+		public ModelAndView SelectOneSpost2(ModelAndView mv, String sno) {
+
+			Spost spost = spostService.selectOneSpost(sno);
+			mv.setViewName("abc/mainNewse");
+			mv.addObject("post", spost);
+			return mv;
 		}
 		
 	
