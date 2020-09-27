@@ -179,20 +179,28 @@ showCalendar();
 <input type="hidden" value="${ uname }" id="caluname">
 
 <script type="text/javascript">
-$(function(){
-	$(".fc-dayGridMonth-button").html("작게 보기");
-	$(".fc-dayGridMonth-button").on("click",function(){
-		location.href='/hwabo/fborder2.do';
+function cssInit(){
+	$(function(){	
+		$(".fc-dayGridMonth-button").html("작게 보기");
+		$(".fc-dayGridMonth-button").on("click",function(){
+			location.href='/hwabo/fborder2.do';
+		});
+		$(".fc-timeGridWeek-button").html("크게 보기");
+		$(".fc-timeGridWeek-button").on("click",function(){
+			location.href='/hwabo/fborder.do';
+		});
+		//$(".fc-dayGridMonth-button").hide();
+		//$(".fc-timeGridWeek-button").hide();
+		$(".fc-timeGridDay-button").hide();
+		$(".fc-today-button").html("이번달");
 	});
-	$(".fc-timeGridWeek-button").html("크게 보기");
-	$(".fc-timeGridWeek-button").on("click",function(){
-		location.href='/hwabo/fborder.do';
-	});
-	//$(".fc-dayGridMonth-button").hide();
-	//$(".fc-timeGridWeek-button").hide();
-	$(".fc-timeGridDay-button").hide();
-	$(".fc-today-button").html("이번달");
-});
+};
+setInterval(cssInit,100);
+/* 
+$(".fc-button-group").on("click",function(){
+	setTimeout(cssInit,0);
+}); 
+*/
 </script>
 </body>
 </html>

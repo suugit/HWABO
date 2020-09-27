@@ -182,9 +182,11 @@ if(m < 10){
 	m = "0" + m; 
 }
 var toke =
-	"<center><div style=\"width:70%;\"><div style=\"position:fixed;font-size:300%;\"><br>HWABO<br>" +
+	"<div style=\"width:100%;display:flex;justify-content:center;align-item:center;\">" +
+	"<div style=\"position:fixed;font-size:250%;\"><div><center>" +
+	"<div style=\"color:#19BFAF;font-size:150%;\"><br>${sessionScope.pnames}<br></div>" +
 	h +":"+ m + 
-	"</div></div></center>";
+	"</center></div></div></div>";
 	
 function showToke(){
 	const incoming = ($('.outgoing_msg').length == 0);

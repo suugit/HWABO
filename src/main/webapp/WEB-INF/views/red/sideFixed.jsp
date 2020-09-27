@@ -39,9 +39,6 @@
 	  </a> </li>
 
       <hr class="sidebar-divider my-0">
-      <div class="sidebar-heading">
-        Main
-      </div>
 
 <!-- 메인목록 시작 -->
 <li class="nav-item">
@@ -70,10 +67,6 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
-      
-      <div class="sidebar-heading">
-        progress
-      </div>
 
       <li class="nav-item">
         <a class="nav-link" href="fother.do?project_num=${ sessionScope.pnum }">
