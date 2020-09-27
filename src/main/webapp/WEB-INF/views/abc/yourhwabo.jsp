@@ -34,14 +34,6 @@
 	href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
 
-<script type="text/javascript" src="resources/js/scripts.js"></script>
-<script type="text/javascript">
-$("div").on('click', function(e){
-
-	return false;
-
-	});
-</script>
 
 </head>
 
@@ -74,272 +66,27 @@ $("div").on('click', function(e){
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-
-						<!-- 즐겨찾기 시작 -->
+				<br>
+						<h4>&nbsp;${ teammember.uname } 님의 화보에 오신 것을 환영합니다</h4>
+						<br>
+						<br>
 						
-							<div class="card mb-4 py-3 border-left-info">
-								<div style="margin-top: 0px;  height: 50px;">
-									<h3>&nbsp;&nbsp;즐 겨 찾 기</h3>
-									<hr>
-								</div>
-								<!-- 게시글안쪽 -->
-
-								<div class="card-body" style="height: 400px; overflow: auto;">
-									<div class="table-responsive">
-										<table class="table table-bordered" id="dataTable"
-											style="width: 90%; cellspacing: 0;">
-											<thead>
-												<tr>
-													<th>유형</th>
-													<th>제목</th>
-													<th>내용</th>
-													<th>수정일</th>
-													<th>등록일</th>
-												</tr>
-
-											</thead>
-											<tbody>
-												<tr>
-													<td>글</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>업무</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>일정</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-												<tr>
-													<td>할일</td>
-													<td>제목</td>
-													<td>내용</td>
-													<td>수정일</td>
-													<td>등록일</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
+					<c:if test="${!empty list }">
+							<c:import url="/WEB-INF/views/abc/hwabofeed.jsp"></c:import>
+						</c:if>
+						
+						
+						<c:if test="${empty list }">
+							<div align="center">
+							<br><br><br><br><br><br><br><br>
+								<h3>${teammember.uname } 님이 작성하신 글이 없습니다</h3>
+								<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 							</div>
-						
-						<!-- 즐겨찾기 끝 -->
+						</c:if>
+
+
 					
-
-		<br>
-					<div class="checks" align="left" style="margin-left: 1%; font-size: 23px; " >
-						<form action="#">
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;글 &nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;업 무 &nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;일 정&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;할 일&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							<span style="color: #42BBBA;"><label><input name="type" type="radio">&nbsp;투 표&nbsp;&nbsp;&nbsp;&nbsp;</label></span>
-						</form>
-					</div>
-					
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
-
-					<!-- 게시글시작 -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h1>게시글 제목</h1>
-						</div>
-						<div class="card-body">
-							<!-- 게시글안쪽 -->
-							테이블 넣을 공간
-							<table>
-
-							</table>
-							<hr>
-							<table style="width: 100%;">
-								<tr>
-									<td style="width: 20%;"><a href="#"
-										class="btn btn-primary btn-icon-split btn-sm"> <span
-											class="icon text-white-50"> <i class="far fa-heart"></i>
-										</span> <span class="text">좋아요 0</span>
-									</a></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%;"></td>
-									<td style="width: 20%; float: right;"></td>
-								</tr>
-							</table>
-						</div>
-						<div class="px-3 py-5 bg-gradient-light text-white"
-							style="height: 10px;">
-							<input type="text" class="form-control" placeholder="답글을 입력하세요">
-						</div>
-					</div>
-					<!-- 게시글끝 -->
+	
 
 
 

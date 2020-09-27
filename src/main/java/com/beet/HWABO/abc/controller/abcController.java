@@ -39,6 +39,8 @@ import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.cpost.model.service.CpostService;
 import com.beet.HWABO.cpost.model.vo.AddOn;
 import com.beet.HWABO.cpost.model.vo.Cpost;
+import com.beet.HWABO.member.model.service.MemberService;
+import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.red.model.service.RedService;
 import com.beet.HWABO.red.model.vo.MemberProject;
@@ -62,6 +64,9 @@ public class abcController {
 
 	@Autowired
 	private RedService redService;
+	
+	@Autowired
+	private MemberService mservice;
 
 	@Autowired
 	private LoveService loveService;
@@ -412,13 +417,15 @@ public class abcController {
 
 	}
 	
-	@RequestMapping(value="bkindupdate.do", method= RequestMethod.POST)
-	public void bkindUpdate(Bkindup bk) {
+	@RequestMapping(value="bkindupdate.do", method= {RequestMethod.POST, RequestMethod.GET})
+	@ResponseBody
+	public String bkindUpdate(Bkindup bk) {
 		logger.info(bk.toString());
 
 		if(spostService.bkindUpdate(bk) > 0) {
 			logger.info("상태 업데이트 성공 !!!!!!!!!!!!!!!!!!!!!!!");
 		}
+		return "success";
 		
 	}
 	
@@ -659,13 +666,9 @@ public class abcController {
 		return "abc/myhwabo";
 	}
 	
-	// 나의 화보. 나와 관련된 게시글 목록 조회용
+	// 나의 화보. 나와 관련된 S게시글 목록 조회용
 	@RequestMapping("myhwaboS.do")
 	public String myHWABOspost(Model m, PjMember pmember) {
-
-		// 매개변수랑, where 절에 session에서 받아온 ucode랑 pnum 추가 해야한다.
-		// Pjmember 에 ucode랑 pnum 필드 있어서 그걸로 이용해서 2개 값 담아서 이동 !
-
 		ArrayList<Post> list = spostService.selectMyPOSTspost(pmember);
 		if (list != null) {
 			m.addAttribute("list", list);
@@ -674,7 +677,30 @@ public class abcController {
 		}
 		return "abc/myhwabo";
 	}
-
+	
+	// 나의 화보. 나와 관련된 C게시글 목록 조회용
+	@RequestMapping("myhwaboC.do")
+	public String myHWABOcpost(Model m, PjMember pmember) {
+		ArrayList<Post> list = spostService.selectMyPOSTcpost(pmember);
+		if (list != null) {
+			m.addAttribute("list", list);
+		} else {
+			m.addAttribute("message", "나의 화보 페이지 조회에 실패하였습니다.");
+		}
+		return "abc/myhwabo";
+	}
+	
+	// 나의 화보. 나와 관련된 B게시글 목록 조회용
+	@RequestMapping("myhwaboB.do")
+	public String myHWABObpost(Model m, PjMember pmember) {
+		ArrayList<Post> list = spostService.selectMyPOSTbpost(pmember);
+		if (list != null) {
+			m.addAttribute("list", list);
+		} else {
+			m.addAttribute("message", "나의 화보 페이지 조회에 실패하였습니다.");
+		}
+		return "abc/myhwabo";
+	}
 
 	// 팀원의 화보
 	@RequestMapping("yourhwabo.do")
@@ -682,8 +708,10 @@ public class abcController {
 		// 팀원과 관련된 게시글을 전부 긁어와야함.
 
 		ArrayList<Post> list = spostService.selectMyPost(pmember);
+		Member teammember = mservice.selectMember(pmember.getUcode());
 		if (list != null) {
 			m.addAttribute("list", list);
+			m.addAttribute("teammember", teammember);
 		} else {
 			m.addAttribute("message", "팀원의 화보 페이지 조회에 실패하였습니다.");
 		}

@@ -44,6 +44,12 @@
 </head>
 
 <body id="page-top">
+<!-- 스크립트 모으기 시작 ################################### -->
+<c:import url="/WEB-INF/views/red/metaKyu.jsp"></c:import>
+<c:import url="/WEB-INF/views/red/metaAbc.jsp"></c:import>
+<c:import url="/WEB-INF/views/red/metaSuugit.jsp"></c:import>
+<!-- 스크립트 모으기 끝 ##################################### -->
+
 	<!-- 1.탑바 임포트 -->
 	<c:import url="/WEB-INF/views/abc/topbar.jsp"></c:import>
 
@@ -80,36 +86,41 @@
 					<!-- Begin Page Content -->
 					<div class="container-fluid">
 					<br>
-						<h3 align="center">${sessionScope.uname } 님의 화보에 오신 것을 환영합니다</h3>
+						<h4>&nbsp;나의 화보에 오신 것을 환영합니다</h4>
 						<br>
 						<br>
-						<div class="checks" align="left"
-							style="margin-left: 1%; font-size: 20px;">
-							<form action="#">
-								<span style="color: #42BBBA;"><label>
-								<input	id="type"  name="c" type="radio">&nbsp;글 &nbsp;&nbsp;&nbsp;&nbsp;</label></span>
-								 
-								 <span style="color: #42BBBA;"><label>
-								 <input id="type" name="b" type="radio">&nbsp;업 무&nbsp;&nbsp;&nbsp;&nbsp; </label></span> 
-								
-								<span style="color: #42BBBA;"><label>
-								<input id="type" name="s" type="radio">&nbsp;일 정&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
-							</form>
-						</div>
+						
 						
 						
 						
 						<c:if test="${!empty list }">
+						<div class="card shadow mb-4 btn-group" align="center" style=" vertical-align: middle; font-size: 18px;">
+							
+							<span style="color: #42BBBA; margin-top: 10px;">
+							
+								<label><button class="btn btn-success" onclick="javascript:location.href='myhwabo.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">&nbsp;<strong>전 체</strong>&nbsp;</button></label>  &nbsp;
+								<label><button class="btn btn-success" onclick="javascript:location.href='myhwaboC.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">&nbsp;<strong> 글 </strong>&nbsp;</button></label>	&nbsp;				
+								<label><button class="btn btn-success" onclick="javascript:location.href='myhwaboB.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">&nbsp;<strong>업 무</strong>&nbsp;</button></label>		&nbsp;						
+								<label><button class="btn btn-success" onclick="javascript:location.href='myhwaboS.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">&nbsp;<strong>일 정</strong>&nbsp;</button></label>
+								
+							
+							</span>	
+						</div>
+						
 							<c:import url="/WEB-INF/views/abc/hwabofeed.jsp"></c:import>
 						</c:if>
 						
 						
 						<c:if test="${empty list }">
-							<div align="center">
-								<h3>작성하신 글이 없습니다</h3>
-								<br>
-								<br> <span><a href="ftables2.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}">
-												<strong>글작성하러 가기</strong></a></span>
+							<div class="card shadow mb-4" align="center">
+							<br><br><br><br><br><br>
+								<h4>작성하신 글이 없습니다</h4>
+								<br><br><br>
+								<br> <span style="font-size: 20px;"><button class="btn btn-lg btn-outline-warning" onclick="javascript:location.href='ftables2.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">
+												<strong>- 글작성하러 가기 -</strong></button></span>
+												
+									<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+							
 							</div>
 						</c:if>
 
@@ -163,6 +174,7 @@
 
 	<!-- Page level custom scripts -->
 	<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
+
 
 </body>
 

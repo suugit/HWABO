@@ -115,7 +115,7 @@ $(function(){
 
 //일정게시글 수정시 날짜 유효성 체크
 function daycheckUp(id) {
-	alert("날짜체크 수정용");
+
 	var i = id.replace("uspost", "");
 	var beforestart = $('#beforesstartdayuu'+i).val().replace("T", " ");
 	var beforeend = $('#beforesenddayuu'+i).val().replace("T", " ");
@@ -126,8 +126,6 @@ function daycheckUp(id) {
 		$("#dayspan"+i).html("끝 날짜가 시작날짜보다 이전일 수 없습니다");
 		$("#beforesenddayuu"+i).focus();
 	}else{
-		alert(beforestart+"------" +beforeend);
-		alert("유효성검사완료");
 		spostupdate(i);
 	}
 	
@@ -137,7 +135,7 @@ function daycheckUp(id) {
 	
 	//일정게시글 등록시 날짜 유효성 체크
 	function daycheck() {
-		alert("날짜체크");
+	
 		var startday = document.spostInsert.beforesstartdayi.value.replace("T", " ");
 		var endday = document.spostInsert.beforesenddayi.value.replace("T"," ");
 
@@ -484,7 +482,7 @@ $(function(){
                 document.getElementById("sample_address3${status.index }").value = addr3_${status.index};
             }
         }).open();
-    }
+    };
     
 </script>	
 					</td>

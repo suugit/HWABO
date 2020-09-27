@@ -115,7 +115,6 @@ $(function(){
 
 //일정게시글 수정시 날짜 유효성 체크
 function daycheckUp(id) {
-	alert("날짜체크 수정용");
 	var i = id.replace("uspost", "");
 	var beforestart = $('#beforesstartdayuu'+i).val().replace("T", " ");
 	var beforeend = $('#beforesenddayuu'+i).val().replace("T", " ");
@@ -126,8 +125,6 @@ function daycheckUp(id) {
 		$("#dayspan"+i).html("끝 날짜가 시작날짜보다 이전일 수 없습니다");
 		$("#beforesenddayuu"+i).focus();
 	}else{
-		alert(beforestart+"------" +beforeend);
-		alert("유효성검사완료");
 		spostupdate(i);
 	}
 	
@@ -137,7 +134,7 @@ function daycheckUp(id) {
 	
 	//일정게시글 등록시 날짜 유효성 체크
 	function daycheck() {
-		alert("날짜체크");
+		
 		var startday = document.spostInsert.beforesstartdayi.value.replace("T", " ");
 		var endday = document.spostInsert.beforesenddayi.value.replace("T"," ");
 
@@ -238,6 +235,7 @@ function daycheckUp(id) {
 	
 </script> 
 <body>
+
 
 	<c:forEach var="main" items="${ requestScope.list }" varStatus="status">
 		<%-- ${ status.count } --%>
@@ -466,17 +464,17 @@ $(function(){
 					<c:if test="${ !empty post.splace }">
 						<input type="text" id="sample_address3${status.index }"  class="form-control" id ="splace" name="splace"  value="${post.splace }">
 					</c:if>
-						<input type="button" onclick="sample5_execDaumPostcode2${status.index }();" value="장소검색"  class="form-control"><br>
+						<input type="button" onclick="sample5_execDaumPostcode2${status.index }(); return false;" value="장소검색"  class="form-control"><br>
 <script>
 $(function(){
-	$("#sample5_address3"+${status.index }).on("click", function(){
+	$("#sample5_address3${status.index }").on("click", function(){
 		if($(this).val().length == 0 ){
 			sample5_execDaumPostcode2+"${status.index }"();
 		}
 	});	
 });
 
-    function sample5_execDaumPostcode2${status.index }() {
+    function sample5_execDaumPostcode2+"${status.index }"() {
         new daum.Postcode({
             oncomplete: function(data) {
                 var addr3_${status.index} = data.address; // 최종 주소 변수
@@ -484,7 +482,7 @@ $(function(){
                 document.getElementById("sample_address3${status.index }").value = addr3_${status.index};
             }
         }).open();
-    }
+    };
     
 </script>	
 					</td>

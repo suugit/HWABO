@@ -123,7 +123,7 @@ $(document).ready(function() {
 				if(obj[0].bno != null){
 					var values = '<thead><tr style="vertical-align: middle; text-align: center;"><th>유형</th><th>제목</th>	<th>내용</th><th>등록일</th></tr></thead>';
 					
-					$("#selectTable").empty();
+					
 					//출력용 문자열 만들기 (for in 문을 사용해보자)
 					
 				 for(var i in obj){
@@ -155,7 +155,7 @@ $(document).ready(function() {
 			       } //for in
 			   		 $('#selectTable').html(values); 	  
 				}else{
-					$("#selectTable").empty();
+					
 				}
 		       
 			}, 				
@@ -173,7 +173,6 @@ $(document).ready(function() {
 
 
 function loadList(){
-	alert("loadList() 실행");
 	$.ajax({
 		url: "bpostload.do",
 		type: "POST",
@@ -181,9 +180,7 @@ function loadList(){
 		dataType: "Json",
 		traditional: true,
 		success: function(obj){
-			 $("#selectTable").empty();
- 			$("#selectTable2").empty();
- 			$("#selectTable3").empty();
+
 			var values = '<thead><tr style="vertical-align: middle; text-align: center;"><th style="width: 15%">유형</th><th>제목</th><th>내용</th><th>등록일</th></tr></thead>';
 			
 			
@@ -284,6 +281,8 @@ function loadList(){
 		}
 		
 	});
+				
+
 	
 }
 
@@ -293,15 +292,17 @@ function bkindupdate(divbno) {
 	var bno = divbno.replace("bkinddiv", "");
 	var bkind = $("input[name=bkind]:checked").val();
 
-	if(confirm("게시글의 상태를 변경하시겠어요 ?")){
+	if(confirm("게시글의 유형을 변경하시겠어요 ?\n(변경 시 목록으로 돌아갑니다)")){
 		
 		$.ajax({
 			url: "bkindupdate.do",
 			data: {'bkind' : bkind, 'bno': bno}, 
-			type: "POST",
-			dataType: "json",
-			success:function(){
-
+			type:"post",
+			dataType: "text",
+			success:function(result){
+				$("#selectTable").load(window.location.reload("#selectTable"));
+				$("#selectTable2").load(window.location.reload("#selectTable2"));
+				$("#selectTable3").load(window.location.reload("#selectTable3"));
 			},
 			error: function(request, status, errorData){ //에러는 위에서 복붙
 				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
@@ -506,10 +507,6 @@ function bkindupdate(divbno) {
 	};
 	
 	
-	 
-	
-
-	
 	function deleteBpost(id){
 		var bno = id.replace("delbutton", "");
 		alert(bno);
@@ -518,92 +515,65 @@ function bkindupdate(divbno) {
 		}
 	}	
 
-
 	//팝업 Close 기능
 	function close_pop(flag) {
-		loadList();
+		
 	     $('.modalD').hide();
 	};
 
-	
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@	
 	function bkindshow(){
 		$("#'${b.bkind}'").button('toggle')
-
 	}
-
 	function addbcharge0(){
 	     var name = $(event.target).text();
-	     var code = $(event.target).val();
-	      
-	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
-	       //$('#bform').val(name); 
-	       
+	     var code = $(event.target).val();	      
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');	       
 	       $('#name0').val(name);
 	       $('#user0').val(code);
 	       $("input:checkbox[id='user0']").prop("checked", true);
 	       $("input:checkbox[id='name0']").prop("checked", true);  
 	   }
-
 	function addbcharge1(){
 	   var name = $(event.target).text();
-	   var code = $(event.target).val();
-	   
-	    $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
-	    //$('#bform').val(name); 
-	    
+	   var code = $(event.target).val();	   
+	    $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');    
 	    $('#name1').val(name);
 	    $('#user1').val(code);
 	    $("input:checkbox[id='user1']").prop("checked", true);
-	    $("input:checkbox[id='name1']").prop("checked", true);
-	    
-
-	    
+	    $("input:checkbox[id='name1']").prop("checked", true);	    	    
 	}
 	function addbcharge2(){
 	      var name = $(event.target).text();
 	      var code = $(event.target).val();
-	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
-	       //$('#bform').val(name); 
-	       
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');	       
 	      $('#name2').val(name);
 	       $('#user2').val(code);
 	       $("input:checkbox[id='user2']").prop("checked", true);
-	       $("input:checkbox[id='name2']").prop("checked", true);
-	       
-	       
+	       $("input:checkbox[id='name2']").prop("checked", true);          
 	   }
 	function addbcharge3(){
 	      var name = $(event.target).text();
 	      var code = $(event.target).val();
-	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
-	       //$('#bform').val(name); 
-	       
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');    
 	      $('#name3').val(name);
 	       $('#user3').val(code);
 	       $("input:checkbox[id='user3']").prop("checked", true);
-	       $("input:checkbox[id='name3']").prop("checked", true);
-
-	       
+	       $("input:checkbox[id='name3']").prop("checked", true);   
 	   }
 	function addbcharge4(){
 	      var name = $(event.target).text();
 	      var code = $(event.target).val();
-	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
-	       //$('#bform').val(name); 
-	       
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');	       
 	      $('#name4').val(name);
 	       $('#user4').val(code);
 	       $("input:checkbox[id='user4']").prop("checked", true);
-	       $("input:checkbox[id='name4']").prop("checked", true);
-	       
+	       $("input:checkbox[id='name4']").prop("checked", true);	       
 	   }
 	function addbcharge5(){
 	      var name = $(event.target).text();
-	      var code = $(event.target).val();
-	     
-	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
-	       //$('#bform').val(name); 
-	       
+	      var code = $(event.target).val();	     
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');	       
 	      $('#name5').val(name);
 	       $('#user5').val(code);
 	       $("input:checkbox[id='user5']").prop("checked", true);
@@ -614,25 +584,17 @@ function bkindupdate(divbno) {
 	      var name = $(event.target).text();
 	      var code = $(event.target).val();
 	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
-	       //$('#bform').val(name); 
-	       
-	      
 	       $('#user6').val(code);
 	       $('#name6').val(name);
 	       $("input:checkbox[id='user6']").prop("checked", true);
 	       $("input:checkbox[id='name6']").prop("checked", true);
-
 	   }
 	function unSelected(){
-	   
 	   $(event.target).parent().remove();
-	   
-	 
 	}
-
 	function upcharge(){
 		var result = "y";
-		$('#upc').var(result);
+		$('#upc').val(result);
 	}
 
 </script>
@@ -671,18 +633,19 @@ function bkindupdate(divbno) {
 					<div class="container-fluid col-text-left float-left" style="min-width: fit-content; max-width: 97%;">
 
 					 <div class="card mb-4" style="border-style:none;max-width: 97%; ">
-					     
-					        
-					           <div class="card-body">
+			<br>
+			<h4>&nbsp;&nbsp;&nbsp;${sessionScope.uname } 님의 업무 모아보기</h4>		     
+					     <br>   
+					           <div class="card-body" id="bposttab">
 					          <ul class="nav nav-tabs" style="margin-bottom: 0px; width: 100%;" id="myTab" role="tablist">
 							<li class="nav-item">
-							    <a class="nav-link active" id="allBpost-tab" data-toggle="tab" href="#project" role="tab" aria-controls="profile" aria-selected="true"><strong>전체업무</strong></a>
+							    <a class="nav-link active" id="allBpost-tab" data-toggle="tab" href="#allBpost" role="tab" aria-controls="allBpost" ><strong>전체업무</strong></a>
 							  </li>
 							  <li class="nav-item">
-							    <a class="nav-link " id="request-tab" data-toggle="tab" href="#pmember" role="tab" aria-controls="pmember" aria-selected="false"><strong>요청한 업무</strong></a>
+							    <a class="nav-link " id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" ><strong>요청한 업무</strong></a>
 							  </li>
 							  <li class="nav-item">
-							    <a class="nav-link" id="requested-tab" data-toggle="tab" href="#npmember" role="tab" aria-controls="npmember" aria-selected="false"><strong>요청받은 업무</strong></a>
+							    <a class="nav-link" id="requested-tab" data-toggle="tab" href="#requested" role="tab" aria-controls="requested" ><strong>요청받은 업무</strong></a>
 							  </li>
 							  </ul>
 					        </div>
@@ -692,7 +655,7 @@ function bkindupdate(divbno) {
  <div class="tab-content mt-3">
  
 <!--  업무 전체 모아보기 --> 
- <div class="tab-pane fade show active" id="project" role="tabpanel" aria-labelledby="nav-allBpost-tab">
+ <div class="tab-pane fade show active" id="allBpost" role="tabpanel" aria-labelledby="nav-allBpost-tab">
 
 <div id="tableview" style="border: none;" class="card mb-4 py-3 ">
 
@@ -727,7 +690,7 @@ function bkindupdate(divbno) {
 				</thead>
 				
 				<tbody id = "bpost_tbody">
-				<tr><td style="text-align: center; vertical-align: middle;" colspan="4">조회하신 유형의 게시글이 없습니다</td></tr>
+				<tr><td style="text-align: center; vertical-align: middle;" colspan="4">조회하신 업무 게시글이 없습니다</td></tr>
 				</tbody>
 				
 			</table>
@@ -742,7 +705,7 @@ function bkindupdate(divbno) {
 	
 					          
 <!-- 요청한 업무 -->
-<div class="tab-pane fade " id="pmember" role="tabpanel" aria-labelledby="nav-request-tab">
+<div class="tab-pane fade " id="request" role="tabpanel" aria-labelledby="nav-request-tab">
     
 <div id="tableview2" style="border: none;" class="card mb-4 py-3 ">
 <div class="card-body" style="overflow: auto;">
@@ -783,7 +746,7 @@ function bkindupdate(divbno) {
 
 
 <!-- 요청받은 업무 -->		       
-<div class="tab-pane fade" id="npmember" role="tabpanel" aria-labelledby="nav-requested-tab">
+<div class="tab-pane fade" id="requested" role="tabpanel" aria-labelledby="nav-requested-tab">
 <div id="tableview3" style="border: none;" class="card mb-4 py-3 ">
 <div class="card-body" style="overflow: auto;">
 
