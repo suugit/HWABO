@@ -74,7 +74,6 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
-	border-color: red;
 }
 
 .thumbnail.round {
@@ -95,6 +94,33 @@
 	padding: 0px 5px;
 	margin: 0px 3px;
 }
+
+#pjimgback{
+	width:270px;
+	height:270px;
+	background-color:#111111;
+}
+#pjimg:hover{
+  	opacity:0.6;
+}
+
+.plusbtn {
+	text-align: center;
+	position: absolute;
+	top: 45%;
+	left: 45%;
+	transform: translate( -50%, -50% );
+}
+
+.hide {
+  display: none;
+}
+
+#pjimgback:hover .hide {
+	display:block;
+	z-index:1002;
+}
+
 </style>
 </head>
 
@@ -159,31 +185,36 @@
 					           <div class="tab-pane fade show active" id="project" role="tabpanel" aria-labelledby="nav-project-tab" style="height:300px">
 								<div class="row">
 									<div class="col-sm-8 col-md-4">
-										<img width=100% src="${member.uimg}"
-											style="max-width: 200px; max-height: 200px"></img>
+									<label id="pjimgback">
+										<i class="fas fa-plus-circle fa-3x plusbtn hide"><br><h6>사진 등록</h6></i>
+										<img id="pjimg" src="${p.open }" style="width: 270px; height: 270px;">
+								<form id="pjImgFrom"  method="post" action="uppimg.do" enctype="multipart/form-data" >
+										<input class="file-upload" type="file" name="upfile" id="pjImgId" title="프로젝트 메인 사진 등록하기" style="display: none" accept="image/*"> 
+									</form>
+									</label>
 									</div>
-									<form action="upinfo.do" method="post" id="myInfoForm"
+									<form action="uppjdetail.do" method="post" id="myInfoForm"
 										class="col-md-8">
 										<div class="form-group row">
 											<label class="control-label mypage text-center form-control-static col-md-3">프로젝트 이름</label>
-											
 											<input class="form-control col-md-6 pl-2 form-control-plaintext"
-												type="email" name="name" value="" readonly>
+												type="text" name="name" value="${p.name}" onclick="upPjMethod(this)" readonly>
 										</div>
 										<div class="form-group row">
 											<label class="control-label mypage text-center col-md-3">프로젝트 소개</label> 
 											<div class="form-control col-md-6 pl-2 form-control-plaintext">
-												<textarea class="form-control" name="explain" rows="4" cols="50" readonly></textarea>
+												<textarea class="form-control" name="explain" rows="4" cols="50" onclick="upPjMethod(this)" readonly>${p.explain}</textarea>
 												</div>
-										</div>
+												
+										</dSiv>
 					          		</form>
 					          </div>
 					          </div>
-					          
+					          </div>
 					          <!-- 멤버관리 -->
-					           <div class="tab-pane fade " id="pmember" role="tabpanel" aria-labelledby="nav-pmember-tab">
+					           <div class="tab-pane fade" id="pmember" role="tabpanel" aria-labelledby="nav-pmember-tab">
 					           <div class="d-flex">
-					           <span class="d-flex text-truncate justify-content-start w-100">전체 멤버 수 : </span>
+					           <span class="d-flex text-truncate justify-content-start w-100">전체 멤버 수 :${fn: length(pmlist)} </span>
 					           <form class="d-flex justify-content-end">
 								  <input class="form-control form-control-sm w-75" type="text" placeholder="이름검색"
 								    aria-label="Search">
@@ -191,9 +222,9 @@
 								</form>
 								</div>
 					           <br>
-					           <div id="dataTable_wrapper"
+					           <div 
 								class="dataTables_wrapper no-footer text-center">
-								<table class="table">
+								<table id="dataTable" class="table table-bordered">
 									<thead>
 										<th colspan="2">사진</th>
 										<th>이름</th>
@@ -206,7 +237,7 @@
 									<tbody id="pmlistBox">
 									</tbody>
 								</table>
-								<nav aria-label="Page navigation ">
+								<!-- <nav aria-label="Page navigation ">
 									  <ul class="pagination justify-content-center">
 									    <li class="page-item">
 									      <a class="page-link" href="#" aria-label="Previous">
@@ -226,7 +257,7 @@
 									      </a>
 									    </li>
 									  </ul>
-									</nav>
+									</nav> -->
 							</div>
 					           
 					           </div>
@@ -305,7 +336,43 @@
 	<script src="resources/js/jquery-3.5.1.min.js"></script>
 		<script src="/hwabo/resources/js/user.js"></script>
 	<script>
+	/* var table = $('#pmlistTable');
+	$('#column3_search').on( 'keyup', function () {
+	    table
+	        .columns( 3 )
+	        .search( this.value )
+	        .draw();
+	} );
+	
+	table.columns( '.select-filter' ).every( function () {
+	    var that = this;
+	 
+	    var select = $('<select />')
+	        .appendTo(
+	            this.footer()
+	        )
+	        .on( 'change', function () {
+	            that
+	                .search( $(this).val() )
+	                .draw();
+	        } );
+	 
+	    // Get the search data for the first column and add to the select list
+	    this/pp
+	        .cache( 'search' )
+	        .sort()
+	        .unique()
+	        .each( function ( d ) {
+	            select.append( $('<option value="'+d+'">'+d+'</option>') );
+	        } );
+	} ); */
+	
+	$(document).onload(function(){
+		 $("#dataTable").DataTable();
+		 
+	});
 	$(document).ready(function(){
+	
 		$.ajax({
 			url: "pjdetail.do",
 			type: "post",
@@ -319,9 +386,57 @@
 				
 		});
 	});
+	  $('input[type="file"]').on('change', function(){
+		  	$('#pjImgFrom').submit();
+		  });
+	  
+	  $(document).on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
+		    if ($('input[type="file"]').length) {
+		      if (['dragover', 'dragenter'].indexOf(e.type) > -1) {
+		        if (window.dragTimeout)
+		          clearTimeout(window.dragTimeout);
+		        $('body').addClass('dragged');
+		      } else if (['dragleave', 'drop'].indexOf(e.type) > -1) {
+		        // Without the timeout, some dragleave events are triggered
+		        // when the :after appears, making it blink...
+		        window.dragTimeout = setTimeout(function() {
+		          $('body').removeClass('dragged');
+		        }, 100);
+		      }
+		    }
+		  });
+	  
 
-	
-	
+				 function upPjMethod(e){
+		 if($(e).attr("readonly")){
+				$(event.target).attr('readonly', false);
+		 }else{
+			 var data = {'keyword': e.name, 'keyvalue' : e.value}; 
+				alert(typeof data);
+				$.ajax({
+					url:"uppjdetail.do",
+					type:"post",
+					data: data,
+					dataType:"JSON",
+					success:function(p){
+						$(e).attr('readonly', true);
+						if(e.name =="name"){
+						e.value = p.name;
+						}else{
+						e.value = p.explain;
+						}
+					},
+					error:function(){
+						alert('실패');
+					}
+				});
+		 }
+		
+		e.preventDefault();
+		
+	 }
+				 
+	  
 	</script>
 </body>
 

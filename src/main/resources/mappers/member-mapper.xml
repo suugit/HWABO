@@ -177,4 +177,17 @@
 		select * from project
 		where project_num = #{pnum}
 	</select>
+	
+	<update id="updatePjImg" parameterType="Project">
+		update project
+		set open = #{open}
+		where project_num = #{project_num}
+	</update>
+	
+	<update id="updatePjDetail" parameterType="Project">
+		update project
+		<if test="name != null"> set name = #{name} </if>
+		<if test="explain != null"> set explain = #{explain} </if>
+		where project_num = #{project_num}
+	</update>
 </mapper>

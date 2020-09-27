@@ -339,7 +339,6 @@ body {
 				ele.val('수정하기');
 				$('#myInfoForm').submit();
 			}
-
 		}
 
 		function delUser() {

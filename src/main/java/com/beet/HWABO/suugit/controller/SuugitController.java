@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.catalina.Session;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -55,6 +56,7 @@ import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.invite.model.vo.Invite;
 import com.beet.HWABO.member.model.service.MailSendService;
 import com.beet.HWABO.member.model.service.MemberService;
+import com.beet.HWABO.member.model.vo.GoogleLoginUtil;
 import com.beet.HWABO.member.model.vo.MailUtils;
 import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.NaverLoginUtil;
@@ -66,10 +68,17 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 public class SuugitController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SuugitController.class);
-
+	
+	
 	@Autowired
 	private void setNaverLoginUtil(NaverLoginUtil NaverLoginUtil) {
 		this.NaverLoginUtil = NaverLoginUtil;
+		
+	}
+	
+	@Autowired
+	private void setGoogleLoginUtil(GoogleLoginUtil GoogleLoginUtil) {
+		this.GoogleLoginUtil = GoogleLoginUtil;
 	}
 
 	@Autowired
@@ -180,15 +189,19 @@ public class SuugitController {
 	}
 
 	private NaverLoginUtil NaverLoginUtil;
+	private GoogleLoginUtil GoogleLoginUtil;
 	private String apiResult = null;
 
 //로그인관련 
 	@RequestMapping("/mvlogin.do")
 	public String moveLogin(Model model, HttpSession session) {
 		String naverAuthUrl = NaverLoginUtil.getAuthorizationUrl(session);
+		String googleAuthUrl = GoogleLoginUtil.getAuthorizationUrl(session);
 		System.out.println("네이버:" + naverAuthUrl);
+		System.out.println("구글:" + googleAuthUrl);
 		// 네이버
-		model.addAttribute("url", naverAuthUrl);
+		model.addAttribute("naverUrl", naverAuthUrl);
+		model.addAttribute("googleUrl", googleAuthUrl);
 
 		return "suugit/login";
 	}
@@ -259,6 +272,8 @@ public class SuugitController {
 		return "suugit/loginResult";
 	}
 
+	
+	
 	/* NaverLoginUtil */
 
 	/*
@@ -277,8 +292,8 @@ public class SuugitController {
 	 */
 	// 네이버 로그인 성공시 callback호출 메소드
 
-	@RequestMapping(value = "/snsloginrslt.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+	@RequestMapping(value = "/ncallback.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String naverCallback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
 			throws IOException, ParseException {
 		System.out.println("네이버 로그인성공!");
 		OAuth2AccessToken oauthToken;
@@ -308,6 +323,38 @@ public class SuugitController {
 		session.setAttribute("uname", member.getUname());
 		session.setAttribute("uimg", member.getUimg());
 		session.setAttribute("signtype", member.getSigntype());
+		return "redirect:/cards.do";
+	}
+
+	
+	@RequestMapping(value = "/gcallback.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String googleCallback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+			throws Exception {
+		System.out.println("구글 로그인성공!");
+		OAuth2AccessToken oauthToken;
+		oauthToken = GoogleLoginUtil.getAccessToken(session, code, state);
+		// 1. 로그인 사용자 정보를 읽어온다.
+		apiResult = GoogleLoginUtil.getUserProfile(oauthToken); // String형식의 json데이터
+		System.out.println("api" + apiResult);
+		// 2. String형식인 apiResult를 json형태로 바꿈
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(apiResult);
+		JSONObject jsonObj = (JSONObject) obj;
+		// 3. 데이터 파싱
+		
+		Member member = new Member();
+		member.setUemail((String) jsonObj.get("email"));
+		member.setUname((String)jsonObj.get("name"));
+		member.setUimg((String)jsonObj.get("picture"));
+		member.setSigntype("g");
+
+		int result1 = mservice.insertSnsUser(member);
+
+		member = mservice.selectLogin(member);
+		session.setAttribute("ucode", member.getUcode());
+		session.setAttribute("uname", member.getUname());
+		session.setAttribute("uimg", member.getUimg());
+		session.setAttribute("signtype", member.getSigntype());	
 		return "redirect:/cards.do";
 	}
 
@@ -448,9 +495,63 @@ public class SuugitController {
 		int result = mservice.updateImg(member);
 
 		return mav;
+	}
+	
+	@RequestMapping(value = "/uppimg.do", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView updatePimg(@RequestParam(name="upfile", required = false) MultipartFile file, HttpSession session, ModelAndView mav) {
+		logger.info("사진 변경~");
+
+		Project project = new Project();
+		String pnum = (String)session.getAttribute("pnum");
+		System.out.println(pnum);
+		project.setProject_num(pnum);
+		String savePath = session.getServletContext().getRealPath("resources/projectImg");
+		if (file.getSize() > 0) {
+			File originFile = new File(file.getOriginalFilename());
+			originFile.delete();
+			project.setOpen("resources/projectImg/" + pnum + file.getOriginalFilename());
+			mav.setViewName("redirect:/invtadmin.do");
+			try {
+				file.transferTo(new File(savePath + "\\" + pnum + file.getOriginalFilename()));
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			project.setOpen("resources/projectImg/default.png");
+		}
+
+		int result = mservice.updatePjImg(project);
+		mav.setViewName("redirect:/invtadmin.do");
+		return mav;
 
 	}
-
+	
+	@RequestMapping(value = "/uppjdetail.do", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject updatePjDetail(HttpServletRequest request,HttpSession session) {
+		logger.info("프로젝트 정보 변경...");
+	System.out.println(request.getParameter("keyword"));
+	JSONObject json = new JSONObject();
+		String keyword = request.getParameter("keyword");
+		Project project = new Project();
+		project.setProject_num((String)session.getAttribute("pnum"));
+		if(keyword.equals("name")) {
+			project.setName(request.getParameter("keyvalue"));
+			int r = mservice.updatePjDetail(project);
+		}else {
+			project.setExplain(request.getParameter("keyvalue"));
+			int r = mservice.updatePjDetail(project);
+		}
+		
+		project = mservice.selectPjdetail((String)session.getAttribute("pnum"));
+		json.put("name", project.getName());
+		json.put("explain",project.getExplain());
+		
+		return json;
+	}
+	
 	@RequestMapping(value = "/uppwd.do", method = RequestMethod.POST)
 	public ModelAndView updatePwd(HttpServletRequest request, ModelAndView mav, HttpServletResponse response) {
 		String ucode = request.getParameter("ucode");
@@ -696,9 +797,11 @@ public class SuugitController {
 
 //초대관리페이지
 	@RequestMapping("/invtadmin.do")
-	public String InviteManage() {
-
-		return "suugit/invtmanage";
+	public ModelAndView InviteManage(HttpSession session, ModelAndView mav) {
+		Project project = mservice.selectPjdetail((String)session.getAttribute("pnum"));
+		mav.addObject("p",project);
+		mav.setViewName("suugit/invtmanage");
+		return mav;
 	}
 
 //멤버 권한 변경 

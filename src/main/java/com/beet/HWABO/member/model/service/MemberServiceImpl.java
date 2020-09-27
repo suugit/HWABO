@@ -132,6 +132,16 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectInvted(uemail);
 	}
 
+	@Override
+	public int updatePjImg(Project project) {
+		return memberDao.updatePjImg(project);
+	}
+
+	@Override
+	public int updatePjDetail(Project project) {
+		return memberDao.updatePjDetail(project);
+	}
+
 	
 
 	

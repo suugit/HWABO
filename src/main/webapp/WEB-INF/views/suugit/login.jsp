@@ -21,6 +21,8 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="/hwabo/resources/maincss/css/styles_suugit.css" rel="stylesheet">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="507075818333-an288g3htqli53i5f49hlkdc60bfbq7i.apps.googleusercontent.com">
 
 </head>
 
@@ -69,8 +71,9 @@
                     <a href="index.html" class="btn btn-naver btn-user btn-block">
                       <span class="font-weight-bolder" style="font-weight-bolder;font-size:1em">N&nbsp;</span>Naver로 로그인
                     </a> -->
-                    <div id="naver_id_login" style="text-align:center"><a href="${url}">
+                    <div id="naver_id_login" style="text-align:center"><a href="${naverUrl}">
 					<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
+					<div id="google_id_login"><a href="${googleUrl}">버튼버튼</a></div>
 					<br>
                   </form>
                   <hr>
@@ -107,31 +110,7 @@
 <script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
   
 <script>
-function onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail());
-    
-    var name = profile.getEmail();
-    
-    // The ID token you need to pass to your backend:
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);
-if (name !== null){
-	location.href="/hwabo/mvlogin.do";
-	//location.href = "/hwabo/login.do?userid=" + userid + "&ok=false";
-} else if (name == null){
-	location.href="/hwabo/";	        
-}
 
-  }
-  
-  
 
 </script>
 </body>

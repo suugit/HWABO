@@ -55,5 +55,9 @@ public interface MemberService {
 
 	Member selectInvted(String uemail);
 
+	int updatePjImg(Project project);
+
+	int updatePjDetail(Project project);
+
 	
 }

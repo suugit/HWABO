@@ -134,6 +134,16 @@ public class MemberDao {
 	public Member selectInvted(String uemail) {
 		return session.selectOne("memberMapper.selectInvted", uemail);
 	}
+
+
+	public int updatePjImg(Project project) {
+		return session.update("memberMapper.updatePjImg", project);
+	}
+
+
+	public int updatePjDetail(Project project) {
+		return session.update("memberMapper.updatePjDetail", project);
+	}
 	
 	
 	

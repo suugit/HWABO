@@ -79,10 +79,12 @@
 		  <exclude-mapping path="/mvforgotpwd.do" /> 
 		  <exclude-mapping path="/chnpwd.do" /> 
 		  <exclude-mapping path="/mvchnpwd.do" /> 
-		  <exclude-mapping path="/snsloginrslt.do" /> 
+		  <exclude-mapping path="/ncallback.do" /> 
+		  <exclude-mapping path="/gcallback.do" /> 
 		  <exclude-mapping path="/cards.do" /> 
 		  <exclude-mapping path="/cpdown.do" /> 
 		  <exclude-mapping path="/invtConfirm.do" /> 
+		  <exclude-mapping path="//uppjdetail.do" /> 
 			<beans:bean id="SessionChkInterceptor" class="com.beet.HWABO.common.interceptor.SessionChkInterceptor" />
 		</interceptor>
 	

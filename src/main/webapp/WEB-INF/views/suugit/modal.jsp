@@ -234,13 +234,30 @@
 
 		function addInvite() {
 			var ele = $(event.target);
-			if (ele.val() == '초대하기') {
+			if(ele.val() ==  '초대하기'){
 				$(event.target).val("초대완료");
-				$(event.target).addClass('disable btn-outline-dark')
+				
 				var name = $(event.target).parent().parent().children().eq(1).text();
-				alert(name);
-				$('#selected').append(
-					'<span>' + name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>')
+				alert('a')
+				//$('#selected').append('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>')
+				
+				var fileData1 = new Array(1);
+				fileData1[0] = name;
+				 $.ajax({
+					 url : "invtnew.do",
+				type : "post",
+				data : JSON.stringify(fileData1),
+				dataType : "JSON",
+				contentType : "application/json; charset=utf-8;",
+				success : function(data) {
+					alert(data.message);
+					$(event.target).addClass('disable btn-outline-dark');
+					$(event.target).attr('disabled','true');
+				},
+				error : function(request, status, errorData) {
+					alert(message);
+				}
+			});
 			}
 		}
 
@@ -262,7 +279,7 @@
 			} 
 			
 				 $.ajax({
-				url : "invtnew.do",
+					 url : "invtnew.do",
 				type : "post",
 				data : JSON.stringify(fileData),
 				dataType : "JSON",

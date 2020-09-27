@@ -66,7 +66,6 @@
 			expression="execution(* com.beet.HWABO..*Impl.*(..))" id="serviceMethod" />
 		<aop:advisor advice-ref="txAdvice" id="transactionAdvisor" pointcut-ref="serviceMethod" />
 	</aop:config>
-
 		<!-- 이메일 인증 -->
 	    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com" />

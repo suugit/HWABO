@@ -156,7 +156,7 @@
 			var name = $(event.target).parent().parent().children().eq(1).text();
 			$('#selected').append('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>')
 			
-			var fileData[0] = name;
+			var fileData = name;
 
 			 $.ajax({
 			url : "invtnew.do",
