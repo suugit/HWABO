@@ -79,19 +79,21 @@
 
 					<!-- Begin Page Content -->
 					<div class="container-fluid">
-
+					<br>
+						<h3 align="center">${sessionScope.uname } 님의 화보에 오신 것을 환영합니다</h3>
+						<br>
 						<br>
 						<div class="checks" align="left"
-							style="margin-left: 1%; font-size: 23px;">
+							style="margin-left: 1%; font-size: 20px;">
 							<form action="#">
 								<span style="color: #42BBBA;"><label>
-								<input	name="c" type="radio">&nbsp;글 &nbsp;&nbsp;&nbsp;&nbsp;</label></span>
+								<input	id="type"  name="c" type="radio">&nbsp;글 &nbsp;&nbsp;&nbsp;&nbsp;</label></span>
 								 
 								 <span style="color: #42BBBA;"><label>
-								 <input name="b" type="radio">&nbsp;업 무&nbsp;&nbsp;&nbsp;&nbsp; </label></span> 
+								 <input id="type" name="b" type="radio">&nbsp;업 무&nbsp;&nbsp;&nbsp;&nbsp; </label></span> 
 								
 								<span style="color: #42BBBA;"><label>
-								<input name="s" type="radio">&nbsp;일 정&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
+								<input id="type" name="s" type="radio">&nbsp;일 정&nbsp;&nbsp;&nbsp;&nbsp; </label></span>
 							</form>
 						</div>
 						

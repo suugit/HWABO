@@ -125,6 +125,24 @@ public class SpostServiceImpl implements SpostService{
 	}
 
 
+	@Override
+	public ArrayList<Post> selectMyPOSTspost(PjMember pmember) {
+		return spostDao.selectMyPOSTspost(pmember);
+	}
+
+
+	@Override
+	public ArrayList<Post> selectMyPOSTbpost(PjMember pmember) {
+		return spostDao.selectMyPOSTbpost(pmember);
+	}
+
+
+	@Override
+	public ArrayList<Post> selectMyPOSTcpost(PjMember pmember) {
+		return spostDao.selectMyPOSTcpost(pmember);
+	}
+
+
 
 
 

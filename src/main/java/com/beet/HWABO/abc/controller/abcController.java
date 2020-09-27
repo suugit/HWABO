@@ -658,6 +658,23 @@ public class abcController {
 		}
 		return "abc/myhwabo";
 	}
+	
+	// 나의 화보. 나와 관련된 게시글 목록 조회용
+	@RequestMapping("myhwaboS.do")
+	public String myHWABOspost(Model m, PjMember pmember) {
+
+		// 매개변수랑, where 절에 session에서 받아온 ucode랑 pnum 추가 해야한다.
+		// Pjmember 에 ucode랑 pnum 필드 있어서 그걸로 이용해서 2개 값 담아서 이동 !
+
+		ArrayList<Post> list = spostService.selectMyPOSTspost(pmember);
+		if (list != null) {
+			m.addAttribute("list", list);
+		} else {
+			m.addAttribute("message", "나의 화보 페이지 조회에 실패하였습니다.");
+		}
+		return "abc/myhwabo";
+	}
+
 
 	// 팀원의 화보
 	@RequestMapping("yourhwabo.do")

@@ -108,6 +108,21 @@ public class SpostDao {
 		return session.update("bpostMapper.bkindupdate", bk);
 	}
 
+	public ArrayList<Post> selectMyPOSTspost(PjMember pmember) {
+		List<Post> list = session.selectList("postMapper.selectPostspost", pmember);
+		return (ArrayList<Post>) list;
+	}
+
+	public ArrayList<Post> selectMyPOSTbpost(PjMember pmember) {
+		List<Post> list = session.selectList("postMapper.selectPostbpost", pmember);
+		return (ArrayList<Post>) list;
+	}
+
+	public ArrayList<Post> selectMyPOSTcpost(PjMember pmember) {
+		List<Post> list = session.selectList("postMapper.selectPostcpost", pmember);
+		return (ArrayList<Post>) list;
+	}
+
 
 
 

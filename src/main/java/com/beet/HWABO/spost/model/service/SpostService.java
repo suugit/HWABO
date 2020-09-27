@@ -23,11 +23,15 @@ public interface SpostService {
 	
 	//Bpost
 	ArrayList<Bpost> selectMyBPOST(PjMember pmember);
+
 	Bpost selectOneBpost(String bno);
 	ArrayList<Bpost> chooseBpost(Bpostchk chk);
 	
 	//all Post
 	ArrayList<Post> selectMyPost(PjMember pmember);
+	ArrayList<Post> selectMyPOSTspost(PjMember pmember);
+	ArrayList<Post> selectMyPOSTbpost(PjMember pmember);
+	ArrayList<Post> selectMyPOSTcpost(PjMember pmember);
 	
 	//Love
 	int insertSpostLove(Love love);

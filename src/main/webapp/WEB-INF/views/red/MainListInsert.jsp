@@ -464,7 +464,7 @@ jQuery('.suugitMain').click(function () {
 <!-- @@@@끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 		<tr>
 			<td colspan="3"><input type="text" name="stitle"
-				class="form-control" placeholder="일정 제목을 입력하세요" required="required" style="background-color:#FAFAFA;"></td>
+				class="form-control" maxlength="20" placeholder="일정 제목을 입력하세요" required="required" style="background-color:#FAFAFA;"></td>
 		</tr>
 		<tr>
 			<td colspan="3">&nbsp;</td>
@@ -569,7 +569,7 @@ jQuery('.suugitMain').click(function () {
 					class="far fa-keyboard"></i>&nbsp;메 모</span> <span style="float: left;">&nbsp;&nbsp;&nbsp;(
 					남은글자수 : <input size="2px;" type="text" readonly value="200"
 					name="counter" id="counter" style="border: none; height: 13px;">)
-			</span> <textarea name="scontent" id="contentText" cols="30" rows="10"
+			</span> <textarea name="scontent" id="contentText" cols="30" rows="10" maxlength="200"
 					class="form-control" onkeypress="onTestChange();"
 					style="width: 100%; height: 100px; overflow: auto; resize: none;" style="background-color:#FAFAFA;"></textarea>
 			</td>

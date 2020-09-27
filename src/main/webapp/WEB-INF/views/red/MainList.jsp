@@ -425,7 +425,7 @@ $(function(){
 					<th>제 목</th>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="text" id="stitle" name="stitle" class="form-control" required="required" value="${post.stitle }">
+					<td colspan="2"><input type="text" maxlength="20" id="stitle" name="stitle" class="form-control" required="required" value="${post.stitle }">
 			</td>
 			</tr>
 				<tr>
@@ -498,7 +498,7 @@ $(function(){
 				</tr>
 				<tr>
 				<td colspan="2">
-<textarea name="scontent" id="scontent_${status.index }" cols="30" rows="10"	class="form-control" maxlength=""	 style="width: 100%; height: 200px; overflow: auto; resize: none;">${post.scontent }</textarea> </td>
+<textarea name="scontent" id="scontent_${status.index }" cols="30" rows="10" class="form-control" maxlength="200"	 style="width: 100%; height: 200px; overflow: auto; resize: none;">${post.scontent }</textarea> </td>
 									</tr>
 		
 			</table>
