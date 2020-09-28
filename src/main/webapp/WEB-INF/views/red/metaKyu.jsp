@@ -50,7 +50,7 @@ $(document).ready(function(){
 				if(val == json.list[i].no){
 					console.log("비교값"+val);
 				
-					console.log("됨");
+					
 					   $(".liketoggle"+a).find("i").toggleClass("fas far");
 					   $(".liketoggle"+a).find("span").text(function(i, v) {
 					     return v === '보관' ? '보관됨' : '보관'
@@ -80,10 +80,10 @@ $(document).ready(function(){
 
 function sendInsert(index){
 	
-	
+/* 	
 	console.log("sendCabinet : " + index);
 	console.log($("#no_"+ index).val());
-	
+	 */
 	
 	if ($(".liketoggle"+index).find("span").text() == '보관') {
 		$.ajax({	      
@@ -94,7 +94,7 @@ function sendInsert(index){
 
 		         if(result == "ok"){
 		           /*  $("#open_"+index).val('n'); */
-   					alert("보관 성공");
+   				
 		            console.log("보관함 보내기 성공 !");
 		         }else{
 		            alert("값이 보내졌지만 결과는 ok가 아님");
@@ -117,7 +117,7 @@ function sendInsert(index){
 		      success: function(result){
 		         if(result == "ok"){
 		        	 /*  $("#open_"+index).val('y'); */
-		          	alert("보관 취소 성공");
+		          
 		            console.log("보관함 삭제 성공 !");
 		         }else{
 		            alert("디비 내부에서 삭제 문제 생김");
@@ -152,7 +152,7 @@ $(document).ready(function(){
 function replyList(){
 	
 	
-	console.log("댓글 리스트 들어옴");
+	/* console.log("댓글 리스트 들어옴"); */
 	
 	$.ajax({
 		
@@ -161,7 +161,7 @@ function replyList(){
 		dataType: "json",
 		success: function(obj){
 			
-			console.log(obj);
+		/* 	console.log(obj); */
 			
 			var objStr = JSON.stringify(obj);
 			var jsonObj = JSON.parse(objStr);
@@ -172,20 +172,20 @@ function replyList(){
 			
 			
 			for(var a= 0; a < ${requestScope.list.size()}; a++){ //전체 게시글 리스트
-				console.log("1번 포문");
+				/* console.log("1번 포문"); */
 				var re = "";
 				
 				for(var i  in jsonObj.list){ //전체 댓글 리스트
 					
 					
-					console.log("2번 포문");
+					/* console.log("2번 포문");
 					console.log("jsonObj.list[i].no"+jsonObj.list[i].no);
-					console.log("$('#commentList_'+a).val()"+ document.getElementById('commentList_'+a).getAttribute('name'));
+					console.log("$('#commentList_'+a).val()"+ document.getElementById('commentList_'+a).getAttribute('name')); */
 				
 				if(jsonObj.list[i].no == document.getElementById('commentList_'+a).getAttribute('name')){ //게시글과 댓글의 게시글 번호 비교
-					console.log("if 문");
+					/* console.log("if 문");
 					console.log("${sessionScope.ucode}");
-					console.log( jsonObj.list[i].ucode);
+					console.log( jsonObj.list[i].ucode); */
 				
 					var replyno = jsonObj.list[i].replyno;
 					var no = jsonObj.list[i].no;
@@ -304,7 +304,7 @@ function commentRereply(replyno, no){
 function rereinsert(replyno, no){
 	
   var Content = $('[name=content_'+replyno+']').val();
-  console.log("답글 들어옴")
+  /* console.log("답글 들어옴") */
   $.ajax({
       url : 'insertRereply.do',
       type : 'post',
@@ -327,7 +327,7 @@ function rereinsert(replyno, no){
 //댓글 수정
 function commentUpdateProc(replyno){
   var updateContent = $('[name=content_'+replyno+']').val();
-  console.log("수정 들어옴")
+/*   console.log("수정 들어옴") */
   $.ajax({
       url : 'updatereply.do',
       type : 'post',
@@ -342,7 +342,7 @@ function commentUpdateProc(replyno){
  
 //댓글 삭제 
 function commentDelete(replyno){
-	console.log("삭제 replyno : " + replyno)
+	/* console.log("삭제 replyno : " + replyno) */
   $.ajax({
       url : 'deletereply.do',
       data : {'replyno' : replyno},
@@ -360,7 +360,7 @@ function commentDelete(replyno){
 
 
 function enterkey(index) {
-	console.log("enterkey function get in");
+	 console.log("enterkey function get in"); 
 	
 	   $.ajax({
 	        url : 'insertreply.do',
@@ -382,7 +382,7 @@ function enterkey(index) {
 
 
 function replytList(index){
-	console.log("reply 인써트 후 리스트 보여주기 function get in");
+/* 	console.log("reply 인써트 후 리스트 보여주기 function get in"); */
 	
 	
 	

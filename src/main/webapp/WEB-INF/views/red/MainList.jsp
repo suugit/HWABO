@@ -109,7 +109,7 @@ function addbcharge_0(){
       $('#user_0').val(code);
       $("input:checkbox[id='user_0']").prop("checked", true);
       $("input:checkbox[id='name_0']").prop("checked", true);
-      alert($("#user_0").val()+" 0번"+ $("#name_0").val()); 
+    /*   alert($("#user_0").val()+" 0번"+ $("#name_0").val());  */
 }
 function addbcharge_1(){
   var name = $(event.target).text();
@@ -119,7 +119,7 @@ function addbcharge_1(){
    $('#user_1').val(code);
    $("input:checkbox[id='user_1']").prop("checked", true);
    $("input:checkbox[id='name_1']").prop("checked", true);
-   alert($("#user_1").val()+" 1번"+ $("#name_1").val()); 
+   /* alert($("#user_1").val()+" 1번"+ $("#name_1").val());  */
 }
 function addbcharge_2(){
      var name = $(event.target).text();
@@ -129,7 +129,7 @@ function addbcharge_2(){
       $('#user_2').val(code);
       $("input:checkbox[id='user_2']").prop("checked", true);
       $("input:checkbox[id='name_2']").prop("checked", true);
-      alert($("#user_2").val()+" 2번" + $("#name_2").val()); 
+    /*   alert($("#user_2").val()+" 2번" + $("#name_2").val()); */ 
 }
 function addbcharge_3(){
      var name = $(event.target).text();
@@ -139,7 +139,7 @@ function addbcharge_3(){
       $('#user_3').val(code);
       $("input:checkbox[id='user_3']").prop("checked", true);
       $("input:checkbox[id='name_3']").prop("checked", true);
-      alert($("#user_3").val()+" 3번"); 
+    /*   alert($("#user_3").val()+" 3번");  */
 }
 function addbcharge_4(){
      var name = $(event.target).text();
@@ -149,7 +149,7 @@ function addbcharge_4(){
       $('#user4').val(code);
       $("input:checkbox[id='user4']").prop("checked", true);
       $("input:checkbox[id='name4']").prop("checked", true);
-      alert($("#user_4").val()+" 4번"); 
+     /*  alert($("#user_4").val()+" 4번");  */
 }
 function addbcharge_5(){
      var name = $(event.target).text();
@@ -159,7 +159,7 @@ function addbcharge_5(){
       $('#user_5').val(code);
       $("input:checkbox[id='user_5']").prop("checked", true);
       $("input:checkbox[id='name_5']").prop("checked", true);
-      alert($("#user_5").val()+" 5번"); 
+    /*   alert($("#user_5").val()+" 5번");  */
 }
 function addbcharge_6(){
      var name = $(event.target).text();
@@ -169,7 +169,7 @@ function addbcharge_6(){
       $('#name_6').val(name);
       $("input:checkbox[id='user_6']").prop("checked", true);
       $("input:checkbox[id='name_6']").prop("checked", true);
-      alert($("#user_6").val()+" 6번"); 
+    /*   alert($("#user_6").val()+" 6번");  */
 }
 function unSelected(){
   $(event.target).parent().remove();
@@ -284,7 +284,7 @@ function daycheckUp(id) {
 	}; 
 	//spost function 끗
 	
-		
+/* 		
 // bpost update !!!!!!!!!!!!!! 	
 	function bpostupdate(idd){
 		eventtarget.preventDefault();
@@ -314,7 +314,7 @@ function daycheckUp(id) {
 	        
 	     });
 		
-	};
+	}; */
 	
 	
 	//bpost 삭제 메소드
@@ -899,7 +899,7 @@ $(function(){
 			
 
 			<!-- bpost 수정폼 -->
- 			<form id="bpostform${status.index }" enctype="multipart/form-data" method="post" >
+ 			<form action="updatebpost.do" id="bpostform${status.index }" enctype="multipart/form-data" method="post" >
  			<div id="up${b.bno }" class="card shadow mb-4">
  			 
             
@@ -911,8 +911,8 @@ $(function(){
 			<div class="dropdown no-arrow">
 
 				
-				<button class="btn btn-custom btn-sm"  id="ubpost${status.index }" onclick="bpostupdate(this.id);">수정하기</button> 
-				<button class="btn btn-custom btn-sm"  id="dbpost" type="submit" onclick="bpostdelete(); return false;">삭제하기</button>
+				<button class="btn btn-custom btn-sm"  id="ubpost${status.index }" type="submit">수정하기</button> 
+				<button class="btn btn-custom btn-sm"  id="dbpost" onclick="bpostdelete(); return false;">삭제하기</button>
 				<button id="${b.bno }" class="btn btn-custom btn-sm"  onclick="moveselectfeed(this.id); return false;" >수정취소</button>					
 			</div>
 			</div>

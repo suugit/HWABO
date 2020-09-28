@@ -17,7 +17,7 @@ function addbcharge0(){
        $('#user0').val(code);
        $("input:checkbox[id='user0']").prop("checked", true);
        $("input:checkbox[id='name0']").prop("checked", true);
-       alert($("#user0").val()+" 0번"+ $("#name0").val()); 
+       /* alert($("#user0").val()+" 0번"+ $("#name0").val());  */
 }
 function addbcharge1(){
    var name = $(event.target).text();
@@ -27,7 +27,7 @@ function addbcharge1(){
     $('#user1').val(code);
     $("input:checkbox[id='user1']").prop("checked", true);
     $("input:checkbox[id='name1']").prop("checked", true);
-    alert($("#user1").val()+" 1번"+ $("#name1").val()); 
+  /*   alert($("#user1").val()+" 1번"+ $("#name1").val());  */
 }
 function addbcharge2(){
       var name = $(event.target).text();
@@ -37,7 +37,7 @@ function addbcharge2(){
        $('#user2').val(code);
        $("input:checkbox[id='user2']").prop("checked", true);
        $("input:checkbox[id='name2']").prop("checked", true);
-       alert($("#user2").val()+" 2번" + $("#name2").val()); 
+     /*   alert($("#user2").val()+" 2번" + $("#name2").val());  */
 }
 function addbcharge3(){
       var name = $(event.target).text();
@@ -47,7 +47,7 @@ function addbcharge3(){
        $('#user3').val(code);
        $("input:checkbox[id='user3']").prop("checked", true);
        $("input:checkbox[id='name3']").prop("checked", true);
-       alert($("#user3").val()+" 3번"); 
+     /*   alert($("#user3").val()+" 3번");  */
 }
 function addbcharge4(){
       var name = $(event.target).text();
@@ -57,7 +57,7 @@ function addbcharge4(){
        $('#user4').val(code);
        $("input:checkbox[id='user4']").prop("checked", true);
        $("input:checkbox[id='name4']").prop("checked", true);
-       alert($("#user4").val()+" 4번"); 
+     /*   alert($("#user4").val()+" 4번");  */
 }
 function addbcharge5(){
       var name = $(event.target).text();
@@ -67,7 +67,7 @@ function addbcharge5(){
        $('#user5').val(code);
        $("input:checkbox[id='user5']").prop("checked", true);
        $("input:checkbox[id='name5']").prop("checked", true);
-       alert($("#user5").val()+" 5번"); 
+    /*    alert($("#user5").val()+" 5번");  */
 }
 function addbcharge6(){
       var name = $(event.target).text();
@@ -77,7 +77,7 @@ function addbcharge6(){
        $('#name6').val(name);
        $("input:checkbox[id='user6']").prop("checked", true);
        $("input:checkbox[id='name6']").prop("checked", true);
-       alert($("#user6").val()+" 6번"); 
+      /*  alert($("#user6").val()+" 6번");  */
 }
 function unSelected(){
    $(event.target).parent().remove();
