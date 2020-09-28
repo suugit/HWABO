@@ -71,9 +71,12 @@
                     <a href="index.html" class="btn btn-naver btn-user btn-block">
                       <span class="font-weight-bolder" style="font-weight-bolder;font-size:1em">N&nbsp;</span>Naver로 로그인
                     </a> -->
-                    <div id="naver_id_login" style="text-align:center"><a href="${naverUrl}">
-					<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
-					<div id="google_id_login"><a href="${googleUrl}">버튼버튼</a></div>
+					 <a href="${googleUrl}" class="btn btn-google btn-user btn-block">
+                      <i class="fab fa-google fa-fw"></i> Google로 계속하기
+                    </a>
+                    <a href="${naverUrl}" class="btn btn-naver btn-user btn-block">
+                      <span class="font-weight-bolder" style="font-weight-bolder;font-size:1em">N&nbsp;</span>Naver로 계속하기
+                    </a>
 					<br>
                   </form>
                   <hr>
