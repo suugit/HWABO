@@ -44,7 +44,7 @@
 
 <!-- 진행률끝 -->
 <link href="/hwabo/resources/maincss/css/sb-admin-2.css" rel="stylesheet">
-  <link href="/hwabo/resources/maincss/css/progressbar.css" rel="stylesheet">
+<link href="/hwabo/resources/maincss/css/progressbar2.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -97,7 +97,10 @@
 </div>
 </div>
 <!-- 진행률끝 -->
-<% for(String pnames : (Set<String>)request.getAttribute("MemberNames")){ %>
+<% 
+String color[] = new String[]{"#F6CECE","#F5F6CE","#CEF6CE","#F5A9F2","#D8CEF6"};
+for(String pnames : (Set<String>)request.getAttribute("MemberNames")){ 
+%>
 <!-- 개인진행률시작 -->
           <div class="card mb-4">
                 <div class="card-header py-3">
@@ -105,6 +108,7 @@
                 </div>
                 <div class="card-body">
                   <% 
+                  int i = 0;
                   int goal = 0;
                   int done = 0;
                   for(Progress info : (ArrayList<Progress>)request.getAttribute(pnames)){
@@ -115,16 +119,17 @@
                   %>
                   <div class="mb-1 small">개인 전체 진행률 <%= total %>%</div>
                   <div class="progress mb-4">
-                    <div class="progress-bar1 progress-bar" role="progressbar" style="width: <%= total %>%;backgound-color:#F8E0E0;" aria-valuenow="<%= total %>" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar progress-bar1" role="progressbar" style="background-color:#4e73df;width: <%= total %>%;backgound-color:#F8E0E0;" aria-valuenow="<%= total %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <% //int count = 0; %>
-                  <c:forEach var="userInfo" items="<%= (ArrayList<Progress>)request.getAttribute(pnames) %>" varStatus="status2">
+                  <c:forEach var="userInfo" items="<%= (ArrayList<Progress>)request.getAttribute(pnames) %>" varStatus="status">
                   <fmt:parseNumber var= "percent" integerOnly= "true" value="${userInfo.done * 100 / userInfo.goal}" />
                   <div class="mb-1 small">
                   ${ userInfo.title } 
                   </div>
                   <div class="progress progress-sm mb-2">
-                    <div class="progress-bar progress-bar2" role="progressbar" style="width: ${ userInfo.done * 100 / userInfo.goal }%" aria-valuenow="${ userInfo.done * 100 / userInfo.goal }" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar progress-bar2" role="progressbar" style="background-color:<%= color[i++] %>;width: ${ userInfo.done * 100 / userInfo.goal }%" aria-valuenow="${ userInfo.done * 100 / userInfo.goal }" aria-valuemin="0" aria-valuemax="100"></div>
+                  <% if(i == 4){i=0;} %>
                   </div>
                   </c:forEach>
                 </div>
@@ -132,34 +137,42 @@
 <!-- 개인진행률끝 -->
 <% } %>
 <!-- 샘플 폼시작 -->
- <div class="card mb-4">
+ <div class="card mb-4" id="sampleProgress">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">영원한 친구 비트 (샘플 폼 입니다)</h6>
                 </div>
                 <div class="card-body">
                   <div class="mb-1 small">개인 전체 진행률 80%</div>
                   <div class="progress mb-4">
-                    <div class="progress-bar1 progress-bar" role="progressbar" style="width: 80%;backgound-color:#F8E0E0;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar1 progress-bar" role="progressbar" style="background-color:#4e73df;width: 80%;backgound-color:#F8E0E0;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <div class="mb-1 small">목표1 진행률 75%</div>
                   <div class="progress progress-sm mb-2">
-                    <div class="progress-bar progress-bar2" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar progress-bar2" role="progressbar" style="background-color:skyblue;width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <div class="mb-1 small">목표2 진행률 45%</div>
                   <div class="progress progress-sm mb-2">
-                    <div class="progress-bar progress-bar3" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar progress-bar3" role="progressbar" style="background-color:pink;width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <div class="mb-1 small">목표3 진행률 65%</div>
                   <div class="progress progress-sm mb-2">
-                    <div class="progress-bar progress-bar4" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar progress-bar4" role="progressbar" style="background-color:black;width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <div class="mb-1 small">목표4 진행률 100%</div>
                   <div class="progress progress-sm mb-2">
-                    <div class="progress-bar progress-bar5" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar progress-bar5" role="progressbar" style="background-color:green;width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <div class="mb-1 small">목표5 진행률 50%</div>
                   <div class="progress progress-sm mb-2">
-                    <div class="progress-bar progress-bar6" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar progress-bar6" role="progressbar" style="background-color:red;width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="mb-1 small">목표5 진행률 50%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar progress-bar6" role="progressbar" style="background-color: #F6CECE;width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="mb-1 small">목표5 진행률 50%</div>
+                  <div class="progress progress-sm mb-2">
+                    <div class="progress-bar progress-bar6" role="progressbar" style="background-color:#F5F6CE;width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
@@ -208,6 +221,13 @@
 
   <!-- Custom scripts for all pages-->
   <script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
+
+<script type="text/javascript">
+//샘플폼 가리기
+$(function(){
+//$("#sampleProgress").hide();
+});
+</script>
 
 </body>
 
