@@ -69,7 +69,6 @@
 	 from realpost 
 	where ( ucode = #{ucode}  or  bcharge like '%'||#{ucode}||'%' )
 	and	( pnum = #{pnum} )
-	and   ( firstword = 's' )
 	order by enrolldate desc
 </select>
 
@@ -80,7 +79,7 @@
 	 from realpost 
 	where ( ucode = #{ucode}  or  bcharge like '%'||#{ucode}||'%' )
 	and	( pnum = #{pnum} )
-	and   ( firstword = 'b' )
+	and   ( firstword = 's' )
 	order by enrolldate desc
 </select>
 
@@ -92,7 +91,7 @@
 	 from realpost 
 	where ( ucode = #{ucode}  or  bcharge like '%'||#{ucode}||'%' )
 	and	( pnum = #{pnum} )
-	and   ( firstword = 'c' )
+	and   ( firstword = 'b' )
 	order by enrolldate desc
 </select>
 
@@ -104,6 +103,7 @@
 	 from realpost 
 	where ( ucode = #{ucode}  or  bcharge like '%'||#{ucode}||'%' )
 	and	( pnum = #{pnum} )
+	and   ( firstword = 'c' )
 	order by enrolldate desc
 </select>
 

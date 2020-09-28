@@ -34,7 +34,7 @@
 			</a> </li>
 
 			<!-- Divider -->
-			<hr class="sidebar-divider">
+			<hr class="sidebar-divider" >
 
 			<li class="nav-item"><a class="nav-link collapsed" href="moveMyBpost.do"
 				data-target="#collapsePages" aria-expanded="true"

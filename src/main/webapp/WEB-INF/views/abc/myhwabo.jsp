@@ -99,10 +99,10 @@
 							
 							<span style="color: #42BBBA; margin-top: 10px;">
 							
-								<label><button class="btn btn-success" onclick="javascript:location.href='myhwabo.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">&nbsp;<strong>전 체</strong>&nbsp;</button></label>  &nbsp;
-								<label><button class="btn btn-success" onclick="javascript:location.href='myhwaboC.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">&nbsp;<strong> 글 </strong>&nbsp;</button></label>	&nbsp;				
-								<label><button class="btn btn-success" onclick="javascript:location.href='myhwaboB.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">&nbsp;<strong>업 무</strong>&nbsp;</button></label>		&nbsp;						
-								<label><button class="btn btn-success" onclick="javascript:location.href='myhwaboS.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}'">&nbsp;<strong>일 정</strong>&nbsp;</button></label>
+								<label><button class="btn btn-success" onclick="javascript:location.href='myhwabo.do?ucode=${ucode}&pnum=${pnum}'">&nbsp;<strong>전 체</strong>&nbsp;</button></label>  &nbsp;
+								<label><button class="btn btn-success" onclick="onlycpost(); return false;">&nbsp;<strong> 글 </strong>&nbsp;</button></label>	&nbsp;				
+								<label><button class="btn btn-success" onclick="onlybpost(); return false;">&nbsp;<strong>업 무</strong>&nbsp;</button></label>		&nbsp;						
+								<label><button class="btn btn-success" onclick="onlyspost(); return false;">&nbsp;<strong>일 정</strong>&nbsp;</button></label>
 								
 							
 							</span>	
@@ -175,7 +175,34 @@
 
 	<!-- Page level custom scripts -->
 	<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
+<script src="resources/js/jquery-3.5.1.min.js"></script>	
+<script type="text/javascript">
 
+
+	function onlycpost(){
+		$("[id^=ups]").css("display", "none" );
+		$("[id^=ses]").css("display", "none" );
+		$("[id^=upb]").css("display", "none" );
+		$("[id^=seb]").css("display", "none" );
+		$("[id^=sec]").css("display", "block" );
+	};
+	function onlybpost(){
+		$("[id^=ups]").css("display", "none" );
+		$("[id^=ses]").css("display", "none" );
+		$("[id^=upc").css("display", "none" );
+		$("[id^=sec]").css("display", "none" );
+
+		$("[id^=seb]").css("display", "block" );
+	};
+	function onlyspost(){
+		$("[id^=upc]").css("display", "none" );
+		$("[id^=sec]").css("display", "none" );
+		$("[id^=upb]").css("display", "none" );
+		$("[id^=seb]").css("display", "none" );
+
+		$("[id^=ses]").css("display", "block" );
+	};
+</script>
 
 </body>
 

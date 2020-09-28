@@ -677,6 +677,19 @@ public class abcController {
 		}
 		return "abc/myhwabo";
 	}
+	// 나의 화보. 나와 관련된 S게시글 목록 조회용
+	@RequestMapping("myhwaboStest.do")
+	@ResponseBody
+	public ArrayList<Post> myHWABOsposttest(Model m, PjMember pmember) {
+		ArrayList<Post> list = spostService.selectMyPOSTspost(pmember);
+		if (list != null) {
+			m.addAttribute("list", list);
+		} else {
+			m.addAttribute("message", "나의 화보 페이지 조회에 실패하였습니다.");
+		}
+		logger.info("list !!!!!!!!!!!!!!@@@@@#$$@#@#$%#$%" + list.toString());
+		return list;
+	}
 	
 	// 나의 화보. 나와 관련된 C게시글 목록 조회용
 	@RequestMapping("myhwaboC.do")
