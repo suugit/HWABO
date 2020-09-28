@@ -1052,11 +1052,14 @@ $(function(){
                    			 </td>
                              
                            </tr>
+                           
                            <tr>
-                              <td>기존 담당자 : ${ b.bchargename }</td>
+                           
+                            <td style="text-align:left;"><br><i class="fas fa-user-friends"></i> 기존 담당자 : ${ b.bchargename }</td>
+                            
                                
                            </tr>
-                     
+                     		
                            <tr>
                            <td colspan="5">
                            	<div>   
@@ -1083,11 +1086,11 @@ $(function(){
 			      
 			     
 			                        
-			          <a class="navbar-brand" href="#"></a>
+			     <!--      <a class="navbar-brand" href="#"></a>
 	               <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
 			      </li>
-               	</ul>
+               	</ul> -->
 			    </nav>
 		 	  </div>
                      </td>
