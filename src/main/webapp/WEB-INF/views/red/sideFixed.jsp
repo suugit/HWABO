@@ -43,7 +43,7 @@
 <!-- 메인목록 시작 -->
 <li class="nav-item">
 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo" onclick="javascript: return false;"> 
-<i class="fas fa-chalkboard-teacher"></i> 
+<i class="fas fa-chalkboard"></i> 
 <span>메인</span>
 </a>
 <div id="collapsetwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">

@@ -207,7 +207,11 @@ public class RedController {
 			}
 	}
 	@RequestMapping(value = "ftables.do", method = RequestMethod.GET)
-	public ModelAndView tableChk(@RequestParam("project_num") String pnum, ModelAndView mv) {
+	public ModelAndView tableChk(@RequestParam("project_num") String pnum,@RequestParam("setSession") String ss, ModelAndView mv) {
+		if(ss != null) {
+			mv.addObject("toCalendar",ss);
+		}
+		
 		mv.addObject("pnum",pnum);
 		mv.setViewName("red/listSessionCheck");
 		return mv;
@@ -396,6 +400,9 @@ public class RedController {
 			//mv.addObject("startday", startday);
 			//mv.addObject("endday", endday);
 			////abc end///////
+			if(pj.getPjadmin() != null) {
+				mv.setViewName("redirect:/fborder.do?project_num=" + pj.getPnum());
+			}
 			
 			return mv;
 	}

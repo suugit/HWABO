@@ -206,7 +206,7 @@ if((++w + 5) % 3 == 0){
                   </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body" onclick="javascript:location.href='ftables.do?project_num=<%= p.getProject_num() %>'">
+                <div class="card-body" onclick="javascript:location.href='ftables.do?project_num=<%= p.getProject_num() %>&setSession=beet'">
                   <!-- 그래프시작 -->
                   <div class="container">
   <div class="donut-chart-block block"> 
