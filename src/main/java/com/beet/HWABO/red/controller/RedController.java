@@ -37,6 +37,8 @@ import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.cpost.model.service.CpostService;
 import com.beet.HWABO.cpost.model.vo.Cpost;
 import com.beet.HWABO.filebox.model.vo.Filebox;
+import com.beet.HWABO.member.model.service.MemberService;
+import com.beet.HWABO.member.model.vo.Member;
 import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.red.model.service.RedService;
 import com.beet.HWABO.red.model.vo.Calendar;
@@ -64,6 +66,8 @@ public class RedController {
 	private CpostService cservice;
 	@Autowired
 	private SpostService spostService;
+	@Autowired
+	private MemberService mservice;
 	
 	@RequestMapping(value = "createProject.do", method = RequestMethod.POST)
 	public ModelAndView createPro(@Valid UserProject project, Errors errors, ModelAndView mv) {
@@ -552,6 +556,10 @@ public class RedController {
 			job.put("content", URLEncoder.encode(c.getContent(), "utf-8"));
 			job.put("time", c.getChat_time().toString());
 			job.put("pnum", URLEncoder.encode(c.getProject_num(), "utf-8"));
+			Member m = mservice.selectMember(c.getUcode());
+			if(m.getUimg() != null) {
+				job.put("uimg", URLEncoder.encode(m.getUimg(), "utf-8"));
+			}
 			jarr.add(job);
 		}
 
@@ -572,7 +580,6 @@ public class RedController {
 				ChatSpeed chatspeed = redService.selectChatSpeed(cs);
 				int cspeed = chatspeed.getSpeed();
 				cs.setSpeed(cspeed);
-				System.out.println("@@@@@@" + chat.getContent().substring(8,chat.getContent().length()));
 				try {
 					
 					int speed = Integer.parseInt(chat.getContent().substring(8,chat.getContent().length()));

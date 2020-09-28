@@ -38,8 +38,8 @@
   color: white;
 } 
 */
-</style>
 <!-- 삭제버튼 css 끝 -->
+</style>
 
 <script>
 var speed = ${ sessionScope.cspeed };
@@ -131,7 +131,11 @@ function selectChat(){
 				var chat_content = decodeURIComponent(json.chatList[i].content).replace(/\+/gi, " ");
 				var chat_pnum = decodeURIComponent(json.chatList[i].pnum).replace(/\+/gi, " ");
 				var chat_time = decodeURIComponent(json.chatList[i].time).replace(/\+/gi, " ");
-				
+				if(json.chatList[i].uimg != null){
+					var chat_uimg = decodeURIComponent(json.chatList[i].uimg).replace(/\+/gi, " ");
+				}else{
+					var chat_uimg = "https://ptetutorials.com/images/user-profile.png";
+				}
 				if(chat_ucode == "${ sessionScope.ucode }"){
 					values += 
 					"<div align:right; class=\"outgoing_msg \" id=\"outgoing_msg\" style=\"position:relative;z-index:2; \"><div align:right; class=\"sent_msg\"><p style='max-width:200px; background-color:#93DAEE; word-break:break-all;'>" +
@@ -147,7 +151,7 @@ function selectChat(){
 				}else{
 				values += 
 					"<div class=\"incoming_msg\"  style=\"position:relative;z-index:2;\">" +
-	              	"<div class=\"incoming_msg_img\"> <img src=\"https://ptetutorials.com/images/user-profile.png\" alt=\"sunil\"></div>" +
+	              	"<div class=\"incoming_msg_img\"> <img src=\"" + chat_uimg + "\" alt=\"sunil\" id=\"chatProfile\" style=\"width:100%;height:15px;border-radius:50%;\"></div>" +
 	              	"<span style=\"font-size:9pt;\">" +
 	              	chat_uname +
 	              	"</span><div class=\"received_msg\">" +
