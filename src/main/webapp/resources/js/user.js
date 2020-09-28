@@ -116,7 +116,6 @@ function invtlist() {
 				contentType : "application/json; charset=utf-8;",
 				dataType : "Json",
 				success : function(data) {
-					alert('a');
 
 					var values = $("#nmlistBox").html();
 					var values = $("#nmlistBox").html("");

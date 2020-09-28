@@ -218,7 +218,6 @@
 				$(event.target).val("초대완료");
 				
 				var name = $(event.target).parent().parent().children().eq(1).text();
-				alert('a')
 				//$('#selected').append('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>')
 				
 				var fileData1 = new Array(1);
@@ -292,15 +291,15 @@
 
 											var values = $("#nmlist").html("");
 											for ( var i in data) {
-												values += '<tr style="width:80px height: 80px">'
-														+ '<td colspan="2" class="thumbnail circle"'
-														+ 'style="background-image: url(\''
+												values += '<tr style="width:60px;height:60px">'
+														+ '<td  colspan="2" class="thumbnail circle"'
+														+ 'style="width:40px;height:40px;background-image: url(\''
 														+ data[i].uimg
 														+ '\')"></td><td style="display:none">'
 														+ data[i].uemail
 														+ '</td><td class="my-6">'
 														+ data[i].uname
-														+ '</td>'
+				`										+ '</td>'
 														+ '<td>'
 														+ data[i].ugroup
 														+ '</td>'
