@@ -51,15 +51,14 @@
 <c:import url="/WEB-INF/views/red/metaSuugit.jsp"></c:import>
 <!-- 스크립트 모으기 끝 ##################################### -->
 
-	<!-- 1.탑바 임포트 -->
-	<c:import url="/WEB-INF/views/abc/topbar.jsp"></c:import>
-
-	<!-- 2.바로아래div추가 및 임포트 추가  -->
-	<div
-		style="width: 100%; display: flex; justify-content: center; align-item: center;">
-		<!-- Sidebar2right -->
-		<c:import url="/WEB-INF/views/abc/entersideFixed.jsp"></c:import>
-		<!-- End of Sidebar2right -->
+<!-- 1.탑바 임포트 -->
+	<c:import url="/WEB-INF/views/suugit/topbar.jsp"></c:import>
+	
+<!-- 2.바로아래div추가 및 임포트 추가  -->
+	<div style="width:100%;display:flex;justify-content:center;align-item:center;">
+<!-- Sidebar2right -->
+     <c:import url="/WEB-INF/views/red/sideFixed.jsp"></c:import>
+<!-- End of Sidebar2right -->
 
 
 

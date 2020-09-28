@@ -601,15 +601,14 @@ function bkindupdate(divbno) {
 
 <body id="page-top">
 
-	<!-- 11111111111111111 -->
+<!-- 1.탑바 임포트 -->
 	<c:import url="/WEB-INF/views/suugit/topbar.jsp"></c:import>
-
-	<div style="width: 100%; display: flex; justify-content: center; align-item: center;">
-		<!-- Sidebar2right -->
-		<c:import url="/WEB-INF/views/abc/entersideFixed.jsp"></c:import>
-		<!-- End of Sidebar2right -->
-		<!-- 111111111111111111 -->
-
+	
+<!-- 2.바로아래div추가 및 임포트 추가  -->
+	<div style="width:100%;display:flex;justify-content:center;align-item:center;">
+<!-- Sidebar2right -->
+     <c:import url="/WEB-INF/views/red/sideFixed.jsp"></c:import>
+<!-- End of Sidebar2right -->
 
 		<!-- Page Wrapper -->
 		<div id="wrapper" style="width: 1300px;">
