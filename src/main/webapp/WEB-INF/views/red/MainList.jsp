@@ -101,7 +101,7 @@ border: 1px solid #eee;
 <script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 
-function addbcharge0(){
+function addbcharge_0(){
     var name = $(event.target).text();
     var code = $(event.target).val();
       $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
@@ -111,7 +111,7 @@ function addbcharge0(){
       $("input:checkbox[id='name_0']").prop("checked", true);
       alert($("#user_0").val()+" 0번"+ $("#name_0").val()); 
 }
-function addbcharge1(){
+function addbcharge_1(){
   var name = $(event.target).text();
   var code = $(event.target).val();
    $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
@@ -121,7 +121,7 @@ function addbcharge1(){
    $("input:checkbox[id='name_1']").prop("checked", true);
    alert($("#user_1").val()+" 1번"+ $("#name_1").val()); 
 }
-function addbcharge2(){
+function addbcharge_2(){
      var name = $(event.target).text();
      var code = $(event.target).val();
       $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
@@ -131,7 +131,7 @@ function addbcharge2(){
       $("input:checkbox[id='name_2']").prop("checked", true);
       alert($("#user_2").val()+" 2번" + $("#name_2").val()); 
 }
-function addbcharge3(){
+function addbcharge_3(){
      var name = $(event.target).text();
      var code = $(event.target).val();
       $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
@@ -141,7 +141,7 @@ function addbcharge3(){
       $("input:checkbox[id='name_3']").prop("checked", true);
       alert($("#user_3").val()+" 3번"); 
 }
-function addbcharge4(){
+function addbcharge_4(){
      var name = $(event.target).text();
      var code = $(event.target).val();
       $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
@@ -151,7 +151,7 @@ function addbcharge4(){
       $("input:checkbox[id='name4']").prop("checked", true);
       alert($("#user_4").val()+" 4번"); 
 }
-function addbcharge5(){
+function addbcharge_5(){
      var name = $(event.target).text();
      var code = $(event.target).val();
       $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
@@ -161,7 +161,7 @@ function addbcharge5(){
       $("input:checkbox[id='name_5']").prop("checked", true);
       alert($("#user_5").val()+" 5번"); 
 }
-function addbcharge6(){
+function addbcharge_6(){
      var name = $(event.target).text();
      var code = $(event.target).val();
       $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
@@ -1091,7 +1091,7 @@ $(function(){
 			                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 			                  	
 			                     <c:forEach var="pm" items="${sessionScope.pmlist}" varStatus="status">
-			                     <button class="dropdown-item" type="button" onclick="addbcharge${status.index}();" value="${pm.ucode }">${pm.uname }</button>
+			                     <button class="dropdown-item" type="button" onclick="addbcharge_${status.index}();" value="${pm.ucode }">${pm.uname }</button>
 			                     <input type="checkbox" id="user_${status.index }" name="bcharge" style="display:none">
 			                     <input type="checkbox" id="name_${status.index }" name="bchargename" style="display:none">
 			                     </c:forEach>
