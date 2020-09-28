@@ -132,11 +132,12 @@ function selectChat(){
 				
 				if(chat_ucode == "${ sessionScope.ucode }"){
 					values += 
-					"<div class=\"outgoing_msg\" id=\"outgoing_msg\" style=\"position:relative;z-index:2;\"><div class=\"sent_msg\"><p>" +
+					"<div align:right; class=\"outgoing_msg \" id=\"outgoing_msg\" style=\"position:relative;z-index:2; \"><div align:right; class=\"sent_msg\"><p style='max-width:200px; background-color:#93DAEE; word-break:break-all;'>" +
 					chat_content +
 		            "</p><span class=\"time_date\">" +
 		            chat_time.substring(0, 16) +
 		            //삭제버튼 시작
+		            
 	                "&nbsp;&nbsp;<button class=\"button button3\" " +
 					"onclick=\"javascript:delChat(\'"+chat_time+"\')\" >X</button>" +
 	                //삭제버튼끝
@@ -203,9 +204,9 @@ setInterval(showToke,1000);
 <body>
 
 <div class="messaging">
-      <div class="inbox_msg">
+      <div class="inbox_msg rounded">
         <div class="mesgs">
-          <div class="msg_history" id="chat">
+          <div class="msg_history" id="chat" style="word-break:break-all;">
             
             <!-- <div class="incoming_msg">
               <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>
@@ -234,8 +235,8 @@ setInterval(showToke,1000);
             <input id="enter_project_name" type="hidden" value="${ sessionScope.pnames }" />
             <input id="enter_uname" type="hidden" value="${ sessionScope.uname }" />
             
-<input id="enter_content" type="text" class="write_msg" placeholder="Type a message" onKeypress="javascript:if(event.keyCode==13) {enterChat();}"/>
-              <button id="enter_chat" class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+<input style="min-height: 45px;" id="enter_content" type="text" class="write_msg d-flex" placeholder="Type a message" onKeypress="javascript:if(event.keyCode==13) {enterChat();}"/>
+              <button id="enter_chat" class="msg_send_btn" type="button"  style="margin:5px; background-color:#19BFAF; " ><i class="fa fa-paper-plane-o"aria-hidden="true"></i></button>
 <!-- 채팅 입력창 끝 -->            
             </div>
           </div>
