@@ -29,6 +29,8 @@ import com.beet.HWABO.bpost.model.vo.Bpost;
 import com.beet.HWABO.cabinet.model.service.CabinetService;
 import com.beet.HWABO.filebox.model.vo.Filebox;
 
+import org.json.simple.JSONObject;
+
 @Controller
 public class BpostController {
 	private static final Logger logger = LoggerFactory.getLogger(BpostController.class);
@@ -177,7 +179,8 @@ public class BpostController {
 		return "kyukyu/bpostUpdatepage";
 	}
 
-	@RequestMapping(value = "updatebpost.do")
+	@RequestMapping(value = "updatebpost.do", method= RequestMethod.POST)
+	@ResponseBody
 	public String updatebpost(Bpost bpost, HttpServletRequest request,
 			@RequestParam(name = "upfile", required = false) MultipartFile file,
 			@RequestParam(name = "deleteFlag", required = false) String deleteFlag) {
@@ -276,15 +279,38 @@ public class BpostController {
 			}
 
 		}
-		if (bpostService.updateBpost(bpost) > 0) {
-			logger.info("3");
-		    String referer = request.getHeader("Referer");
-		    return "redirect:"+ referer;
-			
-		} else {
-			return "common/error";
-		}
-
+		JSONObject jj = new JSONObject();
+		
+		jj.put("bno", bpost.getBno());
+		
+		
+		
+		 int result = bpostService.updateBpost(bpost);
+		logger.info(bpost.toString());
+		return jj.toJSONString();
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

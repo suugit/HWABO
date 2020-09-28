@@ -183,6 +183,11 @@ function changein(index){
                        iFrameCnt++;
                        
                        fnSleep(1000); //각 파일별 시간 텀을 준다
+                       
+                       //체크박스 체크 해제
+	                    $("input[type='checkbox']").prop("checked",false);
+	           		 	$('img[class*="yes_"]').attr("name", "yet"); 
+	           		
                 	
                    });
                    

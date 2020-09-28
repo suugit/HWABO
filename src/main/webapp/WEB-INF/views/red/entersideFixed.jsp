@@ -106,11 +106,16 @@ $(function(){
 	
 <!-- 왼쪽사이드바 시작 -->
       <!-- Divider -->
+      <br>
      <hr class="sidebar-divider my-0">
      
      <div class="sidebar-heading">
-        즐겨찾기
-      </div>
+     <br>
+     <span style = "font-size:1.5em;">
+   즐겨 찾기
+</span>
+     
+      </div><br>
 	<hr class="sidebar-divider my-0">
       <!-- Nav Item - Pages Collapse Menu -->
      <li class="nav-item" id="stars">
