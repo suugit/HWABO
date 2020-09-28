@@ -19,8 +19,10 @@
 
  	if("${ who }" == "Guest"){
 		location.href='mvlogin.do';
-	}else{
+	}else if("${toCalendar}" == "beet"){
 		location.href='ftables2.do?ucode=${ who }&pnum=${ pnum }&pjadmin=${toCalendar}'; 
+	}else {
+		location.href='ftables2.do?ucode=${ who }&pnum=${ pnum }'; 
 	}
 
 </script>

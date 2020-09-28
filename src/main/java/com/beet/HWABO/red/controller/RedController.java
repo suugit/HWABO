@@ -206,11 +206,18 @@ public class RedController {
 				return "welcome";
 			}
 	}
-	@RequestMapping(value = "ftables.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ftables0.do", method = RequestMethod.GET)
 	public ModelAndView tableChk(@RequestParam("project_num") String pnum,@RequestParam("setSession") String ss, ModelAndView mv) {
 		if(ss != null) {
 			mv.addObject("toCalendar",ss);
 		}
+		
+		mv.addObject("pnum",pnum);
+		mv.setViewName("red/listSessionCheck");
+		return mv;
+	}
+	@RequestMapping(value = "ftables.do", method = RequestMethod.GET)
+	public ModelAndView tableChk(@RequestParam("project_num") String pnum, ModelAndView mv) {
 		
 		mv.addObject("pnum",pnum);
 		mv.setViewName("red/listSessionCheck");
