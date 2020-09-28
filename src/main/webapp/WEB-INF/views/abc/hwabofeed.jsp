@@ -465,11 +465,63 @@ $(function(){
 						<input type="text" id="sample_address3${status.index }"  class="form-control" id ="splace" name="splace"  value="${post.splace }">
 					</c:if>
 						<input type="button" onclick="sample5_execDaumPostcode2${status.index }(); return false;" value="장소검색"  class="form-control"><br>
+						<div id="map8_${status.index }" class="map"
+					style="width: 100%; height: 150px; margin-top: 10px; display: none"></div>
+
 <script>
+var mapContainer8_+'${status.index}' = document.getElementById('map8_${status.index}'), // 지도를 표시할 div
+mapOption8_+'${status.index}' = {
+	center : new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+	level : 4
+// 지도의 확대 레벨
+};
+
+//지도를 미리 생성
+var map8_+"${status.index}" = new daum.maps.Map(mapContainer8+"${status.index}", mapOption8+"${status.index}");
+//주소-좌표 변환 객체를 생성
+var geocoder8_+"${status.index}" = new daum.maps.services.Geocoder();
+//마커를 미리 생성
+var marker8_+"${status.index}" = new daum.maps.Marker({
+	position : new daum.maps.LatLng(37.537187, 127.005476),
+	map : map8_+"${status.index}"
+});
+
+function sample5_execDaumPostcode() {
+	new daum.Postcode({
+				oncomplete : function(data) {
+					var addr3_${status.index} = data.address; // 최종 주소 변수
+	                // 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById("sample_address3${status.index }").value = addr3_${status.index};
+					// 주소로 상세 정보를 검색
+					geocoder2.addressSearch(data.address,	function(results,status) {
+										// 정상적으로 검색이 완료됐으면
+										if (status === daum.maps.services.Status.OK) {
+
+											var result2 = results[0]; //첫번째 결과의 값을 활용
+
+											// 해당 주소에 대한 좌표를 받아서
+											var coords2 = new daum.maps.LatLng(
+													result2.y,
+													result2.x);
+											// 지도를 보여준다.
+											mapContainer2.style.display = "block";
+											map2.relayout();
+											// 지도 중심을 변경한다.
+											map2
+													.setCenter(coords2);
+											// 마커를 결과값으로 받은 위치로 옮긴다.
+											marker2
+													.setPosition(coords2)
+										}
+									});
+				}
+			}).open();
+}
+
 $(function(){
-	$("#sample5_address3${status.index }").on("click", function(){
+	$("#sample5_address${status.index }").on("click", function(){
 		if($(this).val().length == 0 ){
-			sample5_execDaumPostcode2+"${status.index }"();
+			sample5_execDaumPostcode+"${status.index }"();
 		}
 	});	
 });

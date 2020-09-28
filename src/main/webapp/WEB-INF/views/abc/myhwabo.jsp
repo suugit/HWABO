@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.ArrayList"%>
-<%@ page import="com.beet.HWABO.spost.model.vo.Post"%>
+	pageEncoding="UTF-8" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%
-	ArrayList<Post> list = (ArrayList<Post>) request.getAttribute("list");
-%>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -44,6 +42,9 @@
 </head>
 
 <body id="page-top">
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
 <!-- 스크립트 모으기 시작 ################################### -->
 <c:import url="/WEB-INF/views/red/metaKyu.jsp"></c:import>
 <c:import url="/WEB-INF/views/red/metaAbc.jsp"></c:import>
@@ -107,7 +108,7 @@
 							</span>	
 						</div>
 						
-							<c:import url="/WEB-INF/views/abc/hwabofeed.jsp"></c:import>
+							<c:import url="/WEB-INF/views/abc/hwabofeed2.jsp"></c:import>
 						</c:if>
 						
 						

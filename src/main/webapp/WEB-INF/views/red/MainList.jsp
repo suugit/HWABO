@@ -130,7 +130,7 @@ function daycheckUp(id) {
 	}
 	
 
-}
+};
 	
 	
 	//일정게시글 등록시 날짜 유효성 체크
@@ -149,21 +149,21 @@ function daycheckUp(id) {
 		} else {
 			return true;
 		}
-	}
+	};
 	
 	//수정폼 띄우기
 	function moveupdateform(click) {
 		
 		$("#up"+click).css("display", "block" );
 		$("#se"+click).css("display", "none" );
-	}
+	};
 	
 	//출력폼 띄우기
 	function moveselectfeed(click) {
 		
 		$("#up"+click).css("display", "none" );
 		$("#se"+click).css("display", "block" );
-	}
+	};
 	
 	//수정완료 버튼 누르면 실행되는 펑션
 	function spostupdate(i){
@@ -459,32 +459,70 @@ $(function(){
 				<tr>
 					<td colspan="2">
 					<c:if test="${ empty post.splace }">
-						<input type="text" id="sample_address3${status.index }" placeholder=" 장소를 입력해주세요" class="form-control" id ="splace" name="splace" >
+						<input type="text" id="sample_address_${status.index }" placeholder=" 장소를 입력해주세요" class="form-control" id ="splace" name="splace" >
 					</c:if>	
 					<c:if test="${ !empty post.splace }">
-						<input type="text" id="sample_address3${status.index }"  class="form-control" id ="splace" name="splace"  value="${post.splace }">
+						<input type="text" id="sample_address_${status.index }"  class="form-control" id ="splace" name="splace"  value="${post.splace }">
 					</c:if>
-						<input type="button" onclick="sample5_execDaumPostcode2${status.index }();" value="장소검색"  class="form-control"><br>
+						<input type="button" onclick="sample5_execDaumPostcode_${status.index}(); return false;" value="장소검색"  class="form-control"><br>
+						<div id="map8_${status.index }" class="map"
+					style="width: 100%; height: 150px; margin-top: 10px; display: none"></div>
+<script
+					src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+var mapContainer8_${status.index} = document.getElementById('map8_${status.index}'), // 지도를 표시할 div
+mapOption8_${status.index} = {
+	center : new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+	level : 4
+// 지도의 확대 레벨
+};
+
+//지도를 미리 생성
+var map8_${status.index} = new daum.maps.Map(mapContainer8_${status.index}, mapOption8_${status.index});
+//주소-좌표 변환 객체를 생성
+var geocoder8_${status.index} = new daum.maps.services.Geocoder();
+//마커를 미리 생성
+var marker8_${status.index} = new daum.maps.Marker({
+	position : new daum.maps.LatLng(37.537187, 127.005476),
+	map : map8_${status.index}
+});
+
+function sample5_execDaumPostcode_${status.index}() {
+	new daum.Postcode({
+				oncomplete : function(data) {
+					var addr3_${status.index} = data.address; // 최종 주소 변수
+	                // 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById("sample_address_${status.index }").value = addr3_${status.index};
+					// 주소로 상세 정보를 검색
+					geocoder8_${status.index}.addressSearch(data.address,	function(results,status) {
+										// 정상적으로 검색이 완료됐으면
+										if (status === daum.maps.services.Status.OK) {
+
+											var result8_${status.index} = results[0]; //첫번째 결과의 값을 활용
+
+											// 해당 주소에 대한 좌표를 받아서
+											var coords8_${status.index} = new daum.maps.LatLng(result8_${status.index}.y,	result8_${status.index}.x);
+											// 지도를 보여준다.
+											mapContainer8_${status.index}.style.display = "block";
+											map8_${status.index}.relayout();
+											// 지도 중심을 변경한다.
+											map8_${status.index}.setCenter(coords8_${status.index});
+											// 마커를 결과값으로 받은 위치로 옮긴다.
+											marker8_${status.index}.setPosition(coords8_${status.index})
+										}
+									});
+				}
+			}).open();
+}
+
 $(function(){
-	$("#sample5_address3"+${status.index }).on("click", function(){
+	$("#sample_address_${status.index }").on("click", function(){
 		if($(this).val().length == 0 ){
-			sample5_execDaumPostcode2+"${status.index }"();
+			sample5_execDaumPostcode_${status.index }();
 		}
 	});	
 });
-
-    function sample5_execDaumPostcode2${status.index }() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                var addr3_${status.index} = data.address; // 최종 주소 변수
-                // 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("sample_address3${status.index }").value = addr3_${status.index};
-            }
-        }).open();
-    };
-    
-</script>	
+</script>
 					</td>
 				</tr>		
 				<tr>
