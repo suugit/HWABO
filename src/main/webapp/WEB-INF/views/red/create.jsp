@@ -26,11 +26,13 @@ int r = ren.nextInt(99999999) + 1;
 <tr><td style="width:30%;"></td><td style="width:40%;height:45%;background-color:white;border:1px solid skyblue;">
 <div class="p-5" style="width:100%;">
                   <div class="text-center">
+                  <div class="alert-danger rounded" id="messageArea"></div><br>
+
                     <h1 class="h4 text-gray-900 mb-4">프로젝트를 생성해주세요</h1>
                   </div>
                   <form action="createProject.do" method="post" id="projectInsert" class="user">
                     <div class="form-group">
-                      <input type="text" name="name" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="프로젝트 이름을 입력해주세요" required>
+                      <input type="text" name="name" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="프로젝트 이름을 입력해주세요" maxlength="12" required>
                     </div>
                     <div class="form-group">
                       <input type="text" name="explain" class="form-control form-control-user" id="exampleInputPassword" placeholder="프로젝트 설명을 입력해주세요">

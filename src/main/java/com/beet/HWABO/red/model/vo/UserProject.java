@@ -2,6 +2,8 @@ package com.beet.HWABO.red.model.vo;
 
 import java.sql.Date;
 
+import javax.validation.constraints.Pattern;
+
 public class UserProject implements java.io.Serializable{
 
 	private final static long seralVersionUID = 82432423L;
@@ -9,6 +11,7 @@ public class UserProject implements java.io.Serializable{
 	private String ucode;
 	private String star;
 	private String project_num;
+	//@Pattern(regexp="{1,12}", message="프로젝트이름은 최대 12글자까지 가능합니다")
 	private String name; 
 	private String explain; 
 	private java.sql.Date startday; 

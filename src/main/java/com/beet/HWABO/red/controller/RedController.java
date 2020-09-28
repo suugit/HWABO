@@ -14,6 +14,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,9 +66,13 @@ public class RedController {
 	private SpostService spostService;
 	
 	@RequestMapping(value = "createProject.do", method = RequestMethod.POST)
-	public ModelAndView createPro(UserProject project, ModelAndView mv) {
+	public ModelAndView createPro(@Valid UserProject project, Errors errors, ModelAndView mv) {
 		logger.info("[RedController]createProject.do 실행됨...." + project);
-		
+		if (errors.hasErrors()) {
+			mv.addObject("message", errors.getFieldError().getDefaultMessage());
+			mv.setViewName("redirect:/createP.do?ucode=" + project.getUcode());
+			return mv;
+		}
 		if (redService.insertProject(project) > 0) {
 			logger.info("[RedController] 프로젝트 생성 성공 (1/2)");
 			if (redService.insertProject2(project) > 0) {

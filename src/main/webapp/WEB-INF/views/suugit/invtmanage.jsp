@@ -130,7 +130,7 @@
 	<div
 		style="width: 100%; display: flex; justify-content: center; align-item: center;">
 		<!-- Sidebar2right -->
-		<c:import url="/WEB-INF/views/suugit/leftsidebar.jsp"></c:import>
+		<c:import url="/WEB-INF/views/red/sideFixedCalendar.jsp"></c:import>
 		<!-- End of Sidebar2right -->
 		<!-- 111111111111111111 -->
 

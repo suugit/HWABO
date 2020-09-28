@@ -116,7 +116,6 @@ font-size: 28px;
     from {transform: rotate(0deg);}
     to {transform: rotate(111deg);}
 }
-
 </style>
 
 <!-- 차트기능끝 -->
@@ -187,7 +186,13 @@ if((++w + 5) % 3 == 0){
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary"><%= p.getName() %></h6>
+                <% 
+                int len = p.getName().length(); 
+                if(len > 9){
+                	len = 9;
+                }
+                %>
+                  <h6 class="m-0 font-weight-bold text-primary" id="projectTitle"><%= p.getName().substring(0,len) %></h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -208,14 +213,14 @@ if((++w + 5) % 3 == 0){
                 <div class="card-body" onclick="javascript:location.href='ftables0.do?project_num=<%= p.getProject_num() %>&setSession=beet'">
                   <!-- 그래프시작 -->
                   <div class="container">
-  <div class="donut-chart-block block"> 
-		<div class="donut-chart">
-			<div id="part1" class="portion-block"><div class="circle"></div></div>
-			<div id="part2" class="portion-block"><div class="circle"></div></div>
-			<div id="part3" class="portion-block"><div class="circle"></div></div>
-			<p class="center"></p>        
-		</div>
-   </div>
+                  <center>
+                  
+					<% if(p.getOpen() == null){ %> 
+						<img src="resources/projectImg/projectsample.jpg" class="boarder rounded " style="min-height:100px;max-width:120px;max-height:100px">
+					<% }else{ %>
+					<img src="<%= p.getOpen() %>" class="boarder rounded " style="min-height:100px;max-width:120px;max-height:100px">
+					<% } %>
+				</center>
 </div>
 <!-- 그래프끝 -->
                   <div class="mt-4 text-center small">
