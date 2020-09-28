@@ -3,7 +3,6 @@ package com.beet.HWABO.bpost.controller;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -21,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -146,8 +146,9 @@ public class BpostController {
 	}
 
 	
-	@RequestMapping(value = "deletebpost.do")
-	public String bpostDelete(Bpost bpost,  @RequestParam(value="bno", required = false) String no, Model model, HttpServletRequest request) {
+	@RequestMapping(value = "deletebpost.do", method = RequestMethod.POST )
+	@ResponseBody
+	public String bpostDelete(Bpost bpost,  @RequestParam(value="bno") String no, Model model, HttpServletRequest request) {
 		if (bpostService.deleteBpost(bpost) > 0) {
 			String brenamefilename = bpost.getBrenamefile();
 			logger.info("controller brenamefilename : " + brenamefilename);
@@ -159,13 +160,14 @@ public class BpostController {
 				
 				if(cabinetService.delWithCabinet(no) > 0) {
 					logger.info("게시글 삭제와 함께 보관함 삭제 성공!");
+					 
 				}else {
 					logger.info("게시글 삭제와 함께 보관함 삭제 실패!!!!");
 				}	
 			}
 			
 		}
-		return bpost.getBno();
+		return no;
 	}
 
 	@RequestMapping("buppage.do")

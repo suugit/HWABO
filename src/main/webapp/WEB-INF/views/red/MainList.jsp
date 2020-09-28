@@ -100,6 +100,83 @@ border: 1px solid #eee;
 	
 <script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
+
+function addbcharge0(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+      $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+      $('#name_0').val(name);
+      $('#user_0').val(code);
+      $("input:checkbox[id='user_0']").prop("checked", true);
+      $("input:checkbox[id='name_0']").prop("checked", true);
+      alert($("#user_0").val()+" 0번"+ $("#name_0").val()); 
+}
+function addbcharge1(){
+  var name = $(event.target).text();
+  var code = $(event.target).val();
+   $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+   $('#name_1').val(name);
+   $('#user_1').val(code);
+   $("input:checkbox[id='user_1']").prop("checked", true);
+   $("input:checkbox[id='name_1']").prop("checked", true);
+   alert($("#user_1").val()+" 1번"+ $("#name_1").val()); 
+}
+function addbcharge2(){
+     var name = $(event.target).text();
+     var code = $(event.target).val();
+      $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#name_2').val(name);
+      $('#user_2').val(code);
+      $("input:checkbox[id='user_2']").prop("checked", true);
+      $("input:checkbox[id='name_2']").prop("checked", true);
+      alert($("#user_2").val()+" 2번" + $("#name_2").val()); 
+}
+function addbcharge3(){
+     var name = $(event.target).text();
+     var code = $(event.target).val();
+      $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#name_3').val(name);
+      $('#user_3').val(code);
+      $("input:checkbox[id='user_3']").prop("checked", true);
+      $("input:checkbox[id='name_3']").prop("checked", true);
+      alert($("#user_3").val()+" 3번"); 
+}
+function addbcharge4(){
+     var name = $(event.target).text();
+     var code = $(event.target).val();
+      $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#name4').val(name);
+      $('#user4').val(code);
+      $("input:checkbox[id='user4']").prop("checked", true);
+      $("input:checkbox[id='name4']").prop("checked", true);
+      alert($("#user_4").val()+" 4번"); 
+}
+function addbcharge5(){
+     var name = $(event.target).text();
+     var code = $(event.target).val();
+      $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#name_5').val(name);
+      $('#user_5').val(code);
+      $("input:checkbox[id='user_5']").prop("checked", true);
+      $("input:checkbox[id='name_5']").prop("checked", true);
+      alert($("#user_5").val()+" 5번"); 
+}
+function addbcharge6(){
+     var name = $(event.target).text();
+     var code = $(event.target).val();
+      $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+      $('#user_6').val(code);
+      $('#name_6').val(name);
+      $("input:checkbox[id='user_6']").prop("checked", true);
+      $("input:checkbox[id='name_6']").prop("checked", true);
+      alert($("#user_6").val()+" 6번"); 
+}
+function unSelected(){
+  $(event.target).parent().remove();
+}
+
+
+
 $(function(){
 	//수정폼 가리기
 	$("[id^=up]").css("display", "none" );
@@ -211,6 +288,55 @@ function daycheckUp(id) {
 	}; 
 	//spost function 끗
 	
+		function spostupdate(i){
+
+		var param = $("#uspostform"+i).serialize();
+
+			$.ajax({
+				url: "supdate.do",
+				data: param,
+				type: "post", 
+				dataType: "json",
+				success: function(post){
+					
+					$("#se"+post.sno).load(window.location.reload("#se"+post.sno));
+					$("#up"+post.sno).css("display", "none" );
+					$("#se"+post.sno).css("display", "block" );
+					
+				},
+				error: function(request, status, errorData){
+					console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+				}
+			}); //ajax	
+
+
+}; 
+	
+/* 	function bpostupdate(){
+		
+		var param = $("#bpostform" + i).serialize();
+		
+		$.ajax({
+			
+			url: "updatebpost.do",
+			date: param,
+			type: "post",
+			dataType: "json",
+			success: function(b){
+				
+				$("#se"+b.bno).load(window.location.reload("#se"+post.sno));
+				$("#up"+b.bno).css("display", "none" );
+				$("#se"+b.bno).css("display", "block" );
+				
+			},
+			error: function(request, status, errorData){
+				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+			}
+			
+		});
+		
+	} */
+	
 	
 	//bpost 삭제 메소드
 	function bpostdelete(){
@@ -218,14 +344,15 @@ function daycheckUp(id) {
 			
 			var bbb = $("#bno").val();
 			$.ajax({
-				url: "deletebpostMain.do",
+				url: "deletebpost.do",
 				data: { bno: $("#bno").val() },
 				type: "post", 
 				dataType: "text",
-				success: function(bbb){
-						alert("삭제에 성공하였습니다");
-						$("#up"+bbb).css("display", "none" );
-						$("#se"+bbb).css("display", "none" );
+				success: function(bno){
+						alert("삭제에 성공하였습니다" + bno);
+					
+						$("#up"+bno).css("display", "none" );
+						$("#se"+bno).css("display", "none" );
 				},
 				error: function(request, status, errorData){ //에러는 위에서 복붙
 					console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
@@ -791,16 +918,28 @@ $(function(){
 			</div>
 			<!-- card shadow mb-4 -->
 			
-			
-			
+
 			<!-- bpost 수정폼 -->
  			<div id="up${b.bno }" class="card shadow mb-4">
-              
+ 			 <form action="updatebpost.do" method="post" id="bupdate" enctype="multipart/form-data">
+            
+          <div  class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+         	<h6 class="m-0 font-weight-bold text-primary">
+				수정페이지
+			</h6>
+
+			<div class="dropdown no-arrow">
+
+				
+				<button class="btn btn-custom btn-sm"  id="uspost${status.index }" type="submit">수정하기</button> 
+				<button class="btn btn-custom btn-sm"  id="dspost" type="submit" onclick="spostdelete(); return false;">삭제하기</button>
+				<button class="btn btn-custom btn-sm" type="reset">수정취소</button>				
+			</div>
+			</div>
 
                   <div class="card-body">
                      <!-- 게시글안쪽 -->
-                  <form action="updatebpost.do" method="post" id="bupdate" enctype="multipart/form-data">
-            
+                 
             
             		<input type ="hidden" id="${b.bno }"name="bno" value="${b.bno }">
                      <input type="hidden" name="bucode" value="${sessionScope.ucode }">
@@ -812,13 +951,9 @@ $(function(){
                    	 <input type="hidden" name="bopen" value="${b.bopen }">
                   
                         <table style="text-align: center; width: 100%;">
+                          
                            <tr>
-                              <td colspan="5">
-                                 <hr>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td colspan="5"><span style="float: left;"><i class="fa fa-pen"></i>&nbsp;제 목</span>                                 
+                              <td colspan="5"><span style="float: left;">&nbsp;제 목</span>                                 
                               <input type="text" name="btitle" class="form-control" placeholder="일정 제목을 입력하세요" required="required" value="${b.btitle }"></td>
                            </tr>
                            <tr>
@@ -950,15 +1085,15 @@ $(function(){
 			                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
 			                     	 담당자 수정
 			                    </button>
-			                      <div id="selected"></div>
+			                      <div id="selectedup"></div>
 			                     
 			                  
 			                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 			                  	
 			                     <c:forEach var="pm" items="${sessionScope.pmlist}" varStatus="status">
 			                     <button class="dropdown-item" type="button" onclick="addbcharge${status.index}();" value="${pm.ucode }">${pm.uname }</button>
-			                     <input type="checkbox" id="user${status.index }" name="bcharge" style="display:none">
-			                     <input type="checkbox" id="name${status.index }" name="bchargename" style="display:none">
+			                     <input type="checkbox" id="user_${status.index }" name="bcharge" style="display:none">
+			                     <input type="checkbox" id="name_${status.index }" name="bchargename" style="display:none">
 			                     </c:forEach>
 			                    </div>
 			            	</div> 
@@ -1014,21 +1149,22 @@ $(function(){
                                <input type="file" name="upfile">
                              </td>
                             </tr>
-                            <tr>
+                         <!--    <tr>
                              
                               <td colspan="3">
                              
-                                    <input type="submit" class="btn btn-sm btn-info" value="등 록 ">
+                                    <input type="submit" class="btn btn-sm btn-info" value="수 정 ">
                                 
                                     <input type="reset" class="btn btn-sm btn-danger" alue="취 소">
                                    
                               </td>
-                           </tr>
+                           </tr> -->
                         </table>
-                     </form>
+                     
 
                      
                   </div>
+                  </form>
                </div>
 			
 			
