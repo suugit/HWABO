@@ -363,7 +363,6 @@ public class SuugitController {
 	public String logout(HttpSession session, HttpServletRequest request, Model model) {
 		logger.info("로그아웃하는  회원 정보 : " + session.getAttribute("uname"));
 		String returnPage = "";
-
 		if (session != null) {
 			session.invalidate();
 			returnPage = "welcome";
@@ -514,7 +513,6 @@ public class SuugitController {
 			mav.setViewName("redirect:/invtadmin.do");
 			try {
 				file.transferTo(new File(savePath + "\\" + pnum + file.getOriginalFilename()));
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

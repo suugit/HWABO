@@ -18,12 +18,14 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
 <title>HWABO</title>
 
 <!-- Custom fonts for this template -->
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <link
 	href="/hwabo/resources/maincss/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
@@ -36,11 +38,7 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this page -->
-<link
-	href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css"
-	rel="stylesheet">
-<link href="/hwabo/resources/maincss/css/github-markdown.css"
-	rel="stylesheet">
+<link href="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <style>
 .mypage {
 	width: 80px;
@@ -214,17 +212,15 @@
 					          <!-- 멤버관리 -->
 					           <div class="tab-pane fade" id="pmember" role="tabpanel" aria-labelledby="nav-pmember-tab">
 					           <div class="d-flex">
-					           <span class="d-flex text-truncate justify-content-start w-100">전체 멤버 수 :${fn: length(pmlist)} </span>
-					           <form class="d-flex justify-content-end">
+					           <span class="text-truncate justify-content-start w-100">전체 멤버 수 :${fn: length(pmlist)} </span>
+					           <!-- <form class="d-flex justify-content-end">
 								  <input class="form-control form-control-sm w-75" type="text" placeholder="이름검색"
 								    aria-label="Search">
 								  <i class="fas fa-search mx-2" aria-hidden="true"></i>
-								</form>
+								</form> -->
 								</div>
-					           <br>
-					           <div 
-								class="dataTables_wrapper no-footer text-center">
-								<table id="dataTable" class="table table-bordered">
+					           <div class="dataTables_wrapper no-footer text-center">
+								<table id="dataTable" class="table table-stripe">
 									<thead>
 										<th colspan="2">사진</th>
 										<th>이름</th>
@@ -313,66 +309,29 @@
 	<c:import url="/WEB-INF/views/suugit/modal.jsp"/>        
 	
 	<!-- Bootstrap core JavaScript-->
-	<script src="/hwabo/resources/maincss/vendor/jquery/jquery.min.js"></script>
-	<script src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/hwabo/resources/maincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="/hwabo/resources/maincss/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for all pages-->
-	<script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="/hwabo/resources/maincss/js/sb-admin-2.min.js"></script>
 
-	<!-- Page level plugins -->
-	<script
-		src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
-	<script
-		src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-	<!-- Page level custom scripts -->
-	<script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="resources/js/jquery-3.5.1.min.js"></script>
-		<script src="/hwabo/resources/js/user.js"></script>
+  <!-- Page level plugins -->
+  <script src="/hwabo/resources/maincss/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/hwabo/resources/maincss/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/hwabo/resources/maincss/js/demo/datatables-demo.js"></script>
+	<script src="/hwabo/resources/js/user.js"></script>
 	<script>
-	/* var table = $('#pmlistTable');
-	$('#column3_search').on( 'keyup', function () {
-	    table
-	        .columns( 3 )
-	        .search( this.value )
-	        .draw();
-	} );
-	
-	table.columns( '.select-filter' ).every( function () {
-	    var that = this;
-	 
-	    var select = $('<select />')
-	        .appendTo(
-	            this.footer()
-	        )
-	        .on( 'change', function () {
-	            that
-	                .search( $(this).val() )
-	                .draw();
-	        } );
-	 
-	    // Get the search data for the first column and add to the select list
-	    this/pp
-	        .cache( 'search' )
-	        .sort()
-	        .unique()
-	        .each( function ( d ) {
-	            select.append( $('<option value="'+d+'">'+d+'</option>') );
-	        } );
-	} ); */
-	
-	$(document).onload(function(){
-		 $("#dataTable").DataTable();
-		 
+
+	$('#example').dataTable({
+		
 	});
 	$(document).ready(function(){
-	
+		
+		 
 		$.ajax({
 			url: "pjdetail.do",
 			type: "post",

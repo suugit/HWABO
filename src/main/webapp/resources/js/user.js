@@ -32,65 +32,63 @@ function validSignChk() {
 
 }
 
-$('#pmember-tab')
-		.on(
-				'click',
-				function() {
+function pmemlist(){
+	$.ajax({
+		url : "pmlist.do",
+		type : "post",
+		contentType : "application/json; charset=utf-8;",
+		dataType : "Json",
+		success : function(data) {
+			var values = $("#pmlistBox").html();
 
-					$
-							.ajax({
-								url : "pmlist.do",
-								type : "post",
-								contentType : "application/json; charset=utf-8;",
-								dataType : "Json",
-								success : function(data) {
-									var values = $("#pmlistBox").html();
+			var values = $("#pmlistBox").html("");
+			for ( var i in data) {
+				values += '<tr>'
+						+ '<td colspan="2" style="padding:0px;left:5%">'
+						+ '<img class="thumbnail circle" src="'
+						+ data[i].uimg
+						+ '">'
+						+ '</td> <td class="align-middle my-6 ">'
+						+ data[i].uname
+						+ '</td> <td class="align-middle">'
+						+ data[i].uemail
+						+ '</td> <td class="align-middle">'
+						+ data[i].uphone
+						+ '</td> <td class="align-middle">'
+						+ data[i].ugroup
+						+ '</td> <td class="align-middle">'
+						+ data[i].urole
+						+ '</td> <td class="mcode d-none">'
+						+ data[i].ucode
+						+ '</td><th class="align-middle"><select class="prole btn-light show-tick w-75" onchange="roleChange()">'
+						+ '<option name="opt1" value="2"'
+				if (data[i].pjadmin == '2') {
+					values += 'selected'
+				}
+				values += '>일반회원</option>'
+						+ '<option name="opt1" value="1"'
+				if (data[i].pjadmin == '1') {
+					values += 'selected'
+				}
+				values += '>관리자</option>'
+						+ '<option name="opt1" value="3"'
+				if (data[i].pjadmin == '3') {
+					values += 'selected'
+				}
+				values += '>이용중지</option>'
+						+ '</select></th>'
 
-									var values = $("#pmlistBox").html("");
-									for ( var i in data) {
-										values += '<tr>'
-												+ '<td colspan="2" style="padding:0px;left:5%">'
-												+ '<img class="thumbnail circle" src="'
-												+ data[i].uimg
-												+ '">'
-												+ '</td> <td class="align-middle my-6 ">'
-												+ data[i].uname
-												+ '</td> <td class="align-middle">'
-												+ data[i].uemail
-												+ '</td> <td class="align-middle">'
-												+ data[i].uphone
-												+ '</td> <td class="align-middle">'
-												+ data[i].ugroup
-												+ '</td> <td class="align-middle">'
-												+ data[i].urole
-												+ '</td> <td class="mcode d-none">'
-												+ data[i].ucode
-												+ '</td><th class="align-middle"><select class="prole btn-light show-tick w-75" onchange="roleChange()">'
-												+ '<option name="opt1" value="2"'
-										if (data[i].pjadmin == '2') {
-											values += 'selected'
-										}
-										values += '>일반회원</option>'
-												+ '<option name="opt1" value="1"'
-										if (data[i].pjadmin == '1') {
-											values += 'selected'
-										}
-										values += '>관리자</option>'
-												+ '<option name="opt1" value="3"'
-										if (data[i].pjadmin == '3') {
-											values += 'selected'
-										}
-										values += '>이용중지</option>'
-												+ '</select></th>'
+			}
 
-									}
-
-									$('#pmlistBox').html(values);
-								},
-								error : function(request, status, errorData) {
-								}
-							});
-				});
+			$('#pmlistBox').html(values);
+		},
+		error : function(request, status, errorData) {
+		}
+	});
+}
+$('#pmember-tab').on('click',function() {
+	pmemlist();
+});
 
 /*
  * $('#npmember-tab').on('click',function(){ $.ajax({ url:"invtlist.do",
