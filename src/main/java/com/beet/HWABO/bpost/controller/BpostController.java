@@ -263,8 +263,6 @@ public class BpostController {
 							+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1); // 원래
 																														// 파일명
 																														// .
-																														// 뒤에서부터
-																														// 추출해라
 
 					bpost.setBrenamefile(renameFileName);
 
@@ -283,9 +281,8 @@ public class BpostController {
 		
 		jj.put("bno", bpost.getBno());
 		
-		
-		
 		 int result = bpostService.updateBpost(bpost);
+
 		logger.info(bpost.toString());
 		return jj.toJSONString();
 	}

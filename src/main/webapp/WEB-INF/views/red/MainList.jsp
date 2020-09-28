@@ -175,8 +175,6 @@ function unSelected(){
   $(event.target).parent().remove();
 }
 
-
-
 $(function(){
 	//수정폼 가리기
 	$("[id^=up]").css("display", "none" );
@@ -205,8 +203,6 @@ function daycheckUp(id) {
 	}else{
 		spostupdate(i);
 	}
-	
-
 };
 	
 	
@@ -289,37 +285,36 @@ function daycheckUp(id) {
 	//spost function 끗
 	
 		
- 	
-	function bpostupdate(id){
-		 $(event.target).preventDefault();
-		console.log("업데이트 들어옴");
-		alert("함수실행");
-		 var i = id.replce("ubpost", "");
-		var param = $("#bpostform" + i).serialize();
-	
+// bpost update !!!!!!!!!!!!!! 	
+	function bpostupdate(idd){
+		eventtarget.preventDefault();
+		 var i = idd.replace("ubpost", "");
+   
+	    var formdata = new FormData($('#bpostform'+i)[0]);
+
+		$.ajax({ 
+	        url: "updatebpost.do",
+	        data: formdata, 
+	        type: "post",
+	        enctype: 'multipart/form-data',
+	        dataType: "JSON",
+	        processData: false,
+			contentType:false,
+	        success: function(b){
+
+	           $("#up"+b.bno).css("display", "none" );
+	         $("#se"+b.bno).load(window.location.reload("#se"+b.bno));
+
+	           $("#se"+b.bno).css("display", "block" );
+	           jQuery("#se"+b.bno)[0].scrollIntoView();
+	        },
+	        error: function(request, status, errorData){
+	           console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+	        }
+	        
+	     });
 		
-		$.ajax({
-			
-			url: "updatebpost.do",
-			date: param,
-			type: "post",
-			enctype: 'multipart/form-data',
-			dataType: "JSON",
-			success: function(b){
-				console.log("업데이트 성공");
-				alert(b);
-				$("#se"+b).load(window.location.reload("#se"+b));
-				$("#up"+b).css("display", "none" );
-				$("#se"+b).css("display", "block" );
-				
-			},
-			error: function(request, status, errorData){
-				console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
-			}
-			
-		});
-		
-	}  
+	};
 	
 	
 	//bpost 삭제 메소드
@@ -333,7 +328,7 @@ function daycheckUp(id) {
 				type: "post", 
 				dataType: "text",
 				success: function(bno){
-						alert("삭제에 성공하였습니다" + bno);
+						alert("삭제에 성공하였습니다");
 					
 						$("#up"+bno).css("display", "none" );
 						$("#se"+bno).css("display", "none" );
@@ -916,7 +911,7 @@ $(function(){
 			<div class="dropdown no-arrow">
 
 				
-				<button class="btn btn-custom btn-sm"  id="ubpost${status.index }" type="submit" onclick="bpostupdate(this.id);">수정하기</button> 
+				<button class="btn btn-custom btn-sm"  id="ubpost${status.index }" onclick="bpostupdate(this.id);">수정하기</button> 
 				<button class="btn btn-custom btn-sm"  id="dbpost" type="submit" onclick="bpostdelete(); return false;">삭제하기</button>
 				<button id="${b.bno }" class="btn btn-custom btn-sm"  onclick="moveselectfeed(this.id); return false;" >수정취소</button>					
 			</div>
