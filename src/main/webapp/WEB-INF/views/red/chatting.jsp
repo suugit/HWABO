@@ -29,13 +29,15 @@
 .button3 {
   background-color: white; 
   color: #f44336; 
-  border: 1px solid #f44336;
+  /* border: 1px solid #f44336; */
   border-radius:50%;
 }
+/* 
 .button3:hover {
   background-color: #f44336;
   color: white;
-}
+} 
+*/
 </style>
 <!-- 삭제버튼 css 끝 -->
 
