@@ -19,8 +19,7 @@
 <title>HWABO</title>
 
 <!-- Custom fonts for this template-->
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
+
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
@@ -114,19 +113,9 @@
   </div>
 </div>
 <!--Modal: modalPush-->
+<script src="resources/js/jquery-3.5.1.min.js"></script>
 
-
-		<!-- Bootstrap core JavaScript-->
-		<script src="vendor/jquery/jquery.min.js"></script>
-		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-		<!-- Core plugin JavaScript-->
-		<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-		<!-- Custom scripts for all pages-->
-		<script src="js/sb-admin-2.min.js"></script>
-
-		<script>
+<script>
 	function callFunction() {
 			$('.new_tr').first().clone().appendTo('#inviteTable');
 			$('.newe').last().val('');
@@ -139,22 +128,22 @@
 		
 		}
 	
-	$(document).ready(function(){
+ 	$(document).ready(function(){
 		  $('#myInput').on('keyup', function() {
 		    var value = $(this).val().toLowerCase();
 		    $('#myTable tr').filter(function() {
-		      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
 		    });
 		  });
-		});
+		}); 
 	
 	function addInvite(){
 		var ele = $(event.target);
 		if(ele.val() ==  '초대하기'){
 			$(event.target).val("초대완료");
-			$(event.target).addClass('disable btn-outline-dark')
+			$(event.target).addClass('disable btn-outline-dark');
 			var name = $(event.target).parent().parent().children().eq(1).text();
-			$('#selected').append('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>')
+			$('#selected').append('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>');
 			
 			var fileData = name;
 
@@ -197,8 +186,6 @@
 			contentType:"application/json; charset=utf-8;",
 			success: function(data){
 				alert("전송성공!")
-				
-				
 			},
 			error: function(request, status, errorData){
 				alert('b');
@@ -229,7 +216,6 @@
 					+ '<td><input type="button"'
 					+ 'class="btn btn-sm btn-outline-primary" value="초대하기"'
 					+ 'onclick="addInvite()"></td></tr>'
-			
 				}
 				
 				$('#nmlistBox').html(values);
