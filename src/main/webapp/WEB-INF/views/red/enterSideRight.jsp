@@ -14,7 +14,6 @@
 
 <!-- 슬라이드사진_프로젝트선택페이지 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <style>
@@ -39,18 +38,18 @@
     <li data-target="#demo" data-slide-to="1"></li>
     <li data-target="#demo" data-slide-to="2"></li>
   </ul>
-  <div class="carousel-inner">
+  <div class="carousel-inner" >
 <!-- 사진영역 시작 -->
-    <div class="carousel-item active">
-      <img src="/hwabo/resources/maincss/img/projectChoice/p1.jpg" alt="Los Angeles" style="width:${ picture_width } !important;height:${ picture_height } !important;">
+    <div class="carousel-item active" >
+      <img src="/hwabo/resources/maincss/img/projectChoice/p1.svg" alt="Los Angeles" style="width:${ picture_width } !important;height:${ picture_height } !important;background-color:">
       <div class="carousel-caption">
         <h3>HWABO</h3>
         <p>Thank you, Everyone!</p>
       </div>   
     </div>
-<% for(int i = 2; i <= 15; i++){ %>
+<% for(int i = 2; i <= 9; i++){ %>
     <div class="carousel-item">
-      <img src="/hwabo/resources/maincss/img/projectChoice/p<%= i %>.jpg" alt="Chicago" style="width:${ picture_width } !important;height:${ picture_height } !important;">
+      <img src="/hwabo/resources/maincss/img/projectChoice/p<%= i %>.svg" alt="Chicago" style="width:${ picture_width } !important;height:${ picture_height } !important;">
       <div class="carousel-caption">
         <h3>HWABO</h3>
         <p>Thank you, Everyone!</p>

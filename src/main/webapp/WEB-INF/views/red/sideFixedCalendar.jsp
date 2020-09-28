@@ -18,8 +18,7 @@
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="width:1300px;height:100%;">
 
-<br><br><br><br>
-
+<br><br><br>
       <!-- 화보 이미지 -->
 	  <c:if test="${sessionScope.ucode == null and sessionScope.pnum == null }">
       <img src="resources/maincss/img/hwaboLogo.png" style="width: 100%; max-width: 780px; vertical-align: middle" onclick="javascript:location.href='/hwabo/'">
@@ -47,7 +46,7 @@
 <span>메인</span>
 </a>
 <div id="collapsetwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-<div class="bg-white py-2 collapse-inner rounded" style="overflow: auto; max-height: 250px;">
+<div class="bg-white py-2 collapse-inner rounded" style="overflow: auto; max-height: 200px;">
 <h6 class="collapse-header">MAIN</h6>
 						
 <a class="collapse-item" href="javascript: location.href='fborder.do?project_num=${ sessionScope.pnum }'">
@@ -66,7 +65,7 @@
 <!-- 메인목록 끝 -->
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <hr class="sidebar-divider d-none d-md-block" style="color:#E9F9FB;">
 
       <li class="nav-item">
         <a class="nav-link" href="fother.do?project_num=${ sessionScope.pnum }">
@@ -74,7 +73,7 @@
           <span>목표</span></a>
       </li>
  <!-- 왼쪽사이드바 메인끝 -->     
-      <hr class="sidebar-divider d-none d-md-block">
+      <hr class="sidebar-divider d-none d-md-block" style="color:#E9F9FB;">
 	
 	<!-- ekdnsekdns 시작 -->	
 	<li class="nav-item"><a class="nav-link collapsed" href="mybpost.do?ucode=${sessionScope.ucode}&pnum=${sessionScope.pnum}"
@@ -129,7 +128,7 @@
 	<!-- ekdnsekdns 끝 -->
 
 
- <hr class="sidebar-divider d-none d-md-block">
+ <hr class="sidebar-divider d-none d-md-block" >
 
       <!-- Nav Item - Charts -->
       <!-- <li class="nav-item">

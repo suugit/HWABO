@@ -30,13 +30,12 @@
 
 .button3 {
   background-color: white; 
-  color: #f44336; 
-  border: 1px solid #f44336;
+  color: #C37181; 
   border-radius:50%;
 }
 
 .button3:hover {
-  background-color: #f44336;
+  background-color: #C37181;
   color: white;
 }
 
@@ -92,7 +91,7 @@ $(function(){
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="width:1300px;height:100%;">
 
-<br><br><br><br>
+<br><br><br>
 
       <!-- 화보 이미지 -->
 	  <c:if test="${sessionScope.ucode == null and sessionScope.pnum == null }">

@@ -161,12 +161,11 @@ font-size: 28px;
         <div class="container-fluid">
 <!-- 프로젝트생성버튼 시작 -->
 <div class="card shadow mb-4" onclick="javascript:location.href='createP.do?ucode=${ who }'">
-            <div class="card-body">
+            <div class="card-body btn btn-outline-info">
               <!-- 게시글안쪽 -->
-                            <h1 class="m-0 text-primary" style="text-align:center">
-                <img src="/hwabo/resources/maincss/img/plus2.png" style="width:45px;height:45px;">            
-                            새 프로젝트 생성
-                            </h1>
+                            <h2 class="m-0 font-weight-bold" style="text-align:center">
+                          <i class="fa fa-plus-circle"></i>  프로젝트 생성
+                            </h2>
             </div>
           </div>
           <!-- 프로젝트생성버튼 끝 -->
