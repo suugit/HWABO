@@ -86,13 +86,6 @@ border-radius:15%;
 
 <!-- 피드 모아보기 끝 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->   
     
-<!-- 글작성 샘플 시작 -->
-<!-- <c:import url="/WEB-INF/views/red/sampleFormMainInsert.jsp"></c:import> -->
-<!-- 글작성 샘플 끝 -->
-     
-<!-- 샘플폼 시작 -->
-<!-- <c:import url="/WEB-INF/views/red/sampleFormMain.jsp"></c:import> -->
-<!-- 샘플폼 끝 -->
 
         </div>
         <!-- /.container-fluid -->
