@@ -100,6 +100,131 @@ border: 1px solid #eee;
 	
 <script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
+
+function addbcharge_0(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+      $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+      $('#name_0').val(name);
+      $('#user_0').val(code);
+      $("input:checkbox[id='user_0']").prop("checked", true);
+      $("input:checkbox[id='name_0']").prop("checked", true);
+    /*   alert($("#user_0").val()+" 0번"+ $("#name_0").val());  */
+}
+function addbcharge_1(){
+  var name = $(event.target).text();
+  var code = $(event.target).val();
+   $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+   $('#name_1').val(name);
+   $('#user_1').val(code);
+   $("input:checkbox[id='user_1']").prop("checked", true);
+   $("input:checkbox[id='name_1']").prop("checked", true);
+   /* alert($("#user_1").val()+" 1번"+ $("#name_1").val());  */
+}
+function addbcharge_2(){
+     var name = $(event.target).text();
+     var code = $(event.target).val();
+      $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#name_2').val(name);
+      $('#user_2').val(code);
+      $("input:checkbox[id='user_2']").prop("checked", true);
+      $("input:checkbox[id='name_2']").prop("checked", true);
+    /*   alert($("#user_2").val()+" 2번" + $("#name_2").val()); */ 
+}
+function addbcharge_3(){
+     var name = $(event.target).text();
+     var code = $(event.target).val();
+      $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#name_3').val(name);
+      $('#user_3').val(code);
+      $("input:checkbox[id='user_3']").prop("checked", true);
+      $("input:checkbox[id='name_3']").prop("checked", true);
+    /*   alert($("#user_3").val()+" 3번");  */
+}
+function addbcharge_4(){
+     var name = $(event.target).text();
+     var code = $(event.target).val();
+      $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#name4').val(name);
+      $('#user4').val(code);
+      $("input:checkbox[id='user4']").prop("checked", true);
+      $("input:checkbox[id='name4']").prop("checked", true);
+     /*  alert($("#user_4").val()+" 4번");  */
+}
+function addbcharge_5(){
+     var name = $(event.target).text();
+     var code = $(event.target).val();
+      $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#name_5').val(name);
+      $('#user_5').val(code);
+      $("input:checkbox[id='user_5']").prop("checked", true);
+      $("input:checkbox[id='name_5']").prop("checked", true);
+    /*   alert($("#user_5").val()+" 5번");  */
+}
+function addbcharge_6(){
+     var name = $(event.target).text();
+     var code = $(event.target).val();
+      $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+      $('#user_6').val(code);
+      $('#name_6').val(name);
+      $("input:checkbox[id='user_6']").prop("checked", true);
+      $("input:checkbox[id='name_6']").prop("checked", true);
+    /*   alert($("#user_6").val()+" 6번");  */
+}
+function addbcharge_7(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user_7').val(code);
+     $('#name_7').val(name);
+     $("input:checkbox[id='user_7']").prop("checked", true);
+     $("input:checkbox[id='name_7']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
+function addbcharge_8(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user_8').val(code);
+     $('#name_8').val(name);
+     $("input:checkbox[id='user_8']").prop("checked", true);
+     $("input:checkbox[id='name_8']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
+function addbcharge_9(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user_9').val(code);
+     $('#name_9').val(name);
+     $("input:checkbox[id='user_9']").prop("checked", true);
+     $("input:checkbox[id='name_9']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
+function addbcharge_10(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user_10').val(code);
+     $('#name_10').val(name);
+     $("input:checkbox[id='user_10']").prop("checked", true);
+     $("input:checkbox[id='name_10']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
+function addbcharge_11(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user_11').val(code);
+     $('#name_11').val(name);
+     $("input:checkbox[id='user_11']").prop("checked", true);
+     $("input:checkbox[id='name_11']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
+function unSelected(){
+  $(event.target).parent().remove();
+}
+
 $(function(){
 	//수정폼 가리기
 	$("[id^=up]").css("display", "none" );
@@ -115,6 +240,7 @@ $(function(){
 
 //일정게시글 수정시 날짜 유효성 체크
 function daycheckUp(id) {
+
 	var i = id.replace("uspost", "");
 	var beforestart = $('#beforesstartdayuu'+i).val().replace("T", " ");
 	var beforeend = $('#beforesenddayuu'+i).val().replace("T", " ");
@@ -127,14 +253,12 @@ function daycheckUp(id) {
 	}else{
 		spostupdate(i);
 	}
-	
-
-}
+};
 	
 	
 	//일정게시글 등록시 날짜 유효성 체크
 	function daycheck() {
-		
+	
 		var startday = document.spostInsert.beforesstartdayi.value.replace("T", " ");
 		var endday = document.spostInsert.beforesenddayi.value.replace("T"," ");
 
@@ -148,21 +272,21 @@ function daycheckUp(id) {
 		} else {
 			return true;
 		}
-	}
+	};
 	
 	//수정폼 띄우기
 	function moveupdateform(click) {
 		
 		$("#up"+click).css("display", "block" );
 		$("#se"+click).css("display", "none" );
-	}
+	};
 	
 	//출력폼 띄우기
 	function moveselectfeed(click) {
 		
 		$("#up"+click).css("display", "none" );
 		$("#se"+click).css("display", "block" );
-	}
+	};
 	
 	//수정완료 버튼 누르면 실행되는 펑션
 	function spostupdate(i){
@@ -210,6 +334,38 @@ function daycheckUp(id) {
 	}; 
 	//spost function 끗
 	
+/* 		
+// bpost update !!!!!!!!!!!!!! 	
+	function bpostupdate(idd){
+		eventtarget.preventDefault();
+		 var i = idd.replace("ubpost", "");
+   
+	    var formdata = new FormData($('#bpostform'+i)[0]);
+
+		$.ajax({ 
+	        url: "updatebpost.do",
+	        data: formdata, 
+	        type: "post",
+	        enctype: 'multipart/form-data',
+	        dataType: "JSON",
+	        processData: false,
+			contentType:false,
+	        success: function(b){
+
+	           $("#up"+b.bno).css("display", "none" );
+	         $("#se"+b.bno).load(window.location.reload("#se"+b.bno));
+
+	           $("#se"+b.bno).css("display", "block" );
+	           jQuery("#se"+b.bno)[0].scrollIntoView();
+	        },
+	        error: function(request, status, errorData){
+	           console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
+	        }
+	        
+	     });
+		
+	}; */
+	
 	
 	//bpost 삭제 메소드
 	function bpostdelete(){
@@ -217,14 +373,15 @@ function daycheckUp(id) {
 			
 			var bbb = $("#bno").val();
 			$.ajax({
-				url: "deletebpostMain.do",
+				url: "deletebpost.do",
 				data: { bno: $("#bno").val() },
 				type: "post", 
 				dataType: "text",
-				success: function(bbb){
+				success: function(bno){
 						alert("삭제에 성공하였습니다");
-						$("#up"+bbb).css("display", "none" );
-						$("#se"+bbb).css("display", "none" );
+					
+						$("#up"+bno).css("display", "none" );
+						$("#se"+bno).css("display", "none" );
 				},
 				error: function(request, status, errorData){ //에러는 위에서 복붙
 					console.log("error code : " + request.status + "\nMessage : "+ request.responseText + "\nError : " + errorData);
@@ -235,7 +392,6 @@ function daycheckUp(id) {
 	
 </script> 
 <body>
-
 
 	<c:forEach var="main" items="${ requestScope.list }" varStatus="status">
 		<%-- ${ status.count } --%>
@@ -284,7 +440,7 @@ function daycheckUp(id) {
 			<hr>
 			<table style="width: 100%;">
 				<tr>
-					<th width="50%">시 작 날 짜</th><th width="50%">끝 날 짜</th>
+					<th width="50%"><i class="far fa-calendar-alt"></i> 시 작 날 짜</th><th width="50%"><i class="far fa-calendar-alt"></i> 끝 날 짜</th>
 				</tr>
 				<tr>
 				<c:set var="start1" value="${post.stringstart }"/>
@@ -423,7 +579,7 @@ $(function(){
 					<th>제 목</th>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="text" id="stitle" name="stitle" class="form-control" required="required" value="${post.stitle }">
+					<td colspan="2"><input type="text" maxlength="20" id="stitle" name="stitle" class="form-control" required="required" value="${post.stitle }">
 			</td>
 			</tr>
 				<tr>
@@ -522,9 +678,7 @@ $(function(){
 		}
 	});	
 });
-
-    
-</script>	
+</script>
 					</td>
 				</tr>		
 				<tr>
@@ -536,7 +690,7 @@ $(function(){
 				</tr>
 				<tr>
 				<td colspan="2">
-<textarea name="scontent" id="scontent_${status.index }" cols="30" rows="10"	class="form-control" maxlength=""	 style="width: 100%; height: 200px; overflow: auto; resize: none;">${post.scontent }</textarea> </td>
+<textarea name="scontent" id="scontent_${status.index }" cols="30" rows="10" class="form-control" maxlength="200"	 style="width: 100%; height: 200px; overflow: auto; resize: none;">${post.scontent }</textarea> </td>
 									</tr>
 		
 			</table>
@@ -694,15 +848,18 @@ $(function(){
 							</tr>
 						</table>
 					</div>
+					
+					
+					<c:if test="${! empty b.bcontent }">
 					<hr>
-					<div>
 						<table>
-							<c:if test="${! empty b.bcontent }">
+	
 								<tr>
-									<td><b><big>${b.bcontent}</big></b></td>
+									<td><b>${b.bcontent}</b></td>
 								</tr>
-							</c:if>
+							
 						</table>
+						</c:if>
 						<br>
 						<table>
 							<c:if test="${! empty b.boriginfile }">
@@ -717,7 +874,7 @@ $(function(){
 
 												<c:if test="${status2.last}">
 													<c:choose>
-														<c:when test="${ext eq 'jpg' or ext eq 'gif'}">
+														<c:when test="${ext eq 'jpg' or ext eq 'gif' or ext eq 'png'}">
 															<img src="resources/bupfile/${b.brenamefile}"
 																class="rounded" style="width: 220px; height: 150px;">
 														</c:when>
@@ -734,7 +891,7 @@ $(function(){
 																style="width: 65px; height: 65px">
 														</c:when>
 														<c:when
-															test="${ext != 'jpg' and ext != 'txt' and ext != 'pdf' and ext != 'gif' and ext != 'ppt'}">
+															test="${ext != 'jpg' and ext != 'txt' and ext != 'pdf' and ext != 'gif' and ext != 'ppt' and ext != 'png'}">
 															<img src="resources/img/eettcc.png"
 																style="width: 40px; height: 40px">
 														</c:when>
@@ -755,8 +912,7 @@ $(function(){
 						</table>
 						<hr>
 
-					</div>
-
+				
 				</div>
 				<!-- 게시글안쪽  -->
 
@@ -793,34 +949,46 @@ $(function(){
 			</div>
 			<!-- card shadow mb-4 -->
 			
-			
-			
+
 			<!-- bpost 수정폼 -->
+ 			<form action="updatebpost.do" id="bpostform${status.index }" enctype="multipart/form-data" method="post" >
  			<div id="up${b.bno }" class="card shadow mb-4">
-              
+ 			 
+            
+          <div  class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+         	<h6 class="m-0 font-weight-bold text-primary">
+				수정페이지
+			</h6>
+
+			<div class="dropdown no-arrow">
+
+				
+				<button class="btn btn-custom btn-sm"  id="ubpost${status.index }" type="submit">수정하기</button> 
+				<button class="btn btn-custom btn-sm"  id="dbpost" onclick="bpostdelete(); return false;">삭제하기</button>
+				<button id="${b.bno }" class="btn btn-custom btn-sm"  onclick="moveselectfeed(this.id); return false;" >수정취소</button>					
+			</div>
+			</div>
 
                   <div class="card-body">
                      <!-- 게시글안쪽 -->
-                  <form action="updatebpost.do" method="post" id="bupdate" enctype="multipart/form-data">
-            
+                 
             
             		<input type ="hidden" id="${b.bno }"name="bno" value="${b.bno }">
                      <input type="hidden" name="bucode" value="${sessionScope.ucode }">
                      <input type="hidden" name="bwriter" value="${sessionScope.uname }">
                      <input type="hidden" name="bpnum" value="${sessionScope.pnum }">
                    	 <input type="hidden" id="bform" name="bcharge">
+                   	 <c:if test="${b.boriginfile ne null }">
+                   	 
                    	 <input type="hidden" name="boriginfile" value="${b.boriginfile }">
                    	 <input type="hidden" name="brenamefile" value="${b.brenamefile }">
+                   	  </c:if>
                    	 <input type="hidden" name="bopen" value="${b.bopen }">
                   
                         <table style="text-align: center; width: 100%;">
+                          
                            <tr>
-                              <td colspan="5">
-                                 <hr>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td colspan="5"><span style="float: left;"><i class="fa fa-pen"></i>&nbsp;제 목</span>                                 
+                              <td colspan="5"><span style="float: left;">&nbsp;제 목</span>                                 
                               <input type="text" name="btitle" class="form-control" placeholder="일정 제목을 입력하세요" required="required" value="${b.btitle }"></td>
                            </tr>
                            <tr>
@@ -936,11 +1104,14 @@ $(function(){
                    			 </td>
                              
                            </tr>
+                           
                            <tr>
-                              <td>기존 담당자 : ${ b.bchargename }</td>
+                           
+                            <td style="text-align:left;"><br><i class="fas fa-user-friends"></i> 기존 담당자 : ${ b.bchargename }</td>
+                            
                                
                            </tr>
-                     
+                     		
                            <tr>
                            <td colspan="5">
                            	<div>   
@@ -952,26 +1123,26 @@ $(function(){
 			                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
 			                     	 담당자 수정
 			                    </button>
-			                      <div id="selected"></div>
+			                      <div id="selectedup"></div>
 			                     
 			                  
 			                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 			                  	
 			                     <c:forEach var="pm" items="${sessionScope.pmlist}" varStatus="status">
-			                     <button class="dropdown-item" type="button" onclick="addbcharge${status.index}();" value="${pm.ucode }">${pm.uname }</button>
-			                     <input type="checkbox" id="user${status.index }" name="bcharge" style="display:none">
-			                     <input type="checkbox" id="name${status.index }" name="bchargename" style="display:none">
+			                     <button class="dropdown-item" type="button" onclick="addbcharge_${status.index}();" value="${pm.ucode }">${pm.uname }</button>
+			                     <input type="checkbox" id="user_${status.index }" name="bcharge" style="display:none">
+			                     <input type="checkbox" id="name_${status.index }" name="bchargename" style="display:none">
 			                     </c:forEach>
 			                    </div>
 			            	</div> 
 			      
 			     
 			                        
-			          <a class="navbar-brand" href="#"></a>
+			     <!--      <a class="navbar-brand" href="#"></a>
 	               <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
 			      </li>
-               	</ul>
+               	</ul> -->
 			    </nav>
 		 	  </div>
                      </td>
@@ -1016,23 +1187,24 @@ $(function(){
                                <input type="file" name="upfile">
                              </td>
                             </tr>
-                            <tr>
+                         <!--    <tr>
                              
                               <td colspan="3">
                              
-                                    <input type="submit" class="btn btn-sm btn-info" value="등 록 ">
+                                    <input type="submit" class="btn btn-sm btn-info" value="수 정 ">
                                 
                                     <input type="reset" class="btn btn-sm btn-danger" alue="취 소">
                                    
                               </td>
-                           </tr>
+                           </tr> -->
                         </table>
-                     </form>
+                     
 
                      
                   </div>
+              
                </div>
-			
+			    </form>
 			
 			
 			
@@ -1184,7 +1356,7 @@ $(function(){
 									</label> --></td>
 									<td colspan="2">
 										<button class="btn btn-danger p-1"
-											style="width: 40%; float: right;" onclick="toReset()"; return false;>
+											style="width: 40%; float: right;" onclick="toReset(); return false;">
 											<span class="text">취소</span>
 										</button>
 										<button id="btn1-save${c.cno}"

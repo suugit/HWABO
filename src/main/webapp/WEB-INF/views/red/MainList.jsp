@@ -848,15 +848,18 @@ $(function(){
 							</tr>
 						</table>
 					</div>
+					
+					
+					<c:if test="${! empty b.bcontent }">
 					<hr>
-					<div>
 						<table>
-							<c:if test="${! empty b.bcontent }">
+	
 								<tr>
-									<td><b><big>${b.bcontent}</big></b></td>
+									<td><b>${b.bcontent}</b></td>
 								</tr>
-							</c:if>
+							
 						</table>
+						</c:if>
 						<br>
 						<table>
 							<c:if test="${! empty b.boriginfile }">
@@ -909,8 +912,7 @@ $(function(){
 						</table>
 						<hr>
 
-					</div>
-
+				
 				</div>
 				<!-- 게시글안쪽  -->
 
@@ -1354,7 +1356,7 @@ $(function(){
 									</label> --></td>
 									<td colspan="2">
 										<button class="btn btn-danger p-1"
-											style="width: 40%; float: right;" onclick="toReset()"; return false;>
+											style="width: 40%; float: right;" onclick="toReset(); return false;">
 											<span class="text">취소</span>
 										</button>
 										<button id="btn1-save${c.cno}"

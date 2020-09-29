@@ -72,7 +72,7 @@
 						<br>
 						
 					<c:if test="${!empty list }">
-							<c:import url="/WEB-INF/views/abc/hwabofeed.jsp"></c:import>
+							<c:import url="/WEB-INF/views/abc/hwabofeed2.jsp"></c:import>
 						</c:if>
 						
 						

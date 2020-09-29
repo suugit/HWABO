@@ -399,7 +399,9 @@ function bkindupdate(divbno) {
         		
         		values += '<tr><th style="width: 15%; text-align: center; vertical-align:middle;">파일</th>';
         		values += '<td style="vertical-align:middle;align-items: center;">';
-        		values += '<div id="showfile" style=" text-align: center;  overflow: hidden; width: 200px;  height: 150px;"><img style="max-width: 100%; height: auto;" src="resources/bupfile/'+decodeURIComponent(obj.brenamefile).replace(/\+/gi, "  ")+'"></div><br>';
+        		if(decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ").includes('jpg')){
+        			values += '<div id="showfile" style=" text-align: center;  overflow: hidden; width: 200px;  height: 150px;"><img style="max-width: 100%; height: auto;" src="resources/bupfile/'+decodeURIComponent(obj.brenamefile).replace(/\+/gi, "  ")+'"></div><br>';
+        		}
         		values += '<a href="bfdown.do?ofile='+decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ")+'&rfile='+decodeURIComponent(obj.brenamefile).replace(/\+/gi, "  ")+'">'+decodeURIComponent(obj.boriginfile).replace(/\+/gi, "  ")+'</a></td></tr>';
         	}
 			if(obj.bucode == '${ucode}'){
@@ -608,6 +610,63 @@ function bkindupdate(divbno) {
 	       $('#name6').val(name);
 	       $("input:checkbox[id='user6']").prop("checked", true);
 	       $("input:checkbox[id='name6']").prop("checked", true);
+	   }
+	
+	function addbcharge7(){
+	     var name = $(event.target).text();
+	     var code = $(event.target).val();	      
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');	       
+	       $('#name7').val(name);
+	       $('#user7').val(code);
+	       $("input:checkbox[id='user7']").prop("checked", true);
+	       $("input:checkbox[id='name7']").prop("checked", true);  
+	   }
+	
+	function addbcharge8(){
+	     var name = $(event.target).text();
+	     var code = $(event.target).val();	      
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');	       
+	       $('#name8').val(name);
+	       $('#user8').val(code);
+	       $("input:checkbox[id='user8']").prop("checked", true);
+	       $("input:checkbox[id='name8']").prop("checked", true);  
+	   }
+	
+	function addbcharge0(){
+	     var name = $(event.target).text();
+	     var code = $(event.target).val();	      
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');	       
+	       $('#name0').val(name);
+	       $('#user0').val(code);
+	       $("input:checkbox[id='user0']").prop("checked", true);
+	       $("input:checkbox[id='name0']").prop("checked", true);  
+	   }
+	function addbcharge0(){
+	     var name = $(event.target).text();
+	     var code = $(event.target).val();	      
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');	       
+	       $('#name0').val(name);
+	       $('#user0').val(code);
+	       $("input:checkbox[id='user0']").prop("checked", true);
+	       $("input:checkbox[id='name0']").prop("checked", true);  
+	   }
+	function addbcharge9(){
+	     var name = $(event.target).text();
+	     var code = $(event.target).val();	      
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');	       
+	       $('#name9').val(name);
+	       $('#user9').val(code);
+	       $("input:checkbox[id='user9']").prop("checked", true);
+	       $("input:checkbox[id='name9']").prop("checked", true);  
+	   }
+	function addbcharge10(){
+	     var name = $(event.target).text();
+	     var code = $(event.target).val();	      
+	       $('#selectedcc').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');	       
+	       $('#name10').val(name);
+	       $('#user10').val(code);
+	       $("input:checkbox[id='user10']").prop("checked", true);
+	       $("input:checkbox[id='name10']").prop("checked", true);  
 	   }
 	function unSelected(){
 	   $(event.target).parent().remove();

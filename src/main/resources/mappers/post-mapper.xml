@@ -52,6 +52,8 @@
 	where bucode=#{ucode}
 			and
 			bpnum=#{pnum}
+			or
+			bcharge like  '%'||#{ucode}||'%'
     order by benrolldate desc
 
 </select>
