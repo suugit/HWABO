@@ -287,7 +287,6 @@ function commentUpdate(replyno, content){
 function commentRereply(replyno, no){
   var a ='';
   console.log("replyno : " +replyno+ " no :" +no );
- 
   a += '<div class="input-group">';
   a += '<input type="text" class="form-control" name="content_'+replyno+'" />';
   a += '<span class="input-group-btn"><button class="btn btn-outline-secondary" type="button" onclick="javascript:rereinsert(\''+ replyno +'\',\''+ no +'\');">답글달기</button></span>';
@@ -417,7 +416,7 @@ function addbcharge(){
 	 $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i> </span>');
 	 //$('#bform').val(name); 
 	 $('#bform').val(names);
-	 alert($("#bform").val()); 
+	/*  alert($("#bform").val());  */
 }
 
 

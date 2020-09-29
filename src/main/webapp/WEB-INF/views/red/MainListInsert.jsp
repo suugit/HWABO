@@ -79,6 +79,56 @@ function addbcharge6(){
        $("input:checkbox[id='name6']").prop("checked", true);
       /*  alert($("#user6").val()+" 6번");  */
 }
+function addbcharge7(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user7').val(code);
+     $('#name7').val(name);
+     $("input:checkbox[id='user7']").prop("checked", true);
+     $("input:checkbox[id='name7']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
+function addbcharge8(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user8').val(code);
+     $('#name8').val(name);
+     $("input:checkbox[id='user8']").prop("checked", true);
+     $("input:checkbox[id='name8']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
+function addbcharge9(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user9').val(code);
+     $('#name9').val(name);
+     $("input:checkbox[id='user9']").prop("checked", true);
+     $("input:checkbox[id='name9']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
+function addbcharge10(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user10').val(code);
+     $('#name10').val(name);
+     $("input:checkbox[id='user10']").prop("checked", true);
+     $("input:checkbox[id='name10']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
+function addbcharge11(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user11').val(code);
+     $('#name11').val(name);
+     $("input:checkbox[id='user11']").prop("checked", true);
+     $("input:checkbox[id='name11']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
 function unSelected(){
    $(event.target).parent().remove();
 }
@@ -103,11 +153,11 @@ function fileCheck() {
 	var fileSize = (file.files[0].size)/1000;
 	  $('#kb').val(fileSize);
       $('#kind').val(fileExt);
-	alert("파일경로" + filePath + "확장자" + fileExt);
+/* 	alert("파일경로" + filePath + "확장자" + fileExt);
 	console.log('파일 경로 : ' + filePath);
 	console.log('파일명 : ' + fileName);
 	console.log('파일 확장자 : ' + fileExt);
-	console.log('파일 크기kb : ' + fileSize +"KB");
+	console.log('파일 크기kb : ' + fileSize +"KB"); */
 }
 ////dont touch////////////////////////
 ///                                ///

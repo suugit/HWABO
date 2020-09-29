@@ -171,6 +171,56 @@ function addbcharge_6(){
       $("input:checkbox[id='name_6']").prop("checked", true);
     /*   alert($("#user_6").val()+" 6번");  */
 }
+function addbcharge_7(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user_7').val(code);
+     $('#name_7').val(name);
+     $("input:checkbox[id='user_7']").prop("checked", true);
+     $("input:checkbox[id='name_7']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
+function addbcharge_8(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user_8').val(code);
+     $('#name_8').val(name);
+     $("input:checkbox[id='user_8']").prop("checked", true);
+     $("input:checkbox[id='name_8']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
+function addbcharge_9(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user_9').val(code);
+     $('#name_9').val(name);
+     $("input:checkbox[id='user_9']").prop("checked", true);
+     $("input:checkbox[id='name_9']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
+function addbcharge_10(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user_10').val(code);
+     $('#name_10').val(name);
+     $("input:checkbox[id='user_10']").prop("checked", true);
+     $("input:checkbox[id='name_10']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
+function addbcharge_11(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user_11').val(code);
+     $('#name_11').val(name);
+     $("input:checkbox[id='user_11']").prop("checked", true);
+     $("input:checkbox[id='name_11']").prop("checked", true);
+   /*   alert($("#user_6").val()+" 6번");  */
+}
 function unSelected(){
   $(event.target).parent().remove();
 }
