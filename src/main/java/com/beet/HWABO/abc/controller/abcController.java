@@ -417,6 +417,58 @@ public class abcController {
 
 	}
 	
+	//업무 모아보기중에 요청받은 업무 list load용 메소드
+		@RequestMapping(value = "bpostload2.do", method = RequestMethod.POST)
+		@ResponseBody
+		public String BpostPageLoad2(HttpServletResponse response, PjMember pmember)	throws UnsupportedEncodingException {
+
+			ArrayList<Bpost> list = spostService.selectMyRequestedBPOST(pmember);
+			
+			// 전송용 json 객체 준비
+			JSONObject sendJson = new JSONObject();
+
+			// json 배열 객체 생성
+			JSONArray jarr = new JSONArray();
+
+			// list 를 jarr 로 옮겨담기 (일종의 복사)
+			for (Bpost bpost : list) { // user 객체 저장용 json 객체
+				JSONObject job = new JSONObject();
+				job.put("bno",bpost.getBno());
+				job.put("bkind", URLEncoder.encode(bpost.getBkind(), "utf-8"));
+				job.put("btitle", URLEncoder.encode(bpost.getBtitle(), "utf-8"));
+				job.put("bucode", bpost.getBucode());
+
+				if (bpost.getBstartday() != null) {
+					job.put("bstartday", bpost.getBstartday().toString());
+				}
+				
+				if (bpost.getBendday() != null) {
+					job.put("bendday", bpost.getBendday().toString());
+				}
+				
+				if (bpost.getBcontent() != null) {
+					job.put("bcontent", URLEncoder.encode(bpost.getBcontent(), "utf-8"));
+				}else {
+					job.put("bcontent", URLEncoder.encode("", "utf-8"));
+				}
+				
+				if (bpost.getBchargename() != null) {
+					job.put("bcharge", URLEncoder.encode(bpost.getBcharge(), "utf-8"));
+					job.put("bchargename", URLEncoder.encode(bpost.getBchargename(), "utf-8"));
+				}
+
+				job.put("benrolldate", bpost.getBenrolldate().toString());
+
+				// jarr에 json 객체 저장
+				jarr.add(job);
+			}
+			
+			return jarr.toJSONString();
+
+		}
+	
+	
+	
 	@RequestMapping(value="bkindupdate.do", method= {RequestMethod.POST, RequestMethod.GET})
 	@ResponseBody
 	public String bkindUpdate(Bkindup bk) {

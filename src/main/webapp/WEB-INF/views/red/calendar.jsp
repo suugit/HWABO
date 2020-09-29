@@ -131,6 +131,7 @@ function showCalendar(){
       	  <c:if test="${ !status.first }">
           ,
           </c:if>
+          
           {
         	id:'${calIndex.calno}',
             title: '${calIndex.title}',

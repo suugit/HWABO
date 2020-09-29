@@ -23,7 +23,8 @@ public interface SpostService {
 	
 	//Bpost
 	ArrayList<Bpost> selectMyBPOST(PjMember pmember);
-
+	ArrayList<Bpost> selectMyRequestedBPOST(PjMember pmember);
+	
 	Bpost selectOneBpost(String bno);
 	ArrayList<Bpost> chooseBpost(Bpostchk chk);
 	

@@ -174,8 +174,8 @@ for(String pnames : (Set<String>)request.getAttribute("MemberNames")){
                   <div class="progress progress-sm mb-2">
                     <div class="progress-bar progress-bar6" role="progressbar" style="background-color:#F5F6CE;width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                </div>
-              </div>
+                </div>  
+            </div>
 <!-- 샘플폼 끝 -->
         </div>
         <!-- /.container-fluid -->
@@ -225,7 +225,7 @@ for(String pnames : (Set<String>)request.getAttribute("MemberNames")){
 <script type="text/javascript">
 //샘플폼 가리기
 $(function(){
-//$("#sampleProgress").hide();
+$("#sampleProgress").hide();
 });
 </script>
 
