@@ -143,6 +143,15 @@ public class SpostServiceImpl implements SpostService{
 	}
 
 
+	@Override
+	public ArrayList<Bpost> selectMyRequestedBPOST(PjMember pmember) {
+		return spostDao.selectMyRequestedBPOST(pmember);
+	}
+
+
+
+
+
 
 
 

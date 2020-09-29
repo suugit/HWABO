@@ -56,6 +56,17 @@
 
 </select>
 
+<!--요청받은 업무 조회용 bpost -->	
+<select id="selectMyRequestedBPOST" parameterType="PjMember" resultType="Post">
+	select BNO, BTITLE, BUCODE, BWRITER, BSTARTDAY, BENDDAY, BKIND, BCHARGE, BCONTENT, BENROLLDATE, BOPEN, BRENAMEFILE, BORIGINFILE, BPNUM, BCHARGENAME
+	from bpost
+	where bcharge like  '%'||#{ucode}||'%'
+			and
+			bpnum=#{pnum}
+    order by benrolldate desc
+</select>
+
+
 <!-- 업무모아보기페이지  상세보기용 -->
 <select id="selectOneBpost" parameterType="string" resultType="Bpost">
 	select * from bpost 
@@ -94,6 +105,11 @@
 	and   ( firstword = 'b' )
 	order by enrolldate desc
 </select>
+
+
+
+
+
 
 
 <!-- 나의 화보, 팀원의 화보 조회용 cpost  -->	

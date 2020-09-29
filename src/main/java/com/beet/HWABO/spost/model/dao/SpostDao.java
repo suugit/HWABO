@@ -123,6 +123,11 @@ public class SpostDao {
 		return (ArrayList<Post>) list;
 	}
 
+	public ArrayList<Bpost> selectMyRequestedBPOST(PjMember pmember) {
+		List<Bpost> list = session.selectList("postMapper.selectMyRequestedBPOST", pmember);
+		return (ArrayList<Bpost>) list;
+	}
+
 
 
 
