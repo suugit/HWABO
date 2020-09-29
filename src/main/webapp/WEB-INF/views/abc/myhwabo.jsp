@@ -183,7 +183,7 @@
 		$("[id^=ses]").css("display", "none" );
 		$("[id^=upb]").css("display", "none" );
 		$("[id^=seb]").css("display", "none" );
-		$("[id^=sec]").css("display", "block" );
+		
 	};
 	function onlybpost(){
 		$("[id^=ups]").css("display", "none" );
