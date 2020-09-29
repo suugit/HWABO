@@ -67,7 +67,7 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 				<br>
-						<h4>&nbsp;${ teammember.uname } 님의 화보에 오신 것을 환영합니다</h4>
+						<h4 style="text-align:center;  color: #19BFAF;">&nbsp;${ teammember.uname } 님의 화보에 오신 것을 환영합니다</h4>
 						<br>
 						<br>
 						

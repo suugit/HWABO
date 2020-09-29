@@ -344,23 +344,16 @@ jQuery('.suugitMain').click(function () {
               <tr>
               <!-- 옵션메뉴 --> 
               	<div class="clearfix d-flex ">
-              	<td colspan="2" class="flex-grow-5 ">
+              	<td colspan="2" class="flex-grow-5" style="text-align: left;">
               		<label class="btn btn-light small" onclick="fileUpload" >
               			 <input type="file" name="file" id="file" style="display:none" multiple>
-              			<i class="fa fa-link ">&nbsp;파일</i>
-              		</label>
+              			<i class="fa fa-link ">&nbsp;&nbsp;파일</i>
+              		</label>&nbsp;
               		 <label class="btn btn-light small">
               			<input type="file" name="ofile" style="display:none" id="atchm_img" accept=".jpg,.png,.svg" multiple>
-              			<i class="fa fa fa-image ">&nbsp;사진</i>
+              			<i class="fa fa fa-image ">&nbsp;&nbsp;사진</i>
               		</label> 
-              		<label class="btn btn-light small testfile" >
-              			<input type="file" name="hashtag" style="display:none">
-              			<i class="fa fa-hashtag ">&nbsp;</i>
-              		</label>
-              		<label class="btn btn-light small" >
-              			<input type="file" name="mention" style="display:none">
-              			<i class="fa fa-at">&nbsp;</i>
-              		</label>
+              		
               	</td>
               	
               	<td>
