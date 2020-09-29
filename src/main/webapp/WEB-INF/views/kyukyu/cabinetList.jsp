@@ -751,12 +751,10 @@ $(function(){
                   
                         <table style="text-align: center; width: 100%;">
                            <tr>
-                              <td colspan="5">
-                                 <hr>
-                              </td>
+                             
                            </tr>
                            <tr>
-                              <td colspan="5"><span style="float: left;"><i class="fa fa-pen"></i>&nbsp;제 목</span>                                 
+                              <td colspan="5"><span style="float: left;">&nbsp;제 목</span>                                 
                               <input type="text" name="btitle" class="form-control" placeholder="일정 제목을 입력하세요" required="required" value="${b.btitle }"></td>
                            </tr>
                            <tr>
@@ -873,7 +871,7 @@ $(function(){
                              
                            </tr>
                            <tr>
-                              <td>기존 담당자 : ${ b.bchargename }</td>
+                              <td style="text-align:left;"><br><i class="fas fa-user-friends"></i> 기존 담당자 : ${ b.bchargename }</td>
                                
                            </tr>
                      
