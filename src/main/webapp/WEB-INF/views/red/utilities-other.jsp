@@ -137,7 +137,6 @@ for(String pnames : (Set<String>)request.getAttribute("MemberNames")){
 <!-- 개인진행률끝 -->
 <% } %>
 <!-- 샘플 폼시작 -->
-<!--
  <div class="card mb-4" id="sampleProgress">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">영원한 친구 비트 (샘플 폼 입니다)</h6>
@@ -177,7 +176,6 @@ for(String pnames : (Set<String>)request.getAttribute("MemberNames")){
                   </div>
                 </div>  
             </div>
--->
 <!-- 샘플폼 끝 -->
         </div>
         <!-- /.container-fluid -->
@@ -227,7 +225,7 @@ for(String pnames : (Set<String>)request.getAttribute("MemberNames")){
 <script type="text/javascript">
 //샘플폼 가리기
 $(function(){
-//$("#sampleProgress").hide();
+$("#sampleProgress").hide();
 });
 </script>
 

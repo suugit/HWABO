@@ -202,14 +202,7 @@ function showToke(){
 	$(function(){$("#chat").html(toke);});
 	}
 }
-function chkToke(){
-if($('#chat').valueOf(":") == -1){
-	console.log("oooooppppp")
-	showToke();
-}
-}
-setInterval(chkToke,1000);
-show Toke();
+setInterval(showToke,1000);
 </script>
 <!-- 시계 끝 -->
 
