@@ -86,7 +86,7 @@
 					<!-- Begin Page Content -->
 					<div class="container-fluid">
 					<br>
-						<h4 style="text-align:center;  color: #19BFAF;">나의 화보에 오신 것을 환영합니다</h4>
+						<h4 style="text-align:center;  color: #19BFAF;"><strong>나의 화보에 오신 것을 환영합니다</strong></h4>
 						<br>
 
 						
@@ -94,7 +94,7 @@
 						
 						
 						<c:if test="${!empty list }">
-						<div class="card shadow mb-4 btn-group" align="center" style=" vertical-align: middle; font-size: 18px;">
+						<div class="card shadow mb-4 btn-group" align="center" style=" margin:0px; vertical-align: middle; font-size: 18px;">
 							
 							<span style="color: #42BBBA; margin-top: 10px;">
 							

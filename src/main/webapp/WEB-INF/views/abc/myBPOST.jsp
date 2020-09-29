@@ -712,9 +712,9 @@ function bkindupdate(divbno) {
 
 					 <div class="card mb-4" style="border-style:none;max-width: 97%; ">
 			<br>
-			<h4>&nbsp;&nbsp;&nbsp;${sessionScope.uname } 님의 업무 모아보기</h4>		     
-					     <br>   
-					           <div class="card-body" id="bposttab">
+			<h4 style="text-align:center;  color: #19BFAF; " ><strong>${sessionScope.uname } 님의 업무 모아보기</strong></h4>		           
+					           <div class="card-body" id="bposttab" style="margin: 0px;">
+					        
 					          <ul class="nav nav-tabs" style="margin-bottom: 0px; width: 100%;" id="myTab" role="tablist">
 							<li class="nav-item">
 							    <a class="nav-link active" id="allBpost-tab" data-toggle="tab" href="#allBpost" role="tab" aria-controls="allBpost" ><strong>전체업무</strong></a>
