@@ -258,7 +258,7 @@ function loadList(){
 }
 
 function requestedBpostLoad(){
-	alert("요청받은 업무 리스트 실행 !");
+
 					$.ajax({
 						url: "bpostload2.do",
 						type: "POST",
@@ -266,7 +266,7 @@ function requestedBpostLoad(){
 						dataType: "Json",
 						traditional: true,
 						success: function(o){
-							alert(o);
+
 							values3 =  '<thead><tr style="vertical-align: middle; text-align: center;"><th  style="width: 15%">유형</th><th>제목</th>	<th>내용</th><th>등록일</th></tr></thead>';
 				
 							for(var i in o){

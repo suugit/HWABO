@@ -57,7 +57,7 @@
 </select>
 
 <!--요청받은 업무 조회용 bpost -->	
-<select id="selectMyRequestedBPOST" parameterType="PjMember" resultType="Post">
+<select id="selectMyRequestedBPOST" parameterType="PjMember" resultType="Bpost">
 	select BNO, BTITLE, BUCODE, BWRITER, BSTARTDAY, BENDDAY, BKIND, BCHARGE, BCONTENT, BENROLLDATE, BOPEN, BRENAMEFILE, BORIGINFILE, BPNUM, BCHARGENAME
 	from bpost
 	where bcharge like  '%'||#{ucode}||'%'
