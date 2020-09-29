@@ -20,14 +20,13 @@
 		 
 		
 		<typeAlias type="com.beet.HWABO.bpost.model.vo.Bpost" alias="Bpost"/>
-		<typeAlias type="com.beet.HWABO.vpost.model.vo.VPost" alias="VPost"/>
+
 		<typeAlias type="com.beet.HWABO.red.model.vo.Project" alias="Project" />
 		
 		
-		<!-- 희철 -->
-		<typeAlias type="com.beet.HWABO.dopost.model.vo.Dopost" alias="Dopost"/>
+	
 		<typeAlias type="com.beet.HWABO.cproject.model.vo.Cproject" alias="Cproject"/>
-		<typeAlias type="com.beet.HWABO.pmanage.model.vo.Pmanage" alias="Pmanage"/>
+	
 		<typeAlias type="com.beet.HWABO.projectp.model.vo.Projectp" alias="Projectp"/>
 		
 		<!-- 규림 -->
@@ -35,7 +34,7 @@
 		<typeAlias type="com.beet.HWABO.cabinet.model.vo.Cabinet" alias="Cabinet"/>
 		<typeAlias type="com.beet.HWABO.filebox.model.vo.Filebox" alias="Filebox"/>
 		
-		<!-- 영민 -->
+		
 		<typeAlias type="com.beet.HWABO.chat.model.vo.Chat" alias="Chat"/>
 
 		<!-- 수현 -->
@@ -61,21 +60,16 @@
 		
 		
 		<mapper resource="mappers/bpost-mapper.xml" />
-		<mapper resource="plzMappers/vpost-mapper.xml" />
+		
 		
 		<mapper resource="redMappers/red-mapper.xml" />
-		<!-- 희철 -->
-		<mapper resource="khcMappers/dopost-mapper.xml" />
-		<mapper resource="khcMappers/cproject-mapper.xml" />
-		<mapper resource="khcMappers/pmanage-mapper.xml" />
-		<mapper resource="khcMappers/projectp-mapper.xml" />
+
+
 		<!-- 규림 -->
 		<mapper resource="kyuMappers/note-mapper.xml" />
 		<mapper resource="kyuMappers/cabinet-mapper.xml" />
 		<mapper resource="kyuMappers/filebox-mapper.xml" />
-		
-		<!-- 영민 -->
-		<mapper resource="plzMappers/chat-mapper.xml" />
+
 		<!-- 수현 -->
 	    <mapper resource="mappers/member-mapper.xml" />
         <mapper resource="mappers/cpost-mapper.xml" />
