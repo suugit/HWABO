@@ -106,7 +106,6 @@ function selectChat(){
 		success: function(json){
 			var jsonStr = JSON.stringify(json);
 			var json = JSON.parse(jsonStr);
-			console.log("success : " + jsonStr);
 			var values = "";
 			//시계 시작 ///////////////////
 			/* 
