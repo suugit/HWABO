@@ -218,6 +218,9 @@ function replyList(){
 							 re += '<a onclick="commentUpdate('+replyno+',\''+content+'\');"> 수정 </a>';
 						     re += '<a onclick="commentDelete('+replyno+');"> 삭제&nbsp;&nbsp; </a></div></i>';
 						    
+						}else{
+							 re += '<a onclick="commentUpdate('+replyno+',\''+content+'\');"> </a>';
+						     re += '<a onclick="commentDelete('+replyno+');"></a></div></i>';
 						}
 						 re += '<div class="commentContent'+replyno+'"> &nbsp;'+content+'</div></div></li>'; 
 						  
@@ -237,6 +240,10 @@ function replyList(){
 						if(ucode == "${ sessionScope.ucode }"){
 							 re += '<a onclick="commentUpdate('+replyno+',\''+content+'\');"> 수정 </a>';
 						     re += '<a onclick="commentDelete('+replyno+');"> 삭제&nbsp;&nbsp; </a></div></i>';
+						    
+						}else{
+							re += '<a onclick="commentUpdate('+replyno+',\''+content+'\');"> </a>';
+						     re += '<a onclick="commentDelete('+replyno+');"></a></div></i>';
 						    
 						}
 						 re += '<div class="commentContent'+replyno+'"> &nbsp;'+content+'</div></div></li></ul>'; 
