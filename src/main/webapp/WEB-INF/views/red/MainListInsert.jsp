@@ -9,6 +9,11 @@
 <script type="text/javascript"	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3b0466fa883da1d7216010325a5bcc&libraries=services"></script>
    <script src="resources/js/cpost.js"></script>
 <script type="text/javascript">
+
+
+
+
+
 function addbcharge0(){
      var name = $(event.target).text();
      var code = $(event.target).val();
@@ -17,7 +22,7 @@ function addbcharge0(){
        $('#user0').val(code);
        $("input:checkbox[id='user0']").prop("checked", true);
        $("input:checkbox[id='name0']").prop("checked", true);
-       /* alert($("#user0").val()+" 0번"+ $("#name0").val());  */
+     
 }
 function addbcharge1(){
    var name = $(event.target).text();
@@ -27,7 +32,7 @@ function addbcharge1(){
     $('#user1').val(code);
     $("input:checkbox[id='user1']").prop("checked", true);
     $("input:checkbox[id='name1']").prop("checked", true);
-  /*   alert($("#user1").val()+" 1번"+ $("#name1").val());  */
+
 }
 function addbcharge2(){
       var name = $(event.target).text();
@@ -37,7 +42,7 @@ function addbcharge2(){
        $('#user2').val(code);
        $("input:checkbox[id='user2']").prop("checked", true);
        $("input:checkbox[id='name2']").prop("checked", true);
-     /*   alert($("#user2").val()+" 2번" + $("#name2").val());  */
+  
 }
 function addbcharge3(){
       var name = $(event.target).text();
@@ -47,7 +52,7 @@ function addbcharge3(){
        $('#user3').val(code);
        $("input:checkbox[id='user3']").prop("checked", true);
        $("input:checkbox[id='name3']").prop("checked", true);
-     /*   alert($("#user3").val()+" 3번");  */
+   
 }
 function addbcharge4(){
       var name = $(event.target).text();
@@ -57,7 +62,7 @@ function addbcharge4(){
        $('#user4').val(code);
        $("input:checkbox[id='user4']").prop("checked", true);
        $("input:checkbox[id='name4']").prop("checked", true);
-     /*   alert($("#user4").val()+" 4번");  */
+    
 }
 function addbcharge5(){
       var name = $(event.target).text();
@@ -67,7 +72,7 @@ function addbcharge5(){
        $('#user5').val(code);
        $("input:checkbox[id='user5']").prop("checked", true);
        $("input:checkbox[id='name5']").prop("checked", true);
-    /*    alert($("#user5").val()+" 5번");  */
+
 }
 function addbcharge6(){
       var name = $(event.target).text();
@@ -77,61 +82,130 @@ function addbcharge6(){
        $('#name6').val(name);
        $("input:checkbox[id='user6']").prop("checked", true);
        $("input:checkbox[id='name6']").prop("checked", true);
-      /*  alert($("#user6").val()+" 6번");  */
+    
 }
 function addbcharge7(){
     var name = $(event.target).text();
     var code = $(event.target).val();
-     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
      $('#user7').val(code);
      $('#name7').val(name);
      $("input:checkbox[id='user7']").prop("checked", true);
      $("input:checkbox[id='name7']").prop("checked", true);
-   /*   alert($("#user_6").val()+" 6번");  */
+
 }
 function addbcharge8(){
     var name = $(event.target).text();
     var code = $(event.target).val();
-     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
      $('#user8').val(code);
      $('#name8').val(name);
      $("input:checkbox[id='user8']").prop("checked", true);
      $("input:checkbox[id='name8']").prop("checked", true);
-   /*   alert($("#user_6").val()+" 6번");  */
+  
 }
 function addbcharge9(){
     var name = $(event.target).text();
     var code = $(event.target).val();
-     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
      $('#user9').val(code);
      $('#name9').val(name);
      $("input:checkbox[id='user9']").prop("checked", true);
      $("input:checkbox[id='name9']").prop("checked", true);
-   /*   alert($("#user_6").val()+" 6번");  */
+  
 }
 function addbcharge10(){
     var name = $(event.target).text();
     var code = $(event.target).val();
-     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
      $('#user10').val(code);
      $('#name10').val(name);
      $("input:checkbox[id='user10']").prop("checked", true);
      $("input:checkbox[id='name10']").prop("checked", true);
-   /*   alert($("#user_6").val()+" 6번");  */
+   
 }
 function addbcharge11(){
     var name = $(event.target).text();
     var code = $(event.target).val();
-     $('#selectedup').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
      $('#user11').val(code);
      $('#name11').val(name);
      $("input:checkbox[id='user11']").prop("checked", true);
      $("input:checkbox[id='name11']").prop("checked", true);
-   /*   alert($("#user_6").val()+" 6번");  */
+ 
 }
+function addbcharge12(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user12').val(code);
+     $('#name12').val(name);
+     $("input:checkbox[id='user12']").prop("checked", true);
+     $("input:checkbox[id='name12']").prop("checked", true);
+
+}
+function addbcharge13(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user13').val(code);
+     $('#name13').val(name);
+     $("input:checkbox[id='user13']").prop("checked", true);
+     $("input:checkbox[id='name13']").prop("checked", true);
+ 
+}
+function addbcharge14(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user14').val(code);
+     $('#name14').val(name);
+     $("input:checkbox[id='user14']").prop("checked", true);
+     $("input:checkbox[id='name14']").prop("checked", true);
+   
+}
+function addbcharge15(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user15').val(code);
+     $('#name15').val(name);
+     $("input:checkbox[id='user15']").prop("checked", true);
+     $("input:checkbox[id='name15']").prop("checked", true);
+
+}
+function addbcharge16(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user16').val(code);
+     $('#name16').val(name);
+     $("input:checkbox[id='user16']").prop("checked", true);
+     $("input:checkbox[id='name16']").prop("checked", true);
+
+}
+
+function addbcharge17(){
+    var name = $(event.target).text();
+    var code = $(event.target).val();
+     $('#selected').before('<span>'+name + '&nbsp; <i class="fa fa-times" onclick="unSelected()"></i></span>');
+     $('#user17').val(code);
+     $('#name17').val(name);
+     $("input:checkbox[id='user17']").prop("checked", true);
+     $("input:checkbox[id='name17']").prop("checked", true);
+
+}
+
+
+
 function unSelected(){
    $(event.target).parent().remove();
 }
+
+
+
+
+
 var maxSize = 2048;
 var SPACE_KB = 1024;
 function fileCheck() {
