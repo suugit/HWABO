@@ -137,6 +137,7 @@ for(String pnames : (Set<String>)request.getAttribute("MemberNames")){
 <!-- 개인진행률끝 -->
 <% } %>
 <!-- 샘플 폼시작 -->
+<!--
  <div class="card mb-4" id="sampleProgress">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">영원한 친구 비트 (샘플 폼 입니다)</h6>
@@ -174,8 +175,9 @@ for(String pnames : (Set<String>)request.getAttribute("MemberNames")){
                   <div class="progress progress-sm mb-2">
                     <div class="progress-bar progress-bar6" role="progressbar" style="background-color:#F5F6CE;width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                </div>
-              </div>
+                </div>  
+            </div>
+-->
 <!-- 샘플폼 끝 -->
         </div>
         <!-- /.container-fluid -->

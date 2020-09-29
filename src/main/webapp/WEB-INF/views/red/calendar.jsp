@@ -131,9 +131,10 @@ function showCalendar(){
       	  <c:if test="${ !status.first }">
           ,
           </c:if>
+          
           {
         	id:'${calIndex.calno}',
-            title: '${calIndex.title}',
+            title: '${calIndex.title}&nbsp; ',
          	start: '${fn:substring(calIndex.start_date,0,10)}',
 	        end:  '${fn:substring(calIndex.end_date,0,10)}'//new Date('${fn:substring(calIndex.end_date,0,10)}').setDate(new Date('${fn:substring(calIndex.end_date,0,10)}').getDate() + 1)
           }
