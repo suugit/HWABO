@@ -460,7 +460,7 @@ function daycheckUp(id) {
 				<tr>
 					<td colspan="2">
 					${post.splace }
-					<div id="map1_${status.index }"  style="width:400px; height:200px; margin-top:5px;" ></div> <br>
+					<div id="map1_${status.index }"  style="width:100%; height:200px; margin-top:5px;" ></div> <br>
 <script>
 var index = ${status.index}
 var mapContainer1_${ status.index } = document.getElementById('map1_'+'${ status.index }'), // 지도를 표시할 div 
@@ -574,12 +574,12 @@ $(function(){
 		</div>
 		<div class="card-body">
 			<!-- 게시글안쪽 -->
-			<table>
+			<table style="width: 100%;">
 				<tr>
 					<th>제 목</th>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="text" maxlength="20" id="stitle" name="stitle" class="form-control" required="required" value="${post.stitle }">
+					<td colspan="4"><input type="text" maxlength="20" id="stitle" name="stitle" class="form-control" required="required" value="${post.stitle }">
 			</td>
 			</tr>
 				<tr>
@@ -587,33 +587,33 @@ $(function(){
 				</tr>
 
 				<tr>
-					<th>시 작 날 짜</th><th>끝 날 짜</th>
+					<th colspan="2" >시 작 날 짜</th><th colspan="2">끝 날 짜</th>
 				</tr>
 				
 				<c:set var="startday1" value="" />
 
 				<tr>
-					<td width="50%">
+					<td colspan="2" width="50%">
 					
 					
 					
 					<input type="datetime-local" class="form-control" name="beforesstartday" id="beforesstartdayuu${status.index }" 
 					required="required"  value="${post.stringstart }"	></td>
 
-					<td width="50%">
+					<td colspan="2" width="50%">
 					<input type="datetime-local" class="form-control" name="beforesendday"  id="beforesenddayuu${status.index }" 
 					required="required"  value="${post.stringend }"	></td>
 					
 				</tr>
-				<tr><td style="text-align: center;" colspan="3"><span style="color: blue;" id="dayspan${status.index }"></span></td></tr>
+				<tr><td style="text-align: center;" colspan="4"><span style="color: blue;" id="dayspan${status.index }"></span></td></tr>
 				<tr>
-					<td>&nbsp;</td>
+					<td colspan="4">&nbsp;</td>
 				</tr>
 				<tr>
 					<th>장 소</th>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td colspan="4">
 					<c:if test="${ empty post.splace }">
 						<input type="text" id="sample_address_${status.index }" placeholder=" 장소를 입력해주세요" class="form-control" id ="splace" name="splace" >
 					</c:if>	
@@ -621,8 +621,7 @@ $(function(){
 						<input type="text" id="sample_address_${status.index }"  class="form-control" id ="splace" name="splace"  value="${post.splace }">
 					</c:if>
 						<input type="button" onclick="sample5_execDaumPostcode_${status.index}(); return false;" value="장소검색"  class="form-control"><br>
-						<div id="map8_${status.index }" class="map"
-					style="width: 100%; height: 150px; margin-top: 10px; display: none"></div>
+						<div id="map8_${status.index }" class="map"	style="width: 100%; height: 150px; margin-top: 10px; display: none"></div>
 <script
 					src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -689,7 +688,7 @@ $(function(){
 					<td>메  모</td>
 				</tr>
 				<tr>
-				<td colspan="2">
+				<td colspan="4">
 <textarea name="scontent" id="scontent_${status.index }" cols="30" rows="10" class="form-control" maxlength="200"	 style="width: 100%; height: 200px; overflow: auto; resize: none;">${post.scontent }</textarea> </td>
 									</tr>
 		
