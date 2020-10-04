@@ -15,14 +15,15 @@ import com.beet.HWABO.member.model.vo.PjMember;
 import com.beet.HWABO.spost.model.vo.Bpostchk;
 import com.beet.HWABO.spost.model.vo.Post;
 import com.beet.HWABO.spost.model.vo.Spost;
-import com.sun.org.slf4j.internal.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Repository("spostDao")
 public class SpostDao {
 	@Autowired
 	private SqlSessionTemplate session;
 
-	private com.sun.org.slf4j.internal.Logger logger = LoggerFactory.getLogger(SpostDao.class);
+	private static final Logger logger = LoggerFactory.getLogger(SpostDao.class);
 
 	public SpostDao() {
 	}
