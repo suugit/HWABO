@@ -277,7 +277,12 @@
 			<artifactId>maven-compiler-plugin</artifactId>
 			<version>3.7.0</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin -->
+		<dependency>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-assembly-plugin</artifactId>
+		    <version>3.1.0</version>
+		</dependency>
 		<!-- Tiles 를 위한 설정 -->
 		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-api -->
 		<dependency>
@@ -398,6 +403,27 @@
 		          <target>1.8</target>
 		        </configuration>
 		      </plugin>
+		      	<plugin>
+				  <artifactId>maven-assembly-plugin</artifactId>
+				  <configuration>
+				    <descriptorRefs>
+				      <descriptorRef>jar-with-dependencies</descriptorRef>
+				    </descriptorRefs>
+				    <archive>
+				      <manifest>
+				        <mainClass>com.beet.HWABO</mainClass>
+				      </manifest>
+				    </archive>
+				  </configuration>
+				  <executions>
+				    <execution>
+				      <phase>package</phase>
+				      <goals>
+				       <goal>single</goal>
+				      </goals>  
+				    </execution>
+				  </executions>
+				</plugin>
 			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
