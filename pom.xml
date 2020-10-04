@@ -417,7 +417,7 @@
 		          <target>1.8</target>
 		        </configuration>
 		      </plugin>
-		      <!-- 	<plugin>
+		     	<plugin>
 				  <artifactId>maven-assembly-plugin</artifactId>
 				  <configuration>
 				    <descriptorRefs>
@@ -425,7 +425,8 @@
 				    </descriptorRefs>
 				    <archive>
 				      <manifest>
-				        <mainClass>src.beet.HWABO</mainClass>
+				      	<addClasspath>true</addClasspath>
+				        <mainClass>com.beet.HWABO</mainClass>
 				      </manifest>
 				    </archive>
 				  </configuration>
@@ -437,8 +438,8 @@
 				      </goals>  
 				    </execution>
 				  </executions>
-				</plugin> -->
-			      <plugin>
+				</plugin> 
+			  <!-- plugin>
 			        <groupId>org.apache.maven.plugins</groupId>
 			        <artifactId>maven-jar-plugin</artifactId>
 			        <configuration>
@@ -446,10 +447,11 @@
 			            <manifest>
 			              <addClasspath>true</addClasspath>
 			              <mainClass>com.beet.HWABO</mainClass>
+			              <classpathPrefix>lib/</classpathPrefix>
 			            </manifest>
 			          </archive>
 			        </configuration>
-			      </plugin>
+			      </plugin>  -->
 
 			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>

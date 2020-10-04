@@ -26,7 +26,7 @@ public class GoogleLoginUtil implements LoginUtil {
     /* 인증 */
 	private final static String CLIENT_ID = "507075818333-an288g3htqli53i5f49hlkdc60bfbq7i.apps.googleusercontent.com";
 	private final static String CLIENT_SECRET = "wNverxZ8cJvqPRAiAr4f48mu";
-	private final static String REDIRECT_URI = "http://localhost:8282/hwabo/gcallback.do";
+	private final static String REDIRECT_URI = "http://gcallback.hwabo.kro.kr";
 //    private  String CLIENT_ID;
 //    private  String CLIENT_SECRET;
 //    private  String REDIRECT_URI;
