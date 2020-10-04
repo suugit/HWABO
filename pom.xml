@@ -409,11 +409,11 @@
 				    <descriptorRefs>
 				      <descriptorRef>jar-with-dependencies</descriptorRef>
 				    </descriptorRefs>
-				<!--     <archive>
+				    <archive>
 				      <manifest>
 				        <mainClass>src.main.java</mainClass>
 				      </manifest>
-				    </archive> -->
+				    </archive>
 				  </configuration>
 				  <executions>
 				    <execution>
